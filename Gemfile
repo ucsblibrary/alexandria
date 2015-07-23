@@ -49,6 +49,7 @@ gem 'qa', '~> 0.5.0'
 gem 'kaminari', github: 'jcoyne/kaminari', branch: 'sufia'
 
 gem 'devise'
+gem "devise_ldap_authenticatable"
 gem 'devise-guests', '~> 0.3'
 gem 'traject', require: false
 
