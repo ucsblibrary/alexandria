@@ -12,7 +12,7 @@ set :passenger_restart_with_touch, true
 
 set :assets_prefix, "#{shared_path}/public/assets"
 
-set :linked_files, %w{config/resque-pool.yml config/redis.yml config/blacklight.yml config/database.yml config/ezid.yml config/fedora.yml config/secrets.yml config/smtp.yml config/solr.yml config/environments/production.rb}
+set :linked_files, %w{config/resque-pool.yml config/redis.yml config/blacklight.yml config/database.yml config/ezid.yml config/fedora.yml config/ldap.yml config/secrets.yml config/smtp.yml config/solr.yml config/environments/production.rb}
 
 set :linked_dirs, %w{tmp/pids tmp/cache tmp/sockets public/assets}
 
