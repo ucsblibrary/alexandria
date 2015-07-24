@@ -68,6 +68,5 @@ RSpec.configure do |config|
   config.include InputSupport, type: :input
   config.include FactoryGirl::Syntax::Methods
   config.include Devise::TestHelpers, type: :controller
-  config.include Features::SignIn, type: :feature
   config.include CollectionSupport, type: :feature
 end

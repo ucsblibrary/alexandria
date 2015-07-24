@@ -9,7 +9,7 @@ feature 'Merge Record: ' do
 
     before do
       AdminPolicy.ensure_admin_policy_exists
-      sign_in admin
+      login_as admin
     end
 
     # Test that the javascript is wired up correctly

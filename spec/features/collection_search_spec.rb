@@ -6,7 +6,7 @@ feature 'Collection search page' do
 
   before do
     AdminPolicy.ensure_admin_policy_exists
-    sign_in user
+    login_as user
   end
 
   context "with collections" do

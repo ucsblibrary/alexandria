@@ -6,7 +6,7 @@ feature 'Local Authorities' do
   before do
     ActiveFedora::Cleaner.clean!
     AdminPolicy.ensure_admin_policy_exists
-    sign_in admin
+    login_as admin
   end
 
   context 'with some records' do

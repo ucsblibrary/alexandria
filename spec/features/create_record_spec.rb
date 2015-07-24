@@ -7,7 +7,7 @@ feature 'Record Creation:' do
 
     before do
       AdminPolicy.ensure_admin_policy_exists
-      sign_in admin
+      login_as admin
     end
 
     scenario 'creates a new record' do

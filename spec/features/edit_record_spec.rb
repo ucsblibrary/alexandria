@@ -9,7 +9,7 @@ feature 'Editing Records:' do
 
     before do
       AdminPolicy.ensure_admin_policy_exists
-      sign_in admin
+      login_as admin
     end
 
     scenario 'edits a record' do

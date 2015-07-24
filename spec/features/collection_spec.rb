@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature 'Collection show page:', :type => :feature do
+feature 'Collection show page:' do
 
   let(:red_attrs)  {{ title: 'Red',
                       publisher: ['Colors Pub', 'Red Pub'],
@@ -21,7 +21,7 @@ RSpec.feature 'Collection show page:', :type => :feature do
   before {
     AdminPolicy.ensure_admin_policy_exists
     colors
-    sign_in user
+    login_as user
   }
 
   scenario 'Use facets to browse collection members' do
