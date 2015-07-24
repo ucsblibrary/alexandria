@@ -28,7 +28,7 @@ module ApplicationHelper
   end
 
   def admin_user?
-    current_user && current_user.admin?
+    current_user && current_user.groups.include?('metadata_admin')
   end
 
   def show_delete_link?(config, options)
