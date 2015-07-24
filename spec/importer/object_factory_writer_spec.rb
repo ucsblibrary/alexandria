@@ -13,6 +13,7 @@ describe ObjectFactoryWriter do
         'created_start' => ['2013'],
         'filename' => ['My_stuff.pdf'],
         'isbn' => ['1234'],
+        'extent' => ['1 online resource (147 pages)'],
         'identifier' => ['ark:/99999/fk4zp46p1g'],
         'id' => ['fk/4z/p4/6p/fk4zp46p1g'],
         'names' => ['Paul', 'Frodo Baggins', 'Hector'],
@@ -28,6 +29,7 @@ describe ObjectFactoryWriter do
         files: ['My_stuff.pdf'], created_attributes: [{ start: ['2013'] }],
         admin_policy_id: AdminPolicy::ADMIN_USER_POLICY_ID,
         collection: { id: "etds", title: "Electronic Theses and Dissertations", accession_number: ['etds'] },
+        extent: ['1 online resource (147 pages)'],
         title: 'How to be awesome',
         degree_supervisor: ['Paul', 'Hector']
       )

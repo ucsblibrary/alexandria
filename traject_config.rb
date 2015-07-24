@@ -76,7 +76,7 @@ to_field 'author', extract_marc("100a", trim_punctuation: true)
 
 
 to_field 'published', extract_marc("264", trim_punctuation: true)
-to_field 'description', extract_marc("300a") # TODO move this to extent #350
+to_field 'extent', extract_marc("300a")
 to_field 'dissertation', extract_marc("502") # TODO split into three subfields #338
 to_field 'bibliography', extract_marc("504") # TODO Remove? #340
 
