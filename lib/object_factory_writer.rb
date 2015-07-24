@@ -26,6 +26,15 @@ class ObjectFactoryWriter
   def put(context)
     attributes = context.output_hash.with_indifferent_access
 
+    relators = parse_relators(attributes.delete('names'), attributes.delete('relators'))
+
+    if relators
+      attributes.merge!(relators)
+    else
+      puts "Skipping: #{attributes[:identifier]} : ERROR: Names in field 720a don't match relators in field 720e"
+      return
+    end
+
     # created date is a TimeSpan
     created = attributes.delete('created_start')
     attributes[:created_attributes] = [{ start: created }] if created
@@ -59,8 +68,6 @@ class ObjectFactoryWriter
     # TODO get a real collection properties
     attributes[:collection] = { id: "etds", title: "Electronic Theses and Dissertations", accession_number: ['etds'] }
 
-    attributes.merge!(parse_relators(attributes.delete('names'), attributes.delete('relators')))
-
     build_object(attributes)
   end
 
@@ -83,11 +90,13 @@ class ObjectFactoryWriter
     # will return the thesis advisor:
     #     { degree_supervisor: ['Paul J. Atzberger'] }
     def parse_relators(names, relators)
-      fields = {}
+      names = Array(names)
+      relators = Array(relators)
+      return nil unless names.count == relators.count
 
+      fields = {}
       ds = names.find_all.with_index { |_, index| relators[index].match(/degree supervisor/i) }
       fields[:degree_supervisor] = ds unless ds.blank?
-
       fields
     end
 

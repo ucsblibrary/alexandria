@@ -82,13 +82,13 @@ to_field 'bibliography', extract_marc("504") # TODO Remove? #340
 
 # Names with relators, e.g. thesis advisor
 to_field 'names',    extract_marc("720a")
-to_field 'relators', extract_marc("720e")
+to_field 'relators', extract_marc("720e", allow_duplicates: true)
 
 # to_field 'f506', extract_marc("506") # access rights statement
 to_field 'summary', extract_marc("520") # TODO this becomes description #348
 # to_field 'f588', extract_marc("588") # basis of description
 
-#
+
 # 650 4 	|a Sociology, General.
 # 650 4 	|a Environmental Studies.
 # 650 4 	|a Anthropology, Cultural.
