@@ -22,30 +22,30 @@ authorizations: &AUTHORIZATIONS
 ## Environment
 
 development:
-  host: localhost
+  host:
   port: 389
-  attribute: cn
-  base: ou=people,dc=test,dc=com
+  attribute: uid
+  base: ou=people,dc=dce,dc=com
   admin_user:
   admin_password:
   ssl: false
   # <<: *AUTHORIZATIONS
 
 test:
-  host: localhost
+  host:
   port: 3389
-  attribute: cn
-  base: ou=people,dc=test,dc=com
+  attribute: uid
+  base: ou=people,dc=dce,dc=com
   admin_user:
   admin_password:
   ssl: simple_tls
   # <<: *AUTHORIZATIONS
 
 production:
-  host: localhost
+  host:
   port: 636
-  attribute: cn
-  base: ou=people,dc=test,dc=com
+  attribute: uid
+  base: ou=people,dc=dce,dc=com
   admin_user:
   admin_password:
   ssl: start_tls

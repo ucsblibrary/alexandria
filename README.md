@@ -15,6 +15,7 @@
   * Copy `config/solr.yml.template` to `config/solr.yml`
   * Copy `config/redis.yml.template` to `config/redis.yml`
   * Copy `config/resque-pool.yml.template` to `config/resque-pool.yml`
+  * Copy `config/ldap.yml.template` to `config/ldap.yml`
   * Install [PhantomJS](https://github.com/teampoltergeist/poltergeist#installing-phantomjs)
 
 ### Set up Jetty

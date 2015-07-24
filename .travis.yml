@@ -15,6 +15,7 @@ before_script:
   - "cp config/solr.yml.template config/solr.yml"
   - "cp config/redis.yml.template config/redis.yml"
   - "cp config/resque-pool.yml.template config/resque-pool.yml"
+  - "cp config/ldap.yml.template config/ldap.yml"
 
 notifications:
   email:
