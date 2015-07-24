@@ -2,6 +2,7 @@
 # Many of these configuration options can be set straight in your model.
 require 'guest_username'
 Devise.setup do |config|
+  config.include_helpers(GuestUsername)
   config.helpers << GuestUsername::Helpers
   # ==> LDAP Configuration
   # config.ldap_logger = true
