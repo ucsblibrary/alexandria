@@ -50,7 +50,7 @@ gem 'kaminari', github: 'jcoyne/kaminari', branch: 'sufia'
 
 gem 'devise'
 gem "devise_ldap_authenticatable"
-gem 'devise-guests', '~> 0.3'
+gem 'devise-guests', github: 'cbeer/devise-guests'
 gem 'traject', require: false
 
 gem 'resque-status'

@@ -1,6 +1,8 @@
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
+require 'guest_username'
 Devise.setup do |config|
+  config.helpers << GuestUsername::Helpers
   # ==> LDAP Configuration
   # config.ldap_logger = true
   config.ldap_create_user = true
