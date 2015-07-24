@@ -7,7 +7,6 @@ describe LocalAuthoritiesController do
   let(:agent) { create(:agent) }
   let(:topic) { Topic.create!(label: ['A Local Subject']) }
 
-
   describe 'a regular user' do
     let(:user) { create :user }
     before { sign_in user }
@@ -33,7 +32,7 @@ describe LocalAuthoritiesController do
       before do
         ActiveFedora::Cleaner.clean!
         [person, group, org, agent, image, topic] # create the objects
-        get :index 
+        get :index
       end
 
       it 'only shows the models for local authorities' do

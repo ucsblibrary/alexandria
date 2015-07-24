@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
 
   # Groups that user is a member of. Cached locally for 1 day
   def groups
+    return [] if new_record?
     cached_groups do
       fetch_groups!
     end
