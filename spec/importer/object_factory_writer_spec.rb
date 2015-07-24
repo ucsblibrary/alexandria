@@ -14,6 +14,7 @@ describe ObjectFactoryWriter do
         'filename' => ['My_stuff.pdf'],
         'isbn' => ['1234'],
         'extent' => ['1 online resource (147 pages)'],
+        'description' => ['Marine mussels use a mixture of proteins...', 'The performance of strong adhesion...'],
         'identifier' => ['ark:/99999/fk4zp46p1g'],
         'id' => ['fk/4z/p4/6p/fk4zp46p1g'],
         'names' => ['Paul', 'Frodo Baggins', 'Hector'],
@@ -30,6 +31,7 @@ describe ObjectFactoryWriter do
         admin_policy_id: AdminPolicy::ADMIN_USER_POLICY_ID,
         collection: { id: "etds", title: "Electronic Theses and Dissertations", accession_number: ['etds'] },
         extent: ['1 online resource (147 pages)'],
+        description: ['Marine mussels use a mixture of proteins...', 'The performance of strong adhesion...'],
         title: 'How to be awesome',
         degree_supervisor: ['Paul', 'Hector']
       )

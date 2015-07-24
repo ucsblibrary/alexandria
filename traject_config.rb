@@ -85,7 +85,7 @@ to_field 'names',    extract_marc("720a")
 to_field 'relators', extract_marc("720e", allow_duplicates: true)
 
 # to_field 'f506', extract_marc("506") # access rights statement
-to_field 'summary', extract_marc("520") # TODO this becomes description #348
+to_field 'description', extract_marc("520a")
 # to_field 'f588', extract_marc("588") # basis of description
 
 
