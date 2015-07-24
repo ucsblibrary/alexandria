@@ -106,6 +106,7 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.3.8)
+    american_date (1.1.0)
     arel (6.0.0)
     autoprefixer-rails (5.2.1)
       execjs
@@ -576,6 +577,7 @@ DEPENDENCIES
   active-fedora (= 9.2.1)
   active-triples!
   activefedora-aggregation (~> 0.3.0)
+  american_date (~> 1.1.0)
   awesome_print
   blacklight (~> 5.14.0)
   blacklight-gallery

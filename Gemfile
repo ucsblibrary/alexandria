@@ -56,6 +56,10 @@ gem 'traject', require: false
 gem 'resque-status'
 gem 'resque-pool'
 
+# When parsing the ETD metadata file from ProQuest,
+# some of the dates are American-style.
+gem 'american_date', '~> 1.1.0'
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'rspec-activemodel-mocks'
