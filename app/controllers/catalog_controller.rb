@@ -101,19 +101,9 @@ class CatalogController < ApplicationController
       config.add_show_field solr_name("#{key}_label", :stored_searchable), label: key.to_s.titleize
     end
 
-    config.add_show_field 'published_ss', label: 'Published'
-    config.add_show_field 'date_created_ss', label: 'Date Created'
-    config.add_show_field solr_name('form_of_work_label', :stored_searchable), label: 'Form of Resource'
     config.add_show_field solr_name('accession_number', :symbol), label: 'Accession Number'
     config.add_show_field solr_name('alternative', :stored_searchable), label: 'Alternative Title'
-    config.add_show_field 'description_ssim', label: 'Description'
-    config.add_show_field solr_name('description', :stored_searchable), label: 'Description'
-    config.add_show_field solr_name('summary', :stored_searchable), label: 'Summary'
-    config.add_show_field 'genre_ssim', label: 'Genre'
-    config.add_show_field 'keyword_ssim', label: 'Keywords'
-    config.add_show_field 'degree_grantor_ssm', label: 'Degree grantor'
-    config.add_show_field 'discipline_ssm', label: 'Discipine'
-    config.add_show_field 'language_ssim', label: 'Language'
+    config.add_show_field solr_name('description', :stored_searchable), label: 'Description', separator: '<br><br>'.html_safe
     config.add_show_field 'isbn_ssim', label: 'ISBN'
     config.add_show_field solr_name('collection_label', :symbol), label: 'Collection', helper_method: :link_to_collection
     config.add_show_field solr_name('series_name', :displayable), label: 'Series'

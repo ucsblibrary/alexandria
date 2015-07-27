@@ -46,10 +46,8 @@ class ObjectFactoryWriter
 
     # Delete entries that aren't in the schema yet
     attributes.delete('published') # TODO this breaks out into publisher, place of publication and publication date #342
-    attributes.delete('description') # TODO this becomes extent #350
     attributes.delete('dissertation') # TODO #338
     attributes.delete('bibliography') # TODO remove? #340
-    attributes.delete('summary') # TODO this becomes description #348
     attributes.delete('genre') # TODO remove? #340
     attributes.delete('degree_grantor') # TODO #347
     attributes.delete('discipline') # TODO remove? #340
