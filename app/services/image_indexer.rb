@@ -23,4 +23,10 @@ class ImageIndexer < ObjectIndexer
         Riiif::Engine.routes.url_helpers.image_url("#{id}/original", size: size, host: host)
       end
     end
+
+    def host
+      Rails.application.config.host_name
+    rescue NoMethodError
+      raise "host_name is not configured"
+    end
 end

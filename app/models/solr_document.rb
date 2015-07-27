@@ -43,4 +43,10 @@ class SolrDocument
   def ark
     Array(self[Solrizer.solr_name('identifier', :displayable)]).first
   end
+
+  def generic_files
+    @generic_files ||= begin
+      ActiveFedora::SolrService.query("{!terms f=id}#{self['generic_file_ids_ssim'].join(',')}").map { |res| SolrDocument.new(res) }
+    end
+  end
 end
