@@ -49,7 +49,6 @@ class ObjectFactoryWriter
     attributes.delete('dissertation') # TODO #338
     attributes.delete('bibliography') # TODO remove? #340
     attributes.delete('genre') # TODO remove? #340
-    attributes.delete('degree_grantor') # TODO #347
     attributes.delete('discipline') # TODO remove? #340
     attributes.delete('fulltext_link') # TODO #351 we need to filter only proquest urls
 

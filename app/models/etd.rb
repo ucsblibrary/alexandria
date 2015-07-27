@@ -12,6 +12,10 @@ class ETD < ActiveFedora::Base
     index.as :symbol
   end
 
+  property :degree_grantor, predicate: ::RDF::Vocab::MARCRelators.dgg do |index|
+    index.as :symbol
+  end
+
   include NestedAttributes
 
   include Hydra::Collections::Collectible

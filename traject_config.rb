@@ -103,7 +103,7 @@ to_field "genre", lambda { |record, accumulator|
   accumulator << values.join(' -- ')
 }
 
-to_field 'degree_grantor', extract_marc("710ab") # TODO #347
+to_field 'degree_grantor', extract_marc("710ab", trim_punctuation: true)
 to_field 'discipline', extract_marc('650')  # TODO remove? #340
 to_field 'fulltext_link', extract_marc("856u") # TODO filter for proquest url. #351
 # to_field 'f948', extract_marc("948")

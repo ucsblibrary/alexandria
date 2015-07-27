@@ -18,6 +18,7 @@ describe ObjectFactoryWriter do
         'identifier' => ['ark:/99999/fk4zp46p1g'],
         'id' => ['fk/4z/p4/6p/fk4zp46p1g'],
         'names' => ['Paul', 'Frodo Baggins', 'Hector'],
+        'degree_grantor' => ['University of California, Santa Barbara Mathematics'],
         'relators' => ['degree supervisor.', 'adventurer', 'Degree suPERvisor'] }
     end
 
@@ -33,6 +34,7 @@ describe ObjectFactoryWriter do
         extent: ['1 online resource (147 pages)'],
         description: ['Marine mussels use a mixture of proteins...', 'The performance of strong adhesion...'],
         title: 'How to be awesome',
+        'degree_grantor' => ['University of California, Santa Barbara Mathematics'],
         degree_supervisor: ['Paul', 'Hector']
       )
 

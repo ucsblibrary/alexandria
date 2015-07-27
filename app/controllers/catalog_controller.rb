@@ -98,7 +98,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'foaf_name_tesim', label: 'FOAF Name'
     config.add_show_field 'label_tesim', label: 'Label'
     Metadata::RELATIONS.each do |key, value|
-      config.add_show_field solr_name("#{key}_label", :stored_searchable), label: key.to_s.titleize
+    config.add_show_field solr_name("#{key}_label", :stored_searchable), label: key.to_s.titleize
     end
 
     config.add_show_field solr_name('accession_number', :symbol), label: 'Accession Number'
@@ -131,6 +131,7 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('rights_holder_label', :stored_searchable), label: 'Copyright Holder'
     config.add_show_field solr_name('use_restrictions', :stored_searchable), label: 'Use Restrictions'
     config.add_show_field solr_name('note_label', :stored_searchable), label: 'Notes', helper_method: :display_notes
+    config.add_show_field solr_name('degree_grantor', :symbol), label: 'Degree Grantor'
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields
