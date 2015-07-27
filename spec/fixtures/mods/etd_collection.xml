@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mods:mods xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-4.xsd" xmlns:mods="http://www.loc.gov/mods/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <mods:titleInfo usage="primary">
+    <mods:title>UCSB Electronic Theses and Dissertations</mods:title>
+  </mods:titleInfo>
+  <mods:typeOfResource collection="yes">text</mods:typeOfResource>
+  <mods:genre authority="lcsh" authorityURI="http://id.loc.gov/authorities/subjects" valueURI="http://id.loc.gov/authorities/subjects/sh98007393">Electronic dissertations</mods:genre>
+  <mods:originInfo>
+    <mods:dateCreated>circa 2011-</mods:dateCreated>
+    <mods:dateCreated encoding="iso8601" point="start" qualifier="approximate" keyDate="yes">2011</mods:dateCreated>
+  </mods:originInfo>
+  <mods:identifier type="local"></mods:identifier>
+  <mods:language>
+    <mods:languageTerm authority="iso639-2b" type="code" authorityURI="http://id.loc.gov/vocabulary/iso639-2" valueURI="http://id.loc.gov/vocabulary/iso639-2/zxx">zxx</mods:languageTerm>
+  </mods:language>
+  <mods:physicalDescription>
+    <mods:extent>ca 1,475 digital objects</mods:extent>
+  </mods:physicalDescription>
+  <mods:abstract>In partnership with the Graduate Division, the UCSB Library is making available theses and dissertations produced by UCSB students.
+    Currently included in ADRL are theses and dissertations that were originally filed electronically, starting in 2011.
+    In future phases of ADRL, all theses and dissertations created by UCSB students will be digitized and made available</mods:abstract>
+  <mods:location>
+    <mods:physicalLocation valueURI="http://id.loc.gov/vocabulary/organizations/cusb">University of California, Santa Barbara</mods:physicalLocation>
+    <mods:holdingSimple>
+      <mods:copyInformation>
+        <mods:subLocation>Department of Special Collections</mods:subLocation>
+      </mods:copyInformation>
+    </mods:holdingSimple>
+  </mods:location>
+  <mods:recordInfo>
+    <mods:descriptionStandard>local</mods:descriptionStandard>
+    <mods:recordContentSource authority="marcorg" authorityURI="http://id.loc.gov/vocabulary/organizations" valueURI="http://id.loc.gov/vocabulary/organizations/cusb">CU-SB</mods:recordContentSource>
+    <mods:languageOfCataloging usage="primary">
+      <mods:languageTerm type="code" authority="iso639-2b" authorityURI="http://id.loc.gov/vocabulary/iso639-2" valueURI="http://id.loc.gov/vocabulary/iso639-2/eng">eng</mods:languageTerm>
+    </mods:languageOfCataloging>
+    <mods:recordOrigin>Human created</mods:recordOrigin>
+  </mods:recordInfo>
+</mods:mods>
