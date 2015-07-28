@@ -26,8 +26,8 @@ describe Ability do
     }
   end
 
-  context 'for an admin user' do
-    let(:user) { create(:admin) }
+  context 'for an metadata admin user' do
+    let(:user) { create(:metadata_admin) }
 
     it {
       is_expected.to be_able_to(:read, image)
@@ -42,6 +42,20 @@ describe Ability do
 
       is_expected.to be_able_to(:new_merge, local_group)
       is_expected.to be_able_to(:merge, local_group)
+      is_expected.to be_able_to(:merge, SolrDocument.new(local_group.to_solr))
+
+      is_expected.not_to be_able_to(:discover, Hydra::AccessControls::Embargo)
+      is_expected.not_to be_able_to(:edit_rights, ActiveFedora::Base)
+    }
+  end
+
+  context 'for a rights admin user' do
+    let(:user) { create(:rights_admin) }
+
+    it {
+      is_expected.to be_able_to(:discover, Hydra::AccessControls::Embargo)
+      is_expected.to be_able_to(:update_rights, ActiveFedora::Base)
+      is_expected.to be_able_to(:update_rights, String) # Hydra-collections calls this on the id
     }
   end
 end

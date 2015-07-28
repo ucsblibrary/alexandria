@@ -13,8 +13,12 @@ FactoryGirl.define do
     # Prevent ldap from being called
     groups_list_expires_at { 1.day.from_now }
 
-    factory :admin do
+    factory :metadata_admin, aliases: [:admin] do
       group_list ['metadata_admin']
+    end
+
+    factory :rights_admin do
+      group_list ['rights_admin']
     end
 
   end

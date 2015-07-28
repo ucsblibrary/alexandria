@@ -7,6 +7,7 @@ class CatalogController < ApplicationController
 
   include Hydra::Catalog
   include Hydra::Controller::ControllerBehavior
+  include ConvertIds
   # These before_filters apply the hydra access controls
   # before_filter :enforce_show_permissions, :only=>:show
   # This applies appropriate access controls to all solr queries
@@ -24,7 +25,7 @@ class CatalogController < ApplicationController
     config.search_builder_class = SearchBuilder
     config.view.gallery.partials = [:index_header, :index]
     config.view.slideshow.partials = [:index]
-    config.add_nav_action(:admin_menu, partial: 'shared/admin_menu', if: :admin_user?, class: 'dropdown')
+    config.add_nav_action(:admin_menu, partial: 'shared/admin_menu', if: :admin_menu?, class: 'dropdown')
 
     # config.show.tile_source_field = :content_metadata_image_iiif_info_ssm
     # config.show.partials.insert(1, :openseadragon)
@@ -192,15 +193,5 @@ class CatalogController < ApplicationController
     # mean") suggestion is offered.
     config.spell_max = 5
   end
-
-  private
-
-    def convert_ark_to_id
-      if id = Identifier.ark_to_id(params[:id])
-        params[:id] = id
-      elsif id = Identifier.treeify(params[:id])
-        params[:id] = id
-      end
-    end
 
 end
