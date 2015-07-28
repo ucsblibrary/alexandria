@@ -36,6 +36,10 @@ class SolrDocument
     end
   end
 
+  def etd?
+    self['has_model_ssim'] == [ETD.to_class_uri]
+  end
+
   def to_param
     Identifier.ark_to_noid(ark) || Identifier.noidify(id)
   end

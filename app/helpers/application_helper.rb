@@ -9,9 +9,11 @@ module ApplicationHelper
     on_campus_network_prefixes.any? {|prefix| request.remote_ip.start_with?(prefix) }
   end
 
+  # Should we show the "edit metadata" link on the show page?
+  # Only shows up for non-etd things
   def editor?(_, stuff)
     document = stuff.fetch(:document)
-    can? :edit, document
+    can?(:edit, document) && !document.etd?
   end
 
   def link_to_collection(stuff)
