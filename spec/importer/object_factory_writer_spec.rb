@@ -19,6 +19,9 @@ describe ObjectFactoryWriter do
         'id' => ['fk/4z/p4/6p/fk4zp46p1g'],
         'names' => ['Paul', 'Frodo Baggins', 'Hector'],
         'degree_grantor' => ['University of California, Santa Barbara Mathematics'],
+        'place_of_publication' => ['[Santa Barbara, Calif.]'],
+        'publisher' => ['University of California, Santa Barbara'],
+        'issued' => ['2013'],
         'relators' => ['degree supervisor.', 'adventurer', 'Degree suPERvisor'] }
     end
 
@@ -35,6 +38,9 @@ describe ObjectFactoryWriter do
         description: ['Marine mussels use a mixture of proteins...', 'The performance of strong adhesion...'],
         title: 'How to be awesome',
         'degree_grantor' => ['University of California, Santa Barbara Mathematics'],
+        'place_of_publication' => ['[Santa Barbara, Calif.]'],
+        'publisher' => ['University of California, Santa Barbara'],
+        'issued' => ['2013'],
         degree_supervisor: ['Paul', 'Hector']
       )
 

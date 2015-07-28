@@ -14,4 +14,24 @@ describe ImageIndexer do
     end
   end
 
+  describe 'Indexing dates' do
+    context "with an issued date" do
+      let(:image) { Image.new(issued_attributes: [{ start: ['1925-11'] }]) }
+
+      it "indexes dates for display" do
+        expect(subject['issued_ssm']).to eq "1925-11"
+      end
+    end
+
+    context "with issued.start and issued.finish" do
+      let(:issued_start) { ['1917'] }
+      let(:issued_end) { ['1923'] }
+      let(:image) { Image.new(issued_attributes: [{ start: issued_start, finish: issued_end}]) }
+
+      it "indexes dates for display" do
+        expect(subject['issued_ssm']).to eq "1917 - 1923"
+      end
+    end
+  end
+
 end

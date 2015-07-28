@@ -1,4 +1,5 @@
 require 'importer'
+
 require 'traject'
 # require 'traject/util'
 # require 'traject/qualified_const_get'
@@ -45,7 +46,6 @@ class ObjectFactoryWriter
     attributes[:id] = attributes.delete('id').first
 
     # Delete entries that aren't in the schema yet
-    attributes.delete('published') # TODO this breaks out into publisher, place of publication and publication date #342
     attributes.delete('dissertation') # TODO #338
     attributes.delete('bibliography') # TODO remove? #340
     attributes.delete('genre') # TODO remove? #340

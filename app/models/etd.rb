@@ -20,8 +20,11 @@ class ETD < ActiveFedora::Base
     index.as :symbol
   end
 
-  include NestedAttributes
+  property :issued, predicate: ::RDF::DC.issued do |index|
+    index.as :displayable
+  end
 
+  include NestedAttributes
   include Hydra::Collections::Collectible
   aggregates :generic_files, predicate: ::RDF::URI("http://pcdm.org/models#hasMember")
 

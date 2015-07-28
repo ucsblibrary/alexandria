@@ -21,11 +21,12 @@ class ObjectIndexer < ActiveFedora::IndexingService
       solr_doc[COLLECTION] = object.collection_ids
       # TODO if we need to optimize, we could pull this from solr
       solr_doc[COLLECTION_LABEL] = object.collections.map &:title
-      solr_doc[ISSUED] = issued
+
       solr_doc[CREATED] = created
       solr_doc[COPYRIGHTED] = display_date('date_copyrighted')
       solr_doc[OTHER] = display_date('date_other')
       solr_doc[VALID] = display_date('date_valid')
+
       solr_doc[SORTABLE_DATE] = sortable_date
       solr_doc[FACETABLE_YEAR] = facetable_year
 
@@ -51,34 +52,35 @@ class ObjectIndexer < ActiveFedora::IndexingService
       object.created.first.display_label
     end
 
-    def issued
-      return unless object.issued.present?
-      object.issued.first.display_label
-    end
-
     # Create a date field for sorting on
     def sortable_date
-      Array(key_date).first.try(:earliest_year)
+      Array(sorted_key_date).first.try(:earliest_year)
     end
 
     # Create a year field (integer, multiple) for faceting on
     def facetable_year
-      Array(key_date).flat_map{ |d| d.try(:to_a) }
+      Array(sorted_key_date).flat_map{ |d| d.try(:to_a) }
     end
 
     def key_date
+      return @key_date if @key_date
+
       # Look through all the dates in order of importance, and
       # find the first one that has a value assigned.
       date_names = [:created, :issued, :date_copyrighted, :date_other, :date_valid]
 
-      date = nil
       date_names.each do |date_name|
         if object[date_name].present?
-          date = object[date_name].sort{ |a,b| a.earliest_year <=> b.earliest_year }
+          @key_date = object[date_name]
           break
         end
       end
-      date
+      @key_date
+    end
+
+    def sorted_key_date
+      return unless key_date
+      key_date.sort{ |a,b| a.earliest_year <=> b.earliest_year }
     end
 
 end

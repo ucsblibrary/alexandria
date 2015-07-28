@@ -5,6 +5,7 @@ class ImageIndexer < ObjectIndexer
       solr_doc['thumbnail_url_ssm'.freeze] = generic_file_thumbnails
       solr_doc['image_url_ssm'.freeze] = generic_file_images
       solr_doc['large_image_url_ssm'.freeze] = generic_file_large_images
+      solr_doc[ISSUED] = issued
     end
   end
 
@@ -29,4 +30,10 @@ class ImageIndexer < ObjectIndexer
     rescue NoMethodError
       raise "host_name is not configured"
     end
+
+    def issued
+      return unless object.issued.present?
+      object.issued.first.display_label
+    end
+
 end
