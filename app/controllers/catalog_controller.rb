@@ -90,7 +90,8 @@ class CatalogController < ApplicationController
     config.add_index_field 'date_created_ss', label: 'Date Created'
     config.add_index_field solr_name('form_of_work_label', :stored_searchable), label: 'Type'
     config.add_index_field solr_name('location_label', :stored_searchable), label: 'Location'
-    config.add_index_field solr_name('language', :stored_searchable, type: :string), label: 'Language'
+    config.add_index_field solr_name('language', :stored_searchable), label: 'Language'
+    config.add_index_field solr_name('keywords', :symbol), label: 'Keyword'
 
 
     # solr fields to be displayed in the show (single result) view

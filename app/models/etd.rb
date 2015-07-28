@@ -16,6 +16,10 @@ class ETD < ActiveFedora::Base
     index.as :symbol
   end
 
+  property :keywords, predicate: ::RDF::DC11.subject do |index|
+    index.as :symbol
+  end
+
   include NestedAttributes
 
   include Hydra::Collections::Collectible
