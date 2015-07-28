@@ -1,6 +1,6 @@
 <%= render 'show_default', document: document %>
 
-<% if document.key?('original_download_url_ssm') %>
+<% if document.generic_files.present? %>
   <table class="table table-bordered" id="downloads">
     <thead>
       <tr>
@@ -9,12 +9,12 @@
       </tr>
     </thead>
     <tbody>
-      <% document.fetch('original_download_url_ssm').each do |path| %>
+      <% document.generic_files.each do |generic_file| %>
       <tr>
         <td class="access_row" colspan="2">Access: UC Santa Barbara Only</td>
       </tr>
       <tr>
-        <td class="col_1"><span id="thumbnail_image"><%= image_tag "pdf_32x.png" %></span><%= link_to 'pdf', path %><span id="file_size"> (???) </span></td>
+        <td class="col_1"><span id="thumbnail_image"><%= image_tag "pdf_32x.png" %></span> <%= link_to generic_file.fetch('original_filename_ss'), generic_file.fetch('original_download_url_ss') %> <span id="file_size">(<%= number_to_human_size(generic_file.fetch('original_file_size_ss')) %>)</span></td>
         <td class="col_2">Full-text thesis or dissertation</td>
       </tr>
       <% end %>

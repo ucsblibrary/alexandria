@@ -24,6 +24,20 @@ describe SolrDocument do
     end
   end
 
+  context "for an etd with generic files" do
+    let(:etd_document) { SolrDocument.new(id: 'foobar', generic_file_ids_ssim: ['bf/74/27/75/bf742775-2a24-46dc-889e-cca03b27b5f3']) }
+    let(:generic_file_document) { SolrDocument.new(id: 'bf/74/27/75/bf742775-2a24-46dc-889e-cca03b27b5f3') }
+
+    before do
+      ActiveFedora::SolrService.add(generic_file_document)
+      ActiveFedora::SolrService.commit
+    end
+
+    it "looks up the generic_files" do
+      expect(etd_document.generic_files.first.id).to eq generic_file_document.id
+    end
+  end
+
   context '#to_param' do
     let(:noid) { 'f123456789' }
     let(:id)   { '12/34/56/f123456789' }
