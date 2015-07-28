@@ -50,7 +50,9 @@ class SolrDocument
 
   def generic_files
     @generic_files ||= begin
-      ActiveFedora::SolrService.query("{!terms f=id}#{self['generic_file_ids_ssim'].join(',')}").map { |res| SolrDocument.new(res) }
+      ids = fetch('generic_file_ids_ssim')
+      docs = ActiveFedora::SolrService.query("{!terms f=id}#{ids.join(',')}").map { |res| SolrDocument.new(res) }
+      ids.map { |id| docs.find { |doc| doc.id == id } }
     end
   end
 end
