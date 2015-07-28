@@ -24,7 +24,7 @@ class CatalogController < ApplicationController
     config.search_builder_class = SearchBuilder
     config.view.gallery.partials = [:index_header, :index]
     config.view.slideshow.partials = [:index]
-    config.add_nav_action(:admin_menu, partial: 'shared/admin_menu', if: :admin_user?)
+    config.add_nav_action(:admin_menu, partial: 'shared/admin_menu', if: :admin_user?, class: 'dropdown')
 
     # config.show.tile_source_field = :content_metadata_image_iiif_info_ssm
     # config.show.partials.insert(1, :openseadragon)

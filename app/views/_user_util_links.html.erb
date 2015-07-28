@@ -1,7 +1,7 @@
 <div class="navbar-right">
   <ul class="nav navbar-nav">
     <%= render_nav_actions do |config, action|%>
-      <li><%= action %></li>
+      <li class="<%= config['class'] %>"><%= action %></li>
     <% end %>
   </ul>
 

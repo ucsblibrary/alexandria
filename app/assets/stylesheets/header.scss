@@ -18,28 +18,6 @@ $header_background_image: 'ADRL_BG_1280x160.png';
 
   .navbar-right {
     margin-top: 1.5em;
-
-    a {
-      color: white;
-    }
-
-    // When a drop-down menu is open
-    .open {
-      a {
-        color: #777;
-        background-color: white;
-      }
-
-      a:hover, a:focus {
-        color: #303;
-        background-color: #e5e5e5;
-      }
-
-      a#adminMenu:hover, a#adminMenu:focus {
-        background-color: #0B202A;
-        color: white;
-      }
-    }
   }
 }
 
