@@ -244,14 +244,20 @@ describe UpdateMetadataFromProquestFile do
       obj.save
       obj.reload
     }
+    let(:service) { described_class.new(etd) }
+    let(:run) { service.run }
 
     before do
       AdminPolicy.ensure_admin_policy_exists
-      described_class.new(etd).run
+      run
       etd.save
     end
 
     context "when proquest file contents aren't parseable" do
+      let(:run) do
+        allow($stdout).to receive(:puts) # Squelch output
+        described_class.new(etd).run
+      end
       let(:policy_id) { AdminPolicy::PUBLIC_POLICY_ID }
       let(:etd) {
         obj = ETD.create(admin_policy_id: policy_id)
@@ -295,7 +301,7 @@ describe UpdateMetadataFromProquestFile do
       end
     end
 
-    context "when the embargo is in the past" do
+    context "when the embargo is in the past and keywords are present" do
       let(:file)  { "#{fixture_path}/proquest/MartinezRodriguez_ucsb_0035D_12446_DATA.xml" }
 
       it 'sets the access policy, no embargo' do
@@ -304,6 +310,8 @@ describe UpdateMetadataFromProquestFile do
         expect(reloaded.visibility_after_embargo).to be_nil
         expect(reloaded.under_embargo?).to eq false
         expect(reloaded.admin_policy_id).to eq AdminPolicy::PUBLIC_CAMPUS_POLICY_ID
+        expect(reloaded.keywords).to eq ["bioadhesion", "biofilm", "collagen", "interfacial pH", "mussel adhesive plaque", "Mussel foot protein"]
+
       end
     end
 

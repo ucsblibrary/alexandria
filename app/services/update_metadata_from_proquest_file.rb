@@ -21,6 +21,7 @@ class UpdateMetadataFromProquestFile
     else
       update_embargo_metadata!
       update_access_metadata
+      update_keyword_metadata
     end
   end
 
@@ -79,6 +80,10 @@ private
                           else
                             policy_after_embargo
                           end
+  end
+
+  def update_keyword_metadata
+    etd.keywords = attributes[:keywords]
   end
 
   def no_embargo?
