@@ -11,6 +11,10 @@ describe ETD do
     it "has fields" do
       expect(subject['system_number_ssim']).to eq ['004092515']
     end
+  end
 
+  describe "#human_readable_type" do
+    subject { described_class.new.human_readable_type }
+    it { is_expected.to eq 'ETD' }
   end
 end

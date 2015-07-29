@@ -166,4 +166,8 @@ module Metadata
   def ark
     identifier.first
   end
+
+  def human_readable_type
+    model_name.name
+  end
 end
