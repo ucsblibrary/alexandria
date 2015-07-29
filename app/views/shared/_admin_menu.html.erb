@@ -9,6 +9,7 @@
     <li><%= link_to 'Create a new record', hydra_editor.new_record_path %></li>
   <% end %>
   <% if can? :discover, Hydra::AccessControls::Embargo %>
-    <li><%= link_to 'Manage Embargos', embargoes_path %></li>
+    <%# The embargo page is very slow, so turn off turbolinks until it's optimized %>
+    <li><%= link_to 'Manage Embargos', embargoes_path, data: { no_turbolink: true } %></li>
   <% end %>
 </ul>
