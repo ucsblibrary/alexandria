@@ -15,5 +15,6 @@
 //= require turbolinks
 //
 //= require blacklight/blacklight
+//= require bootstrap/tab
 //
 //= require_tree .
