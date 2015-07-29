@@ -5,4 +5,9 @@ module EmbargoHelper
     id = ActiveFedora::Base.uri_to_id(curation_concern.visibility_after_embargo.id)
     Hydra::AdminPolicy.find(id).title
   end
+
+  # TODO this is slow and could be cached.
+  def visibility_options(_)
+    Hydra::AdminPolicy.all
+  end
 end

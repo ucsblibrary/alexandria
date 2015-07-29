@@ -7,18 +7,16 @@ Rails.application.routes.draw do
   get  'contact_us' => 'contact_us#new',    as: :contact_us_form
 
   blacklight_for :catalog
-  get 'lib/:id' => 'catalog#show',
-    constraints: { id: /ark:\/\d{5}\/f\w{7,9}/ }
-
-  resources :local_authorities, only: :index
+  get 'lib/:id' => 'catalog#show', constraints: { id: /ark:\/\d{5}\/f\w{7,9}/ }
 
   resources :downloads
-
   resources :embargoes, only: [:index, :edit, :destroy] do
     collection do
       patch :update
     end
   end
+  resources :etds, only: [:update]
+  resources :local_authorities, only: :index
 
   devise_for :users
   mount Hydra::RoleManagement::Engine => '/'
