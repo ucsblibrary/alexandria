@@ -4,10 +4,11 @@
 </a>
 
 <ul class="dropdown-menu" aria-labelledby="adminMenu">
-  <li>
-    <%= link_to 'Local Authorities', local_authorities_path %>
-  </li>
-  <li>
-    <%= link_to 'Create a new record', hydra_editor.new_record_path %>
-  </li>
+  <% if can? :read, :local_authorities %>
+    <li><%= link_to 'Local Authorities', local_authorities_path %></li>
+    <li><%= link_to 'Create a new record', hydra_editor.new_record_path %></li>
+  <% end %>
+  <% if can? :discover, Hydra::AccessControls::Embargo %>
+    <li><%= link_to 'Manage Embargos', embargoes_path %></li>
+  <% end %>
 </ul>

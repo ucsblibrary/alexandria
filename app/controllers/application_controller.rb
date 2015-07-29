@@ -21,6 +21,8 @@ class ApplicationController < ActionController::Base
   def deny_access(exception)
     if controller.name == 'records'
       redirect_to({ controller: :catalog,  action: 'show' }, alert: exception.message)
+    elsif controller.name == 'embargoes'
+      redirect_to({ controller: :catalog,  action: 'show' }, alert: exception.message)
     else
       super
     end

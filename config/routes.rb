@@ -14,6 +14,12 @@ Rails.application.routes.draw do
 
   resources :downloads
 
+  resources :embargoes, only: [:index, :edit, :destroy] do
+    collection do
+      patch :update
+    end
+  end
+
   devise_for :users
   mount Hydra::RoleManagement::Engine => '/'
   mount Riiif::Engine => '/images'

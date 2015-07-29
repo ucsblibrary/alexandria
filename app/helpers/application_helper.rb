@@ -29,16 +29,19 @@ module ApplicationHelper
     safe_join(Array(data[:value]), '<br/>'.html_safe)
   end
 
-  def admin_user?
-    current_user && current_user.groups.include?('metadata_admin')
+  # Should we display the admin menu?
+  def admin_menu?
+    can?(:discover, Hydra::AccessControls::Embargo) || can?(:destroy, :local_authorities)
   end
 
   def show_delete_link?(config, options)
-    admin_user? && LocalAuthority.local_authority?(options.fetch(:document))
+    LocalAuthority.local_authority?(options.fetch(:document)) &&
+      can?(:destroy, :local_authorities)
   end
 
   def show_merge_link?(config, options)
-    admin_user? && LocalAuthority.local_authority?(options.fetch(:document))
+    LocalAuthority.local_authority?(options.fetch(:document)) &&
+      can?(:merge, options.fetch(:document))
   end
 
 end
