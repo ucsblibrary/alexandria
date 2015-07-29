@@ -1,6 +1,6 @@
 module AdminPolicy
 
-  ADMIN_USER_POLICY_ID    = 'authorities/policies/admin'.freeze
+  RESTRICTED_POLICY_ID    = 'authorities/policies/restricted'.freeze
   DISCOVERY_POLICY_ID     = 'authorities/policies/discovery'.freeze
   UCSB_CAMPUS_POLICY_ID   = 'authorities/policies/ucsb_on_campus'.freeze
   UCSB_POLICY_ID          = 'authorities/policies/ucsb'.freeze
@@ -9,9 +9,8 @@ module AdminPolicy
 
   def self.ensure_admin_policy_exists
 
-    # TODO: Should ADMIN_USER_POLICY_ID be changed to something like RESTRICTED_POLICY_ID ?
-    unless Hydra::AdminPolicy.exists?(ADMIN_USER_POLICY_ID)
-      policy = Hydra::AdminPolicy.create(id: ADMIN_USER_POLICY_ID, title: ['Admin users only'])
+    unless Hydra::AdminPolicy.exists?(RESTRICTED_POLICY_ID)
+      policy = Hydra::AdminPolicy.create(id: RESTRICTED_POLICY_ID, title: ['Restricted access'])
       policy.default_permissions.build(type: "group", name: "metadata_admin", access: "edit")
       policy.save!
     end

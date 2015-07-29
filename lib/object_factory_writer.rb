@@ -60,7 +60,7 @@ class ObjectFactoryWriter
     # ETD is under embargo, we'll assume the most strict
     # access level.  This policy might change later when the
     # ProQuest metadata gets imported.
-    attributes[:admin_policy_id] = AdminPolicy::ADMIN_USER_POLICY_ID
+    attributes[:admin_policy_id] = AdminPolicy::RESTRICTED_POLICY_ID
 
     # TODO get a real collection properties
     attributes[:collection] = { id: "etds", title: "Electronic Theses and Dissertations", accession_number: ['etds'] }

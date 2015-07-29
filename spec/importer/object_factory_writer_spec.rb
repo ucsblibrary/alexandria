@@ -32,7 +32,7 @@ describe ObjectFactoryWriter do
         identifier: ['ark:/99999/fk4zp46p1g'],
         id: 'fk/4z/p4/6p/fk4zp46p1g',
         files: ['My_stuff.pdf'], created_attributes: [{ start: ['2013'] }],
-        admin_policy_id: AdminPolicy::ADMIN_USER_POLICY_ID,
+        admin_policy_id: AdminPolicy::RESTRICTED_POLICY_ID,
         collection: { id: "etds", title: "Electronic Theses and Dissertations", accession_number: ['etds'] },
         extent: ['1 online resource (147 pages)'],
         description: ['Marine mussels use a mixture of proteins...', 'The performance of strong adhesion...'],

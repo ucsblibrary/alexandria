@@ -169,7 +169,7 @@ private
     else
       # If we can't figure out the correct policy,
       # set it to the most restrictive policy.
-      AdminPolicy::ADMIN_USER_POLICY_ID
+      AdminPolicy::RESTRICTED_POLICY_ID
     end
   end
 

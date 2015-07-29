@@ -215,7 +215,7 @@ describe UpdateMetadataFromProquestFile do
 
       context "with text that doesn't match known policies" do
         let(:attrs) {{ DISS_access_option: 'something unknown' }}
-        it { is_expected.to eq(AdminPolicy::ADMIN_USER_POLICY_ID) }
+        it { is_expected.to eq(AdminPolicy::RESTRICTED_POLICY_ID) }
       end
     end
 
