@@ -17,7 +17,7 @@ class ETD < ActiveFedora::Base
   end
 
   property :keywords, predicate: ::RDF::DC11.subject do |index|
-    index.as :symbol
+    index.as :stored_searchable
   end
 
   property :issued, predicate: ::RDF::DC.issued do |index|

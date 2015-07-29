@@ -94,8 +94,6 @@ to_field 'description', extract_marc("520a")
 # 650 4 	|a Sociology, General.
 # 650 4 	|a Environmental Studies.
 # 650 4 	|a Anthropology, Cultural.
-#
-# to_field 'keyword_ssim', extract_marc("653") #Test this when we have records that have keywords and ark.
 
 extract655a = MarcExtractor.new("655a", :separator => nil)
 extract655zx = MarcExtractor.new("655zx", :separator => ' -- ')

@@ -31,7 +31,7 @@ class CatalogController < ApplicationController
     # config.show.partials.insert(1, :openseadragon)
 
     config.default_solr_params = {
-      qf: 'title_tesim lc_subject_label_tesim accession_number_tesim',
+      qf: 'title_tesim lc_subject_label_tesim accession_number_tesim keywords_tesim',
       wt: 'json',
       qt: 'search',
       rows: 10
@@ -92,7 +92,6 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name('form_of_work_label', :stored_searchable), label: 'Type'
     config.add_index_field solr_name('location_label', :stored_searchable), label: 'Location'
     config.add_index_field solr_name('language', :stored_searchable), label: 'Language'
-    config.add_index_field solr_name('keywords', :symbol), label: 'Keyword'
 
 
     # solr fields to be displayed in the show (single result) view
@@ -134,6 +133,7 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('use_restrictions', :stored_searchable), label: 'Use Restrictions'
     config.add_show_field solr_name('note_label', :stored_searchable), label: 'Notes', helper_method: :display_notes
     config.add_show_field solr_name('degree_grantor', :symbol), label: 'Degree Grantor'
+    config.add_show_field solr_name('keywords', :stored_searchable), label: 'Keywords'
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields
