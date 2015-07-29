@@ -74,8 +74,10 @@ to_field 'author', extract_marc("100a", trim_punctuation: true)
 # to_field 'title', extract_marc("245") # also has statement of responsibility, needs to strip type
 # to_field 'filing_version', extract_marc_filing_version # title with statement of responsibility stripped, but still has colin and slashes
 
+to_field 'place_of_publication', extract_marc("264a", trim_punctuation: true)
+to_field 'publisher', extract_marc("264b", trim_punctuation: true)
+to_field 'issued', extract_marc("264c", trim_punctuation: true)
 
-to_field 'published', extract_marc("264", trim_punctuation: true)
 to_field 'extent', extract_marc("300a")
 to_field 'dissertation', extract_marc("502") # TODO split into three subfields #338
 to_field 'bibliography', extract_marc("504") # TODO Remove? #340
