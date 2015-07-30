@@ -1,0 +1,6 @@
+<div>
+  <%= f.hidden_field :embargo? %>
+  <%= f.input :admin_policy_id, collection: f.object.visibility_options(:restrict), include_blank: false, label: "Current access" %>
+  <%= f.input :embargo_release_date, input_html: { class: 'datepicker' } %>
+  <%= f.input :visibility_after_embargo_id, collection: f.object.visibility_options(:loosen), include_blank: false %>
+</div>

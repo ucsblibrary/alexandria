@@ -1,0 +1,24 @@
+<h1>Manage Access Policy and Embargo for <%= curation_concern.ark %></h1>
+<h2><%= curation_concern.title %></h2>
+
+<%= simple_form_for @form, url: polymorphic_path([@form, :access]), html: { id: 'embargo-form' } do |f| %>
+
+  <% if curation_concern.embargo %>
+    <div id="embargo-notice"><span class="glyphicon glyphicon-lock"></span> EMBARGO: access policy is scheduled to change in the future</div>
+  <% end %>
+  <%= render "form_permission", f: f %>
+
+  <div class="row">
+    <div class="col-md-6">
+      <%= link_to "View this item", catalog_path(@form.model), class: 'btn btn-primary' %>
+      <%= link_to "View all embargos", embargoes_path, class: 'btn btn-info' %>
+    </div>
+    <div class="col-md-6" style="align: right">
+      <%= button_tag "Delete Embargo", id: 'remove_embargo_button', class: 'btn btn-danger' %>
+      <%= button_tag "End Early", id: 'end_early_button', class: 'btn btn-warning' %>
+      <%= button_tag "Add Embargo", id: 'add_embargo_button', class: 'btn btn-warning' %>
+      <%= f.submit "Save Changes", class: 'btn btn-success' %>
+    </div>
+  </div>
+<% end %>
+

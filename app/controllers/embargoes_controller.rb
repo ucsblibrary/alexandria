@@ -4,7 +4,7 @@ class EmbargoesController < ApplicationController
   include Hydra::Controller::ControllerBehavior
   include ConvertIds
 
-  before_action :convert_ark_to_id, only: [:edit, :destroy]
+  before_action :convert_ark_to_id, only: [:destroy]
 
   attr_accessor :curation_concern
   helper_method :curation_concern
@@ -14,16 +14,12 @@ class EmbargoesController < ApplicationController
     authorize! :discover, Hydra::AccessControls::Embargo
   end
 
-  def edit
-    authorize! :update_rights, curation_concern
-  end
-
   # Remove an active or lapsed embargo
   def destroy
     authorize! :update_rights, curation_concern
     remove_embargo(curation_concern)
     flash[:notice] = curation_concern.embargo_history.last
-    redirect_to edit_embargo_path(curation_concern)
+    redirect_to catalog_path(curation_concern)
   end
 
   def update
@@ -50,14 +46,6 @@ class EmbargoesController < ApplicationController
       work.embargo_visibility! # If the embargo has lapsed, update the current visibility.
       work.deactivate_embargo!
       work.save
-    end
-
-    def deny_access(exception)
-      if params[:action] == 'edit'
-        redirect_to({ controller: :catalog,  action: 'show' }, alert: exception.message)
-      else
-        super
-      end
     end
 
 end

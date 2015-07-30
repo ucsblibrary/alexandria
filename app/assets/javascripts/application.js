@@ -16,5 +16,6 @@
 //
 //= require blacklight/blacklight
 //= require bootstrap/tab
+//= require embargo
 //
 //= require_tree .

@@ -1,38 +1,55 @@
 require 'rails_helper'
 
-describe Worthwhile::EmbargoService do
-  let(:future_date) { 2.days.from_now }
-  let(:past_date) { 2.days.ago }
+describe EmbargoService do
+  before { AdminPolicy.ensure_admin_policy_exists }
+  describe ".create_or_update_embargo" do
+    let(:work) { create(:etd) }
 
-  let!(:work_with_expired_embargo1) do
-    build(:etd, embargo_release_date: past_date.to_s).tap do |work|
-      work.save(validate:false)
+    context "when there is no embargo" do
+      it "creates embargo" do
+        EmbargoService.create_or_update_embargo(work,
+          admin_policy_id: "authorities/policies/restricted",
+          embargo_release_date: "2099-07-29T00:00:00+00:00",
+          visibility_after_embargo_id: "authorities/policies/ucsb")
+
+        expect(ActiveFedora::Base.uri_to_id(work.visibility_during_embargo.id)).to eq 'authorities/policies/restricted'
+        expect(ActiveFedora::Base.uri_to_id(work.visibility_after_embargo.id)).to eq 'authorities/policies/ucsb'
+        expect(work.embargo_release_date).to eq '2099-07-29T00:00:00+00:00'
+      end
+    end
+
+    context "when the etd is already under embargo" do
+      let(:work) { create(:etd,
+                          visibility_during_embargo: visibility_during_embargo,
+                          visibility_after_embargo: visibility_after_embargo,
+                          embargo_release_date: 10.days.from_now) }
+
+      let(:visibility_during_embargo) { RDF::URI(ActiveFedora::Base::id_to_uri("authorities/policies/restricted")) }
+      let(:visibility_after_embargo) { RDF::URI(ActiveFedora::Base::id_to_uri("authorities/policies/public")) }
+
+      it "updates values" do
+        EmbargoService.create_or_update_embargo(work,
+          embargo_release_date: "2099-07-29T00:00:00+00:00",
+          visibility_after_embargo_id: "authorities/policies/ucsb")
+        expect(ActiveFedora::Base.uri_to_id(work.visibility_during_embargo.id)).to eq 'authorities/policies/restricted'
+        expect(ActiveFedora::Base.uri_to_id(work.visibility_after_embargo.id)).to eq 'authorities/policies/ucsb'
+        expect(work.embargo_release_date).to eq '2099-07-29T00:00:00+00:00'
+      end
     end
   end
 
-  let!(:work_with_expired_embargo2) do
-    build(:etd, embargo_release_date: past_date.to_s).tap do |work|
-      work.save(validate:false)
-    end
-  end
+  describe ".remove_embargo" do
+    let(:work) { create(:etd,
+                        visibility_during_embargo: visibility_during_embargo,
+                        visibility_after_embargo: visibility_after_embargo,
+                        embargo_release_date: 10.days.from_now) }
 
-  let!(:work_with_embargo_in_effect) { create(:etd, embargo_release_date: future_date.to_s)}
-  let!(:work_without_embargo) { create(:etd)}
+    let(:visibility_during_embargo) { RDF::URI(ActiveFedora::Base::id_to_uri("authorities/policies/restricted")) }
+    let(:visibility_after_embargo) { RDF::URI(ActiveFedora::Base::id_to_uri("authorities/policies/public")) }
 
-  describe "#assets_with_expired_embargoes" do
-    it "returns an array of assets with expired embargoes" do
-      returned_pids = subject.assets_with_expired_embargoes.map {|a| a.id}
-      expect(returned_pids).to include work_with_expired_embargo1.id,work_with_expired_embargo2.id
-      expect(returned_pids).to_not include work_with_embargo_in_effect.id,work_without_embargo.id
-    end
-  end
-
-  describe "#assets_under_embargo" do
-    it "returns all assets with embargo release date set" do
-      result = subject.assets_under_embargo
-      returned_pids = subject.assets_under_embargo.map {|a| a.id}
-      expect(returned_pids).to include work_with_expired_embargo1.id,work_with_expired_embargo2.id,work_with_embargo_in_effect.id
-      expect(returned_pids).to_not include work_without_embargo.id
+    it "nullifies the embargo" do
+      EmbargoService.remove_embargo(work)
+      expect(work.embargo).to be_nil
     end
   end
 end

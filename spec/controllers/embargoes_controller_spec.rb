@@ -23,25 +23,6 @@ describe EmbargoesController do
     end
   end
 
-  describe "#edit" do
-    context "when I do not have edit permissions for the object" do
-      let(:user) { create(:user) }
-      it "redirects" do
-        get :edit, id: work
-        expect(response).to redirect_to catalog_path(work)
-      end
-    end
-
-    context "when I have permission to edit the object" do
-      it "shows me the page" do
-        get :edit, id: work
-        expect(response).to be_success
-      end
-    end
-  end
-
-
-
   describe "#destroy" do
     context "when I do not have edit permissions for the object" do
       let(:user) { create(:user) }
@@ -68,7 +49,7 @@ describe EmbargoesController do
 
         it "deactivates embargo without updating admin_policy_id and redirects" do
           expect(work.admin_policy_id).to eq AdminPolicy::UCSB_CAMPUS_POLICY_ID
-          expect(response).to redirect_to edit_embargo_path(work)
+          expect(response).to redirect_to catalog_path(work)
         end
       end
 
@@ -77,7 +58,7 @@ describe EmbargoesController do
 
         it "deactivates embargo, updates the admin_policy_id and redirects" do
           expect(work.admin_policy_id).to eq AdminPolicy::PUBLIC_POLICY_ID
-          expect(response).to redirect_to edit_embargo_path(work)
+          expect(response).to redirect_to catalog_path(work)
         end
       end
     end

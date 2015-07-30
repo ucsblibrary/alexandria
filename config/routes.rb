@@ -10,12 +10,16 @@ Rails.application.routes.draw do
   get 'lib/:id' => 'catalog#show', constraints: { id: /ark:\/\d{5}\/f\w{7,9}/ }
 
   resources :downloads
-  resources :embargoes, only: [:index, :edit, :destroy] do
+  resources :embargoes, only: [:index, :destroy] do
     collection do
       patch :update
     end
   end
-  resources :etds, only: [:update]
+
+  resources :etds, only: [] do
+    resource :access, only: [:edit, :update], controller: 'access'
+  end
+
   resources :local_authorities, only: :index
 
   devise_for :users
