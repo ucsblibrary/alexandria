@@ -16,8 +16,10 @@ describe Importer::Factory::ETDFactory do
     }.with_indifferent_access
   end
 
-  # squelch output
-  before { allow($stdout).to receive(:puts) }
+  before do
+    allow($stdout).to receive(:puts)  # squelch output
+    AdminPolicy.ensure_admin_policy_exists
+  end
 
   context "when a collection already exists" do
     let!(:coll) { Collection.create(collection_attrs) }
@@ -34,6 +36,15 @@ describe Importer::Factory::ETDFactory do
       expect(obj.system_number).to eq ['123']
       expect(obj.identifier).to eq ['ark:/48907/f3gt5k61']
       expect(obj.author).to eq ['Valerie']
+    end
+  end
+
+
+  describe '#create_attributes' do
+    subject { factory.create_attributes }
+
+    it "adds the default access policy to the ETD's attributes" do
+      expect(subject[:admin_policy_id]).to eq AdminPolicy::RESTRICTED_POLICY_ID
     end
   end
 

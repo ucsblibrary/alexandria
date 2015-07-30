@@ -54,14 +54,6 @@ class ObjectFactoryWriter
 
     attributes[:files] = attributes.delete('filename')
 
-    # When we first create an ETD, we might not yet have the
-    # metadata from ProQuest that contains the access and
-    # embargo data.  Since we don't know whether or not this
-    # ETD is under embargo, we'll assume the most strict
-    # access level.  This policy might change later when the
-    # ProQuest metadata gets imported.
-    attributes[:admin_policy_id] = AdminPolicy::RESTRICTED_POLICY_ID
-
     # TODO get a real collection properties
     attributes[:collection] = { id: "etds", title: "Electronic Theses and Dissertations", accession_number: ['etds'] }
 
