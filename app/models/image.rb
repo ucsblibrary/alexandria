@@ -5,6 +5,9 @@ class Image < ActiveFedora::Base
   include Hydra::Collections::Collectible
   include LocalAuthorityHashAccessor
 
+  include Hydra::AccessControls::Embargoable
+  include EmbargoBehavior
+
   aggregates :generic_files, predicate: ::RDF::URI("http://pcdm.org/models#hasMember")
 
   has_and_belongs_to_many :issued, predicate: ::RDF::DC.issued, class_name: 'TimeSpan', inverse_of: :issued_images
