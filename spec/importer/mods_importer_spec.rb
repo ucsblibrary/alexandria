@@ -18,6 +18,15 @@ describe Importer::ModsImporter do
   end
 
   describe "#import an Image" do
+    before do
+      Collection.destroy_all
+      if ActiveFedora::Base.exists? 'fk/41/23/45/fk41234567'
+        ActiveFedora::Base.find('fk/41/23/45/fk41234567').destroy(eradicate: true)
+      end
+      if ActiveFedora::Base.exists? 'fk/49/87/65/fk49876543'
+        ActiveFedora::Base.find('fk/49/87/65/fk49876543').destroy(eradicate: true)
+      end
+    end
     let(:file) { 'spec/fixtures/mods/cusbspcmss36_110108.xml' }
 
     let(:identifier1) { double('ARK1', id: 'ark:/99999/fk41234567') }
@@ -62,11 +71,17 @@ describe Importer::ModsImporter do
     end
 
     context 'when the collection already exists' do
-      let!(:coll) { Collection.create(id: 'fk44174k70', accession_number: ['SBHC Mss 36']) }
       before do
+        # This ID comes from the ezid VCR cassette:
+        if ActiveFedora::Base.exists? 'fk/4c/25/2k/fk4c252k0f'
+          ActiveFedora::Base.find('fk/4c/25/2k/fk4c252k0f').destroy(eradicate: true)
+        end
+        Collection.destroy_all
+
         # skip creating files
         allow_any_instance_of(Importer::Factory::ImageFactory).to receive(:after_create)
       end
+      let!(:coll) { Collection.create(accession_number: ['SBHC Mss 36']) }
 
       it 'it adds image to existing collection' do
         expect(coll.members.count).to eq 0
@@ -83,6 +98,13 @@ describe Importer::ModsImporter do
   end
 
   describe "#import a Collection" do
+    before do
+      # This ID comes from the ezid VCR cassette:
+      if ActiveFedora::Base.exists? 'fk/4c/25/2k/fk4c252k0f'
+        ActiveFedora::Base.find('fk/4c/25/2k/fk4c252k0f').destroy(eradicate: true)
+      end
+      Collection.destroy_all
+    end
     let(:file) { 'spec/fixtures/mods/sbhcmss78_FlyingAStudios_collection.xml' }
 
     it 'creates a collection' do
@@ -106,7 +128,7 @@ describe Importer::ModsImporter do
     end
 
     context 'when the collection already exists' do
-      let!(:existing) { Collection.create(id: 'fk4bv7mw47', accession_number: ['SBHC Mss 78']) }
+      let!(:existing) { Collection.create(accession_number: ['SBHC Mss 78']) }
 
       it 'it adds metadata to existing collection' do
         coll = nil
@@ -114,13 +136,20 @@ describe Importer::ModsImporter do
           coll = importer.import(file)
         }.to change { Collection.count }.by(0)
 
-        expect(coll.id).to eq 'fk4bv7mw47'
+        expect(coll.id).to eq existing.id
         expect(coll.accession_number).to eq ['SBHC Mss 78']
         expect(coll.title).to eq 'Joel Conway / Flying A Studio photograph collection'
       end
     end
 
     context 'when the person already exists' do
+      before do
+        # This ID comes from the ezid VCR cassette:
+        if ActiveFedora::Base.exists? 'fk/4c/25/2k/fk4c252k0f'
+          ActiveFedora::Base.find('fk/4c/25/2k/fk4c252k0f').destroy(eradicate: true)
+        end
+        Person.destroy_all
+      end
       let!(:existing) { Person.create(foaf_name: 'Conway, Joel') }
 
       it "doesn't create another person" do
@@ -149,6 +178,10 @@ describe Importer::ModsImporter do
 
     context 'when rights_holder has strings or uris' do
       before do
+        # This ID comes from the ezid VCR cassette:
+        if ActiveFedora::Base.exists? 'fk/4c/25/2k/fk4c252k0f'
+          ActiveFedora::Base.find('fk/4c/25/2k/fk4c252k0f').destroy(eradicate: true)
+        end
         Agent.delete_all
         Agent.create(foaf_name: frodo)  # existing rights holder
         allow_any_instance_of(Importer::ModsParser).to receive(:rights_holder) { [frodo, bilbo, pippin] }

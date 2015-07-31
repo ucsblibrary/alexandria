@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 describe ImageIndexer do
+  before do
+    ActiveFedora::Cleaner.clean!
+  end
   subject { ImageIndexer.new(image).generate_solr_document }
 
   context "with a generic_file" do

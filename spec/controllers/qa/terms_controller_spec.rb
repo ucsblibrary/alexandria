@@ -18,25 +18,23 @@ describe Qa::TermsController do
   end
 
   describe "local names" do
-    before do
-      Agent.create(id: 'fr0d0', foaf_name: 'Frodo Baggins')
-    end
+    let!(:agent) { Agent.create(foaf_name: 'Frodo Baggins') }
 
     it "returns terms" do
       get :search, vocab: 'local', subauthority: 'names', q: 'Baggins'
       expect(response).to be_success
-      expect(response.body).to eq "[{\"id\":\"http://localhost:8983/fedora/rest/test/fr0d0\",\"label\":\"Frodo Baggins\"}]"
+      expect(response.body).to eq "[{\"id\":\"http://localhost:8983/fedora/rest/test/#{agent.id}\",\"label\":\"Frodo Baggins\"}]"
     end
   end
 
   describe "local subjects" do
-    let!(:topic) { Topic.create(id: 'fr0d0', label: ['Frodo Baggins']) }
+    let!(:topic) { Topic.create(label: ['Frodo Baggins']) }
     let!(:person) { Person.create(foaf_name: 'Bilbo Baggins') }
 
     it "returns (topic) Frodo but not (person) Bilbo" do
       get :search, vocab: 'local', subauthority: 'subjects', q: 'Baggins'
       expect(response).to be_success
-      expect(response.body).to eq "[{\"id\":\"http://localhost:8983/fedora/rest/test/fr0d0\",\"label\":\"Frodo Baggins\"}]"
+      expect(response.body).to eq "[{\"id\":\"http://localhost:8983/fedora/rest/test/#{topic.id}\",\"label\":\"Frodo Baggins\"}]"
     end
   end
 end

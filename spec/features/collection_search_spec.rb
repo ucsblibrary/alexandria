@@ -31,6 +31,10 @@ feature 'Collection search page' do
   end
 
   context "collections with images" do
+    before do
+      Collection.destroy_all
+      Image.destroy_all
+    end
 
     let(:pink)   {{ title: 'Pink',   identifier: ['pink']   }}
     let(:orange) {{ title: 'Orange', identifier: ['orange'] }}

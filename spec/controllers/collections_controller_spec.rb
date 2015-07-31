@@ -5,7 +5,10 @@ describe CollectionsController do
 
   describe "#index" do
     let(:user) { create :user }
-    before { sign_in user }
+    before do
+      Collection.destroy_all
+      sign_in user
+    end
 
     context "with public collections" do
       let!(:collection1) { create :public_collection }

@@ -4,6 +4,7 @@ require 'importer'
 describe Importer::Factory::ObjectFactory do
 
   describe '#find_or_create_rights_holders' do
+    before { Agent.destroy_all }
     let(:regents_uri) { "http://id.loc.gov/authorities/names/n85088322" }
     let(:regents_string) { "Regents of the Univ." }
     let(:attributes) {{ rights_holder: [RDF::URI.new(regents_uri), regents_string] }}
@@ -65,6 +66,7 @@ describe Importer::Factory::ObjectFactory do
     let(:fields) { [:creator, :collector, :contributor] }
     let(:afmc) { 'http://id.loc.gov/authorities/names/n87914041' }
     let(:joel) { 'Joel Conway' }
+    before { Agent.destroy_all }
 
     # The attributes hash that comes from the ModsParser
     let(:attributes) do
@@ -127,5 +129,4 @@ describe Importer::Factory::ObjectFactory do
       end
     end
   end
-
 end
