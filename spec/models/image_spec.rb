@@ -10,6 +10,11 @@ describe Image do
     expect(subject.collections).to eq []
   end
 
+  it 'can have an embargo' do
+    expect(subject.respond_to?(:embargo_release_date)).to be true
+    expect(subject.enforce_future_date_for_embargo?).to be false
+  end
+
   describe "nested attributes" do
     context "for creator" do
       it "should ignore empty ids" do
