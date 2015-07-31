@@ -13,6 +13,11 @@ class Agent < ActiveFedora::Base
     Identifier.noidify(id)
   end
 
+  # When a collection of these are rendered, which partial should be used
+  def to_partial_path
+    'catalog/document'
+  end
+
   # This allows us to scope queries directly against a specific subclass,
   # Otherwise, "Agent.all" would return instances of any subclass of Agent
   # (e.g. Person)

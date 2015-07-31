@@ -52,6 +52,32 @@ GIT
       sparql-client
 
 GIT
+  remote: git://github.com/projecthydra-labs/activefedora-aggregation.git
+  revision: b6e0bc1c6fab8fcef9482e371056adf195103c58
+  ref: b6e0bc1
+  specs:
+    activefedora-aggregation (0.3.0)
+      active-fedora
+      activesupport
+      rdf-vocab (~> 0.8.1)
+
+GIT
+  remote: git://github.com/projecthydra/active_fedora.git
+  revision: bd506dc387a774d71c76b080e5239b3135d9d2ab
+  ref: bd506dc
+  specs:
+    active-fedora (9.2.1)
+      active-triples (~> 0.7.1)
+      activesupport (>= 4.1.0)
+      deprecation
+      ldp (~> 0.3.1)
+      linkeddata
+      nom-xml (>= 0.5.1)
+      om (~> 3.1)
+      rdf-rdfxml (~> 1.1.0)
+      rsolr (~> 1.0.10)
+
+GIT
   remote: git://github.com/projecthydra/hydra-head.git
   revision: 9d3a8c4eccd94794a30441a16482ce78ba6f85c3
   ref: 9d3a8c4eccd94794a30441a16482ce78ba6f85c3
@@ -95,20 +121,6 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
-    active-fedora (9.2.1)
-      active-triples (~> 0.7.1)
-      activesupport (>= 4.1.0)
-      deprecation
-      ldp (~> 0.3.1)
-      linkeddata
-      nom-xml (>= 0.5.1)
-      om (~> 3.1)
-      rdf-rdfxml (~> 1.1.0)
-      rsolr (~> 1.0.10)
-    activefedora-aggregation (0.3.0)
-      active-fedora
-      activesupport
-      rdf-vocab (~> 0.8.1)
     activejob (4.2.3)
       activesupport (= 4.2.3)
       globalid (>= 0.3.0)
@@ -580,9 +592,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  active-fedora (= 9.2.1)
+  active-fedora!
   active-triples!
-  activefedora-aggregation (~> 0.3.0)
+  activefedora-aggregation!
   american_date (~> 1.1.0)
   awesome_print
   blacklight (~> 5.14.0)

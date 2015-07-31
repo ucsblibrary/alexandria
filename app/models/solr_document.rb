@@ -27,13 +27,12 @@ class SolrDocument
   # @example
   #   link_to '...', SolrDocument(id: 'bXXXXXX5').new => <a href="/dams_object/bXXXXXX5">...</a>
   def to_model
-    if self['has_model_ssim'] == [Collection.to_class_uri]
-      @m ||= ActiveFedora::Base.load_instance_from_solr(id)
-      return self if @m.class == ActiveFedora::Base
-      @m
-    else
-      super
-    end
+    @model ||= case self['has_model_ssim'].first
+               when Collection.to_class_uri, Image.to_class_uri, ETD.to_class_uri
+                 ActiveFedora::Base.load_instance_from_solr(id, self)
+               else
+                 super
+               end
   end
 
   def etd?

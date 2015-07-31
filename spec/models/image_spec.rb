@@ -160,4 +160,9 @@ describe Image do
     end
   end
 
+  describe "#to_partial_path" do
+    subject { described_class.new.to_partial_path }
+    it { is_expected.to eq 'catalog/document' }
+  end
+
 end

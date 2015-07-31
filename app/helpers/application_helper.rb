@@ -44,4 +44,8 @@ module ApplicationHelper
       can?(:merge, options.fetch(:document))
   end
 
+  def updates_metadata?(config, options)
+    can? :update_rights, options.fetch(:document)
+  end
+
 end

@@ -6,4 +6,9 @@ describe Person do
     subject { person.rdf_label }
     it { is_expected.to eq ['Justin'] }
   end
+
+  describe "#to_partial_path" do
+    subject { described_class.new.to_partial_path }
+    it { is_expected.to eq 'catalog/document' }
+  end
 end

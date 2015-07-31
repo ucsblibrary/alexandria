@@ -17,4 +17,10 @@ describe ETD do
     subject { described_class.new.human_readable_type }
     it { is_expected.to eq 'ETD' }
   end
+
+  describe "#to_partial_path" do
+    subject { described_class.new.to_partial_path }
+    it { is_expected.to eq 'catalog/document' }
+  end
+
 end

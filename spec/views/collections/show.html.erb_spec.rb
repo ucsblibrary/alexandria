@@ -6,8 +6,8 @@ describe 'collections/show.html.erb' do
   let(:metadata) {{ "extent_ssm" => ["702 digital objects"] }}
 
   let(:blacklight_config) { CatalogController.blacklight_config }
-  let(:image1) { SolrDocument.new(id: '234', identifier_ssm: ['ark:/99999/fk4v989d9j']) }
-  let(:image2) { SolrDocument.new(id: '456', identifier_ssm: ['ark:/99999/fk4zp46p1g']) }
+  let(:image1) { SolrDocument.new(id: '234', identifier_ssm: ['ark:/99999/fk4v989d9j'], 'object_profile_ssm' => ['{}'], 'has_model_ssim' => ['Image']) }
+  let(:image2) { SolrDocument.new(id: '456', identifier_ssm: ['ark:/99999/fk4zp46p1g'], 'object_profile_ssm' => ['{}'], 'has_model_ssim' => ['Image']) }
   let(:member_docs) { [ image1, image2 ] }
 
   before do

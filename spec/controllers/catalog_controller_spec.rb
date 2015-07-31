@@ -18,5 +18,9 @@ describe CatalogController do
     it "includes the edit link" do
       expect(CatalogController.blacklight_config.show.document_actions.keys).to include :edit
     end
+
+    it "includes the access and embargo link" do
+      expect(CatalogController.blacklight_config.show.document_actions.keys).to include :access
+    end
   end
 end
