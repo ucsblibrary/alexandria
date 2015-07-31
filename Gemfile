@@ -26,7 +26,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # TODO: Set hydra-head to a released version
 gem 'hydra-head', github: 'projecthydra/hydra-head', ref: '9d3a8c4eccd94794a30441a16482ce78ba6f85c3'
 
-gem 'active-fedora', '9.2.1'
+# needs 9.3.0
+gem 'active-fedora', github: 'projecthydra/active_fedora', ref: 'bd506dc'
+
 gem 'active-triples', github: 'jcoyne/ActiveTriples', branch: '0.7-future'
 gem 'hydra-editor', '~> 1.0.4'
 gem 'hydra-role-management'
@@ -37,7 +39,8 @@ gem 'blacklight', '~> 5.14.0'
 gem 'settingslogic'
 
 gem 'rsolr', '~> 1.0.12'
-gem 'activefedora-aggregation', '~> 0.3.0'
+# Needs 0.4.0
+gem 'activefedora-aggregation', github: 'projecthydra-labs/activefedora-aggregation', ref: 'b6e0bc1'
 
 gem 'mods', '~> 2.0.3'
 gem 'oargun', github: 'curationexperts/oargun', ref: '38f16d2'

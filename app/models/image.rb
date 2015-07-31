@@ -21,4 +21,8 @@ class Image < ActiveFedora::Base
     Identifier.noidify(id)
   end
 
+  # When a collection of these are rendered, which partial should be used
+  def to_partial_path
+    'catalog/document'
+  end
 end

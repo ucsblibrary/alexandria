@@ -21,4 +21,18 @@ describe BlacklightUrlHelper do
       it { is_expected.to eq '/collections/fk4v989d9j' }
     end
   end
+
+  # This is required because Blacklight 5.14 uses polymorphic_url
+  # in render_link_rel_alternates
+  describe "#etd_url" do
+    subject { helper.etd_url('123') }
+    it { is_expected.to eq catalog_url('123') }
+  end
+
+  # This is required because Blacklight 5.14 uses polymorphic_url
+  # in render_link_rel_alternates
+  describe "#image_url" do
+    subject { helper.image_url('123') }
+    it { is_expected.to eq catalog_url('123') }
+  end
 end
