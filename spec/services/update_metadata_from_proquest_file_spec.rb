@@ -250,7 +250,7 @@ describe UpdateMetadataFromProquestFile do
     before do
       AdminPolicy.ensure_admin_policy_exists
       run
-      etd.save
+      etd.save!
     end
 
     context "when proquest file contents aren't parseable" do
@@ -304,14 +304,15 @@ describe UpdateMetadataFromProquestFile do
     context "when the embargo is in the past and keywords are present" do
       let(:file)  { "#{fixture_path}/proquest/MartinezRodriguez_ucsb_0035D_12446_DATA.xml" }
 
-      it 'sets the access policy, no embargo' do
-        expect(reloaded.embargo_release_date).to be_nil
-        expect(reloaded.visibility_during_embargo).to be_nil
-        expect(reloaded.visibility_after_embargo).to be_nil
-        expect(reloaded.under_embargo?).to eq false
-        expect(reloaded.admin_policy_id).to eq AdminPolicy::PUBLIC_CAMPUS_POLICY_ID
+      it 'imports metadata from proquest file' do
+        # Even though the embargo is expired, we still apply
+        # the embargo so that an admin user will have a chance
+        # to review it before lifting the embargo.
+        expect(reloaded.embargo_release_date).to eq Date.parse('2014-12-15')
+        expect(reloaded.visibility_during_embargo.id).to eq ActiveFedora::Base.id_to_uri(AdminPolicy::DISCOVERY_POLICY_ID)
+        expect(reloaded.visibility_after_embargo.id).to eq ActiveFedora::Base.id_to_uri(AdminPolicy::PUBLIC_CAMPUS_POLICY_ID)
+        expect(reloaded.admin_policy_id).to eq AdminPolicy::DISCOVERY_POLICY_ID
         expect(reloaded.keywords).to eq ["bioadhesion", "biofilm", "collagen", "interfacial pH", "mussel adhesive plaque", "Mussel foot protein"]
-
       end
     end
 

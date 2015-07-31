@@ -75,11 +75,12 @@ private
   end
 
   def update_access_metadata
-    etd.admin_policy_id = if etd.under_embargo? || infinite_embargo?
-                            policy_during_embargo
-                          else
-                            policy_after_embargo
-                          end
+    etd.admin_policy_id =
+      if etd.embargo_release_date || infinite_embargo?
+        policy_during_embargo
+      else
+        policy_after_embargo
+      end
   end
 
   def update_keyword_metadata
@@ -87,10 +88,7 @@ private
   end
 
   def no_embargo?
-    no_embargo = attributes[:embargo_code] == '0'
-    expired_embargo = embargo_release_date && embargo_release_date.past?
-
-    no_embargo || infinite_embargo? || expired_embargo
+    attributes[:embargo_code] == '0' || infinite_embargo?
   end
 
   def infinite_embargo?

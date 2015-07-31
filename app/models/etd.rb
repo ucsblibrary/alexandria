@@ -46,5 +46,10 @@ class ETD < ActiveFedora::Base
     self.admin_policy_id = ActiveFedora::Base.uri_to_id(uri.id)
   end
 
+  # Override method from hydra-access-controls
+  def enforce_future_date_for_embargo?
+    false
+  end
+
 end
 
