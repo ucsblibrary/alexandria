@@ -22,7 +22,8 @@ describe User do
         end
 
         it "fetches the groups from ldap" do
-          expect(subject).to eq ['metadata_admin', 'rights_admin']
+          # It adds the "ucsb" group
+          expect(subject).to eq ['metadata_admin', 'rights_admin', 'ucsb']
         end
       end
 
@@ -47,7 +48,8 @@ describe User do
         it "fetches the groups from ldap" do
           expect(user).to receive(:ldap_groups).and_return(['cn=metadata_admin,ou=groups,dc=dce,dc=com',
                                                             'cn=rights_admin,ou=groups,dc=dce,dc=com'])
-          expect(subject).to eq ['metadata_admin', 'rights_admin']
+          # It adds the "ucsb" group
+          expect(subject).to eq ['metadata_admin', 'rights_admin', 'ucsb']
         end
       end
     end

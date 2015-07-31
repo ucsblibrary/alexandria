@@ -30,6 +30,17 @@ class User < ActiveRecord::Base
     new_groups = ldap_groups.map do |dn|
       /^cn=([^,]+),/.match(dn)[1]
     end
+
+    # TODO:  In the future when we switch to Shibboleth for
+    # login, we will need to code some way to distinguish
+    # between a UCSB user and a UC user from a different campus.
+    # For now, we will assume that anyone who logs in with LDAP
+    # is a UCSB user.
+    new_groups += [AdminPolicy::UCSB_GROUP] if ucsb_user?
+  end
+
+  def ucsb_user?
+    !new_record?
   end
 
   private
