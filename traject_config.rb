@@ -56,11 +56,6 @@ to_field 'id', lambda { |record, accumulator, context|
   accumulator << Identifier.ark_to_id(context.output_hash['identifier'].first)
 }
 
-# to_field "format_s", marc_formats
-# to_field 'active_fedora_model_ssi', literal("Thesis or dissertation")
-# to_field 'form_of_work_label_tesim', literal("Thesis or dissertation")
-# to_field 'has_model_ssim', literal("Etd")
-
 to_field 'title', extract_marc("245a", trim_punctuation: true)
 
 # TODO 245c is the statment of responsibility. Per call on 2015-6-17. Don't use per #340
@@ -80,34 +75,17 @@ to_field 'issued', extract_marc("264c", trim_punctuation: true)
 
 to_field 'extent', extract_marc("300a")
 to_field 'dissertation', extract_marc("502") # TODO split into three subfields #338
-to_field 'bibliography', extract_marc("504") # TODO Remove? #340
 
 # Names with relators, e.g. thesis advisor
 to_field 'names',    extract_marc("720a")
 to_field 'relators', extract_marc("720e", allow_duplicates: true)
-
-# to_field 'f506', extract_marc("506") # access rights statement
 to_field 'description', extract_marc("520a")
-# to_field 'f588', extract_marc("588") # basis of description
-
-
-# 650 4 	|a Sociology, General.
-# 650 4 	|a Environmental Studies.
-# 650 4 	|a Anthropology, Cultural.
-
-extract655a = MarcExtractor.new("655a", :separator => nil)
-extract655zx = MarcExtractor.new("655zx", :separator => ' -- ')
-to_field "genre", lambda { |record, accumulator|
-  values = [extract655a.extract(record).map { |s| Traject::Macros::Marc21.trim_punctuation(s) }.join(' : ')]
-  values << extract655zx.extract(record)
-  accumulator << values.join(' -- ')
-}
 
 to_field 'degree_grantor', extract_marc("710ab", trim_punctuation: true)
-to_field 'discipline', extract_marc('650')  # TODO remove? #340
-to_field 'fulltext_link', extract_marc("856u") # TODO filter for proquest url. #351
-# to_field 'f948', extract_marc("948")
-to_field 'filename', extract_marc("956f")
 
-# to_field 'read_access_group', literal('public') #TODO replace with isGovernedBy_ssim ?
-# to_field 'collection_label', literal('Electronic Theses and Dissertations')
+extract856u = MarcExtractor.new("856u", :separator => nil)
+to_field 'fulltext_link', lambda { |record, accumulator|
+  accumulator << extract856u.extract(record).grep(/proquest/).first
+}
+
+to_field 'filename', extract_marc("956f")

@@ -20,6 +20,12 @@ module ApplicationHelper
     safe_join(Array(data[:value]), '<br/>'.html_safe)
   end
 
+  def display_link(data)
+    href = data.fetch(:value).first
+    link_to(href, href)
+  end
+
+
   # Should we display the admin menu?
   def admin_menu?
     can?(:discover, Hydra::AccessControls::Embargo) || can?(:destroy, :local_authorities)
