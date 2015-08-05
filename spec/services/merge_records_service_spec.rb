@@ -6,9 +6,9 @@ describe MergeRecordsService do
 
   let(:collection) { create(:collection, collector: [old_name, other_name]) }
 
-  let(:old_name) { create(:person, foaf_name: 'Old Name', id: 'old-name') }
-  let(:new_name) { create(:person, foaf_name: 'New Name', id: 'new-name') }
-  let(:other_name) { create(:person, foaf_name: 'Some Other Name', id: 'some-other-name') }
+  let(:old_name) { create(:person, foaf_name: 'Old Name') }
+  let(:new_name) { create(:person, foaf_name: 'New Name') }
+  let(:other_name) { create(:person, foaf_name: 'Some Other Name') }
 
 
 

@@ -4,6 +4,11 @@ require 'importer'
 describe Importer::Factory::ETDFactory do
   let(:factory) { described_class.new(attributes, Settings.proquest_directory) }
   let(:collection_attrs) { { accession_number: ["etds"] } }
+  before do
+    if ETD.exists? 'f3/gt/5k/61/f3gt5k61'
+      ETD.find('f3/gt/5k/61/f3gt5k61').destroy(eradicate: true)
+    end
+  end
 
   let(:attributes) do
     {
@@ -126,8 +131,5 @@ describe Importer::Factory::ETDFactory do
         expect(etd.created.first.start).to eq [old_date]
       end
     end
-
   end  # update an existing record
-
 end
-
