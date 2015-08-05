@@ -16,7 +16,9 @@ module AdminPolicy
   UC_GROUP           = 'any_uc'.freeze
 
   # Groups assigned to a user dynamically by the app
-  PUBLIC_GROUP = 'public'.freeze
+  PUBLIC_GROUP        = 'public'.freeze
+  PUBLIC_CAMPUS_GROUP = 'public_on_campus'.freeze
+  UCSB_CAMPUS_GROUP   = 'ucsb_on_campus'.freeze
 
 
   def self.ensure_admin_policy_exists
@@ -24,7 +26,8 @@ module AdminPolicy
     unless Hydra::AdminPolicy.exists?(RESTRICTED_POLICY_ID)
       policy = Hydra::AdminPolicy.create(id: RESTRICTED_POLICY_ID, title: ['Restricted access'])
       policy.default_permissions.build([
-        { type: "group", name: META_ADMIN_GROUP, access: "edit" }
+        { type: "group", name: META_ADMIN_GROUP, access: "edit" },
+        { type: "group", name: RIGHTS_ADMIN_GROUP, access: "read" }
       ])
       policy.save!
     end
@@ -33,6 +36,7 @@ module AdminPolicy
       policy = Hydra::AdminPolicy.create(id: DISCOVERY_POLICY_ID, title: ['Discovery access only'])
       policy.default_permissions.build([
         { type: "group", name: META_ADMIN_GROUP, access: "edit" },
+        { type: "group", name: RIGHTS_ADMIN_GROUP, access: "read" },
         { type: "group", name: PUBLIC_GROUP, access: "discover" }
       ])
       policy.save!
@@ -43,6 +47,8 @@ module AdminPolicy
       policy = Hydra::AdminPolicy.create(id: UCSB_CAMPUS_POLICY_ID, title: ['Campus use only, requires UCSB login'])
       policy.default_permissions.build([
         { type: "group", name: META_ADMIN_GROUP, access: "edit" },
+        { type: "group", name: RIGHTS_ADMIN_GROUP, access: "read" },
+        { type: "group", name: UCSB_CAMPUS_GROUP, access: "read" },
         { type: "group", name: PUBLIC_GROUP, access: "discover" }
       ])
       policy.save!
@@ -52,6 +58,7 @@ module AdminPolicy
       policy = Hydra::AdminPolicy.create(id: UCSB_POLICY_ID, title: ['UCSB users only'])
       policy.default_permissions.build([
         { type: "group", name: META_ADMIN_GROUP, access: "edit" },
+        { type: "group", name: RIGHTS_ADMIN_GROUP, access: "read" },
         { type: "group", name: UCSB_GROUP, access: "read" },
         { type: "group", name: PUBLIC_GROUP, access: "discover" }
       ])
@@ -62,6 +69,7 @@ module AdminPolicy
       policy = Hydra::AdminPolicy.create(id: UC_POLICY_ID, title: ['UC users only'])
       policy.default_permissions.build([
         { type: "group", name: META_ADMIN_GROUP, access: "edit" },
+        { type: "group", name: RIGHTS_ADMIN_GROUP, access: "read" },
         { type: "group", name: UCSB_GROUP, access: "read" },
         { type: "group", name: UC_GROUP, access: "read" },
         { type: "group", name: PUBLIC_GROUP, access: "discover" }
@@ -73,6 +81,8 @@ module AdminPolicy
       policy = Hydra::AdminPolicy.create(id: PUBLIC_CAMPUS_POLICY_ID, title: ['Campus use only'])
       policy.default_permissions.build([
         { type: "group", name: META_ADMIN_GROUP, access: "edit" },
+        { type: "group", name: RIGHTS_ADMIN_GROUP, access: "read" },
+        { type: "group", name: PUBLIC_CAMPUS_GROUP, access: "read" },
         { type: "group", name: PUBLIC_GROUP, access: "discover" }
       ])
       policy.save!
@@ -82,6 +92,7 @@ module AdminPolicy
       policy = Hydra::AdminPolicy.create(id: PUBLIC_POLICY_ID, title: ['Public access'])
       policy.default_permissions.build([
         { type: "group", name: META_ADMIN_GROUP, access: "edit" },
+        { type: "group", name: RIGHTS_ADMIN_GROUP, access: "read" },
         { type: "group", name: PUBLIC_GROUP, access: "read" }
       ])
       policy.save!
