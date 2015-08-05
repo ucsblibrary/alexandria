@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 describe ETDIndexer do
-  subject { described_class.new(etd).generate_solr_document }
+  let(:document) { described_class.new(etd).generate_solr_document }
+  subject { document }
 
   context "with a generic_file" do
     let(:generic_file) { GenericFile.new(id: 'bf/74/27/75/bf742775-2a24-46dc-889e-cca03b27b5f3') }
@@ -10,6 +11,16 @@ describe ETDIndexer do
     it "has downloads" do
       expect(subject['generic_file_ids_ssim']).to eq ['bf/74/27/75/bf742775-2a24-46dc-889e-cca03b27b5f3']
     end
+  end
+
+  describe "Indexing copyright" do
+    let(:copyrighted) { ['2014'] }
+    let(:etd) do
+      ETD.new(date_copyrighted: copyrighted, rights_holder: ['Samantha Lauren'])
+    end
+    let(:subject) { document['copyright_ssm'] }
+
+    it { is_expected.to eq 'Samantha Lauren, 2014' }
   end
 
   describe 'Indexing dates' do
@@ -30,6 +41,7 @@ describe ETDIndexer do
       end
     end
 
+
     describe "with multiple types of dates" do
       let(:created) { ['1911'] }
       let(:issued) { ['1912'] }
@@ -39,14 +51,12 @@ describe ETDIndexer do
 
       let(:etd) do
         ETD.new(created_attributes: [{ start: created }],
-                issued: issued,
-                date_copyrighted_attributes: [{ start: copyrighted }],
+                issued: issued, date_copyrighted: copyrighted,
                 date_other_attributes: [{ start: other }],
                 date_valid_attributes: [{ start: valid }])
       end
 
       it 'indexes dates for display' do
-        expect(subject['date_copyrighted_ssm']).to eq copyrighted
         expect(subject['date_other_ssm']).to eq other
         expect(subject['date_valid_ssm']).to eq valid
       end

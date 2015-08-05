@@ -23,6 +23,16 @@ describe ImageIndexer do
       end
     end
 
+    context "with an issued date" do
+      let(:copyrighted) { ['1913'] }
+      let(:image) { Image.new(date_copyrighted_attributes: [{ start: copyrighted }]) }
+
+      it "indexes dates for display" do
+        expect(subject['date_copyrighted_ssm']).to eq copyrighted
+      end
+    end
+
+
     context "with issued.start and issued.finish" do
       let(:issued_start) { ['1917'] }
       let(:issued_end) { ['1923'] }
@@ -34,4 +44,18 @@ describe ImageIndexer do
     end
   end
 
+  context 'with local and LOC rights holders' do
+    let(:regents_uri) { RDF::URI.new("http://id.loc.gov/authorities/names/n85088322") }
+    let(:valerie) { Agent.create(foaf_name: 'Valerie') }
+    let(:valerie_uri) { RDF::URI.new(valerie.uri) }
+
+    let(:image) { Image.new(rights_holder: [valerie_uri, regents_uri]) }
+
+    it 'indexes with a label' do
+      VCR.use_cassette('rights_holder') do
+        expect(subject['rights_holder_ssim']).to eq [valerie_uri, regents_uri]
+        expect(subject['rights_holder_label_tesim']).to eq ['Valerie', 'University of California (System). Regents']
+      end
+    end
+  end
 end

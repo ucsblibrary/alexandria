@@ -23,7 +23,6 @@ class ObjectIndexer < ActiveFedora::IndexingService
       solr_doc[COLLECTION_LABEL] = object.collections.map &:title
 
       solr_doc[CREATED] = created
-      solr_doc[COPYRIGHTED] = display_date('date_copyrighted')
       solr_doc[OTHER] = display_date('date_other')
       solr_doc[VALID] = display_date('date_valid')
 
@@ -31,7 +30,6 @@ class ObjectIndexer < ActiveFedora::IndexingService
       solr_doc[FACETABLE_YEAR] = facetable_year
 
       index_contributors(solr_doc)
-      solr_doc['rights_holder_label_tesim'] = object['rights_holder'].flat_map(&:rdf_label)
       solr_doc['note_label_tesim'] = object.notes.map(&:value)
       yield(solr_doc) if block_given?
     end

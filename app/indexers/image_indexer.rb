@@ -6,6 +6,8 @@ class ImageIndexer < ObjectIndexer
       solr_doc['image_url_ssm'.freeze] = generic_file_images
       solr_doc['large_image_url_ssm'.freeze] = generic_file_large_images
       solr_doc[ISSUED] = issued
+      solr_doc[COPYRIGHTED] = display_date('date_copyrighted')
+      solr_doc['rights_holder_label_tesim'] = object['rights_holder'].flat_map(&:rdf_label)
     end
   end
 
