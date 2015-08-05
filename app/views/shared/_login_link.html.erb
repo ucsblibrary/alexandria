@@ -5,6 +5,7 @@
       <li class='login-link'>
         <%= link_to t('blacklight.header_links.logout'), destroy_user_session_path %>
       </li>
+
       <% unless current_user.to_s.blank? -%>
         <li class='login-link'>
           <p><%= current_user %></p>
@@ -13,12 +14,9 @@
 
     <% else %>
       <li class='login-link'>
-        <% if on_campus? %>
-          <p>Logged In</p>
-        <% else %>
-          <%= link_to 'Login', new_user_session_path %>
-        <% end %>
+        <%= link_to 'Login', new_user_session_path %>
       </li>
     <% end %>
+
   </ul>
 <% end %>
