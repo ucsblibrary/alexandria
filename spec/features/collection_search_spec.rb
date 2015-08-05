@@ -15,6 +15,7 @@ feature 'Collection search page' do
                                   id: 'fk/4v/98/9d/fk4v989d9j',
                                   identifier: ['ark:/99999/fk4v989d9j'],
                                   extent: ['7 photos']) }
+
     scenario 'Search for a collection' do
       visit collections.collections_path
 
@@ -26,7 +27,6 @@ feature 'Collection search page' do
       # View collection metadata
       expect(page).to have_content 'Pink'
       expect(page).to have_content '7 photos'
-
     end
   end
 
