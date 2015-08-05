@@ -1,14 +1,5 @@
 module ApplicationHelper
 
-  def on_campus_network_prefixes
-    ['128.111', '169.231']
-  end
-
-  def on_campus?
-    return false unless request.remote_ip
-    on_campus_network_prefixes.any? {|prefix| request.remote_ip.start_with?(prefix) }
-  end
-
   # Should we show the "edit metadata" link on the show page?
   # Only shows up for non-etd things
   def editor?(_, stuff)

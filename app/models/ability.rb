@@ -5,6 +5,13 @@ class Ability
   # defined in the policy file:  app/models/admin_policy.rb
   include Hydra::PolicyAwareAbility
 
+  attr_reader :on_campus
+
+  def initialize(user, on_campus = false)
+    @on_campus = on_campus
+    super
+  end
+
   # Define any customized permissions here.
   def custom_permissions
     metadata_admin_permissions
@@ -41,6 +48,17 @@ class Ability
         can? :read, parent_object
       end
     end
+  end
+
+  def user_groups
+    groups = super
+
+    if on_campus
+      groups += [AdminPolicy::PUBLIC_CAMPUS_GROUP]
+      groups += [AdminPolicy::UCSB_CAMPUS_GROUP] if current_user.ucsb_user?
+    end
+
+    groups
   end
 
 end
