@@ -68,9 +68,13 @@ module Metadata
       index.as :stored_searchable, :facetable
     end
 
+    validates_vocabulary_of :lc_subject
+
     property :institution, predicate: Oargun::Vocabularies::OARGUN.contributingInstitution, class_name: Oargun::ControlledVocabularies::Organization do |index|
       index.as :stored_searchable
     end
+
+    validates_vocabulary_of :institution
 
     property :publisher, predicate: RDF::DC.publisher do |index|
       index.as :stored_searchable, :facetable
@@ -84,9 +88,13 @@ module Metadata
       index.as :stored_searchable
     end
 
+    validates_vocabulary_of :copyright_status
+
     property :license, predicate: RDF::DC.rights, class_name: Oargun::ControlledVocabularies::RightsStatement do |index|
       index.as :stored_searchable
     end
+
+    validates_vocabulary_of :license
 
     property :work_type, predicate: RDF::DC.type do |index|
       index.as :stored_searchable
@@ -111,6 +119,8 @@ module Metadata
         class_name: Oargun::ControlledVocabularies::WorkType do |index|
       index.as :stored_searchable, :facetable
     end
+
+    validates_vocabulary_of :form_of_work
 
     property :citation, predicate: RDF::URI('http://www.rdaregistry.info/Elements/u/#preferredCitation.en')
 

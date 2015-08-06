@@ -9,6 +9,12 @@ class Agent < ActiveFedora::Base
     index.as :stored_searchable, :symbol  # Need :symbol for exact match for ObjectFactory find_or_create_* methods.
   end
 
+  # This asserts that this record is valid for a vocab. This works around
+  # the LinkedVocabs::Validators::PropertyValidator
+  def in_vocab?
+    true
+  end
+
   def to_param
     Identifier.noidify(id)
   end
