@@ -46,11 +46,7 @@ class ObjectFactoryWriter
     attributes[:id] = attributes.delete('id').first
 
     # Delete entries that aren't in the schema yet
-    attributes.delete('dissertation') # TODO #338
-    attributes.delete('bibliography') # TODO remove? #340
-    attributes.delete('genre') # TODO remove? #340
-    attributes.delete('discipline') # TODO remove? #340
-    attributes.delete('fulltext_link') # TODO #351 we need to filter only proquest urls
+    attributes.delete('dissertation') # TODO split into three subfields #338
 
     attributes[:files] = attributes.delete('filename')
 
