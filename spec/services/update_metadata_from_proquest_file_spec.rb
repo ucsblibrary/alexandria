@@ -301,7 +301,7 @@ describe UpdateMetadataFromProquestFile do
       end
     end
 
-    context "when the embargo is in the past and keywords are present" do
+    context "when the embargo is in the past and descripive metadata are present" do
       let(:file)  { "#{fixture_path}/proquest/MartinezRodriguez_ucsb_0035D_12446_DATA.xml" }
 
       it 'imports metadata from proquest file' do
@@ -312,7 +312,10 @@ describe UpdateMetadataFromProquestFile do
         expect(reloaded.visibility_during_embargo.id).to eq ActiveFedora::Base.id_to_uri(AdminPolicy::DISCOVERY_POLICY_ID)
         expect(reloaded.visibility_after_embargo.id).to eq ActiveFedora::Base.id_to_uri(AdminPolicy::PUBLIC_CAMPUS_POLICY_ID)
         expect(reloaded.admin_policy_id).to eq AdminPolicy::DISCOVERY_POLICY_ID
+
         expect(reloaded.keywords).to eq ["bioadhesion", "biofilm", "collagen", "interfacial pH", "mussel adhesive plaque", "Mussel foot protein"]
+        expect(reloaded.date_copyrighted).to eq [2014]
+        expect(reloaded.rights_holder).to eq ["Nadine Martinez Rodriguez"]
       end
     end
 
