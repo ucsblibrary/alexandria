@@ -52,7 +52,12 @@ private
       if existing_date == new_date
         attributes.delete(:created_attributes)
       else
-        obj.created.clear  # to be replaced by new date
+        # Remove the old date. It will be replaced by the new date
+        old_created = obj.created.to_a
+        obj.created.clear
+        old_created.each do |record|
+          record.destroy
+        end
       end
     end
 
