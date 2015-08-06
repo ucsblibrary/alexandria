@@ -27,7 +27,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'hydra-head', github: 'projecthydra/hydra-head', ref: '9d3a8c4eccd94794a30441a16482ce78ba6f85c3'
 
 # needs 9.3.0
-gem 'active-fedora', github: 'projecthydra/active_fedora', ref: 'bd506dc'
+gem 'active-fedora', github: 'projecthydra/active_fedora', ref: '767c5df'
 
 gem 'active-triples', github: 'jcoyne/ActiveTriples', branch: '0.7-future'
 gem 'hydra-editor', '~> 1.0.4'

@@ -13,9 +13,8 @@ class EmbargoForm
     model.embargo_release_date || Date.tomorrow.beginning_of_day
   end
 
-  # TODO this is slow and could be cached.
   def visibility_options(_)
-    Hydra::AdminPolicy.all
+    AdminPolicy.all
   end
 
   def embargo?
