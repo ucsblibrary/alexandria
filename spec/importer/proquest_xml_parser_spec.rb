@@ -36,5 +36,12 @@ describe Importer::ProquestXmlParser do
       end
     end
 
+    describe 'copyright fields' do
+      let(:file) { 'spec/fixtures/proquest/MartinezRodriguez_ucsb_0035D_12446_DATA.xml' }
+      it 'collects attributes for the ETD record' do
+        expect(attributes[:rights_holder]).to eq "Nadine Martinez Rodriguez"
+        expect(attributes[:date_copyrighted]).to eq 2014
+      end
+    end
   end  # describe #attributes
 end

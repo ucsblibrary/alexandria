@@ -51,20 +51,19 @@ describe ObjectIndexer do
     describe "with multiple types of dates" do
       let(:created) { ['1911'] }
       let(:issued) { ['1912'] }
-      let(:copyrighted) { ['1913'] }
+      let(:copyrighted) { ['1912'] }
       let(:other) { ['1914'] }
       let(:valid) { ['1915'] }
 
       let(:image) do
         Image.new(created_attributes: [{ start: created }],
-                  issued_attributes:  [{ start: issued  }],
                   date_copyrighted_attributes: [{ start: copyrighted }],
+                  issued_attributes:  [{ start: issued  }],
                   date_other_attributes: [{ start: other }],
                   date_valid_attributes: [{ start: valid }])
       end
 
       it 'indexes dates for display' do
-        expect(subject['date_copyrighted_ssm']).to eq copyrighted
         expect(subject['date_other_ssm']).to eq other
         expect(subject['date_valid_ssm']).to eq valid
       end
@@ -131,21 +130,6 @@ describe ObjectIndexer do
 
   end  # Indexing dates
 
-
-  context 'with local and LOC rights holders' do
-    let(:regents_uri) { RDF::URI.new("http://id.loc.gov/authorities/names/n85088322") }
-    let(:valerie) { Agent.create(foaf_name: 'Valerie') }
-    let(:valerie_uri) { RDF::URI.new(valerie.uri) }
-
-    let(:image) { Image.new(rights_holder: [valerie_uri, regents_uri]) }
-
-    it 'indexes with a label' do
-      VCR.use_cassette('rights_holder') do
-        expect(subject['rights_holder_ssim']).to eq [valerie_uri, regents_uri]
-        expect(subject['rights_holder_label_tesim']).to eq ['Valerie', 'University of California (System). Regents']
-      end
-    end
-  end
 
   context "with rights" do
     let(:pd_uri) { RDF::URI.new('http://creativecommons.org/publicdomain/mark/1.0/') }

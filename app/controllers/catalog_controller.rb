@@ -136,6 +136,7 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('note_label', :stored_searchable), label: 'Notes', helper_method: :display_notes
     config.add_show_field solr_name('degree_grantor', :symbol), label: 'Degree Grantor'
     config.add_show_field solr_name('keywords', :stored_searchable), label: 'Keywords'
+    config.add_show_field solr_name('copyright', :displayable), label: 'Copyright' # ETD only
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields

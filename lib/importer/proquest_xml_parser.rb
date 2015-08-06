@@ -9,10 +9,24 @@ module Importer
     end
 
     def attributes
-      embargo_attributes.merge(keywords: keywords)
+      embargo_attributes.merge(
+        keywords: keywords,
+        rights_holder: rights_holder,
+        date_copyrighted: date_copyrighted)
     end
 
     private
+
+      def rights_holder
+        path = @doc.xpath('//DISS_author[@type="primary"]/DISS_name')
+        [path.xpath('DISS_fname').text, path.xpath('DISS_surname').text].join(' ')
+      end
+
+      def date_copyrighted
+        sdate = @doc.xpath('//DISS_dates/DISS_accept_date').text
+        Date.parse(sdate).year unless sdate.blank?
+      end
+
       def keywords
         @doc.xpath('//DISS_keyword').text.split(/,\s+/)
       end

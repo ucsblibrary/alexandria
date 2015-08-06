@@ -26,6 +26,8 @@ class ETD < ActiveFedora::Base
     index.as :displayable
   end
 
+  property :date_copyrighted, predicate: ::RDF::DC.dateCopyrighted
+
   include NestedAttributes
   include Hydra::Collections::Collectible
   aggregates :generic_files, predicate: ::RDF::URI("http://pcdm.org/models#hasMember")
