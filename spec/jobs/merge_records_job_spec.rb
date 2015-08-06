@@ -13,10 +13,15 @@ RSpec.describe MergeRecordsJob, type: :job do
     end
 
     context 'with good inputs' do
-      let!(:joel) { create(:person, foaf_name: 'Joel Conway', id: 'joel') }
-      let!(:conway) { create(:person, foaf_name: 'Conway, J', id: 'conway') }
+      let(:joel) { create(:person, foaf_name: 'Joel Conway', id: 'joel') }
+      let(:conway) { create(:person, foaf_name: 'Conway, J', id: 'conway') }
 
-      let!(:image) { create(:image, id: 'image', creator: [conway], lc_subject: [conway]) }
+      let(:image) { create(:image, id: 'image', creator: [conway], lc_subject: [conway]) }
+
+      before do
+        AdminPolicy.ensure_admin_policy_exists
+        [joel, conway, image] # create the records
+      end
 
       it 'calls the service that merges the records' do
         merge_service = double(run: true)

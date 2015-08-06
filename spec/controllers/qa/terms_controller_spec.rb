@@ -3,6 +3,10 @@ require 'rails_helper'
 describe Qa::TermsController do
   routes { Qa::Engine.routes }
 
+  before do
+    AdminPolicy.ensure_admin_policy_exists
+  end
+
   describe "license vocabulary" do
     it "returns terms" do
       get :search, vocab: 'local', subauthority: 'license', q: 'ND'

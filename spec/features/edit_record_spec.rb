@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'Editing Records:' do
-  let!(:record) { Topic.create(label: ['old label']) }
+  let(:record) { Topic.create(label: ['old label']) }
   let(:new_label) { 'New label' }
 
   context 'an admin user' do
