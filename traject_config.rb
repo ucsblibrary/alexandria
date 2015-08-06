@@ -74,7 +74,9 @@ to_field 'publisher', extract_marc("264b", trim_punctuation: true)
 to_field 'issued', extract_marc("264c", trim_punctuation: true)
 
 to_field 'extent', extract_marc("300a")
-to_field 'dissertation', extract_marc("502") # TODO split into three subfields #338
+to_field 'dissertation_degree', extract_marc("502b")
+to_field 'dissertation_institution', extract_marc("502c")
+to_field 'dissertation_year', extract_marc("502d", trim_punctuation: true)
 
 # Names with relators, e.g. thesis advisor
 to_field 'names',    extract_marc("720a")

@@ -23,6 +23,21 @@ describe ETDIndexer do
     it { is_expected.to eq 'Samantha Lauren, 2014' }
   end
 
+  describe "Indexing dissertation" do
+    let(:dissertation_degree) { ['Ph.D.'] }
+    let(:dissertation_institution) { ['University of California, Santa Barbara'] }
+    let(:dissertation_year) { ['2014'] }
+
+    let(:etd) do
+      ETD.new(dissertation_degree: dissertation_degree,
+              dissertation_institution: dissertation_institution,
+              dissertation_year: dissertation_year)
+    end
+    let(:subject) { document['dissertation_ssm'] }
+
+    it { is_expected.to eq 'Ph.D.--University of California, Santa Barbara, 2014' }
+  end
+
   describe 'Indexing dates' do
 
     context "with an issued date" do

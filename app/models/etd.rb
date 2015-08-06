@@ -26,11 +26,14 @@ class ETD < ActiveFedora::Base
     index.as :displayable
   end
 
-  property :date_copyrighted, predicate: ::RDF::DC.dateCopyrighted
-
   property :fulltext_link, predicate: ::RDF::Vocab::Bibframe.otherEdition do |index|
     index.as :displayable
   end
+
+  property :date_copyrighted, predicate: ::RDF::DC.dateCopyrighted
+  property :dissertation_degree, predicate: ::RDF::Vocab::Bibframe.dissertationDegree
+  property :dissertation_institution, predicate: ::RDF::Vocab::Bibframe.dissertationInstitution
+  property :dissertation_year, predicate: ::RDF::Vocab::Bibframe.dissertationYear
 
   include NestedAttributes
   include Hydra::Collections::Collectible

@@ -45,9 +45,6 @@ class ObjectFactoryWriter
     attributes[:title] = title.first
     attributes[:id] = attributes.delete('id').first
 
-    # Delete entries that aren't in the schema yet
-    attributes.delete('dissertation') # TODO split into three subfields #338
-
     attributes[:files] = attributes.delete('filename')
 
     # TODO get a real collection properties
