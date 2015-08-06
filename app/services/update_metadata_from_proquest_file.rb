@@ -21,7 +21,7 @@ class UpdateMetadataFromProquestFile
     else
       update_embargo_metadata!
       update_access_metadata
-      update_keyword_metadata
+      update_descriptive_metadata
     end
   end
 
@@ -83,8 +83,14 @@ private
       end
   end
 
-  def update_keyword_metadata
-    etd.keywords = attributes[:keywords]
+  def update_descriptive_metadata
+    descriptive_attributes.each do |attr, val|
+      etd[attr] = val
+    end
+  end
+
+  def descriptive_attributes
+    attributes.except(*Importer::ProquestXmlParser.embargo_xpaths.keys)
   end
 
   def no_embargo?
