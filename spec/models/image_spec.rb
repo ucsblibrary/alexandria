@@ -143,6 +143,14 @@ describe Image do
     end
   end
 
+  describe "lc_subject" do
+    let(:image) { Image.new(lc_subject: ['foo']) }
+    it "isn't valid" do
+      expect(image).not_to be_valid
+      expect(image.errors[:base]).to eq ["value `foo for `lc_subject` property is not a term in a controlled vocabulary lcsh, lcnames, tgm, aat, local"]
+    end
+  end
+
   describe "#[]" do
     context "with a local creator" do
       let(:person) { Person.create(foaf_name: 'Tony') }
@@ -153,7 +161,7 @@ describe Image do
       let(:image) { Image.new(photographer: photographers) }
 
       subject { image[:photographer] }
-      it "should have an ActiveFedora object and and ActiveTriples object" do
+      it "has an ActiveFedora object and and ActiveTriples object" do
         expect(subject.first).to eq person
         expect(subject.last).to be_kind_of ActiveTriples::Resource
       end

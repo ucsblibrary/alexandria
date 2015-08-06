@@ -17,6 +17,9 @@ class Image < ActiveFedora::Base
   accepts_nested_attributes_for :issued, reject_if: :time_span_blank, allow_destroy: true
   accepts_nested_attributes_for :date_copyrighted, reject_if: :time_span_blank, allow_destroy: true
 
+  validates_vocabulary_of :rights_holder
+
+
   def self.indexer
     ImageIndexer
   end

@@ -43,7 +43,7 @@ gem 'rsolr', '~> 1.0.12'
 gem 'activefedora-aggregation', github: 'projecthydra-labs/activefedora-aggregation', ref: 'b6e0bc1'
 
 gem 'mods', '~> 2.0.3'
-gem 'oargun', github: 'curationexperts/oargun', ref: '38f16d2'
+gem 'oargun', github: 'curationexperts/oargun', ref: 'e303100'
 gem 'linked_vocabs', github: 'jcoyne/linked_vocabs', branch: 'with_0.7_validation'
 gem 'blacklight-gallery'
 gem 'riiif', '~> 0.1.0'

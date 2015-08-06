@@ -174,7 +174,7 @@ describe Importer::ModsImporter do
 
     let(:frodo) { 'Frodo Baggins' }
     let(:bilbo) { 'Bilbo Baggins' }
-    let(:pippin) { RDF::URI.new('http://example.com/pippin') }
+    let(:pippin) { RDF::URI.new('http://id.loc.gov/authorities/names/pippin') }
 
     context 'when rights_holder has strings or uris' do
       before do
