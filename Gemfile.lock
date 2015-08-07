@@ -73,6 +73,21 @@ GIT
       hydra-core (= 9.2.1)
       rails (>= 3.2.6)
 
+GIT
+  remote: git://github.com/traject/traject.git
+  revision: 656a992c400a472bf5b738ec7a3aa208cc449472
+  branch: allow_nil_default
+  specs:
+    traject (2.1.0)
+      concurrent-ruby (>= 0.8.0)
+      dot-properties (>= 0.1.1)
+      hashie (~> 3.1)
+      httpclient (~> 2.5)
+      marc (~> 1.0)
+      marc-fastxmlwriter (~> 1.0)
+      slop (>= 3.4.5, < 4.0)
+      yell
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -187,8 +202,7 @@ GEM
     coffee-script-source (1.9.1.1)
     colorize (0.7.7)
     columnize (0.9.0)
-    concurrent-ruby (0.8.0)
-      ref (~> 1.0, >= 1.0.5)
+    concurrent-ruby (0.9.0)
     crack (0.4.2)
       safe_yaml (~> 1.0.0)
     daemons (1.2.3)
@@ -542,15 +556,6 @@ GEM
     thread_safe (0.3.5)
     tilt (1.4.1)
     timecop (0.7.3)
-    traject (2.1.0)
-      concurrent-ruby (>= 0.8.0)
-      dot-properties (>= 0.1.1)
-      hashie (~> 3.1)
-      httpclient (~> 2.5)
-      marc (~> 1.0)
-      marc-fastxmlwriter (~> 1.0)
-      slop (>= 3.4.5, < 4.0)
-      yell
     trollop (2.1.2)
     turbolinks (2.5.3)
       coffee-rails
@@ -632,7 +637,7 @@ DEPENDENCIES
   sqlite3
   therubyracer
   timecop (= 0.7.3)
-  traject
+  traject!
   turbolinks
   uglifier (>= 1.3.0)
   vcr

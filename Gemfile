@@ -55,7 +55,8 @@ gem 'kaminari', github: 'jcoyne/kaminari', branch: 'sufia'
 gem 'devise'
 gem "devise_ldap_authenticatable"
 gem 'devise-guests', github: 'cbeer/devise-guests'
-gem 'traject', require: false
+# gem 'traject', require: false
+gem 'traject', github: 'traject/traject', require: false, branch: 'allow_nil_default'
 
 gem 'resque-status'
 gem 'resque-pool'
