@@ -27,12 +27,21 @@ class SolrDocument
   # @example
   #   link_to '...', SolrDocument(id: 'bXXXXXX5').new => <a href="/dams_object/bXXXXXX5">...</a>
   def to_model
-    @model ||= case self['has_model_ssim'].first
-               when Collection.to_class_uri, Image.to_class_uri, ETD.to_class_uri
+    @model ||= if curation_concern?
                  ActiveFedora::Base.load_instance_from_solr(id, self)
                else
                  super
                end
+  end
+
+  # Something besides a local authority
+  def curation_concern?
+    case self.fetch('has_model_ssim').first
+    when Collection.to_class_uri, Image.to_class_uri, ETD.to_class_uri
+      true
+    else
+      false
+    end
   end
 
   def etd?
