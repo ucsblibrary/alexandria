@@ -1,11 +1,7 @@
 require 'importer'
-
 require 'traject'
-# require 'traject/util'
-# require 'traject/qualified_const_get'
 
 class ObjectFactoryWriter
-  # include Traject::QualifiedConstGet
 
   # The passed-in settings
   attr_reader :settings

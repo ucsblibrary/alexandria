@@ -14,7 +14,7 @@ module Importer
       end
 
       def add_object_to_collection(obj, attrs)
-        collection_attrs = attrs[:collection].merge(admin_policy_id: attributes[:admin_policy_id])
+        collection_attrs = attrs.fetch(:collection).merge(admin_policy_id: attributes[:admin_policy_id])
         CollectionFactory.new(collection_attrs).run do |coll|
           coll.members << obj
           coll.save!

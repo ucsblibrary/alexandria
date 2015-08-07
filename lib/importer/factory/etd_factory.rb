@@ -21,13 +21,17 @@ module Importer::Factory
       super.merge(admin_policy_id: AdminPolicy::RESTRICTED_POLICY_ID)
     end
 
-    def after_create(etd)
-      return unless files_directory
+    def after_save(etd)
+      super # Calls after_save in WithAssociatedCollection
+      return unless files_directory && attributes[:files]
 
       Rails.logger.warn "Files for etd #{etd.id} were: #{attributes[:files]}, expected only 1" unless attributes[:files].size == 1
 
-      # TODO move to background job
-      AttachFilesToETD.run(etd, attributes[:files].first)
+      # Only import proquest files once
+      if etd.proquest.new_record?
+        # TODO move to background job
+        AttachFilesToETD.run(etd, attributes[:files].first)
+      end
       etd.save # force a reindex after the files are created
     end
 

@@ -4,11 +4,6 @@ require 'importer'
 describe Importer::Factory::ETDFactory do
   let(:factory) { described_class.new(attributes, Settings.proquest_directory) }
   let(:collection_attrs) { { accession_number: ["etds"] } }
-  before do
-    if ETD.exists? 'f3/gt/5k/61/f3gt5k61'
-      ETD.find('f3/gt/5k/61/f3gt5k61').destroy(eradicate: true)
-    end
-  end
 
   let(:attributes) do
     {
@@ -22,8 +17,13 @@ describe Importer::Factory::ETDFactory do
   end
 
   before do
+    if ETD.exists? 'f3/gt/5k/61/f3gt5k61'
+      ETD.find('f3/gt/5k/61/f3gt5k61').destroy(eradicate: true)
+    end
+
     allow($stdout).to receive(:puts)  # squelch output
     AdminPolicy.ensure_admin_policy_exists
+    allow(AttachFilesToETD).to receive(:run) # skip importing files
   end
 
   context "when a collection already exists" do
@@ -54,16 +54,21 @@ describe Importer::Factory::ETDFactory do
   end
 
 
-  describe "after_create" do
+  describe "after_save" do
     let(:attributes) do
       { files: ["Plunkett_ucsb_0035D_11862.pdf"] }
     end
     let(:etd) { ETD.create }
 
-    it "attaches files" do
-      expect(AttachFilesToETD).to receive(:run).with(etd, attributes[:files].first)
-      factory.after_create(etd)
+    before { allow(factory).to receive(:add_object_to_collection) }
+
+    context "if the etd doesn't have attached proquest data" do
+      it "attaches files" do
+        expect(AttachFilesToETD).to receive(:run).with(etd, attributes[:files].first)
+        factory.after_save(etd)
+      end
     end
+
   end
 
 
