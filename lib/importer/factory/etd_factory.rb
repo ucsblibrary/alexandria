@@ -39,24 +39,23 @@ module Importer::Factory
       puts "  Updated #{klass.to_s.downcase} #{obj.id} (#{attributes[:system_number].first})"
     end
 
-private
+  private
 
     def update_created_date(obj)
-      return if attributes[:created_attributes].blank?
+      created_attributes = attributes.delete(:created_attributes)
+      return if created_attributes.blank?
 
-      new_date = Array(attributes.fetch(:created_attributes)).first.fetch(:start, nil)
+      new_date = created_attributes.first.fetch(:start, nil)
       return unless new_date
 
       existing_date = obj.created.flat_map(&:start)
 
-      if existing_date == new_date
-        attributes.delete(:created_attributes)
-      else
-        # Remove the old date. It will be replaced by the new date
-        old_created = obj.created.to_a
-        obj.created.clear
-        old_created.each do |record|
-          record.destroy
+      if existing_date != new_date
+        # Create or update the existing date.
+        if time_span = obj.created.to_a.first
+          time_span.update(created_attributes.first)
+        else
+          obj.created.build(created_attributes.first)
         end
       end
     end
