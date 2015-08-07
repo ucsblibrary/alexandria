@@ -20,6 +20,12 @@ module AdminPolicy
   PUBLIC_CAMPUS_GROUP = 'public_on_campus'.freeze
   UCSB_CAMPUS_GROUP   = 'ucsb_on_campus'.freeze
 
+  def self.all
+    Rails.cache.fetch("admin_policies", expires_in: 1.year) do
+      Hydra::AdminPolicy.all.to_a
+    end
+  end
+
 
   def self.ensure_admin_policy_exists
 
