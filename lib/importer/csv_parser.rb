@@ -14,12 +14,33 @@ module Importer
         if headers
           yield attributes(headers, row)
         else
-          headers = row
+          headers = validate_headers(row)
         end
       end
     end
 
     private
+
+      def validate_headers(row)
+        difference = (row - valid_headers)
+        raise "Invalid headers: #{difference.join(', ')}" unless difference.blank?
+        row
+      end
+
+      def valid_headers
+        Image.attribute_names + %w(note_value note_type files) +
+          time_span_headers + collection_headers
+      end
+
+      def time_span_headers
+        %w(created issued date_copyrighted date_valid).flat_map do |prefix|
+          TimeSpan.attribute_names.map { |attribute| "#{prefix}_#{attribute}" }
+        end
+      end
+
+      def collection_headers
+        %w(collection_id collection_title collection_accession_number)
+      end
 
       def attributes(headers, row)
         {}.tap do |processed|
@@ -50,9 +71,6 @@ module Importer
           when /^collection_(.*)$/
             processed[:collection] ||= {}
             update_collection(processed[:collection], $1, val)
-          when 'finding_aid'
-            # TODO I don't know what this is for. Either we need to add it to the data model, or it should not appear in (collection) CSVs
-            $stderr.puts "Ignoring unknown property: #{header} => #{val}"
           else
             # Everything else is multivalued
             processed[header.to_sym] ||= []
