@@ -25,6 +25,11 @@ module ApplicationHelper
     link_to(href, href)
   end
 
+  def policy_title(document)
+    id = document.fetch('isGovernedBy_ssim').first
+    AdminPolicy.all.find { |policy| policy.id == id }.title
+  end
+
 
   # Should we display the admin menu?
   def admin_menu?

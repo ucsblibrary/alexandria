@@ -17,6 +17,13 @@ describe ApplicationHelper do
     end
   end
 
+  describe "#policy_title" do
+    before { AdminPolicy.ensure_admin_policy_exists }
+    let(:document) { SolrDocument.new(isGovernedBy_ssim: [AdminPolicy::DISCOVERY_POLICY_ID] ) }
+    subject { helper.policy_title(document) }
+    it { is_expected.to eq 'Discovery access only' }
+  end
+
   describe "#link_to_collection" do
     let(:document) { SolrDocument.new(collection_ssim: ['1234'] ) }
     subject { helper.link_to_collection(value: ['collection title'], document: document) }
