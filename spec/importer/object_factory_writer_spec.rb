@@ -27,6 +27,7 @@ describe ObjectFactoryWriter do
 
     it "calls the etd factory" do
       expect(writer).to receive(:build_object).with(
+        {
         author: ['Valerie'],
         isbn: ['1234'],
         identifier: ['ark:/99999/fk4zp46p1g'],
@@ -40,11 +41,49 @@ describe ObjectFactoryWriter do
         'place_of_publication' => ['[Santa Barbara, Calif.]'],
         'publisher' => ['University of California, Santa Barbara'],
         'issued' => ['2013'],
-        degree_supervisor: ['Paul', 'Hector']
+        degree_supervisor: ['Paul', 'Hector'],
+        system_number: [],
+        language: [],
+        dissertation_degree: [],
+        dissertation_institution: [],
+        dissertation_year: [],
+        fulltext_link: []}.with_indifferent_access
       )
 
       writer.put(traject_context)
     end
 
+    context "when fields are missing" do
+      let(:traject_hash) do
+        { 'identifier' => ['ark:/99999/fk4zp46p1g'],
+          'id' => ['fk/4z/p4/6p/fk4zp46p1g'] }
+      end
+      it "overwrites with blank" do
+        expect(writer).to receive(:build_object).with(
+          {
+            author: [],
+            isbn: [],
+            identifier: ['ark:/99999/fk4zp46p1g'],
+            id: 'fk/4z/p4/6p/fk4zp46p1g',
+            files: [], created_attributes: [{"start"=>[]}],
+            collection: { id: "etds", title: "Electronic Theses and Dissertations", accession_number: ['etds'] },
+            extent: [],
+            description: [],
+            title: nil,
+            degree_grantor: [],
+            place_of_publication: [],
+            publisher: [],
+            issued: [],
+            degree_supervisor: [],
+            system_number: [],
+            language: [],
+            dissertation_degree: [],
+            dissertation_institution: [],
+            dissertation_year: [],
+            fulltext_link: []}.with_indifferent_access
+        )
+        writer.put(traject_context)
+      end
+    end
   end
 end

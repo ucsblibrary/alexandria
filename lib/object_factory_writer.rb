@@ -25,14 +25,22 @@ class ObjectFactoryWriter
 
   # Add a single context to fedora
   def put(context)
-    attributes = context.output_hash.with_indifferent_access
+    from_traject = context.output_hash.with_indifferent_access
+    unknown_fields = from_traject.keys - expected_fields
+
+    unless unknown_fields.blank?
+      $stderr.puts "Skipping #{from_traject[:identifier]} : ERROR: Unknown field(s) #{unknown_fields}"
+      return
+    end
+
+    attributes = defaults.merge(from_traject)
 
     relators = parse_relators(attributes.delete('names'), attributes.delete('relators'))
 
     if relators
       attributes.merge!(relators)
     else
-      puts "Skipping: #{attributes[:identifier]} : ERROR: Names in field 720a don't match relators in field 720e"
+      $stderr.puts "Skipping #{attributes[:identifier]} : ERROR: Names in field 720a don't match relators in field 720e"
       return
     end
 
@@ -54,6 +62,19 @@ class ObjectFactoryWriter
   end
 
   private
+
+    def expected_fields
+      @expected ||= %w(identifier id system_number language created_start isbn
+        title author place_of_publication publisher issued extent
+        dissertation_degree dissertation_institution dissertation_year
+        names relators description degree_grantor fulltext_link filename)
+    end
+
+    # This ensures that if a field isn't in a MARC record, but it is in Fedora,
+    # then it will be overwritten with blank.
+    def defaults
+      expected_fields.each_with_object(HashWithIndifferentAccess.new) { |k, h| h[k] = [] }
+    end
 
     def build_object(attributes)
       factory.new(attributes, Settings.proquest_directory).run
@@ -78,7 +99,7 @@ class ObjectFactoryWriter
 
       fields = {}
       ds = names.find_all.with_index { |_, index| relators[index].match(/degree supervisor/i) }
-      fields[:degree_supervisor] = ds unless ds.blank?
+      fields[:degree_supervisor] = ds
       fields
     end
 
