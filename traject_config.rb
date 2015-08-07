@@ -34,30 +34,30 @@ to_field 'id', lambda { |record, accumulator, context|
   accumulator << Identifier.ark_to_id(context.output_hash['identifier'].first)
 }
 
-to_field "system_number", extract_marc("001")
+to_field "system_number", extract_marc("001", default: nil)
 to_field "language", marc_languages
 to_field "created_start", marc_publication_date
-to_field 'isbn', extract_marc("020a")
-to_field 'title', extract_marc("245a", trim_punctuation: true)
-to_field 'author', extract_marc("100a", trim_punctuation: true)
-to_field 'place_of_publication', extract_marc("264a", trim_punctuation: true)
-to_field 'publisher', extract_marc("264b", trim_punctuation: true)
-to_field 'issued', extract_marc("264c", trim_punctuation: true)
-to_field 'extent', extract_marc("300a")
-to_field 'dissertation_degree', extract_marc("502b")
-to_field 'dissertation_institution', extract_marc("502c")
-to_field 'dissertation_year', extract_marc("502d", trim_punctuation: true)
+to_field 'isbn', extract_marc("020a", default: nil)
+to_field 'title', extract_marc("245a", trim_punctuation: true, default: nil)
+to_field 'author', extract_marc("100a", trim_punctuation: true, default: nil)
+to_field 'place_of_publication', extract_marc("264a", trim_punctuation: true, default: nil)
+to_field 'publisher', extract_marc("264b", trim_punctuation: true, default: nil)
+to_field 'issued', extract_marc("264c", trim_punctuation: true, default: nil)
+to_field 'extent', extract_marc("300a", default: nil)
+to_field 'dissertation_degree', extract_marc("502b", default: nil)
+to_field 'dissertation_institution', extract_marc("502c", default: nil)
+to_field 'dissertation_year', extract_marc("502d", trim_punctuation: true, default: nil)
 
 # Names with relators, e.g. thesis advisor
 to_field 'names',    extract_marc("720a")
 to_field 'relators', extract_marc("720e", allow_duplicates: true)
-to_field 'description', extract_marc("520a")
+to_field 'description', extract_marc("520a", default: nil)
 
-to_field 'degree_grantor', extract_marc("710ab", trim_punctuation: true)
+to_field 'degree_grantor', extract_marc("710ab", trim_punctuation: true, default: nil)
 
-extract856u = MarcExtractor.new("856u", :separator => nil)
+extract856u = MarcExtractor.new("856u", separator: nil)
 to_field 'fulltext_link', lambda { |record, accumulator|
   accumulator << extract856u.extract(record).grep(/proquest/).first
 }
 
-to_field 'filename', extract_marc("956f")
+to_field 'filename', extract_marc("956f", default: nil)

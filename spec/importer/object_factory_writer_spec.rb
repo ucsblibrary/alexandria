@@ -22,7 +22,13 @@ describe ObjectFactoryWriter do
         'place_of_publication' => ['[Santa Barbara, Calif.]'],
         'publisher' => ['University of California, Santa Barbara'],
         'issued' => ['2013'],
-        'relators' => ['degree supervisor.', 'adventurer', 'Degree suPERvisor'] }
+        'relators' => ['degree supervisor.', 'adventurer', 'Degree suPERvisor'],
+        'system_number' => [nil],
+        'dissertation_degree' => [nil],
+        'dissertation_institution' => [nil],
+        'dissertation_year' => [nil],
+        'fulltext_link' => [nil]
+      }
     end
 
     it "calls the etd factory" do
@@ -56,8 +62,25 @@ describe ObjectFactoryWriter do
     context "when fields are missing" do
       let(:traject_hash) do
         { 'identifier' => ['ark:/99999/fk4zp46p1g'],
-          'id' => ['fk/4z/p4/6p/fk4zp46p1g'] }
+          'id' => ['fk/4z/p4/6p/fk4zp46p1g'],
+          'author' => [nil],
+          'filename' => [nil],
+          'isbn' => [nil],
+          'extent' => [nil],
+          'description' => [nil],
+          'title' => [nil],
+          'degree_grantor' => [nil],
+          'place_of_publication' => [nil],
+          'publisher' => [nil],
+          'issued' => [nil],
+          'degree_supervisor' => [nil],
+          'system_number' => [nil],
+          'dissertation_degree' => [nil],
+          'dissertation_institution' => [nil],
+          'dissertation_year' => [nil],
+        }
       end
+
       it "overwrites with blank" do
         expect(writer).to receive(:build_object).with(
           {
