@@ -25,9 +25,9 @@ describe ApplicationHelper do
   end
 
   describe "#link_to_collection" do
-    let(:document) { SolrDocument.new(collection_ssim: ['1234'] ) }
+    let(:document) { SolrDocument.new(collection_ssim: ['fk/4g/x4/hm/fk4gx4hm1c'] ) }
     subject { helper.link_to_collection(value: ['collection title'], document: document) }
-    it { is_expected.to eq '<a href="/collections/1234">collection title</a>' }
+    it { is_expected.to eq '<a href="/collections/fk4gx4hm1c">collection title</a>' }
   end
 
   describe "#show_delete_link?" do
