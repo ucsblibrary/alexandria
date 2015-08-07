@@ -82,6 +82,6 @@ Rails.application.configure do
   # Any proxies that are in front of the app.  This is used to
   # find the user's IP address to determine whether or not the
   # user is on campus.
-  # config.action_dispatch.trusted_proxies = []
+  config.action_dispatch.trusted_proxies = ['128.111.87.35', '10.3.60.110']
 
 end
