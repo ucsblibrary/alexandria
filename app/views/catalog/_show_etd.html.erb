@@ -1,39 +1,9 @@
 <%= render 'show_default', document: document %>
 
-<% readable = can?(:read, document) %>
 <% if document.generic_files.present? %>
-  <table class="table table-bordered" id="downloads">
-    <thead>
-      <tr>
-        <th>File (Download)</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% files = document.generic_files %>
-      <% generic_file = files.shift %>
-      <tr>
-        <td class="access-row <%= readable ? 'allowed' : 'denied' %>" colspan="2">Access: UC Santa Barbara Only</td>
-      </tr>
-      <tr>
-        <td class="col_1"><span id="thumbnail_image"><%= image_tag "pdf_32x.png" %></span>
-          <%= link_to_if readable, generic_file.fetch('original_filename_ss'),
-            generic_file.fetch('original_download_url_ss'),
-            data: { no_turbolink: true } %>
-          <span id="file_size">(<%= number_to_human_size(generic_file.fetch('original_file_size_ss')) %>)</span></td>
-        <td class="col_2">Full-text thesis or dissertation</td>
-      </tr>
-
-      <% files.sort { |a, b| a.fetch('original_filename_ss') <=> b.fetch('original_filename_ss') }.each do |generic_file| %>
-      <tr>
-        <td class="col_1"><span id="thumbnail_image"><%= image_tag "pdf_32x.png" %></span>
-          <%= link_to_if readable, generic_file.fetch('original_filename_ss'),
-            generic_file.fetch('original_download_url_ss'),
-            data: { no_turbolink: true } %>
-          <span id="file_size">(<%= number_to_human_size(generic_file.fetch('original_file_size_ss')) %>)</span></td>
-        <td class="col_2">Supplemental file</td>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <% if can?(:read, document) %>
+    <%= render 'files', document: document %>
+  <% else %>
+    <%= render 'access_denied', document: document %>
+  <% end %>
 <% end %>
