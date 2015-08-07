@@ -18,8 +18,14 @@ table#downloads {
     background-color: #EEE;
   }
 
-  .access_row {
+  .access-row {
     color: #FFF;
+  }
+  .access-row.denied {
     background-color: #9E280E;
+  }
+
+  .access-row.allowed {
+    background-color: #41A317;
   }
 }
