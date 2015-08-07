@@ -78,4 +78,10 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.host_name = "http://alexandria.ucsb.edu/"
+
+  # Any proxies that are in front of the app.  This is used to
+  # find the user's IP address to determine whether or not the
+  # user is on campus.
+  # config.action_dispatch.trusted_proxies = []
+
 end
