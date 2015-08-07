@@ -19,6 +19,9 @@ Rails.application.routes.draw do
   resources :etds, only: [] do
     resource :access, only: [:edit, :update], controller: 'access'
   end
+  resources :images, only: [] do
+    resource :access, only: [:edit, :update], controller: 'access'
+  end
 
   resources :local_authorities, only: :index
 
