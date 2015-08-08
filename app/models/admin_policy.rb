@@ -84,7 +84,7 @@ module AdminPolicy
     end
 
     unless Hydra::AdminPolicy.exists?(PUBLIC_CAMPUS_POLICY_ID)
-      policy = Hydra::AdminPolicy.create(id: PUBLIC_CAMPUS_POLICY_ID, title: ['Campus use only'])
+      policy = Hydra::AdminPolicy.create(id: PUBLIC_CAMPUS_POLICY_ID, title: ['Public Access, Campus use only'])
       policy.default_permissions.build([
         { type: "group", name: META_ADMIN_GROUP, access: "edit" },
         { type: "group", name: RIGHTS_ADMIN_GROUP, access: "read" },
