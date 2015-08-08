@@ -3,6 +3,8 @@ class CollectionsController < ApplicationController
   include Hydra::Catalog
   include Hydra::CollectionsControllerBehavior
 
+  skip_before_filter :authenticate_user!
+
 
   def collections_search_builder_class
     CollectionSearchBuilder
