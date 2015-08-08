@@ -18,7 +18,7 @@ class CatalogController < ApplicationController
   add_show_tools_partial(:delete, partial: 'catalog/delete', if: :show_delete_link?)
   add_show_tools_partial(:edit, partial: 'catalog/edit', if: :editor?)
   add_show_tools_partial(:download, partial: 'catalog/download')
-  add_show_tools_partial(:access, partial: 'catalog/access', if: :updates_metadata?)
+  add_show_tools_partial(:access, partial: 'catalog/access', if: :show_embargos_link?)
 
   before_action :convert_ark_to_id, only: :show
 
