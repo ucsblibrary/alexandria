@@ -13,6 +13,8 @@ extend Traject::Macros::MarcFormats
 settings do
   provide "writer_class_name", "ObjectFactoryWriter"
   provide "marc_source.type", "xml"
+  # Don't use threads. Workaround for https://github.com/fcrepo4/fcrepo4/issues/880
+  provide "processing_thread_pool", 0
 end
 
 ark_extractor = MarcExtractor.new("024a", :separator => nil)
