@@ -26,8 +26,7 @@ module ApplicationHelper
   end
 
   def policy_title(document)
-    id = document.fetch('isGovernedBy_ssim').first
-    AdminPolicy.find(id).title
+    AdminPolicy.find(document.admin_policy_id).title
   end
 
 

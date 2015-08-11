@@ -57,6 +57,10 @@ class SolrDocument
     self['has_model_ssim'] == [ETD.to_class_uri]
   end
 
+  def admin_policy_id
+    fetch('isGovernedBy_ssim').first
+  end
+
   def to_param
     Identifier.ark_to_noid(ark) || Identifier.noidify(id)
   end
