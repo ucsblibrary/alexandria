@@ -49,7 +49,6 @@ class ObjectFactoryWriter
 
     attributes[:files] = attributes.delete('filename')
 
-    # TODO get a real collection properties
     attributes[:collection] = { id: "etds", title: "Electronic Theses and Dissertations", accession_number: ['etds'] }
 
     build_object(attributes)
