@@ -9,7 +9,7 @@
     <% files = document.generic_files %>
     <% generic_file = files.shift %>
     <tr>
-      <td class="access-row allowed" colspan="2">Access: <%= policy_title(document) %></td>
+      <td class="access-row allowed" colspan="2">Access: <%= policy_title(document) %><%= document.after_embargo_status%></td>
     </tr>
     <tr>
       <td class="col_1"><span id="thumbnail_image"><%= image_tag "pdf_32x.png" %></span>

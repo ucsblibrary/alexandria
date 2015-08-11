@@ -44,6 +44,15 @@ class SolrDocument
     end
   end
 
+  # blank if there is no embargo or the embargo status
+  def after_embargo_status
+    return if self['visibility_after_embargo_ssim'].blank?
+    date = Date.parse self['embargo_release_date_dtsi']
+    policy = AdminPolicy.find(self['visibility_after_embargo_ssim'].first)
+    " - Becomes #{policy.title} on #{date.to_s(:us)}"
+
+  end
+
   def etd?
     self['has_model_ssim'] == [ETD.to_class_uri]
   end

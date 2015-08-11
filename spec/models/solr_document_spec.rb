@@ -58,7 +58,7 @@ describe SolrDocument do
     end
   end
 
-  context '#to_param' do
+  describe '#to_param' do
     let(:noid) { 'f123456789' }
     let(:id)   { '12/34/56/f123456789' }
 
@@ -78,5 +78,16 @@ describe SolrDocument do
         expect(subject).to eq noid
       end
     end
+  end
+
+  describe "#after_embargo_status" do
+    before { AdminPolicy.ensure_admin_policy_exists }
+    let(:document) { SolrDocument.new(
+        visibility_during_embargo_ssim: ['authorities/policies/ucsb_on_campus'],
+        visibility_after_embargo_ssim: ['authorities/policies/public'],
+        embargo_release_date_dtsi: '2010-10-10T00:00:00Z'
+    ) }
+    subject { document.after_embargo_status }
+    it { is_expected.to eq ' - Becomes Public access on 10/10/2010' }
   end
 end

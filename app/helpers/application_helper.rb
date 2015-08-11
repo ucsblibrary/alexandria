@@ -27,7 +27,7 @@ module ApplicationHelper
 
   def policy_title(document)
     id = document.fetch('isGovernedBy_ssim').first
-    AdminPolicy.all.find { |policy| policy.id == id }.title
+    AdminPolicy.find(id).title
   end
 
 

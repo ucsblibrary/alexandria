@@ -53,24 +53,24 @@ GIT
 
 GIT
   remote: git://github.com/projecthydra/hydra-head.git
-  revision: 9d3a8c4eccd94794a30441a16482ce78ba6f85c3
-  ref: 9d3a8c4eccd94794a30441a16482ce78ba6f85c3
+  revision: cc8fe534874f54331528ffdf6a7ab6ba1902731b
+  ref: cc8fe53
   specs:
-    hydra-access-controls (9.2.1)
+    hydra-access-controls (9.2.2)
       active-fedora (~> 9.0)
       activesupport (~> 4.0)
       blacklight (~> 5.10)
       cancancan (~> 1.8)
       deprecation (~> 0.1)
       sass-rails
-    hydra-core (9.2.1)
+    hydra-core (9.2.2)
       active-fedora (~> 9.1)
-      hydra-access-controls (= 9.2.1)
+      hydra-access-controls (= 9.2.2)
       jettywrapper (>= 2.0.0)
       rails (~> 4.0)
-    hydra-head (9.2.1)
-      hydra-access-controls (= 9.2.1)
-      hydra-core (= 9.2.1)
+    hydra-head (9.2.2)
+      hydra-access-controls (= 9.2.2)
+      hydra-core (= 9.2.2)
       rails (>= 3.2.6)
 
 GIT

@@ -45,6 +45,10 @@ class ETD < ActiveFedora::Base
     ETDIndexer
   end
 
+  def embargo_indexer_class
+    EmbargoIndexer
+  end
+
   def to_param
     Identifier.noidify(id)
   end
