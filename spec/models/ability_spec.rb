@@ -4,9 +4,22 @@ require 'cancan/matchers'
 
 describe Ability do
   subject { ability }
+
+  before do
+    AdminPolicy::ensure_admin_policy_exists
+
+    # Load Image class or else it won't be returned in
+    # ActiveFedora::Base.descendants, which is used to
+    # check discovery permissions
+    Image
+  end
+
   let(:ability) { Ability.new(user) }
-  let(:image) { create(:public_image) }
   let(:local_group) { create(:group) }
+
+  let(:public_image) { create(:public_image) }
+  let(:discovery_image) { create(:image, :discovery) }
+  let(:restricted_image) { create(:image, :restricted) }
 
 
   context 'for a user who is not logged in' do
@@ -14,10 +27,14 @@ describe Ability do
 
     it {
       is_expected.not_to be_able_to(:create, Image)
-      is_expected.to     be_able_to(:read, image)
-      is_expected.not_to be_able_to(:update, image)
-      is_expected.not_to be_able_to(:destroy, image)
       is_expected.not_to be_able_to(:update, SolrDocument.new)
+
+      is_expected.to     be_able_to(:read, public_image)
+      is_expected.not_to be_able_to(:update, public_image)
+      is_expected.not_to be_able_to(:destroy, public_image)
+
+      is_expected.to     be_able_to(:discover, discovery_image)
+      is_expected.not_to be_able_to(:discover, restricted_image)
 
       is_expected.not_to be_able_to(:read, :local_authorities)
       is_expected.not_to be_able_to(:destroy, :local_authorities)
@@ -33,10 +50,14 @@ describe Ability do
 
     it {
       is_expected.not_to be_able_to(:create, Image)
-      is_expected.to     be_able_to(:read, image)
-      is_expected.not_to be_able_to(:update, image)
-      is_expected.not_to be_able_to(:destroy, image)
       is_expected.not_to be_able_to(:update, SolrDocument.new)
+
+      is_expected.to     be_able_to(:read, public_image)
+      is_expected.not_to be_able_to(:update, public_image)
+      is_expected.not_to be_able_to(:destroy, public_image)
+
+      is_expected.to     be_able_to(:discover, discovery_image)
+      is_expected.not_to be_able_to(:discover, restricted_image)
 
       is_expected.not_to be_able_to(:read, :local_authorities)
       is_expected.not_to be_able_to(:destroy, :local_authorities)
@@ -52,10 +73,13 @@ describe Ability do
 
     it {
       is_expected.to be_able_to(:create, Image)
-      is_expected.to be_able_to(:read, image)
-      is_expected.to be_able_to(:update, image)
-      is_expected.to be_able_to(:destroy, image)
       is_expected.to be_able_to(:update, SolrDocument.new)
+
+      is_expected.to be_able_to(:read, public_image)
+      is_expected.to be_able_to(:update, public_image)
+      is_expected.to be_able_to(:destroy, public_image)
+
+      is_expected.to be_able_to(:read, restricted_image)
 
       is_expected.to be_able_to(:read, :local_authorities)
       is_expected.to be_able_to(:destroy, :local_authorities)
@@ -75,10 +99,13 @@ describe Ability do
 
     it {
       is_expected.not_to be_able_to(:create, Image)
-      is_expected.to     be_able_to(:read, image)
-      is_expected.not_to be_able_to(:update, image)
-      is_expected.not_to be_able_to(:destroy, image)
       is_expected.not_to be_able_to(:update, SolrDocument.new)
+
+      is_expected.to     be_able_to(:read, public_image)
+      is_expected.not_to be_able_to(:update, public_image)
+      is_expected.not_to be_able_to(:destroy, public_image)
+
+      is_expected.to be_able_to(:read, restricted_image)
 
       is_expected.not_to be_able_to(:read, :local_authorities)
       is_expected.not_to be_able_to(:destroy, :local_authorities)
