@@ -31,6 +31,7 @@ describe LocalAuthoritiesController do
 
       before do
         ActiveFedora::Cleaner.clean!
+        AdminPolicy.ensure_admin_policy_exists
         [person, group, org, agent, image, topic] # create the objects
         get :index
       end

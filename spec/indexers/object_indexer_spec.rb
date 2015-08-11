@@ -195,6 +195,8 @@ describe ObjectIndexer do
     let(:photographer) { [RDF::URI.new(person.uri)] }
     let(:image) { Image.new(author: author, creator: creator, singer: singer, photographer: photographer) }
 
+    before { AdminPolicy.ensure_admin_policy_exists }
+
     it "has a creator" do
       VCR.use_cassette('lc_names_american_film') do
         expect_any_instance_of(ContributorIndexer).to receive(:generate_solr_document) do |_, solr_doc|

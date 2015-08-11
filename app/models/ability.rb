@@ -18,7 +18,6 @@ class Ability
     rights_admin_permissions
   end
 
-
   def metadata_admin_permissions
     return unless user_groups.include?(AdminPolicy::META_ADMIN_GROUP)
 

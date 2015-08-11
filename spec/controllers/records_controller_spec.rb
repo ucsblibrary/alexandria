@@ -3,7 +3,10 @@ require 'rails_helper'
 describe RecordsController do
   routes { HydraEditor::Engine.routes }
   let(:user) { create :admin }
-  before { sign_in user }
+  before do
+    AdminPolicy.ensure_admin_policy_exists
+    sign_in user
+  end
 
   # Don't fetch external records (speed up)
   before { allow_any_instance_of(RDF::DeepIndexingService).to receive(:fetch_external) }

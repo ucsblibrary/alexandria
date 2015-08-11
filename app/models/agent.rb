@@ -3,6 +3,7 @@
 # See:  http://xmlns.com/foaf/spec/#term_Agent
 
 class Agent < ActiveFedora::Base
+  include LocalAuthorityBase
 
   rdf_label ::RDF::FOAF.name
   property :foaf_name, predicate: ::RDF::FOAF.name, multiple: false do |index|

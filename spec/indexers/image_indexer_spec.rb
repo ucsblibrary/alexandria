@@ -54,6 +54,10 @@ describe ImageIndexer do
 
     let(:image) { Image.new(rights_holder: [valerie_uri, regents_uri]) }
 
+    before do
+      AdminPolicy.ensure_admin_policy_exists
+    end
+
     it 'indexes with a label' do
       VCR.use_cassette('rights_holder') do
         expect(subject['rights_holder_ssim']).to eq [valerie_uri, regents_uri]

@@ -41,8 +41,6 @@ class ApplicationController < ActionController::Base
     ['128.111', '169.231']
   end
 
-private
-
   def current_ability
     @current_ability ||= Ability.new(current_user, on_campus?)
   end
