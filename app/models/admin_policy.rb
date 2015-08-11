@@ -26,6 +26,10 @@ module AdminPolicy
     end
   end
 
+  def self.find id
+    all.find { |policy| policy.id == id }
+  end
+
 
   def self.ensure_admin_policy_exists
 

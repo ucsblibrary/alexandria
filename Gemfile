@@ -24,7 +24,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 # TODO: Set hydra-head to a released version
-gem 'hydra-head', github: 'projecthydra/hydra-head', ref: '9d3a8c4eccd94794a30441a16482ce78ba6f85c3'
+gem 'hydra-head', github: 'projecthydra/hydra-head', ref: 'cc8fe53'
 
 # needs 9.3.0
 gem 'active-fedora', '~> 9.3.0'

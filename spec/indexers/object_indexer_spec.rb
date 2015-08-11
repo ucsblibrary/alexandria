@@ -127,9 +127,7 @@ describe ObjectIndexer do
         expect(subject['year_iim']).to eq [1915, 1916, 1917, 1921, 1922, 1923]
       end
     end
-
   end  # Indexing dates
-
 
   context "with rights" do
     let(:pd_uri) { RDF::URI.new('http://creativecommons.org/publicdomain/mark/1.0/') }
