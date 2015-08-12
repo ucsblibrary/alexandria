@@ -56,9 +56,12 @@ class ZipfileService
 
     # @return [String, NilClass] the path tf the zipfile containing the pdf file
     def find_zip_file
-      results = `for f in #{wildcard_zip}; do unzip -l $f | grep -q #{pdf_file_name} && echo $f; done`
-      results.chomp!
-      results.empty? ? nil : results
+      ActiveSupport::Notifications.instrument("find_zip.importer",
+                               id: pdf_file_name, name: 'Search for zipfile') do
+        results = `for f in #{wildcard_zip}; do unzip -l $f | grep -q #{pdf_file_name} && echo $f; done`
+        results.chomp!
+        results.empty? ? nil : results
+      end
     end
 
     # Returns the output from extracting the archive to the tempdir

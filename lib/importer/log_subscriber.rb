@@ -6,6 +6,24 @@ module Importer
       @odd = false
     end
 
+    def find_zip(event)
+      return unless logger.debug?
+
+      payload = event.payload
+
+      name  = "#{payload[:name]} (#{event.duration.round(1)}ms)"
+      id    = payload[:id] || "[no id]"
+      if odd?
+        name = color(name, CYAN, true)
+        id  = color(id, nil, true)
+      else
+        name = color(name, MAGENTA, true)
+      end
+
+      debug "  #{name} #{id}"
+    end
+
+
     def import(event)
       return unless logger.debug?
 
