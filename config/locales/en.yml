@@ -20,7 +20,13 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-
+  catalog:
+    access_denied:
+      authorities/policies/discovery: This item is restricted and not available for digital download.  Please contact a librarian if you need additional assistance.
+      authorities/policies/ucsb_on_campus: This item is restricted.  You must be a UCSB user and can only access this item on campus.  Please contact a librarian if you need additional assistance.
+      authorities/policies/ucsb: This item is restricted to UCSB users only, please login or contact a librarian if you need additional assistance.
+      authorities/policies/uc: This item is restricted to logged-in University of California users only, please login or contact a librarian if you need additional assistance.
+      authorities/policies/public_on_campus: This item is restricted to on-campus access only, please contact a librarian if you need additional assistance.
   simple_form:
     labels:
       image:
