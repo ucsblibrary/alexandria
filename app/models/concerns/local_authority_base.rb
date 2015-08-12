@@ -2,9 +2,7 @@ module LocalAuthorityBase
   extend ActiveSupport::Concern
 
   included do
-    belongs_to :admin_policy, class_name: "Hydra::AdminPolicy", predicate: ActiveFedora::RDF::ProjectHydra.isGovernedBy do |index|
-      index_as :symbol
-    end
+    belongs_to :admin_policy, class_name: "Hydra::AdminPolicy", predicate: ActiveFedora::RDF::ProjectHydra.isGovernedBy
   end
 
   def initialize(attributes_or_id = nil, &block)
