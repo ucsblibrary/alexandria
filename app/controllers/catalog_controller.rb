@@ -12,8 +12,6 @@ class CatalogController < ApplicationController
   before_action :convert_ark_to_id, only: :show
 
   # enforce_show_permissions is from hydra-access-controls gem
-  include Hydra::AccessControlsEnforcement
-  include Hydra::PolicyAwareAccessControlsEnforcement
   before_filter :enforce_show_permissions, only: :show
 
   def enforce_show_permissions(opts={})
@@ -26,9 +24,6 @@ class CatalogController < ApplicationController
   # This applies appropriate access controls to all solr queries
   CatalogController.search_params_logic += [:add_access_controls_to_solr_params, :only_visible_objects]
 
-  def add_access_controls_to_solr_params(solr_params, search_params)
-    super(solr_params)
-  end
 
   add_show_tools_partial(:merge, partial: 'catalog/merge_link', if: :show_merge_link?)
   add_show_tools_partial(:delete, partial: 'catalog/delete', if: :show_delete_link?)
