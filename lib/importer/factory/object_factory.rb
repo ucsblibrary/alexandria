@@ -1,3 +1,4 @@
+require 'importer/log_subscriber'
 module Importer::Factory
   class ObjectFactory
 
@@ -10,9 +11,15 @@ module Importer::Factory
 
     def run
       if obj = find
-        update(obj)
+        ActiveSupport::Notifications.instrument("import.importer",
+                       id: attributes[:id], name: 'UPDATE', klass: klass) do
+          update(obj)
+        end
       else
-        obj = create
+        ActiveSupport::Notifications.instrument("import.importer",
+                       id: attributes[:id], name: 'CREATE', klass: klass) do
+          obj = create
+        end
       end
       yield(obj) if block_given?
       obj
