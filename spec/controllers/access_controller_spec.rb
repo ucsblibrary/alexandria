@@ -99,4 +99,24 @@ describe AccessController do
     end
   end
 
+  describe "destroy" do
+    context "as a rights admin" do
+
+      before do
+        sign_in create(:rights_admin)
+        AdminPolicy.ensure_admin_policy_exists
+        allow(mock_etd).to receive(:embargo).and_return(double('the embargo', destroy: true))
+        allow(mock_etd).to receive(:embargo=).with(nil)
+        allow(mock_etd).to receive(:save!)
+      end
+
+      context "when the etd is already under embargo" do
+        it "removes embargo" do
+          expect(controller).to receive(:authorize!).with(:update_rights, mock_etd)
+          delete :destroy, etd_id: '123'
+          expect(response).to redirect_to catalog_path(mock_etd)
+        end
+      end
+    end
+  end
 end

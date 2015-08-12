@@ -125,6 +125,7 @@ describe ImageForm do
   end
 
   describe "#multiplex_contributors" do
+    before { AdminPolicy.ensure_admin_policy_exists }
     let(:form) { described_class.new(model) }
     let(:model) { Image.new(attributes) }
     let(:attributes) do

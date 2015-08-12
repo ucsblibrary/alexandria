@@ -29,7 +29,9 @@ gem 'hydra-head', github: 'projecthydra/hydra-head', ref: 'cc8fe53'
 # needs 9.3.0
 gem 'active-fedora', '~> 9.3.0'
 
-gem 'active-triples', github: 'jcoyne/ActiveTriples', branch: '0.7-future'
+#gem 'active-triples', github: 'jcoyne/ActiveTriples', branch: '0.7-future'
+# https://github.com/ActiveTriples/ActiveTriples/pull/164
+gem 'active-triples', github: 'ActiveTriples/ActiveTriples', ref: '71ed53a'
 gem 'hydra-editor', '~> 1.0.4'
 gem 'hydra-role-management'
 gem 'hydra-collections', '~> 5.0.1'

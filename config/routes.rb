@@ -17,10 +17,10 @@ Rails.application.routes.draw do
   end
 
   resources :etds, only: [] do
-    resource :access, only: [:edit, :update], controller: 'access'
+    resource :access, only: [:edit, :update, :destroy], controller: 'access'
   end
   resources :images, only: [] do
-    resource :access, only: [:edit, :update], controller: 'access'
+    resource :access, only: [:edit, :update, :destroy], controller: 'access'
   end
 
   resources :local_authorities, only: :index
