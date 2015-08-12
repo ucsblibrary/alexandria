@@ -60,6 +60,12 @@ module Importer::Factory
         attrs[:identifier] = [identifier.id]
         attrs[:id] = Identifier.treeify(identifier.id.split(/\//).last)
       end
+
+      # There's a bug in ActiveFedora when there are many
+      # habtm <-> has_many associations, where they won't all get saved.
+      # https://github.com/projecthydra/active_fedora/issues/874
+      build_time_spans(attrs)
+      build_notes(attrs)
       klass.new(attrs) do |obj|
         obj.save!
         after_create(obj)
@@ -71,6 +77,30 @@ module Importer::Factory
         log_created(obj)
       end
     end
+
+    def build_time_spans(attrs)
+      [:created, :date_other, :date_valid, :issued].each do |name|
+        build_time_span(name, attrs)
+      end
+    end
+
+    def build_time_span(name, attrs)
+      build_nested(name, TimeSpan, attrs)
+    end
+
+    def build_nested(name, klass, attrs)
+      collection_attrs = attrs.delete("#{name}_attributes".to_sym)
+      return unless collection_attrs
+      time_spans = collection_attrs.map do |ts_attrs|
+        klass.create!(ts_attrs)
+      end
+      attrs.merge!("#{name.to_s.singularize}_ids" => time_spans.map(&:id))
+    end
+
+    def build_notes(attrs)
+      build_nested('notes', Note, attrs)
+    end
+
 
     def log_created(obj)
       puts "  Created #{klass.to_s.downcase} #{obj.id} (#{attributes[:accession_number].first})"
