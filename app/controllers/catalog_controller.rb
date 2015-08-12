@@ -16,6 +16,13 @@ class CatalogController < ApplicationController
   include Hydra::PolicyAwareAccessControlsEnforcement
   before_filter :enforce_show_permissions, only: :show
 
+  def enforce_show_permissions(opts={})
+    permissions = current_ability.permissions_doc(params[:id])
+    unless can?(:discover, permissions)
+      raise Hydra::AccessDenied.new("You do not have sufficient access privileges to access this document.", :discover, params[:id])
+    end
+  end
+
   # This applies appropriate access controls to all solr queries
   CatalogController.search_params_logic += [:add_access_controls_to_solr_params, :only_visible_objects]
 

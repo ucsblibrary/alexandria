@@ -10,5 +10,9 @@ FactoryGirl.define do
     trait :restricted do
       admin_policy_id AdminPolicy::RESTRICTED_POLICY_ID
     end
+
+    trait :discovery do
+      admin_policy_id AdminPolicy::DISCOVERY_POLICY_ID
+    end
   end
 end
