@@ -2,26 +2,18 @@ module Importer
   module Factory
     module WithAssociatedCollection
       def create_attributes
-        super.except(:collection)
+        super.except(:collection).merge(collections: [find_collection])
       end
 
       def update_attributes
-        super.except(:collection)
+        super.except(:collection).merge(collections: [find_collection])
       end
 
-      def after_save(obj)
-        add_object_to_collection(obj, attributes)
-      end
-
-      def add_object_to_collection(obj, attrs)
-        collection_attrs = attrs.fetch(:collection).merge(admin_policy_id: attributes[:admin_policy_id])
+      def find_collection
+        collection_attrs = attributes.fetch(:collection).merge(admin_policy_id: attributes[:admin_policy_id])
         CollectionFactory.new(collection_attrs).run do |coll|
-          coll.members << obj
           coll.save!
         end
-        # reload the collectoin association so we can reindex with the collection
-        obj.association(:collections).reload
-        obj.update_index
       end
     end
   end
