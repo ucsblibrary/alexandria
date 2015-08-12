@@ -1,4 +1,16 @@
 GIT
+  remote: git://github.com/ActiveTriples/ActiveTriples.git
+  revision: 71ed53a1995f8e8d4b83acaca82ffcca0c2f1249
+  ref: 71ed53a
+  specs:
+    active-triples (0.7.1)
+      activemodel (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      deprecation (~> 0.1)
+      linkeddata (~> 1.1)
+      rdf (~> 1.1)
+
+GIT
   remote: git://github.com/cbeer/devise-guests.git
   revision: 8ea012c1e3cd637d28158fbf0472e8c56a18a54c
   specs:
@@ -17,18 +29,6 @@ GIT
       linked_vocabs (~> 0.2)
       rdf-vocab (~> 0.8)
       rest-client (~> 1.7)
-
-GIT
-  remote: git://github.com/jcoyne/ActiveTriples.git
-  revision: f925f2ae1c841030371c86255cb063def269bc59
-  branch: 0.7-future
-  specs:
-    active-triples (0.7.1)
-      activemodel (>= 3.0.0)
-      activesupport (>= 3.0.0)
-      deprecation (~> 0.1)
-      linkeddata (~> 1.1)
-      rdf (~> 1.1)
 
 GIT
   remote: git://github.com/jcoyne/kaminari.git

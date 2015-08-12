@@ -22,8 +22,8 @@ EmbargoForm.prototype = {
 
         var that = this;
         this.removeEmbargoButton.on('click', function(e) {
-            e.preventDefault();
-            that.removeEmbargo();
+            $(e.target).closest('form').find('input[name=_method]').val('delete');
+            //that.removeEmbargo();
         });
 
         this.addEmbargoButton.on('click', function(e) {

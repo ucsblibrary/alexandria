@@ -22,6 +22,13 @@ class AccessController < ApplicationController
     redirect_to catalog_path(curation_concern)
   end
 
+  def destroy
+    authorize! :update_rights, curation_concern
+    EmbargoService.remove_embargo(curation_concern)
+    curation_concern.save!
+    redirect_to catalog_path(curation_concern)
+  end
+
   protected
 
     def load_curation_concern

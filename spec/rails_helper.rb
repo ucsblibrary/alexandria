@@ -13,10 +13,10 @@ Capybara.register_driver :poltergeist do |app|
 end
 Capybara.javascript_driver = :poltergeist
 
-# HttpLogger.logger = Logger.new(STDOUT)
-# HttpLogger.ignore = [/\/solr/]
+#HttpLogger.logger = Logger.new(STDOUT)
+#HttpLogger.ignore = [/\/solr/]
 # HttpLogger.colorize = true
-# HttpLogger.log_headers = true
+#HttpLogger.log_headers = false
 
 require 'webmock'
 # WebMock.disable_net_connect!(:allow_localhost => true)
