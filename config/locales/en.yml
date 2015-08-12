@@ -38,3 +38,12 @@ en:
         location: 'Subject (location)'
         lc_subject: 'Subject (topic/name)'
 
+      agent:
+        foaf_name: Name
+      person:
+        foaf_name: Name
+      group:
+        foaf_name: Name
+      organization:
+        foaf_name: Name
+
