@@ -42,7 +42,7 @@ class CatalogController < ApplicationController
     # config.show.partials.insert(1, :openseadragon)
 
     config.default_solr_params = {
-      qf: 'title_tesim lc_subject_label_tesim accession_number_tesim keywords_tesim',
+      qf: 'title_tesim lc_subject_label_tesim accession_number_tesim keywords_tesim author_tesim',
       wt: 'json',
       qt: 'search',
       rows: 10
