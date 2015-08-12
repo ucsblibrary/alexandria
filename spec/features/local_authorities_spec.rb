@@ -49,7 +49,7 @@ feature 'Local Authorities' do
       click_button 'Search'
       expect(page).to have_link(frodo.foaf_name)
       click_link frodo.foaf_name
-      expect(page).to have_content("Name: #{frodo.foaf_name}")
+      expect(page).to have_content("FOAF Name: #{frodo.foaf_name}")
     end
   end
 

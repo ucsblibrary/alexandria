@@ -6,9 +6,7 @@
     <%= render 'records/form_header' %>
 
     <div class="well">
-      <%= render_edit_field_partial(:foaf_name, { f: f }) %>
-
-      <% (f.object.terms - [:foaf_name]).each do |term| %>
+      <% (f.object.terms).each do |term| %>
         <%= render_edit_field_partial(term, f: f) %>
       <% end %>
     </div>

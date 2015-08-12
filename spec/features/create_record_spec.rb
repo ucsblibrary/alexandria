@@ -16,7 +16,7 @@ feature 'Record Creation:' do
       select 'Group', from: 'type'
       click_button 'Next'
       title = 'My New Group'
-      fill_in 'Name', with: title
+      fill_in 'Foaf name', with: title
       expect { click_button 'Save' }.to change { Group.count }.by(1)
       expect(page).to have_content title
     end
