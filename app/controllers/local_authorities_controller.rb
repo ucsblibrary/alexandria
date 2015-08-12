@@ -26,7 +26,8 @@ class LocalAuthoritiesController < ApplicationController
       }
     end
 
-    config.add_facet_field 'active_fedora_model_ssi', :label => 'Type'
+    config.add_facet_field 'active_fedora_model_ssi', label: 'Type'
+    config.add_index_field 'uri_ssim', label: 'URI'
 
     config.index.title_field = ['foaf_name_tesim', 'label_tesim']
     config.add_index_field 'active_fedora_model_ssi', :label => 'Type'
@@ -36,7 +37,7 @@ class LocalAuthoritiesController < ApplicationController
   # regular blacklight views from app/views/catalog
   def _prefixes
     @_prefixes ||= super + ['catalog']
-  end 
+  end
 
 private
 

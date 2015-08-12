@@ -108,6 +108,7 @@ class CatalogController < ApplicationController
     # solr fields to be displayed in the show (single result) view
     # The ordering of the field names is the order of the display
     config.add_show_field 'foaf_name_tesim', label: 'Name'
+    config.add_show_field 'uri_ssim', label: 'URI'
     config.add_show_field 'label_tesim', label: 'Label'
     Metadata::RELATIONS.each do |key, value|
     config.add_show_field solr_name("#{key}_label", :stored_searchable), label: key.to_s.titleize

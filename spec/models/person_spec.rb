@@ -11,4 +11,12 @@ describe Person do
     subject { described_class.new.to_partial_path }
     it { is_expected.to eq 'catalog/document' }
   end
+
+  describe "#to_solr" do
+    before { AdminPolicy.ensure_admin_policy_exists }
+    subject { described_class.create.to_solr }
+    it "has the uri" do
+      expect(subject['uri_ssim']).not_to be_blank
+    end
+  end
 end
