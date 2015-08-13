@@ -49,7 +49,7 @@ class SolrDocument
     return if self['visibility_after_embargo_ssim'].blank?
     date = Date.parse self['embargo_release_date_dtsi']
     policy = AdminPolicy.find(self['visibility_after_embargo_ssim'].first)
-    " - Becomes #{policy.title} on #{date.to_s(:us)}"
+    " - Becomes #{policy} on #{date.to_s(:us)}"
 
   end
 
