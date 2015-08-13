@@ -26,7 +26,7 @@ module ApplicationHelper
   end
 
   def policy_title(document)
-    AdminPolicy.find(document.admin_policy_id).title
+    AdminPolicy.find(document.admin_policy_id)
   end
 
 

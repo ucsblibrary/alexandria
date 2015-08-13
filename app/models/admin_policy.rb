@@ -20,18 +20,20 @@ module AdminPolicy
   PUBLIC_CAMPUS_GROUP = 'public_on_campus'.freeze
   UCSB_CAMPUS_GROUP   = 'ucsb_on_campus'.freeze
 
+  # @return [Hash]
   def self.all
     Rails.cache.fetch("admin_policies", expires_in: 1.year) do
       Rails.logger.warn "The admin policy cache is rebuilding"
       AdminPolicy.ensure_admin_policy_exists
-      Hydra::AdminPolicy.all.to_a
+      Hydra::AdminPolicy.all.each_with_object({}) do |ap, h|
+        h[ap.id] = ap.title
+      end
     end
   end
 
   def self.find id
-    all.find { |policy| policy.id == id }
+    all[id]
   end
-
 
   def self.ensure_admin_policy_exists
 

@@ -14,7 +14,7 @@ class EmbargoForm
   end
 
   def visibility_options(_)
-    AdminPolicy.all
+    AdminPolicy.all.invert
   end
 
   def embargo?
