@@ -1,5 +1,6 @@
 <% assets_with_deactivated_embargoes.each do |curation_concern| %>
-  <%= link_to curation_concern.title, edit_embargo_path(curation_concern) %> <%= curation_concern.admin_policy.title %>
+  <%= link_to curation_concern.title, [:edit, curation_concern, :access] %>
+  <%= curation_concern.admin_policy.title %>
   <ul>
     <% curation_concern.embargo_history.each do |entry| %>
       <% unless entry.empty? %>
