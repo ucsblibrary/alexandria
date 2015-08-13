@@ -32,7 +32,7 @@ class AccessController < ApplicationController
   protected
 
     def load_curation_concern
-      id = Identifier.treeify(params[:etd_id])
+      id = Identifier.treeify(params[:etd_id] || params[:image_id])
       @curation_concern = ActiveFedora::Base.find(id)
     end
 

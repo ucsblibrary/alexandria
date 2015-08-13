@@ -19,11 +19,22 @@ describe AccessController do
     end
 
     context "when I have permission to edit the object" do
-      it "shows me the page" do
-        expect(controller).to receive(:authorize!).with(:update_rights, mock_etd)
-        get :edit, etd_id: '123'
-        expect(assigns[:form]).to be_kind_of EmbargoForm
-        expect(response).to be_success
+      context "with an etd" do
+        it "shows me the page" do
+          expect(controller).to receive(:authorize!).with(:update_rights, mock_etd)
+          get :edit, etd_id: '123'
+          expect(assigns[:form]).to be_kind_of EmbargoForm
+          expect(response).to be_success
+        end
+      end
+
+      context "with an image" do
+        it "shows me the page" do
+          expect(controller).to receive(:authorize!).with(:update_rights, mock_etd)
+          get :edit, image_id: '123'
+          expect(assigns[:form]).to be_kind_of EmbargoForm
+          expect(response).to be_success
+        end
       end
     end
   end
