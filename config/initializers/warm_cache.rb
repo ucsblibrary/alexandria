@@ -1,4 +1,4 @@
 if Rails.env.production?
-  AdminPolicy.ensure_admin_policy_exists
+  Rails.logger.info "Warming the cache"
   AdminPolicy.all
 end

@@ -22,6 +22,8 @@ module AdminPolicy
 
   def self.all
     Rails.cache.fetch("admin_policies", expires_in: 1.year) do
+      Rails.logger.warn "The admin policy cache is rebuilding"
+      AdminPolicy.ensure_admin_policy_exists
       Hydra::AdminPolicy.all.to_a
     end
   end
