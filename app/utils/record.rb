@@ -4,7 +4,9 @@ module Record
   # The input should be an ActiveFedora::Base object.
   # The return value will be an array of fedora IDs.
   def self.references_for(record)
-    record.resource.query(object: record.uri).map{|statement| ActiveFedora::Base.uri_to_id(statement.subject) }
+    conn = ActiveFedora::InboundRelationConnection.new(ActiveFedora.fedora.connection)
+    res = Ldp::Resource::RdfSource.new conn, record.uri
+    res.graph.query(object: record.uri).map{|statement| ActiveFedora::Base.uri_to_id(statement.subject) }
   end
 
 end
