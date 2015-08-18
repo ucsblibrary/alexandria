@@ -28,7 +28,7 @@ gem 'hydra-head', github: 'projecthydra/hydra-head', ref: 'cc8fe53'
 
 #gem 'active-fedora', '~> 9.3.0'
 # Optimise for a faster import: https://github.com/projecthydra/active_fedora/pull/876
-gem 'active-fedora', github: 'projecthydra/active_fedora', ref:'654fa7e'
+gem 'active-fedora', github: 'projecthydra/active_fedora', ref:'fec345a'
 
 #gem 'active-triples', github: 'jcoyne/ActiveTriples', branch: '0.7-future'
 # https://github.com/ActiveTriples/ActiveTriples/pull/164
