@@ -3,8 +3,7 @@ lock '3.4.0'
 
 set :application, 'alexandria-v2'
 set :scm, :git
-set :repo_url, 'https://github.com/curationexperts/alexandria-v2.git'
-#set :branch, 'master'
+set :repo_url, Pathname.new('/vagrant')
 set :deploy_to, '/opt/alex2'
 set :log_level, :debug
 set :keep_releases, 5
