@@ -1,0 +1,7 @@
+[submodule "vagrant-centos"]
+	path = vagrant-centos
+	url = https://github.com/dunn/vagrant-centos.git
+	branch = CentOS-7.0
+[submodule "provisioning"]
+	path = provisioning
+	url = https://stash.library.ucsb.edu/scm/dr/provisioning.git
