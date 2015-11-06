@@ -1,6 +1,114 @@
-[![Build Status](https://travis-ci.org/curationexperts/alexandria-v2.svg?branch=master)](https://travis-ci.org/curationexperts/alexandria-v2)
+# Running ADRL in Vagrant
 
-## Developer Setup Notes
+## PreReqs
+
+- Vagrant 1.7.2 or higher
+- VirtualBox 4.3.30 or higher
+- Git
+- Ansible 1.9.1 or higher
+- PostgreSQL
+
+## Part A: get or build a Vagrant Box with CentOS 7.0 on it.
+
+- Option 1: Get a Vagrant box already built from another developer
+- Option 2: Build your own Vagrant box.
+
+### Building your own Vagrant box:
+
+1. If you didn’t clone this repository with `--recursive`, fetch the
+   submodules with `git submodule init && git submodule update`.
+
+2. `cd vagrant-centos` and check out the CentOS 7.0 branch
+
+    ```
+    git checkout -b CentOS-7.0 origin/CentOS-7.0
+
+    ```
+
+3. Download the Centos-7 disk image (ISO):
+
+    ```
+    curl ftp://ftp.ucsb.edu//pub/mirrors/linux/centos/7.1.1503/isos/x86_64/CentOS-7-x86_64-Minimal-1503-01.iso -o isos/CentOS-7-x86_64-Minimal-1503-01.iso
+    ```
+
+4. Run the setup script
+
+    ```
+    ./setup
+
+    # Wait for it to complete, then run the cleanup and package
+    # command emmited by the setup script
+    ./cleanup && vagrant package --base centos70-x86_64 --output boxes/centos70-x86_64-20150730.box
+    ```
+
+## Part B: Start a local VM
+
+1. If you didn’t clone this repository with `--recursive`, fetch the
+   submodules with `git submodule init && git submodule update`.
+
+2. `vagrant up`
+
+    At this point Apache should be running at: http://localhost:8484/
+
+    Tomcat should be running: http://localhost:2424/
+
+    Fedora should be running: http://localhost:2424/fedora/
+
+    PostGres should be running:
+
+    Redis should be running:
+
+    Passenger should be running:
+
+    Marmotta should be running:
+
+3. `bundle install`
+
+4. `make deploy` and view the fruits of yr labor at <http://localhost:8484>.
+
+    # after successful cap deploy...
+
+    # check status of Tomcat
+      sudo service tomcat status
+    # Restart Tomcat
+      sudo service tomcat restart
+    # It takes Tomcat a while to fully restart (Fedora takes a while).
+
+    # check if Tomcat is running with:
+    curl localhost:8080
+    curl localhost:8080/fedora/rest
+    curl localhost:8080/hydra/
+
+
+    # check status of apache
+      sudo service httpd status
+
+    # restart apache
+      sudo service httpd restart
+
+    # check what is being served out on port 80
+      curl localhost
+
+     ADRL should be available at:
+       http://localhost:8484
+
+## Ingesting
+
+- To import multiple ETDs from a single file:
+
+    ```
+    RAILS_ENV=production bundle exec traject -c traject_config.rb /opt/download_root/marc/batch1.xml
+    ```
+
+    (will need proquest zip files to go with these)
+
+- For images CSV use rogers collection
+
+- For images MODS use flying-A & SB Picture postcards
+
+See also: <https://github.com/curationexperts/alexandria-v2/wiki>
+
+## Manual Setup Notes
 
 ### Dev/Test Configuration
   * Copy `config/blacklight.yml.template` to `config/blacklight.yml`
