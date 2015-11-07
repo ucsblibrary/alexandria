@@ -22,7 +22,6 @@
 
     ```
     git checkout -b CentOS-7.0 origin/CentOS-7.0
-
     ```
 
 3. Download the Centos-7 disk image (ISO):
@@ -35,7 +34,6 @@
 
     ```
     ./setup
-
     # Wait for it to complete, then run the cleanup and package
     # command emmited by the setup script
     ./cleanup && vagrant package --base centos70-x86_64 --output boxes/centos70-x86_64-20150730.box
@@ -66,31 +64,26 @@
 
 4. `make deploy` and view the fruits of yr labor at <http://localhost:8484>.
 
+    ```
     # after successful cap deploy...
-
     # check status of Tomcat
       sudo service tomcat status
     # Restart Tomcat
       sudo service tomcat restart
     # It takes Tomcat a while to fully restart (Fedora takes a while).
-
     # check if Tomcat is running with:
     curl localhost:8080
     curl localhost:8080/fedora/rest
     curl localhost:8080/hydra/
-
-
     # check status of apache
       sudo service httpd status
-
     # restart apache
       sudo service httpd restart
-
     # check what is being served out on port 80
       curl localhost
-
      ADRL should be available at:
        http://localhost:8484
+    ```
 
 ## Ingesting
 
