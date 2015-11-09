@@ -46,22 +46,6 @@
 
 2. `vagrant up`
 
-    - At this point Apache should be running at: http://localhost:8484/
-
-    - Tomcat should be running: http://localhost:2424/
-
-    - Solr should be running: http://localhost:2424/hydra
-
-    - Fedora should be running: http://localhost:2424/fedora/
-
-    - PostGres should be running:
-
-    - Redis should be running:
-
-    - Passenger should be running:
-
-    - Marmotta should be running:
-
     You can SSH into the VM with `vagrant ssh` or manually by using
     the config produced by `vagrant ssh-config`.
 
@@ -69,11 +53,24 @@
 
 4. `make deploy` to run Capistrano
 
-    - Check if Tomcat is running with:
-      - `curl localhost:2424`
-      - `curl localhost:2424/hydra/`
+    - At this point Apache should be running at: http://localhost:8484/
 
-    - ADRL should be available at <http://localhost:8484>
+    - Tomcat should be running: http://localhost:2424/
+
+    - Solr should be running: http://localhost:2424/hydra
+
+        The first time you deploy to the VM, you may have to manually
+        restart Tomcat in order for Solr to run: `sudo services tomcat restart`
+
+    - Fedora should be running: http://localhost:2424/fedora/
+
+    - PostgreSQL should be running:
+
+    - Redis should be running:
+
+    - Passenger should be running:
+
+    - Marmotta should be running:
 
 5. On the VM, add the LDAP password from Secret Server to `/opt/alex2/shared/config/ldap.yml`
 

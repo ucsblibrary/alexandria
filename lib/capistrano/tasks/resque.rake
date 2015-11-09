@@ -1,5 +1,4 @@
 namespace :resque do
-
   namespace :pool do
     desc "Stop resque pool"
     task :stop do
@@ -32,5 +31,4 @@ namespace :resque do
   def output_redirection
     ">> #{fetch(:resque_stdout_log)} 2>> #{fetch(:resque_stderr_log)}"
   end
-
 end
