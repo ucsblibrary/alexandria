@@ -62,7 +62,15 @@
 
 3. `bundle install`
 
-4. `make deploy` and view the fruits of yr labor at <http://localhost:8484>.
+4. Rename the configuration templates:
+
+    ```
+    cd config
+    for file in *.template; do cp "$file" $(echo "$file" | sed 's:\.template::'); done
+    cd ..
+    ```
+
+5. `make deploy` and view the fruits of yr labor at <http://localhost:8484>.
 
     ```
     # after successful cap deploy...
