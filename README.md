@@ -62,15 +62,7 @@
 
 3. `bundle install`
 
-4. Rename the configuration templates:
-
-    ```
-    cd config
-    for file in *.template; do cp "$file" $(echo "$file" | sed 's:\.template::'); done
-    cd ..
-    ```
-
-5. `make deploy` and view the fruits of yr labor at <http://localhost:8484>.
+4. `make deploy` to run Capistrano
 
     ```
     # after successful cap deploy...
@@ -92,6 +84,8 @@
      ADRL should be available at:
        http://localhost:8484
     ```
+
+5. On the VM, add the LDAP password from Secret Server to `/opt/alex2/shared/config/ldap.yml`
 
 ## Ingesting
 
