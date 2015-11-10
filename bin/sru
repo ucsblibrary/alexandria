@@ -1,0 +1,73 @@
+#!/usr/bin/env ruby
+
+# Must be run from /opt/alex2/current/ on the application server
+
+require 'curb'
+require 'fileutils'
+require 'nokogiri'
+require 'pathname'
+
+now = Time.now.to_i
+
+Dir.mkdir "Ingest_#{now}"
+Dir.mkdir "Ingest_#{now}/marc"
+Dir.mkdir "Ingest_#{now}/proquest"
+
+@target_dir = File.join(Pathname.pwd, "Ingest_#{now}")
+
+# @param [String] zipfile The path to the .zip file
+#
+# @return [Array]
+def recursive_unzip(zipfile)
+  xml ||= []
+
+  zipdir = %r{.*creating:\ ([^\/]*\/).*}.match(`unzip "#{zipfile}"`)[1]
+  Dir.chdir zipdir do
+    Dir.glob('**/*.xml') do |x|
+      filepath = File.join(Pathname.pwd, x)
+      puts "Found #{filepath}"
+      xml << filepath
+    end
+
+    Dir.glob('**/*.zip') do |z|
+      puts "Unzipping #{z}..."
+      xml << recursive_unzip(z)
+      FileUtils.cp z, "#{@target_dir}/proquest"
+    end
+  end
+  xml
+end
+
+ARGV.each do |f|
+  @xml = recursive_unzip(f)
+end
+
+marc = []
+@xml.flatten.each do |x|
+  binary_filename = Nokogiri::XML(File.open(x)).css('DISS_binary').children.first.to_s
+
+  search = Curl::Easy.perform("#{Rails.application.secrets.sru_host}/sba01pub?version=1.1&operation=searchRetrieve&maximumRecords=1&startRecord=1&query=(marc.947.a=pqd%20and%20marc.956.f=#{binary_filename})")
+
+  if !search.body_str.include?('zs:numberOfRecords>1')
+    puts "Error: failed to retrieve record for #{title}"
+  else
+    entry = search.body_str.sub("<?xml version=\"1.0\"?>\n<zs:searchRetrieveResponse xmlns:zs=\"http://www.loc.gov/zing/srw/\"><zs:version>1.1</zs:version><zs:numberOfRecords>1</zs:numberOfRecords><zs:records>", '')
+    entry.sub!('</zs:records></zs:searchRetrieveResponse>', '')
+
+    marc << entry
+  end
+end
+
+puts
+
+output_file = "MARC_#{now}.xml"
+File.open(File.join(@target_dir, 'marc', output_file), 'w') do |f|
+  f.write <<-EOS
+<?xml version="1.0"?>
+<zs:searchRetrieveResponse xmlns:zs="http://www.loc.gov/zing/srw/"><zs:version>1.1</zs:version><zs:numberOfRecords>#{marc.count}</zs:numberOfRecords><zs:records>
+EOS
+  f.write marc.join("\n")
+  f.write('</zs:records></zs:searchRetrieveResponse>')
+
+  puts "Wrote output to #{@target_dir}"
+end

@@ -64,6 +64,9 @@ gem 'traject', github: 'traject/traject', require: false, branch: 'allow_nil_def
 gem 'resque-status'
 gem 'resque-pool'
 
+# for bin/sru
+gem 'curb'
+
 # When parsing the ETD metadata file from ProQuest,
 # some of the dates are American-style.
 gem 'american_date', '~> 1.1.0'
