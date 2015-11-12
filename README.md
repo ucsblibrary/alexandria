@@ -76,17 +76,25 @@
 
 ## Ingesting
 
-- To import multiple ETDs from a single file:
+There are scripts to ingest records from zipfiles like those on the
+[sample ETDs page](https://wiki.library.ucsb.edu/display/repos/ETD+Sample+Files+for+DCE).
+The process is as follows:
 
-    ```
-    RAILS_ENV=production bundle exec traject -c traject_config.rb /opt/download_root/marc/batch1.xml
-    ```
+1. Move the zipfile(s) into the root of this repository so that they
+   appear in the VM’s shared directory (by default `/vagrant`).
 
-    (will need proquest zip files to go with these)
+2. SSH into the VM; and `cd` to the “current” directory: `cd /opt/alex2/current`.
 
-- For images CSV use rogers collection
+3. Run the SRU script: `bin/sru /vagrant/Batch\ 3.zip`.
 
-- For images MODS use flying-A & SB Picture postcards
+4. It will place the ProQuest data into `/opt/download_root/proquest/`
+   (or whatever the `download_root` is defined as in
+   `config/application.yml`); and it will place a generated XML file
+   with corresponding MARC data into `/opt/download_root/marc`.
+
+5. Run the ingest script: `bin/ingest
+   /opt/download_root/marc/MARC_1447350152.xml` (or whatever the MARC
+   file is called).
 
 See also: <https://github.com/curationexperts/alexandria-v2/wiki>
 
