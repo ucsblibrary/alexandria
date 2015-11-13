@@ -76,6 +76,8 @@
 
 ## Ingesting
 
+### ETDs
+
 There are scripts to ingest records from zipfiles like those on the
 [sample ETDs page](https://wiki.library.ucsb.edu/display/repos/ETD+Sample+Files+for+DCE).
 The process is as follows:
@@ -85,16 +87,13 @@ The process is as follows:
 
 2. SSH into the VM; and `cd` to the “current” directory: `cd /opt/alex2/current`.
 
-3. Run the SRU script: `bin/sru /vagrant/Batch\ 3.zip`.
+3. Run the ETD script: `bundle exec bin/etd /vagrant/Batch\ 3.zip`.
 
-4. It will place the ProQuest data into `/opt/download_root/proquest/`
-   (or whatever the `download_root` is defined as in
-   `config/application.yml`); and it will place a generated XML file
-   with corresponding MARC data into `/opt/download_root/marc`.
+### Images
 
-5. Run the ingest script: `bin/ingest
-   /opt/download_root/marc/MARC_1447350152.xml` (or whatever the MARC
-   file is called).
+#### CSV
+
+#### MODS
 
 See also: <https://github.com/curationexperts/alexandria-v2/wiki>
 
