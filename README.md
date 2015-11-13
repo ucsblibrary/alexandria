@@ -76,6 +76,8 @@
 
 ## Ingesting
 
+See also: <https://github.com/curationexperts/alexandria-v2/wiki>
+
 ### ETDs
 
 There are scripts to ingest records from zipfiles like those on the
@@ -87,15 +89,38 @@ The process is as follows:
 
 2. SSH into the VM; and `cd` to the “current” directory: `cd /opt/alex2/current`.
 
-3. Run the ETD script: `bundle exec bin/etd /vagrant/Batch\ 3.zip`.
+3. Run the ETD script: `bundle exec bin/ingest-etd /vagrant/Batch\ 3.zip`.
 
 ### Images
 
 #### CSV
 
+##### Individual images
+```
+bundle exec bin/ingest-csv ../ucsb_sample_data/adrl-dm/ingest-ready/pamss045\(Couper\)/pamss045\(Couper\)-objects.csv ../alexandria-images/special_collections/pamss045/tiff-a16
+```
+
+##### Collections
+```
+bin/ingest-csv ../ucsb_sample_data/adrl-dm/ingest-ready/pamss045\(Couper\)/pamss045\(Couper\)-collection.csv Collection
+```
+
+The first argument to the script is the CSV file that contains the records.  The second argument is the directory that contains supporting files, such as image files.
+
 #### MODS
 
-See also: <https://github.com/curationexperts/alexandria-v2/wiki>
+```
+bin/ingest-mods ../mods-for-adrl/mods_demo_set/demo_sbhcmss36_SantaBarbaraPicturePostcards ../alexandria-images/special_collections/mss36-sb-postcards/tiff-a16
+
+bin/ingest-mods ../mods-for-adrl/mods_demo_set/demo_sbhcmss78_FlyingAStudios ../alexandria-images/special_collections/spc-flying-a/conway-2010/16bit
+
+bin/ingest-mods ../mods-for-adrl/mods_demo_set/collection_records ./tmp
+```
+
+The first argument to the script is the directory that contains the MODS files.  The second argument is the directory that contains supporting files, such as image files.
+
+**Note:** When importing collections, the 2nd argument won't actually
+  be used, so you can set it to any valid directory.  It defaults to `$TMPDIR`.
 
 ## Manual Setup Notes
 
@@ -172,38 +197,3 @@ resque-pool
   * Make sure jetty is running
   * Make sure marmotta is running, or CI environment variable is set to bypass marmotta
   * `bundle exec rake spec`
-
-### Import Data
-
-#### MODS records
-```
-script/import_mods_records ../mods-for-adrl/mods_demo_set/demo_sbhcmss36_SantaBarbaraPicturePostcards ../alexandria-images/special_collections/mss36-sb-postcards/tiff-a16
-
-script/import_mods_records ../mods-for-adrl/mods_demo_set/demo_sbhcmss78_FlyingAStudios ../alexandria-images/special_collections/spc-flying-a/conway-2010/16bit
-
-script/import_mods_records ../mods-for-adrl/mods_demo_set/collection_records ./tmp
-```
-
-The first argument to the script is the directory that contains the MODS files.  The second argument is the directory that contains supporting files, such as image files.
-
-Note:  When importing collections, the 2nd argument won't actually be used, so you can set it to any valid directory.
-
-#### CSV records
-
-##### Images
-```
-script/import_csv ../ucsb_sample_data/adrl-dm/ingest-ready/pamss045\(Couper\)/pamss045\(Couper\)-objects.csv ../alexandria-images/special_collections/pamss045/tiff-a16
-```
-
-##### Collections
-```
-script/import_csv ../ucsb_sample_data/adrl-dm/ingest-ready/pamss045\(Couper\)/pamss045\(Couper\)-collection.csv Collection
-```
-
-The first argument to the script is the CSV file that contains the records.  The second argument is the directory that contains supporting files, such as image files.
-
-#### MARC records (ETDs)
-
-```
-bundle exec traject -c traject_config.rb /opt/download_root/marc/etds1-150.xml | tee -a etd-import.log
-```

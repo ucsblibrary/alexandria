@@ -88,4 +88,4 @@ EOS
   puts "Wrote MARC metadata to #{marc_directory}/"
 end
 
-exec File.expand_path("../ingest", __FILE__), "#{marc_directory}/MARC_#{Time.now.to_i}.xml"
+exec File.expand_path("../traject-xml", __FILE__), "#{marc_directory}/MARC_#{Time.now.to_i}.xml"
