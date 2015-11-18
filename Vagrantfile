@@ -10,7 +10,6 @@ Vagrant.configure(2) do |config|
   # https://docs.vagrantup.com.
 
   config.vm.box = "centos7"
-  #config.vm.box_url = "https://atlas.hashicorp.com/ubuntu/boxes/trusty64/versions/14.04/providers/virtualbox.box"
 
   # Forwarded port mappings allow access to a specific port on the guest vm
   # from a port on the host machine - to see your vm's port 80, use localhost:8484
@@ -24,8 +23,8 @@ Vagrant.configure(2) do |config|
 
   # Provider-specific configuration for VirtualBox:
   config.vm.provider "virtualbox" do |vb|
-    # Display the VirtualBox GUI when booting the machine
-    #vb.gui = true
+    # Display the VirtualBox GUI when booting the machine?
+    vb.gui = false
     # Customize the amount of memory on the VM:
     vb.memory = 2048
     vb.cpus = 2
@@ -33,10 +32,10 @@ Vagrant.configure(2) do |config|
 
   # Enable provisioning with Ansible
   config.vm.provision "ansible" do |ansible|
-    #ansible.verbose = 'vvv'
+    ansible.verbose = "vvv"
     ansible.groups = {
       "vagrant" => ["default"],
-      "all_groups:children" => ["group1"],
+      "all_groups:children" => ["group1"]
     }
     ansible.extra_vars = {
       deploy_user: "vagrant",
