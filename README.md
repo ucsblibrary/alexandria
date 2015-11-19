@@ -113,14 +113,9 @@ The first argument to the script is the CSV file that contains the records.  The
 bin/ingest-mods ../mods-for-adrl/mods_demo_set/demo_sbhcmss36_SantaBarbaraPicturePostcards ../alexandria-images/special_collections/mss36-sb-postcards/tiff-a16
 
 bin/ingest-mods ../mods-for-adrl/mods_demo_set/demo_sbhcmss78_FlyingAStudios ../alexandria-images/special_collections/spc-flying-a/conway-2010/16bit
-
-bin/ingest-mods ../mods-for-adrl/mods_demo_set/collection_records ./tmp
 ```
 
 The first argument to the script is the directory that contains the MODS files.  The second argument is the directory that contains supporting files, such as image files.
-
-**Note:** When importing collections, the 2nd argument won't actually
-  be used, so you can set it to any valid directory.  It defaults to `$TMPDIR`.
 
 ## Manual Setup Notes
 
