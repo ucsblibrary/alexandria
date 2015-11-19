@@ -26,7 +26,7 @@ class RecordsController < ApplicationController
     if LocalAuthority.local_authority?(@record)
       new_merge_form
     else
-      flash[:alert] = "This record cannot be merged.  Only local authority records can be merged."
+      flash[:alert] = 'This record cannot be merged.  Only local authority records can be merged.'
       redirect_to local_authorities_path
     end
   end
@@ -39,30 +39,28 @@ class RecordsController < ApplicationController
       flash[:notice] = 'A background job has been queued to merge the records.'
       redirect_to local_authorities_path
     else
-      flash[:alert] = "Error:  Unable to queue merge job.  Please fill in all required fields."
+      flash[:alert] = 'Error:  Unable to queue merge job.  Please fill in all required fields.'
       new_merge_form
       render :new_merge
     end
   end
 
-
   private
 
-  def new_merge_form
-    form_class = @record.kind_of?(Agent) ? NameMergeForm : SubjectMergeForm
-    @form = form_class.new(@record)
-  end
-
-  def fetch_merge_target
-    attrs = params.select {|key| key.match(/^.*merge_target_attributes$/) }.values.first || {}
-    attrs.fetch('0', {}).fetch('id', nil)
-  end
-
-  def convert_noid_to_id
-    return unless params[:id]
-    if id = Identifier.treeify(params[:id])
-      params[:id] = id
+    def new_merge_form
+      form_class = @record.is_a?(Agent) ? NameMergeForm : SubjectMergeForm
+      @form = form_class.new(@record)
     end
-  end
 
+    def fetch_merge_target
+      attrs = params.select { |key| key.match(/^.*merge_target_attributes$/) }.values.first || {}
+      attrs.fetch('0', {}).fetch('id', nil)
+    end
+
+    def convert_noid_to_id
+      return unless params[:id]
+      if id = Identifier.treeify(params[:id])
+        params[:id] = id
+      end
+    end
 end

@@ -9,12 +9,12 @@ Vagrant.configure(2) do |config|
   # Vagrant configuration options are fully documented at
   # https://docs.vagrantup.com.
 
-  config.vm.box = "centos7"
+  config.vm.box = 'centos7'
 
   # Forwarded port mappings allow access to a specific port on the guest vm
   # from a port on the host machine - to see your vm's port 80, use localhost:8484
-  config.vm.network "forwarded_port", guest: 80, host: 8484 # apache
-  config.vm.network "forwarded_port", guest: 8080, host: 2424 # tomcat
+  config.vm.network 'forwarded_port', guest: 80, host: 8484 # apache
+  config.vm.network 'forwarded_port', guest: 8080, host: 2424 # tomcat
   # config.vm.network "forwarded_port", guest: 3000, host: 8032 # webrick
 
   # To share an additional folder to the guest VM, state the path on the host
@@ -22,7 +22,7 @@ Vagrant.configure(2) do |config|
   # config.vm.synced_folder "../data", "/vagrant_data"
 
   # Provider-specific configuration for VirtualBox:
-  config.vm.provider "virtualbox" do |vb|
+  config.vm.provider 'virtualbox' do |vb|
     # Display the VirtualBox GUI when booting the machine?
     vb.gui = false
     # Customize the amount of memory on the VM:
@@ -31,19 +31,19 @@ Vagrant.configure(2) do |config|
   end
 
   # Enable provisioning with Ansible
-  config.vm.provision "ansible" do |ansible|
-    ansible.verbose = "vvv"
+  config.vm.provision 'ansible' do |ansible|
+    ansible.verbose = 'vvv'
     ansible.groups = {
-      "vagrant" => ["default"],
-      "all_groups:children" => ["group1"]
+      'vagrant' => ['default'],
+      'all_groups:children' => ['group1'],
     }
     ansible.extra_vars = {
-      deploy_user: "vagrant",
-      project_dir: "/vagrant",
-      server_name: "localhost",
-      rails_env: "development",
-      bundle_path: "~/.bundle"
+      deploy_user: 'vagrant',
+      project_dir: '/vagrant',
+      server_name: 'localhost',
+      rails_env: 'development',
+      bundle_path: '~/.bundle',
     }
-    ansible.playbook = "provisioning/adrl-vagrant.yml"
+    ansible.playbook = 'provisioning/adrl-vagrant.yml'
   end
 end

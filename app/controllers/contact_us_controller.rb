@@ -1,5 +1,4 @@
 class ContactUsController < ApplicationController
-
   # Display the "Contact Us" form the the user.
   def new
   end
@@ -14,5 +13,4 @@ class ContactUsController < ApplicationController
     flash[:notice] = 'Thank you for the feedback.  Your submission has been successfully sent to the ADRL.'
     redirect_to :back
   end
-
 end

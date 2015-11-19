@@ -11,7 +11,7 @@ class LocalNames
     # conf.search_builder_class = LocalNameSearchBuilder
     conf.default_solr_params = {
       qf: 'foaf_name_tesim',
-      fl: 'foaf_name_tesim id'
+      fl: 'foaf_name_tesim id',
     }
   end
 
@@ -19,9 +19,9 @@ class LocalNames
   end
 
   def search(q)
-    #TODO need to restrict to Names
-    _, list = search_results({q: q }, [:default_solr_parameters,
-        :add_query_to_solr])
+    # TODO: need to restrict to Names
+    _, list = search_results({ q: q }, [:default_solr_parameters,
+                                        :add_query_to_solr])
     list.map { |d| { id: ActiveFedora::Base.id_to_uri(d.id), label: d[:foaf_name_tesim].first } }
   end
 

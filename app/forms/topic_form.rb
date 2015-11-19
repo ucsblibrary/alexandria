@@ -8,5 +8,4 @@ class TopicForm
   def title
     model.label
   end
-
 end

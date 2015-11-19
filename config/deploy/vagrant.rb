@@ -5,7 +5,7 @@
 # property set.  Don't declare `role :all`, it's a meta role.
 set :stage, :vagrant
 set :rails_env, 'production'
-set :ssh_options, {port: 2222, keys: ['~/.vagrant.d/insecure_private_key']}
+set :ssh_options, port: 2222, keys: ['~/.vagrant.d/insecure_private_key']
 server 'localhost', user: 'vagrant', roles: [:web, :app, :db]
 
 # Extended Server Syntax

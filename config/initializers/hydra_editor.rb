@@ -1,1 +1,1 @@
-HydraEditor.models = ["Image", "Person", "Group", "Organization", "Topic"]
+HydraEditor.models = %w(Image Person Group Organization Topic)

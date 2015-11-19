@@ -12,10 +12,8 @@ LinkedVocabs.add_vocabulary('lc_orgs', 'http://id.loc.gov/vocabulary/organizatio
 LinkedVocabs.add_vocabulary('ldp', 'http://www.w3.org/ns/ldp#')
 LinkedVocabs.add_vocabulary('lccs', 'http://id.loc.gov/vocabulary/preservation/copyrightStatus')
 
-
 require 'vocabularies/local'
 Oargun::ControlledVocabularies::Creator.use_vocabulary :lcnames, class: Oargun::Vocabularies::LCNAMES
 Oargun::ControlledVocabularies::Creator.use_vocabulary :local, class: Vocabularies::LOCAL
 
 Oargun::ControlledVocabularies::Subject.use_vocabulary :local, class: Vocabularies::LOCAL
-

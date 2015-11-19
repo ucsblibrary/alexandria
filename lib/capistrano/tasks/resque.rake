@@ -1,18 +1,18 @@
 namespace :resque do
   namespace :pool do
-    desc "Stop resque pool"
+    desc 'Stop resque pool'
     task :stop do
       on roles(:resque_pool), in: :sequence, wait: 5 do
         # Shuts down resque_pool master if pid exists
         if test("[ -f #{shared_path}/tmp/pids/resque-pool.pid ]")
           execute "export master_pid=$(cat #{shared_path}/tmp/pids/resque-pool.pid) && kill -QUIT $master_pid"
         else
-          warn "No resque-pool pid found"
+          warn 'No resque-pool pid found'
         end
       end
     end
 
-    desc "Start resque pool"
+    desc 'Start resque pool'
     task :start do
       on roles(:resque_pool), in: :sequence, wait: 10 do
         # Starts a new resque_pool master
@@ -20,10 +20,10 @@ namespace :resque do
       end
     end
 
-    desc "Restart resque pool"
+    desc 'Restart resque pool'
     task :restart do
-      invoke "resque:pool:stop"
-      invoke "resque:pool:start"
+      invoke 'resque:pool:stop'
+      invoke 'resque:pool:start'
     end
   end
 

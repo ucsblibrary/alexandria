@@ -1,5 +1,4 @@
 class ObjectIndexer < ActiveFedora::IndexingService
-
   def rdf_service
     RDF::DeepIndexingService
   end
@@ -19,7 +18,7 @@ class ObjectIndexer < ActiveFedora::IndexingService
   def generate_solr_document
     super do |solr_doc|
       solr_doc[COLLECTION] = object.collection_ids
-      # TODO if we need to optimize, we could pull this from solr
+      # TODO: if we need to optimize, we could pull this from solr
       solr_doc[COLLECTION_LABEL] = object.collections.map &:title
 
       solr_doc[CREATED] = created
@@ -57,7 +56,7 @@ class ObjectIndexer < ActiveFedora::IndexingService
 
     # Create a year field (integer, multiple) for faceting on
     def facetable_year
-      Array(sorted_key_date).flat_map{ |d| d.try(:to_a) }
+      Array(sorted_key_date).flat_map { |d| d.try(:to_a) }
     end
 
     def key_date
@@ -78,7 +77,6 @@ class ObjectIndexer < ActiveFedora::IndexingService
 
     def sorted_key_date
       return unless key_date
-      key_date.sort{ |a,b| a.earliest_year <=> b.earliest_year }
+      key_date.sort { |a, b| a.earliest_year <=> b.earliest_year }
     end
-
 end

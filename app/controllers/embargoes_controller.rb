@@ -1,5 +1,4 @@
 class EmbargoesController < ApplicationController
-
   include Hydra::Collections::AcceptsBatches
   include Hydra::Controller::ControllerBehavior
   include ConvertIds
@@ -33,6 +32,7 @@ class EmbargoesController < ApplicationController
   end
 
   protected
+
     # def _prefixes
     #   # This allows us to use the unauthorized template in curation_concern/base
     #   @_prefixes ||= super + ['curation_concern/base']
@@ -47,5 +47,4 @@ class EmbargoesController < ApplicationController
       work.deactivate_embargo!
       work.save
     end
-
 end

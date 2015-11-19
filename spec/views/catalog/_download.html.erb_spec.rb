@@ -9,7 +9,7 @@ describe 'catalog/_download.html.erb' do
     render 'catalog/download', document: document
   end
 
-  it "links to download the metadata" do
+  it 'links to download the metadata' do
     expect(rendered).to have_link 'Download Metadata', href: '/catalog/123.ttl'
   end
 end

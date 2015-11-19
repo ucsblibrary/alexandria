@@ -3,7 +3,7 @@ class RelatorInput < ControlledVocabularySelectInput
 
     def build_field(value, index)
       options = input_html_options.dup
-      value = value.resource if value.kind_of? ActiveFedora::Base
+      value = value.resource if value.is_a? ActiveFedora::Base
 
       if value.respond_to? :rdf_label
         options[:name] = name_for(attribute_name, index, 'hidden_label'.freeze)
@@ -15,9 +15,7 @@ class RelatorInput < ControlledVocabularySelectInput
           build_options_for_existing_row(attribute_name, index, value, options)
         end
       end
-      if @rendered_first_element
-        options[:required] = nil
-      end
+      options[:required] = nil if @rendered_first_element
       options[:class] ||= []
       options[:class] += ["#{input_dom_id} form-control multi-text-field"]
       options[:'aria-labelledby'] = label_id
@@ -31,7 +29,7 @@ class RelatorInput < ControlledVocabularySelectInput
     end
 
     def inner_wrapper
-        <<-HTML
+      <<-HTML
           <li class="field-wrapper row existing">
             #{yield}
           </li>

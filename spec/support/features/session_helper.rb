@@ -5,7 +5,7 @@ module Features
       super(user, scope: :user, run_callbacks: false)
     end
 
-    def logout(user=:user)
+    def logout(user = :user)
       super(user)
     end
   end

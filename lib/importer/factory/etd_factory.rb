@@ -29,7 +29,7 @@ module Importer::Factory
 
       # Only import proquest files once
       if etd.proquest.new_record?
-        # TODO move to background job
+        # TODO: move to background job
         AttachFilesToETD.run(etd, attributes[:files].first)
       end
       etd.save # force a reindex after the files are created
@@ -43,26 +43,25 @@ module Importer::Factory
       puts "  Updated #{klass.to_s.downcase} #{obj.id} (#{attributes[:system_number].first})"
     end
 
-  private
+    private
 
-    def update_created_date(obj)
-      created_attributes = attributes.delete(:created_attributes)
-      return if created_attributes.blank?
+      def update_created_date(obj)
+        created_attributes = attributes.delete(:created_attributes)
+        return if created_attributes.blank?
 
-      new_date = created_attributes.first.fetch(:start, nil)
-      return unless new_date
+        new_date = created_attributes.first.fetch(:start, nil)
+        return unless new_date
 
-      existing_date = obj.created.flat_map(&:start)
+        existing_date = obj.created.flat_map(&:start)
 
-      if existing_date != new_date
-        # Create or update the existing date.
-        if time_span = obj.created.to_a.first
-          time_span.update(created_attributes.first)
-        else
-          obj.created.build(created_attributes.first)
+        if existing_date != new_date
+          # Create or update the existing date.
+          if time_span = obj.created.to_a.first
+            time_span.update(created_attributes.first)
+          else
+            obj.created.build(created_attributes.first)
+          end
         end
       end
-    end
-
   end
 end

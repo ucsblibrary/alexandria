@@ -8,5 +8,4 @@ class Topic < ActiveFedora::Base
   def to_param
     Identifier.noidify(id)
   end
-
 end

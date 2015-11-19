@@ -8,16 +8,14 @@ describe 'collections/_collection.html.erb' do
     allow(view).to receive(:collection_counter) { 0 }
   end
 
-
   context 'with a long description' do
-
     let(:beginning) { 'Some description text ' }
     let(:ending) { 'the last words of the description' }
-    let(:long_desc) {
+    let(:long_desc) do
       desc = beginning
-      8.times { desc = desc + desc }
+      8.times { desc += desc }
       desc + ending
-    }
+    end
     let(:collection) do
       SolrDocument.new(id: '123',
                        'title_tesim' => 'My Collection',
@@ -40,7 +38,7 @@ describe 'collections/_collection.html.erb' do
 
       # The description should be truncated in this div
       within('.show-more') do
-        expect(page).to     have_content beginning
+        expect(page).to have_content beginning
         expect(page).to_not have_content ending
       end
 

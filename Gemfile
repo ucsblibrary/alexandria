@@ -43,7 +43,7 @@ gem 'qa', '~> 0.5.0'
 gem 'kaminari', github: 'jcoyne/kaminari', branch: 'sufia'
 
 gem 'devise', '~> 3.5.2'
-gem "devise_ldap_authenticatable"
+gem 'devise_ldap_authenticatable'
 gem 'devise-guests', github: 'cbeer/devise-guests'
 # gem 'traject', require: false
 gem 'traject', github: 'traject/traject', require: false, branch: 'allow_nil_default'

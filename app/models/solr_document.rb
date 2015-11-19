@@ -1,17 +1,15 @@
 # -*- encoding : utf-8 -*-
 class SolrDocument
-
   include Blacklight::Solr::Document
   include Blacklight::Gallery::OpenseadragonSolrDocument
-
 
   # self.unique_key = 'id'
 
   # Email uses the semantic field mappings below to generate the body of an email.
-  SolrDocument.use_extension( Blacklight::Document::Email )
+  SolrDocument.use_extension(Blacklight::Document::Email)
 
   # SMS uses the semantic field mappings below to generate the body of an SMS email.
-  SolrDocument.use_extension( Blacklight::Document::Sms )
+  SolrDocument.use_extension(Blacklight::Document::Sms)
 
   # DublinCore uses the semantic field mappings below to assemble an OAI-compliant Dublin Core document
   # Semantic mappings of solr stored fields. Fields may be multi or
@@ -36,7 +34,7 @@ class SolrDocument
 
   # Something besides a local authority
   def curation_concern?
-    case self.fetch('has_model_ssim').first
+    case fetch('has_model_ssim').first
     when Collection.to_class_uri, Image.to_class_uri, ETD.to_class_uri
       true
     else
@@ -50,7 +48,6 @@ class SolrDocument
     date = Date.parse self['embargo_release_date_dtsi']
     policy = AdminPolicy.find(self['visibility_after_embargo_ssim'].first)
     " - Becomes #{policy} on #{date.to_s(:us)}"
-
   end
 
   def etd?

@@ -1,5 +1,4 @@
 module EmbargoService
-
   def self.create_or_update_embargo(work, params)
     if new_admin_policy_id = params[:admin_policy_id]
       # This path is for new embargos
@@ -14,7 +13,7 @@ module EmbargoService
 
   def self.remove_embargo(work)
     work.embargo.destroy if work.embargo
-    # TODO this shouldn't be necessary, but if omitted raises a stack trace:
+    # TODO: this shouldn't be necessary, but if omitted raises a stack trace:
     work.embargo = nil
   end
 
@@ -23,5 +22,4 @@ module EmbargoService
     def self.resource_for(id)
       RDF::URI(ActiveFedora::Base.id_to_uri(id))
     end
-
 end

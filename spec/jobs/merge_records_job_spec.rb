@@ -1,14 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe MergeRecordsJob, type: :job do
-
   describe '#perform' do
-
     context 'with missing record' do
       it 'raises an error' do
-        expect {
+        expect do
           MergeRecordsJob.perform_now('bad_ID', 'bad_ID_2')
-        }.to raise_error(ActiveFedora::ObjectNotFoundError)
+        end.to raise_error(ActiveFedora::ObjectNotFoundError)
       end
     end
 
@@ -30,6 +28,5 @@ RSpec.describe MergeRecordsJob, type: :job do
         MergeRecordsJob.perform_now(conway.id, joel.id)
       end
     end
-  end  # describe #perform
-
+  end # describe #perform
 end

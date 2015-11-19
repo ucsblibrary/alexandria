@@ -11,70 +11,71 @@ describe RecordsController do
   # Don't fetch external records (speed up)
   before { allow_any_instance_of(RDF::DeepIndexingService).to receive(:fetch_external) }
 
-  describe "#update" do
-    let(:image) { Image.create!( creator_attributes: initial_creators) }
+  describe '#update' do
+    let(:image) { Image.create!(creator_attributes: initial_creators) }
 
-    context "Adding new creators" do
-      let(:initial_creators) { [{id: "http://id.loc.gov/authorities/names/n87914041"}] }
-      let(:contributor_attributes) { { "0" => { "id"=>"http://id.loc.gov/authorities/names/n87914041",
-                                 "hidden_label"=>"http://id.loc.gov/authorities/names/n87914041"},
-                        "1" => { "id"=>"http://id.loc.gov/authorities/names/n87141298",
-                                 'predicate' => 'creator',
-                                 "hidden_label"=>"http://dummynamespace.org/creator/"},
-                        "2" => { "id"=>"",
-                                 "hidden_label"=>"http://dummynamespace.org/creator/"},
-                        } }
+    context 'Adding new creators' do
+      let(:initial_creators) { [{ id: 'http://id.loc.gov/authorities/names/n87914041' }] }
+      let(:contributor_attributes) do
+        { '0' => { 'id' => 'http://id.loc.gov/authorities/names/n87914041',
+                   'hidden_label' => 'http://id.loc.gov/authorities/names/n87914041' },
+          '1' => { 'id' => 'http://id.loc.gov/authorities/names/n87141298',
+                   'predicate' => 'creator',
+                   'hidden_label' => 'http://dummynamespace.org/creator/' },
+          '2' => { 'id' => '',
+                   'hidden_label' => 'http://dummynamespace.org/creator/' },
+                        }
+      end
 
-      it "adds creators" do
+      it 'adds creators' do
         patch :update, id: image, image: { contributor_attributes: contributor_attributes }
-        expect(image.reload.creator_ids).to eq ["http://id.loc.gov/authorities/names/n87914041",
-                                              "http://id.loc.gov/authorities/names/n87141298"]
+        expect(image.reload.creator_ids).to eq ['http://id.loc.gov/authorities/names/n87914041',
+                                                'http://id.loc.gov/authorities/names/n87141298']
       end
     end
 
-    context "removing a creator" do
-
+    context 'removing a creator' do
       let(:initial_creators) do
-        [{ id: "http://id.loc.gov/authorities/names/n87914041" },
-         { id: "http://id.loc.gov/authorities/names/n81019162" }]
+        [{ id: 'http://id.loc.gov/authorities/names/n87914041' },
+         { id: 'http://id.loc.gov/authorities/names/n81019162' }]
       end
 
       let(:contributor_attributes) do
         {
-          "0"=>{ "id"=>"http://id.loc.gov/authorities/names/n87914041", "_destroy"=>"" },
-          "1"=>{ "id"=>"http://id.loc.gov/authorities/names/n81019162", predicate: 'creator', "_destroy"=>"true" },
-          "2"=>{ "id"=>"", "_destroy"=>"" }
+          '0' => { 'id' => 'http://id.loc.gov/authorities/names/n87914041', '_destroy' => '' },
+          '1' => { 'id' => 'http://id.loc.gov/authorities/names/n81019162', predicate: 'creator', '_destroy' => 'true' },
+          '2' => { 'id' => '', '_destroy' => '' },
         }
       end
 
-      it "removes creators" do
+      it 'removes creators' do
         patch :update, id: image, image: { contributor_attributes: contributor_attributes }
-        expect(image.reload.creator_ids).to eq ["http://id.loc.gov/authorities/names/n87914041"]
+        expect(image.reload.creator_ids).to eq ['http://id.loc.gov/authorities/names/n87914041']
       end
     end
 
-    context "dates" do
-      let(:ts_attributes) {
+    context 'dates' do
+      let(:ts_attributes) do
         {
-          "start" => ["2014"],
-          "start_qualifier" => [""],
-          "finish" => [""],
-          "finish_qualifier" => [""],
-          "label" => [""],
-          "note" => [""],
+          'start' => ['2014'],
+          'start_qualifier' => [''],
+          'finish' => [''],
+          'finish_qualifier' => [''],
+          'label' => [''],
+          'note' => [''],
         }
-      }
+      end
 
       let(:time_span) { TimeSpan.new(ts_attributes) }
 
-      let(:initial_creators) { [{id: "http://id.loc.gov/authorities/names/n87914041"}] }
+      let(:initial_creators) { [{ id: 'http://id.loc.gov/authorities/names/n87914041' }] }
 
-      context "created" do
-        context "creating a new date" do
-          it "persists the nested object" do
+      context 'created' do
+        context 'creating a new date' do
+          it 'persists the nested object' do
             patch :update, id: image, image: {
-              created_attributes: { "0" => ts_attributes },
-              creator_attributes: initial_creators
+              created_attributes: { '0' => ts_attributes },
+              creator_attributes: initial_creators,
             }
 
             image.reload
@@ -83,27 +84,27 @@ describe RecordsController do
 
             expect(image.created.count).to eq(1)
 
-            expect(created_date.start).to eq(["2014"])
+            expect(created_date.start).to eq(['2014'])
             expect(created_date).to be_persisted
           end
         end
 
-        context "when the created date already exists" do
+        context 'when the created date already exists' do
           before do
             time_span.save!
             image.created << time_span
             image.save!
           end
 
-          it "allows deletion of the existing timespan" do
+          it 'allows deletion of the existing timespan' do
             image.reload
             expect(image.created.count).to eq(1)
 
             patch :update, id: image, image: {
               creator_attribues: initial_creators,
               created_attributes: {
-                "0" => { id: time_span.id, _destroy: "true" }
-              }
+                '0' => { id: time_span.id, _destroy: 'true' }
+              },
             }
 
             image.reload
@@ -111,12 +112,12 @@ describe RecordsController do
             expect(image.created.count).to eq(0)
           end
 
-          it "allows updating the existing timespan" do
+          it 'allows updating the existing timespan' do
             patch :update, id: image, image: {
               created_attributes: {
-                "0" => ts_attributes.merge(id: time_span.id, start: ["1337"], start_qualifier: ["approximate"])
+                '0' => ts_attributes.merge(id: time_span.id, start: ['1337'], start_qualifier: ['approximate'])
               },
-              creator_attributes: initial_creators
+              creator_attributes: initial_creators,
             }
 
             image.reload
@@ -126,37 +127,36 @@ describe RecordsController do
             created_date = image.created.first
 
             expect(created_date.id).to eq(time_span.id)
-            expect(created_date.start).to eq(["1337"])
-            expect(created_date.start_qualifier).to eq(["approximate"])
+            expect(created_date.start).to eq(['1337'])
+            expect(created_date.start_qualifier).to eq(['approximate'])
           end
         end
       end
-    end  # context dates
+    end # context dates
   end  # describe #update
 
-
-  describe "#destroy" do
+  describe '#destroy' do
     routes { Rails.application.routes }
 
-    describe "a local authority record" do
+    describe 'a local authority record' do
       let!(:person) { create(:person) }
 
       context 'a person that is referenced by another record' do
         let!(:image) { create(:image, creator: [person]) }
 
         it 'returns message that record cannot be destroyed' do
-          expect {
+          expect do
             delete :destroy, id: person
-          }.to change { Person.count }.by(0)
+          end.to change { Person.count }.by(0)
           expect(flash[:alert]).to eq "Record \"#{person.rdf_label.first}\" cannot be deleted because it is referenced by 1 other record."
         end
       end
 
       context 'a person that is not referenced by any other record' do
         it 'destroys the record' do
-          expect {
+          expect do
             delete :destroy, id: person
-          }.to change { Person.count }.by(-1)
+          end.to change { Person.count }.by(-1)
           expect(response).to redirect_to local_authorities_path
           expect(flash[:notice]).to eq "Record \"#{person.rdf_label.first}\" has been destroyed"
         end
@@ -174,11 +174,10 @@ describe RecordsController do
     end
   end  # describe #destroy
 
-
   describe '#new_merge' do
     routes { Rails.application.routes }
 
-    context "for local authority records" do
+    context 'for local authority records' do
       let!(:person) { create(:person, foaf_name: 'old name') }
 
       it 'displays the record merge form' do
@@ -189,12 +188,12 @@ describe RecordsController do
       end
     end
 
-    context "records that are not local authorities" do
+    context 'records that are not local authorities' do
       let(:image) { create(:image) }
 
       it 'returns message that record cannot be merged' do
         get :new_merge, id: image
-        expect(flash[:alert]).to eq "This record cannot be merged.  Only local authority records can be merged."
+        expect(flash[:alert]).to eq 'This record cannot be merged.  Only local authority records can be merged.'
         expect(response).to redirect_to local_authorities_path
       end
     end
@@ -211,7 +210,6 @@ describe RecordsController do
     end
   end  # describe #new_merge
 
-
   describe '#merge' do
     routes { Rails.application.routes }
 
@@ -221,7 +219,7 @@ describe RecordsController do
 
     let(:form_params) do
       # This is how it looks when the javascript adds the data to the form.
-      { "subject_merge_target_attributes" => { "0" => { "hidden_label" => "Topic 3", "id" => "#{fedora_path}/#{target_id}"}} }
+      { 'subject_merge_target_attributes' => { '0' => { 'hidden_label' => 'Topic 3', 'id' => "#{fedora_path}/#{target_id}" } } }
     end
 
     it 'queues a job to merge the records' do
@@ -232,7 +230,7 @@ describe RecordsController do
 
     context 'missing arguments' do
       let(:form_params) do
-        { "subject_merge_target_attributes" => { "0" => { "hidden_label" => "", "id" => ""}} }
+        { 'subject_merge_target_attributes' => { '0' => { 'hidden_label' => '', 'id' => '' } } }
       end
 
       it 'displays an error message' do
@@ -252,6 +250,5 @@ describe RecordsController do
         expect(response).to redirect_to root_path
       end
     end
-  end  # describe #merge
-
+  end # describe #merge
 end

@@ -1,24 +1,24 @@
 require 'rails_helper'
 
 describe ImageForm do
-  describe ".build_permitted_params" do
+  describe '.build_permitted_params' do
     subject { described_class.build_permitted_params }
 
-    let(:time_span_params) {
-      [ :id,
-        :_destroy,
-        {
-          :start            => [],
-          :start_qualifier  => [],
-          :finish           => [],
-          :finish_qualifier => [],
-          :label            => [],
-          :note             => []
-        }
+    let(:time_span_params) do
+      [:id,
+       :_destroy,
+       {
+         start: [],
+         start_qualifier: [],
+         finish: [],
+         finish_qualifier: [],
+         label: [],
+         note: [],
+       },
       ]
-    }
+    end
 
-    it "should include complex fields" do
+    it 'should include complex fields' do
       expect(subject).to include(location_attributes: [:id, :_destroy])
       expect(subject).to include(lc_subject_attributes: [:id, :_destroy])
       expect(subject).to include(form_of_work_attributes: [:id, :_destroy])
@@ -38,7 +38,7 @@ describe ImageForm do
       # expect(subject).to include(creator_attributes: [:id, :_destroy])
     end
 
-    it "should include simple fields" do
+    it 'should include simple fields' do
       expect(subject).to include(accession_number: [])
       expect(subject).to include(sub_location: [])
       expect(subject).to include(use_restrictions: [])
@@ -53,16 +53,16 @@ describe ImageForm do
     end
   end
 
-  describe "an instance" do
-    let(:image) { Image.new(identifier: ['ark:/99999/fk4f76j320'], record_origin: ["This is the origin"] ) }
+  describe 'an instance' do
+    let(:image) { Image.new(identifier: ['ark:/99999/fk4f76j320'], record_origin: ['This is the origin']) }
     let(:instance) { described_class.new image }
 
-    describe "#ark" do
+    describe '#ark' do
       subject { instance.ark }
       it { is_expected.to eq 'ark:/99999/fk4f76j320' }
     end
 
-    describe "#record_origin" do
+    describe '#record_origin' do
       subject { instance.record_origin }
       it { is_expected.to eq ['This is the origin'] }
     end
@@ -73,18 +73,18 @@ describe ImageForm do
     let(:model_attributes) { ImageForm.model_attributes(params) }
 
     context 'for complex nested associations' do
-      context "with an activefedora prefix" do
+      context 'with an activefedora prefix' do
         let(:request_params) do
           {
             created_attributes: {
-              "0" => {
-                id: "http://localhost:8983/fedora/rest/test/de/ad/be/ef/deadbeef",
-                start: ["1337"],
-                start_qualifier: ["approximate"],
-                finish: ["2015"],
-                finish_qualifier: ["exact"],
-                label: ["some-label"],
-                note: ["some-note"]
+              '0' => {
+                id: 'http://localhost:8983/fedora/rest/test/de/ad/be/ef/deadbeef',
+                start: ['1337'],
+                start_qualifier: ['approximate'],
+                finish: ['2015'],
+                finish_qualifier: ['exact'],
+                label: ['some-label'],
+                note: ['some-note'],
               }
             }
           }.with_indifferent_access
@@ -92,7 +92,7 @@ describe ImageForm do
         it 'removes the activefedora prefix from the id' do
           created_attributes = model_attributes.fetch(:created_attributes)
 
-          expect(created_attributes.fetch("0").fetch(:id)).to eq("de/ad/be/ef/deadbeef")
+          expect(created_attributes.fetch('0').fetch(:id)).to eq('de/ad/be/ef/deadbeef')
         end
       end
     end
@@ -101,14 +101,14 @@ describe ImageForm do
       let(:request_params) do
         {
           contributor_attributes: {
-            "0" => {
-              id: "http://id.loc.gov/authorities/names/n87914041",
+            '0' => {
+              id: 'http://id.loc.gov/authorities/names/n87914041',
               predicate: 'creator',
             },
-            "1" => {
-              id: "http://localhost:8983/fedora/rest/test/de/ad/be/ef/deadbeef",
+            '1' => {
+              id: 'http://localhost:8983/fedora/rest/test/de/ad/be/ef/deadbeef',
               predicate: 'photographer',
-            }
+            },
           }
         }.with_indifferent_access
       end
@@ -124,40 +124,40 @@ describe ImageForm do
     end
   end
 
-  describe "#multiplex_contributors" do
+  describe '#multiplex_contributors' do
     before { AdminPolicy.ensure_admin_policy_exists }
     let(:form) { described_class.new(model) }
     let(:model) { Image.new(attributes) }
     let(:attributes) do
-      { photographer: [RDF::URI.new("http://id.loc.gov/authorities/names/n87914041"), Agent.create] }
+      { photographer: [RDF::URI.new('http://id.loc.gov/authorities/names/n87914041'), Agent.create] }
     end
 
     subject { form.send :multiplex_contributors }
 
-    it "has one element" do
+    it 'has one element' do
       expect(subject.size).to eq 2
     end
   end
 
-  describe "initialize_field" do
+  describe 'initialize_field' do
     let(:form) { described_class.new(model) }
     let(:model) { Image.new(attributes) }
     subject { form.initialize_field(field) }
 
-    context "for lc_subject" do
-      let(:attributes) { {lc_subject: ['one']} }
+    context 'for lc_subject' do
+      let(:attributes) { { lc_subject: ['one'] } }
       let(:field) { :lc_subject }
 
-      it "should not add anything to lc_subject" do
+      it 'should not add anything to lc_subject' do
         expect(form.lc_subject).to eq ['one']
       end
     end
 
-    context "for form_of_work" do
-      let(:attributes) { {form_of_work: ['one']} }
+    context 'for form_of_work' do
+      let(:attributes) { { form_of_work: ['one'] } }
       let(:field) { :form_of_work }
 
-      it "should not add anything to lc_subject" do
+      it 'should not add anything to lc_subject' do
         expect(form.form_of_work).to eq ['one']
       end
     end

@@ -1,5 +1,4 @@
 module DateUtil
-
   def self.extract_year(date)
     date = date.to_s
     if date.blank?
@@ -11,7 +10,6 @@ module DateUtil
       Date.iso8601(date).year
     end
   rescue ArgumentError
-    raise "Invalid date: #{date.inspect} in #{self.inspect}"
+    raise "Invalid date: #{date.inspect} in #{inspect}"
   end
-
 end

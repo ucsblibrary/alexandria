@@ -110,5 +110,4 @@ module Metadata
       distributor:                           RDF::Vocab::MARCRelators.dst,
       # publisher:                             RDF::Vocab::MARCRelators.pbl
     }
-
 end

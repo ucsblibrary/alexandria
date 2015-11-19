@@ -21,7 +21,6 @@ describe LocalAuthoritiesController do
     end
   end
 
-
   describe 'logged in as admin user' do
     let(:admin) { create :admin }
     before { sign_in admin }
@@ -38,15 +37,13 @@ describe LocalAuthoritiesController do
 
       it 'only shows the models for local authorities' do
         doc_ids = assigns[:document_list].map(&:id)
-        expect(doc_ids).to     include(person.id)
-        expect(doc_ids).to     include(group.id)
-        expect(doc_ids).to     include(org.id)
-        expect(doc_ids).to     include(agent.id)
+        expect(doc_ids).to include(person.id)
+        expect(doc_ids).to include(group.id)
+        expect(doc_ids).to include(org.id)
+        expect(doc_ids).to include(agent.id)
         expect(doc_ids).to_not include(image.id)
-        expect(doc_ids).to     include(topic.id)
+        expect(doc_ids).to include(topic.id)
       end
     end
-
-  end  # logged in as admin
-
+  end # logged in as admin
 end

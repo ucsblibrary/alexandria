@@ -2,7 +2,7 @@ require 'factory_girl'
 
 FactoryGirl.define do
   factory :agent do
-    sequence(:foaf_name) {|n| "Agent #{n}" }
+    sequence(:foaf_name) { |n| "Agent #{n}" }
   end
 
   factory :person, parent: :agent, class: Person
@@ -10,5 +10,4 @@ FactoryGirl.define do
   factory :group, parent: :agent, class: Group
 
   factory :organization, parent: :agent, class: Organization, aliases: [:org]
-
 end

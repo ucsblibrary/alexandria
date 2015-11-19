@@ -3,12 +3,12 @@ require 'rails_helper'
 describe ZipfileService do
   let(:service) { described_class.new('Murray_ucsb_0035D_12159.pdf') }
 
-  describe "#wildcard_zip" do
+  describe '#wildcard_zip' do
     subject { service.send(:wildcard_zip) }
     it { is_expected.to eq "#{Rails.root}/tmp/download_root/proquest/*.zip" }
   end
 
-  describe "#extract_files" do
+  describe '#extract_files' do
     before do
       allow(service).to receive(:find_zip_file).and_return('foo.zip')
       allow(service).to receive(:run_unzip).and_return(
@@ -23,13 +23,14 @@ describe ZipfileService do
     let(:dir) { Dir.mktmpdir }
 
     subject { service.extract_files(dir) }
-    it { is_expected.to eq ZipfileService::ExtractedFiles.new(
+    it do
+      is_expected.to eq ZipfileService::ExtractedFiles.new(
         '/tmp/jcoyne/Murray_ucsb_0035D_12159.pdf',
         '/tmp/jcoyne/Murray_ucsb_0035D_12159_DATA.xml',
         ['/tmp/jcoyne/SupplementalFile1.pdf',
          '/tmp/jcoyne/SupplementalFile2.pdf',
-         '/tmp/jcoyne/SupplementalFile3.pdf']
-      ) }
-
+         '/tmp/jcoyne/SupplementalFile3.pdf'],
+      )
+    end
   end
 end

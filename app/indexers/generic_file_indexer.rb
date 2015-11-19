@@ -26,6 +26,6 @@ class GenericFileIndexer < ActiveFedora::IndexingService
     def host
       Rails.application.config.host_name
     rescue NoMethodError
-      raise "host_name is not configured"
+      raise 'host_name is not configured'
     end
 end

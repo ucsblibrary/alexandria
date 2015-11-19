@@ -49,10 +49,10 @@ class ImageForm
             self[key] = association
           end
         else
-          raise ArgumentError, "Association ''#{key}'' is not a collection"
+          fail ArgumentError, "Association ''#{key}'' is not a collection"
         end
       elsif class_name = model_class.properties[key.to_s].class_name
-        # TODO I suspect this is dead code
+        # TODO: I suspect this is dead code
         self[key] += [class_name.new]
       elsif self.class.multiple?(key)
         self[key] = Array.wrap(self[key]) + ['']
@@ -64,7 +64,7 @@ class ImageForm
     class Contributor
       attr_reader :predicate, :model
       # @param [Oregon::ControlledVocabulary::Creator, Agent] model
-      def initialize(model, predicate=nil)
+      def initialize(model, predicate = nil)
         @model = model
         @predicate = predicate
       end
@@ -91,9 +91,9 @@ class ImageForm
     def self.model_attributes(form_params)
       clean_params = demultiplex_contributors(super)
 
-      # TODO put this chunk in a method
+      # TODO: put this chunk in a method
       NESTED_ASSOCIATIONS.each do |assoc|
-        Array(clean_params["#{assoc}_attributes"]).each do |index, attrs|
+        Array(clean_params["#{assoc}_attributes"]).each do |_index, attrs|
           strip_active_fedora_prefix!(attrs)
         end
       end
@@ -106,8 +106,8 @@ class ImageForm
       return attrs unless attributes_collection
 
       if attributes_collection.is_a? Hash
-         attributes_collection =
-           attributes_collection.sort_by { |i, _| i.to_i }.map { |_, attributes| attributes }
+        attributes_collection =
+          attributes_collection.sort_by { |i, _| i.to_i }.map { |_, attributes| attributes }
       end
       attrs.except(:contributor_attributes).merge(
         attributes_collection.each_with_object({}.with_indifferent_access) do |row, relations|
@@ -134,16 +134,16 @@ class ImageForm
     end
 
     def self.permitted_time_span_params
-      [ :id,
-        :_destroy,
-        {
-          :start            => [],
-          :start_qualifier  => [],
-          :finish           => [],
-          :finish_qualifier => [],
-          :label            => [],
-          :note             => []
-        }
+      [:id,
+       :_destroy,
+       {
+         start: [],
+         start_qualifier: [],
+         finish: [],
+         finish_qualifier: [],
+         label: [],
+         note: [],
+       },
       ]
     end
 

@@ -1,6 +1,5 @@
 module Importer
   class LogSubscriber < ActiveSupport::LogSubscriber
-
     def initialize
       super
       @odd = false
@@ -12,10 +11,10 @@ module Importer
       payload = event.payload
 
       name  = "#{payload[:name]} (#{event.duration.round(1)}ms)"
-      id    = payload[:id] || "[no id]"
+      id    = payload[:id] || '[no id]'
       if odd?
         name = color(name, CYAN, true)
-        id  = color(id, nil, true)
+        id = color(id, nil, true)
       else
         name = color(name, MAGENTA, true)
       end
@@ -23,19 +22,18 @@ module Importer
       debug "  #{name} #{id}"
     end
 
-
     def import(event)
       return unless logger.debug?
 
       payload = event.payload
 
       name  = "#{payload[:name]} (#{event.duration.round(1)}ms)"
-      id    = payload[:id] || "[no id]"
+      id    = payload[:id] || '[no id]'
       klass = payload[:klass]
 
       if odd?
         name = color(name, CYAN, true)
-        id  = color(id, nil, true)
+        id = color(id, nil, true)
       else
         name = color(name, MAGENTA, true)
       end
