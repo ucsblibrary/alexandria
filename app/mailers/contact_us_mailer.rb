@@ -2,9 +2,9 @@ class ContactUsMailer < ApplicationMailer
   default to: Rails.application.secrets.contact_us_email_to
 
   def web_inquiry(from, subj, body, spam = false)
-    mail({ from: from,
-           subject: subject_header(spam) + subj,
-           body: body })
+    mail(from: from,
+         subject: subject_header(spam) + subj,
+         body: body)
   end
 
   # The "Contact Us" form contains a Zip Code field as a
@@ -16,5 +16,4 @@ class ContactUsMailer < ApplicationMailer
     spam_marker = spam ? ' SPAMBOT?' : ''
     "[#{header}#{spam_marker}] "
   end
-
 end

@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 describe LocalAuthority do
-
   describe '::local_authority_models' do
     subject { LocalAuthority.local_authority_models }
 
@@ -65,5 +64,4 @@ describe LocalAuthority do
       it { is_expected.to eq false }
     end
   end
-
 end

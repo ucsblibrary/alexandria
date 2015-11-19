@@ -1,0 +1,11 @@
+Style/IndentationConsistency:
+  EnforcedStyle: rails
+
+Metrics/LineLength:
+  Enabled: false
+
+Style/AsciiComments:
+  Enabled: false
+
+Style/TrailingComma:
+  EnforcedStyleForMultiline: comma

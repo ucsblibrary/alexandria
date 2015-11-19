@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 describe Record do
-
   describe '::references_for' do
     subject { Record.references_for(record) }
     let!(:record) { ActiveFedora::Base.create }
@@ -21,5 +20,4 @@ describe Record do
       end
     end
   end
-
 end

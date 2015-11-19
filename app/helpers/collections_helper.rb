@@ -1,5 +1,4 @@
 module CollectionsHelper
-
   def has_collection_search_parameters?
     !params[:cq].blank?
   end
@@ -30,5 +29,4 @@ module CollectionsHelper
 
     display_fields
   end
-
 end

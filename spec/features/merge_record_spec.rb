@@ -39,5 +39,4 @@ feature 'Merge Record: ' do
       expect(page).to have_content 'A background job has been queued to merge the records.'
     end
   end
-
 end

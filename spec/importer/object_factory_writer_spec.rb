@@ -4,12 +4,12 @@ require 'object_factory_writer'
 describe ObjectFactoryWriter do
   let(:writer) { described_class.new({}) }
 
-  describe "#put" do
+  describe '#put' do
     let(:traject_context) { double(output_hash: traject_hash) }
 
     let(:traject_hash) do
       { 'author' => ['Valerie'],
-        'title' => ["How to be awesome"],
+        'title' => ['How to be awesome'],
         'created_start' => ['2013'],
         'filename' => ['My_stuff.pdf'],
         'isbn' => ['1234'],
@@ -27,39 +27,39 @@ describe ObjectFactoryWriter do
         'dissertation_degree' => [nil],
         'dissertation_institution' => [nil],
         'dissertation_year' => [nil],
-        'fulltext_link' => [nil]
+        'fulltext_link' => [nil],
       }
     end
 
-    it "calls the etd factory" do
+    it 'calls the etd factory' do
       expect(writer).to receive(:build_object).with(
         {
-        author: ['Valerie'],
-        isbn: ['1234'],
-        identifier: ['ark:/99999/fk4zp46p1g'],
-        id: 'fk/4z/p4/6p/fk4zp46p1g',
-        files: ['My_stuff.pdf'], created_attributes: [{ start: ['2013'] }],
-        collection: { id: "etds", title: "Electronic Theses and Dissertations", accession_number: ['etds'] },
-        extent: ['1 online resource (147 pages)'],
-        description: ['Marine mussels use a mixture of proteins...', 'The performance of strong adhesion...'],
-        title: 'How to be awesome',
-        'degree_grantor' => ['University of California, Santa Barbara Mathematics'],
-        'place_of_publication' => ['[Santa Barbara, Calif.]'],
-        'publisher' => ['University of California, Santa Barbara'],
-        'issued' => ['2013'],
-        degree_supervisor: ['Paul', 'Hector'],
-        system_number: [],
-        language: [],
-        dissertation_degree: [],
-        dissertation_institution: [],
-        dissertation_year: [],
-        fulltext_link: []}.with_indifferent_access
+          author: ['Valerie'],
+          isbn: ['1234'],
+          identifier: ['ark:/99999/fk4zp46p1g'],
+          id: 'fk/4z/p4/6p/fk4zp46p1g',
+          files: ['My_stuff.pdf'], created_attributes: [{ start: ['2013'] }],
+          collection: { id: 'etds', title: 'Electronic Theses and Dissertations', accession_number: ['etds'] },
+          extent: ['1 online resource (147 pages)'],
+          description: ['Marine mussels use a mixture of proteins...', 'The performance of strong adhesion...'],
+          title: 'How to be awesome',
+          'degree_grantor' => ['University of California, Santa Barbara Mathematics'],
+          'place_of_publication' => ['[Santa Barbara, Calif.]'],
+          'publisher' => ['University of California, Santa Barbara'],
+          'issued' => ['2013'],
+          degree_supervisor: %w(Paul Hector),
+          system_number: [],
+          language: [],
+          dissertation_degree: [],
+          dissertation_institution: [],
+          dissertation_year: [],
+          fulltext_link: [] }.with_indifferent_access
       )
 
       writer.put(traject_context)
     end
 
-    context "when fields are missing" do
+    context 'when fields are missing' do
       let(:traject_hash) do
         { 'identifier' => ['ark:/99999/fk4zp46p1g'],
           'id' => ['fk/4z/p4/6p/fk4zp46p1g'],
@@ -81,15 +81,15 @@ describe ObjectFactoryWriter do
         }
       end
 
-      it "overwrites with blank" do
+      it 'overwrites with blank' do
         expect(writer).to receive(:build_object).with(
           {
             author: [],
             isbn: [],
             identifier: ['ark:/99999/fk4zp46p1g'],
             id: 'fk/4z/p4/6p/fk4zp46p1g',
-            files: [], created_attributes: [{"start"=>[]}],
-            collection: { id: "etds", title: "Electronic Theses and Dissertations", accession_number: ['etds'] },
+            files: [], created_attributes: [{ 'start' => [] }],
+            collection: { id: 'etds', title: 'Electronic Theses and Dissertations', accession_number: ['etds'] },
             extent: [],
             description: [],
             title: nil,
@@ -103,7 +103,7 @@ describe ObjectFactoryWriter do
             dissertation_degree: [],
             dissertation_institution: [],
             dissertation_year: [],
-            fulltext_link: []}.with_indifferent_access
+            fulltext_link: [] }.with_indifferent_access
         )
         writer.put(traject_context)
       end

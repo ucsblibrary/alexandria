@@ -9,36 +9,35 @@ class ETDIndexer < ObjectIndexer
 
   private
 
-  # Create a date field for sorting on
-  def sortable_date
-    if timespan?
-      super
-    else
-      Array(sorted_key_date).first
+    # Create a date field for sorting on
+    def sortable_date
+      if timespan?
+        super
+      else
+        Array(sorted_key_date).first
+      end
     end
-  end
 
-  # Create a year field (integer, multiple) for faceting on
-  def facetable_year
-    if timespan?
-      super
-    else
-      Array(sorted_key_date).flat_map{|d| DateUtil.extract_year(d) }
+    # Create a year field (integer, multiple) for faceting on
+    def facetable_year
+      if timespan?
+        super
+      else
+        Array(sorted_key_date).flat_map { |d| DateUtil.extract_year(d) }
+      end
     end
-  end
 
-  def sorted_key_date
-    return unless key_date
+    def sorted_key_date
+      return unless key_date
 
-    if timespan?
-      super
-    else
-      key_date.sort{|a,b| DateUtil.extract_year(a) <=> DateUtil.extract_year(b) }
+      if timespan?
+        super
+      else
+        key_date.sort { |a, b| DateUtil.extract_year(a) <=> DateUtil.extract_year(b) }
+      end
     end
-  end
 
-  def timespan?
-    Array(key_date).first.is_a?(TimeSpan)
-  end
-
+    def timespan?
+      Array(key_date).first.is_a?(TimeSpan)
+    end
 end

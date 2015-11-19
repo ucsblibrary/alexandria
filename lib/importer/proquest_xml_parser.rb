@@ -3,7 +3,6 @@
 
 module Importer
   class ProquestXmlParser
-
     def initialize(file_contents)
       @doc = Nokogiri::XML(file_contents)
     end
@@ -21,7 +20,7 @@ module Importer
         DISS_agreement_decision_date: '//DISS_agreement_decision_date',
         DISS_delayed_release: '//DISS_delayed_release',
         DISS_access_option: '//DISS_access_option',
-        embargo_remove_date: '//DISS_sales_restriction/@remove'
+        embargo_remove_date: '//DISS_sales_restriction/@remove',
       }
     end
 
@@ -50,6 +49,5 @@ module Importer
           attrs.merge(field => value)
         end
       end
-
   end
 end

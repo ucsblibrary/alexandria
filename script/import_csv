@@ -6,7 +6,7 @@ path_or_type = ARGV[1]
 type = ARGV[2]
 
 # Need to decide if path_or_type is type or path
-if !type && ['Collection', 'Image'].include?(path_or_type)
+if !type && %w(Collection Image).include?(path_or_type)
   type = path_or_type
 else
   type ||= 'Image'
@@ -18,28 +18,24 @@ if filename.nil?
   $stderr.puts "Usage: #{$PROGRAM_NAME} <csv file> <image directory> <object type>"
   $stderr.puts "Usage: #{$PROGRAM_NAME} <csv file> <image directory>"
   $stderr.puts "Usage: #{$PROGRAM_NAME} <csv file> <object type>"
-  $stderr.puts "Please provide the csv file you want to import."
+  $stderr.puts 'Please provide the csv file you want to import.'
   exit(1)
 end
 
 if imagepath.nil?
-  $stderr.puts "Image directory was left blank. No images will be ingested"
+  $stderr.puts 'Image directory was left blank. No images will be ingested'
 end
 
-unless File.exists?(filename)
+unless File.exist?(filename)
   $stderr.puts "Unable to read file #{filename}"
   exit(1)
 end
 
-
-puts "Loading environment..."
-require File.expand_path('../../config/environment',  __FILE__)
+puts 'Loading environment...'
+require File.expand_path('../../config/environment', __FILE__)
 require 'importer'
 puts "Starting #{type.downcase} import..."
 
 size = Importer::CSVImporter.new(type, imagepath, filename).import_all
 
 puts "Imported #{size} records."
-
-
-

@@ -21,5 +21,4 @@ feature 'Editing Records:' do
       expect(record.reload.label).to eq [new_label]
     end
   end
-
 end

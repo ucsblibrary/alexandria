@@ -2,7 +2,6 @@
 require 'blacklight/catalog'
 
 class CatalogController < ApplicationController
-
   # helper Openseadragon::OpenseadragonHelper
 
   include Hydra::Catalog
@@ -14,23 +13,21 @@ class CatalogController < ApplicationController
   # enforce_show_permissions is from hydra-access-controls gem
   before_filter :enforce_show_permissions, only: :show
 
-  def enforce_show_permissions(opts={})
+  def enforce_show_permissions(_opts = {})
     permissions = current_ability.permissions_doc(params[:id])
     unless can?(:discover, permissions)
-      raise Hydra::AccessDenied.new("You do not have sufficient access privileges to access this document.", :discover, params[:id])
+      fail Hydra::AccessDenied.new('You do not have sufficient access privileges to access this document.', :discover, params[:id])
     end
   end
 
   # This applies appropriate access controls to all solr queries
   CatalogController.search_params_logic += [:add_access_controls_to_solr_params, :only_visible_objects]
 
-
   add_show_tools_partial(:merge, partial: 'catalog/merge_link', if: :show_merge_link?)
   add_show_tools_partial(:delete, partial: 'catalog/delete', if: :show_delete_link?)
   add_show_tools_partial(:edit, partial: 'catalog/edit', if: :editor?)
   add_show_tools_partial(:download, partial: 'catalog/download')
   add_show_tools_partial(:access, partial: 'catalog/access', if: :show_embargos_link?)
-
 
   configure_blacklight do |config|
     config.search_builder_class = SearchBuilder
@@ -45,7 +42,7 @@ class CatalogController < ApplicationController
       qf: 'title_tesim lc_subject_label_tesim accession_number_tesim keywords_tesim author_tesim',
       wt: 'json',
       qt: 'search',
-      rows: 10
+      rows: 10,
     }
 
     # solr field configuration for search results/index views
@@ -88,9 +85,8 @@ class CatalogController < ApplicationController
     # previously. Simply remove these lines if you'd rather use Solr request
     # handler defaults, or have no facets.
     config.default_solr_params[:'facet.field'] = config.facet_fields.keys
-    #use this instead if you don't want to query facets marked :show=>false
-    #config.default_solr_params[:'facet.field'] = config.facet_fields.select{ |k, v| v[:show] != false}.keys
-
+    # use this instead if you don't want to query facets marked :show=>false
+    # config.default_solr_params[:'facet.field'] = config.facet_fields.select{ |k, v| v[:show] != false}.keys
 
     # solr fields to be displayed in the index (search results) view
     #   The ordering of the field names is the order of the display
@@ -104,14 +100,13 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name('location_label', :stored_searchable), label: 'Location'
     config.add_index_field solr_name('language', :stored_searchable), label: 'Language'
 
-
     # solr fields to be displayed in the show (single result) view
     # The ordering of the field names is the order of the display
     config.add_show_field 'foaf_name_tesim', label: 'Name'
     config.add_show_field 'uri_ssim', label: 'URI'
     config.add_show_field 'label_tesim', label: 'Label'
-    Metadata::RELATIONS.each do |key, value|
-    config.add_show_field solr_name("#{key}_label", :stored_searchable), label: key.to_s.titleize
+    Metadata::RELATIONS.each do |key, _value|
+      config.add_show_field solr_name("#{key}_label", :stored_searchable), label: key.to_s.titleize
     end
 
     config.add_show_field solr_name('accession_number', :symbol), label: 'Accession Number'
@@ -169,31 +164,30 @@ class CatalogController < ApplicationController
     # This one uses all the defaults set by the solr request handler. Which
     # solr request handler? The one set in config[:default_solr_parameters][:qt],
     # since we aren't specifying it otherwise.
-    config.add_search_field 'all_fields', :label => 'All Fields'
+    config.add_search_field 'all_fields', label: 'All Fields'
 
     # Now we see how to over-ride Solr request handler defaults, in this
     # case for a BL "search field", which is really a dismax aggregate
     # of Solr search fields.
 
-
     config.add_search_field('title') do |field|
       field.solr_local_parameters = {
-        :qf => 'title_tesim',
-        :pf => 'title_tesim'
+        qf: 'title_tesim',
+        pf: 'title_tesim',
       }
     end
 
     config.add_search_field('subject') do |field|
       field.solr_local_parameters = {
         qf: 'lc_subject_label_tesim',
-        pf: 'lc_subject_label_tesim'
+        pf: 'lc_subject_label_tesim',
       }
     end
 
     config.add_search_field('accession_number') do |field|
       field.solr_local_parameters = {
-        :qf => 'accession_number_tesim',
-        :pf => 'accession_number_tesim'
+        qf: 'accession_number_tesim',
+        pf: 'accession_number_tesim',
       }
     end
 
@@ -215,5 +209,4 @@ class CatalogController < ApplicationController
   def current_ability
     @current_ability ||= Ability.new(current_user, on_campus?)
   end
-
 end

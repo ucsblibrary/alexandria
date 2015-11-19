@@ -1,5 +1,4 @@
 class LocalAuthoritiesController < ApplicationController
-
   include Hydra::Catalog
   include Hydra::Controller::ControllerBehavior
 
@@ -16,22 +15,22 @@ class LocalAuthoritiesController < ApplicationController
       qf: 'foaf_name_tesim label_tesim',
       wt: 'json',
       qt: 'search',
-      rows: 10
+      rows: 10,
     }
 
     config.add_search_field('name') do |field|
       field.solr_local_parameters = {
-        :qf => 'foaf_name_tesim label_tesim',
-        :pf => 'foaf_name_tesim label_tesim'
+        qf: 'foaf_name_tesim label_tesim',
+        pf: 'foaf_name_tesim label_tesim',
       }
     end
 
     config.add_facet_field 'active_fedora_model_ssi', label: 'Type'
     config.add_index_field 'uri_ssim', label: 'URI'
 
-    config.index.title_field = ['foaf_name_tesim', 'label_tesim']
-    config.add_index_field 'active_fedora_model_ssi', :label => 'Type'
-  end  # configure_blacklight
+    config.index.title_field = %w(foaf_name_tesim label_tesim)
+    config.add_index_field 'active_fedora_model_ssi', label: 'Type'
+  end # configure_blacklight
 
   # Override rails path for the views so that we can use
   # regular blacklight views from app/views/catalog
@@ -39,10 +38,9 @@ class LocalAuthoritiesController < ApplicationController
     @_prefixes ||= super + ['catalog']
   end
 
-private
+  private
 
-  def auth
-    authorize! :read, :local_authorities
-  end
-
+    def auth
+      authorize! :read, :local_authorities
+    end
 end

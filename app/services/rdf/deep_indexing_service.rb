@@ -7,12 +7,12 @@ class RDF::DeepIndexingService < ActiveFedora::RDF::IndexingService
   def append_to_solr_doc(solr_doc, solr_field_key, field_info, val)
     return super unless object.controlled_properties.include?(solr_field_key)
     case val
-      when ActiveTriples::Resource
-        append_label_and_uri(solr_doc, solr_field_key, field_info, val)
-      when String
-        append_label(solr_doc, solr_field_key, field_info, val)
-      else
-        raise ArgumentError, "Can't handle #{val.class}"
+    when ActiveTriples::Resource
+      append_label_and_uri(solr_doc, solr_field_key, field_info, val)
+    when String
+      append_label(solr_doc, solr_field_key, field_info, val)
+    else
+      fail ArgumentError, "Can't handle #{val.class}"
     end
   end
 
@@ -25,11 +25,11 @@ class RDF::DeepIndexingService < ActiveFedora::RDF::IndexingService
     object.controlled_properties.each do |property|
       object[property].each do |value|
         resource = value.respond_to?(:resource) ? value.resource : value
-        next unless resource.kind_of?(ActiveTriples::Resource)
-        next if value.kind_of?(ActiveFedora::Base)
+        next unless resource.is_a?(ActiveTriples::Resource)
+        next if value.is_a?(ActiveFedora::Base)
         old_label = resource.rdf_label.first
         next unless old_label == resource.rdf_subject.to_s || old_label.nil?
-        fetch_value(resource) if resource.kind_of? ActiveTriples::Resource
+        fetch_value(resource) if resource.is_a? ActiveTriples::Resource
         if old_label != resource.rdf_label.first && resource.rdf_label.first != resource.rdf_subject.to_s
           resource.persist! # Stores the fetched values into our marmotta triplestore
         end
@@ -63,7 +63,7 @@ class RDF::DeepIndexingService < ActiveFedora::RDF::IndexingService
     self.class.create_and_insert_terms(solr_field_key,
                                        val.first,
                                        field_info.behaviors, solr_doc)
-    if val.last.kind_of? Hash
+    if val.last.is_a? Hash
       self.class.create_and_insert_terms("#{solr_field_key}_label",
                                          label(val),
                                          field_info.behaviors, solr_doc)

@@ -13,7 +13,8 @@ module RDF::N3
       @pos = 0
       @line
     rescue EOFError => e
-      @line, @pos = nil, 0
+      @line = nil
+      @pos = 0
     end
   end
 end

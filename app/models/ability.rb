@@ -1,5 +1,4 @@
 class Ability
-
   # For fedora objects that have an admin policy assigned to
   # them, some of the rights that a user will be granted are
   # defined in the policy file:  app/models/admin_policy.rb
@@ -79,11 +78,11 @@ class Ability
     unless policy_permissions.blank?
       field_name = Hydra.config.permissions.inheritable[:discover][:group]
       groups = read_groups_from_policy(policy_id) |
-                 policy_permissions.fetch(field_name, [])
+               policy_permissions.fetch(field_name, [])
     end
 
     Rails.logger.debug("[CANCAN] -policy- discover_groups: #{groups.inspect}")
-    return groups
+    groups
   end
 
   # To check if user can download a file, find the parent object
@@ -111,5 +110,4 @@ class Ability
 
     groups
   end
-
 end

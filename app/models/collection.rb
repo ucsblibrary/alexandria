@@ -1,5 +1,5 @@
 class Collection < ActiveFedora::Base
-  #include Hydra::AccessControls::Permissions
+  # include Hydra::AccessControls::Permissions
   include Hydra::Collections::Relations
   include Metadata
   include LocalAuthorityHashAccessor
@@ -22,5 +22,4 @@ class Collection < ActiveFedora::Base
   def to_param
     Identifier.noidify(id)
   end
-
 end

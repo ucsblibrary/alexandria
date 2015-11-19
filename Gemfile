@@ -26,11 +26,11 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # TODO: Set hydra-head to a released version
 gem 'hydra-head', github: 'projecthydra/hydra-head', ref: 'cc8fe53'
 
-#gem 'active-fedora', '~> 9.3.0'
+# gem 'active-fedora', '~> 9.3.0'
 # Optimise for a faster import: https://github.com/projecthydra/active_fedora/pull/876
-gem 'active-fedora', github: 'projecthydra/active_fedora', ref:'fec345a'
+gem 'active-fedora', github: 'projecthydra/active_fedora', ref: 'fec345a'
 
-#gem 'active-triples', github: 'jcoyne/ActiveTriples', branch: '0.7-future'
+# gem 'active-triples', github: 'jcoyne/ActiveTriples', branch: '0.7-future'
 # https://github.com/ActiveTriples/ActiveTriples/pull/164
 gem 'active-triples', github: 'ActiveTriples/ActiveTriples', ref: '71ed53a'
 gem 'hydra-editor', '~> 1.0.4'
@@ -56,7 +56,7 @@ gem 'qa', '~> 0.5.0'
 gem 'kaminari', github: 'jcoyne/kaminari', branch: 'sufia'
 
 gem 'devise'
-gem "devise_ldap_authenticatable"
+gem 'devise_ldap_authenticatable'
 gem 'devise-guests', github: 'cbeer/devise-guests'
 # gem 'traject', require: false
 gem 'traject', github: 'traject/traject', require: false, branch: 'allow_nil_default'
@@ -97,4 +97,3 @@ group :development do
   gem 'capistrano-bundler'
   gem 'capistrano-passenger'
 end
-

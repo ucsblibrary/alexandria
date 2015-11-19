@@ -15,65 +15,64 @@ describe Image do
     expect(subject.enforce_future_date_for_embargo?).to be false
   end
 
-  describe "nested attributes" do
-    context "for creator" do
-      it "should ignore empty ids" do
-        subject.creator_attributes = {"0" => { "id"=>"http://id.loc.gov/authorities/names/n87141298" },
-                        "1" => { "id"=>"" } }
+  describe 'nested attributes' do
+    context 'for creator' do
+      it 'should ignore empty ids' do
+        subject.creator_attributes = { '0' => { 'id' => 'http://id.loc.gov/authorities/names/n87141298' },
+                                       '1' => { 'id' => '' } }
         expect(subject.creator.size).to eq 1
       end
     end
 
-    context "for landscape_architect" do
-      it "should ignore empty ids" do
-        subject.landscape_architect_attributes = {"0" => { "id"=>"http://id.loc.gov/authorities/names/n87141298" },
-                        "1" => { "id"=>"" } }
+    context 'for landscape_architect' do
+      it 'should ignore empty ids' do
+        subject.landscape_architect_attributes = { '0' => { 'id' => 'http://id.loc.gov/authorities/names/n87141298' },
+                                                   '1' => { 'id' => '' } }
         expect(subject.landscape_architect.size).to eq 1
       end
     end
 
-    context "for performer" do
-      it "should ignore empty ids" do
-        subject.performer_attributes = {"0" => { "id"=>"http://id.loc.gov/authorities/names/n87141298" },
-                        "1" => { "id"=>"" } }
+    context 'for performer' do
+      it 'should ignore empty ids' do
+        subject.performer_attributes = { '0' => { 'id' => 'http://id.loc.gov/authorities/names/n87141298' },
+                                         '1' => { 'id' => '' } }
         expect(subject.performer.size).to eq 1
       end
     end
 
-    context "for location" do
-      it "should ignore empty ids" do
-        subject.location_attributes = {"0" => { "id"=>"http://id.loc.gov/authorities/names/n87141298" },
-                        "1" => { "id"=>"" } }
+    context 'for location' do
+      it 'should ignore empty ids' do
+        subject.location_attributes = { '0' => { 'id' => 'http://id.loc.gov/authorities/names/n87141298' },
+                                        '1' => { 'id' => '' } }
         expect(subject.location.size).to eq 1
       end
     end
 
-    context "for lc_subject" do
-      it "should ignore empty ids" do
-        subject.lc_subject_attributes = {"0" => { "id"=>"http://id.loc.gov/authorities/subjects/sh85111007" },
-                        "1" => { "id"=>"" } }
+    context 'for lc_subject' do
+      it 'should ignore empty ids' do
+        subject.lc_subject_attributes = { '0' => { 'id' => 'http://id.loc.gov/authorities/subjects/sh85111007' },
+                                          '1' => { 'id' => '' } }
         expect(subject.lc_subject.size).to eq 1
       end
     end
 
-    context "for form_of_work" do
-      it "should ignore empty ids" do
-        subject.form_of_work_attributes = {"0" => { "id"=>"http://vocab.getty.edu/aat/300026816" },
-                        "1" => { "id"=>"" } }
+    context 'for form_of_work' do
+      it 'should ignore empty ids' do
+        subject.form_of_work_attributes = { '0' => { 'id' => 'http://vocab.getty.edu/aat/300026816' },
+                                            '1' => { 'id' => '' } }
         expect(subject.form_of_work.size).to eq 1
       end
     end
 
-    context "for date created" do
-      it "should allow blank ids" do
+    context 'for date created' do
+      it 'should allow blank ids' do
         subject.save!
         subject.reload
 
-
-        subject.attributes= {
+        subject.attributes = {
           created_attributes: {
-            "0" => {
-              :start => ["2014"]
+            '0' => {
+              start: ['2014']
             }
           }
         }
@@ -84,23 +83,23 @@ describe Image do
       end
     end
 
-    context "for notes" do
+    context 'for notes' do
       before do
-        subject.notes_attributes=[{:value=>"Title from item."}, {:value=>"Postcard caption: 25. Light-House Tower Sta. Barbara Earth Quake.\n6-29-25."}, {:value=>"[Identification of Item], Santa Barbara picture\npostcards collection. SBHC Mss 36. Department of Special Collections, UC Santa Barbara\nLibrary, University of California, Santa Barbara.", :note_type=>"preferred citation"}]
+        subject.notes_attributes = [{ value: 'Title from item.' }, { value: "Postcard caption: 25. Light-House Tower Sta. Barbara Earth Quake.\n6-29-25." }, { value: "[Identification of Item], Santa Barbara picture\npostcards collection. SBHC Mss 36. Department of Special Collections, UC Santa Barbara\nLibrary, University of California, Santa Barbara.", note_type: 'preferred citation' }]
       end
-      it "has notes" do
+      it 'has notes' do
         subject.save!
         subject.reload
         expect(subject.notes.size).to eq 3
       end
     end
 
-    describe "dates" do
-      context "created" do
+    describe 'dates' do
+      context 'created' do
         before do
-          subject.created_attributes=[{ start: ["1940"], finish: ["1959"] }]
+          subject.created_attributes = [{ start: ['1940'], finish: ['1959'] }]
         end
-        it "has date_created" do
+        it 'has date_created' do
           expect(subject.created.first.start).to eq ['1940']
           expect(subject.created.first.finish).to eq ['1959']
         end
@@ -108,24 +107,24 @@ describe Image do
     end
   end
 
-  describe "#to_solr" do
+  describe '#to_solr' do
     let(:image) { Image.new }
-    it "calls the ImageIndexer" do
+    it 'calls the ImageIndexer' do
       expect_any_instance_of(ImageIndexer).to receive(:generate_solr_document)
       image.to_solr
     end
   end
 
-  describe "dates" do
+  describe 'dates' do
     let(:image) { Image.new }
 
-    describe "ranges" do
+    describe 'ranges' do
       before do
         image.created.build(start: ['1911'], finish: ['1912'])
         image.issued.build(start: ['1913'], finish: ['1917'])
       end
 
-      it "stores them" do
+      it 'stores them' do
         expect(image.created.first.start).to eq ['1911']
         expect(image.created.first.finish).to eq ['1912']
         expect(image.issued.first.start).to eq ['1913']
@@ -133,44 +132,43 @@ describe Image do
       end
     end
 
-    describe "points" do
+    describe 'points' do
       before do
         image.issued.build(start: ['1913'])
       end
-      it "stores them" do
+      it 'stores them' do
         expect(image.issued.first.start).to eq ['1913']
       end
     end
   end
 
-  describe "lc_subject" do
+  describe 'lc_subject' do
     let(:image) { Image.new(lc_subject: ['foo']) }
     it "isn't valid" do
       expect(image).not_to be_valid
-      expect(image.errors[:base]).to eq ["value `foo for `lc_subject` property is not a term in a controlled vocabulary lcsh, lcnames, tgm, aat, local"]
+      expect(image.errors[:base]).to eq ['value `foo for `lc_subject` property is not a term in a controlled vocabulary lcsh, lcnames, tgm, aat, local']
     end
   end
 
-  describe "#[]" do
-    context "with a local creator" do
+  describe '#[]' do
+    context 'with a local creator' do
       let(:person) { Person.create(foaf_name: 'Tony') }
       let(:tony_uri) { RDF::URI.new(person.uri) }
-      let(:merle_uri) { RDF::URI.new("http://id.loc.gov/authorities/names/n81053687") }
+      let(:merle_uri) { RDF::URI.new('http://id.loc.gov/authorities/names/n81053687') }
       let(:photographers) { [tony_uri, merle_uri] }
 
       let(:image) { Image.new(photographer: photographers) }
 
       subject { image[:photographer] }
-      it "has an ActiveFedora object and and ActiveTriples object" do
+      it 'has an ActiveFedora object and and ActiveTriples object' do
         expect(subject.first).to eq person
         expect(subject.last).to be_kind_of ActiveTriples::Resource
       end
     end
   end
 
-  describe "#to_partial_path" do
+  describe '#to_partial_path' do
     subject { described_class.new.to_partial_path }
     it { is_expected.to eq 'catalog/document' }
   end
-
 end

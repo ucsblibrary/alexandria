@@ -26,5 +26,4 @@ class EmbargoForm
     return unless vis_after
     ActiveFedora::Base.uri_to_id(vis_after.id)
   end
-
 end

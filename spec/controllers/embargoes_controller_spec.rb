@@ -6,33 +6,33 @@ describe EmbargoesController do
 
   before { sign_in user }
 
-  describe "#index" do
-    context "when I am NOT a rights admin" do
+  describe '#index' do
+    context 'when I am NOT a rights admin' do
       let(:user) { create(:user) }
-      it "redirects" do
+      it 'redirects' do
         get :index
         expect(response).to redirect_to root_path
       end
     end
 
-    context "when I am a rights admin" do
-      it "shows me the page" do
+    context 'when I am a rights admin' do
+      it 'shows me the page' do
         get :index
         expect(response).to be_success
       end
     end
   end
 
-  describe "#destroy" do
-    context "when I do not have edit permissions for the object" do
+  describe '#destroy' do
+    context 'when I do not have edit permissions for the object' do
       let(:user) { create(:user) }
-      it "denies access" do
+      it 'denies access' do
         get :destroy, id: work
         expect(response).to redirect_to root_path
       end
     end
 
-    context "when I have permission to edit the object" do
+    context 'when I have permission to edit the object' do
       before do
         AdminPolicy.ensure_admin_policy_exists
         expect(ActiveFedora::Base).to receive(:find).with(work.id).and_return(work)
@@ -44,19 +44,19 @@ describe EmbargoesController do
         get :destroy, id: work
       end
 
-      context "with an active embargo" do
-        let(:release_date) { Date.today+2 }
+      context 'with an active embargo' do
+        let(:release_date) { Date.today + 2 }
 
-        it "deactivates embargo without updating admin_policy_id and redirects" do
+        it 'deactivates embargo without updating admin_policy_id and redirects' do
           expect(work.admin_policy_id).to eq AdminPolicy::UCSB_CAMPUS_POLICY_ID
           expect(response).to redirect_to catalog_path(work)
         end
       end
 
-      context "with an expired embargo" do
-        let(:release_date) { Date.today-2 }
+      context 'with an expired embargo' do
+        let(:release_date) { Date.today - 2 }
 
-        it "deactivates embargo, updates the admin_policy_id and redirects" do
+        it 'deactivates embargo, updates the admin_policy_id and redirects' do
           expect(work.admin_policy_id).to eq AdminPolicy::PUBLIC_POLICY_ID
           expect(response).to redirect_to catalog_path(work)
         end
@@ -64,9 +64,9 @@ describe EmbargoesController do
     end
   end
 
-  describe "#update" do
-    context "when I have permission to edit the object" do
-      let(:release_date) { Date.today+2 }
+  describe '#update' do
+    context 'when I have permission to edit the object' do
+      let(:release_date) { Date.today + 2 }
       before do
         AdminPolicy.ensure_admin_policy_exists
         work.admin_policy_id = AdminPolicy::UCSB_CAMPUS_POLICY_ID
@@ -77,9 +77,9 @@ describe EmbargoesController do
         work.save(validate: false)
       end
 
-      context "with an expired embargo" do
-        let(:release_date) { Date.today-2 }
-        it "deactivates embargo, update the visibility and redirect" do
+      context 'with an expired embargo' do
+        let(:release_date) { Date.today - 2 }
+        it 'deactivates embargo, update the visibility and redirect' do
           patch :update, batch_document_ids: [work.id]
           expect(work.reload.admin_policy_id).to eq AdminPolicy::PUBLIC_POLICY_ID
           expect(response).to redirect_to embargoes_path

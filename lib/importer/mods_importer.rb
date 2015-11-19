@@ -1,7 +1,6 @@
 module Importer
   class ModsImporter
-
-    def initialize(files_directory, metadata_directory=nil)
+    def initialize(files_directory, metadata_directory = nil)
       AdminPolicy.ensure_admin_policy_exists
       @files_directory = files_directory
       @metadata_directory = metadata_directory
@@ -31,6 +30,5 @@ module Importer
     def create_fedora_objects(model, attributes)
       Factory.for(model.to_s).new(attributes, @files_directory).run
     end
-
   end
 end

@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 feature 'Record Creation:' do
-
   context 'an admin user' do
     let(:admin) { create :admin }
 

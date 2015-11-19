@@ -23,7 +23,7 @@ module Importer
     def collection?
       type_keys = mods.typeOfResource.attributes.map(&:keys).flatten
       return false unless type_keys.include?('collection')
-      mods.typeOfResource.attributes.any?{|hash| hash.fetch('collection').value == 'yes'}
+      mods.typeOfResource.attributes.any? { |hash| hash.fetch('collection').value == 'yes' }
     end
 
     # For now the only things we import are collections and
@@ -43,11 +43,9 @@ module Importer
     end
 
     def record_attributes
-      common_attributes.merge!({
-        files: mods.extension.xpath('./fileName').map(&:text),
-        collection: collection,
-        series_name: mods.xpath("//mods:relatedItem[@type='series']", NAMESPACES).titleInfo.title.map(&:text)
-      })
+      common_attributes.merge!(files: mods.extension.xpath('./fileName').map(&:text),
+                               collection: collection,
+                               series_name: mods.xpath("//mods:relatedItem[@type='series']", NAMESPACES).titleInfo.title.map(&:text))
     end
 
     def collection_attributes
@@ -55,12 +53,12 @@ module Importer
     end
 
     def common_attributes
-      description.
-        merge(dates).
-        merge(locations).
-        merge(rights).
-        merge(identifiers).
-        merge(relations)
+      description
+        .merge(dates)
+        .merge(locations)
+        .merge(rights)
+        .merge(identifiers)
+        .merge(relations)
     end
 
     def description
@@ -69,7 +67,7 @@ module Importer
         alternative: alt_title,
         description: mods_description,
         lc_subject: subject,
-        extent: mods.physical_description.extent.map{|node| strip_whitespace(node.text)},
+        extent: mods.physical_description.extent.map { |node| strip_whitespace(node.text) },
         language: mods.language.languageTerm.valueURI.map { |uri| RDF::URI.new(uri) },
         digital_origin: mods.physical_description.digitalOrigin.map(&:text),
         publisher: mods.origin_info.publisher.map(&:text),
@@ -78,16 +76,16 @@ module Importer
         citation: citation,
         notes_attributes: notes,
         record_origin: record_origin,
-        description_standard: mods.record_info.descriptionStandard.map(&:text)
+        description_standard: mods.record_info.descriptionStandard.map(&:text),
       }
     end
 
     def rights
       {
-        use_restrictions: mods.xpath('/mods:mods/mods:accessCondition[@type="use and reproduction"]', NAMESPACES).map {|node| strip_whitespace(node.text) },
+        use_restrictions: mods.xpath('/mods:mods/mods:accessCondition[@type="use and reproduction"]', NAMESPACES).map { |node| strip_whitespace(node.text) },
         rights_holder: rights_holder,
         copyright_status: mods.xpath('//mods:extension/copyrightStatus/@valueURI', NAMESPACES).map { |uri| RDF::URI.new(uri.value) },
-        license: mods.xpath('//mods:extension/copyrightStatement/@valueURI', NAMESPACES).map { |uri| RDF::URI.new(uri.value) }
+        license: mods.xpath('//mods:extension/copyrightStatement/@valueURI', NAMESPACES).map { |uri| RDF::URI.new(uri.value) },
       }
     end
 
@@ -96,7 +94,7 @@ module Importer
         location: mods.subject.geographic.valueURI.map { |uri| RDF::URI.new(uri) },
         sub_location: mods.location.holdingSimple.xpath('./mods:copyInformation/mods:subLocation', NAMESPACES).map(&:text),
         institution: mods.location.physicalLocation.valueURI.map { |uri| RDF::URI.new(uri) },
-        place_of_publication: mods.origin_info.place.placeTerm.map(&:text)
+        place_of_publication: mods.origin_info.place.placeTerm.map(&:text),
       }.merge(coordinates)
     end
 
@@ -106,7 +104,7 @@ module Importer
         created_attributes: build_date(mods.origin_info.dateCreated),
         date_other_attributes: build_date(mods.origin_info.dateOther),
         date_copyrighted_attributes: build_date(mods.origin_info.copyrightDate),
-        date_valid_attributes: build_date(mods.origin_info.dateValid)
+        date_valid_attributes: build_date(mods.origin_info.dateValid),
       }
     end
 
@@ -114,7 +112,7 @@ module Importer
       human_readable_id = mods.identifier.map(&:text)
       {
         id: persistent_id(human_readable_id.first),
-        accession_number: human_readable_id
+        accession_number: human_readable_id,
       }
     end
 
@@ -128,7 +126,7 @@ module Importer
 
     # returns a hash with :latitude and :longitude
     def coordinates
-      coords =  mods.subject.cartographics.coordinates.map(&:text)
+      coords = mods.subject.cartographics.coordinates.map(&:text)
       # a hash where any value defaults to an empty array
       result = Hash.new { |h, k| h[k] = [] }
       coords.each_with_object(result) do |coord, result|
@@ -139,7 +137,7 @@ module Importer
     end
 
     def mods_description
-      mods.abstract.map{|e| strip_whitespace(e.text) }
+      mods.abstract.map { |e| strip_whitespace(e.text) }
     end
 
     def relations
@@ -148,10 +146,10 @@ module Importer
       name_nodes.each_with_object({}) do |node, relations|
         uri = node.attributes['valueURI']
         property = if value_uri = node.role.roleTerm.valueURI.first
-          property_name_for_uri[RDF::URI(value_uri)]
-        else
-          $stderr.puts "no role was specified for name #{node.namePart.text}"
-          :contributor
+                     property_name_for_uri[RDF::URI(value_uri)]
+                   else
+                     $stderr.puts "no role was specified for name #{node.namePart.text}"
+                     :contributor
         end
         unless property
           property = :contributor
@@ -168,17 +166,16 @@ module Importer
     end
 
     def collection
-
       { id: persistent_id(human_readable_id.first),
         accession_number: human_readable_id,
-        title: collection_name
+        title: collection_name,
       }
     end
 
     def collection_name
-       node_set = mods.at_xpath("//mods:relatedItem[@type='host']".freeze, NAMESPACES)
-       return unless node_set
-       node_set.titleInfo.title.text.strip
+      node_set = mods.at_xpath("//mods:relatedItem[@type='host']".freeze, NAMESPACES)
+      return unless node_set
+      node_set.titleInfo.title.text.strip
     end
 
     def human_readable_id
@@ -206,6 +203,7 @@ module Importer
     end
 
     private
+
       def build_date(node)
         finish = finish_point(node)
         start = start_point(node)
@@ -227,7 +225,7 @@ module Importer
       end
 
       def date_label(node)
-        node.css(":not([encoding])".freeze).map(&:text)
+        node.css(':not([encoding])'.freeze).map(&:text)
       end
 
       def untyped_title
@@ -263,12 +261,11 @@ module Importer
       end
 
       def strip_whitespace(text)
-        text.gsub("\n", " ").gsub("\t", "")
+        text.tr("\n", ' ').delete("\t")
       end
 
       def subject
         mods.xpath('//mods:subject/mods:name/@valueURI|//mods:subject/mods:topic/@valueURI', NAMESPACES).map { |uri| RDF::URI.new(uri) }
       end
-
   end
 end

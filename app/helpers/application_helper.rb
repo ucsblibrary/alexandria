@@ -1,5 +1,4 @@
 module ApplicationHelper
-
   # Should we show the "edit metadata" link on the show page?
   # Only shows up for non-etd things
   def editor?(_, stuff)
@@ -29,25 +28,23 @@ module ApplicationHelper
     AdminPolicy.find(document.admin_policy_id)
   end
 
-
   # Should we display the admin menu?
   def admin_menu?
     can?(:discover, Hydra::AccessControls::Embargo) || can?(:destroy, :local_authorities)
   end
 
-  def show_delete_link?(config, options)
+  def show_delete_link?(_config, options)
     LocalAuthority.local_authority?(options.fetch(:document)) &&
       can?(:destroy, :local_authorities)
   end
 
-  def show_merge_link?(config, options)
+  def show_merge_link?(_config, options)
     LocalAuthority.local_authority?(options.fetch(:document)) &&
       can?(:merge, options.fetch(:document))
   end
 
-  def show_embargos_link?(config, options)
+  def show_embargos_link?(_config, options)
     doc = options.fetch(:document)
     doc.curation_concern? && can?(:update_rights, doc)
   end
-
 end

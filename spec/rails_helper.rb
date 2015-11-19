@@ -1,7 +1,7 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
-ENV["RAILS_ENV"] ||= 'test'
+ENV['RAILS_ENV'] ||= 'test'
 require 'spec_helper'
-require File.expand_path("../../config/environment", __FILE__)
+require File.expand_path('../../config/environment', __FILE__)
 
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
@@ -13,17 +13,17 @@ Capybara.register_driver :poltergeist do |app|
 end
 Capybara.javascript_driver = :poltergeist
 
-#HttpLogger.logger = Logger.new(STDOUT)
-#HttpLogger.ignore = [/\/solr/]
+# HttpLogger.logger = Logger.new(STDOUT)
+# HttpLogger.ignore = [/\/solr/]
 # HttpLogger.colorize = true
-#HttpLogger.log_headers = false
+# HttpLogger.log_headers = false
 
 require 'webmock'
 # WebMock.disable_net_connect!(:allow_localhost => true)
 WebMock.allow_net_connect!
 VCR.configure do |config|
   config.ignore_hosts '127.0.0.1', 'localhost'
-  config.cassette_library_dir = "spec/fixtures/vcr_cassettes"
+  config.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
   config.hook_into :webmock
 end
 

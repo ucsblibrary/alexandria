@@ -17,5 +17,4 @@ module EmbargoBehavior
   def enforce_future_date_for_embargo?
     false
   end
-
 end

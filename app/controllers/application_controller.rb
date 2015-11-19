@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
-
   rescue_from DeviseLdapAuthenticatable::LdapException do |exception|
-    render :text => exception, :status => 500
+    render text: exception, status: 500
   end
 
   # before_filter do
@@ -33,7 +32,7 @@ class ApplicationController < ActionController::Base
 
   def on_campus?
     return false unless request.remote_ip
-    on_campus_network_prefixes.any? {|prefix| request.remote_ip.start_with?(prefix) }
+    on_campus_network_prefixes.any? { |prefix| request.remote_ip.start_with?(prefix) }
   end
   helper_method :on_campus?
 
@@ -44,5 +43,4 @@ class ApplicationController < ActionController::Base
   def current_ability
     @current_ability ||= Ability.new(current_user, on_campus?)
   end
-
 end

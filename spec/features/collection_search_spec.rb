@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 feature 'Collection search page' do
-
   let(:user) { create :user }
 
   before do
@@ -9,20 +8,22 @@ feature 'Collection search page' do
     login_as user
   end
 
-  context "with collections" do
+  context 'with collections' do
     let!(:collection1) { create(:public_collection, title: 'Red') }
-    let!(:collection2) { create(:public_collection, title: 'Pink',
-                                  id: 'fk/4v/98/9d/fk4v989d9j',
-                                  identifier: ['ark:/99999/fk4v989d9j'],
-                                  extent: ['7 photos']) }
+    let!(:collection2) do
+      create(:public_collection, title: 'Pink',
+                                 id: 'fk/4v/98/9d/fk4v989d9j',
+                                 identifier: ['ark:/99999/fk4v989d9j'],
+                                 extent: ['7 photos'])
+    end
 
     scenario 'Search for a collection' do
       visit collections.collections_path
 
-      fill_in 'q', with: "Pink"
+      fill_in 'q', with: 'Pink'
       click_button 'Search'
-      expect(page).not_to have_content "Red"
-      click_link "Pink"
+      expect(page).not_to have_content 'Red'
+      click_link 'Pink'
 
       # View collection metadata
       expect(page).to have_content 'Pink'
@@ -30,18 +31,18 @@ feature 'Collection search page' do
     end
   end
 
-  context "collections with images" do
+  context 'collections with images' do
     before do
       Collection.destroy_all
       Image.destroy_all
     end
 
-    let(:pink)   {{ title: 'Pink',   identifier: ['pink']   }}
-    let(:orange) {{ title: 'Orange', identifier: ['orange'] }}
-    let(:banana) {{ title: 'Banana', identifier: ['banana'] }}
+    let(:pink)   { { title: 'Pink',   identifier: ['pink']   } }
+    let(:orange) { { title: 'Orange', identifier: ['orange'] } }
+    let(:banana) { { title: 'Banana', identifier: ['banana'] } }
 
-    let(:colors_attrs) {{ title: 'Colors' }}
-    let(:fruits_attrs) {{ title: 'Fruits' }}
+    let(:colors_attrs) { { title: 'Colors' } }
+    let(:fruits_attrs) { { title: 'Fruits' } }
 
     let!(:colors) { create_collection_with_images(colors_attrs, [pink, orange]) }
     let!(:fruits) { create_collection_with_images(fruits_attrs, [orange, banana]) }
@@ -50,8 +51,8 @@ feature 'Collection search page' do
       visit collections.collection_path(colors)
 
       expect(page).to have_selector('#documents .document', count: 2)
-      expect(page).to     have_link('Pink', href: '/lib/pink')
-      expect(page).to     have_link('Orange', href: '/lib/orange')
+      expect(page).to have_link('Pink', href: '/lib/pink')
+      expect(page).to have_link('Orange', href: '/lib/orange')
       expect(page).to_not have_link('Banana', href: '/lib/banana')
 
       # Search for something that's not in this collection
@@ -67,7 +68,7 @@ feature 'Collection search page' do
 
       expect(page).to have_selector('#documents .document', count: 1)
       expect(page).to_not have_link('Pink', href: '/lib/pink')
-      expect(page).to     have_link('Orange', href: '/lib/orange')
+      expect(page).to have_link('Orange', href: '/lib/orange')
       expect(page).to_not have_link('Banana', href: '/lib/banana')
     end
 
@@ -75,8 +76,8 @@ feature 'Collection search page' do
       visit collections.collection_path(colors)
 
       expect(page).to have_selector('#documents .document', count: 2)
-      expect(page).to     have_link('Pink', href: '/lib/pink')
-      expect(page).to     have_link('Orange', href: '/lib/orange')
+      expect(page).to have_link('Pink', href: '/lib/pink')
+      expect(page).to have_link('Orange', href: '/lib/orange')
       expect(page).to_not have_link('Banana', href: '/lib/banana')
 
       # Search for something that's not in this collection
@@ -86,8 +87,7 @@ feature 'Collection search page' do
       expect(page).to have_selector('#documents .document', count: 1)
       expect(page).to_not have_link('Pink', href: '/lib/pink')
       expect(page).to_not have_link('Orange', href: '/lib/orange')
-      expect(page).to     have_link('Banana', href: '/lib/banana')
+      expect(page).to have_link('Banana', href: '/lib/banana')
     end
   end
 end
-

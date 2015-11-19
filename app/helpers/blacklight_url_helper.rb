@@ -1,7 +1,7 @@
 module BlacklightUrlHelper
   include Blacklight::UrlHelperBehavior
 
-  def url_for_document doc, options = {}
+  def url_for_document(doc, options = {})
     return unless doc
     case Array(doc['has_model_ssim']).first
     when 'Collection'
@@ -33,7 +33,7 @@ module BlacklightUrlHelper
 
   ##
   # Get the URL for tracking search sessions across pages using polymorphic routing
-  def session_tracking_path document, params = {}
+  def session_tracking_path(document, params = {})
     track_solr_document_path(document, params)
   end
 end
