@@ -2,7 +2,6 @@ require 'importer'
 require 'traject'
 
 class ObjectFactoryWriter
-
   # The passed-in settings
   attr_reader :settings
 
@@ -15,7 +14,7 @@ class ObjectFactoryWriter
   end
 
   def close
-    puts "closing"
+    puts 'closing'
     # null
   end
 
@@ -49,7 +48,7 @@ class ObjectFactoryWriter
 
     attributes[:files] = attributes.delete('filename')
 
-    attributes[:collection] = { id: "etds", title: "Electronic Theses and Dissertations", accession_number: ['etds'] }
+    attributes[:collection] = { id: 'etds', title: 'Electronic Theses and Dissertations', accession_number: ['etds'] }
 
     build_object(attributes)
   end
@@ -93,5 +92,4 @@ class ObjectFactoryWriter
       fields[:degree_supervisor] = ds
       fields
     end
-
 end

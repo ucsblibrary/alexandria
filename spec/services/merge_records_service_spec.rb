@@ -10,8 +10,6 @@ describe MergeRecordsService do
   let(:new_name) { create(:person, foaf_name: 'New Name') }
   let(:other_name) { create(:person, foaf_name: 'Some Other Name') }
 
-
-
   describe '#initialize' do
     context 'normal init with no errors' do
       subject { described_class.new(old_name, new_name) }
@@ -24,9 +22,9 @@ describe MergeRecordsService do
 
     context 'with non-local-authority records' do
       it 'raises an error' do
-        expect {
+        expect do
           described_class.new(old_name, image1)
-        }.to raise_error(IncompatibleMergeError, 'Error: Cannot merge records that are not local authority records.')
+        end.to raise_error(IncompatibleMergeError, 'Error: Cannot merge records that are not local authority records.')
       end
     end
 
@@ -34,9 +32,9 @@ describe MergeRecordsService do
       let(:topic) { Topic.create }
 
       it 'raises an error' do
-        expect {
+        expect do
           described_class.new(old_name, topic)
-        }.to raise_error(IncompatibleMergeError, 'Error: Cannot merge records that are not the same type of local authority.')
+        end.to raise_error(IncompatibleMergeError, 'Error: Cannot merge records that are not the same type of local authority.')
       end
     end
 
@@ -46,7 +44,6 @@ describe MergeRecordsService do
       end
     end
   end
-
 
   describe '#run' do
     subject { described_class.new(old_name, new_name) }
@@ -96,6 +93,5 @@ describe MergeRecordsService do
         expect { subject.run }.to raise_error(Ldp::Gone)
       end
     end
-  end  # describe #run
-
+  end # describe #run
 end

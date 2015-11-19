@@ -5,7 +5,6 @@
 # zipfiles.  This service identifies the zipfile based on the pdf name and extracts
 # all the files so we can save them with the Fedora object.
 class ZipfileService
-
   attr_reader :pdf_file_name
   # @param [String] pdf_file_name the base name of the PDF file to find
   def initialize(pdf_file_name)
@@ -27,23 +26,20 @@ class ZipfileService
       else
         extracted.add_supplemental filename
       end
-
     end
   end
 
   class ExtractedFiles < Struct.new(:pdf, :proquest, :supplemental)
-
-    def initialize(pdf=nil, proquest=nil, supplemental=[])
+    def initialize(pdf = nil, proquest = nil, supplemental = [])
       self.pdf = pdf
       self.proquest = proquest
       self.supplemental = supplemental
     end
 
     def add_supplemental(val)
-      self.supplemental ||=[]
+      self.supplemental ||= []
       supplemental << val
     end
-
   end
 
   private
@@ -56,8 +52,8 @@ class ZipfileService
 
     # @return [String, NilClass] the path tf the zipfile containing the pdf file
     def find_zip_file
-      ActiveSupport::Notifications.instrument("find_zip.importer",
-                               id: pdf_file_name, name: 'Search for zipfile') do
+      ActiveSupport::Notifications.instrument('find_zip.importer',
+                                              id: pdf_file_name, name: 'Search for zipfile') do
         results = `for f in #{wildcard_zip}; do unzip -l $f | grep -q #{pdf_file_name} && echo $f; done`
         results.chomp!
         results.empty? ? nil : results
@@ -81,5 +77,4 @@ class ZipfileService
     def wildcard_zip
       File.join(Shellwords.escape(Settings.proquest_directory), '*.zip')
     end
-
 end

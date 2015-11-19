@@ -1,5 +1,6 @@
 module ConvertIds
   extend ActiveSupport::Concern
+
   private
 
     def convert_ark_to_id
@@ -9,5 +10,4 @@ module ConvertIds
         params[:id] = id
       end
     end
-
 end

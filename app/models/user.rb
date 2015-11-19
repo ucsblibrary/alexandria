@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
 
   private
 
-    def cached_groups(&block)
+    def cached_groups(&_block)
       update(group_list: yield, groups_list_expires_at: 1.day.from_now) if groups_need_update?
       group_list
     end
@@ -53,5 +53,4 @@ class User < ActiveRecord::Base
     def groups_need_update?
       groups_list_expires_at.blank? || groups_list_expires_at < Time.now
     end
-
 end

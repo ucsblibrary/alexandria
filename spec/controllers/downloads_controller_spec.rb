@@ -1,28 +1,28 @@
 require 'rails_helper'
 
 describe DownloadsController do
-
   describe '#asset' do
     before do
       allow(controller).to receive(:params).and_return(id: 'ca%2Fc0%2Ff3%2Ff4%2Fcac0f3f4-ea8f-414d-a7a5-3253ef003b1a')
     end
-    it "decodes the id" do
+    it 'decodes the id' do
       expect(ActiveFedora::Base).to receive(:find).with('ca/c0/f3/f4/cac0f3f4-ea8f-414d-a7a5-3253ef003b1a')
       controller.asset
     end
   end
 
-
   describe '#show' do
-    let(:generic_file) {
+    let(:generic_file) do
       gf = GenericFile.new
       gf.original.original_name = 'sample.pdf'
       gf.original.content = File.new(File.join(fixture_path, 'pdf', 'sample.pdf'))
       gf.original.mime_type = 'application/pdf'
       gf
-    }
-    let(:etd) { ETD.new(generic_files: [generic_file],
-                        admin_policy_id: policy_id) }
+    end
+    let(:etd) do
+      ETD.new(generic_files: [generic_file],
+              admin_policy_id: policy_id)
+    end
 
     before do
       AdminPolicy.ensure_admin_policy_exists
@@ -41,8 +41,8 @@ describe DownloadsController do
 
         it 'is successful' do
           expect(response).to be_successful
-          expect(response.headers['Content-Type']).to eq "application/pdf"
-          expect(response.headers["Content-Disposition"]).to eq "inline; filename=\"sample.pdf\""
+          expect(response.headers['Content-Type']).to eq 'application/pdf'
+          expect(response.headers['Content-Disposition']).to eq "inline; filename=\"sample.pdf\""
         end
       end
     end
@@ -61,7 +61,5 @@ describe DownloadsController do
         end
       end
     end
-
-  end  # 'downloading a file'
-
+  end # 'downloading a file'
 end

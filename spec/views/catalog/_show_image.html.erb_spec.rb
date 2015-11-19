@@ -4,11 +4,12 @@ describe 'catalog/_show_image.html.erb' do
   let(:config) { CatalogController.blacklight_config }
 
   let(:sub_loc) { 'Basement, level 6' }
-  let(:document) { SolrDocument.new(
-    id: '123',
-    accession_number_ssim: 'AN',
-    sub_location_ssm: sub_loc)
-  }
+  let(:document) do
+    SolrDocument.new(
+      id: '123',
+      accession_number_ssim: 'AN',
+      sub_location_ssm: sub_loc)
+  end
 
   before do
     allow(view).to receive(:blacklight_config) { config }

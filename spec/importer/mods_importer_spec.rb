@@ -3,7 +3,6 @@ require 'importer'
 require 'importer/mods_parser'
 
 describe Importer::ModsImporter do
-
   def stub_out_indexer
     # Stub out the fetch to avoid calls to external services
     allow_any_instance_of(ActiveTriples::Resource).to receive(:fetch) { 'stubbed' }
@@ -13,11 +12,11 @@ describe Importer::ModsImporter do
   let(:importer) { Importer::ModsImporter.new(image_directory) }
 
   before do
-    allow($stdout).to receive(:puts)  # squelch output
+    allow($stdout).to receive(:puts) # squelch output
     stub_out_indexer
   end
 
-  describe "#import an Image" do
+  describe '#import an Image' do
     before do
       Collection.destroy_all
       if ActiveFedora::Base.exists? 'fk/41/23/45/fk41234567'
@@ -32,7 +31,7 @@ describe Importer::ModsImporter do
     let(:identifier1) { double('ARK1', id: 'ark:/99999/fk41234567') }
     let(:identifier2) { double('ARK2', id: 'ark:/99999/fk49876543') }
 
-    it "creates a new image, files, and a collection" do
+    it 'creates a new image, files, and a collection' do
       image = nil
       expect(identifier1).to receive(:target=).with(/http:\/\/test\.host\/lib\/ark:\/99999\/fk41234567$/)
       expect(identifier2).to receive(:target=).with(/http:\/\/test\.host\/lib\/ark:\/99999\/fk49876543$/)
@@ -41,11 +40,11 @@ describe Importer::ModsImporter do
       expect_any_instance_of(Importer::Factory::ImageFactory).to receive(:mint_ark).and_return(identifier1)
       expect_any_instance_of(Importer::Factory::CollectionFactory).to receive(:mint_ark).and_return(identifier2)
 
-      expect {
+      expect do
         image = importer.import(file)
-      }.to change { Image.count }.by(1).
-        and change { GenericFile.count }.by(2).
-        and change { Collection.count }.by(1)
+      end.to change { Image.count }.by(1)
+        .and change { GenericFile.count }.by(2)
+        .and change { Collection.count }.by(1)
 
       original = image.generic_files.first.original
       expect(original.mime_type).to eq 'image/tiff'
@@ -86,18 +85,18 @@ describe Importer::ModsImporter do
       it 'it adds image to existing collection' do
         expect(coll.members.count).to eq 0
 
-        expect {
+        expect do
           VCR.use_cassette('ezid') do
             importer.import(file)
           end
-        }.to change { Collection.count }.by(0)
+        end.to change { Collection.count }.by(0)
 
         expect(coll.reload.members.count).to eq 1
       end
     end
   end
 
-  describe "#import a Collection" do
+  describe '#import a Collection' do
     before do
       # This ID comes from the ezid VCR cassette:
       if ActiveFedora::Base.exists? 'fk/4c/25/2k/fk4c252k0f'
@@ -109,12 +108,13 @@ describe Importer::ModsImporter do
 
     it 'creates a collection' do
       coll = nil
-      expect {
+      expect do
         VCR.use_cassette('ezid') do
           coll = importer.import(file)
         end
-      }.to change { Collection.count }.by(1).and change {
-                    Person.count }.by(1)
+      end.to change { Collection.count }.by(1).and change {
+        Person.count
+      }.by(1)
 
       expect(coll.id).to match /^fk\/4\w\/\w{2}\/\w{2}\/fk4\w{7}$/
       expect(coll.accession_number).to eq ['SBHC Mss 78']
@@ -132,9 +132,9 @@ describe Importer::ModsImporter do
 
       it 'it adds metadata to existing collection' do
         coll = nil
-        expect {
+        expect do
           coll = importer.import(file)
-        }.to change { Collection.count }.by(0)
+        end.to change { Collection.count }.by(0)
 
         expect(coll.id).to eq existing.id
         expect(coll.accession_number).to eq ['SBHC Mss 78']
@@ -154,12 +154,13 @@ describe Importer::ModsImporter do
 
       it "doesn't create another person" do
         coll = nil
-        expect {
+        expect do
           VCR.use_cassette('ezid') do
             coll = importer.import(file)
           end
-        }.to change { Collection.count }.by(1).and change {
-                      Person.count }.by(0)
+        end.to change { Collection.count }.by(1).and change {
+          Person.count
+        }.by(0)
 
         expect(coll.collector.count).to eq 1
         uri = coll.collector.first.rdf_subject.value
@@ -183,16 +184,16 @@ describe Importer::ModsImporter do
           ActiveFedora::Base.find('fk/4c/25/2k/fk4c252k0f').destroy(eradicate: true)
         end
         Agent.delete_all
-        Agent.create(foaf_name: frodo)  # existing rights holder
+        Agent.create(foaf_name: frodo) # existing rights holder
         allow_any_instance_of(Importer::ModsParser).to receive(:rights_holder) { [frodo, bilbo, pippin] }
       end
 
       it 'finds or creates the rights holders' do
-        expect {
+        expect do
           VCR.use_cassette('ezid') do
             coll = importer.import(file)
           end
-        }.to change { Agent.exact_model.count }.by(1)
+        end.to change { Agent.exact_model.count }.by(1)
 
         rights_holders = Agent.exact_model
         expect(rights_holders.map(&:foaf_name).sort).to eq [bilbo, frodo]

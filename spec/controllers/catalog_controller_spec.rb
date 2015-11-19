@@ -1,16 +1,15 @@
 require 'rails_helper'
 
 describe CatalogController do
-
   before do
     AdminPolicy.ensure_admin_policy_exists
   end
 
-  describe "the search results" do
+  describe 'the search results' do
     let!(:generic_file) { GenericFile.create! }
     let!(:image) { create(:public_image) }
 
-    it "only shows images (not GenericFiles)" do
+    it 'only shows images (not GenericFiles)' do
       get :index
       found = assigns[:document_list].map(&:id)
       expect(found).to include(image.id)
@@ -18,19 +17,17 @@ describe CatalogController do
     end
   end
 
-  describe "show tools" do
-    it "includes the edit link" do
+  describe 'show tools' do
+    it 'includes the edit link' do
       expect(CatalogController.blacklight_config.show.document_actions.keys).to include :edit
     end
 
-    it "includes the access and embargo link" do
+    it 'includes the access and embargo link' do
       expect(CatalogController.blacklight_config.show.document_actions.keys).to include :access
     end
   end
 
-
   describe 'show page' do
-
     context 'view a restricted file' do
       let(:restricted_image) { create(:image, :restricted) }
 
@@ -57,7 +54,5 @@ describe CatalogController do
         end
       end
     end
-
-  end  # show page
-
+  end # show page
 end

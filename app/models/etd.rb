@@ -37,7 +37,7 @@ class ETD < ActiveFedora::Base
 
   include NestedAttributes
   include Hydra::Collections::Collectible
-  aggregates :generic_files, predicate: ::RDF::URI("http://pcdm.org/models#hasMember")
+  aggregates :generic_files, predicate: ::RDF::URI('http://pcdm.org/models#hasMember')
 
   contains :proquest
 

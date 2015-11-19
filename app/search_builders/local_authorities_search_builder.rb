@@ -5,5 +5,4 @@ class LocalAuthoritiesSearchBuilder < Hydra::SearchBuilder
     solr_params[:fq] ||= []
     solr_params[:fq] << "{!terms f=has_model_ssim}#{LocalAuthority.local_authority_models.join(',')}"
   end
-
 end

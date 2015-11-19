@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'welcome/about', as: 'about'
 
   post 'contact_us' => 'contact_us#create', as: :contact_us
-  get  'contact_us' => 'contact_us#new',    as: :contact_us_form
+  get 'contact_us' => 'contact_us#new', as: :contact_us_form
 
   blacklight_for :catalog
   get 'lib/:id' => 'catalog#show', constraints: { id: /ark:\/\d{5}\/f\w{7,9}/ }
@@ -36,5 +36,4 @@ Rails.application.routes.draw do
     get 'new_merge', on: :member
     post 'merge', on: :member
   end
-
 end

@@ -1,45 +1,45 @@
 require 'rails_helper'
 
 describe SolrDocument do
-  context "for an image" do
+  context 'for an image' do
     let(:image) { create(:image) }
     let(:document) { SolrDocument.new(id: image.id, identifier_ssm: ['ark:/99999/fk4v989d9j'], has_model_ssim: [Image.to_class_uri]) }
 
-    describe "#repository_model" do
+    describe '#repository_model' do
       subject { document.repository_model }
-      it "converts to a model" do
+      it 'converts to a model' do
         expect(subject).to be_kind_of Image
         expect(subject.resource).to be_kind_of ActiveTriples::Resource
       end
     end
 
-    describe "#export_as_ttl" do
+    describe '#export_as_ttl' do
       subject { document.export_as_ttl }
       it { is_expected.to match '<info:fedora/fedora-system:def/model#hasModel> "Image"' }
     end
 
-    describe "#ark" do
+    describe '#ark' do
       subject { document.ark }
       it { is_expected.to eq 'ark:/99999/fk4v989d9j' }
     end
 
-    describe "#etd?" do
+    describe '#etd?' do
       subject { document.etd? }
       it { is_expected.to be false }
     end
   end
 
-  context "for an etd" do
+  context 'for an etd' do
     let(:etd_document) { SolrDocument.new(id: 'foobar', has_model_ssim: [ETD.to_class_uri]) }
 
-    describe "#etd?" do
+    describe '#etd?' do
       subject { etd_document.etd? }
       it { is_expected.to be true }
     end
 
-    describe "generic_files" do
+    describe 'generic_files' do
       subject { etd_document.generic_files }
-      context "with generic files" do
+      context 'with generic files' do
         let(:generic_file_document) { SolrDocument.new(id: 'bf/74/27/75/bf742775-2a24-46dc-889e-cca03b27b5f3') }
         before do
           etd_document['generic_file_ids_ssim'] = [generic_file_document.id]
@@ -47,12 +47,12 @@ describe SolrDocument do
           ActiveFedora::SolrService.commit
         end
 
-        it "looks up the generic_files" do
+        it 'looks up the generic_files' do
           expect(subject.map(&:id)).to eq [generic_file_document.id]
         end
       end
 
-      context "without generic files" do
+      context 'without generic files' do
         it { is_expected.to be_empty }
       end
     end
@@ -80,13 +80,15 @@ describe SolrDocument do
     end
   end
 
-  describe "#after_embargo_status" do
+  describe '#after_embargo_status' do
     before { AdminPolicy.ensure_admin_policy_exists }
-    let(:document) { SolrDocument.new(
+    let(:document) do
+      SolrDocument.new(
         visibility_during_embargo_ssim: ['authorities/policies/ucsb_on_campus'],
         visibility_after_embargo_ssim: ['authorities/policies/public'],
-        embargo_release_date_dtsi: '2010-10-10T00:00:00Z'
-    ) }
+        embargo_release_date_dtsi: '2010-10-10T00:00:00Z',
+      )
+    end
     subject { document.after_embargo_status }
     it { is_expected.to eq ' - Becomes Public access on 10/10/2010' }
   end

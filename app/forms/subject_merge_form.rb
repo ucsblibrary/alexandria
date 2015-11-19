@@ -10,5 +10,4 @@ class SubjectMergeForm
   def title
     Array(model.label).join(', ')
   end
-
 end

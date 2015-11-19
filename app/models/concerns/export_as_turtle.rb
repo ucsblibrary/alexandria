@@ -1,7 +1,7 @@
 module ExportAsTurtle
- def self.extended(document)
+  def self.extended(document)
     # Register our exportable formats
-    register_export_formats( document )
+    register_export_formats(document)
   end
 
   def self.register_export_formats(document)

@@ -8,7 +8,7 @@ class Image < ActiveFedora::Base
   include Hydra::AccessControls::Embargoable
   include EmbargoBehavior
 
-  aggregates :generic_files, predicate: ::RDF::URI("http://pcdm.org/models#hasMember")
+  aggregates :generic_files, predicate: ::RDF::URI('http://pcdm.org/models#hasMember')
 
   has_and_belongs_to_many :issued, predicate: ::RDF::DC.issued, class_name: 'TimeSpan', inverse_of: :issued_images
 
@@ -18,7 +18,6 @@ class Image < ActiveFedora::Base
   accepts_nested_attributes_for :date_copyrighted, reject_if: :time_span_blank, allow_destroy: true
 
   validates_vocabulary_of :rights_holder
-
 
   def self.indexer
     ImageIndexer

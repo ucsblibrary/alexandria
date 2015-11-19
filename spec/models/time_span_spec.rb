@@ -1,17 +1,16 @@
 require 'rails_helper'
 
 describe TimeSpan do
-
-  describe "#start" do
+  describe '#start' do
     before do
       subject.start = ['1930']
     end
-    it "has start" do
+    it 'has start' do
       expect(subject.start).to eq ['1930']
     end
   end
 
-  context "#earliest_year" do
+  context '#earliest_year' do
     before do
       subject.start = ['1930', '1912', '', '1920']
     end
@@ -128,8 +127,7 @@ describe TimeSpan do
         end
       end
     end
-  end  # display_label
-
+  end # display_label
 
   describe 'TimeSpan.qualifiers' do
     it 'has the expected qualifiers in order' do

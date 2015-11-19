@@ -4,5 +4,4 @@ class GenericFile < ActiveFedora::Base
   def self.indexer
     GenericFileIndexer
   end
-
 end

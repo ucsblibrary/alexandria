@@ -1,5 +1,4 @@
 class AttachFilesToETD
-
   def self.run(etd, pdf_file_name)
     AttachFilesToETD.new(etd, pdf_file_name).run
   end
@@ -26,7 +25,6 @@ class AttachFilesToETD
     end
   end
 
-
   private
 
     def zip_service
@@ -52,6 +50,6 @@ class AttachFilesToETD
 
     def best_mime_for_filename(file_name)
       mime_types = MIME::Types.of(file_name)
-      mime_types.empty? ? "application/octet-stream" : mime_types.first.content_type
+      mime_types.empty? ? 'application/octet-stream' : mime_types.first.content_type
     end
 end

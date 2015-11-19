@@ -1,7 +1,6 @@
-require "rails_helper"
+require 'rails_helper'
 
-RSpec.describe ContactUsMailer, :type => :mailer do
-
+RSpec.describe ContactUsMailer, type: :mailer do
   let(:from) { 'frodo@example.com' }
   let(:body) { 'The message' }
   let(:subj) { 'There and Back Again' }
@@ -14,10 +13,10 @@ RSpec.describe ContactUsMailer, :type => :mailer do
     end
 
     describe 'happy path' do
-      subject(:email) {
+      subject(:email) do
         msg = ContactUsMailer.web_inquiry(from, subj, body)
         msg.deliver_now
-      }
+      end
 
       it 'generates an email with info from the form' do
         expect(ActionMailer::Base.deliveries).to_not be_empty
@@ -29,10 +28,10 @@ RSpec.describe ContactUsMailer, :type => :mailer do
     end
 
     describe 'with a suspected spam message' do
-      subject(:email) {
+      subject(:email) do
         msg = ContactUsMailer.web_inquiry(from, subj, body, true)
         msg.deliver_now
-      }
+      end
 
       it 'the generated email has a special subject line' do
         expect(email.subject).to eq spam_subj

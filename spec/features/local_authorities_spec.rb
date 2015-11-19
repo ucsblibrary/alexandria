@@ -24,7 +24,7 @@ feature 'Local Authorities' do
         click_link 'Person'
       end
 
-      expect(page).to     have_link(frodo.foaf_name)
+      expect(page).to have_link(frodo.foaf_name)
       expect(page).to_not have_link(fellows.foaf_name)
 
       # Remove the previous facet selection
@@ -40,9 +40,8 @@ feature 'Local Authorities' do
       end
 
       expect(page).to_not have_link(frodo.foaf_name)
-      expect(page).to     have_link(fellows.foaf_name)
+      expect(page).to have_link(fellows.foaf_name)
     end
-
 
     scenario 'Click show link from index page' do
       visit local_authorities_path
@@ -52,5 +51,4 @@ feature 'Local Authorities' do
       expect(page).to have_content("Name: #{frodo.foaf_name}")
     end
   end
-
 end

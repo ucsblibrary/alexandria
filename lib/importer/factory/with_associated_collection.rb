@@ -11,9 +11,7 @@ module Importer
 
       def find_collection
         collection_attrs = attributes.fetch(:collection).merge(admin_policy_id: attributes[:admin_policy_id])
-        CollectionFactory.new(collection_attrs).run do |coll|
-          coll.save!
-        end
+        CollectionFactory.new(collection_attrs).run(&:save!)
       end
     end
   end

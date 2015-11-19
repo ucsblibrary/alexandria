@@ -37,7 +37,7 @@ class AccessController < ApplicationController
     end
 
     def etd_params
-      # TODO update
+      # TODO: update
       @etd_params ||= params.require(:etd).permit(:embargo, :admin_policy_id, :visibility_after_embargo_id, :embargo_release_date)
     end
 
@@ -48,5 +48,4 @@ class AccessController < ApplicationController
         super
       end
     end
-
 end

@@ -43,21 +43,21 @@ module Metadata
     end
 
     property :latitude, predicate: RDF::EXIF.gpsLatitude do |index|
-       index.as :displayable
+      index.as :displayable
     end
 
     property :language, predicate: RDF::DC.language,
-      class_name: Oargun::ControlledVocabularies::Language do |index|
-        index.as :displayable
+                        class_name: Oargun::ControlledVocabularies::Language do |index|
+      index.as :displayable
     end
 
     property :longitude, predicate: RDF::EXIF.gpsLongitude do |index|
-       index.as :displayable
+      index.as :displayable
     end
 
     property :location, predicate: RDF::DC.spatial,
-      class_name: Oargun::ControlledVocabularies::Geographic do |index|
-        index.as :stored_searchable, :facetable
+                        class_name: Oargun::ControlledVocabularies::Geographic do |index|
+      index.as :stored_searchable, :facetable
     end
 
     property :place_of_publication, predicate: RDF::Vocab::MARCRelators.pup do |index|
@@ -113,10 +113,9 @@ module Metadata
     # has_and_belongs_to_many :date_accepted, predicate: RDF::DC.dateAccepted, class_name: 'TimeSpan'
     # has_and_belongs_to_many :date_submitted, predicate: RDF::DC.dateSubmitted, class_name: 'TimeSpan'
 
-
     # RDA
     property :form_of_work, predicate: RDF::URI('http://www.rdaregistry.info/Elements/w/#formOfWork.en'),
-        class_name: Oargun::ControlledVocabularies::WorkType do |index|
+                            class_name: Oargun::ControlledVocabularies::WorkType do |index|
       index.as :stored_searchable, :facetable
     end
 
@@ -151,7 +150,7 @@ module Metadata
       RELATIONS.keys
     end
 
-    belongs_to :admin_policy, class_name: "Hydra::AdminPolicy", predicate: ActiveFedora::RDF::ProjectHydra.isGovernedBy
+    belongs_to :admin_policy, class_name: 'Hydra::AdminPolicy', predicate: ActiveFedora::RDF::ProjectHydra.isGovernedBy
   end
 
   def time_span_blank(attributes)
@@ -166,7 +165,7 @@ module Metadata
 
   def controlled_properties
     @controlled_properties ||= self.class.properties.each_with_object([]) do |(key, value), arr|
-      if value["class_name"] && (value["class_name"] < ActiveTriples::Resource || value["class_name"].new.resource.class < ActiveTriples::Resource)
+      if value['class_name'] && (value['class_name'] < ActiveTriples::Resource || value['class_name'].new.resource.class < ActiveTriples::Resource)
         arr << key
       end
     end

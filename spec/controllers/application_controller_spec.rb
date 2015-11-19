@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 describe ApplicationController do
-
   def stub_remote_ip(ip)
     allow_any_instance_of(ActionDispatch::Request).to receive(:remote_ip) { ip }
   end
@@ -21,5 +20,4 @@ describe ApplicationController do
       expect(controller.on_campus?).to eq false
     end
   end
-
 end

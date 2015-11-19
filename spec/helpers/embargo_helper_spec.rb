@@ -8,7 +8,7 @@ describe EmbargoHelper do
 
   before { AdminPolicy.ensure_admin_policy_exists }
 
-  describe "after_visibility" do
+  describe 'after_visibility' do
     subject { helper.after_visibility(etd) }
     it { is_expected.to eq 'Restricted access' }
   end

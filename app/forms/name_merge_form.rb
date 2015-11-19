@@ -10,5 +10,4 @@ class NameMergeForm
   def title
     model.foaf_name
   end
-
 end

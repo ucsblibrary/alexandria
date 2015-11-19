@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ContactUsController, :type => :controller do
+RSpec.describe ContactUsController, type: :controller do
   let(:frodo) { 'Frodo Baggins' }
   let(:frodo_email) { 'frodo@example.com' }
   let(:from) { 'Frodo Baggins <frodo@example.com>' }
@@ -13,11 +13,11 @@ RSpec.describe ContactUsController, :type => :controller do
   let(:referer) { 'Page that I came from' }
 
   before do
-    request.env["HTTP_REFERER"] = referer
+    request.env['HTTP_REFERER'] = referer
     ActionMailer::Base.deliveries.clear
   end
 
-  describe "GET new" do
+  describe 'GET new' do
     before { get :new }
 
     it 'displays the "contact us" form' do
@@ -26,9 +26,9 @@ RSpec.describe ContactUsController, :type => :controller do
     end
   end
 
-  describe "GET create" do
+  describe 'GET create' do
     before do
-      post :create, { name: frodo, email: frodo_email, category: category, message: message }
+      post :create, name: frodo, email: frodo_email, category: category, message: message
     end
 
     it 'generates an email' do
@@ -45,11 +45,11 @@ RSpec.describe ContactUsController, :type => :controller do
     end
   end
 
-  describe "GET create with spam" do
+  describe 'GET create with spam' do
     before do
       # If the invisible zipcode field is filled in,
       # we suspect it is spam.
-      post :create, { name: frodo, email: frodo_email, category: category, message: message, zipcode: '55402' }
+      post :create, name: frodo, email: frodo_email, category: category, message: message, zipcode: '55402'
     end
 
     it 'generates an email, but flags it as spam' do
@@ -58,5 +58,4 @@ RSpec.describe ContactUsController, :type => :controller do
       expect(email.subject).to eq spam_subject
     end
   end
-
 end

@@ -1,23 +1,22 @@
 require 'importer/log_subscriber'
 module Importer::Factory
   class ObjectFactory
-
     attr_reader :attributes, :files_directory
 
-    def initialize(attributes, files_dir=nil)
+    def initialize(attributes, files_dir = nil)
       @files_directory = files_dir
       @attributes = attributes
     end
 
     def run
       if obj = find
-        ActiveSupport::Notifications.instrument("import.importer",
-                       id: attributes[:id], name: 'UPDATE', klass: klass) do
+        ActiveSupport::Notifications.instrument('import.importer',
+                                                id: attributes[:id], name: 'UPDATE', klass: klass) do
           update(obj)
         end
       else
-        ActiveSupport::Notifications.instrument("import.importer",
-                       id: attributes[:id], name: 'CREATE', klass: klass) do
+        ActiveSupport::Notifications.instrument('import.importer',
+                                                id: attributes[:id], name: 'CREATE', klass: klass) do
           obj = create
         end
       end
@@ -101,7 +100,6 @@ module Importer::Factory
       build_nested('notes', Note, attrs)
     end
 
-
     def log_created(obj)
       puts "  Created #{klass.to_s.downcase} #{obj.id} (#{attributes[:accession_number].first})"
     end
@@ -111,7 +109,7 @@ module Importer::Factory
     end
 
     def klass
-      raise "You must implement the klass method"
+      fail 'You must implement the klass method'
     end
 
     # @return [Ezid::Identifier] the new identifier
@@ -120,7 +118,7 @@ module Importer::Factory
     end
 
     def find_or_create_contributors(fields, attrs)
-      Hash.new.tap do |contributors|
+      {}.tap do |contributors|
         fields.each do |field|
           next unless attrs.key?(field)
           contributors[field] = contributors_for_field(attrs, field)
@@ -145,10 +143,10 @@ module Importer::Factory
       def contributors_for_field(attrs, field)
         attrs[field].each_with_object([]) do |value, object|
           object << case value
-            when RDF::URI, String
-              value
-            when Hash
-              find_or_create_local_contributor(value.fetch(:type), value.fetch(:name))
+                    when RDF::URI, String
+                      value
+                    when Hash
+                      find_or_create_local_contributor(value.fetch(:type), value.fetch(:name))
           end
         end
       end

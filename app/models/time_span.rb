@@ -6,16 +6,16 @@ class TimeSpan < ActiveFedora::Base
   property :label, predicate: ::RDF::SKOS.prefLabel
   property :note, predicate: ::RDF::SKOS.note
 
-  has_many :images, inverse_of: :created, class_name: "Image"
-  has_many :issued_images, inverse_of: :issued, class_name: "Image"
-  has_many :date_other_images, inverse_of: :date_other, class_name: "Image"
-  has_many :date_valid_images, inverse_of: :date_valid, class_name: "Image"
-  has_many :date_copyrighted_images, inverse_of: :date_copyrighted, class_name: "Image"
+  has_many :images, inverse_of: :created, class_name: 'Image'
+  has_many :issued_images, inverse_of: :issued, class_name: 'Image'
+  has_many :date_other_images, inverse_of: :date_other, class_name: 'Image'
+  has_many :date_valid_images, inverse_of: :date_valid, class_name: 'Image'
+  has_many :date_copyrighted_images, inverse_of: :date_copyrighted, class_name: 'Image'
 
   # MODS date qualifiers
-  APPROX = "approximate"
-  INFERRED = "inferred"
-  QUESTIONABLE = "questionable"
+  APPROX = 'approximate'
+  INFERRED = 'inferred'
+  QUESTIONABLE = 'questionable'
 
   QUALIFIERS = [APPROX, INFERRED, QUESTIONABLE]
 
@@ -27,9 +27,9 @@ class TimeSpan < ActiveFedora::Base
     start.any?(&:present?) && finish.any?(&:present?)
   end
 
-  #def node?
+  # def node?
   #  false
-  #end
+  # end
 
   # Return a string for display of this record
   def display_label
@@ -64,6 +64,7 @@ class TimeSpan < ActiveFedora::Base
   end
 
   private
+
     def start_integer
       extract_year(start.first)
     end
