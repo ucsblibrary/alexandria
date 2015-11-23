@@ -38,12 +38,9 @@ Vagrant.configure(2) do |config|
       'all_groups:children' => ['group1'],
     }
     ansible.extra_vars = {
-      deploy_user: 'vagrant',
       project_dir: '/vagrant',
-      server_name: 'localhost',
-      rails_env: 'development',
       bundle_path: '~/.bundle',
     }
-    ansible.playbook = 'provisioning/adrl-vagrant.yml'
+    ansible.playbook = 'provisioning/adrl.yml'
   end
 end

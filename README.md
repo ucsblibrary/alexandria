@@ -44,14 +44,16 @@
 1. If you didn’t clone this repository with `--recursive`, fetch the
    submodules with `git submodule init && git submodule update`.
 
-2. `vagrant up`
+2. `HOST=vagrant REMOTE_USER=vagrant RAILS_ENV=development SERVER=localhost PG_PASS=pick-one H_PG_PASS=pick-another M_PG_PASS=pick-a-third LDAP_PASS=get-from-secret-server vagrant up`
 
     You can SSH into the VM with `vagrant ssh` or manually by using
     the config produced by `vagrant ssh-config`.
 
-3. `bundle install`
+3. `scp vagrant@127.0.0.1:2222/opt/alex2/shared/config/*.yml config/`
 
-4. `make deploy` to run Capistrano
+4. `bundle install`
+
+5. `make deploy` to run Capistrano
 
     - At this point Apache should be running at: http://localhost:8484/
 
@@ -70,7 +72,7 @@
 
     - Passenger should be running:
 
-    - Marmotta should be running: http://localhost:8180/
+    - Marmotta should be running: http://localhost:8180/marmotta
 
 5. On the VM, add the LDAP password from Secret Server to `/opt/alex2/shared/config/ldap.yml`
 
