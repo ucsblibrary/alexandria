@@ -20,9 +20,7 @@ end
 ark_extractor = MarcExtractor.new('024a', separator: nil)
 
 to_field 'identifier', lambda { |record, accumulator, context|
-  fields = ark_extractor.extract(record).map do |field|
-    field
-  end.compact
+  fields = ark_extractor.extract(record).compact
   if fields.empty?
     puts 'No ARK, Skipping.'
     context.skip!
@@ -40,7 +38,7 @@ to_field 'system_number', extract_marc('001', default: nil)
 to_field 'language', marc_languages
 to_field 'created_start', marc_publication_date
 to_field 'isbn', extract_marc('020a', default: nil)
-to_field 'title', extract_marc('245a', trim_punctuation: true, default: nil)
+to_field 'title', extract_marc('245ab', trim_punctuation: true, default: nil)
 to_field 'author', extract_marc('100a', trim_punctuation: true, default: nil)
 to_field 'place_of_publication', extract_marc('264a', trim_punctuation: true, default: nil)
 to_field 'publisher', extract_marc('264b', trim_punctuation: true, default: nil)
