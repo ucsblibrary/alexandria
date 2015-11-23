@@ -11,8 +11,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'therubyracer', platforms: :ruby
 
-# TODO: Set hydra-head to a released version
-gem 'hydra-head', github: 'projecthydra/hydra-head', ref: 'cc8fe53'
+gem 'hydra-head', '9.5.0'
 
 # Optimise for a faster import: https://github.com/projecthydra/active_fedora/pull/876
 gem 'active-fedora', github: 'projecthydra/active_fedora', ref: 'fec345a'
@@ -25,7 +24,7 @@ gem 'hydra-collections', '~> 5.0.1'
 gem 'rdf-marmotta', '~> 0.0.8'
 gem 'rdf-vocab', '~> 0.8.4'
 
-gem 'blacklight', '~> 5.14.0'
+gem 'blacklight', '~> 5.16.0'
 gem 'settingslogic'
 
 gem 'rsolr', '~> 1.0.12'
@@ -45,13 +44,14 @@ gem 'kaminari', github: 'jcoyne/kaminari', branch: 'sufia'
 gem 'devise', '~> 3.5.2'
 gem 'devise_ldap_authenticatable'
 gem 'devise-guests', github: 'cbeer/devise-guests'
-# gem 'traject', require: false
+
+# see https://github.com/traject/traject/commit/656a992c400a472bf5b738ec7a3aa208cc449472
 gem 'traject', github: 'traject/traject', require: false, branch: 'allow_nil_default'
 
 gem 'resque-status'
 gem 'resque-pool'
 
-# for bin/sru
+# for bin/ingest-etd
 gem 'curb'
 
 # When parsing the ETD metadata file from ProQuest,
@@ -68,7 +68,6 @@ group :development, :test do
   gem 'poltergeist'
   gem 'byebug'
   gem 'sqlite3'
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-commands-rspec', group: :development
   gem 'awesome_print'
