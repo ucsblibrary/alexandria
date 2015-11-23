@@ -70,7 +70,7 @@
 
     - Passenger should be running:
 
-    - Marmotta should be running:
+    - Marmotta should be running: http://localhost:8180/
 
 5. On the VM, add the LDAP password from Secret Server to `/opt/alex2/shared/config/ldap.yml`
 
@@ -117,7 +117,7 @@ bin/ingest-mods ../mods-for-adrl/mods_demo_set/demo_sbhcmss78_FlyingAStudios ../
 
 The first argument to the script is the directory that contains the MODS files.  The second argument is the directory that contains supporting files, such as image files.
 
-## Manual Setup Notes
+## Running ADRL outside of Vagrant
 
 ### Dev/Test Configuration
   * Copy `config/blacklight.yml.template` to `config/blacklight.yml`

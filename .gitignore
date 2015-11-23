@@ -27,3 +27,4 @@ config/resque-pool.yml
 config/ldap.yml
 
 tags
+env

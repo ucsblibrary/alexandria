@@ -7,6 +7,11 @@ gem 'uglifier', '~> 2.7.2'
 gem 'jquery-rails', '~> 4.0.5'
 gem 'sass-rails', '~> 5.0'
 
+gem 'capistrano', '3.4.0'
+gem 'capistrano-rails', '>= 1.1.3'
+gem 'capistrano-bundler'
+gem 'capistrano-passenger'
+
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'therubyracer', platforms: :ruby
@@ -78,11 +83,4 @@ group :test do
   gem 'webmock', require: false
   gem 'vcr'
   gem 'database_cleaner'
-end
-
-group :development do
-  gem 'capistrano'
-  gem 'capistrano-rails', '>= 1.1.3'
-  gem 'capistrano-bundler'
-  gem 'capistrano-passenger'
 end

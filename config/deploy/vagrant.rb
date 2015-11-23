@@ -4,9 +4,12 @@
 # is considered to be the first unless any hosts have the primary
 # property set.  Don't declare `role :all`, it's a meta role.
 set :stage, :vagrant
-set :rails_env, 'production'
+set :rails_env, 'development'
+set :bundle_without, [:test]
 set :ssh_options, port: 2222, keys: ['~/.vagrant.d/insecure_private_key']
 server 'localhost', user: 'vagrant', roles: [:web, :app, :db]
+
+set :linked_files, %w(config/resque-pool.yml config/redis.yml config/blacklight.yml config/database.yml config/ezid.yml config/fedora.yml config/ldap.yml config/secrets.yml config/smtp.yml config/solr.yml config/environments/development.rb)
 
 # Extended Server Syntax
 # ======================

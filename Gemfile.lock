@@ -581,7 +581,7 @@ DEPENDENCIES
   blacklight (~> 5.16.0)
   blacklight-gallery
   byebug
-  capistrano
+  capistrano (= 3.4.0)
   capistrano-bundler
   capistrano-passenger
   capistrano-rails (>= 1.1.3)

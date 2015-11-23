@@ -1,7 +1,12 @@
-.PHONY: deploy rubocop
+.PHONY: vagrant rubocop
 
-deploy:
+vagrant:
+	echo development > env
 	bundle exec cap vagrant deploy
+
+prod:
+	echo production > env
+	bundle exec cap production deploy
 
 rubocop:
 	rubocop --format simple --config .rubocop.yml --auto-correct

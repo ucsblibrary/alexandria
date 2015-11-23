@@ -4,9 +4,19 @@
 # is considered to be the first unless any hosts have the primary
 # property set.  Don't declare `role :all`, it's a meta role.
 
-role :app, %w(deploy@example.com)
-role :web, %w(deploy@example.com)
-role :db,  %w(deploy@example.com)
+set :stage, :production
+set :rails_env, 'production'
+set :ssh_options, port: 2222, keys: ['~/.vagrant.d/insecure_private_key']
+
+# change to real hostname; like below
+server 'localhost', user: 'vagrant', roles: [:web, :app, :db]
+
+set :linked_files, %w(config/resque-pool.yml config/redis.yml config/blacklight.yml config/database.yml config/ezid.yml config/fedora.yml config/ldap.yml config/secrets.yml config/smtp.yml config/solr.yml config/environments/production.rb)
+
+# role :app, %w(deploy@example.com)
+# role :web, %w(deploy@example.com)
+# role :db,  %w(deploy@example.com)
+# server 'example.com', user: 'deploy', roles: %w(web app), my_property: :my_value
 
 # Extended Server Syntax
 # ======================
@@ -14,7 +24,6 @@ role :db,  %w(deploy@example.com)
 # server list. The second argument is a, or duck-types, Hash and is
 # used to set extended properties on the server.
 
-server 'example.com', user: 'deploy', roles: %w(web app), my_property: :my_value
 
 # Custom SSH Options
 # ==================

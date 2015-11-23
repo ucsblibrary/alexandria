@@ -32,7 +32,7 @@ Vagrant.configure(2) do |config|
 
   # Enable provisioning with Ansible
   config.vm.provision 'ansible' do |ansible|
-    ansible.verbose = 'vvv'
+    ansible.verbose = 'v'
     ansible.groups = {
       'vagrant' => ['default'],
       'all_groups:children' => ['group1'],
