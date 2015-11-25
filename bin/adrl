@@ -5,26 +5,34 @@ if [ "$1" != "" ]; then
   export RAILS_ENV="$1"
 fi
 
-if [ "$HOST" == "" ]; then
-  echo -n "Use HOST (default 'vagrant'): "
-  read -r host
-  host=${host:-"vagrant"}
-  echo "Setting HOST to '$host'"
-  export HOST="$host"
+if [ "$PORT" == "" ]; then
+  port=${PORT:-"2222"}
+  if [ "$RAILS_ENV" == "production" ]; then
+    echo -n "Use PORT (default '22'): "
+    read -r port
+    port=${port:-"22"}
+  fi
+  echo "Setting PORT to '$port'"
+  export PORT="$port"
 fi
 
 if [ "$REMOTE_USER" == "" ]; then
-  echo -n "Set REMOTE_USER (default 'vagrant'): "
-  read -r remote_user
-  remote_user=${remote_user:-"vagrant"}
+  remote_user=${REMOTE_USER:-"vagrant"}
+  if [ "$RAILS_ENV" == "production" ]; then
+    echo -n "Set REMOTE_USER (default 'root'): "
+    read -r remote_user
+    remote_user=${remote_user:-"root"}
+  fi
   echo "Setting REMOTE_USER to '$remote_user'"
   export REMOTE_USER="$remote_user"
 fi
 
 if [ "$SERVER" == "" ]; then
-  echo -n "Set SERVER (default '127.0.0.1'): "
-  read -r server
-  server=${server:-"127.0.0.1"}
+  server=${SERVER:-"127.0.0.1"}
+  if [ "$RAILS_ENV" == "production" ]; then
+    echo -n "Set SERVER: "
+    read -r server
+  fi
   echo "Setting SERVER to '$server'"
   export SERVER="$server"
 fi
@@ -71,12 +79,32 @@ run_cmd() {
   fi
 }
 
+write_hosts() {
+  cat <<EOF
+[adrl-hosts]
+alex2 ansible_ssh_port=$PORT ansible_ssh_host=$SERVER
+EOF
+  }
+
 if [ "$RAILS_ENV" == "development" ]; then
-  run_cmd "vagrant up || vagrant provision"
-  restart_tomcat="ssh -i $(pwd)/.vagrant/machines/default/virtualbox/private_key -o UserKnownHostsFile=/dev/null -o IdentitiesOnly=yes -o StrictHostKeyChecking=no vagrant@127.0.0.1 -p 2222 'sudo /usr/sbin/service tomcat restart'"
-  run_cmd "$restart_tomcat"
+  run_cmd "vagrant up"
 
   echo "Provisioning complete."
   echo 'Run `make vagrant` to deploy with Capistrano.'
+  echo
+  echo "After the first deploy, restart Tomcat:"
+  echo "  ssh -i $(pwd)/.vagrant/machines/default/virtualbox/private_key -o UserKnownHostsFile=/dev/null -o IdentitiesOnly=yes -o StrictHostKeyChecking=no $REMOTE_USER@$SERVER -p $PORT 'sudo /usr/sbin/service tomcat restart'"
+
+elif [ "$RAILS_ENV" == "production" ]; then
+  write_hosts > provisioning/hosts
+  run_cmd "ansible-playbook provisioning/adrl.yml -i provisioning/hosts"
+
+  echo "Provisioning complete."
+  echo
+  echo "Add deploy@$SERVER:~/.ssh/id_rsa.pub to your repository's authorized keys."
+  echo
+  echo 'Run `make prod` to deploy with Capistrano.'
+  echo
+  echo "After the first deploy, restart Tomcat:"
+  echo "  ssh -o UserKnownHostsFile=/dev/null -o IdentitiesOnly=yes -o StrictHostKeyChecking=no $REMOTE_USER@$SERVER -p $PORT 'sudo /usr/sbin/service tomcat restart'"
 fi
-# TODO: provisioning a production server

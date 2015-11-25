@@ -3,13 +3,16 @@ lock '3.4.0'
 
 set :application, 'alex2'
 set :scm, :git
-set :repo_url, 'https://github.com/curationexperts/alexandria-v2.git'
+set :repo_url, ENV.fetch('REPO', 'https://github.com/curationexperts/alexandria-v2.git')
 set :deploy_to, '/opt/alex2'
 
 set :stages, %w(production vagrant)
 set :default_stage, 'vagrant'
 
 set :log_level, :debug
+set :bundle_flags, '--deployment'
+set :bundle_env_variables, nokogiri_use_system_libraries: 1
+
 set :keep_releases, 5
 set :passenger_restart_with_touch, true
 set :assets_prefix, "#{shared_path}/public/assets"

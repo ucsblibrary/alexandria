@@ -1,12 +1,10 @@
-# Running ADRL in Vagrant
+# Running a development instance in Vagrant
 
-## PreReqs
+## Prerequisites
 
+- Ansible 1.9.1 or higher
 - Vagrant 1.7.2 or higher
 - VirtualBox 4.3.30 or higher
-- Git
-- Ansible 1.9.1 or higher
-- PostgreSQL
 
 ## Part A: get or build a Vagrant Box with CentOS 7.0 on it.
 
@@ -44,14 +42,14 @@
 1. If you didn’t clone this repository with `--recursive`, fetch the
    submodules with `git submodule init && git submodule update`.
 
-2. `bin/adrl development`
+2. `bundle install`
+
+3. `bin/adrl development`
 
     Once the VM is created, you can SSH into it with `vagrant ssh` or
     manually by using the config produced by `vagrant ssh-config`.
 
-3. `bundle install`
-
-4. `make deploy` to run Capistrano
+4. `make vagrant` to deploy with Capistrano
 
 5. The following services should be running; `sudo service [program]
     restart` if not:
@@ -72,11 +70,60 @@
 
 5. On the VM, add the LDAP password from Secret Server to `/opt/alex2/shared/config/ldap.yml`
 
-## Ingesting
+# Provisioning and deploying to production
+
+## Prerequisites
+
+- Ansible 1.9.1 or higher
+
+## Steps
+
+1. `bundle install`
+
+2. `bin/adrl production` to provision the production server
+
+    - It’s (relatively) safe to set `REMOTE_USER` as root, since a
+    non-root `deploy` user will be created for Capistrano.
+
+3. Add `/home/deploy/.ssh/id_rsa.pub` to the authorized keys for this repository.
+
+3. `make prod` to deploy with Capistrano.
+
+# Troubleshooting
+
+## mod_passenger fails to compile
+
+There’s probably not enough memory on the server.
+
+## `SSHKit::Command::Failed: bundle exit status: 137` during `bundle install`
+
+Probably not enough memory.
+
+## Nokogiri fails to compile
+
+```
+set :bundle_env_variables, nokogiri_use_system_libraries: 1
+```
+
+## Passenger fails to spawn process
+
+```
+[ 2015-11-26 01:56:19.7981 20652/7f16c6f19700 App/Implementation.cpp:303 ]: Could not spawn process for application /opt/alex2/current: An error occurred while starting up the preloader: it did not write a startup response in time.
+```
+
+Try restarting Apache and deploying again.
+
+# Testing
+
+  * Make sure jetty is running
+  * Make sure marmotta is running, or CI environment variable is set to bypass marmotta
+  * `bundle exec rake spec`
+
+# Ingesting
 
 See also: <https://github.com/curationexperts/alexandria-v2/wiki>
 
-### ETDs
+## ETDs
 
 There are scripts to ingest records from zipfiles like those on the
 [sample ETDs page](https://wiki.library.ucsb.edu/display/repos/ETD+Sample+Files+for+DCE).
@@ -89,23 +136,23 @@ The process is as follows:
 
 3. Run the ETD script: `bundle exec bin/ingest-etd /vagrant/Batch\ 3.zip`.
 
-### Images
+## Images
 
-#### CSV
+### CSV
 
-##### Individual images
+#### Individual images
 ```
 bundle exec bin/ingest-csv ../ucsb_sample_data/adrl-dm/ingest-ready/pamss045\(Couper\)/pamss045\(Couper\)-objects.csv ../alexandria-images/special_collections/pamss045/tiff-a16
 ```
 
-##### Collections
+#### Collections
 ```
 bin/ingest-csv ../ucsb_sample_data/adrl-dm/ingest-ready/pamss045\(Couper\)/pamss045\(Couper\)-collection.csv Collection
 ```
 
 The first argument to the script is the CSV file that contains the records.  The second argument is the directory that contains supporting files, such as image files.
 
-#### MODS
+### MODS
 
 ```
 bin/ingest-mods ../mods-for-adrl/mods_demo_set/demo_sbhcmss36_SantaBarbaraPicturePostcards ../alexandria-images/special_collections/mss36-sb-postcards/tiff-a16
@@ -114,79 +161,3 @@ bin/ingest-mods ../mods-for-adrl/mods_demo_set/demo_sbhcmss78_FlyingAStudios ../
 ```
 
 The first argument to the script is the directory that contains the MODS files.  The second argument is the directory that contains supporting files, such as image files.
-
-## Running ADRL outside of Vagrant
-
-### Dev/Test Configuration
-  * Copy `config/blacklight.yml.template` to `config/blacklight.yml`
-  * Copy `config/database.yml.template` to `config/database.yml`
-  * Copy `config/fedora.yml.template` to `config/fedora.yml`
-  * Copy `config/ezid.yml.template` to `config/ezid.yml`
-  * Copy `config/secrets.yml.template` to `config/secrets.yml`
-  * Edit `config/secrets.yml` and paste in a new secret key
-  * update the host\_name in `config/environments/{environment}.rb`
-  * Copy `config/smtp.yml.template` to `config/smtp.yml`
-  * Edit `config/smtp.yml` and add fake email settings
-  * Copy `config/solr.yml.template` to `config/solr.yml`
-  * Copy `config/redis.yml.template` to `config/redis.yml`
-  * Copy `config/resque-pool.yml.template` to `config/resque-pool.yml`
-  * Copy `config/ldap.yml.template` to `config/ldap.yml`
-  * Install [PhantomJS](https://github.com/teampoltergeist/poltergeist#installing-phantomjs)
-
-### Set up Jetty
-
-```
-rake jetty:unzip
-rake jetty:start
-```
-
-### Set up Marmotta
-
-Download and unzip: https://github.com/curationexperts/marmotta-standalone/archive/master.zip
-
-Go into the unpacked archive and start it up.
-```
-java -jar start.jar -Xmx1024mb -Djetty.port=8180
-```
-
-Then configure it to connect to a Postgres instance by following the directions here:
-http://marmotta.apache.org/configuration.html
-
-### Install imagemagick
-
-On a mac:
-```
-brew install imagemagick --with-jp2 --with-libtiff --with-ghostscript
-```
-
-### Background jobs
-
-#### Install redis
-
-On a mac:
-```
-brew install redis
-```
-
-#### Run background jobs
-
-To start the redis server:
-```
-redis-server /usr/local/etc/redis.conf
-```
-
-To see the status of recent jobs in the browser console:
-```
-resque-web
-```
-
-To start worker(s) to run the jobs:
-```
-resque-pool
-```
-
-### Run the test suite
-
-  * Make sure jetty is running
-  * Make sure marmotta is running, or CI environment variable is set to bypass marmotta
-  * `bundle exec rake spec`

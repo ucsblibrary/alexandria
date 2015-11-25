@@ -1,7 +1,7 @@
-.PHONY: vagrant rubocop
+.PHONY: prod rubocop vagrant
 
 vagrant:
-	bundle exec cap vagrant deploy
+	SERVER=127.0.0.1 REPO=/vagrant bundle exec cap vagrant deploy
 
 prod:
 	bundle exec cap production deploy
