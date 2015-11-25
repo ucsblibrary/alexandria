@@ -1,0 +1,82 @@
+#!/usr/bin/env bash
+
+if [ "$1" != "" ]; then
+  echo "Setting RAILS_ENV to $1"
+  export RAILS_ENV="$1"
+fi
+
+if [ "$HOST" == "" ]; then
+  echo -n "Use HOST (default 'vagrant'): "
+  read -r host
+  host=${host:-"vagrant"}
+  echo "Setting HOST to '$host'"
+  export HOST="$host"
+fi
+
+if [ "$REMOTE_USER" == "" ]; then
+  echo -n "Set REMOTE_USER (default 'vagrant'): "
+  read -r remote_user
+  remote_user=${remote_user:-"vagrant"}
+  echo "Setting REMOTE_USER to '$remote_user'"
+  export REMOTE_USER="$remote_user"
+fi
+
+if [ "$SERVER" == "" ]; then
+  echo -n "Set SERVER (default '127.0.0.1'): "
+  read -r server
+  server=${server:-"127.0.0.1"}
+  echo "Setting SERVER to '$server'"
+  export SERVER="$server"
+fi
+
+if [ "$PG_PASS" == "" ]; then
+  echo -n "Set the primary PostgreSQL password: "
+  read -r -s pg_pass
+  export PG_PASS="$pg_pass"
+fi
+
+if [ "$H_PG_PASS" == "" ]; then
+  echo
+  echo -n "Set the PostgreSQL password for the Hydra user/db: "
+  read -r -s h_pg_pass
+  export H_PG_PASS="$h_pg_pass"
+fi
+
+if [ "$M_PG_PASS" == "" ]; then
+  echo
+  echo -n "Set the PostgreSQL password for the Marmotta user/db: "
+  read -r -s m_pg_pass
+  export M_PG_PASS="$m_pg_pass"
+fi
+
+if [ "$LDAP_PASS" == "" ]; then
+  echo
+  echo -n "Enter password for the LDAP server: "
+  read -r -s ldap_pass
+  export LDAP_PASS="$ldap_pass"
+  echo
+fi
+
+run_cmd() {
+  local cmd
+  cmd="$*"
+  echo "$(tput bold)==> $*$(tput sgr0)"
+  eval "$cmd"
+
+  exit_code=$?
+
+  if [ "$exit_code" != "0" ]; then
+    echo "$(tput setaf 124)Failed ($exit_code):$(tput sgr0) $cmd"
+    exit $exit_code
+  fi
+}
+
+if [ "$RAILS_ENV" == "development" ]; then
+  run_cmd "vagrant up || vagrant provision"
+  restart_tomcat="ssh -i $(pwd)/.vagrant/machines/default/virtualbox/private_key -o UserKnownHostsFile=/dev/null -o IdentitiesOnly=yes -o StrictHostKeyChecking=no vagrant@127.0.0.1 -p 2222 'sudo /usr/sbin/service tomcat restart'"
+  run_cmd "$restart_tomcat"
+
+  echo "Provisioning complete."
+  echo 'Run `make vagrant` to deploy with Capistrano.'
+fi
+# TODO: provisioning a production server

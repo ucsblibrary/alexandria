@@ -44,35 +44,31 @@
 1. If you didn’t clone this repository with `--recursive`, fetch the
    submodules with `git submodule init && git submodule update`.
 
-2. `HOST=vagrant REMOTE_USER=vagrant RAILS_ENV=development SERVER=localhost PG_PASS=pick-one H_PG_PASS=pick-another M_PG_PASS=pick-a-third LDAP_PASS=get-from-secret-server vagrant up`
+2. `bin/adrl development`
 
-    You can SSH into the VM with `vagrant ssh` or manually by using
-    the config produced by `vagrant ssh-config`.
+    Once the VM is created, you can SSH into it with `vagrant ssh` or
+    manually by using the config produced by `vagrant ssh-config`.
 
-3. `scp vagrant@127.0.0.1:2222/opt/alex2/shared/config/*.yml config/`
+3. `bundle install`
 
-4. `bundle install`
+4. `make deploy` to run Capistrano
 
-5. `make deploy` to run Capistrano
+5. The following services should be running; `sudo service [program]
+    restart` if not:
 
-    - At this point Apache should be running at: http://localhost:8484/
+    - Apache/Passenger (httpd): http://localhost:8484/
 
-    - Tomcat should be running: http://localhost:2424/
+    - Tomcat: http://localhost:2424/
 
-    - Solr should be running: http://localhost:2424/hydra
+    - Solr: http://localhost:2424/hydra
 
-        The first time you deploy to the VM, you may have to manually
-        restart Tomcat in order for Solr to run: `sudo services tomcat restart`
+    - Fedora: http://localhost:2424/fedora/
 
-    - Fedora should be running: http://localhost:2424/fedora/
+    - PostgreSQL:
 
-    - PostgreSQL should be running:
+    - Redis:
 
-    - Redis should be running:
-
-    - Passenger should be running:
-
-    - Marmotta should be running: http://localhost:8180/marmotta
+    - Marmotta: http://localhost:8180/marmotta
 
 5. On the VM, add the LDAP password from Secret Server to `/opt/alex2/shared/config/ldap.yml`
 
