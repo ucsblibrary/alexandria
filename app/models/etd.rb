@@ -24,6 +24,10 @@ class ETD < ActiveFedora::Base
     index.as :stored_searchable
   end
 
+  property :etd_subjects, predicate: ::RDF::DC11.subject do |index|
+    index.as :stored_searchable
+  end
+
   property :issued, predicate: ::RDF::DC.issued do |index|
     index.as :displayable
   end

@@ -148,6 +148,7 @@ class CatalogController < ApplicationController
 
     # ETD only fields:
     config.add_show_field solr_name('degree_grantor', :symbol), label: 'Degree Grantor'
+    config.add_show_field solr_name('etd_subjects', :stored_searchable), label: 'Subjects'
     config.add_show_field solr_name('keywords', :stored_searchable), label: 'Keywords'
     config.add_show_field solr_name('fulltext_link', :displayable), label: 'Fulltext link', helper_method: :display_link
     config.add_show_field solr_name('copyright', :displayable), label: 'Copyright'
