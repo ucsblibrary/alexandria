@@ -65,6 +65,31 @@ if [ "$LDAP_PASS" == "" ]; then
   echo
 fi
 
+if [ "$EZID_USER" == "" ]; then
+  echo
+  echo -n "Enter Ezid username: "
+  read -r ezid_user
+  echo "Setting EZID_USER to '$ezid_user'"
+  export EZID_USER="$ezid_user"
+fi
+
+if [ "$EZID_PASS" == "" ]; then
+  echo -n "Enter password for Ezid: "
+  read -r -s ezid_pass
+  export EZID_PASS="$ezid_pass"
+  echo
+fi
+
+if [ "$RAILS_ENV" == "production" ]; then
+  if [ "$EZID_SHOULDER" == "" ]; then
+    echo -n "Enter shoulder for Ezid: "
+    read -r ezid_shoulder
+    echo "Setting EZID_SHOULDER to '$ezid_shoulder'"
+    export EZID_SHOULDER="$ezid_shoulder"
+    echo
+  fi
+fi
+
 run_cmd() {
   local cmd
   cmd="$*"
