@@ -88,7 +88,7 @@
 
 3. Add `/home/deploy/.ssh/id_rsa.pub` to the authorized keys for this repository.
 
-3. `make prod` to deploy with Capistrano.
+3. `SERVER=alexandria.ucsb.edu REPO=ssh://git@stash.library.ucsb.edu:7999/dr/adrl-v2.git make prod` to deploy with Capistrano.
 
 # Troubleshooting
 
