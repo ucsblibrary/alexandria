@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+SECRET="$(openssl rand 50 | shasum -a 512 | tr -d '\- \n')"
+export SECRET="$SECRET"
+
 if [ "$1" != "" ]; then
   echo "Setting RAILS_ENV to $1"
   export RAILS_ENV="$1"
@@ -57,12 +60,18 @@ if [ "$M_PG_PASS" == "" ]; then
   export M_PG_PASS="$m_pg_pass"
 fi
 
+if [ "$FEDORA_PASS" == "" ]; then
+  echo
+  echo -n "Set password for Fedora user: "
+  read -r -s fedora_pass
+  export FEDORA_PASS="$fedora_pass"
+fi
+
 if [ "$LDAP_PASS" == "" ]; then
   echo
   echo -n "Enter password for the LDAP server: "
   read -r -s ldap_pass
   export LDAP_PASS="$ldap_pass"
-  echo
 fi
 
 if [ "$EZID_USER" == "" ]; then
