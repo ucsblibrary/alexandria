@@ -38,10 +38,5 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
-  config.host_name = 'localhost'
-
-  # Any proxies that are in front of the app.  This is used to
-  # find the user's IP address to determine whether or not the
-  # user is on campus.
-  config.action_dispatch.trusted_proxies = ['128.111.87.35', '10.3.60.110']
+  config.host_name = 'localhost:3000'
 end
