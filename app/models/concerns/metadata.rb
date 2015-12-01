@@ -31,10 +31,10 @@ module Metadata
       end
     end
 
-    # property :creator, predicate: ::RDF::DC.creator, class_name: Oargun::ControlledVocabularies::Creator do |index|
+    # property :creator, predicate: ::RDF::Vocab::DC.creator, class_name: Oargun::ControlledVocabularies::Creator do |index|
     #   index.as :stored_searchable, :facetable
     # end
-    # property :contributor, predicate: ::RDF::DC.contributor do |index|
+    # property :contributor, predicate: ::RDF::Vocab::DC.contributor do |index|
     #   index.as :stored_searchable
     # end
 
@@ -110,8 +110,8 @@ module Metadata
     has_and_belongs_to_many :date_valid, predicate: RDF::Vocab::DC.valid, class_name: 'TimeSpan', inverse_of: :date_valid_images
 
     # Not tackling these now. No demonstrated need yet.
-    # has_and_belongs_to_many :date_accepted, predicate: RDF::DC.dateAccepted, class_name: 'TimeSpan'
-    # has_and_belongs_to_many :date_submitted, predicate: RDF::DC.dateSubmitted, class_name: 'TimeSpan'
+    # has_and_belongs_to_many :date_accepted, predicate: RDF::Vocab::DC.dateAccepted, class_name: 'TimeSpan'
+    # has_and_belongs_to_many :date_submitted, predicate: RDF::Vocab::DC.dateSubmitted, class_name: 'TimeSpan'
 
     # RDA
     property :form_of_work, predicate: RDF::URI('http://www.rdaregistry.info/Elements/w/#formOfWork.en'),
