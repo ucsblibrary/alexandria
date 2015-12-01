@@ -33,6 +33,17 @@ GIT
       activesupport (>= 3.0.0)
 
 GIT
+  remote: git://github.com/no-reply/linked_vocabs.git
+  revision: f96779ca0af28534ecf2315c1df7015fa5e9c89f
+  specs:
+    linked_vocabs (0.2.0)
+      active-triples (>= 0.6.0)
+      rake
+      rdf (>= 1.1.2.1)
+      sparql
+      sparql-client
+
+GIT
   remote: git://github.com/traject/traject.git
   revision: 656a992c400a472bf5b738ec7a3aa208cc449472
   branch: allow_nil_default
@@ -79,9 +90,16 @@ GEM
       om (~> 3.1)
       rdf-rdfxml (~> 1.1)
       rsolr (~> 1.0.10)
-    activefedora-aggregation (0.4.2)
-      active-fedora
+    active-triples (0.7.2)
+      activemodel (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      deprecation (~> 0.1)
+      linkeddata (~> 1.1)
+      rdf (~> 1.1)
+    activefedora-aggregation (0.7.0)
+      active-fedora (~> 9.5)
       activesupport
+      rdf (~> 1.1, >= 1.1.17.1)
       rdf-vocab (~> 0.8.1)
     activejob (4.2.5)
       activesupport (= 4.2.5)
