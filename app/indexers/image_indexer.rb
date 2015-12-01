@@ -22,12 +22,23 @@ class ImageIndexer < ObjectIndexer
 
     def generic_file_images(size = '600,')
       object.generic_file_ids.map do |id|
-        Riiif::Engine.routes.url_helpers.image_url("#{id}/original", size: size, host: host)
+        Riiif::Engine.routes.url_helpers.image_url(
+          "#{id}/original",
+          size: size,
+          host: host,
+        )
       end
     end
 
     def host
-      Rails.application.config.host_name
+      hostname = Rails.application.config.host_name
+      # TODO: is the Vagrant port only specified in Vagrantfile and
+      # the Apache conf?
+      if hostname == '127.0.0.1' || hostname == 'localhost'
+        hostname + ':8484'
+      else
+        hostname
+      end
     rescue NoMethodError
       raise 'host_name is not configured'
     end

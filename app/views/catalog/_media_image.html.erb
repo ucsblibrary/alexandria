@@ -1,24 +1,30 @@
 <div class="row">
   <div class="col-md-6">
     <div class="stage-wrapper clearfix">
-        <div class="stage clearfix">
-            <div class="stage-container">
-                <div class="jcarousel-wrapper">
-                    <div class="jcarousel">
-                        <ul class="clearfix">
-                            <% Array(document['image_url_ssm']).each do |img| %>
-                              <li><%= image_tag img, style: 'width: 100%' %></li>
-                            <% end %>
-                        </ul>
-                    </div>
-
-                    <a href="#" class="jcarousel-control-prev">&lsaquo;</a>
-                    <a href="#" class="jcarousel-control-next">&rsaquo;</a>
-
-                    <p class="jcarousel-pagination"></p>
-                </div>
+      <div class="stage clearfix">
+        <div class="stage-container">
+          <div class="jcarousel-wrapper">
+            <div class="jcarousel">
+              <ul class="clearfix">
+                <%=
+                r = ''
+                Array(document['image_url_ssm']).each do |img|
+                  r << '<li>'
+                  r << image_tag(img, style: 'width: 100%')
+                  r << '</li>'
+                end
+                r.html_safe
+                %>
+              </ul>
             </div>
+
+            <a href="#" class="jcarousel-control-prev">&lsaquo;</a>
+            <a href="#" class="jcarousel-control-next">&rsaquo;</a>
+
+            <p class="jcarousel-pagination"></p>
+          </div>
         </div>
+      </div>
     </div>
   </div>
 
