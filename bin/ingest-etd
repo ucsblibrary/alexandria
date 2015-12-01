@@ -92,4 +92,4 @@ end
 
 puts 'Now ingesting...'
 sleep 5
-exec File.expand_path('../traject-xml', __FILE__), "#{marc_directory}/MARC_#{Time.now.to_i}.xml"
+exec File.expand_path('../traject-xml', __FILE__), "#{marc_directory}/#{output_file}"
