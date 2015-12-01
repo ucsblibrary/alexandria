@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 filename = ARGV[0]
-imagepath = ARGV[1] || ENV['TMPDIR']
+imagepath = ARGV[1]
 
 if filename.nil?
   $stderr.puts "Usage: #{$PROGRAM_NAME} <mods directory> <image directory>"

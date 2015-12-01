@@ -155,10 +155,14 @@ The first argument to the script is the CSV file that contains the records.  The
 
 ### MODS
 
-```
-bin/ingest-mods ../mods-for-adrl/mods_demo_set/demo_sbhcmss36_SantaBarbaraPicturePostcards ../alexandria-images/special_collections/mss36-sb-postcards/tiff-a16
+Importing a collection of MODS is a two-step process.  First the
+collection is created, then individual records with attachments are
+minted and added to the collection.
 
-bin/ingest-mods ../mods-for-adrl/mods_demo_set/demo_sbhcmss78_FlyingAStudios ../alexandria-images/special_collections/spc-flying-a/conway-2010/16bit
-```
+1. Create a collection: `bin/ingest-mods ../mods-for-adrl/mods_demo_set/collection ../alexandria-images/mods_demo_images/`
 
-The first argument to the script is the directory that contains the MODS files.  The second argument is the directory that contains supporting files, such as image files.
+2. Add the records: `bin/ingest-mods ../mods-for-adrl/mods_demo_set/objects ../alexandria-images/mods_demo_images/`
+
+The first argument to the script is the directory that contains the
+MODS files.  The second argument is the directory that contains
+supporting files, such as image files.
