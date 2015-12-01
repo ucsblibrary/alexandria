@@ -92,27 +92,25 @@
 
 # Troubleshooting
 
-## mod_passenger fails to compile
+- **mod_passenger fails to compile**: There’s probably not enough memory on the server.
 
-There’s probably not enough memory on the server.
+- **`SSHKit::Command::Failed: bundle exit status: 137` during `bundle install`**: Probably not enough memory.
 
-## `SSHKit::Command::Failed: bundle exit status: 137` during `bundle install`
+- **Nokogiri fails to compile**: Add the following to `config/deploy.rb`:
 
-Probably not enough memory.
+    ```ruby
+    set :bundle_env_variables, nokogiri_use_system_libraries: 1
+    ```
 
-## Nokogiri fails to compile
+- **Passenger fails to spawn process**
 
-```
-set :bundle_env_variables, nokogiri_use_system_libraries: 1
-```
+    ```
+    [ 2015-11-26 01:56:19.7981 20652/7f16c6f19700 App/Implementation.cpp:303 ]: Could not spawn process for application /opt/alex2/current: An error occurred while starting up the preloader: it did not write a startup response in time.
+    ```
 
-## Passenger fails to spawn process
+    Try restarting Apache and deploying again.
 
-```
-[ 2015-11-26 01:56:19.7981 20652/7f16c6f19700 App/Implementation.cpp:303 ]: Could not spawn process for application /opt/alex2/current: An error occurred while starting up the preloader: it did not write a startup response in time.
-```
-
-Try restarting Apache and deploying again.
+- **Timeout during assets precompile**:  Not sure yet!
 
 # Testing
 
