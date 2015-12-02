@@ -55,6 +55,13 @@ if [ "$IDENTITY" == "" ] && [ "$RAILS_ENV" == "production" ]; then
   IDENTITY=${identity:-"$HOME/.ssh/id_rsa"}
 fi
 
+echo -n "Prompt for sudo password? [Y/n]: "
+read -r sudopass
+sudopass=${sudopass:-"Y"}
+if [ "$sudopass" == "Y" ] || [ "$sudopass" == "y" ]; then
+  SUDO_FLAG=" -K"
+fi
+
 if [ "$SERVER" == "" ]; then
   server=${SERVER:-"127.0.0.1"}
   if [ "$RAILS_ENV" == "production" ]; then
@@ -143,7 +150,7 @@ if [ "$RAILS_ENV" == "development" ]; then
 elif [ "$RAILS_ENV" == "production" ]; then
   write_hosts > provisioning/hosts
   write_conf > provisioning/ansible.cfg
-  run_cmd "ansible-playbook provisioning/adrl.yml -u $REMOTE_USER"
+  run_cmd "ansible-playbook provisioning/adrl.yml -u $REMOTE_USER$SUDO_FLAG"
 
   echo "Provisioning complete."
   echo
