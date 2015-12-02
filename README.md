@@ -124,16 +124,21 @@ See also: <https://github.com/curationexperts/alexandria-v2/wiki>
 
 ## ETDs
 
-There are scripts to ingest records from zipfiles like those on the
-[sample ETDs page](https://wiki.library.ucsb.edu/display/repos/ETD+Sample+Files+for+DCE).
-The process is as follows:
+The ETD collection is created separately from individual records.
+Download `etd_collection.xml` from
+https://stash.library.ucsb.edu/projects/CMS/repos/adrl-dm/browse and
+place it in `/opt/alex2/download_root/mods` on the server, then run:
 
-1. Move the zipfile(s) into the root of this repository so that they
-   appear in the VM’s shared directory (by default `/vagrant`).
+```
+cd /opt/alex2/current && bin/ingest-mods /opt/download_root/mods
+```
 
-2. SSH into the VM; and `cd` to the “current” directory: `cd /opt/alex2/current`.
+Once the collection has been created, `bin/ingest-etd` can be used to
+ingest records:
 
-3. Run the ETD script: `bundle exec bin/ingest-etd /vagrant/Batch\ 3.zip`.
+1. SSH into the server and `cd` to the “current” directory: `cd /opt/alex2/current`.
+
+2. Run the ETD script: `bundle exec bin/ingest-etd /opt/ingest/data/etds/2adrl_ready/*.zip`.
 
 ## Images
 
