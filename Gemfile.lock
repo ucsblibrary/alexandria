@@ -13,7 +13,6 @@ GIT
 GIT
   remote: git://github.com/curationexperts/oargun.git
   revision: 9c7bdda6757c39b09796e03666e698b4c087a571
-  ref: 9c7bdda
   specs:
     oargun (0.0.1)
       active-fedora (~> 9.0)
@@ -90,12 +89,6 @@ GEM
       om (~> 3.1)
       rdf-rdfxml (~> 1.1)
       rsolr (~> 1.0.10)
-    active-triples (0.7.2)
-      activemodel (>= 3.0.0)
-      activesupport (>= 3.0.0)
-      deprecation (~> 0.1)
-      linkeddata (~> 1.1)
-      rdf (~> 1.1)
     activefedora-aggregation (0.7.0)
       active-fedora (~> 9.5)
       activesupport
