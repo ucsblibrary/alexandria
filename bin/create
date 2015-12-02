@@ -19,6 +19,8 @@ export M_PG_PASS="$M_PG_PASS"
 FEDORA_PASS="$(mkpasswd 256)"
 export FEDORA_PASS="$FEDORA_PASS"
 
+export ANSIBLE_CONFIG=provisioning/ansible.cfg
+
 if [ "$1" != "" ]; then
   echo "Setting RAILS_ENV to $1"
   export RAILS_ENV="$1"
@@ -44,6 +46,13 @@ if [ "$REMOTE_USER" == "" ]; then
   fi
   echo "Setting REMOTE_USER to '$remote_user'"
   export REMOTE_USER="$remote_user"
+fi
+
+if [ "$KEY_FLAG" == "" ] && [ "$RAILS_ENV" == "production" ]; then
+  echo -n "Specify path to identity file (default ~/.ssh/id_rsa): "
+  read -r identity
+  identity=${identity:-"$HOME/.ssh/id_rsa"}
+  export KEY_FLAG="--private-key $identity"
 fi
 
 if [ "$SERVER" == "" ]; then
@@ -107,7 +116,7 @@ write_hosts() {
 [adrl-hosts]
 alex2 ansible_ssh_port=$PORT ansible_ssh_host=$SERVER
 EOF
-  }
+}
 
 if [ "$RAILS_ENV" == "development" ]; then
   run_cmd "vagrant up"
@@ -120,7 +129,7 @@ if [ "$RAILS_ENV" == "development" ]; then
 
 elif [ "$RAILS_ENV" == "production" ]; then
   write_hosts > provisioning/hosts
-  run_cmd "ansible-playbook provisioning/adrl.yml -i provisioning/hosts"
+  run_cmd "ansible-playbook provisioning/adrl.yml $KEY_FLAG -i provisioning/hosts -u $REMOTE_USER"
 
   echo "Provisioning complete."
   echo
