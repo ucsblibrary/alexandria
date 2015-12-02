@@ -124,14 +124,9 @@ See also: <https://github.com/curationexperts/alexandria-v2/wiki>
 
 ## ETDs
 
-The ETD collection is created separately from individual records.
-Download `etd_collection.xml` from
-https://stash.library.ucsb.edu/projects/CMS/repos/adrl-dm/browse and
-place it in `/opt/alex2/download_root/mods` on the server, then run:
-
-```
-cd /opt/alex2/current && bin/ingest-mods /opt/download_root/mods
-```
+The ETD collection is created separately from individual records.  See
+https://wiki.library.ucsb.edu/pages/viewpage.action?pageId=16288317 on
+creating it.
 
 Once the collection has been created, `bin/ingest-etd` can be used to
 ingest records:
