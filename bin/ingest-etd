@@ -46,44 +46,53 @@ def unzip(zipfile, dest)
   xml
 end
 
-Dir.mktmpdir do |temp|
-  @xml = []
+temp = File.join(@settings['download_root'], "#{Time.now.to_i}")
+Dir.mkdir temp
 
-  ARGV.each do |f|
-    @xml << unzip(f, temp)
+@xml = []
+
+ARGV.each do |f|
+  @xml << unzip(f, temp)
+end
+
+marcs = []
+@xml.flatten.uniq.each do |x|
+  binary_filename = Nokogiri::XML(File.open(x)).css('DISS_binary').children.first.to_s
+
+  search = Curl::Easy.perform("#{Rails.application.secrets.sru_host}/sba01pub?version=1.1&operation=searchRetrieve&maximumRecords=1&startRecord=1&query=(marc.947.a=pqd%20and%20marc.956.f=#{binary_filename})")
+
+  if !search.body_str.include?('zs:numberOfRecords>1')
+    puts "Error: failed to retrieve record for #{binary_filename}"
+  else
+    entry = search.body_str.sub("<?xml version=\"1.0\"?>\n<zs:searchRetrieveResponse xmlns:zs=\"http://www.loc.gov/zing/srw/\"><zs:version>1.1</zs:version><zs:numberOfRecords>1</zs:numberOfRecords><zs:records>", '')
+    entry.sub!('</zs:records></zs:searchRetrieveResponse>', '')
+
+    marcs << entry
   end
+end
 
-  marcs = []
-  @xml.flatten.uniq.each do |x|
-    binary_filename = Nokogiri::XML(File.open(x)).css('DISS_binary').children.first.to_s
+puts "Copied zipfiles to #{proquest_directory}"
 
-    search = Curl::Easy.perform("#{Rails.application.secrets.sru_host}/sba01pub?version=1.1&operation=searchRetrieve&maximumRecords=1&startRecord=1&query=(marc.947.a=pqd%20and%20marc.956.f=#{binary_filename})")
-
-    if !search.body_str.include?('zs:numberOfRecords>1')
-      puts "Error: failed to retrieve record for #{binary_filename}"
-    else
-      entry = search.body_str.sub("<?xml version=\"1.0\"?>\n<zs:searchRetrieveResponse xmlns:zs=\"http://www.loc.gov/zing/srw/\"><zs:version>1.1</zs:version><zs:numberOfRecords>1</zs:numberOfRecords><zs:records>", '')
-      entry.sub!('</zs:records></zs:searchRetrieveResponse>', '')
-
-      marcs << entry
-    end
-  end
-
-  puts "Copied zipfiles to #{proquest_directory}"
-
-  output_file = "MARC_#{Time.now.to_i}.xml"
-  File.open(File.join(marc_directory, output_file), 'w') do |f|
-    f.write <<-EOS
+output_file = "MARC_#{Time.now.to_i}.xml"
+File.open(File.join(marc_directory, output_file), 'w') do |f|
+  f.write <<-EOS
 <?xml version="1.0"?>
 <zs:searchRetrieveResponse xmlns:zs="http://www.loc.gov/zing/srw/"><zs:version>1.1</zs:version><zs:numberOfRecords>#{marcs.count}</zs:numberOfRecords><zs:records>
 EOS
-    f.write marcs.join("\n")
-    f.write('</zs:records></zs:searchRetrieveResponse>')
+  f.write marcs.join("\n")
+  f.write('</zs:records></zs:searchRetrieveResponse>')
 
-    puts "Wrote MARC metadata to #{marc_directory}/"
+  puts "Wrote MARC metadata to #{marc_directory}/"
+end
+
+puts 'Now ingesting...'
+sleep 5
+
+begin
+  pid = fork do
+    exec File.expand_path('../traject-xml', __FILE__), "#{marc_directory}/#{output_file}"
   end
-
-  puts 'Now ingesting...'
-  sleep 5
-  exec File.expand_path('../traject-xml', __FILE__), "#{marc_directory}/#{output_file}"
+ensure
+  Process.wait pid
+  FileUtils.rm_rf temp
 end
