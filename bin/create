@@ -142,6 +142,9 @@ if [ "$RAILS_ENV" == "development" ]; then
   run_cmd "vagrant up"
 
   echo "Provisioning complete."
+  echo
+  echo 'Run `bundle install` if you haven'"'"'t already.'
+  echo
   echo 'Run `make vagrant` to deploy with Capistrano.'
   echo
   echo "After the first deploy, restart Tomcat:"
@@ -154,9 +157,11 @@ elif [ "$RAILS_ENV" == "production" ]; then
 
   echo "Provisioning complete."
   echo
-  echo "Add deploy@$SERVER:~/.ssh/id_rsa.pub to your repository's authorized keys."
+  echo 'Run `bundle install` if you haven'"'"'t already.'
   echo
-  echo 'Run `make prod` to deploy with Capistrano.'
+  echo "Make sure $HOME/.ssh/id_rsa.pub is in this repository's authorized keys."
+  echo
+  echo "Run \`SERVER=$SERVER make prod\` to deploy with Capistrano."
   echo
   echo "After the first deploy, restart Tomcat:"
   echo "  ssh -o UserKnownHostsFile=/dev/null -o IdentitiesOnly=yes -o StrictHostKeyChecking=no $REMOTE_USER@$SERVER -p $PORT 'sudo /usr/sbin/service tomcat restart'"
