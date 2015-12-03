@@ -23,7 +23,7 @@ class CollectionsController < ApplicationController
       redirect_to catalog_index_path(q: params[:q])
     else
       super
-      solr_resp, @document = fetch(@collection.id)
+      _, @document = fetch(@collection.id)
     end
   end
 
@@ -57,8 +57,11 @@ class CollectionsController < ApplicationController
     # Don't mutate the params hash, because that will screw up the kaminari pagination links
     # cancan's load_resource method is skipped if the @collection is already loaded as happens here:
     def find_collection_by_treeifed_id
-      if id = Identifier.treeify(params[:id])
-        @collection = Collection.find(id)
-      end
+      id = Identifier.treeify(params[:id])
+      return if id.nil?
+      @collection = Collection.find(id)
+    rescue ActiveFedora::ObjectNotFoundError => e
+      puts "collections_controller.rb: #{e} thrown while searching for #{params[:id]}"
+      return render 'notfound'
     end
 end
