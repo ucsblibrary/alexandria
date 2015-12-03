@@ -4,7 +4,7 @@ def configure_repositories
                  RDF::Repository.new
                else
                  RDF::Marmotta.new('http://localhost:8180/marmotta')
-  end
+               end
   ActiveTriples::Repositories.add_repository :vocabs, vocab_repo
 end
 
