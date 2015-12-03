@@ -18,8 +18,8 @@ class CatalogController < ApplicationController
     return if can?(:discover, permissions)
 
     fail Hydra::AccessDenied.new(
-      'You do not have sufficient access privileges to access this document.',
-      :discover, params[:id])
+           'You do not have sufficient access privileges to access this document.',
+           :discover, params[:id])
   end
 
   # This applies appropriate access controls to all solr queries

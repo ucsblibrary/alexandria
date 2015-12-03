@@ -1,0 +1,17 @@
+<% @page_title = "#{@unknown_type} not found - #{application_name}" %>
+
+<div id="content" class="col-md-9 col-sm-8">
+  <div class="col-sm-10 pull-right">'
+    <header>
+      <h1><%= @unknown_type %> not found</h1>
+      <p>No <% @unknown_type.downcase %> was found
+      <% if @unknown_id %>
+        with this ID (<code><%= @unknown_id %></code>).
+      <% else %>
+        at this location.
+      <% end %>
+      Try another search, or <%= link_to 'contact us', contact_us_form_path %> if you think this is an error.
+      </p>
+    </header>
+  </div>
+</div>

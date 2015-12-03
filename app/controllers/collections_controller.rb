@@ -61,7 +61,10 @@ class CollectionsController < ApplicationController
       return if id.nil?
       @collection = Collection.find(id)
     rescue ActiveFedora::ObjectNotFoundError => e
-      puts "collections_controller.rb: #{e} thrown while searching for #{params[:id]}"
-      return render 'notfound'
+      @unknown_type = 'Collection'
+      @unknown_id = params[:id]
+      puts "CollectionsController: #{e} thrown while searching for #{params[:id]}"
+      render 'errors/not_found'
+      return false
     end
 end
