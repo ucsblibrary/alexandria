@@ -148,7 +148,7 @@ if [ "$RAILS_ENV" == "development" ]; then
   echo 'Run `make vagrant` to deploy with Capistrano.'
   echo
   echo "After the first deploy, restart Tomcat:"
-  echo "  ssh -i $(pwd)/.vagrant/machines/default/virtualbox/private_key -o UserKnownHostsFile=/dev/null -o IdentitiesOnly=yes -o StrictHostKeyChecking=no $REMOTE_USER@$SERVER -p $PORT 'sudo /usr/sbin/service tomcat restart'"
+  echo "  ssh -i $(pwd)/.vagrant/machines/default/virtualbox/private_key -o UserKnownHostsFile=/dev/null -o IdentitiesOnly=yes -o StrictHostKeyChecking=no $REMOTE_USER@$SERVER -p $PORT 'sudo /bin/systemctl restart  tomcat.service'"
 
 elif [ "$RAILS_ENV" == "production" ]; then
   write_hosts > provisioning/hosts
