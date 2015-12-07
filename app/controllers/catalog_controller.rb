@@ -10,6 +10,15 @@ class CatalogController < ApplicationController
 
   before_action :convert_ark_to_id, only: :show
 
+  # Replace with `rescue Blacklight::Exceptions::RecordNotFound` when
+  # upgrading to version 6
+  # https://github.com/projectblacklight/blacklight/commit/e7d1559a98e161dd52795746174406ca923470b7
+  def invalid_document_id_error(e)
+    t = Time.now.to_i
+    puts "#{t} (Blacklight::Exceptions::RecordNotFound): #{e.inspect}"
+    raise ActiveRecord::RecordNotFound.new(e)
+  end
+
   # enforce_show_permissions is from hydra-access-controls gem
   before_filter :enforce_show_permissions, only: :show
 
