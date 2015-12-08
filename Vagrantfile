@@ -9,7 +9,7 @@ Vagrant.configure(2) do |config|
   # Vagrant configuration options are fully documented at
   # https://docs.vagrantup.com.
 
-  config.vm.box = 'centos7'
+  config.vm.box = './vagrant-centos/boxes/centos70-x86_64.box'
 
   # Forwarded port mappings allow access to a specific port on the guest vm
   # from a port on the host machine - to see your vm's port 80, use localhost:8484
@@ -32,7 +32,7 @@ Vagrant.configure(2) do |config|
 
   # Enable provisioning with Ansible
   config.vm.provision 'ansible' do |ansible|
-    ansible.verbose = 'v'
+    ansible.verbose = 'vv'
     ansible.groups = {
       'vagrant' => ['default'],
       'all_groups:children' => ['group1'],
