@@ -137,20 +137,6 @@ ingest records:
 
 ## Images
 
-### CSV
-
-#### Individual images
-```
-bundle exec bin/ingest-csv ../ucsb_sample_data/adrl-dm/ingest-ready/pamss045\(Couper\)/pamss045\(Couper\)-objects.csv ../alexandria-images/special_collections/pamss045/tiff-a16
-```
-
-#### Collections
-```
-bin/ingest-csv ../ucsb_sample_data/adrl-dm/ingest-ready/pamss045\(Couper\)/pamss045\(Couper\)-collection.csv Collection
-```
-
-The first argument to the script is the CSV file that contains the records.  The second argument is the directory that contains supporting files, such as image files.
-
 ### MODS
 
 Importing a collection of MODS is a two-step process.  First the
@@ -164,3 +150,21 @@ minted and added to the collection.
 The first argument to the script is the directory that contains the
 MODS files.  The second argument is the directory that contains
 supporting files, such as image files.
+
+### CSV
+
+```
+bin/ingest-csv <CSV file> [supporting files] [type]
+```
+
+The first argument to the script is the CSV file that contains the
+records.  Optional arguments are the directory that contains
+supporting files, such as image files, and the type: currently,
+`Image`, `ETD`, or `Collection`.
+
+Ingesting CSVs, like MODs, is a two-part process; first create the
+collection, then individual records:
+
+1. `bin/ingest-csv /path/to/collection.csv Collection`
+
+2. `bin/ingest-csv /path/to/objects.csv /path/to/files Image`
