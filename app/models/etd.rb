@@ -25,7 +25,7 @@ class ETD < ActiveFedora::Base
   end
 
   property :etd_subjects, predicate: ::RDF::Vocab::DC11.subject do |index|
-    index.as :stored_searchable
+    index.as :stored_searchable, :facetable
   end
 
   property :issued, predicate: ::RDF::Vocab::DC.issued do |index|
