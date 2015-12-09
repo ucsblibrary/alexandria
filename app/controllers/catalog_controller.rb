@@ -124,36 +124,36 @@ class CatalogController < ApplicationController
       config.add_show_field solr_name("#{key}_label", :stored_searchable), label: key.to_s.titleize
     end
 
+    config.add_show_field 'isbn_ssim', label: 'ISBN'
     config.add_show_field solr_name('accession_number', :symbol), label: 'Accession Number'
     config.add_show_field solr_name('alternative', :stored_searchable), label: 'Alternative Title'
-    config.add_show_field solr_name('description', :stored_searchable), label: 'Description', separator: '<br><br>'.html_safe
-    config.add_show_field 'isbn_ssim', label: 'ISBN'
     config.add_show_field solr_name('collection_label', :symbol), label: 'Collection', helper_method: :link_to_collection
-    config.add_show_field solr_name('series_name', :displayable), label: 'Series'
-    config.add_show_field solr_name('work_type', :stored_searchable), label: 'Type of Resource'
-    config.add_show_field solr_name('extent', :displayable), label: 'Extent'
-    config.add_show_field solr_name('identifier', :displayable), label: 'ARK'
-    config.add_show_field solr_name('system_number', :symbol), label: 'System Number'
-    config.add_show_field solr_name('place_of_publication', :stored_searchable), label: 'Place of Publication'
-    config.add_show_field solr_name('location_label', :stored_searchable), label: 'Location'
-    config.add_show_field solr_name('lc_subject_label', :stored_searchable), label: 'Subject'
-    config.add_show_field solr_name('publisher', :stored_searchable), label: 'Publisher'
-    config.add_show_field solr_name('created', :displayable), label: 'Creation Date'
-    config.add_show_field solr_name('issued', :displayable), label: 'Issued Date'
-    config.add_show_field solr_name('date_copyrighted', :displayable), label: 'Copyright Date'
-    config.add_show_field solr_name('date_valid', :displayable), label: 'Valid Dates'
-    config.add_show_field solr_name('date_other', :displayable), label: 'Other Dates'
-    config.add_show_field solr_name('digital_origin', :stored_searchable), label: 'Digital Origin'
-
-    config.add_show_field solr_name('latitude', :displayable, type: :string), label: 'Latitude'
-    config.add_show_field solr_name('longitude', :displayable, type: :string), label: 'Longitude'
-    config.add_show_field solr_name('institution_label', :stored_searchable), label: 'Contributing Institution'
-    config.add_show_field solr_name('sub_location', :displayable, type: :string), label: I18n.t('simple_form.labels.image.sub_location')
-    config.add_show_field solr_name('license_label', :stored_searchable), label: 'License'
     config.add_show_field solr_name('copyright_status_label', :stored_searchable), label: 'Copyright Status'
-    config.add_show_field solr_name('rights_holder_label', :stored_searchable), label: 'Copyright Holder'
-    config.add_show_field solr_name('use_restrictions', :stored_searchable), label: 'Use Restrictions'
+    config.add_show_field solr_name('created', :displayable), label: 'Creation Date'
+    config.add_show_field solr_name('date_copyrighted', :displayable), label: 'Copyright Date'
+    config.add_show_field solr_name('date_other', :displayable), label: 'Other Dates'
+    config.add_show_field solr_name('date_valid', :displayable), label: 'Valid Dates'
+    config.add_show_field solr_name('description', :stored_searchable), label: 'Description', separator: '<br><br>'.html_safe
+    config.add_show_field solr_name('digital_origin', :stored_searchable), label: 'Digital Origin'
+    config.add_show_field solr_name('extent', :displayable), label: 'Extent'
+    config.add_show_field solr_name('form_of_work', :stored_searchable), label: 'Genre(s)'
+    config.add_show_field solr_name('identifier', :displayable), label: 'ARK'
+    config.add_show_field solr_name('institution_label', :stored_searchable), label: 'Contributing Institution'
+    config.add_show_field solr_name('issued', :displayable), label: 'Issued Date'
+    config.add_show_field solr_name('latitude', :displayable, type: :string), label: 'Latitude'
+    config.add_show_field solr_name('lc_subject_label', :stored_searchable), label: 'Subject'
+    config.add_show_field solr_name('license_label', :stored_searchable), label: 'License'
+    config.add_show_field solr_name('location_label', :stored_searchable), label: 'Location'
+    config.add_show_field solr_name('longitude', :displayable, type: :string), label: 'Longitude'
     config.add_show_field solr_name('note_label', :stored_searchable), label: 'Notes', helper_method: :display_notes
+    config.add_show_field solr_name('place_of_publication', :stored_searchable), label: 'Place of Publication'
+    config.add_show_field solr_name('publisher', :stored_searchable), label: 'Publisher'
+    config.add_show_field solr_name('rights_holder_label', :stored_searchable), label: 'Copyright Holder'
+    config.add_show_field solr_name('series_name', :displayable), label: 'Series'
+    config.add_show_field solr_name('sub_location', :displayable, type: :string), label: I18n.t('simple_form.labels.image.sub_location')
+    config.add_show_field solr_name('system_number', :symbol), label: 'System Number'
+    config.add_show_field solr_name('use_restrictions', :stored_searchable), label: 'Use Restrictions'
+    config.add_show_field solr_name('work_type', :stored_searchable), label: 'Type of Resource'
 
     # ETD only fields:
     config.add_show_field solr_name('degree_grantor', :symbol), label: 'Degree Grantor'

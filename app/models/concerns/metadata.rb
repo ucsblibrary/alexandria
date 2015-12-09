@@ -119,8 +119,6 @@ module Metadata
       index.as :stored_searchable, :facetable
     end
 
-    validates_vocabulary_of :form_of_work
-
     property :citation, predicate: RDF::URI('http://www.rdaregistry.info/Elements/u/#preferredCitation.en')
 
     # MODS

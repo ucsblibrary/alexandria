@@ -20,6 +20,7 @@ class Image < ActiveFedora::Base
   accepts_nested_attributes_for :date_copyrighted, reject_if: :time_span_blank, allow_destroy: true
 
   validates_vocabulary_of :rights_holder
+  validates_vocabulary_of :form_of_work
 
   def self.indexer
     ImageIndexer
