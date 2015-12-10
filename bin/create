@@ -104,6 +104,21 @@ if [ "$RAILS_ENV" == "production" ]; then
   fi
 fi
 
+if [ "$SVM_USER" == "" ]; then
+  echo
+  echo -n "Enter Active Directory username for mounting SVM: "
+  read -r svm_user
+  echo "Setting SVM_USER to '$svm_user'"
+  export SVM_USER="$svm_user"
+fi
+
+if [ "$SVM_PASS" == "" ]; then
+  echo -n "Enter Active Directory password: "
+  read -r -s svm_pass
+  export SVM_PASS="$svm_pass"
+  echo
+fi
+
 run_cmd() {
   local cmd
   cmd="$*"

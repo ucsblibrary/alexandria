@@ -120,7 +120,15 @@
 
 # Ingesting
 
-See also: <https://github.com/curationexperts/alexandria-v2/wiki>
+(See also: <https://github.com/curationexperts/alexandria-v2/wiki>)
+
+The descriptive metadata repository
+(https://stash.library.ucsb.edu/projects/CMS/repos/adrl-dm/browse) is
+automatically cloned to `/opt/download_root/metadata` during
+provisioning.  Make sure it is up-to-date when running ingests.
+
+The remote fileshare with supporting images is automatically mounted
+to `/opt/ingest/data`.
 
 ## ETDs
 
