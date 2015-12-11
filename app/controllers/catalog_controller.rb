@@ -59,7 +59,6 @@ class CatalogController < ApplicationController
     # solr field configuration for search results/index views
     config.index.title_field = solr_name('title', :stored_searchable)
     config.index.display_type_field = 'has_model_ssim'
-
     config.index.thumbnail_field = 'thumbnail_url_ssm'
 
     config.show.partials = [:media, :show]
@@ -136,7 +135,7 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('description', :stored_searchable), label: 'Description', separator: '<br><br>'.html_safe
     config.add_show_field solr_name('digital_origin', :stored_searchable), label: 'Digital Origin'
     config.add_show_field solr_name('extent', :displayable), label: 'Extent'
-    config.add_show_field solr_name('form_of_work', :stored_searchable), label: 'Genre(s)'
+    config.add_show_field solr_name('form_of_work', :stored_searchable), label: 'Genre(s)', separator: '; '
     config.add_show_field solr_name('identifier', :displayable), label: 'ARK'
     config.add_show_field solr_name('institution_label', :stored_searchable), label: 'Contributing Institution'
     config.add_show_field solr_name('issued', :displayable), label: 'Issued Date'
