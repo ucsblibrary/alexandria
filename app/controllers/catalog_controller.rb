@@ -34,6 +34,10 @@ class CatalogController < ApplicationController
   # This applies appropriate access controls to all solr queries
   CatalogController.search_params_logic += [:add_access_controls_to_solr_params, :only_visible_objects]
 
+  # Turn off SMS
+  # https://groups.google.com/d/msg/blacklight-development/l_zHRF_GQc8/_qUUbJSs__YJ
+  CatalogController.blacklight_config.show.document_actions.delete(:sms)
+
   add_show_tools_partial(:merge, partial: 'catalog/merge_link', if: :show_merge_link?)
   add_show_tools_partial(:delete, partial: 'catalog/delete', if: :show_delete_link?)
   add_show_tools_partial(:edit, partial: 'catalog/edit', if: :editor?)
