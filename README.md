@@ -44,7 +44,7 @@
 
 2. `bundle install`
 
-3. `bin/create development`
+3. `cd provisioning && bin/create development`
 
     Once the VM is created, you can SSH into it with `vagrant ssh` or
     manually by using the config produced by `vagrant ssh-config`.
@@ -81,7 +81,7 @@
 
 1. `bundle install`
 
-2. `bin/create production` to provision the production server
+2. `cd provisioning && bin/create production` to provision the production server
 
     - It’s (relatively) safe to set `REMOTE_USER` as root, since a
     non-root `deploy` user will be created for Capistrano.
