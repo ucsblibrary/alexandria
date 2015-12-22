@@ -8,4 +8,19 @@ server ENV['SERVER'], user: 'deploy', roles: [:web, :app, :db]
 
 # These files will be configured by the provisioning script in
 # PASSENGER_APP_ROOT/shared/
-set :linked_files, %w(config/resque-pool.yml config/redis.yml config/blacklight.yml config/database.yml config/ezid.yml config/fedora.yml config/ldap.yml config/secrets.yml config/smtp.yml config/solr.yml)
+set :linked_files,
+    %w(
+      config/application.rb
+      config/blacklight.yml
+      config/database.yml
+      config/environment.rb
+      config/environments/development.rb
+      config/ezid.yml
+      config/fedora.yml
+      config/ldap.yml
+      config/redis.yml
+      config/resque-pool.yml
+      config/secrets.yml
+      config/smtp.yml
+      config/solr.yml
+    )

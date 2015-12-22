@@ -10,4 +10,4 @@ spec:
 	bundle exec rspec
 
 vagrant:
-	SERVER=127.0.0.1 REPO=/vagrant bundle exec cap vagrant deploy
+	SERVER=127.0.0.1 REPO=/adrlroot bundle exec cap vagrant deploy
