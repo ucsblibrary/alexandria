@@ -3,7 +3,7 @@ def configure_repositories
   vocab_repo = if ENV['CI']
                  RDF::Repository.new
                else
-                 RDF::Marmotta.new('http://localhost:8180/marmotta')
+                 RDF::Marmotta.new("http://localhost:#{Rails.application.secrets.marmotta_port}/marmotta")
                end
   ActiveTriples::Repositories.add_repository :vocabs, vocab_repo
 end

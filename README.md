@@ -68,8 +68,7 @@
 
     - Redis:
 
-
-5. On the VM, add the LDAP password from Secret Server to `/opt/alex2/shared/config/ldap.yml`
+6. On the VM, add the LDAP password from Secret Server to `shared/config/ldap.yml`
 
 # Provisioning and deploying to production
 

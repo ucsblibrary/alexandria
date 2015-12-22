@@ -26,9 +26,7 @@ class GenericFileIndexer < ActiveFedora::IndexingService
     def host
       hostname = Rails.application.config.host_name
       if hostname == 'localhost' || hostname == '127.0.0.1'
-        # TODO: does this have to be hard-coded?  Is the Vagrant port
-        # only specified in Vagrantfile and the Apache conf?
-        hostname + ':8484'
+        "#{hostname}:#{Rails.application.secrets.localhost_port}"
       else
         hostname
       end
