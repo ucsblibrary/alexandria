@@ -14,9 +14,12 @@ class CatalogController < ApplicationController
   # upgrading to version 6
   # https://github.com/projectblacklight/blacklight/commit/e7d1559a98e161dd52795746174406ca923470b7
   def invalid_document_id_error(e)
-    t = Time.now.to_i
-    puts "#{t} (Blacklight::Exceptions::RecordNotFound): #{e.inspect}"
-    raise ActiveRecord::RecordNotFound.new(e)
+    logger.error "404 Error\n" \
+      "CatalogController: #{e} thrown while searching for #{params[:id]}\n" \
+      "\t#{params.inspect}\n"
+    @unknown_type = 'Document'
+    @unknown_id = params[:id]
+    render 'errors/not_found', status: 404
   end
 
   # enforce_show_permissions is from hydra-access-controls gem
