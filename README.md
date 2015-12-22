@@ -62,11 +62,12 @@
 
     - Fedora: http://localhost:2424/fedora/
 
+    - Marmotta: http://localhost:2424/marmotta
+
     - PostgreSQL:
 
     - Redis:
 
-    - Marmotta: http://localhost:8180/marmotta
 
 5. On the VM, add the LDAP password from Secret Server to `/opt/alex2/shared/config/ldap.yml`
 
