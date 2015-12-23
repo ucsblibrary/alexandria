@@ -10,13 +10,8 @@ class CatalogController < ApplicationController
 
   before_action :convert_ark_to_id, only: :show
 
-  # Replace with `rescue Blacklight::Exceptions::RecordNotFound` when
-  # upgrading to version 6
-  # https://github.com/projectblacklight/blacklight/commit/e7d1559a98e161dd52795746174406ca923470b7
-  def invalid_document_id_error(e)
-    logger.error "404 Error\n" \
-      "CatalogController: #{e} thrown while searching for #{params[:id]}\n" \
-      "\t#{params.inspect}\n"
+  rescue_from Blacklight::Exceptions::RecordNotFound do |e|
+    logger.error "(Blacklight::Exceptions::RecordNotFound): #{e.inspect}"
     @unknown_type = 'Document'
     @unknown_id = params[:id]
     render 'errors/not_found', status: 404
