@@ -1,3 +1,42 @@
+# Running a development instance on Mac OSX
+
+1. If you didn’t clone this repository with `--recursive`, fetch the
+   submodules with `git submodule init && git submodule update`.
+
+2. `bundle install`
+
+3. `cd provisioning && bin/create local`
+
+    If you don’t have Homebrew installed, you will be asked for
+    permission to download and run a bootstrap script that will
+    install Homebrew and other development tools.
+
+    *WARNING:* Currently this will create a number of directories
+     (`install`, `solr`, `fedora-data`, `marmotta`) in the _parent_
+     directory of this directory; this is done to maintain symmetry
+     with the CentOS provisioning steps, but should be fixed in the
+     future (submit a PR!).
+
+4. `cd .. && bundle exec rake db:migrate`
+
+5. `bin/rails server`
+
+6. The following services should be running; `brew services restart <program>` if not:
+
+    - WEBrick: <http://localhost:3000/>
+
+    - Tomcat: <http://localhost:2424/>
+
+    - Solr: <http://localhost:2424/hydra/>
+
+    - Fedora: <http://localhost:2424/fedora/>
+
+    - Marmotta: <http://localhost:2424/marmotta/>
+
+    - PostgreSQL:
+
+    - Redis:
+
 # Running a development instance in Vagrant
 
 ## Prerequisites
