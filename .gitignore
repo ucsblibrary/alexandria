@@ -1,3 +1,6 @@
+# Ignore precompiled assets
+public/assets
+
 # Ignore Vagrant files
 /.vagrant
 
