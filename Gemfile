@@ -70,6 +70,7 @@ group :development, :test do
   gem 'capybara'
   gem 'poltergeist'
   gem 'byebug'
+  gem 'rubocop'
   gem 'sqlite3'
   gem 'spring'
   gem 'spring-commands-rspec', group: :development
