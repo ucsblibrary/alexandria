@@ -1,6 +1,6 @@
 <%=
 r = "<a href='#{collections.collection_path(@collection)}'>"
-thumb = @member_docs.sample["thumbnail_url_ssm"]
+thumb = @member_docs.sample["thumbnail_url_ssm"] if @member_docs.sample
 r << (thumb ? "<img class='collection-representative' src='#{thumb.first}' alt='#{@collection.title}'>"
             : "<span class='glyphicon glyphicon-th collection-icon'></span>")
 r << "</a>"
