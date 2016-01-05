@@ -3,13 +3,13 @@ module Metadata
   extend ActiveSupport::Concern
 
   RELATIONS = {
-    contributor:         RDF::DC.contributor,
-    creator:             RDF::DC.creator,
+    contributor:         RDF::Vocab::DC.contributor,
+    creator:             RDF::Vocab::DC.creator,
   }.merge(MARCREL)
 
   included do
     # For ARKs
-    property :identifier, predicate: RDF::DC.identifier do |index|
+    property :identifier, predicate: RDF::Vocab::DC.identifier do |index|
       index.as :displayable
     end
 
@@ -17,11 +17,11 @@ module Metadata
       index.as :symbol, :stored_searchable # symbol is needed for exact match search in the CollectionFactory
     end
 
-    property :title, predicate: RDF::DC.title, multiple: false do |index|
+    property :title, predicate: RDF::Vocab::DC.title, multiple: false do |index|
       index.as :stored_searchable
     end
 
-    property :alternative, predicate: RDF::DC.alternative do |index|
+    property :alternative, predicate: RDF::Vocab::DC.alternative do |index|
       index.as :stored_searchable
     end
 
@@ -38,24 +38,24 @@ module Metadata
     #   index.as :stored_searchable
     # end
 
-    property :description, predicate: RDF::DC.description do |index|
+    property :description, predicate: RDF::Vocab::DC.description do |index|
       index.as :stored_searchable
     end
 
-    property :latitude, predicate: RDF::EXIF.gpsLatitude do |index|
+    property :latitude, predicate: RDF::Vocab::EXIF.gpsLatitude do |index|
       index.as :displayable
     end
 
-    property :language, predicate: RDF::DC.language,
+    property :language, predicate: RDF::Vocab::DC.language,
                         class_name: Oargun::ControlledVocabularies::Language do |index|
       index.as :displayable
     end
 
-    property :longitude, predicate: RDF::EXIF.gpsLongitude do |index|
+    property :longitude, predicate: RDF::Vocab::EXIF.gpsLongitude do |index|
       index.as :displayable
     end
 
-    property :location, predicate: RDF::DC.spatial,
+    property :location, predicate: RDF::Vocab::DC.spatial,
                         class_name: Oargun::ControlledVocabularies::Geographic do |index|
       index.as :stored_searchable, :facetable
     end
@@ -64,7 +64,7 @@ module Metadata
       index.as :stored_searchable
     end
 
-    property :lc_subject, predicate: RDF::DC.subject, class_name: Oargun::ControlledVocabularies::Subject do |index|
+    property :lc_subject, predicate: RDF::Vocab::DC.subject, class_name: Oargun::ControlledVocabularies::Subject do |index|
       index.as :stored_searchable, :facetable
     end
 
@@ -76,11 +76,11 @@ module Metadata
 
     validates_vocabulary_of :institution
 
-    property :publisher, predicate: RDF::DC.publisher do |index|
+    property :publisher, predicate: RDF::Vocab::DC.publisher do |index|
       index.as :stored_searchable, :facetable
     end
 
-    property :rights_holder, predicate: RDF::DC.rightsHolder, class_name: Oargun::ControlledVocabularies::Creator do |index|
+    property :rights_holder, predicate: RDF::Vocab::DC.rightsHolder, class_name: Oargun::ControlledVocabularies::Creator do |index|
       index.as :symbol
     end
 
@@ -90,13 +90,13 @@ module Metadata
 
     validates_vocabulary_of :copyright_status
 
-    property :license, predicate: RDF::DC.rights, class_name: Oargun::ControlledVocabularies::RightsStatement do |index|
+    property :license, predicate: RDF::Vocab::DC.rights, class_name: Oargun::ControlledVocabularies::RightsStatement do |index|
       index.as :stored_searchable
     end
 
     validates_vocabulary_of :license
 
-    property :work_type, predicate: RDF::DC.type do |index|
+    property :work_type, predicate: RDF::Vocab::DC.type do |index|
       index.as :stored_searchable
     end
 
@@ -105,9 +105,9 @@ module Metadata
     end
 
     # Dates
-    has_and_belongs_to_many :created, predicate: RDF::DC.created, class_name: 'TimeSpan', inverse_of: :images
-    has_and_belongs_to_many :date_other, predicate: RDF::DC.date, class_name: 'TimeSpan', inverse_of: :date_other_images
-    has_and_belongs_to_many :date_valid, predicate: RDF::DC.valid, class_name: 'TimeSpan', inverse_of: :date_valid_images
+    has_and_belongs_to_many :created, predicate: RDF::Vocab::DC.created, class_name: 'TimeSpan', inverse_of: :images
+    has_and_belongs_to_many :date_other, predicate: RDF::Vocab::DC.date, class_name: 'TimeSpan', inverse_of: :date_other_images
+    has_and_belongs_to_many :date_valid, predicate: RDF::Vocab::DC.valid, class_name: 'TimeSpan', inverse_of: :date_valid_images
 
     # Not tackling these now. No demonstrated need yet.
     # has_and_belongs_to_many :date_accepted, predicate: RDF::DC.dateAccepted, class_name: 'TimeSpan'
@@ -130,7 +130,7 @@ module Metadata
 
     property :description_standard, predicate: RDF::Vocab::MODS.recordDescriptionStandard
 
-    property :extent, predicate: RDF::DC.extent do |index|
+    property :extent, predicate: RDF::Vocab::DC.extent do |index|
       index.as :searchable, :displayable
     end
 
