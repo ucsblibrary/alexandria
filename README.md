@@ -1,3 +1,4 @@
+<<<<<<< 903ec108671bd3e25d423cc5afdcefdd2ea7c961
 # Running a development instance on Mac OSX
 
 1. If you didn’t clone this repository with `--recursive`, fetch the
@@ -157,6 +158,8 @@
   * Make sure marmotta is running, or CI environment variable is set to bypass marmotta
   * `bundle exec rake spec`
 
+=======
+>>>>>>> [doc] remove provisioning steps from readme
 # Ingesting
 
 (See also: <https://github.com/curationexperts/alexandria-v2/wiki>)
@@ -215,3 +218,21 @@ collection, then individual records:
 1. `bin/ingest-csv /path/to/collection.csv Collection`
 
 2. `bin/ingest-csv /path/to/objects.csv /path/to/files Image`
+
+# Troubleshooting
+
+- **Passenger fails to spawn process**
+
+    ```
+    [ 2015-11-26 01:56:19.7981 20652/7f16c6f19700 App/Implementation.cpp:303 ]: Could not spawn process for application /opt/alex2/current: An error occurred while starting up the preloader: it did not write a startup response in time.
+    ```
+
+    Try restarting Apache and deploying again.
+
+- **Timeout during assets precompile**:  Not sure yet!
+
+# Testing
+
+  * Make sure jetty is running
+  * Make sure marmotta is running, or CI environment variable is set to bypass marmotta
+  * `bundle exec rake spec`
