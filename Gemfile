@@ -23,12 +23,8 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-# TODO: Set hydra-head to a released version
-gem 'hydra-head', github: 'projecthydra/hydra-head', ref: 'cc8fe53'
-
-# gem 'active-fedora', '~> 9.3.0'
-# Optimise for a faster import: https://github.com/projecthydra/active_fedora/pull/876
-gem 'active-fedora', github: 'projecthydra/active_fedora', ref: 'fec345a'
+gem 'hydra-head', '~> 9.5.0'
+gem 'active-fedora', '~> 9.7.0'
 
 # gem 'active-triples', github: 'jcoyne/ActiveTriples', branch: '0.7-future'
 # https://github.com/ActiveTriples/ActiveTriples/pull/164
