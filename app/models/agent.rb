@@ -5,8 +5,8 @@
 class Agent < ActiveFedora::Base
   include LocalAuthorityBase
 
-  rdf_label ::RDF::FOAF.name
-  property :foaf_name, predicate: ::RDF::FOAF.name, multiple: false do |index|
+  rdf_label ::RDF::Vocab::FOAF.name
+  property :foaf_name, predicate: ::RDF::Vocab::FOAF.name, multiple: false do |index|
     index.as :stored_searchable, :symbol # Need :symbol for exact match for ObjectFactory find_or_create_* methods.
   end
 
