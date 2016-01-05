@@ -45,7 +45,7 @@ gem 'mods', '~> 2.0.3'
 gem 'oargun', github: 'curationexperts/oargun', ref: 'e303100'
 gem 'linked_vocabs', github: 'jcoyne/linked_vocabs', branch: 'with_0.7_validation'
 gem 'blacklight-gallery'
-gem 'riiif', '~> 0.1.0'
+gem 'riiif', '~> 0.2.0'
 gem 'ezid-client', '~> 1.0'
 gem 'qa', '~> 0.5.0'
 
