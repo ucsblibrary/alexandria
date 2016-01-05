@@ -7,7 +7,7 @@ describe 'collections/_paginate.html.erb' do
     }
   end
 
-  let(:response) { Blacklight::SolrResponse.new(sample_response, {}) }
+  let(:response) { Blacklight::Solr::Response.new(sample_response, {}) }
 
   before do
     # Rspec doesn't have a way to deal with engine routes in view specs
