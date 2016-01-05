@@ -6,7 +6,6 @@ set :ssh_options, port: 22, keys: ['~/.ssh/id_rsa']
 
 set :linked_files,
     %w(
-      config/application.rb
       config/blacklight.yml
       config/database.yml
       config/environment.rb

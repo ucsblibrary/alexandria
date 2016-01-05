@@ -10,7 +10,6 @@ server ENV['SERVER'], user: 'deploy', roles: [:web, :app, :db]
 # PASSENGER_APP_ROOT/shared/
 set :linked_files,
     %w(
-      config/application.rb
       config/blacklight.yml
       config/database.yml
       config/environment.rb
