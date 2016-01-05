@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.3'
+gem 'rails', '4.2.5'
 # Use postgres in production as the database for Active Record
 gem 'pg'
 # Use SCSS for stylesheets
@@ -38,7 +38,7 @@ gem 'hydra-role-management'
 gem 'hydra-collections', '~> 5.0.1'
 gem 'rdf-marmotta', '~> 0.0.8'
 
-gem 'blacklight', '~> 5.14.0'
+gem 'blacklight', '~> 5.17.0'
 gem 'settingslogic'
 
 gem 'rsolr', '~> 1.0.12'
