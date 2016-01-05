@@ -41,7 +41,6 @@ gem 'ezid-client', '~> 1.0'
 gem 'qa', '~> 0.5.0'
 gem 'rdf-marmotta', '~> 0.0.8'
 gem 'rdf-vocab', '~> 0.8.4'
-gem 'riiif', '~> 0.1.0'
 
 gem 'kaminari', github: 'jcoyne/kaminari', branch: 'sufia'
 
