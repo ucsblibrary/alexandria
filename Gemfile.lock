@@ -40,14 +40,15 @@ GIT
       activesupport (>= 3.0.0)
 
 GIT
-  remote: git://github.com/jcoyne/linked_vocabs.git
-  revision: 237e39653a0b23db0b15c342acd998de2b0ac2bb
-  branch: with_0.7_validation
+  remote: git://github.com/no-reply/linked_vocabs.git
+  revision: 574116b68006b9d71f03bc9338e5328eea7c151f
+  ref: 574116b
   specs:
     linked_vocabs (0.2.0)
       active-triples (>= 0.6.0)
       rake
       rdf (>= 1.1.2.1)
+      rdf-vocab
       sparql
       sparql-client
 

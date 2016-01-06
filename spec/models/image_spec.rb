@@ -146,7 +146,7 @@ describe Image do
     let(:image) { Image.new(lc_subject: ['foo']) }
     it "isn't valid" do
       expect(image).not_to be_valid
-      expect(image.errors[:base]).to eq ['value `foo for `lc_subject` property is not a term in a controlled vocabulary lcsh, lcnames, tgm, aat, local']
+      expect(image.errors[:base]).to eq ["value `foo' for `lc_subject' property is not a term in a controlled vocabulary lcsh, lcnames, tgm, aat, local"]
     end
   end
 
