@@ -1,0 +1,6 @@
+<%= link_to hydra_editor.edit_record_path(document) do %>
+  <span class="glyphicon glyphicon-pencil"></span>
+<% end %>
+<%= link_to record_path(document), data: { method: :delete, confirm: 'Are you sure you want to permanently delete this record?' } do %>
+  <span class="glyphicon glyphicon-trash"></span>
+<% end %>

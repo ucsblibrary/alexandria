@@ -9,6 +9,12 @@ class LocalAuthoritiesController < ApplicationController
   configure_blacklight do |config|
     config.search_builder_class = LocalAuthoritiesSearchBuilder
 
+    config.index.document_actions.delete(:bookmark)
+    config.add_results_document_tool(:edit, partial: 'edit_controls')
+
+    config.add_results_collection_tool(:add_another)
+
+    # Display the admin menu in the nav header if the user is an admin
     config.add_nav_action(:admin_menu, partial: 'shared/admin_menu', if: :admin_menu?, class: 'dropdown')
 
     config.default_solr_params = {
