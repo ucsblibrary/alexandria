@@ -53,6 +53,17 @@ GIT
       sparql-client
 
 GIT
+  remote: git://github.com/projecthydra/hydra-editor.git
+  revision: 938bb01924db08b3e8a8e0b2946d9a8e4c24897d
+  branch: form-group
+  specs:
+    hydra-editor (1.1.0)
+      active-fedora (>= 9.0.0)
+      cancancan (~> 1.8)
+      rails (~> 4.1)
+      simple_form (~> 3.1.0)
+
+GIT
   remote: git://github.com/traject/traject.git
   revision: 656a992c400a472bf5b738ec7a3aa208cc449472
   branch: allow_nil_default
@@ -150,7 +161,7 @@ GEM
     builder (3.2.2)
     byebug (5.0.0)
       columnize (= 0.9.0)
-    cancancan (1.12.0)
+    cancancan (1.13.1)
     capistrano (3.4.0)
       i18n
       rake (>= 10.0.0)
@@ -244,11 +255,6 @@ GEM
       hydra-access-controls (= 9.5.0)
       jettywrapper (>= 2.0.0)
       rails (~> 4.0)
-    hydra-editor (1.0.4)
-      active-fedora (>= 9.0.0)
-      cancancan (~> 1.8)
-      rails (~> 4.1)
-      simple_form (~> 3.1.0)
     hydra-head (9.5.0)
       hydra-access-controls (= 9.5.0)
       hydra-core (= 9.5.0)
@@ -332,7 +338,7 @@ GEM
     netrc (0.10.3)
     nokogiri (1.6.7.1)
       mini_portile2 (~> 2.0.0.rc2)
-    nom-xml (0.5.2)
+    nom-xml (0.5.4)
       activesupport (>= 3.2.18)
       i18n
       nokogiri
@@ -505,7 +511,7 @@ GEM
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
     settingslogic (2.0.9)
-    simple_form (3.1.0)
+    simple_form (3.1.1)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
     sinatra (1.4.6)
@@ -605,7 +611,7 @@ DEPENDENCIES
   ezid-client (~> 1.0)
   factory_girl_rails (~> 4.4)
   hydra-collections (~> 5.0.1)
-  hydra-editor (~> 1.0.4)
+  hydra-editor!
   hydra-head (~> 9.5.0)
   hydra-role-management
   jbuilder (~> 2.0)
