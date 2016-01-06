@@ -53,7 +53,7 @@ gem 'kaminari', github: 'jcoyne/kaminari', branch: 'sufia'
 
 gem 'devise'
 gem 'devise_ldap_authenticatable'
-gem 'devise-guests', github: 'cbeer/devise-guests'
+gem 'devise-guests', '~> 0.5.0'
 # gem 'traject', require: false
 gem 'traject', github: 'traject/traject', require: false, branch: 'allow_nil_default'
 
