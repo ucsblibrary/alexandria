@@ -33,12 +33,13 @@ GIT
 
 GIT
   remote: git://github.com/no-reply/linked_vocabs.git
-  revision: f96779ca0af28534ecf2315c1df7015fa5e9c89f
+  revision: 574116b68006b9d71f03bc9338e5328eea7c151f
   specs:
     linked_vocabs (0.2.0)
       active-triples (>= 0.6.0)
       rake
       rdf (>= 1.1.2.1)
+      rdf-vocab
       sparql
       sparql-client
 
