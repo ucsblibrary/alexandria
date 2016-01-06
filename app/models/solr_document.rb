@@ -17,7 +17,9 @@ class SolrDocument
   # and Blacklight::Solr::Document#to_semantic_values
   # Recommendation: Use field names from Dublin Core
   use_extension(Blacklight::Document::DublinCore)
-  use_extension(ExportAsTurtle)
+
+  # Do content negotiation for AF models.
+  use_extension(Hydra::ContentNegotiation)
 
   ##
   # Offer the source (ActiveFedora-based) model to Rails for some of the
