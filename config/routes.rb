@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   blacklight_for :catalog
   get 'lib/:id' => 'catalog#show', constraints: { id: /ark:\/\d{5}\/f\w{7,9}/ }
 
-  resources :downloads
+  resources :downloads, only: :show
   resources :embargoes, only: [:index, :destroy] do
     collection do
       patch :update
