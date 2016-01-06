@@ -29,13 +29,6 @@ describe Importer::ProquestXmlParser do
       end
     end
 
-    context 'a record that has <DISS_keyword>' do
-      let(:file) { 'spec/fixtures/proquest/MartinezRodriguez_ucsb_0035D_12446_DATA.xml' }
-      it 'collects attributes for the ETD record' do
-        expect(attributes[:keywords]).to eq ['bioadhesion', 'biofilm', 'collagen', 'interfacial pH', 'mussel adhesive plaque', 'Mussel foot protein']
-      end
-    end
-
     describe 'copyright fields' do
       let(:file) { 'spec/fixtures/proquest/MartinezRodriguez_ucsb_0035D_12446_DATA.xml' }
       it 'collects attributes for the ETD record' do
