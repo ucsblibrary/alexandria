@@ -46,17 +46,6 @@ GIT
       sparql-client
 
 GIT
-  remote: git://github.com/projecthydra/hydra-editor.git
-  revision: 938bb01924db08b3e8a8e0b2946d9a8e4c24897d
-  branch: form-group
-  specs:
-    hydra-editor (1.1.0)
-      active-fedora (>= 9.0.0)
-      cancancan (~> 1.8)
-      rails (~> 4.1)
-      simple_form (~> 3.1.0)
-
-GIT
   remote: git://github.com/traject/traject.git
   revision: 656a992c400a472bf5b738ec7a3aa208cc449472
   branch: allow_nil_default
@@ -250,6 +239,11 @@ GEM
       hydra-access-controls (= 9.5.0)
       jettywrapper (>= 2.0.0)
       rails (~> 4.0)
+    hydra-editor (1.1.1)
+      active-fedora (>= 9.0.0)
+      cancancan (~> 1.8)
+      rails (~> 4.1)
+      simple_form (~> 3.1.0)
     hydra-head (9.5.0)
       hydra-access-controls (= 9.5.0)
       hydra-core (= 9.5.0)
@@ -606,7 +600,7 @@ DEPENDENCIES
   ezid-client (~> 1.0)
   factory_girl_rails (~> 4.4)
   hydra-collections (~> 5.0.1)
-  hydra-editor!
+  hydra-editor (~> 1.1.1)
   hydra-head (~> 9.5.0)
   hydra-role-management
   jbuilder (~> 2.0)

@@ -29,7 +29,7 @@ gem 'active-fedora', '~> 9.7.0'
 # gem 'active-triples', github: 'jcoyne/ActiveTriples', branch: '0.7-future'
 # https://github.com/ActiveTriples/ActiveTriples/pull/164
 gem 'active-triples', github: 'ActiveTriples/ActiveTriples', ref: '71ed53a'
-gem 'hydra-editor', github: 'projecthydra/hydra-editor', branch: 'form-group'
+gem 'hydra-editor', '~> 1.1.1'
 gem 'hydra-role-management'
 gem 'hydra-collections', '~> 5.0.1'
 gem 'rdf-marmotta', '~> 0.0.8'
