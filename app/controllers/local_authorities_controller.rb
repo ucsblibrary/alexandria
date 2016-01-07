@@ -31,7 +31,7 @@ class LocalAuthoritiesController < ApplicationController
       }
     end
 
-    config.add_facet_field 'active_fedora_model_ssi', label: 'Type'
+    config.add_facet_field 'active_fedora_model_ssi', label: 'Type', sort: 'index', collapse: false
     config.add_index_field 'uri_ssim', label: 'URI'
 
     config.index.title_field = %w(foaf_name_tesim label_tesim)
