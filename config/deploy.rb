@@ -17,7 +17,13 @@ set :keep_releases, 5
 set :passenger_restart_with_touch, true
 set :assets_prefix, "#{shared_path}/public/assets"
 
-set :linked_dirs, %w(tmp/pids tmp/cache tmp/sockets public/assets)
+set :linked_dirs, %w(
+  tmp/pids
+  tmp/cache
+  tmp/sockets
+  public/assets
+  config/environments
+)
 
 SSHKit.config.command_map[:rake] = 'bundle exec rake'
 

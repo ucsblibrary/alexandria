@@ -9,7 +9,6 @@ set :linked_files,
       config/blacklight.yml
       config/database.yml
       config/environment.rb
-      config/environments/production.rb
       config/ezid.yml
       config/fedora.yml
       config/ldap.yml
