@@ -18,7 +18,7 @@ describe ImageForm do
       ]
     end
 
-    it 'should include complex fields' do
+    it 'includes complex fields' do
       expect(subject).to include(location_attributes: [:id, :_destroy])
       expect(subject).to include(lc_subject_attributes: [:id, :_destroy])
       expect(subject).to include(form_of_work_attributes: [:id, :_destroy])
@@ -38,7 +38,8 @@ describe ImageForm do
       # expect(subject).to include(creator_attributes: [:id, :_destroy])
     end
 
-    it 'should include simple fields' do
+    it 'includes simple fields' do
+      expect(subject).to include(:admin_policy_id)
       expect(subject).to include(accession_number: [])
       expect(subject).to include(sub_location: [])
       expect(subject).to include(use_restrictions: [])
@@ -142,22 +143,28 @@ describe ImageForm do
   describe 'initialize_field' do
     let(:form) { described_class.new(model) }
     let(:model) { Image.new(attributes) }
-    subject { form.initialize_field(field) }
+    let(:attributes) { {} }
 
     context 'for lc_subject' do
       let(:attributes) { { lc_subject: ['one'] } }
       let(:field) { :lc_subject }
 
-      it 'should not add anything to lc_subject' do
+      it 'does not add anything to lc_subject' do
         expect(form.lc_subject).to eq ['one']
       end
+    end
+
+    describe "#admin_policy_id" do
+      let(:field) { :admin_policy_id }
+      subject { form.admin_policy_id }
+      it { is_expected.to eq 'authorities/policies/public' }
     end
 
     context 'for form_of_work' do
       let(:attributes) { { form_of_work: ['one'] } }
       let(:field) { :form_of_work }
 
-      it 'should not add anything to lc_subject' do
+      it 'does not add anything to form_of_work' do
         expect(form.form_of_work).to eq ['one']
       end
     end

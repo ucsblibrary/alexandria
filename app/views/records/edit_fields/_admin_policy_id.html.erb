@@ -1,0 +1,5 @@
+<%= f.input key, as: :select,
+            collection: AdminPolicy.options_for_select,
+            input_html: { class: 'form-control' },
+            include_blank: false,
+            required: f.object.required?(key) %>

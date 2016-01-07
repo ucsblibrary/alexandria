@@ -30,6 +30,10 @@ module AdminPolicy
     end
   end
 
+  def self.options_for_select
+    all.invert
+  end
+
   def self.find(id)
     all[id]
   end

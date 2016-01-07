@@ -12,7 +12,14 @@ describe BlacklightUrlHelper do
     context 'with an Etd' do
       let(:model) { ETD.to_class_uri }
       subject { helper.url_for_document(document) }
-      it { is_expected.to eq '/lib/ark:/99999/fk4v989d9j' }
+      context "that has an ark" do
+        it { is_expected.to eq '/lib/ark:/99999/fk4v989d9j' }
+      end
+
+      context "without an ark" do
+        let(:document) { SolrDocument.new(has_model_ssim: [model], id: 'fk/4v/98/fk4v989d9j') }
+        it { is_expected.to eq '/catalog/fk4v989d9j' }
+      end
     end
 
     context 'with a collection' do

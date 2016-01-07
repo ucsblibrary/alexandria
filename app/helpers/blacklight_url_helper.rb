@@ -7,7 +7,11 @@ module BlacklightUrlHelper
     when 'Collection'
       collections.collection_path(doc)
     when 'Image', 'ETD'
-      ark_path(doc.ark.html_safe)
+      if doc.ark
+        ark_path(doc.ark.html_safe)
+      else
+        catalog_path(super)
+      end
     else
       super
     end

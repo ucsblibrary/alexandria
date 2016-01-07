@@ -8,7 +8,7 @@ class ImageForm
                 :contributor, :latitude, :longitude, :digital_origin, :institution,
                 :sub_location, :use_restrictions, :created, :issued,
                 :date_other, :date_copyrighted, :language, :description_standard,
-                :copyright_status, :license, :rights_holder]
+                :copyright_status, :license, :rights_holder, :admin_policy_id]
 
   self.required_fields = [] # Required fields
 
@@ -40,17 +40,7 @@ class ImageForm
       if key == :contributor
         self[key] = multiplex_contributors
       elsif reflection = model_class.reflect_on_association(key)
-        if reflection.collection?
-          association = model.send(key)
-
-          if association.empty?
-            self[key] = Array(association.build)
-          else
-            self[key] = association
-          end
-        else
-          fail ArgumentError, "Association ''#{key}'' is not a collection"
-        end
+        initialize_association(reflection, key)
       elsif class_name = model_class.properties[key.to_s].class_name
         # TODO: I suspect this is dead code
         self[key] += [class_name.new]
@@ -58,6 +48,21 @@ class ImageForm
         self[key] = Array.wrap(self[key]) + ['']
       elsif self[key].blank?
         self[key] = ''
+      end
+    end
+
+    def initialize_association(reflection, key)
+      if reflection.collection?
+        association = model.send(key)
+
+        if association.empty?
+          self[key] = Array(association.build)
+        else
+          self[key] = association
+        end
+      else
+        self[key] = model.send(key)
+        self[key] = AdminPolicy::PUBLIC_POLICY_ID if key == :admin_policy_id && !self[key]
       end
     end
 
