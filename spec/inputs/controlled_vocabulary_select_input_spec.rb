@@ -44,7 +44,7 @@ describe 'ControlledVocabularySelectInput', type: :input do
       it 'renders multi-value' do
         expect(subject).to have_selector('input.image_creator.multi_value')
         expect(subject).to have_field('image[creator_attributes][0][hidden_label]', with: 'Item 1')
-        expect(subject).to have_selector('input[name="image[creator_attributes][0][id]"][value="http://localhost:8983/fedora/rest/test/ff/ff/ff/ffffff"]')
+        expect(subject).to have_selector('input[name="image[creator_attributes][0][id]"][value="http://localhost:8080/fedora/rest/test/ff/ff/ff/ffffff"]')
         expect(subject).to have_selector('input[name="image[creator_attributes][0][_destroy]"][value=""][data-destroy]')
       end
     end
