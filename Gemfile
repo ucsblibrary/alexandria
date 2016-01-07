@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '4.2.5'
-gem 'pg', '0.18.3'
+gem 'pg', '0.18.4'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 
@@ -37,7 +37,7 @@ gem 'oargun', github: 'curationexperts/oargun', ref: '9c7bdda'
 gem 'linked_vocabs', '~> 0.3.1'
 gem 'blacklight-gallery'
 gem 'riiif', '~> 0.2.0'
-gem 'ezid-client', '~> 1.0'
+gem 'ezid-client', '~> 1.2.0'
 gem 'qa', '~> 0.5.0'
 gem 'rdf-marmotta', '~> 0.0.8'
 gem 'rdf-vocab', '~> 0.8.4'
