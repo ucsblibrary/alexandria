@@ -5,8 +5,10 @@ describe ETDIndexer do
   subject { document }
 
   context 'with a generic_file' do
-    let(:generic_file) { GenericFile.new(id: 'bf/74/27/75/bf742775-2a24-46dc-889e-cca03b27b5f3') }
-    let(:etd) { ETD.new(generic_files: [generic_file]) }
+    before do
+      allow(etd).to receive_messages(generic_file_ids: ['bf/74/27/75/bf742775-2a24-46dc-889e-cca03b27b5f3'])
+    end
+    let(:etd) { ETD.new }
 
     it 'has downloads' do
       expect(subject['generic_file_ids_ssim']).to eq ['bf/74/27/75/bf742775-2a24-46dc-889e-cca03b27b5f3']

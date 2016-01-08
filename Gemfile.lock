@@ -79,7 +79,7 @@ GEM
       om (~> 3.1)
       rdf-rdfxml (~> 1.1)
       rsolr (~> 1.0.10)
-    activefedora-aggregation (0.4.0)
+    activefedora-aggregation (0.4.2)
       active-fedora
       activesupport
       rdf-vocab (~> 0.8.1)
@@ -575,7 +575,7 @@ PLATFORMS
 DEPENDENCIES
   active-fedora (~> 9.7.0)
   active-triples!
-  activefedora-aggregation (~> 0.4.0)
+  activefedora-aggregation (~> 0.4.2)
   american_date (~> 1.1.0)
   awesome_print
   blacklight (~> 5.17.0)

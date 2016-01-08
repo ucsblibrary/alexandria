@@ -39,7 +39,7 @@ gem 'settingslogic'
 
 gem 'rsolr', '~> 1.0.12'
 # Needs 0.4.0
-gem 'activefedora-aggregation', '~> 0.4.0'
+gem 'activefedora-aggregation', '~> 0.4.2'
 
 gem 'mods', '~> 2.0.3'
 gem 'oargun', github: 'curationexperts/oargun', ref: '9c7bdda'
