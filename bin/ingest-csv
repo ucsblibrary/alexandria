@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
-#
 
 filename = ARGV[0]
 path_or_type = ARGV[1]

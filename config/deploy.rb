@@ -1,15 +1,18 @@
 # config valid only for current version of Capistrano
 lock '3.4.0'
 
-set :application, 'alexandria-v2'
+set :application, 'alex2'
 set :scm, :git
 set :repo_url, 'https://github.com/curationexperts/alexandria-v2.git'
 # set :branch, 'master'
 set :deploy_to, '/opt/alex2'
+
+set :stages, %w(production vagrant)
+set :default_stage, 'vagrant'
+
 set :log_level, :debug
 set :keep_releases, 5
 set :passenger_restart_with_touch, true
-
 set :assets_prefix, "#{shared_path}/public/assets"
 
 set :linked_files, %w(config/resque-pool.yml config/redis.yml config/blacklight.yml config/database.yml config/ezid.yml config/fedora.yml config/ldap.yml config/secrets.yml config/smtp.yml config/solr.yml config/environments/production.rb)
@@ -24,18 +27,6 @@ SSHKit.config.command_map[:rake] = 'bundle exec rake'
 
 # Default branch is :master
 ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
-
-# Default deploy_to directory is /var/www/my_app_name
-# set :deploy_to, '/var/www/my_app_name'
-
-# Default value for :scm is :git
-# set :scm, :git
-
-# Default value for :format is :pretty
-# set :format, :pretty
-
-# Default value for :log_level is :debug
-# set :log_level, :debug
 
 # Default value for :pty is false
 # set :pty, true

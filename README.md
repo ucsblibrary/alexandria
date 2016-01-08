@@ -1,6 +1,123 @@
-[![Build Status](https://travis-ci.org/curationexperts/alexandria-v2.svg?branch=master)](https://travis-ci.org/curationexperts/alexandria-v2)
+# Running ADRL in Vagrant
 
-## Developer Setup Notes
+## PreReqs
+
+- Vagrant 1.7.2 or higher
+- VirtualBox 4.3.30 or higher
+- Git
+- Ansible 1.9.1 or higher
+- PostgreSQL
+
+## Part A: get or build a Vagrant Box with CentOS 7.0 on it.
+
+- Option 1: Get a Vagrant box already built from another developer
+- Option 2: Build your own Vagrant box.
+
+### Building your own Vagrant box:
+
+1. If you didn’t clone this repository with `--recursive`, fetch the
+   submodules with `git submodule init && git submodule update`.
+
+2. `cd vagrant-centos` and check out the CentOS 7.0 branch
+
+    ```
+    git checkout -b CentOS-7.0 origin/CentOS-7.0
+    ```
+
+3. Download the Centos-7 disk image (ISO):
+
+    ```
+    curl ftp://ftp.ucsb.edu//pub/mirrors/linux/centos/7.1.1503/isos/x86_64/CentOS-7-x86_64-Minimal-1503-01.iso -o isos/CentOS-7-x86_64-Minimal-1503-01.iso
+    ```
+
+4. Run the setup script
+
+    ```
+    ./setup
+    # Wait for it to complete, then run the cleanup and package
+    # command emmited by the setup script
+    ./cleanup && vagrant package --base centos70-x86_64 --output boxes/centos70-x86_64-20150730.box
+    ```
+
+## Part B: Start a local VM
+
+1. If you didn’t clone this repository with `--recursive`, fetch the
+   submodules with `git submodule init && git submodule update`.
+
+2. `vagrant up`
+
+    You can SSH into the VM with `vagrant ssh` or manually by using
+    the config produced by `vagrant ssh-config`.
+
+3. `bundle install`
+
+4. `make deploy` to run Capistrano
+
+    - At this point Apache should be running at: http://localhost:8484/
+
+    - Tomcat should be running: http://localhost:2424/
+
+    - Solr should be running: http://localhost:2424/hydra
+
+        The first time you deploy to the VM, you may have to manually
+        restart Tomcat in order for Solr to run: `sudo services tomcat restart`
+
+    - Fedora should be running: http://localhost:2424/fedora/
+
+    - PostgreSQL should be running:
+
+    - Redis should be running:
+
+    - Passenger should be running:
+
+    - Marmotta should be running: http://localhost:8180/
+
+5. On the VM, add the LDAP password from Secret Server to `/opt/alex2/shared/config/ldap.yml`
+
+## Ingesting
+
+See also: <https://github.com/curationexperts/alexandria-v2/wiki>
+
+### ETDs
+
+There are scripts to ingest records from zipfiles like those on the
+[sample ETDs page](https://wiki.library.ucsb.edu/display/repos/ETD+Sample+Files+for+DCE).
+The process is as follows:
+
+1. Move the zipfile(s) into the root of this repository so that they
+   appear in the VM’s shared directory (by default `/vagrant`).
+
+2. SSH into the VM; and `cd` to the “current” directory: `cd /opt/alex2/current`.
+
+3. Run the ETD script: `bundle exec bin/ingest-etd /vagrant/Batch\ 3.zip`.
+
+### Images
+
+#### CSV
+
+##### Individual images
+```
+bundle exec bin/ingest-csv ../ucsb_sample_data/adrl-dm/ingest-ready/pamss045\(Couper\)/pamss045\(Couper\)-objects.csv ../alexandria-images/special_collections/pamss045/tiff-a16
+```
+
+##### Collections
+```
+bin/ingest-csv ../ucsb_sample_data/adrl-dm/ingest-ready/pamss045\(Couper\)/pamss045\(Couper\)-collection.csv Collection
+```
+
+The first argument to the script is the CSV file that contains the records.  The second argument is the directory that contains supporting files, such as image files.
+
+#### MODS
+
+```
+bin/ingest-mods ../mods-for-adrl/mods_demo_set/demo_sbhcmss36_SantaBarbaraPicturePostcards ../alexandria-images/special_collections/mss36-sb-postcards/tiff-a16
+
+bin/ingest-mods ../mods-for-adrl/mods_demo_set/demo_sbhcmss78_FlyingAStudios ../alexandria-images/special_collections/spc-flying-a/conway-2010/16bit
+```
+
+The first argument to the script is the directory that contains the MODS files.  The second argument is the directory that contains supporting files, such as image files.
+
+## Running ADRL outside of Vagrant
 
 ### Dev/Test Configuration
   * Copy `config/blacklight.yml.template` to `config/blacklight.yml`
@@ -75,38 +192,3 @@ resque-pool
   * Make sure jetty is running
   * Make sure marmotta is running, or CI environment variable is set to bypass marmotta
   * `bundle exec rake spec`
-
-### Import Data
-
-#### MODS records
-```
-script/import_mods_records ../mods-for-adrl/mods_demo_set/demo_sbhcmss36_SantaBarbaraPicturePostcards ../alexandria-images/special_collections/mss36-sb-postcards/tiff-a16
-
-script/import_mods_records ../mods-for-adrl/mods_demo_set/demo_sbhcmss78_FlyingAStudios ../alexandria-images/special_collections/spc-flying-a/conway-2010/16bit
-
-script/import_mods_records ../mods-for-adrl/mods_demo_set/collection_records ./tmp
-```
-
-The first argument to the script is the directory that contains the MODS files.  The second argument is the directory that contains supporting files, such as image files.
-
-Note:  When importing collections, the 2nd argument won't actually be used, so you can set it to any valid directory.
-
-#### CSV records
-
-##### Images
-```
-script/import_csv ../ucsb_sample_data/adrl-dm/ingest-ready/pamss045\(Couper\)/pamss045\(Couper\)-objects.csv ../alexandria-images/special_collections/pamss045/tiff-a16
-```
-
-##### Collections
-```
-script/import_csv ../ucsb_sample_data/adrl-dm/ingest-ready/pamss045\(Couper\)/pamss045\(Couper\)-collection.csv Collection
-```
-
-The first argument to the script is the CSV file that contains the records.  The second argument is the directory that contains supporting files, such as image files.
-
-#### MARC records (ETDs)
-
-```
-bundle exec traject -c traject_config.rb /opt/download_root/marc/etds1-150.xml | tee -a etd-import.log
-```
