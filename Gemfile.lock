@@ -33,9 +33,9 @@ GIT
       activesupport (>= 3.0.0)
 
 GIT
-  remote: git://github.com/no-reply/linked_vocabs.git
-  revision: 574116b68006b9d71f03bc9338e5328eea7c151f
-  ref: 574116b
+  remote: git://github.com/jcoyne/linked_vocabs.git
+  revision: 149e184341a4e6e67eaeb0347dd1130a17965cf0
+  branch: validate_uri
   specs:
     linked_vocabs (0.2.0)
       active-triples (>= 0.6.0)

@@ -2,8 +2,8 @@ class MergeRecordsService
   # This service is intended to merge duplicate records.
   #
   # Example:
-  #     old_reference:  "Joel Conway"
-  #     new_reference:  "Conway, Joel"
+  #     old_reference:  Person.where(name: "Joel Conway").first
+  #     new_reference:  Person.where(name: "Conway, Joel").first
   #
   # In this example, the service will find all objects with
   # references to "Joel Conway", and replace those references
@@ -59,6 +59,7 @@ class MergeRecordsService
     end
 
     # Find all the records that refer to old_reference
+    # @return [Array<String>] a list of ids
     def records_with_references
       Record.references_for(old_reference).uniq
     end

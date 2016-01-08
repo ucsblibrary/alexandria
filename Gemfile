@@ -43,7 +43,7 @@ gem 'activefedora-aggregation', '~> 0.4.0'
 
 gem 'mods', '~> 2.0.3'
 gem 'oargun', github: 'curationexperts/oargun', ref: '9c7bdda'
-gem 'linked_vocabs', github: 'no-reply/linked_vocabs', ref: '574116b'
+gem 'linked_vocabs', github: 'jcoyne/linked_vocabs', branch: 'validate_uri'
 gem 'blacklight-gallery'
 gem 'riiif', '~> 0.2.0'
 gem 'ezid-client', '~> 1.0'

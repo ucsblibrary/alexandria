@@ -143,10 +143,21 @@ describe Image do
   end
 
   describe 'lc_subject' do
-    let(:image) { Image.new(lc_subject: ['foo']) }
-    it "isn't valid" do
-      expect(image).not_to be_valid
-      expect(image.errors[:base]).to eq ["value `foo' for `lc_subject' property is not a term in a controlled vocabulary lcsh, lcnames, tgm, aat, local"]
+    context "with a literal value" do
+      let(:image) { Image.new(lc_subject: ['foo']) }
+      it "isn't valid" do
+        expect(image).not_to be_valid
+        expect(image.errors[:base]).to eq ["`foo' for `lc_subject' property is expected to be a URI, but it is a String"]
+      end
+    end
+
+    context "with a local vocabulary" do
+      before { AdminPolicy.ensure_admin_policy_exists }
+      let(:topic) { Topic.create(label: ['Birds of California']) }
+      it 'allows local vocabularies' do
+        subject.lc_subject = [topic]
+        expect(subject).to be_valid
+      end
     end
   end
 

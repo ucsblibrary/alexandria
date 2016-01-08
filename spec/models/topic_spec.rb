@@ -8,4 +8,9 @@ describe Topic do
       expect(topic.rdf_label).to eq ['Birds of California']
     end
   end
+
+  describe "#in_vocab?" do
+    subject { topic.in_vocab? }
+    it { is_expected.to be true }
+  end
 end
