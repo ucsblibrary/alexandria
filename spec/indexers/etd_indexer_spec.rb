@@ -25,6 +25,13 @@ describe ETDIndexer do
     it { is_expected.to eq 'Samantha Lauren, 2014' }
   end
 
+  describe 'Indexing author (as creator facet)' do
+    let(:etd) { ETD.new(author: ['Kfir Lazare Sargent']) }
+    let(:subject) { document['creator_label_sim'] }
+
+    it { is_expected.to eq ['Kfir Lazare Sargent'] }
+  end
+
   describe 'Indexing dissertation' do
     let(:dissertation_degree) { ['Ph.D.'] }
     let(:dissertation_institution) { ['University of California, Santa Barbara'] }

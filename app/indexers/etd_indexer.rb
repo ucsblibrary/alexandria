@@ -4,6 +4,7 @@ class ETDIndexer < ObjectIndexer
       solr_doc[Solrizer.solr_name('generic_file_ids', :symbol)] = object.generic_file_ids
       solr_doc[Solrizer.solr_name('copyright', :displayable)] = "#{object.rights_holder.first}, #{object.date_copyrighted.first}"
       solr_doc[Solrizer.solr_name('dissertation', :displayable)] = "#{object.dissertation_degree.first}--#{object.dissertation_institution.first}, #{object.dissertation_year.first}"
+      solr_doc[Solrizer.solr_name('creator_label', :facetable)] = solr_doc[Solrizer.solr_name('author', :facetable)]
     end
   end
 
