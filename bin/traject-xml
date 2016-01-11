@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# Must be run from /opt/alex2/current/ on the application server
+
+export RAILS_ENV=production
+
+for xml in "$@"; do
+    bundle exec traject -c traject_config.rb "$xml"
+done
