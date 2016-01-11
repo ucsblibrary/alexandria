@@ -12,6 +12,11 @@ describe ETD do
       expect(subject['system_number_ssim']).to eq ['004092515']
     end
 
+    describe "human_readable_type" do
+      subject { etd.to_solr[Solrizer.solr_name('human_readable_type', :facetable)] }
+      it { is_expected.to eq 'Thesis or dissertation' }
+    end
+
     context 'under embargo' do
       let(:attrs) do
         {
@@ -32,7 +37,7 @@ describe ETD do
 
   describe '#human_readable_type' do
     subject { described_class.new.human_readable_type }
-    it { is_expected.to eq 'ETD' }
+    it { is_expected.to eq 'Thesis or dissertation' }
   end
 
   describe '#to_partial_path' do

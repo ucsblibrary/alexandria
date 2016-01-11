@@ -27,7 +27,7 @@ describe ETDIndexer do
 
   describe 'Indexing author (as creator facet)' do
     let(:etd) { ETD.new(author: ['Kfir Lazare Sargent']) }
-    let(:subject) { document['creator_label_sim'] }
+    subject { document['creator_label_sim'] }
 
     it { is_expected.to eq ['Kfir Lazare Sargent'] }
   end

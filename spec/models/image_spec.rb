@@ -110,8 +110,13 @@ describe Image do
   describe '#to_solr' do
     let(:image) { Image.new }
     it 'calls the ImageIndexer' do
-      expect_any_instance_of(ImageIndexer).to receive(:generate_solr_document)
+      expect_any_instance_of(ImageIndexer).to receive(:generate_solr_document).and_return({})
       image.to_solr
+    end
+
+    describe "human_readable_type" do
+      subject { image.to_solr[Solrizer.solr_name('human_readable_type', :facetable)] }
+      it { is_expected.to eq 'Image' }
     end
   end
 
