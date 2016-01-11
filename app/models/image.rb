@@ -4,6 +4,8 @@ class Image < ActiveFedora::Base
   include NestedAttributes
   include Hydra::Collections::Collectible
   include LocalAuthorityHashAccessor
+  include HumanReadableType
+  self.human_readable_type = "Image"
 
   include Hydra::AccessControls::Embargoable
   include EmbargoBehavior
