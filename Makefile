@@ -7,7 +7,7 @@ rubocop:
 	rubocop --format simple --config .rubocop.yml --auto-correct
 
 spec:
-	RAILS_ENV=test bundle exec rspec
+	RAILS=test bundle exec rspec
 
 vagrant:
 	SERVER=127.0.0.1 REPO=/vagrant/alex2 bundle exec cap vagrant deploy
