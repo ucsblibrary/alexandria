@@ -7,6 +7,7 @@ rubocop:
 	rubocop --format simple --config .rubocop.yml --auto-correct
 
 spec:
+	RAILS_ENV=test bin/rake db:migrate
 	RAILS_ENV=test bundle exec rspec
 
 vagrant:
