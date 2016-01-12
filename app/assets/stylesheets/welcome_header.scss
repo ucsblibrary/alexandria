@@ -15,10 +15,6 @@
     p { margin: 15px 0 0 0 }
   }
 
-  .bottom-links a {
-	  font: 1.8em 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  }
-
   a, a:hover {
     color: white;
     text-decoration: none;
@@ -26,11 +22,7 @@
 
   .nav li a:hover, .nav li a:focus {
     background-color: transparent;
-    color: $login_link_color;
-  }
-
-  .imageset {
-    text-align: center;
+    color: $primary_link_color;
   }
 
   .page-header-container {
@@ -38,26 +30,50 @@
     margin-left: 10%;
   }
 
-  .large-logo img {
-    width: 70%;
-    margin-bottom: 2.5em;
-    margin-top: 1.5em;
-    margin-left: -1%;
+  .large-logo {
+    text-align: center;
+
+    img {
+      width: 70%; // TODO: scale the image so we don't deliver something unnecessarily large
+      margin-bottom: 2.5em;
+      margin-top: 1.5em;
+      margin-left: -1%;
+    }
   }
-}
 
-// -----------------------------
-//   The search bar
-// -----------------------------
+  // -----------------------------
+  //   The search bar
+  // -----------------------------
 
-.page-header-splash .splash-search-bar {
-  margin-bottom: 3em;
-  width: 72%;
-  margin-left: 15%;
+  $search-bar-width: 72%;
+  $search-bar-margin: 15%;
+  #splash-search-bar {
+    width: $search-bar-width;
+    margin-left: $search-bar-margin;
 
-  .input-group-btn {
-    width: 10%;
+    .input-group-btn {
+      width: 10%;
+    }
+
+    // Override bootstrap.
+    .navbar-form {
+      padding: 0;
+    }
   }
-}
+  // -----------------------------
 
-// -----------------------------
+  #browse-by {
+    width: $search-bar-width;
+    margin-left: $search-bar-margin;
+	  font: 1.5em 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.5);
+    a {
+      text-decoration: underline;
+      transition: all 100ms ease-in-out 0s;
+    }
+    a:hover {
+      color: $primary_link_color;
+    }
+  }
+
+}
