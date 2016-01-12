@@ -6,10 +6,11 @@
         <%= render 'shared/login_link' %>
       </div>
 
-      <p>
-        <%= link_to 'Bookmarks', bookmarks_path %>
-        <%= link_to 'History', search_history_path %>
-      </p>
+      <ul class="nav navbar-nav">
+        <%= render_nav_actions do |config, action|%>
+          <li class="<%= config['class'] %>"><%= action %></li>
+        <% end %>
+      </ul>
     </div>
     <div class='clearfix'></div>
 
