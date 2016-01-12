@@ -6,7 +6,7 @@ require 'nokogiri'
 require 'pathname'
 require 'yaml'
 
-env = ENV['RAILS'] || 'development'
+env = ENV['RAILS_ENV'] || 'development'
 
 conf = File.expand_path('../../config/application.yml', __FILE__)
 @settings = YAML.load(File.open(conf).read)[env]
