@@ -24,7 +24,7 @@ gem 'hydra-collections', '~> 5.0.1'
 gem 'rdf-marmotta', '~> 0.0.8'
 gem 'rdf-vocab', '~> 0.8.4'
 
-gem 'blacklight', '~> 5.17.0'
+gem 'blacklight', '~> 5.17.2'
 gem 'settingslogic'
 
 gem 'rsolr', '~> 1.0.12'
