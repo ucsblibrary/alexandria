@@ -78,10 +78,9 @@ GEM
       om (~> 3.1)
       rdf-rdfxml (~> 1.1)
       rsolr (~> 1.0.10)
-    activefedora-aggregation (0.7.0)
-      active-fedora (~> 9.5)
+    activefedora-aggregation (0.4.2)
+      active-fedora
       activesupport
-      rdf (~> 1.1, >= 1.1.17.1)
       rdf-vocab (~> 0.8.1)
     activejob (4.2.5)
       activesupport (= 4.2.5)
@@ -474,7 +473,7 @@ GEM
     rspec-expectations (3.4.0)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.4.0)
-    rspec-mocks (3.4.0)
+    rspec-mocks (3.4.1)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.4.0)
     rspec-rails (3.4.0)
@@ -569,8 +568,8 @@ GEM
       rack (>= 1.0.0)
     warden (1.2.4)
       rack (>= 1.0)
-    webmock (1.22.5)
-      addressable (< 2.4.0)
+    webmock (1.22.6)
+      addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff
     websocket-driver (0.6.3)
