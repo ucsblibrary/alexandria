@@ -9,11 +9,23 @@ describe Importer::CSVImporter do
   end
 
   let(:image_directory) { 'spec/fixtures/images' }
-  let(:csv_file) { 'spec/fixtures/csv/pamss045.csv' }
-  let(:importer) { described_class.new('Image', image_directory, csv_file) }
 
-  it 'creates new images' do
-    expect(importer).to receive(:create_fedora_objects).exactly(5).times
-    importer.import_all
+  context 'when the model is passed' do
+    let(:csv_file) { "#{fixture_path}/csv/pamss045.csv" }
+    let(:importer) { described_class.new(csv_file, image_directory, Image) }
+    it 'creates new images' do
+      expect(importer).to receive(:create_fedora_objects).exactly(5).times
+      importer.import_all
+    end
+  end
+
+  context 'when the model specified on the row' do
+    let(:csv_file) { "#{fixture_path}/csv/pamss045_with_type.csv" }
+    let(:importer) { described_class.new(csv_file, image_directory) }
+    it 'creates new images and collections' do
+      expect_any_instance_of(Importer::Factory::CollectionFactory).to receive(:run)
+      expect_any_instance_of(Importer::Factory::ImageFactory).to receive(:run)
+      importer.import_all
+    end
   end
 end

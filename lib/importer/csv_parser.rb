@@ -28,7 +28,7 @@ module Importer
       end
 
       def valid_headers
-        Image.attribute_names + %w(note_value note_type files) +
+        Image.attribute_names + %w(type note_value note_type files) +
           time_span_headers + collection_headers
       end
 

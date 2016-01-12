@@ -1,6 +1,9 @@
 module Importer
+  # Import a csv file with one work per row. The first row of the csv should be a
+  # header row. The model for each row can either be specified in a column called
+  # 'type' or globally by passing the model attribute
   class CSVImporter
-    def initialize(model, files_directory, metadata_file)
+    def initialize(metadata_file, files_directory, model = nil)
       AdminPolicy.ensure_admin_policy_exists
       @model = model
       @files_directory = files_directory
@@ -22,7 +25,8 @@ module Importer
 
       # Build a factory to create the objects in fedora.
       def create_fedora_objects(attributes)
-        Factory.for(@model.to_s).new(attributes, @files_directory).run
+        model = attributes.fetch(:type, [@model.to_s]).first
+        Factory.for(model).new(attributes, @files_directory).run
       end
   end
 end

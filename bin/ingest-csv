@@ -8,7 +8,6 @@ type = ARGV[2]
 if !type && %w(Collection Image).include?(path_or_type)
   type = path_or_type
 else
-  type ||= 'Image'
   imagepath = path_or_type
 end
 
@@ -33,8 +32,8 @@ end
 puts 'Loading environment...'
 require File.expand_path('../../config/environment', __FILE__)
 require 'importer'
-puts "Starting #{type.downcase} import..."
+puts 'Starting import...'
 
-size = Importer::CSVImporter.new(type, imagepath, filename).import_all
+size = Importer::CSVImporter.new(filename, imagepath, type).import_all
 
 puts "Imported #{size} records."
