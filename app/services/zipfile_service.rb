@@ -1,9 +1,10 @@
-# Proquest ships us a directory of zipfiles that contain a PDF, an XML file with
-# rights/embargo data and possibly some supplementary files. The only way to
-# associate the zip file with the MARC record for the ETD is that the MARC
-# record has the name of the pdf file contained within one of the
-# zipfiles.  This service identifies the zipfile based on the pdf name and extracts
-# all the files so we can save them with the Fedora object.
+# Proquest ships us a directory of zipfiles that contain a PDF, an XML
+# file with rights/embargo data and possibly some supplementary
+# files. The only way to associate the zip file with the MARC record
+# for the ETD is that the MARC record has the name of the pdf file
+# contained within one of the zipfiles.  This service identifies the
+# zipfile based on the pdf name and extracts all the files so we can
+# save them with the Fedora object.
 class ZipfileService
   attr_reader :pdf_file_name
   # @param [String] pdf_file_name the base name of the PDF file to find
@@ -45,7 +46,7 @@ class ZipfileService
   private
 
     def extracted_files(raw_output)
-      output = raw_output.split("\n").grep(/inflating/).map do |line|
+      raw_output.split("\n").grep(/inflating/).map do |line|
         line.gsub(/\s*inflating: /, '').rstrip
       end
     end

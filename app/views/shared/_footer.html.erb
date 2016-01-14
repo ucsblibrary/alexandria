@@ -15,13 +15,15 @@
   <div id="footer_right">
     <div class="logo-link">
       <%= link_to "http://www.library.ucsb.edu" do %>
-        <%= image_tag 'library-logo.png', alt: "ADRL logo" %>
+        <%= image_tag 'library-logo.png', alt: "UCSB Library Logo" %>
       <% end %>
     </div>
 
-    <div class="logo-link">
+    <div>
       <%= link_to "http://www.ucsb.edu" do %>
-        <%= image_tag 'UCSB-footer-logo.png', alt: "UCSB logo" %>
+        <%= image_tag('UCSB-logo-small.png', alt: "UCSB logo", class: 'ucsb-small') %>
+        <strong>UC Santa Barbara</strong><br />
+        Santa Barbara, CA 93106-9010
       <% end %>
     </div>
   </div>

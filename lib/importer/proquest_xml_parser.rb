@@ -9,7 +9,6 @@ module Importer
 
     def attributes
       embargo_attributes.merge(
-        keywords: keywords,
         rights_holder: rights_holder,
         date_copyrighted: date_copyrighted)
     end
@@ -35,10 +34,6 @@ module Importer
       def date_copyrighted
         sdate = @doc.xpath('//DISS_dates/DISS_accept_date').text
         [Date.parse(sdate).year] unless sdate.blank?
-      end
-
-      def keywords
-        @doc.xpath('//DISS_keyword').text.split(/,\s+/)
       end
 
       def embargo_attributes

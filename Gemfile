@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '4.2.5'
-gem 'pg', '0.18.3'
+gem 'pg', '0.18.4'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 
@@ -28,7 +28,8 @@ gem 'blacklight', '~> 5.17.2'
 gem 'settingslogic'
 
 gem 'rsolr', '~> 1.0.12'
-# Needs 0.4.0
+
+# Needs 0.4.x, going higher changes the data model
 gem 'activefedora-aggregation', '~> 0.4.2'
 
 gem 'mods', '~> 2.0.3'
@@ -36,7 +37,7 @@ gem 'oargun', github: 'curationexperts/oargun', ref: '9c7bdda'
 gem 'linked_vocabs', '~> 0.3.1'
 gem 'blacklight-gallery'
 gem 'riiif', '~> 0.2.0'
-gem 'ezid-client', '~> 1.0'
+gem 'ezid-client', '~> 1.2.0'
 gem 'qa', '~> 0.5.0'
 
 gem 'kaminari', github: 'jcoyne/kaminari', branch: 'sufia'
@@ -66,6 +67,7 @@ group :development, :test do
   gem 'capybara'
   gem 'poltergeist'
   gem 'byebug'
+  gem 'rubocop', require: false
   gem 'sqlite3'
   gem 'spring'
   gem 'spring-commands-rspec', group: :development

@@ -42,7 +42,7 @@ describe ImageForm do
       expect(subject).to include(:admin_policy_id)
       expect(subject).to include(accession_number: [])
       expect(subject).to include(sub_location: [])
-      expect(subject).to include(use_restrictions: [])
+      expect(subject).to include(restrictions: [])
       expect(subject).to include(series_name: [])
       expect(subject).to include(place_of_publication: [])
       expect(subject).to include(extent: [])
@@ -79,7 +79,7 @@ describe ImageForm do
           {
             created_attributes: {
               '0' => {
-                id: 'http://localhost:8983/fedora/rest/test/de/ad/be/ef/deadbeef',
+                id: "#{ActiveFedora.fedora.host}/test/de/ad/be/ef/deadbeef",
                 start: ['1337'],
                 start_qualifier: ['approximate'],
                 finish: ['2015'],
@@ -107,7 +107,7 @@ describe ImageForm do
               predicate: 'creator',
             },
             '1' => {
-              id: 'http://localhost:8983/fedora/rest/test/de/ad/be/ef/deadbeef',
+              id: "#{ActiveFedora.fedora.host}/test/de/ad/be/ef/deadbeef",
               predicate: 'photographer',
             },
           }
@@ -118,7 +118,7 @@ describe ImageForm do
       let(:creator_attributes) { model_attributes.fetch(:creator_attributes) }
 
       it 'demultiplexes the contributor field' do
-        expect(photographer_attributes).to eq [{ 'id' => 'http://localhost:8983/fedora/rest/test/de/ad/be/ef/deadbeef' }]
+        expect(photographer_attributes).to eq [{ 'id' => "#{ActiveFedora.fedora.host}/test/de/ad/be/ef/deadbeef" }]
         expect(creator_attributes).to eq [{ 'id' => 'http://id.loc.gov/authorities/names/n87914041' }]
         expect(model_attributes[:contributor_attributes]).to be_nil
       end

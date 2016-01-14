@@ -1,3 +1,6 @@
+# Ignore precompiled assets
+public/assets
+
 # Ignore Vagrant files
 /.vagrant
 
@@ -15,16 +18,8 @@
 /jetty
 .rvmrc
 
-config/secrets.yml
-config/smtp.yml
-config/ezid.yml
-config/blacklight.yml
-config/database.yml
-config/fedora.yml
-config/solr.yml
-config/redis.yml
-config/resque-pool.yml
-config/ldap.yml
+# Passwords etc
+config/*.yml
 
 tags
 env

@@ -22,12 +22,21 @@ class ImageIndexer < ObjectIndexer
 
     def generic_file_images(size = '600,')
       object.generic_file_ids.map do |id|
-        Riiif::Engine.routes.url_helpers.image_url("#{id}/original", size: size, host: host)
+        Riiif::Engine.routes.url_helpers.image_url(
+          "#{id}/original",
+          size: size,
+          host: host,
+        )
       end
     end
 
     def host
-      Rails.application.config.host_name
+      hostname = Rails.application.config.host_name
+      if hostname == 'localhost' || hostname == '127.0.0.1'
+        "#{hostname}:#{Rails.application.secrets.localhost_port}"
+      else
+        hostname
+      end
     rescue NoMethodError
       raise 'host_name is not configured'
     end

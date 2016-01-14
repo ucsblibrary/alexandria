@@ -5,7 +5,7 @@ describe ZipfileService do
 
   describe '#wildcard_zip' do
     subject { service.send(:wildcard_zip) }
-    it { is_expected.to eq "#{Rails.root}/tmp/download_root/proquest/*.zip" }
+    it { is_expected.to eq "#{Settings.proquest_directory}/*.zip" }
   end
 
   describe '#extract_files' do

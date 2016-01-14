@@ -3,7 +3,7 @@ fail "You are missing a configuration file: #{file}." unless File.exist?(file)
 
 begin
   yml = YAML.load_file(file)
-rescue StandardError => e
+rescue StandardError
   raise("#{file} was found, but could not be parsed.\n")
 end
 

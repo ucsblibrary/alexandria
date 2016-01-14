@@ -27,7 +27,7 @@ describe Qa::TermsController do
     it 'returns terms' do
       get :search, vocab: 'local', subauthority: 'names', q: 'Baggins'
       expect(response).to be_success
-      expect(response.body).to eq "[{\"id\":\"http://localhost:8983/fedora/rest/test/#{agent.id}\",\"label\":\"Frodo Baggins\"}]"
+      expect(response.body).to eq "[{\"id\":\"#{agent.uri}\",\"label\":\"Frodo Baggins\"}]"
     end
   end
 
@@ -38,7 +38,7 @@ describe Qa::TermsController do
     it 'returns (topic) Frodo but not (person) Bilbo' do
       get :search, vocab: 'local', subauthority: 'subjects', q: 'Baggins'
       expect(response).to be_success
-      expect(response.body).to eq "[{\"id\":\"http://localhost:8983/fedora/rest/test/#{topic.id}\",\"label\":\"Frodo Baggins\"}]"
+      expect(response.body).to eq "[{\"id\":\"#{topic.uri}\",\"label\":\"Frodo Baggins\"}]"
     end
   end
 end

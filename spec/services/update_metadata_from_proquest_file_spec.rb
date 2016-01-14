@@ -322,8 +322,6 @@ describe UpdateMetadataFromProquestFile do
         expect(reloaded.visibility_during_embargo.id).to eq ActiveFedora::Base.id_to_uri(AdminPolicy::DISCOVERY_POLICY_ID)
         expect(reloaded.visibility_after_embargo.id).to eq ActiveFedora::Base.id_to_uri(AdminPolicy::PUBLIC_CAMPUS_POLICY_ID)
         expect(reloaded.admin_policy_id).to eq AdminPolicy::DISCOVERY_POLICY_ID
-
-        expect(reloaded.keywords).to eq ['bioadhesion', 'biofilm', 'collagen', 'interfacial pH', 'mussel adhesive plaque', 'Mussel foot protein']
         expect(reloaded.date_copyrighted).to eq [2014]
         expect(reloaded.rights_holder).to eq ['Nadine Martinez Rodriguez']
       end

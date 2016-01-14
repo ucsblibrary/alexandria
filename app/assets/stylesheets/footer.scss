@@ -37,7 +37,15 @@ $footer_left_margin: 1.5%;
   .logo-link {
     width: 90%;
     margin-top: 0.5em;
+    img { width: 100%; }
   }
 
-  img { width: 100%; }
+  div + div {
+    padding-top: 1em;
+  }
+}
+.ucsb-small {
+  float: left;
+  clear: right;
+  padding-right: 1em;
 }

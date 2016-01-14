@@ -20,11 +20,15 @@ class ETD < ActiveFedora::Base
     index.as :symbol
   end
 
-  property :keywords, predicate: ::RDF::DC11.subject do |index|
+  property :keywords, predicate: ::RDF::Vocab::SCHEMA.keywords do |index|
     index.as :stored_searchable
   end
 
-  property :issued, predicate: ::RDF::DC.issued do |index|
+  property :etd_subjects, predicate: ::RDF::Vocab::DC11.subject do |index|
+    index.as :stored_searchable, :facetable
+  end
+
+  property :issued, predicate: ::RDF::Vocab::DC.issued do |index|
     index.as :displayable
   end
 
@@ -32,7 +36,7 @@ class ETD < ActiveFedora::Base
     index.as :displayable
   end
 
-  property :date_copyrighted, predicate: ::RDF::DC.dateCopyrighted
+  property :date_copyrighted, predicate: ::RDF::Vocab::DC.dateCopyrighted
   property :dissertation_degree, predicate: ::RDF::Vocab::Bibframe.dissertationDegree
   property :dissertation_institution, predicate: ::RDF::Vocab::Bibframe.dissertationInstitution
   property :dissertation_year, predicate: ::RDF::Vocab::Bibframe.dissertationYear

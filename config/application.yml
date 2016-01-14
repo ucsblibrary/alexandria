@@ -1,10 +1,9 @@
 defaults: &defaults
-  download_root: "<%=Rails.root%>/tmp/download_root"
+  download_root: '/opt/download_root'
+  marmotta_host: localhost:8180
 development:
   <<: *defaults
 test:
   <<: *defaults
 production:
   <<: *defaults
-  download_root: '/opt/download_root'
-

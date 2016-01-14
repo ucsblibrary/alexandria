@@ -17,9 +17,13 @@ $top_margin: 20px;
 .collection-icon {
   font-size: 9vw;
   color: #fab801;
-  padding: 15px 0 0 10px;
+  padding: .125em 0;
 }
 
+.collection-representative {
+  max-height: 150px;
+  margin: 2em 0;
+}
 
 //-----------------------------------
 // For "show more"/"show less" links

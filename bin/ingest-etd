@@ -30,40 +30,35 @@ Dir.mkdir proquest_directory unless Pathname.new(proquest_directory).exist?
 # @param [String] zipfile The path to the .zip file
 #
 # @return [Array]
-def recursive_unzip(zipfile)
+def unzip(zipfile, dest)
+  FileUtils.cp zipfile, proquest_directory
+
   xml ||= []
+  system 'unzip', '-o', zipfile, '-d', dest
 
-  zipdir = %r{inflating:\ ([^\/]*\/).*}.match(`unzip -o "#{zipfile}"`)[1]
-
-  Dir.chdir zipdir do
-    Dir.glob('**/*.xml') do |x|
-      filepath = File.join(Pathname.pwd, x)
-      puts "Found #{filepath}"
-      xml << filepath
-    end
-
-    Dir.glob('**/*.zip') do |z|
-      zippath = File.join(Pathname.pwd, z)
-      FileUtils.cp zippath, "#{proquest_directory}"
-
-      puts "Unzipping #{zippath}..."
-      xml << recursive_unzip(zippath)
+  Dir.chdir dest do
+    Dir.glob("#{dest}/**/*.xml") do |x|
+      puts "Found #{x}"
+      xml << x
     end
   end
+
   xml
 end
+
+temp = File.join(@settings['download_root'], "#{Time.now.to_i}")
+Dir.mkdir temp
 
 @xml = []
 
 ARGV.each do |f|
-  @xml << recursive_unzip(f)
+  @xml << unzip(f, temp)
 end
 
 marcs = []
 @xml.flatten.uniq.each do |x|
   binary_filename = Nokogiri::XML(File.open(x)).css('DISS_binary').children.first.to_s
 
-  # TODO: use pegasus_path when the production SRU is updated
   search = Curl::Easy.perform("#{Rails.application.secrets.sru_host}/sba01pub?version=1.1&operation=searchRetrieve&maximumRecords=1&startRecord=1&query=(marc.947.a=pqd%20and%20marc.956.f=#{binary_filename})")
 
   if !search.body_str.include?('zs:numberOfRecords>1')
@@ -90,4 +85,14 @@ EOS
   puts "Wrote MARC metadata to #{marc_directory}/"
 end
 
-exec File.expand_path('../traject-xml', __FILE__), "#{marc_directory}/MARC_#{Time.now.to_i}.xml"
+puts 'Now ingesting...'
+sleep 5
+
+begin
+  pid = fork do
+    exec File.expand_path('../traject-xml', __FILE__), "#{marc_directory}/#{output_file}"
+  end
+ensure
+  Process.wait pid
+  FileUtils.rm_rf temp
+end

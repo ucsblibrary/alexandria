@@ -24,7 +24,12 @@ class GenericFileIndexer < ActiveFedora::IndexingService
     end
 
     def host
-      Rails.application.config.host_name
+      hostname = Rails.application.config.host_name
+      if hostname == 'localhost' || hostname == '127.0.0.1'
+        "#{hostname}:#{Rails.application.secrets.localhost_port}"
+      else
+        hostname
+      end
     rescue NoMethodError
       raise 'host_name is not configured'
     end
