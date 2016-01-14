@@ -20,7 +20,7 @@ gem 'active-fedora', '~> 9.7.0'
 gem 'active-triples', github: 'ActiveTriples/ActiveTriples', ref: '71ed53a'
 gem 'hydra-editor', '~> 1.1.1'
 gem 'hydra-role-management'
-gem 'hydra-collections', '~> 5.0.1'
+gem 'hydra-collections', '~> 5.0.4'
 gem 'rdf-marmotta', '~> 0.0.8'
 gem 'rdf-vocab', '~> 0.8.4'
 

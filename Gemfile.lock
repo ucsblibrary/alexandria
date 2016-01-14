@@ -217,10 +217,11 @@ GEM
       cancancan (~> 1.8)
       deprecation (~> 0.2)
       sass-rails
-    hydra-collections (5.0.3)
+    hydra-collections (5.0.4)
       blacklight (~> 5.10)
       deprecation (~> 0.1)
       hydra-head (~> 9.1)
+      rdf-vocab (~> 0)
     hydra-core (9.5.0)
       active-fedora (~> 9.1)
       hydra-access-controls (= 9.5.0)
@@ -588,7 +589,7 @@ DEPENDENCIES
   devise_ldap_authenticatable
   ezid-client (~> 1.0)
   factory_girl_rails (~> 4.4)
-  hydra-collections (~> 5.0.1)
+  hydra-collections (~> 5.0.4)
   hydra-editor (~> 1.1.1)
   hydra-head (~> 9.5.0)
   hydra-role-management
