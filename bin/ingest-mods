@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 
-filename = ARGV[0]
+mods_directory = ARGV[0]
 imagepath = ARGV[1]
 
-if filename.nil?
+if mods_directory.nil?
   $stderr.puts "Usage: #{$PROGRAM_NAME} <mods directory> <image directory>"
   $stderr.puts 'Please provide the a file path you want to import.'
   exit(1)
@@ -13,16 +13,22 @@ if imagepath.nil?
   $stderr.puts 'Image directory was left blank. No images will be ingested'
 end
 
-unless File.exist?(filename)
-  $stderr.puts "Unable to read file #{filename}"
+unless File.exist?(mods_directory)
+  $stderr.puts "Directory doesn't exist #{mods_directory}"
   exit(1)
 end
+
+unless File.directory?(mods_directory)
+  $stderr.puts "#{mods_directory} is not a directory"
+  exit(1)
+end
+
 
 puts 'Loading environment...'
 require File.expand_path('../../config/environment', __FILE__)
 require 'importer'
 puts 'Starting import...'
 
-size = Importer::ModsImporter.new(imagepath, filename).import_all
+size = Importer::ModsImporter.new(imagepath, mods_directory).import_all
 
 puts "Imported #{size} records."
