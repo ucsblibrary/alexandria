@@ -40,4 +40,72 @@ describe Importer::CSVParser do
       expect(collection_record[:finding_aid]).to eq ['Third shelf on the right']
     end
   end
+
+
+  describe 'parsing local authorities' do
+    let(:file) { 'spec/fixtures/csv/pamss045_with_local_authorities.csv' }
+
+    let(:composer_uri) { RDF::URI('http://id.loc.gov/authorities/names/no93011759') }
+    let(:composer_person) {{ type: 'Person',
+                             name: 'J. Anderson' }}
+    let(:composer_group)  {{ type: 'Group',
+                             name: 'Anderson Choir' }}
+    let(:micro_music) { RDF::URI('http://id.loc.gov/authorities/subjects/sh85084939') }
+    let(:women_comp) { RDF::URI('http://id.loc.gov/authorities/subjects/sh85147508') }
+    let(:jefrey)  {{ type: 'Person', name: 'Jefrey' }}
+    let(:jef_topic)  {{ type: 'Topic', name: "Jef's Topic" }}
+
+    it 'captures the types to pass on to the importer' do
+      expect(first_record[:composer]).to eq [composer_uri, composer_person, composer_group]
+      expect(first_record[:lc_subject]).to eq [micro_music, jef_topic, jefrey, women_comp]
+    end
+
+    # Make sure we haven't broken the work_type attribute by
+    # adding the *_type pattern matching to the parser.
+    it 'correctly finds work_type' do
+      expect(first_record[:work_type]).to eq ['notated music']
+    end
+  end
+
+
+  describe 'validating CSV headers' do
+    subject { parser.send(:validate_headers, headers) }
+
+    context 'with valid headers' do
+      let(:headers) { ["accession_number", "title"] }
+      it { is_expected.to eq headers }
+    end
+
+    context 'with invalid headers' do
+      let(:headers) { ["something bad", "title"] }
+
+      it 'raises an error' do
+        expect { subject }.to raise_error 'Invalid headers: something bad'
+      end
+    end
+
+    context 'with "*_type" fields for local authorities' do
+      let(:headers) { ["rights_holder", "rights_holder_type", "rights_holder", "title"] }
+      it { is_expected.to eq headers }
+    end
+
+    # The CSV parser assumes that the *_type column comes just
+    # before the column that contains the value for that local
+    # authority.  If the columns aren't in the correct order,
+    # raise an error.
+    context 'with columns in the wrong order' do
+      let(:headers) { ["rights_holder_type", "rights_holder_type", "rights_holder", "title"] }
+
+      it 'raises an error' do
+        expect { subject }.to raise_error "Invalid headers: 'rights_holder_type' column must be immediately followed by 'rights_holder' column."
+      end
+    end
+
+    # It doesn't expect a matching column for "work_type"
+    context 'with work_type column' do
+      let(:headers) { ["work_type", "rights_holder", "title"] }
+      it { is_expected.to eq headers }
+    end
+  end
+
 end
