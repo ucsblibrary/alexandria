@@ -142,6 +142,10 @@ module Metadata
       index.as :stored_searchable
     end
 
+    property :finding_aid, predicate: RDF::URI('http://lod.xdams.org/reload/oad/has_findingAid') do |index|
+      index.as :stored_searchable
+    end
+
     has_and_belongs_to_many :notes, predicate: RDF::Vocab::MODS.note
 
     def self.contributor_fields
