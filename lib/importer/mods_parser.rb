@@ -82,7 +82,7 @@ module Importer
 
     def rights
       {
-        use_restrictions: mods.xpath('/mods:mods/mods:accessCondition[@type="use and reproduction"]', NAMESPACES).map { |node| strip_whitespace(node.text) },
+        restrictions: mods.xpath('/mods:mods/mods:accessCondition[@type="use and reproduction"]', NAMESPACES).map { |node| strip_whitespace(node.text) },
         rights_holder: rights_holder,
         copyright_status: mods.xpath('//mods:extension/copyrightStatus/@valueURI', NAMESPACES).map { |uri| RDF::URI.new(uri.value) },
         license: mods.xpath('//mods:extension/copyrightStatement/@valueURI', NAMESPACES).map { |uri| RDF::URI.new(uri.value) },

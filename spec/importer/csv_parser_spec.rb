@@ -21,6 +21,6 @@ describe Importer::CSVParser do
     expect(first_record[:created_attributes]).to eq [{ start: ['1937'] }]
     expect(first_record[:composer]).to eq [RDF::URI('http://id.loc.gov/authorities/names/no93011759')]
 
-    expect(first_record.keys).to match_array [:accession_number, :citation, :collection, :composer, :copyright_status, :description_standard, :digital_origin, :extent, :files, :form_of_work, :institution, :language, :lc_subject, :license, :rights_holder, :series_name, :sub_location, :title, :use_restrictions, :work_type, :created_attributes]
+    expect(first_record.keys).to match_array [:accession_number, :citation, :collection, :composer, :copyright_status, :description_standard, :digital_origin, :extent, :files, :form_of_work, :institution, :language, :lc_subject, :license, :rights_holder, :series_name, :sub_location, :title, :restrictions, :work_type, :created_attributes]
   end
 end

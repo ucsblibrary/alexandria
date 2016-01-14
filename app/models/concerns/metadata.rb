@@ -138,7 +138,7 @@ module Metadata
 
     property :record_origin, predicate: RDF::Vocab::MODS.recordOrigin
 
-    property :use_restrictions, predicate: RDF::Vocab::MODS.accessCondition do |index|
+    property :restrictions, predicate: RDF::Vocab::MODS.accessCondition do |index|
       index.as :stored_searchable
     end
 

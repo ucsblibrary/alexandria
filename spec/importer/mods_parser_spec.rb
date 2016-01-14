@@ -43,7 +43,7 @@ describe Importer::ModsParser do
       expect(acquisition_note[:value]).to eq 'Gift from Pat Eagle-Schnetzer and Ronald Conway, and purchase from Joan Cota (Conway children), 2009.'
       expect(attributes[:description_standard]).to eq ['local']
       expect(attributes[:series_name]).to eq ['Series 4: Glass Negatives']
-      expect(attributes[:use_restrictions]).to eq ['Use governed by the UCSB Special Collections policy.']
+      expect(attributes[:restrictions]).to eq ['Use governed by the UCSB Special Collections policy.']
       expect(attributes[:copyright_status]).to eq ['http://id.loc.gov/vocabulary/preservation/copyrightStatus/unk']
       expect(attributes[:license]).to eq ['http://www.europeana.eu/rights/unknown/']
       expect(attributes[:institution]).to eq ['http://id.loc.gov/vocabulary/organizations/cusb']

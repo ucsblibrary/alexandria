@@ -42,7 +42,7 @@ describe ImageForm do
       expect(subject).to include(:admin_policy_id)
       expect(subject).to include(accession_number: [])
       expect(subject).to include(sub_location: [])
-      expect(subject).to include(use_restrictions: [])
+      expect(subject).to include(restrictions: [])
       expect(subject).to include(series_name: [])
       expect(subject).to include(place_of_publication: [])
       expect(subject).to include(extent: [])
