@@ -39,8 +39,6 @@ gem 'blacklight-gallery'
 gem 'riiif', '~> 0.2.0'
 gem 'ezid-client', '~> 1.2.0'
 gem 'qa', '~> 0.5.0'
-gem 'rdf-marmotta', '~> 0.0.8'
-gem 'rdf-vocab', '~> 0.8.4'
 
 gem 'kaminari', github: 'jcoyne/kaminari', branch: 'sufia'
 
