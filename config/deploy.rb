@@ -33,8 +33,19 @@ ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
 # Default value for :pty is false
 # set :pty, true
 
-# Default value for :linked_files is []
-# set :linked_files, fetch(:linked_files, []).push('config/database.yml')
+set :linked_files,
+    %w(
+      config/blacklight.yml
+      config/database.yml
+      config/ezid.yml
+      config/fedora.yml
+      config/ldap.yml
+      config/redis.yml
+      config/resque-pool.yml
+      config/secrets.yml
+      config/smtp.yml
+      config/solr.yml
+    )
 
 # Default value for linked_dirs is []
 # set :linked_dirs, fetch(:linked_dirs, []).push('bin', 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
