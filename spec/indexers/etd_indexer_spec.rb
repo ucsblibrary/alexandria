@@ -47,6 +47,14 @@ describe ETDIndexer do
     it { is_expected.to eq 'Ph.D.--University of California, Santa Barbara, 2014' }
   end
 
+  describe "indexing department as a facet" do
+    let(:etd) do
+      ETD.new(degree_grantor: ['University of California, Santa Barbara. Mechanical Engineering'])
+    end
+    let(:subject) { document['department_sim'] }
+    it { is_expected.to eq ['Mechanical Engineering'] }
+  end
+
   describe 'Indexing dates' do
     context 'with an issued date' do
       let(:etd) { ETD.new(issued: ['1925-11-10', '1931']) }

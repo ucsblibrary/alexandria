@@ -96,6 +96,7 @@ class CatalogController < ApplicationController
     config.add_facet_field ObjectIndexer::FACETABLE_YEAR, label: 'Year'
     config.add_facet_field solr_name('form_of_work_label', :facetable), label: 'Type'
     config.add_facet_field solr_name('collection_label', :symbol), label: 'Collection'
+    config.add_facet_field solr_name('department', :facetable), label: 'Department'
 
     # Have BL send all facet field names to Solr, which has been the default
     # previously. Simply remove these lines if you'd rather use Solr request
