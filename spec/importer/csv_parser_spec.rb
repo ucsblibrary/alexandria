@@ -4,11 +4,10 @@ require 'importer'
 describe Importer::CSVParser do
   let(:parser) { described_class.new(file) }
   let(:attributes) { parser.attributes }
+  let(:file) { 'spec/fixtures/csv/pamss045.csv' }
   let(:first_record) { parser.first }
 
   context "Importing just images" do
-    let(:file) { 'spec/fixtures/csv/pamss045.csv' }
-
     it 'parses a record' do
       # Title must be singular
       expect(first_record[:title]).to eq 'Dirge for violin and piano (violin part)'
