@@ -167,7 +167,7 @@ describe RecordsController do
         it 'access is denied' do
           delete :destroy, id: person
           expect(flash[:alert]).to match /You are not authorized/
-          expect(response).to redirect_to root_path
+          expect(response).to redirect_to controller: :catalog, action: 'show'
         end
       end
     end
@@ -204,7 +204,7 @@ describe RecordsController do
       it 'access is denied' do
         get :new_merge, id: person
         expect(flash[:alert]).to match /You are not authorized/
-        expect(response).to redirect_to root_path
+        expect(response).to redirect_to controller: :catalog, action: 'show'
       end
     end
   end  # describe #new_merge
@@ -247,7 +247,7 @@ describe RecordsController do
       it 'access is denied' do
         post :merge, { id: person }.merge(form_params)
         expect(flash[:alert]).to match /You are not authorized/
-        expect(response).to redirect_to root_path
+        expect(response).to redirect_to controller: :catalog, action: 'show'
       end
     end
   end # describe #merge
