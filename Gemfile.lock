@@ -34,7 +34,7 @@ GIT
 
 GIT
   remote: git://github.com/projectblacklight/blacklight-access_controls.git
-  revision: 1f12e4fc412ec321dd2e1a2ed25b1141b2372fd5
+  revision: 5c477aa67ad3e5022f9fc2c58a90dbabfe83160d
   branch: blacklight_6
   specs:
     blacklight-access_controls (0.2.0)
@@ -53,7 +53,7 @@ GIT
 
 GIT
   remote: git://github.com/projectblacklight/blacklight.git
-  revision: 1f715c184eb36d7856e6cbf37b3695604f0b6534
+  revision: b5f1fa696c4c4a8a8d40e3ee83271539c868b770
   specs:
     blacklight (6.0.0.pre5)
       bootstrap-sass (~> 3.2)
