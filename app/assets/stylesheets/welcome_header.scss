@@ -59,6 +59,22 @@
     .navbar-form {
       padding: 0;
     }
+
+    .for-search-field {
+      background-color: transparent;
+      border: none;
+      width: 15ch;
+      padding: 0;
+
+      #search_field {
+        display: block;
+        height: 34px;
+        padding: 6px 12px;
+        border: 1px solid gray;
+        border-radius: 4px 0 0 4px;
+        font-size: 14px;
+      }
+    }
   }
   // -----------------------------
 
