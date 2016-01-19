@@ -7,8 +7,7 @@ rubocop:
 	rubocop --format simple --config .rubocop.yml --auto-correct
 
 spec:
-	RAILS_ENV=test bin/rake db:migrate
-	RAILS_ENV=test bundle exec rspec
+	CI=1 RAILS_ENV=test bundle exec rake ci --trace
 
 vagrant:
 	SERVER=127.0.0.1 REPO=/vagrant/alex2 bundle exec cap vagrant deploy
