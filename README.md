@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/curationexperts/alexandria-v2.svg?branch=master)](https://travis-ci.org/curationexperts/alexandria-v2)
+
 # Ingesting
 
 (See also: <https://github.com/curationexperts/alexandria-v2/wiki>)
