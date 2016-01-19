@@ -42,9 +42,11 @@ concerns :range_searchable
 
   resources :etds, only: [] do
     resource :access, only: [:edit, :update, :destroy], controller: 'access'
+    concerns :exportable
   end
   resources :images, only: [] do
     resource :access, only: [:edit, :update, :destroy], controller: 'access'
+    concerns :exportable
   end
 
   resources :local_authorities, only: :index
