@@ -11,7 +11,12 @@
  * file per style scope.
  *
  *= require_self
- */
+ 
+ *
+ * Used by blacklight_range_limit
+ *= require  'blacklight_range_limit'
+ *
+*/
 
 @import 'colors';
 @import 'bootstrap-sprockets';

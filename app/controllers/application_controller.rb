@@ -43,4 +43,9 @@ class ApplicationController < ActionController::Base
   def current_ability
     @current_ability ||= Ability.new(current_user, on_campus?)
   end
+
+  # Should we display the admin menu?
+  def admin_menu?
+    can?(:discover, Hydra::AccessControls::Embargo) || can?(:destroy, :local_authorities)
+  end
 end

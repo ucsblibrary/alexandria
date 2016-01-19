@@ -18,7 +18,7 @@ class EmbargoesController < ApplicationController
     authorize! :update_rights, curation_concern
     remove_embargo(curation_concern)
     flash[:notice] = curation_concern.embargo_history.last
-    redirect_to catalog_path(curation_concern)
+    redirect_to solr_document_path(curation_concern)
   end
 
   def update

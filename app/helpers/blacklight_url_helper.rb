@@ -10,7 +10,7 @@ module BlacklightUrlHelper
       if doc.ark
         ark_path(doc.ark.html_safe)
       else
-        catalog_path(super)
+        solr_document_path(super)
       end
     else
       super
@@ -20,13 +20,13 @@ module BlacklightUrlHelper
   # This is required because Blacklight 5.14 uses polymorphic_url
   # in render_link_rel_alternates
   def etd_url(*args)
-    catalog_url(args)
+    solr_document_url(args)
   end
 
   # This is required because Blacklight 5.14 uses polymorphic_url
   # in render_link_rel_alternates
   def image_url(*args)
-    catalog_url(args)
+    solr_document_url(args)
   end
 
   # we're using our own helper rather than the generated route helper because the
@@ -38,6 +38,6 @@ module BlacklightUrlHelper
   ##
   # Get the URL for tracking search sessions across pages using polymorphic routing
   def session_tracking_path(document, params = {})
-    track_solr_document_path(document, params)
+    blacklight.track_search_context_path(document, params)
   end
 end

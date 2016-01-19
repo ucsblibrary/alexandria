@@ -1,7 +1,5 @@
-
 $logo_image: 'ADRL_Logo_363x84.png';
 $header_background_image: 'ADRL_BG_1280x160.png';
-
 
 #header-navbar {
   background: transparent image_url($header_background_image) repeat;
@@ -20,7 +18,6 @@ $header_background_image: 'ADRL_BG_1280x160.png';
     margin-top: 1.5em;
   }
 }
-
 
 //---------------------------
 //  Login Link

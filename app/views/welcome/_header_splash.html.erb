@@ -26,10 +26,10 @@
     <section id="browse-by">
       Or browse by
       <%= link_to 'Collection', collections.collections_path %>,
-      <%= link_to 'Creator', catalog_facet_path(Solrizer.solr_name('creator_label', :facetable)) %>,
-      <%= link_to 'Format', catalog_facet_path(Solrizer.solr_name('human_readable_type', :facetable)) %>,
+      <%= link_to 'Creator', facet_catalog_path(Solrizer.solr_name('creator_label', :facetable)) %>,
+      <%= link_to 'Format', facet_catalog_path(Solrizer.solr_name('human_readable_type', :facetable)) %>,
       or
-      <%= link_to 'Topic', catalog_facet_path(Solrizer.solr_name('lc_subject_label', :facetable)) %>
+      <%= link_to 'Topic', facet_catalog_path(Solrizer.solr_name('lc_subject_label', :facetable)) %>
     </section>
 
   </div>

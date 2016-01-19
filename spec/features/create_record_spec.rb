@@ -10,7 +10,7 @@ feature 'Record Creation:' do
     end
 
     scenario 'creates a new record' do
-      visit catalog_index_path
+      visit search_catalog_path
       click_link 'Create a new record'
       select 'Group', from: 'type'
       click_button 'Next'

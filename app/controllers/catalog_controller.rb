@@ -2,6 +2,7 @@
 require 'blacklight/catalog'
 
 class CatalogController < ApplicationController
+          include BlacklightRangeLimit::ControllerOverride
   # helper Openseadragon::OpenseadragonHelper
 
   include Hydra::Catalog
@@ -28,9 +29,6 @@ class CatalogController < ApplicationController
            'You do not have sufficient access privileges to access this document.',
            :discover, params[:id])
   end
-
-  # This applies appropriate access controls to all solr queries
-  CatalogController.search_params_logic += [:add_access_controls_to_solr_params, :only_visible_objects]
 
   # Turn off SMS
   # https://groups.google.com/d/msg/blacklight-development/l_zHRF_GQc8/_qUUbJSs__YJ
@@ -93,7 +91,7 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name('creator_label', :facetable), label: 'Creator'
     config.add_facet_field solr_name('lc_subject_label', :facetable), label: 'Subject'
     config.add_facet_field solr_name('publisher', :facetable), label: 'Publisher'
-    config.add_facet_field ObjectIndexer::FACETABLE_YEAR, label: 'Year'
+    config.add_facet_field ObjectIndexer::FACETABLE_YEAR, label: 'Year', range: true
     config.add_facet_field solr_name('form_of_work_label', :facetable), label: 'Type'
     config.add_facet_field solr_name('collection_label', :symbol), label: 'Collection'
     config.add_facet_field solr_name('department', :facetable), label: 'Department'
@@ -226,5 +224,27 @@ class CatalogController < ApplicationController
 
   def current_ability
     @current_ability ||= Ability.new(current_user, on_campus?)
+  end
+
+  def show_delete_link?(_config, options)
+    LocalAuthority.local_authority?(options.fetch(:document)) &&
+      can?(:destroy, :local_authorities)
+  end
+
+  def show_merge_link?(_config, options)
+    LocalAuthority.local_authority?(options.fetch(:document)) &&
+      can?(:merge, options.fetch(:document))
+  end
+
+  def show_embargos_link?(_config, options)
+    doc = options.fetch(:document)
+    doc.curation_concern? && can?(:update_rights, doc)
+  end
+
+  # Should we show the "edit metadata" link on the show page?
+  # Only shows up for non-etd things
+  def editor?(_, stuff)
+    document = stuff.fetch(:document)
+    can?(:edit, document) && !document.etd?
   end
 end

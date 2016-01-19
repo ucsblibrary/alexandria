@@ -13,7 +13,7 @@ feature 'Editing Records:' do
     end
 
     scenario 'edits a record' do
-      visit catalog_path(record)
+      visit solr_document_path(record)
       click_link 'Edit Metadata'
       fill_in 'Label', with: new_label
       click_button 'Save'

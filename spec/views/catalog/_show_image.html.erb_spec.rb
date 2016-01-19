@@ -10,9 +10,13 @@ describe 'catalog/_show_image.html.erb' do
       accession_number_ssim: 'AN',
       sub_location_ssm: sub_loc)
   end
+  let(:blacklight_configuration_context) do
+    Blacklight::Configuration::Context.new(controller)
+  end
 
   before do
     allow(view).to receive(:blacklight_config) { config }
+    allow(view).to receive(:blacklight_configuration_context).and_return(blacklight_configuration_context)
     render partial: 'catalog/show_image', locals: { document: document }
   end
 

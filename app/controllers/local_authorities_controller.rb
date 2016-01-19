@@ -2,8 +2,6 @@ class LocalAuthoritiesController < ApplicationController
   include Hydra::Catalog
   include Hydra::Controller::ControllerBehavior
 
-  LocalAuthoritiesController.search_params_logic += [:only_models_for_local_authorities]
-
   before_filter :auth
 
   configure_blacklight do |config|
