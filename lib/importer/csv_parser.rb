@@ -21,10 +21,40 @@ module Importer
 
     private
 
+      # Match headers like "lc_subject_type"
+      def type_header_pattern
+        /\A.*_type\Z/
+      end
+
       def validate_headers(row)
         difference = (row - valid_headers)
+
+        # Allow headers with the pattern *_type to specify the
+        # record type for a local authority.
+        # e.g. For an author, author_type might be 'Person'.
+        difference.delete_if {|h| h.match(type_header_pattern) }
+
         fail "Invalid headers: #{difference.join(', ')}" unless difference.blank?
+
+        validate_header_pairs(row)
         row
+      end
+
+      # If you have a header like lc_subject_type, the next
+      # header must be the corresponding field (e.g. lc_subject)
+      def validate_header_pairs(row)
+        errors = []
+        row.each_with_index do |header, i|
+          next if header == 'work_type'
+          if header.match(type_header_pattern)
+            next_header = row[i + 1]
+            field_name = header.gsub('_type', '')
+            if next_header != field_name
+              errors << "Invalid headers: '#{header}' column must be immediately followed by '#{field_name}' column."
+            end
+          end
+        end
+        fail errors.join(", ") unless errors.blank?
       end
 
       def valid_headers
@@ -63,20 +93,40 @@ module Importer
           update_date(processed[key].first, Regexp.last_match(2), val)
         when 'note_value', 'note_type'
           $stderr.puts "Note property: #{header} => #{val}"
-
         # TODO: extract notes
-        when 'files'
-          processed[:files] ||= []
-          processed[:files] << val if val
+        when 'work_type'
+          extract_multi_value_field(header, val, processed)
+        when type_header_pattern
+          update_local_authority(header, val, processed)
         when /^collection_(.*)$/
           processed[:collection] ||= {}
           update_collection(processed[:collection], Regexp.last_match(1), val)
         else
-          # Everything else is multivalued
-          processed[header.to_sym] ||= []
-          processed[header.to_sym] << (URI_FIELDS.include?(header) ? RDF::URI(val.rstrip) : val)
+          last_entry = Array(processed[header.to_sym]).last
+          if last_entry.is_a?(Hash) && !last_entry[:name]
+            update_local_authority(header, val, processed)
+          else
+            extract_multi_value_field(header, val, processed)
+          end
         end
-     end
+      end
+
+      def extract_multi_value_field(header, val, processed, key = nil)
+        key ||= header.to_sym
+        processed[key] ||= []
+        processed[key] << (URI_FIELDS.include?(header) ? RDF::URI(val.rstrip) : val)
+      end
+
+      def update_local_authority(header, val, processed)
+        if header.match(type_header_pattern)
+          stripped_header = header.gsub('_type', '')
+          processed[stripped_header.to_sym] ||= []
+          processed[stripped_header.to_sym] << { type: val }
+        else
+          fields = Array(processed[header.to_sym])
+          fields.last[:name] = val
+        end
+      end
 
       def update_collection(collection, field, val)
         val = [val] if field == 'accession_number'

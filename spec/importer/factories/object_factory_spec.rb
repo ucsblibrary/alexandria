@@ -2,13 +2,18 @@ require 'rails_helper'
 require 'importer'
 
 describe Importer::Factory::ObjectFactory do
+  before { AdminPolicy.ensure_admin_policy_exists }
+
+  subject { Importer::Factory::CollectionFactory.new(attributes, './tmp') }
+
+  let(:afmc) { 'http://id.loc.gov/authorities/names/n87914041' }
+  let(:afmc_uri) { RDF::URI.new(afmc) }
+
   describe '#find_or_create_rights_holders' do
     before { Agent.destroy_all }
     let(:regents_uri) { 'http://id.loc.gov/authorities/names/n85088322' }
     let(:regents_string) { 'Regents of the Univ.' }
     let(:attributes) { { rights_holder: [RDF::URI.new(regents_uri), regents_string] } }
-
-    subject { Importer::Factory::CollectionFactory.new(attributes, './tmp') }
 
     context "when local rights holder doesn't exist" do
       it 'creates a rights holder' do
@@ -59,22 +64,33 @@ describe Importer::Factory::ObjectFactory do
         end.to change { Agent.count }.by(1)
       end
     end
+
+    context 'when the type is specified' do
+      let(:attributes) {
+        { rights_holder: [{ name: 'Bilbo Baggins',
+                            type: 'Person' }] }
+      }
+
+      it 'creates the local rights holder' do
+        rh = nil
+        expect {
+          rh = subject.find_or_create_rights_holders(attributes)
+        }.to change { Person.count }.by(1)
+        expect(rh.fetch(:rights_holder).map(&:class)).to eq [RDF::URI]
+      end
+    end
   end
 
   describe '#find_or_create_contributors' do
     let(:fields) { [:creator, :collector, :contributor] }
-    let(:afmc) { 'http://id.loc.gov/authorities/names/n87914041' }
     let(:joel) { 'Joel Conway' }
     before { Agent.destroy_all }
 
     # The attributes hash that comes from the ModsParser
     let(:attributes) do
-      afmc_uri = RDF::URI.new(afmc)
       { creator: [afmc_uri],
         contributor: [afmc_uri, { name: joel, type: 'personal' }] }
     end
-
-    subject { Importer::Factory::CollectionFactory.new(attributes, './tmp') }
 
     context "when contributors don't exist yet" do
       it 'creates the contributors and returns a hash of the contributors' do
@@ -127,5 +143,54 @@ describe Importer::Factory::ObjectFactory do
         expect(Person.all.map(&:foaf_name).sort).to eq ['Bilbo Baggins', 'Frodo Baggins']
       end
     end
-  end
+
+    context 'with class directly given in the type field' do
+      # The attributes hash that comes from the CSVParser
+      let(:attributes) {
+        { creator: [{ name: 'Bilbo Baggins', type: 'Person' }],
+          composer: [{ name: 'Frodo', type: 'Group' }] }
+      }
+      let(:fields) { [:creator, :composer] }
+
+      it 'creates the local authorities' do
+        expect do
+          contributors = subject.find_or_create_contributors(fields, attributes)
+        end.to change { Person.count }.by(1)
+          .and change { Group.count }.by(1)
+      end
+    end
+  end  # '#find_or_create_contributors'
+
+
+  describe '#find_or_create_subjects' do
+    let(:attributes) {
+      { lc_subject: [{ name: 'Bilbo Baggins', type: 'Person' },
+                     afmc_uri,
+                     { name: 'A Local Subj', type: 'Topic' } ] }
+    }
+
+    context "local authorities don't exist yet" do
+      before {
+        Person.delete_all
+        Topic.delete_all
+      }
+
+      it "creates the missing local subjects" do
+        attrs = nil
+        expect {
+          attrs = subject.find_or_create_subjects(attributes)
+        }.to change { Person.count }.by(1)
+          .and change { Topic.count }.by(1)
+
+        bilbo = Person.first
+        expect(bilbo.foaf_name).to eq 'Bilbo Baggins'
+
+        subj = Topic.first
+        expect(subj.label).to eq ['A Local Subj']
+
+        expect(attrs[:lc_subject]).to eq [bilbo.uri, afmc, subj.uri]
+      end
+    end
+  end  # find_or_create_subjects
+
 end

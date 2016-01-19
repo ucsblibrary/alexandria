@@ -138,6 +138,17 @@ module Importer::Factory
       rights_holders.blank? ? {} : { rights_holder: rights_holders }
     end
 
+    def find_or_create_subjects(attrs)
+      subs = attrs.fetch(:lc_subject, []).map do |value|
+        if value.is_a?(RDF::URI)
+          value
+        else
+          find_or_create_local_subject(value)
+        end
+      end
+      subs.blank? ? {} : { lc_subject: subs }
+    end
+
     private
 
       def contributors_for_field(attrs, field)
@@ -146,21 +157,74 @@ module Importer::Factory
                     when RDF::URI, String
                       value
                     when Hash
-                      find_or_create_local_contributor(value.fetch(:type), value.fetch(:name))
+                      find_or_create_local_contributor(value)
           end
         end
       end
 
-      def find_or_create_local_contributor(type, name)
+      def find_or_create_local_contributor(attrs)
+        type = attrs.fetch(:type).downcase
+        name = attrs.fetch(:name)
         klass = contributor_classes[type]
         contributor = klass.where(foaf_name_ssim: name).first || klass.create(foaf_name: name)
         RDF::URI.new(contributor.uri)
       end
 
       def find_or_create_local_rights_holder(name)
-        rights_holder = Agent.exact_model.where(foaf_name_ssim: name).first
-        rights_holder ||= Agent.create(foaf_name: name)
+        if name.is_a?(Hash)
+          klass = contributor_classes[name.fetch(:type).downcase]
+          name = name.fetch(:name)
+        end
+        klass ||= Agent
+
+        rights_holder = klass.exact_model.where(foaf_name_ssim: name).first
+        rights_holder ||= klass.create(foaf_name: name)
         RDF::URI.new(rights_holder.uri)
+      end
+
+      def find_or_create_local_subject(subj_hash)
+        type = subj_hash.fetch(:type).downcase
+
+        if contributor_classes.keys.include?(type)
+          find_or_create_local_contributor(subj_hash)
+        else
+          klass = topic_classes[type]
+          name = subj_hash.fetch(:name)
+          subj = klass.where(label_ssim: name).first || klass.create(label: Array(name))
+          RDF::URI.new(subj.uri)
+        end
+      end
+
+      # Map the type to the correct model.  Example:
+      # <mods:name type="personal">
+      # type="personal" should map to the Person model.
+      def contributor_classes
+        @contributor_classes ||= {
+          'personal' => Person,
+          'corporate' => Organization,
+          'conference' => Group,
+          'family' => Group,
+          'person' => Person,
+          'group' => Group,
+          'organization' => Organization
+        }
+      end
+
+      def topic_classes
+        @topic_classes ||= {
+          'topic' => Topic,
+          'subject' => Topic
+        }.merge(contributor_classes)
+      end
+
+      def transform_attributes
+        contributors = find_or_create_contributors(klass.contributor_fields, attributes)
+        rights_holders = find_or_create_rights_holders(attributes)
+        subjects = find_or_create_subjects(attributes)
+
+        attributes.merge(contributors)
+                  .merge(rights_holders)
+                  .merge(subjects)
       end
 
       def host
@@ -171,22 +235,5 @@ module Importer::Factory
         "http://#{host}/lib/#{obj.ark}"
       end
 
-      # Map the MODS name type to the correct model.
-      # Example:
-      # <mods:name type="personal">
-      # A name with type="personal" should map to the Person model
-      def contributor_classes
-        @contributor_classes ||= {
-          'personal' => Person,
-          'corporate' => Organization,
-          'conference' => Group,
-          'family' => Group }
-      end
-
-      def transform_attributes
-        contributors = find_or_create_contributors(klass.contributor_fields, attributes)
-        rights_holders = find_or_create_rights_holders(attributes)
-        attributes.merge(contributors).merge(rights_holders)
-      end
   end
 end
