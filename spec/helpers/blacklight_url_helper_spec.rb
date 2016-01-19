@@ -17,6 +17,8 @@ describe BlacklightUrlHelper do
       end
 
       context "without an ark" do
+        let(:search_state) { double('SearchState', url_for_document: document) }
+        before { allow(helper).to receive(:search_state).and_return(search_state) }
         let(:document) { SolrDocument.new(has_model_ssim: [model], id: 'fk/4v/98/fk4v989d9j') }
         it { is_expected.to eq '/catalog/fk4v989d9j' }
       end
@@ -33,13 +35,13 @@ describe BlacklightUrlHelper do
   # in render_link_rel_alternates
   describe '#etd_url' do
     subject { helper.etd_url('123') }
-    it { is_expected.to eq catalog_url('123') }
+    it { is_expected.to eq solr_document_url('123') }
   end
 
   # This is required because Blacklight 5.14 uses polymorphic_url
   # in render_link_rel_alternates
   describe '#image_url' do
     subject { helper.image_url('123') }
-    it { is_expected.to eq catalog_url('123') }
+    it { is_expected.to eq solr_document_url('123') }
   end
 end

@@ -19,14 +19,14 @@ class AccessController < ApplicationController
       EmbargoService.remove_embargo(curation_concern)
     end
     curation_concern.save!
-    redirect_to catalog_path(curation_concern)
+    redirect_to solr_document_path(curation_concern)
   end
 
   def destroy
     authorize! :update_rights, curation_concern
     EmbargoService.remove_embargo(curation_concern)
     curation_concern.save!
-    redirect_to catalog_path(curation_concern)
+    redirect_to solr_document_path(curation_concern)
   end
 
   protected
@@ -43,7 +43,7 @@ class AccessController < ApplicationController
 
     def deny_access(exception)
       if params[:action] == 'edit'
-        redirect_to catalog_path(curation_concern), alert: exception.message
+        redirect_to solr_document_path(curation_concern), alert: exception.message
       else
         super
       end

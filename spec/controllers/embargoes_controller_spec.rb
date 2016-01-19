@@ -49,7 +49,7 @@ describe EmbargoesController do
 
         it 'deactivates embargo without updating admin_policy_id and redirects' do
           expect(work.admin_policy_id).to eq AdminPolicy::UCSB_CAMPUS_POLICY_ID
-          expect(response).to redirect_to catalog_path(work)
+          expect(response).to redirect_to solr_document_path(work)
         end
       end
 
@@ -58,7 +58,7 @@ describe EmbargoesController do
 
         it 'deactivates embargo, updates the admin_policy_id and redirects' do
           expect(work.admin_policy_id).to eq AdminPolicy::PUBLIC_POLICY_ID
-          expect(response).to redirect_to catalog_path(work)
+          expect(response).to redirect_to solr_document_path(work)
         end
       end
     end

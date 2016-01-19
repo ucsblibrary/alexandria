@@ -10,17 +10,13 @@ class CollectionsController < ApplicationController
   end
 
   def collection_member_search_builder_class
-    CollectionSearchBuilder
-  end
-
-  def collection_member_search_logic
-    super + [:add_access_controls_to_solr_params]
+    CollectionMemberSearchBuilder
   end
 
   def show
     if params[:q].present?
       # A normal catalog search
-      redirect_to catalog_index_path(q: params[:q])
+      redirect_to search_catalog_path(q: params[:q])
     else
       super
       _, @document = fetch(@collection.id)

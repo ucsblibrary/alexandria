@@ -14,7 +14,7 @@ describe AccessController do
       let(:user) { create(:user) }
       it 'redirects' do
         get :edit, etd_id: '123'
-        expect(response).to redirect_to catalog_path(mock_etd)
+        expect(response).to redirect_to solr_document_path(mock_etd)
       end
     end
 
@@ -69,7 +69,7 @@ describe AccessController do
             embargo_release_date: '2099-07-29T00:00:00+00:00',
             visibility_after_embargo_id: 'authorities/policies/ucsb',
           }
-          expect(response).to redirect_to catalog_path(mock_etd)
+          expect(response).to redirect_to solr_document_path(mock_etd)
         end
       end
 
@@ -86,7 +86,7 @@ describe AccessController do
             embargo_release_date: '2099-07-29T00:00:00+00:00',
             visibility_after_embargo_id: 'authorities/policies/ucsb',
           }
-          expect(response).to redirect_to catalog_path(mock_etd)
+          expect(response).to redirect_to solr_document_path(mock_etd)
         end
 
         it 'removes embargo' do
@@ -102,7 +102,7 @@ describe AccessController do
             visibility_after_embargo_id: 'authorities/policies/ucsb',
           }
 
-          expect(response).to redirect_to catalog_path(mock_etd)
+          expect(response).to redirect_to solr_document_path(mock_etd)
         end
       end
     end
@@ -122,7 +122,7 @@ describe AccessController do
         it 'removes embargo' do
           expect(controller).to receive(:authorize!).with(:update_rights, mock_etd)
           delete :destroy, etd_id: '123'
-          expect(response).to redirect_to catalog_path(mock_etd)
+          expect(response).to redirect_to solr_document_path(mock_etd)
         end
       end
     end

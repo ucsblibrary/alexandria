@@ -21,11 +21,15 @@ describe 'collections/_collection.html.erb' do
                        'title_tesim' => 'My Collection',
                        'description_tesim' => [long_desc])
     end
+    let(:blacklight_configuration_context) do
+      Blacklight::Configuration::Context.new(controller)
+    end
 
     before do
       stub_template '_index_header_default.html.erb' => '',
                     '_index_default.html.erb' => ''
       allow(view).to receive(:collection) { collection }
+      allow(view).to receive(:blacklight_configuration_context).and_return(blacklight_configuration_context)
       render
     end
 
