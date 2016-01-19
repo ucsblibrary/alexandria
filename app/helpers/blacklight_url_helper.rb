@@ -38,6 +38,7 @@ module BlacklightUrlHelper
   ##
   # Get the URL for tracking search sessions across pages using polymorphic routing
   def session_tracking_path(document, params = {})
+    return if document.nil?
     blacklight.track_search_context_path(document, params)
   end
 end
