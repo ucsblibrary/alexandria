@@ -26,6 +26,10 @@ module Importer
       # Build a factory to create the objects in fedora.
       def create_fedora_objects(attributes)
         model = attributes.fetch(:type, @model.to_s)
+        if model.empty?
+          $stderr.puts "ERROR: No model was specified"
+          exit(1)
+        end
         Factory.for(model).new(attributes, @files_directory).run
       end
   end
