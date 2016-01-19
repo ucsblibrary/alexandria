@@ -59,6 +59,29 @@ collection, then individual records:
 
 2. `bin/ingest-csv /path/to/objects.csv /path/to/files Image`
 
+#### How to specify the type of a local authority for CSV ingest
+
+The CSV importer will create local authorities for local names or subjects that don't yet exist.
+
+To specify a new local authority in the CSV file, use pairs of columns for the type and name of the authority.  For example, if you have a collector called "Joel Conway", you need 2 columns in your CSV file:
+
+1. A "collector_type" column with the value "Person"
+2. A "collector" column with the value "Joel Conway"
+
+You only need the matching "*_type" column if you are trying to add a new local authority.  For URIs, just put them straight into the "collector" column, without adding a "collector_type" column.
+
+Usage Notes:
+
+* If the value of the column is a URI (for external authorities or pre-existing local authorities), then don't use the matching "*_type" column.
+
+* If the value of the column is a String (for new local authorities), add a matching "*_type" column.  The columns must be in pairs (e.g. "composer_type" and "composer"), and the "*_type" column must come first.
+
+* The possible values for the "*_type" fields are:  Person, Group, Organization, and Subject.
+
+For example, see the "lc_subject", "composer", and "rights_holder" fields in [the example CSV file in the spec fixtures]
+(https://github.com/curationexperts/alexandria-v2/blob/master/spec/fixtures/csv/pamss045_with_local_authorities.csv).
+
+
 # Troubleshooting
 
 - **Passenger fails to spawn process**
