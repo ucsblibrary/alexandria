@@ -13,6 +13,13 @@
 @import 'blacklight_gallery/default';
 @import 'hydra-editor/multi_value_fields';
 
+@mixin hide {
+  position: absolute;
+  left: -999em;
+  /* http://css-tricks.com/snippets/css/accessibilityseo-friendly-css-hiding/ */
+  top: -999px;
+}
+
 $welcome_blue: #004E6E;
 $primary_link_color: #ffcb05;
 $default_link_color: #fff;
@@ -138,14 +145,14 @@ $top_margin: 20px;
 }
 
 .show-less {
-  display: none;
+  @include hide;
 }
 
 // Fields marked with .reveal-js will be hidden at first,
 // then revealed by javascript.  These fields should stay
 // hidden if the user has disabled javascript in the browser.
 .reveal-js {
-  display: none;
+  @include hide;
 }
 
 .link-style {
@@ -305,7 +312,7 @@ table#downloads {
   }
 
   .invisible {
-    display: none;
+    @include hide;
   }
 }
 // Place all the styles related to the welcome controller here.
