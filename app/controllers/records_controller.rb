@@ -47,6 +47,15 @@ class RecordsController < ApplicationController
 
   private
 
+    # Override method from hydra-editor to insert record origin
+    def set_attributes
+      super
+      if resource.respond_to?(:record_origin) && resource.new_record?
+        resource.record_origin << "#{Time.now.utc.to_s(:iso8601)} Record originated in ADRL"
+      end
+      resource.attributes
+    end
+
     def new_merge_form
       form_class = @record.is_a?(Agent) ? NameMergeForm : SubjectMergeForm
       @form = form_class.new(@record)
