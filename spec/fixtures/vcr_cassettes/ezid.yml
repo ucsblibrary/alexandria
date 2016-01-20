@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: https://apitest:apitest@ezid.cdlib.org/shoulder/ark:/99999/fk4
+    uri: https://apitest:ez_id_password@ezid.cdlib.org/shoulder/ark:/99999/fk4
     body:
       encoding: UTF-8
       string: ''
@@ -39,7 +39,7 @@ http_interactions:
   recorded_at: Fri, 10 Apr 2015 15:38:52 GMT
 - request:
     method: get
-    uri: https://apitest:apitest@ezid.cdlib.org/id/ark:/99999/fk4c252k0f
+    uri: https://apitest:ez_id_password@ezid.cdlib.org/id/ark:/99999/fk4c252k0f
     body:
       encoding: US-ASCII
       string: ''
@@ -85,7 +85,7 @@ http_interactions:
   recorded_at: Fri, 10 Apr 2015 15:38:58 GMT
 - request:
     method: post
-    uri: https://apitest:apitest@ezid.cdlib.org/id/ark:/99999/fk4c252k0f
+    uri: https://apitest:ez_id_password@ezid.cdlib.org/id/ark:/99999/fk4c252k0f
     body:
       encoding: UTF-8
       string: |-
