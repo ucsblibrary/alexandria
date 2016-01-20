@@ -24,6 +24,14 @@ $welcome_blue: #004E6E;
 $primary_link_color: #ffcb05;
 $default_link_color: #fff;
 
+$top_margin: 20px;
+$inner_width: 70%;
+
+$breakpoint1: 1400px;
+$breakpoint2: 850px;
+
+
+// FIXME: less specificity
 .input-group {
   .form-control {
     &.tt-hint, &.tt-input {
@@ -39,14 +47,8 @@ $default_link_color: #fff;
   }
 }
 
-.controlled_vocabulary {
-  @extend .multi_value;
-}
-
-.controlled_vocabulary_select {
-  @extend .multi_value;
-}
-
+.controlled_vocabulary,
+.controlled_vocabulary_select,
 .relator {
   @extend .multi_value;
 }
@@ -68,6 +70,7 @@ select, input {
 	border: 1px dashed red;
 }
 
+// FIXME: less specificity
 li.time-span.input-group {
   margin-top: 2em;
 }
@@ -76,12 +79,14 @@ label.remove_time_span {
   margin-left: 1em;
 }
 
+// FIXME: less specificity
 .date-editor {
   .form-group div ul.listing li {
     list-style-type: none;
   }
 }
 
+// FIXME: less specificity
 .contributor-editor {
   .new {
     .role{
@@ -110,10 +115,7 @@ label.remove_time_span {
   }
 }
 
-$top_margin: 20px;
-
 .blacklight-collections-show {
-
   h1 {
     margin-top: $top_margin;
   }
@@ -127,7 +129,7 @@ $top_margin: 20px;
 
 .collection-icon {
   font-size: 9vw;
-  color: #fab801;
+  color: $primary_link_color;
   padding: .125em 0;
 }
 
@@ -315,35 +317,34 @@ table#downloads {
     @include hide;
   }
 }
-// Place all the styles related to the welcome controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
 
-$inner_width: 70%;
+// --------
+// Homepage
+// --------
 
 .page-splash-container {
   margin: 0px 10px 10px 10px;
+}
 
-  #main_header h2 {
-    width: $inner_width;
-    vertical-align: middle;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    color: $welcome_blue;
-    line-height: 1.2;
-  }
+#main_header h2 {
+  width: $inner_width;
+  vertical-align: middle;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: $welcome_blue;
+  line-height: 1.2;
+}
 
-  .welcome_inner {
-    width: $inner_width;
-    vertical-align: middle;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 3em;
-    text-align: center;
-    font-weight: normal;
-  }
+.welcome_inner {
+  width: $inner_width;
+  vertical-align: middle;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 3em;
+  text-align: center;
+  font-weight: normal;
 }
 
 @media screen and (min-width: 850px) {
@@ -364,20 +365,17 @@ $inner_width: 70%;
 
   h4 {
     color: $welcome_blue;
-    font: bold 16px 'Helvetica Neue',Helvetica,Arial,sans-serif;
+    font: 'Helvetica Neue',Helvetica,Arial,sans-serif;
   }
 
   p {
-    font: 16px;
     text-align: left;
     color: black;
   }
 
   a {
-    color: #004e6e;
+    color: $welcome_blue;
     text-decoration: none;
-    font: 16px;
-    line-height: 16px;
   }
 }
 
@@ -389,15 +387,16 @@ $inner_width: 70%;
   padding-bottom: 2em;
 
   h2 {
-    font: bold 28px 'Helvetica Neue', Helvetica,Arial,sans-serif;
+    font: 'Helvetica Neue', Helvetica,Arial,sans-serif;
   }
 }
 
+// FIXME: less specificity
 #about_body {
   max-width: 600px;
 
   p, a {
-    font: 14px 'Helvetica Neue', Helvetica,Arial,sans-serif;
+    font: 'Helvetica Neue', Helvetica,Arial,sans-serif;
   }
 
   a { color: $welcome_blue; }
@@ -406,14 +405,11 @@ $inner_width: 70%;
 //  Header for the Welcome page
 // -----------------------------
 
-$breakpoint1: 1400px;
-$breakpoint2: 850px;
-
+// FIXME: less specificity
 .page-header-splash {
   background: transparent image_url('ADRL_Large_BG_1209x450.png') repeat;
   padding-bottom: 2.5em;
   color: white;
-
 
   .top-links {
     padding-top: 2.5em;
@@ -447,65 +443,71 @@ $breakpoint2: 850px;
       margin-left: -1%;
     }
   }
-
+}
   // -----------------------------
   //   The search bar
   // -----------------------------
 
-  #splash-search-bar {
-    // Override bootstrap.
-    .navbar-form {
-      padding: 0;
-      text-align: center;
-    }
-
-    .for-search-field {
-      background-color: transparent;
-      border: none;
-      padding: 0;
-
-      #search_field {
-        display: block;
-        height: 34px;
-        margin-right: 1em;
-
-        border: 1px solid gray;
-        border-radius: 4px 0 0 4px;
-        font-size: 14px;
-      }
-    }
-  }
-  // Override Bootstrap
-  .navbar-form .input-group > .form-control {
-    width: 50em;
-  }
-  @media screen and (max-width: $breakpoint1) {
-    .navbar-form .input-group > .form-control {
-      width: 30em;
-    }
-  }
-  @media screen and (max-width: $breakpoint2) {
-    .navbar-form .input-group > .form-control {
-      width: 100%;
-    }
-  }
-
-  // -----------------------------
-
-  #browse-by {
+// FIXME: less specificity
+#splash-search-bar {
+  // Override bootstrap.
+  .navbar-form {
+    padding: 0;
     text-align: center;
-	  font: 1.5em 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.5);
-    a {
-      text-decoration: underline;
-      transition: all 100ms ease-in-out 0s;
-    }
-    a:hover {
-      color: $primary_link_color;
-    }
   }
 
+  .for-search-field {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+
+    #search_field {
+      display: block;
+      height: 34px;
+      margin-right: 1em;
+
+      border: 1px solid gray;
+      border-radius: 4px 0 0 4px;
+      font-size: 14px;
+    }
+  }
 }
+
+// Override Bootstrap
+.navbar-form .input-group > .form-control {
+  width: 50em;
+}
+@media screen and (max-width: $breakpoint1) {
+  .navbar-form .input-group > .form-control {
+    width: 30em;
+  }
+}
+@media screen and (max-width: $breakpoint2) {
+  .navbar-form .input-group > .form-control {
+    width: 100%;
+  }
+}
+
+// FIXME: less specificity
+#browse-by {
+  text-align: center;
+	font: 1.5em 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.5);
+  a {
+    text-decoration: underline;
+    transition: all 100ms ease-in-out 0s;
+  }
+  a:hover {
+    color: $primary_link_color;
+  }
+}
+
+// --------
+// Carousel
+// --------
+
+// FIXME: use standard colors
+
 /*
 This is the visible area of you carousel.
 Set a width here to define how much items are visible.
