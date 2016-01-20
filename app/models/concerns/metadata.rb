@@ -97,7 +97,7 @@ module Metadata
     validates_vocabulary_of :license
 
     property :work_type, predicate: RDF::Vocab::DC.type do |index|
-      index.as :stored_searchable
+      index.as :stored_searchable, :facetable
     end
 
     property :series_name, predicate: RDF::URI('http://opaquenamespace.org/ns/seriesName') do |index|
