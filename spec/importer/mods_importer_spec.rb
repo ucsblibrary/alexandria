@@ -43,23 +43,22 @@ describe Importer::ModsImporter do
       expect do
         image = importer.import(file)
       end.to change { Image.count }.by(1)
-        .and change { GenericFile.count }.by(2)
+        .and change { FileSet.count }.by(2)
         .and change { Collection.count }.by(1)
 
-      original = image.generic_files.first.original
+      original = image.file_sets.first.original_file
       expect(original.mime_type).to eq 'image/tiff'
       expect(original.original_name).to eq 'cusbspcmss36_110108_1_a.tif'
 
       # Image.reload doesn't clear @file_association
       reloaded = Image.find(image.id)
-      expect(reloaded.generic_files.first).not_to be_nil
-      expect(reloaded.head.next).not_to be_nil
+      expect(reloaded.file_sets.first).not_to be_nil
 
       expect(reloaded.identifier.first).to match /^ark:\/99999\/fk4\w{7}$/
 
       expect(reloaded.admin_policy_id).to eq AdminPolicy::PUBLIC_POLICY_ID
 
-      coll = reloaded.collections.first
+      coll = reloaded.in_collections.first
       expect(coll.accession_number).to eq ['SBHC Mss 36']
       expect(coll.title).to eq 'Santa Barbara picture postcards collection'
       expect(coll.members).to eq [reloaded]
@@ -83,7 +82,7 @@ describe Importer::ModsImporter do
       let!(:coll) { Collection.create(accession_number: ['SBHC Mss 36']) }
 
       it 'it adds image to existing collection' do
-        expect(coll.members.count).to eq 0
+        expect(coll.members.size).to eq 0
 
         expect do
           VCR.use_cassette('ezid') do
@@ -91,7 +90,7 @@ describe Importer::ModsImporter do
           end
         end.to change { Collection.count }.by(0)
 
-        expect(coll.reload.members.count).to eq 1
+        expect(coll.reload.members.size).to eq 1
       end
     end
   end

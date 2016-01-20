@@ -1,6 +1,6 @@
 class Collection < ActiveFedora::Base
+  include Hydra::Works::CollectionBehavior
   # include Hydra::AccessControls::Permissions
-  include Hydra::Collections::Relations
   include Metadata
   include LocalAuthorityHashAccessor
 

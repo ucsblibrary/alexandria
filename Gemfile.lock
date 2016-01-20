@@ -76,14 +76,25 @@ GIT
       rails (>= 3.0, < 5.0)
 
 GIT
-  remote: git://github.com/projecthydra/hydra-collections.git
-  revision: c707384fb9079bc51ead1d8e4ed43aa65bb999c8
-  branch: blacklight_6
+  remote: git://github.com/projecthydra-labs/hydra-pcdm.git
+  revision: 784e4a4c55704179bbaeff8c3e2c2a150788ed3a
+  branch: member_of_empty
   specs:
-    hydra-collections (5.0.4)
+    hydra-pcdm (0.3.1)
+      active-fedora (~> 9.6)
+      activefedora-aggregation (~> 0.6)
+      mime-types (>= 1)
+
+GIT
+  remote: git://github.com/projecthydra/hydra-collections.git
+  revision: 7bd3941ac6d11c21cfd0962ff2f24905bc2dc41e
+  specs:
+    hydra-collections (6.0.0)
       blacklight (>= 5.10)
       deprecation (~> 0.1)
       hydra-head (~> 9.1)
+      hydra-works (~> 0.4)
+      rdf (~> 1.99)
       rdf-vocab (~> 0)
 
 GIT
@@ -166,9 +177,10 @@ GEM
       om (~> 3.1)
       rdf-rdfxml (~> 1.1)
       rsolr (~> 1.0.10)
-    activefedora-aggregation (0.4.2)
-      active-fedora
+    activefedora-aggregation (0.8.1)
+      active-fedora (~> 9.5)
       activesupport
+      rdf (~> 1.1, >= 1.1.17.1)
       rdf-vocab (~> 0.8.1)
     activejob (4.2.5)
       activesupport (= 4.2.5)
@@ -290,10 +302,22 @@ GEM
       domain_name (~> 0.5)
     http_logger (0.5.1)
     httpclient (2.7.1)
+    hydra-derivatives (3.0.0)
+      active-fedora (~> 9.0)
+      activesupport (~> 4.0)
+      deprecation
+      mime-types (< 3)
+      mini_magick (>= 3.2, < 5)
+    hydra-file_characterization (0.3.3)
+      activesupport (>= 3.0.0)
     hydra-role-management (0.2.2)
       blacklight
       bootstrap_form
       cancancan
+    hydra-works (0.6.0)
+      hydra-derivatives (~> 3.0)
+      hydra-file_characterization (~> 0.3, >= 0.3.3)
+      hydra-pcdm (~> 0.3)
     i18n (0.7.0)
     iso-639 (0.2.5)
     jbuilder (2.4.0)
@@ -359,6 +383,7 @@ GEM
     marc-fastxmlwriter (1.0.0)
       marc (~> 1.0)
     mime-types (2.99)
+    mini_magick (4.3.6)
     mini_portile2 (2.0.0)
     minitest (5.8.3)
     mods (2.0.3)
@@ -374,7 +399,7 @@ GEM
       net-ssh (>= 2.6.5)
     net-ssh (3.0.2)
     netrc (0.11.0)
-    nokogiri (1.6.7.1)
+    nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     nom-xml (0.5.4)
       activesupport (>= 3.2.18)
@@ -642,7 +667,6 @@ PLATFORMS
 DEPENDENCIES
   active-fedora (~> 9.7.0)
   active-triples!
-  activefedora-aggregation (~> 0.4.2)
   american_date (~> 1.1.0)
   awesome_print
   blacklight!
@@ -665,7 +689,9 @@ DEPENDENCIES
   hydra-collections!
   hydra-editor!
   hydra-head!
+  hydra-pcdm!
   hydra-role-management
+  hydra-works (= 0.6.0)
   jbuilder (~> 2.0)
   jettywrapper
   jquery-rails (~> 4.0.5)

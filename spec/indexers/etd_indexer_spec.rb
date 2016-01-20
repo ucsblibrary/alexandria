@@ -4,14 +4,14 @@ describe ETDIndexer do
   let(:document) { described_class.new(etd).generate_solr_document }
   subject { document }
 
-  context 'with a generic_file' do
+  context 'with a file_set' do
     before do
-      allow(etd).to receive_messages(generic_file_ids: ['bf/74/27/75/bf742775-2a24-46dc-889e-cca03b27b5f3'])
+      allow(etd).to receive_messages(member_ids: ['bf/74/27/75/bf742775-2a24-46dc-889e-cca03b27b5f3'])
     end
     let(:etd) { ETD.new }
 
     it 'has downloads' do
-      expect(subject['generic_file_ids_ssim']).to eq ['bf/74/27/75/bf742775-2a24-46dc-889e-cca03b27b5f3']
+      expect(subject['member_ids_ssim']).to eq ['bf/74/27/75/bf742775-2a24-46dc-889e-cca03b27b5f3']
     end
   end
 

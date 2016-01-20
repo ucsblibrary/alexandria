@@ -1,13 +1,13 @@
 require 'rails_helper'
 
 describe Image do
-  it 'should have a title' do
+  it 'has a title' do
     subject.title = 'War and Peace'
     expect(subject.title).to eq 'War and Peace'
   end
 
   it 'has collections' do
-    expect(subject.collections).to eq []
+    expect(subject.in_collections).to eq []
   end
 
   it 'can have an embargo' do

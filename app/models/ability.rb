@@ -90,11 +90,8 @@ class Ability
   # if the user has read permissions for that object.
   # This method comes from hydra-access-controls gem.
   def download_permissions
-    can :download, ActiveFedora::File do |file|
-      gf_uri = file.uri.to_s.sub(/\/[^\/]*$/, '')
-      gf_id = ActiveFedora::Base.uri_to_id(gf_uri)
-      gf = GenericFile.find(gf_id)
-      gf.aggregated_by.any? do |parent_object|
+    can :download, FileSet do |file|
+      file.in_works.any? do |parent_object|
         can? :read, parent_object
       end
     end

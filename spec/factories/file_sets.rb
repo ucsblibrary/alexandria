@@ -1,6 +1,6 @@
 require 'factory_girl'
 
 FactoryGirl.define do
-  factory :generic_file do
+  factory :file_set do
   end
 end

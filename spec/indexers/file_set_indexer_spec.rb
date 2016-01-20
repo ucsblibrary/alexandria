@@ -1,13 +1,14 @@
 require 'rails_helper'
 
-describe GenericFileIndexer do
-  let(:generic_file) { GenericFile.new(id: 'bf/74/27/75/bf742775-2a24-46dc-889e-cca03b27b5f3') }
+describe FileSetIndexer do
+  let(:file_set) { FileSet.new(id: 'bf/74/27/75/bf742775-2a24-46dc-889e-cca03b27b5f3') }
   before do
-    generic_file.original.content = File.open(fixture_file_path('pdf/sample.pdf'))
-    generic_file.original.original_name = 'sample.pdf'
+    Hydra::Works::AddFileToFileSet.call(file_set,
+                                        File.new(fixture_file_path('pdf/sample.pdf')),
+                                        :original_file)
   end
 
-  let(:indexer) { described_class.new(generic_file) }
+  let(:indexer) { described_class.new(file_set) }
 
   describe '#generate_solr_document' do
     subject { indexer.generate_solr_document }

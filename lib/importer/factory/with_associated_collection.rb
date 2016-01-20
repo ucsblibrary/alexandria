@@ -2,11 +2,26 @@ module Importer
   module Factory
     module WithAssociatedCollection
       def create_attributes
-        super.except(:collection).merge(collections: [find_collection])
+        super.except(:collection)
       end
 
       def update_attributes
-        super.except(:collection).merge(collections: [find_collection])
+        super.except(:collection)
+      end
+
+      def after_save(obj)
+        super
+        return unless attributes.key?(:collection)
+        collection = find_collection
+        add_to_collection(obj, collection) if collection
+
+        # Reindex the object with the collection label.
+        obj.update_index
+      end
+
+      def add_to_collection(obj, collection)
+        collection.ordered_members << obj
+        collection.save!
       end
 
       def find_collection

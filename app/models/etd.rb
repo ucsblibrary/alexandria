@@ -1,5 +1,5 @@
-require 'active_fedora/aggregation'
 class ETD < ActiveFedora::Base
+  include Hydra::Works::WorkBehavior
   include Metadata
   include LocalAuthorityHashAccessor
   include HumanReadableType
@@ -42,8 +42,6 @@ class ETD < ActiveFedora::Base
   property :dissertation_year, predicate: ::RDF::Vocab::Bibframe.dissertationYear
 
   include NestedAttributes
-  include Hydra::Collections::Collectible
-  aggregates :generic_files, predicate: ::RDF::URI('http://pcdm.org/models#hasMember')
 
   contains :proquest
 

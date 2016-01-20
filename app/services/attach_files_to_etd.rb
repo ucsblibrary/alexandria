@@ -33,12 +33,12 @@ class AttachFilesToETD
 
     def attach_original_and_supplimentals(paths)
       paths.each do |path|
-        etd.generic_files.create do |gf|
-          puts "  Attaching binary #{path}"
-          gf.original.mime_type = best_mime_for_filename(path)
-          gf.original.original_name = File.basename(path)
-          gf.original.content = File.new(path)
-        end
+        file_set = FileSet.new
+        puts "  Attaching binary #{path}"
+        Hydra::Works::AddFileToFileSet.call(file_set,
+                                            File.new(path),
+                                            :original_file)
+        etd.ordered_members << file_set
       end
     end
 

@@ -21,6 +21,9 @@ describe Importer::Factory::ETDFactory do
       ETD.find('f3/gt/5k/61/f3gt5k61').destroy(eradicate: true)
     end
 
+    # The destroy ^up there^ is not removing the ETD from the collection.
+    Collection.destroy_all
+
     allow($stdout).to receive(:puts) # squelch output
     AdminPolicy.ensure_admin_policy_exists
     allow(AttachFilesToETD).to receive(:run) # skip importing files
@@ -30,12 +33,12 @@ describe Importer::Factory::ETDFactory do
     let!(:coll) { Collection.create(collection_attrs) }
 
     it 'should not create a new collection' do
-      expect(coll.members.count).to eq 0
+      expect(coll.members.size).to eq 0
       obj = nil
       expect do
         obj = factory.run
       end.to change { Collection.count }.by(0)
-      expect(coll.reload.members.count).to eq 1
+      expect(coll.reload.members.size).to eq 1
       expect(coll.members.first).to be_instance_of ETD
       expect(obj.id).to eq 'f3/gt/5k/61/f3gt5k61'
       expect(obj.system_number).to eq ['123']
