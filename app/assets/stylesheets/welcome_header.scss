@@ -2,6 +2,9 @@
 //  Header for the Welcome page
 // -----------------------------
 
+$breakpoint1: 1400px;
+$breakpoint2: 850px;
+
 .page-header-splash {
   background: transparent image_url('ADRL_Large_BG_1209x450.png') repeat;
   padding-bottom: 2.5em;
@@ -45,42 +48,48 @@
   //   The search bar
   // -----------------------------
 
-  $search-bar-width: 72%;
-  $search-bar-margin: 15%;
   #splash-search-bar {
-    width: $search-bar-width;
-    margin-left: $search-bar-margin;
-
-    .input-group-btn {
-      width: 10%;
-    }
-
     // Override bootstrap.
     .navbar-form {
       padding: 0;
+      text-align: center;
     }
 
     .for-search-field {
       background-color: transparent;
       border: none;
-      width: 15ch;
       padding: 0;
 
       #search_field {
         display: block;
         height: 34px;
-        padding: 6px 12px;
+        margin-right: 1em;
+
         border: 1px solid gray;
         border-radius: 4px 0 0 4px;
         font-size: 14px;
       }
     }
   }
+  // Override Bootstrap
+  .navbar-form .input-group > .form-control {
+    width: 50em;
+  }
+  @media screen and (max-width: $breakpoint1) {
+    .navbar-form .input-group > .form-control {
+      width: 30em;
+    }
+  }
+  @media screen and (max-width: $breakpoint2) {
+    .navbar-form .input-group > .form-control {
+      width: 100%;
+    }
+  }
+
   // -----------------------------
 
   #browse-by {
-    width: $search-bar-width;
-    margin-left: $search-bar-margin;
+    text-align: center;
 	  font: 1.5em 'Helvetica Neue', Helvetica, Arial, sans-serif;
     text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.5);
     a {
