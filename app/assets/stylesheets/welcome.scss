@@ -29,22 +29,21 @@ $inner_width: 70%;
   }
 }
 
-.page-splash-container #left_column {
-  float: left;
-}
+@media screen and (min-width: 850px) {
+  .page-splash-container #left_column {
+    width: 48%;
+    float: left;
+  }
 
-.page-splash-container #right_column {
-  float: right;
+  .page-splash-container #right_column {
+    width: 48%;
+    float: right;
+  }
 }
 
 .page-splash-container #left_column,
 .page-splash-container #right_column {
-  width: 48%;
-  vertical-align: middle;
-  margin-left: auto;
-  margin-right: auto;
   text-align: left;
-  font-weight: normal;
 
   h4 {
     color: $welcome_blue;
