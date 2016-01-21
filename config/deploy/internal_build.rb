@@ -1,7 +1,7 @@
 set :stage, :internal_build
 set :rails_env, 'production'
 set :branch, ENV['BRANCH'] || 'master'
-set :deploy_to, '/opt/alex2'
+set :deploy_to, '/opt/alexandria-v2'
 server 'localhost', user: 'deploy', roles: [:web, :app, :db, :resque_pool]
 
 # server-based syntax
