@@ -37,21 +37,15 @@ $bg_image: 'ADRL_BG_1280x160.png';
 // -------------------
 // Bootstrap overrides
 // -------------------
-.navbar-nav {
-  float: none;
-  margin: inherit;
-}
-
-// Override bootstrap.
 .navbar-form {
   padding: 0;
   text-align: center;
 }
 
-// Override Bootstrap
 .navbar-form .input-group > .form-control {
   width: 50em;
 }
+
 @media screen and (max-width: $breakpoint1) {
   .navbar-form .input-group > .form-control {
     width: 30em;
