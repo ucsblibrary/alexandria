@@ -16,7 +16,7 @@ gem 'hydra-head', '~> 9.6.0'
 gem 'active-fedora', '~> 9.7.0'
 
 gem 'active-triples', '~> 0.7.4'
-gem 'hydra-editor', github: 'projecthydra/hydra-editor'
+gem 'hydra-editor', '~> 1.2.0'
 gem 'hydra-role-management'
 gem 'hydra-collections', github: 'projecthydra/hydra-collections'
 gem 'hydra-works', '0.6.0'

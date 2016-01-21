@@ -52,16 +52,6 @@ GIT
       rdf-vocab (~> 0)
 
 GIT
-  remote: git://github.com/projecthydra/hydra-editor.git
-  revision: 9cbf4c46ee2a3b2151beb020d15a949788215327
-  specs:
-    hydra-editor (1.1.1)
-      active-fedora (>= 9.0.0)
-      cancancan (~> 1.8)
-      rails (~> 4.1)
-      simple_form (~> 3.1.0)
-
-GIT
   remote: git://github.com/traject/traject.git
   revision: 656a992c400a472bf5b738ec7a3aa208cc449472
   branch: allow_nil_default
@@ -269,6 +259,11 @@ GEM
       deprecation
       mime-types (< 3)
       mini_magick (>= 3.2, < 5)
+    hydra-editor (1.2.0)
+      active-fedora (>= 9.0.0)
+      cancancan (~> 1.8)
+      rails (~> 4.1)
+      simple_form (~> 3.1.0)
     hydra-file_characterization (0.3.3)
       activesupport (>= 3.0.0)
     hydra-head (9.6.0)
@@ -655,7 +650,7 @@ DEPENDENCIES
   ezid-client (~> 1.2.0)
   factory_girl_rails (~> 4.4)
   hydra-collections!
-  hydra-editor!
+  hydra-editor (~> 1.2.0)
   hydra-head (~> 9.6.0)
   hydra-role-management
   hydra-works (= 0.6.0)
