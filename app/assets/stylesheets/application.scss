@@ -26,9 +26,13 @@ $default_link_color: #fff;
 
 $top_margin: 20px;
 $inner_width: 70%;
+$footer_left_margin: 1.5%;
 
 $breakpoint1: 1400px;
 $breakpoint2: 850px;
+
+$logo_image: 'ADRL_Logo_363x84.png';
+$bg_image: 'ADRL_BG_1280x160.png';
 
 // -------------------
 // Bootstrap overrides
@@ -227,11 +231,8 @@ label.remove_time_span {
 }
 
 //-----------------------------------
-$logo_image: 'ADRL_Logo_363x84.png';
-$header_background_image: 'ADRL_BG_1280x160.png';
-
 #header-navbar {
-  background: transparent image_url($header_background_image) repeat;
+  background: transparent image_url($bg_image) repeat;
   padding-top: 10px;
   color: white;
 
@@ -263,16 +264,12 @@ $header_background_image: 'ADRL_BG_1280x160.png';
 }
 
 //---------------------------
-$footer_background: 'ADRL_BG_1280x160.png';
-$footer_left_margin: 1.5%;
-
-
 #footer {
   margin-top: 1em;
   font: 14px 'Helvetica Neue',Helvetica,Arial,sans-serif;
   color: white;
   padding: 1.5em 0 1em 0;
-  background: transparent image_url($footer_background) repeat;
+  background: transparent image_url($bg_image) repeat;
 
   .copyright {
     margin-left: $footer_left_margin;
