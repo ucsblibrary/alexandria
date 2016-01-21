@@ -109,6 +109,300 @@ h6 {
   font-style: italic;
 }
 
+.invisible {
+  @include hide;
+}
+
+
+// --------
+// Homepage
+// --------
+
+#main-container {
+  overflow: hidden;
+}
+
+#main_header h2 {
+  width: 95%;
+  vertical-align: middle;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: $welcome_blue;
+  line-height: 1.2;
+}
+
+.welcome_inner {
+  width: 95%;
+  vertical-align: middle;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 3em;
+  text-align: center;
+  font-weight: normal;
+}
+
+@media screen and (min-width: $breakpoint3) {
+  .welcome_inner,
+  #main_header h2 {
+    width: $inner_width;
+  }
+  #left_column {
+    width: 48%;
+    float: left;
+  }
+
+  #right_column {
+    width: 48%;
+    float: right;
+  }
+}
+
+#left_column,
+#right_column {
+  text-align: left;
+
+  h4 {
+    color: $welcome_blue;
+    font: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+  }
+
+  p {
+    text-align: left;
+    color: black;
+  }
+
+  a {
+    color: $welcome_blue;
+    text-decoration: none;
+  }
+}
+
+// -----------------------------
+//   About Page
+// -----------------------------
+
+#about_main_body {
+  padding-bottom: 2em;
+
+  h2 {
+    font: 'Helvetica Neue', Helvetica,Arial,sans-serif;
+  }
+}
+
+// FIXME: less specificity
+#about_body {
+  max-width: 600px;
+
+  p, a {
+    font: 'Helvetica Neue', Helvetica,Arial,sans-serif;
+  }
+
+  a { color: $welcome_blue; }
+}
+// -----------------------------
+//  Header for the Welcome page
+// -----------------------------
+
+// FIXME: less specificity
+header {
+  background: transparent image_url('ADRL_Large_BG_1209x450.png') repeat;
+  color: white;
+
+  padding-bottom: 2.5em;
+
+  a, a:hover {
+    color: white;
+    text-decoration: none;
+  }
+
+  .nav li a:hover, .nav li a:focus {
+    background-color: transparent;
+    color: $primary_link_color;
+  }
+}
+
+.large-logo {
+  text-align: center;
+
+  img {
+    width: 70%; // TODO: scale the image so we don't deliver something unnecessarily large
+    margin-bottom: 2.5em;
+    margin-top: 1.5em;
+    margin-left: -1%;
+  }
+}
+
+// ------
+// Footer
+// ------
+footer {
+  margin-top: 1em;
+  padding: 1em;
+  overflow: hidden;
+  min-height: 8em;
+
+  font: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+  color: white;
+  background: transparent image_url($bg_image) repeat;
+
+  @include inline("• ", 4px);
+
+  a, a:hover {
+    color: white;
+    text-decoration: none;
+  }
+}
+.meta-adrl {
+  padding-bottom: 1em;
+}
+.copyright {
+  font-size: 82.5%;
+}
+.ucsb-small {
+  float: left;
+  clear: right;
+  padding: .5em 1em 0 0;
+}
+
+@media screen and (min-width: $breakpoint3) {
+  footer {
+    position: relative;
+  }
+  .meta-adrl {
+    float: left;
+    max-width: 50%;
+  }
+  .meta-ucsb {
+    min-width: 20em;
+    position: absolute;
+    right: 0;
+  }
+}
+
+//---------------------------
+//  Login Link
+//---------------------------
+
+.login-link {
+  ul {
+    margin: 0;
+  }
+
+  a {
+    color: $primary_link_color;
+  }
+
+  p {
+    padding-top: 15px;
+    padding-left: 10px;
+  }
+}
+
+@media screen and (min-width: $breakpoint3) {
+  .login-link {
+    float: right;
+  }
+
+  .top-links {
+    padding-top: 2.5em;
+
+    a { padding: 15px; }
+    p { margin: 15px 0 0 0 }
+  }
+}
+
+.document-thumbnail img {
+  max-height: 200px;
+}
+
+select.search_field.form-control {
+	width: 19%;
+}
+
+table#downloads {
+  &.table-bordered {
+    > thead > tr > th, > tbody > tr > td {
+      border-left: 0;
+      border-right: 0;
+    }
+  }
+
+  thead {
+    background-color: #EEE;
+  }
+
+  .access-row {
+    color: #FFF;
+  }
+  .access-row.denied {
+    background-color: #9E280E;
+  }
+
+  .access-row.allowed {
+    background-color: #41A317;
+  }
+}
+
+#contact-us-page {
+  width: 80%;
+  margin-left: 10%;
+
+  .form-actions {
+    margin-top: 1em;
+  }
+
+  label { font-weight: normal; }
+
+  form {
+    margin: 1.5em 0;
+
+    .row {
+      margin-bottom: 1em;
+    }
+  }
+}
+
+// -----------------------------
+//   The search bar
+// -----------------------------
+
+.for-search-field {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+}
+
+// FIXME: less specificity
+#search_field {
+  display: block;
+  height: 34px;
+  margin-right: 1em;
+
+  border: 1px solid gray;
+  border-radius: 4px 0 0 4px;
+  font-size: 14px;
+}
+
+// FIXME: less specificity
+#browse-by {
+  text-align: center;
+	font: 1.5em 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.5);
+  a {
+    text-decoration: underline;
+    transition: all 100ms ease-in-out 0s;
+  }
+  a:hover {
+    color: $primary_link_color;
+  }
+}
+
+// -------------------------------------
+// Blacklight: Forms and Collections (?)
+// -------------------------------------
+
 // FIXME: less specificity
 .input-group {
   .form-control {
@@ -231,299 +525,6 @@ label.remove_time_span {
 
   .navbar-right {
     margin-top: 1.5em;
-  }
-}
-
-//---------------------------
-//  Login Link
-//---------------------------
-
-.login-link {
-  ul {
-    margin: 0;
-  }
-
-  a {
-    color: $primary_link_color;
-  }
-
-  p {
-    padding-top: 15px;
-    padding-left: 10px;
-  }
-}
-
-// ------
-// Footer
-// ------
-footer {
-  margin-top: 1em;
-  padding: 1em;
-  overflow: hidden;
-  min-height: 8em;
-
-  font: 'Helvetica Neue',Helvetica,Arial,sans-serif;
-  color: white;
-  background: transparent image_url($bg_image) repeat;
-
-  @include inline("• ", 4px);
-
-  a, a:hover {
-    color: white;
-    text-decoration: none;
-  }
-}
-.meta-adrl {
-  padding-bottom: 1em;
-}
-.copyright {
-  font-size: 82.5%;
-}
-.ucsb-small {
-  float: left;
-  clear: right;
-  padding: .5em 1em 0 0;
-}
-
-@media screen and (min-width: $breakpoint3) {
-  footer {
-    position: relative;
-  }
-  .meta-adrl {
-    float: left;
-    max-width: 50%;
-  }
-  .meta-ucsb {
-    min-width: 20em;
-    position: absolute;
-    right: 0;
-  }
-}
-
-.document-thumbnail img {
-  max-height: 200px;
-}
-
-select.search_field.form-control {
-	width: 19%;
-}
-
-table#downloads {
-  &.table-bordered {
-    > thead > tr > th, > tbody > tr > td {
-      border-left: 0;
-      border-right: 0;
-    }
-  }
-
-  thead {
-    background-color: #EEE;
-  }
-
-  .access-row {
-    color: #FFF;
-  }
-  .access-row.denied {
-    background-color: #9E280E;
-  }
-
-  .access-row.allowed {
-    background-color: #41A317;
-  }
-}
-// Place all the styles related to the contact_us controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
-#contact-us-page {
-  width: 80%;
-  margin-left: 10%;
-
-  .form-actions {
-    margin-top: 1em;
-  }
-
-  label { font-weight: normal; }
-
-  form {
-    margin: 1.5em 0;
-
-    .row {
-      margin-bottom: 1em;
-    }
-  }
-
-  .invisible {
-    @include hide;
-  }
-}
-
-// --------
-// Homepage
-// --------
-
-#main-container {
-  overflow: hidden;
-}
-
-#main_header h2 {
-  width: 95%;
-  vertical-align: middle;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  color: $welcome_blue;
-  line-height: 1.2;
-}
-
-.welcome_inner {
-  width: 95%;
-  vertical-align: middle;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 3em;
-  text-align: center;
-  font-weight: normal;
-}
-
-@media screen and (min-width: $breakpoint3) {
-  .welcome_inner,
-  #main_header h2 {
-    width: $inner_width;
-  }
-  #left_column {
-    width: 48%;
-    float: left;
-  }
-
-  #right_column {
-    width: 48%;
-    float: right;
-  }
-}
-
-#left_column,
-#right_column {
-  text-align: left;
-
-  h4 {
-    color: $welcome_blue;
-    font: 'Helvetica Neue',Helvetica,Arial,sans-serif;
-  }
-
-  p {
-    text-align: left;
-    color: black;
-  }
-
-  a {
-    color: $welcome_blue;
-    text-decoration: none;
-  }
-}
-
-// -----------------------------
-//   About Page
-// -----------------------------
-
-#about_main_body {
-  padding-bottom: 2em;
-
-  h2 {
-    font: 'Helvetica Neue', Helvetica,Arial,sans-serif;
-  }
-}
-
-// FIXME: less specificity
-#about_body {
-  max-width: 600px;
-
-  p, a {
-    font: 'Helvetica Neue', Helvetica,Arial,sans-serif;
-  }
-
-  a { color: $welcome_blue; }
-}
-// -----------------------------
-//  Header for the Welcome page
-// -----------------------------
-
-// FIXME: less specificity
-header {
-  background: transparent image_url('ADRL_Large_BG_1209x450.png') repeat;
-  color: white;
-
-  padding-bottom: 2.5em;
-
-  a, a:hover {
-    color: white;
-    text-decoration: none;
-  }
-
-  .nav li a:hover, .nav li a:focus {
-    background-color: transparent;
-    color: $primary_link_color;
-  }
-}
-
-.large-logo {
-  text-align: center;
-
-  img {
-    width: 70%; // TODO: scale the image so we don't deliver something unnecessarily large
-    margin-bottom: 2.5em;
-    margin-top: 1.5em;
-    margin-left: -1%;
-  }
-}
-
-
-@media screen and (min-width: $breakpoint3) {
-  .login-link {
-    float: right;
-  }
-
-  .top-links {
-    padding-top: 2.5em;
-
-    a { padding: 15px; }
-    p { margin: 15px 0 0 0 }
-  }
-}
-
-// -----------------------------
-//   The search bar
-// -----------------------------
-
-.for-search-field {
-  background-color: transparent;
-  border: none;
-  padding: 0;
-}
-
-// FIXME: less specificity
-#search_field {
-  display: block;
-  height: 34px;
-  margin-right: 1em;
-
-  border: 1px solid gray;
-  border-radius: 4px 0 0 4px;
-  font-size: 14px;
-}
-
-// FIXME: less specificity
-#browse-by {
-  text-align: center;
-	font: 1.5em 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.5);
-  a {
-    text-decoration: underline;
-    transition: all 100ms ease-in-out 0s;
-  }
-  a:hover {
-    color: $primary_link_color;
   }
 }
 
