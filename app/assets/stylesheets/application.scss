@@ -592,7 +592,7 @@ have a fixed width and height (but it's not required).
     box-shadow: 0 0 4px #F0EFE7;
 }
 
-@media (max-width: 480px) {
+@media (max-width: $breakpoint4) {
     .jcarousel-control-prev,
     .jcarousel-control-next {
         margin-top: -10px;
@@ -633,7 +633,7 @@ have a fixed width and height (but it's not required).
     margin-left: -22px;
 }
 
-@media (max-width: 620px) {
+@media (max-width: $breakpoint3) {
     .jcarousel-pagination {
         bottom: -35px;
     }
