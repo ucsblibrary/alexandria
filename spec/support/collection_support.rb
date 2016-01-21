@@ -10,10 +10,10 @@ module CollectionSupport
                  identifier: [id] }
 
     attrs_for_images.each do |attrs|
-      image = Image.new(defaults.merge(attrs))
-      image.collections << collection
-      image.save!
+      image = Image.create!(defaults.merge(attrs))
+      collection.ordered_members << image
     end
+    collection.save!
     collection
   end
 end

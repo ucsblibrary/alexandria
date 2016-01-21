@@ -24,22 +24,22 @@ describe SolrDocument do
       it { is_expected.to be true }
     end
 
-    describe 'generic_files' do
-      subject { etd_document.generic_files }
-      context 'with generic files' do
-        let(:generic_file_document) { SolrDocument.new(id: 'bf/74/27/75/bf742775-2a24-46dc-889e-cca03b27b5f3') }
+    describe 'file_sets' do
+      subject { etd_document.file_sets }
+      context 'with file sets' do
+        let(:file_set_document) { SolrDocument.new(id: 'bf/74/27/75/bf742775-2a24-46dc-889e-cca03b27b5f3') }
         before do
-          etd_document['generic_file_ids_ssim'] = [generic_file_document.id]
-          ActiveFedora::SolrService.add(generic_file_document)
+          etd_document['member_ids_ssim'] = [file_set_document.id]
+          ActiveFedora::SolrService.add(file_set_document)
           ActiveFedora::SolrService.commit
         end
 
-        it 'looks up the generic_files' do
-          expect(subject.map(&:id)).to eq [generic_file_document.id]
+        it 'looks up the file sets' do
+          expect(subject.map(&:id)).to eq [file_set_document.id]
         end
       end
 
-      context 'without generic files' do
+      context 'without file sets' do
         it { is_expected.to be_empty }
       end
     end

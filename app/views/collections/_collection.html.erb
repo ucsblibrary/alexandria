@@ -1,5 +1,5 @@
 <div class="document <%= render_document_class collection %>" itemscope itemtype="<%= collection.itemtype %>">
   <%= render 'index_header_default', document_counter: collection_counter, document: collection %>
   <%= render_description(collection) %>
-  <%= render 'index_default', document: collection %>
+  <%= render 'index_default', document: collection, document_counter: collection_counter %>
 </div>

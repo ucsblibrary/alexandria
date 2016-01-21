@@ -7,7 +7,11 @@ class DownloadsController < ApplicationController
     @asset ||= ActiveFedora::Base.find(URI.unescape(params[asset_param_key]))
   end
 
+  def authorize_download!
+    authorize! :download, asset
+  end
+
   def load_file
-    asset.attached_files['original']
+    asset.original_file
   end
 end

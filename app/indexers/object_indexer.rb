@@ -17,9 +17,9 @@ class ObjectIndexer < ActiveFedora::IndexingService
 
   def generate_solr_document
     super do |solr_doc|
-      solr_doc[COLLECTION] = object.collection_ids
+      solr_doc[COLLECTION] = object.in_collections.map &:id
       # TODO: if we need to optimize, we could pull this from solr
-      solr_doc[COLLECTION_LABEL] = object.collections.map &:title
+      solr_doc[COLLECTION_LABEL] = object.in_collections.map &:title
 
       solr_doc[CREATED] = created
       solr_doc[OTHER] = display_date('date_other')

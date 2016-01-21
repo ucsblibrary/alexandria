@@ -1,6 +1,6 @@
 <%= render 'show_default', document: document %>
 
-<% if document.generic_files.present? %>
+<% if document.file_sets.present? %>
   <% if can?(:read, document) %>
     <%= render 'files', document: document %>
   <% else %>

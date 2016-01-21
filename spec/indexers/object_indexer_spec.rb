@@ -211,12 +211,12 @@ describe ObjectIndexer do
   end
 
   context 'with collections' do
-    let(:long_books) { Collection.create!(title: 'Long Books') }
-    let(:boring_books) { Collection.create!(title: 'Boring Books') }
-    let(:image) { Image.new(collections: [boring_books, long_books]) }
+    let(:image) { Image.create! } #(collections: [boring_books, long_books]) }
+    let!(:long_books) { Collection.create!(title: 'Long Books', ordered_members: [image]) }
+    let!(:boring_books) { Collection.create!(title: 'Boring Books', ordered_members: [image]) }
 
     it 'has collections' do
-      expect(subject['collection_ssim']).to eq [boring_books.id, long_books.id]
+      expect(subject['collection_ssim']).to match_array [boring_books.id, long_books.id]
       expect(subject['collection_label_ssim']).to include 'Long Books', 'Boring Books'
     end
   end

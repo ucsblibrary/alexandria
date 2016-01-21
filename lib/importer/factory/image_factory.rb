@@ -21,12 +21,12 @@ module Importer::Factory
         puts "  * File doesn't exist at #{path}"
         return
       end
-      image.generic_files.create do |gf|
-        puts "  Attaching binary #{file_name}"
-        gf.original.mime_type = mime_type(path)
-        gf.original.original_name = File.basename(path)
-        gf.original.content = File.new(path)
-      end
+      file_set = FileSet.new
+      puts "  Attaching binary #{file_name}"
+      Hydra::Works::AddFileToFileSet.call(file_set,
+                                          File.new(path),
+                                          :original_file)
+      image.ordered_members << file_set
     end
 
     def mime_type(file_name)

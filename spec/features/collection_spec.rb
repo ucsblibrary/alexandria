@@ -19,15 +19,14 @@ feature 'Collection show page:' do
       admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID }
   end
 
-  let(:colors) { create_collection_with_images(colors_attrs, [red_attrs, pink_attrs]) }
-
-  let(:user) { create :user }
-
   before do
     AdminPolicy.ensure_admin_policy_exists
-    colors
     login_as user
   end
+
+  let!(:colors) { create_collection_with_images(colors_attrs, [red_attrs, pink_attrs]) }
+
+  let(:user) { create :user }
 
   scenario 'Use facets to browse collection members' do
     visit collections.collection_path(colors)

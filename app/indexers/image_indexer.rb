@@ -1,9 +1,9 @@
 class ImageIndexer < ObjectIndexer
   def generate_solr_document
     super do |solr_doc|
-      solr_doc['thumbnail_url_ssm'.freeze] = generic_file_thumbnails
-      solr_doc['image_url_ssm'.freeze] = generic_file_images
-      solr_doc['large_image_url_ssm'.freeze] = generic_file_large_images
+      solr_doc['thumbnail_url_ssm'.freeze] = file_set_thumbnails
+      solr_doc['image_url_ssm'.freeze] = file_set_images
+      solr_doc['large_image_url_ssm'.freeze] = file_set_large_images
       solr_doc[ISSUED] = issued
       solr_doc[COPYRIGHTED] = display_date('date_copyrighted')
       solr_doc['rights_holder_label_tesim'] = object['rights_holder'].flat_map(&:rdf_label)
@@ -12,16 +12,16 @@ class ImageIndexer < ObjectIndexer
 
   private
 
-    def generic_file_thumbnails
-      generic_file_images('300,'.freeze)
+    def file_set_thumbnails
+      file_set_images('300,'.freeze)
     end
 
-    def generic_file_large_images
-      generic_file_images('1000,'.freeze)
+    def file_set_large_images
+      file_set_images('1000,'.freeze)
     end
 
-    def generic_file_images(size = '600,')
-      object.generic_file_ids.map do |id|
+    def file_set_images(size = '600,')
+      object.member_ids.map do |id|
         Riiif::Engine.routes.url_helpers.image_url(
           "#{id}/original",
           size: size,

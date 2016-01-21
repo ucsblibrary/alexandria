@@ -20,7 +20,9 @@ gem 'active-fedora', '~> 9.7.0'
 gem 'active-triples', github: 'ActiveTriples/ActiveTriples', ref: '71ed53a'
 gem 'hydra-editor', github: 'projecthydra/hydra-editor', branch: 'blacklight_6'
 gem 'hydra-role-management'
-gem 'hydra-collections', github: 'projecthydra/hydra-collections', branch: 'blacklight_6'
+gem 'hydra-collections', github: 'projecthydra/hydra-collections'
+gem 'hydra-pcdm', github: 'projecthydra-labs/hydra-pcdm', branch: 'member_of_empty'
+gem 'hydra-works', '0.6.0'
 gem 'rdf-marmotta', '~> 0.0.8'
 gem 'rdf-vocab', '~> 0.8.4'
 
@@ -31,9 +33,6 @@ gem 'blacklight-gallery', github: 'projectblacklight/blacklight-gallery'
 gem 'settingslogic'
 
 gem 'rsolr', '~> 1.0.12'
-
-# Needs 0.4.x, going higher changes the data model
-gem 'activefedora-aggregation', '~> 0.4.2'
 
 gem 'mods', '~> 2.0.3'
 gem 'oargun', github: 'curationexperts/oargun', ref: '9c7bdda'

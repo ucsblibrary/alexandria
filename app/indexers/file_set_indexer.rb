@@ -1,7 +1,7 @@
-class GenericFileIndexer < ActiveFedora::IndexingService
+class FileSetIndexer < ActiveFedora::IndexingService
   def generate_solr_document
     super do |solr_doc|
-      if object.original
+      if object.original_file
         solr_doc['original_download_url_ss'.freeze] = original_download_url
         solr_doc['original_filename_ss'.freeze] = original_filename
         solr_doc['original_file_size_ss'.freeze] = original_file_size
@@ -16,11 +16,11 @@ class GenericFileIndexer < ActiveFedora::IndexingService
     end
 
     def original_filename
-      object.original.original_name
+      object.original_file.original_name
     end
 
     def original_file_size
-      object.original.size
+      object.original_file.size
     end
 
     def host

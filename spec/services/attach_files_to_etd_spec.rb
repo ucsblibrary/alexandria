@@ -17,14 +17,18 @@ describe AttachFilesToETD do
     before do
       AdminPolicy.ensure_admin_policy_exists
       allow_any_instance_of(ZipfileService).to receive(:extract_files).and_return(file_struct)
+
+      # squelch output
+      allow($stdout).to receive(:puts)
+
       described_class.run(etd, file)
     end
 
     it 'attaches files' do
-      expect(etd.generic_files).to all(be_kind_of GenericFile)
-      expect(etd.generic_files[0].original.size).to eq 218_882
-      expect(etd.generic_files[1].original.mime_type).to eq 'image/tiff'
-      expect(etd.generic_files[2].original.mime_type).to eq 'image/tiff'
+      expect(etd.file_sets).to all(be_kind_of FileSet)
+      expect(etd.file_sets[0].original_file.size).to eq 218_882
+      expect(etd.file_sets[1].original_file.mime_type).to eq 'image/tiff'
+      expect(etd.file_sets[2].original_file.mime_type).to eq 'image/tiff'
 
       expect(etd.proquest.size).to eq 5564
     end

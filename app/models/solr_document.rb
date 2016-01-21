@@ -65,10 +65,10 @@ class SolrDocument
     Array(self[Solrizer.solr_name('identifier', :displayable)]).first
   end
 
-  def generic_files
-    @generic_files ||= begin
-      if ids = self['generic_file_ids_ssim']
-        load_generic_files(ids)
+  def file_sets
+    @file_sets ||= begin
+      if ids = self[Solrizer.solr_name('member_ids', :symbol)]
+        load_file_sets(ids)
       else
         []
       end
@@ -77,7 +77,7 @@ class SolrDocument
 
   private
 
-    def load_generic_files(ids)
+    def load_file_sets(ids)
       docs = ActiveFedora::SolrService.query("{!terms f=id}#{ids.join(',')}").map { |res| SolrDocument.new(res) }
       ids.map { |id| docs.find { |doc| doc.id == id } }
     end
