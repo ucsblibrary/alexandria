@@ -30,6 +30,65 @@ $inner_width: 70%;
 $breakpoint1: 1400px;
 $breakpoint2: 850px;
 
+// -------------------
+// Bootstrap overrides
+// -------------------
+.navbar-nav {
+  float: none;
+  margin: inherit;
+}
+
+// Override bootstrap.
+.navbar-form {
+  padding: 0;
+  text-align: center;
+}
+
+// Override Bootstrap
+.navbar-form .input-group > .form-control {
+  width: 50em;
+}
+@media screen and (max-width: $breakpoint1) {
+  .navbar-form .input-group > .form-control {
+    width: 30em;
+  }
+}
+@media screen and (max-width: $breakpoint2) {
+  .navbar-form .input-group > .form-control {
+    width: 100%;
+  }
+}
+
+
+// -------
+// General
+// -------
+
+body {
+  font-size: 12pt;
+}
+
+h1 {
+  font-size: 171.5%;
+}
+
+h2 {
+  font-size: 150%;
+}
+
+h3 {
+  font-size: 128.5%;
+}
+
+h4,
+h5,
+h6 {
+  font-size: 114.3%;
+}
+
+h6 {
+  font-style: italic;
+}
 
 // FIXME: less specificity
 .input-group {
@@ -196,11 +255,6 @@ $header_background_image: 'ADRL_BG_1280x160.png';
 #header-navbar .navbar-right .login-link a,
 .page-header-splash .login-link a {
   color: $primary_link_color;
-}
-
-#header-navbar .navbar-right .login-link p,
-.page-header-splash .login-link p {
-  margin: 0;
 }
 
 #header-navbar .navbar-right .login-link p {
@@ -411,13 +465,6 @@ table#downloads {
   padding-bottom: 2.5em;
   color: white;
 
-  .top-links {
-    padding-top: 2.5em;
-
-    a { padding: 15px; }
-    p { margin: 15px 0 0 0 }
-  }
-
   a, a:hover {
     color: white;
     text-decoration: none;
@@ -427,65 +474,57 @@ table#downloads {
     background-color: transparent;
     color: $primary_link_color;
   }
+}
 
-  .page-header-container {
-    width: 80%;
-    margin-left: 10%;
-  }
+.page-header-container {
+  width: 80%;
+  margin-left: 10%;
+}
 
-  .large-logo {
-    text-align: center;
+.large-logo {
+  text-align: center;
 
-    img {
-      width: 70%; // TODO: scale the image so we don't deliver something unnecessarily large
-      margin-bottom: 2.5em;
-      margin-top: 1.5em;
-      margin-left: -1%;
-    }
+  img {
+    width: 70%; // TODO: scale the image so we don't deliver something unnecessarily large
+    margin-bottom: 2.5em;
+    margin-top: 1.5em;
+    margin-left: -1%;
   }
 }
-  // -----------------------------
-  //   The search bar
-  // -----------------------------
+
+
+@media screen and (min-width: $breakpoint2) {
+  .login-link {
+    float: right;
+  }
+
+  .top-links {
+    padding-top: 2.5em;
+
+    a { padding: 15px; }
+    p { margin: 15px 0 0 0 }
+  }
+}
+
+// -----------------------------
+//   The search bar
+// -----------------------------
+
+.for-search-field {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+}
 
 // FIXME: less specificity
-#splash-search-bar {
-  // Override bootstrap.
-  .navbar-form {
-    padding: 0;
-    text-align: center;
-  }
+#search_field {
+  display: block;
+  height: 34px;
+  margin-right: 1em;
 
-  .for-search-field {
-    background-color: transparent;
-    border: none;
-    padding: 0;
-
-    #search_field {
-      display: block;
-      height: 34px;
-      margin-right: 1em;
-
-      border: 1px solid gray;
-      border-radius: 4px 0 0 4px;
-      font-size: 14px;
-    }
-  }
-}
-
-// Override Bootstrap
-.navbar-form .input-group > .form-control {
-  width: 50em;
-}
-@media screen and (max-width: $breakpoint1) {
-  .navbar-form .input-group > .form-control {
-    width: 30em;
-  }
-}
-@media screen and (max-width: $breakpoint2) {
-  .navbar-form .input-group > .form-control {
-    width: 100%;
-  }
+  border: 1px solid gray;
+  border-radius: 4px 0 0 4px;
+  font-size: 14px;
 }
 
 // FIXME: less specificity
