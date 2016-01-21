@@ -1,16 +1,4 @@
 GIT
-  remote: git://github.com/ActiveTriples/ActiveTriples.git
-  revision: 71ed53a1995f8e8d4b83acaca82ffcca0c2f1249
-  ref: 71ed53a
-  specs:
-    active-triples (0.7.1)
-      activemodel (>= 3.0.0)
-      activesupport (>= 3.0.0)
-      deprecation (~> 0.1)
-      linkeddata (~> 1.1)
-      rdf (~> 1.1)
-
-GIT
   remote: git://github.com/curationexperts/oargun.git
   revision: 9c7bdda6757c39b09796e03666e698b4c087a571
   ref: 9c7bdda
@@ -33,15 +21,6 @@ GIT
       activesupport (>= 3.0.0)
 
 GIT
-  remote: git://github.com/projectblacklight/blacklight-access_controls.git
-  revision: 5c477aa67ad3e5022f9fc2c58a90dbabfe83160d
-  branch: blacklight_6
-  specs:
-    blacklight-access_controls (0.2.0)
-      blacklight (~> 6.0.0.pre5)
-      cancancan (~> 1.8)
-
-GIT
   remote: git://github.com/projectblacklight/blacklight-gallery.git
   revision: 814bbbcd2a78de224cec3282c7a66087750468d8
   specs:
@@ -52,38 +31,13 @@ GIT
       rails
 
 GIT
-  remote: git://github.com/projectblacklight/blacklight.git
-  revision: b5f1fa696c4c4a8a8d40e3ee83271539c868b770
-  specs:
-    blacklight (6.0.0.pre5)
-      bootstrap-sass (~> 3.2)
-      deprecation
-      globalid
-      kaminari (>= 0.15)
-      nokogiri (~> 1.6)
-      rails (>= 4.1, < 5)
-      rsolr (~> 1.0.11)
-      twitter-typeahead-rails (~> 0.11)
-
-GIT
   remote: git://github.com/projectblacklight/blacklight_range_limit.git
-  revision: 1dd96c53d19376777b2a28cbe8be3fcc11266a47
-  branch: no_propagation
+  revision: 95b5546512ebaed49d7425d6a6c34ee6b47b6b3d
   specs:
     blacklight_range_limit (5.2.0)
       blacklight (>= 6.0.0.pre2, < 7)
       jquery-rails
       rails (>= 3.0, < 5.0)
-
-GIT
-  remote: git://github.com/projecthydra-labs/hydra-pcdm.git
-  revision: 784e4a4c55704179bbaeff8c3e2c2a150788ed3a
-  branch: member_of_empty
-  specs:
-    hydra-pcdm (0.3.1)
-      active-fedora (~> 9.6)
-      activefedora-aggregation (~> 0.6)
-      mime-types (>= 1)
 
 GIT
   remote: git://github.com/projecthydra/hydra-collections.git
@@ -96,39 +50,6 @@ GIT
       hydra-works (~> 0.4)
       rdf (~> 1.99)
       rdf-vocab (~> 0)
-
-GIT
-  remote: git://github.com/projecthydra/hydra-editor.git
-  revision: c8a391b1479f6836b65e2b1261e1bd5e2571361e
-  branch: blacklight_6
-  specs:
-    hydra-editor (1.1.1)
-      active-fedora (>= 9.0.0)
-      cancancan (~> 1.8)
-      rails (~> 4.1)
-      simple_form (~> 3.1.0)
-
-GIT
-  remote: git://github.com/projecthydra/hydra-head.git
-  revision: e63ded239256b9412390e19280ddd7b1486e14df
-  branch: blacklight_6
-  specs:
-    hydra-access-controls (9.5.0)
-      active-fedora (~> 9.0)
-      activesupport (~> 4.0)
-      blacklight (>= 5.16)
-      blacklight-access_controls (~> 0.1)
-      cancancan (~> 1.8)
-      deprecation (~> 0.2)
-    hydra-core (9.5.0)
-      active-fedora (~> 9.1)
-      hydra-access-controls (= 9.5.0)
-      jettywrapper (>= 2.0.0)
-      rails (~> 4.0)
-    hydra-head (9.5.0)
-      hydra-access-controls (= 9.5.0)
-      hydra-core (= 9.5.0)
-      rails (>= 3.2.6)
 
 GIT
   remote: git://github.com/traject/traject.git
@@ -177,6 +98,12 @@ GEM
       om (~> 3.1)
       rdf-rdfxml (~> 1.1)
       rsolr (~> 1.0.10)
+    active-triples (0.7.4)
+      activemodel (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      deprecation (~> 0.1)
+      linkeddata (~> 1.1)
+      rdf (~> 1.1)
     activefedora-aggregation (0.8.1)
       active-fedora (~> 9.5)
       activesupport
@@ -215,6 +142,18 @@ GEM
     bcp47 (0.3.3)
       i18n
     bcrypt (3.1.10)
+    blacklight (6.0.0)
+      bootstrap-sass (~> 3.2)
+      deprecation
+      globalid
+      kaminari (>= 0.15)
+      nokogiri (~> 1.6)
+      rails (>= 4.1, < 5)
+      rsolr (~> 1.0.11)
+      twitter-typeahead-rails (~> 0.11)
+    blacklight-access_controls (0.3.0)
+      blacklight (~> 6.0)
+      cancancan (~> 1.8)
     bootstrap-sass (3.3.6)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
@@ -302,14 +241,39 @@ GEM
       domain_name (~> 0.5)
     http_logger (0.5.1)
     httpclient (2.7.1)
+    hydra-access-controls (9.6.0)
+      active-fedora (~> 9.0)
+      activesupport (~> 4.0)
+      blacklight (>= 5.16)
+      blacklight-access_controls (~> 0.1)
+      cancancan (~> 1.8)
+      deprecation (~> 0.2)
+    hydra-core (9.6.0)
+      active-fedora (~> 9.1)
+      hydra-access-controls (= 9.6.0)
+      jettywrapper (>= 2.0.0)
+      rails (~> 4.0)
     hydra-derivatives (3.0.0)
       active-fedora (~> 9.0)
       activesupport (~> 4.0)
       deprecation
       mime-types (< 3)
       mini_magick (>= 3.2, < 5)
+    hydra-editor (1.2.0)
+      active-fedora (>= 9.0.0)
+      cancancan (~> 1.8)
+      rails (~> 4.1)
+      simple_form (~> 3.1.0)
     hydra-file_characterization (0.3.3)
       activesupport (>= 3.0.0)
+    hydra-head (9.6.0)
+      hydra-access-controls (= 9.6.0)
+      hydra-core (= 9.6.0)
+      rails (>= 3.2.6)
+    hydra-pcdm (0.3.2)
+      active-fedora (~> 9.6)
+      activefedora-aggregation (~> 0.6)
+      mime-types (>= 1)
     hydra-role-management (0.2.2)
       blacklight
       bootstrap_form
@@ -666,11 +630,10 @@ PLATFORMS
 
 DEPENDENCIES
   active-fedora (~> 9.7.0)
-  active-triples!
+  active-triples (~> 0.7.4)
   american_date (~> 1.1.0)
   awesome_print
-  blacklight!
-  blacklight-access_controls!
+  blacklight (~> 6.0.0)
   blacklight-gallery!
   blacklight_range_limit!
   byebug
@@ -687,9 +650,8 @@ DEPENDENCIES
   ezid-client (~> 1.2.0)
   factory_girl_rails (~> 4.4)
   hydra-collections!
-  hydra-editor!
-  hydra-head!
-  hydra-pcdm!
+  hydra-editor (~> 1.2.0)
+  hydra-head (~> 9.6.0)
   hydra-role-management
   hydra-works (= 0.6.0)
   jbuilder (~> 2.0)
