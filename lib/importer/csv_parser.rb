@@ -27,6 +27,7 @@ module Importer
       end
 
       def validate_headers(row)
+        row.compact!
         difference = (row - valid_headers)
 
         # Allow headers with the pattern *_type to specify the
@@ -45,7 +46,7 @@ module Importer
       def validate_header_pairs(row)
         errors = []
         row.each_with_index do |header, i|
-          next if header == 'work_type'
+          next if header == 'work_type' || header == 'note_type'
           if header.match(type_header_pattern)
             next_header = row[i + 1]
             field_name = header.gsub('_type', '')

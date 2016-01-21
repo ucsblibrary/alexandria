@@ -100,9 +100,20 @@ describe Importer::CSVParser do
       end
     end
 
+    context 'with nil headers' do
+      let(:headers) { ["title", nil] }
+      it { is_expected.to eq headers }
+    end
+
     # It doesn't expect a matching column for "work_type"
     context 'with work_type column' do
       let(:headers) { ["work_type", "rights_holder", "title"] }
+      it { is_expected.to eq headers }
+    end
+
+    # note_type is handled separately
+    context 'with note_type column' do
+      let(:headers) { ["note_type", "note_value", "title"] }
       it { is_expected.to eq headers }
     end
   end
