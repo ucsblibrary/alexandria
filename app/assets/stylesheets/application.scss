@@ -153,10 +153,15 @@ header {
   text-align: center;
 
   img {
-    width: 70%; // TODO: scale the image so we don't deliver something unnecessarily large
+    width: 100%;
     margin-bottom: 2.5em;
     margin-top: 1.5em;
     margin-left: -1%;
+  }
+}
+@media screen and (min-width: $breakpoint3) {
+  .large-logo img {
+    width: 70%; // TODO: scale the image so we don't deliver something unnecessarily large
   }
 }
 
