@@ -1,6 +1,6 @@
 defaults: &defaults
   download_root: '/opt/download_root'
-  marmotta_host: localhost:8180
+  marmotta_host: localhost:8080
   internal_local_vocab_root: <%= ActiveFedora.fedora.host %>
 development:
   <<: *defaults

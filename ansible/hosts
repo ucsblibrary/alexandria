@@ -1,0 +1,9 @@
+# EC2 boxes
+[ec2hosts]	
+
+# Vagrant hosts - automatically populated by Vagrant provisioner
+
+# SSH hosts - use for vanilla ssh connections
+[vanilla-hosts]
+hydra-head ansible_ssh_port=22 ansible_ssh_host=172.16.243.137   # replace this with your server IP
+

@@ -1,0 +1,86 @@
+## to use ansible-ec2.yml to build a CentOS 7 ec2 instance with ansible
+## fill in all  uncommented variables (or pass them at the command line)
+## uncomment and fill in other variables as desired
+#
+## public ec2-specific variables
+# ec2_region: # default is us-east-1
+# ec2_zone: # default is us-east-1d
+# ec2_instance_type: # default is m3.medium, a moderate instance size
+# ec2_image: # default is ami-96a818fe, CentOS 7 64-bit
+# ec2_opt_vol_size: # default is 40
+# ec2_vol_1: # default is "{{ hostvars['localhost'].ec2_vol }}"
+#
+## private ec2-specific variables
+## you can also pass these to Ansible on the command line
+## with --extra vars "var1=content1 var2=content2"
+ec2_secret_key: 
+## NO default - the Secret Key from your IAM credentials - a random string
+ec2_access_key: 
+## NO default - the Secret Access Key from your IAM credentials - starts with AKIA
+ec2_key: 
+## NO default - the key from EC2 that will authenticate your ssh connection
+ec2_security_group: 
+## NO default - looks like sg-xxxxxxx - the security group your instance will start in
+ec2_vpc: 
+## NO default - the VPC your instance will start in
+## if using EC2 Classic, comment out this variable and remove the line "assign_public_ip: yes" 
+## from the launch_ec2 role's tasks/main.yml
+#
+## project-specific variables
+project_name: alexandria-v2 
+repo: https://github.com/curationexperts/alexandria-v2.git
+rails_env: production
+# server_name: # FQDN, for example: sandbox.curationexperts.com; default is 127.0.0.1
+# install_path: # default is /opt/install
+#
+## capistrano variables
+# capistrano_user: # default is deploy
+# capistrano_group: # default is deploy
+#
+## hydra variables
+# solr_context: # default is hydra
+# base_path: # fedora base, default is prod
+#
+# database variables
+pg_pass: 
+## root admin password for Postgresql - insecure default
+hydra_db: 
+## name of the Postgresql database for the Rails app - insecure default
+hydra_pg_user: 
+## name of the Postgresql user for the Rails app - insecure default
+hydra_pg_pass:
+## password for the Postgresql user for the Rails app - insecure default
+#
+## fits variables
+# fits_url: # host site for fits changed from 0.6.x to 0.8.x 
+## default is http://projects.iq.harvard.edu/files/fits/files/fits-0.8.4.zip 
+## for fits version 0.6.2 use https://fits.googlecode.com/files/fits-0.6.2.zip
+# fits_version: # default is 0.8.4
+#
+# passenger variables
+# passenger_ver: # default is 5.0.10
+# ruby_ver: # default is 2.2.3
+#
+## ldap variables - used to create ldap.yml for authentication
+# ldap_attribute: # the unique property by which to find users - default is uid, for ActiveDirectory, it may be sAMAccountName
+# ldap_base: # the tree within which the attribute is found; default is ou=people,dc=dce,dc=com
+# ldap_group_base: # the tree within which the group "admin" is found; default is ou=groups,dc=dce,dc=com
+# ldap_host: # default is ldap.curationexperts.com
+# ldap_port: # default is 389
+# ldap_admin_user: # default is cn=admin,dc=dce,dc=com
+ldap_admin_password: 
+## NO default - if you want to use the DCE LDAP server for testing, please contact us
+# ldap_ssl: # are you using ssl for your ldap connections; default is false
+#
+## ezid variables - used to create ezid.yml for authentication
+# ezid_host: # the server to connect to for ezid, default is ezid.cdlib.org
+# ezid_port: # the port on which to connect, default is 443
+# ezid_user: # the user with which to connect, default is apitest
+ezid_password:
+## NO default - see http://ezid.cdlib.org/doc/apidoc.html
+# ezid_default_shoulder: # the base for your ezid values, default is ark:/99999/fk4
+#
+## other variables
+rails_secret_key_base: 
+## insecure default 
+## using ansible to create the rails secret is on our roadmap

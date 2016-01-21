@@ -1,0 +1,40 @@
+# To use this file to build an ADRL server on EC2:
+#
+# install ansible on your development machine
+# clone the ansible project https://github.com/acozine/sufia-centos.git
+# fill in the variables in ansible_vars.yml
+# copy this file and ansible_vars.yml to sufia-centos directory
+# run the playbook with the command:
+# "ansible-playbook -i hosts ansible-ec2.yml"
+# 
+- hosts: localhost
+  connection: local
+  gather_facts: False
+  vars_files:
+    - ansible_vars.yml
+  roles:
+    - launch_ec2
+
+- hosts: ec2hosts
+  name: configuration
+  user: centos
+  vars_files:
+    - ansible_vars.yml
+  gather_facts: true  
+  roles:
+    - { role: ec2, sudo: yes }
+    - { role: housekeeping, sudo: yes }
+    - { role: ruby }
+    - { role: hydra-stack }
+    - { role: services }
+    - { role: passenger, sudo: yes }
+    - { role: ffmpeg }
+    - { role: imagemagick }
+    - { role: marmotta }
+    - { role: app-config, sudo: yes }
+    - { role: ldap }
+    - { role: ezid }
+    - { role: smtp }
+    - { role: hostname }
+    - { role: riiif }
+    - { role: deploy }

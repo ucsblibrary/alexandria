@@ -11,6 +11,9 @@ public/assets
 /db/*.sqlite3
 /db/*.sqlite3-journal
 
+# Ignore ansible roles
+/ansible/roles
+
 # Ignore all logfiles and tempfiles.
 /log/*
 !/log/.keep
