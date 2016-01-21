@@ -247,14 +247,19 @@ label.remove_time_span {
 //  Login Link
 //---------------------------
 
-#header-navbar .navbar-right .login-link a,
-.page-header-splash .login-link a {
-  color: $primary_link_color;
-}
+.login-link {
+  ul {
+    margin: 0;
+  }
 
-#header-navbar .navbar-right .login-link p {
-  padding-top: 15px;
-  padding-left: 10px;
+  a {
+    color: $primary_link_color;
+  }
+
+  p {
+    padding-top: 15px;
+    padding-left: 10px;
+  }
 }
 
 //---------------------------
@@ -451,10 +456,11 @@ table#downloads {
 // -----------------------------
 
 // FIXME: less specificity
-.page-header-splash {
+header {
   background: transparent image_url('ADRL_Large_BG_1209x450.png') repeat;
-  padding-bottom: 2.5em;
   color: white;
+
+  padding-bottom: 2.5em;
 
   a, a:hover {
     color: white;
@@ -465,11 +471,6 @@ table#downloads {
     background-color: transparent;
     color: $primary_link_color;
   }
-}
-
-.page-header-container {
-  width: 80%;
-  margin-left: 10%;
 }
 
 .large-logo {
