@@ -125,12 +125,8 @@ h6 {
 // Homepage
 // --------
 
-// -----------------------------
-//  Header for the Welcome page
-// -----------------------------
-
-// FIXME: less specificity
-header {
+// <header class='splash'>
+.splash {
   background: transparent image_url('ADRL_Large_BG_1209x450.png') repeat;
   color: white;
 
