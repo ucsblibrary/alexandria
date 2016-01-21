@@ -113,10 +113,42 @@ h6 {
   @include hide;
 }
 
-
 // --------
 // Homepage
 // --------
+
+// -----------------------------
+//  Header for the Welcome page
+// -----------------------------
+
+// FIXME: less specificity
+header {
+  background: transparent image_url('ADRL_Large_BG_1209x450.png') repeat;
+  color: white;
+
+  padding: 1em;
+
+  a, a:hover {
+    color: white;
+    text-decoration: none;
+  }
+
+  @include inline("• ", 4px);
+  li, li a {
+    color: #9d9d9d;
+  }
+}
+
+.large-logo {
+  text-align: center;
+
+  img {
+    width: 70%; // TODO: scale the image so we don't deliver something unnecessarily large
+    margin-bottom: 2.5em;
+    margin-top: 1.5em;
+    margin-left: -1%;
+  }
+}
 
 #main-container {
   overflow: hidden;
@@ -124,9 +156,10 @@ h6 {
 
 #main_header h2 {
   width: 95%;
-  vertical-align: middle;
   margin-left: auto;
   margin-right: auto;
+  padding-bottom: .5em;
+
   text-align: center;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   color: $welcome_blue;
@@ -180,57 +213,42 @@ h6 {
 }
 
 // -----------------------------
-//   About Page
+//   The search bar
 // -----------------------------
 
-#about_main_body {
-  padding-bottom: 2em;
+.for-search-field {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+}
 
-  h2 {
-    font: 'Helvetica Neue', Helvetica,Arial,sans-serif;
+// FIXME: less specificity
+#search_field {
+  display: block;
+  height: 34px;
+
+  border: 1px solid gray;
+  border-radius: 4px 0 0 4px;
+  font-size: 14px;
+}
+
+@media screen and (min-width: $breakpoint3) {
+  #search_field {
+    margin-right: 1em;
   }
 }
 
 // FIXME: less specificity
-#about_body {
-  max-width: 600px;
-
-  p, a {
-    font: 'Helvetica Neue', Helvetica,Arial,sans-serif;
-  }
-
-  a { color: $welcome_blue; }
-}
-// -----------------------------
-//  Header for the Welcome page
-// -----------------------------
-
-// FIXME: less specificity
-header {
-  background: transparent image_url('ADRL_Large_BG_1209x450.png') repeat;
-  color: white;
-
-  padding-bottom: 2.5em;
-
-  a, a:hover {
-    color: white;
-    text-decoration: none;
-  }
-
-  .nav li a:hover, .nav li a:focus {
-    background-color: transparent;
-    color: $primary_link_color;
-  }
-}
-
-.large-logo {
+#browse-by {
   text-align: center;
-
-  img {
-    width: 70%; // TODO: scale the image so we don't deliver something unnecessarily large
-    margin-bottom: 2.5em;
-    margin-top: 1.5em;
-    margin-left: -1%;
+	font: 1.5em 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.5);
+  a {
+    text-decoration: underline;
+    transition: all 100ms ease-in-out 0s;
+  }
+  a:hover {
+    color: $primary_link_color;
   }
 }
 
@@ -281,35 +299,15 @@ footer {
   }
 }
 
-//---------------------------
-//  Login Link
-//---------------------------
-
 .login-link {
-  ul {
-    margin: 0;
-  }
-
   a {
     color: $primary_link_color;
-  }
-
-  p {
-    padding-top: 15px;
-    padding-left: 10px;
   }
 }
 
 @media screen and (min-width: $breakpoint3) {
   .login-link {
     float: right;
-  }
-
-  .top-links {
-    padding-top: 2.5em;
-
-    a { padding: 15px; }
-    p { margin: 15px 0 0 0 }
   }
 }
 
@@ -365,38 +363,26 @@ table#downloads {
 }
 
 // -----------------------------
-//   The search bar
+//   About Page
 // -----------------------------
 
-.for-search-field {
-  background-color: transparent;
-  border: none;
-  padding: 0;
+#about_main_body {
+  padding-bottom: 2em;
+
+  h2 {
+    font: 'Helvetica Neue', Helvetica,Arial,sans-serif;
+  }
 }
 
 // FIXME: less specificity
-#search_field {
-  display: block;
-  height: 34px;
-  margin-right: 1em;
+#about_body {
+  max-width: 600px;
 
-  border: 1px solid gray;
-  border-radius: 4px 0 0 4px;
-  font-size: 14px;
-}
+  p, a {
+    font: 'Helvetica Neue', Helvetica,Arial,sans-serif;
+  }
 
-// FIXME: less specificity
-#browse-by {
-  text-align: center;
-	font: 1.5em 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.5);
-  a {
-    text-decoration: underline;
-    transition: all 100ms ease-in-out 0s;
-  }
-  a:hover {
-    color: $primary_link_color;
-  }
+  a { color: $welcome_blue; }
 }
 
 // -------------------------------------

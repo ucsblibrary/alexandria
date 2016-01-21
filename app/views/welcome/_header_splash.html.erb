@@ -1,16 +1,11 @@
 <header>
-  <div class="top-links">
-    <div class="login-link">
-      <%= render 'shared/login_link' %>
-    </div>
+  <%= render 'shared/login_link' %>
 
-    <ul class="nav navbar-nav">
-      <%= render_nav_actions do |config, action|%>
-        <li class="<%= config['class'] %>"><%= action %></li>
-      <% end %>
-    </ul>
-  </div>
-  <div class='clearfix'></div>
+  <ul>
+    <%= render_nav_actions do |config, action|%>
+      <li class="<%= config['class'] %>"><%= action %></li>
+    <% end %>
+  </ul>
 
   <div class="large-logo">
     <%= link_to image_tag("ADRL_Large_Logo_805x186.png", { alt: "ADRL Logo" }), root_path, { title: "ADRL Home" } %>
