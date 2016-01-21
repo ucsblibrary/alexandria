@@ -99,3 +99,14 @@ For example, see the "lc_subject", "composer", and "rights_holder" fields in [th
   * Make sure jetty is running
   * Make sure marmotta is running, or CI environment variable is set to bypass marmotta
   * `bundle exec rake spec`
+
+# Using Ansible to build production machines
+
+We recommend using Ansible to create production instances of Alexandria-v2. Clone https://github.com/acozine/sufia-centos and symlink the roles subdirectory of the sufia-centos code into the ansible subudirectory of the Alexandria-v2 code:
+```
+sudo ln -s /path/to/sufia-centos/roles /path/to/alexandria-v2/ansible/roles
+```
+Review/modify ansible/ansible_vars.yml. If you're not creating your server on EC2, comment out the launch_ec2 and ec2 roles in ansible/ansible-ec2.yml, boot your server, add your public key to the centos user's authorized_keys file, add a disk at /opt if desired, then run the ansible scripts with:
+```
+ansible-playbook ansible/ansible-ec2.yml --private-key=/path/to/private/half/of/your/key
+```
