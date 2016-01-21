@@ -303,35 +303,31 @@ footer {
     text-decoration: none;
   }
 }
-.adrl {
+.meta-adrl {
   padding-bottom: 1em;
 }
 .copyright {
   font-size: 82.5%;
 }
 .ucsb-small {
-  margin-top: .5em;
+  float: left;
+  clear: right;
+  padding: .5em 1em 0 0;
 }
 
 @media screen and (min-width: $breakpoint3) {
   footer {
     position: relative;
   }
-  .adrl {
+  .meta-adrl {
     float: left;
     max-width: 50%;
   }
-  .contact {
+  .meta-ucsb {
     min-width: 20em;
     position: absolute;
     right: 0;
   }
-}
-
-.ucsb-small {
-  float: left;
-  clear: right;
-  padding-right: 1em;
 }
 
 .document-thumbnail img {
