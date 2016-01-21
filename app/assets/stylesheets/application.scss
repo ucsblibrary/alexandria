@@ -21,13 +21,13 @@
 }
 
 @mixin inline($separator, $sep) {
-  ul, li {
+  &, & > li {
     /* http://www.alistapart.com/articles/taminglists/ */
     display: inline;
     margin: 0;
     padding-left: 0;
   }
-  li + li {
+  & > li + li {
     // old IE doesn't recognize ::before, so this keeps items at least a little separate
     padding-left: $sep/2;
     &::before {
@@ -141,9 +141,11 @@ header {
     text-decoration: none;
   }
 
-  @include inline("• ", 4px);
-  li, li a {
-    color: #9d9d9d;
+  & > ul {
+    @include inline("• ", 4px);
+    li a {
+      color: #9d9d9d;
+    }
   }
 }
 
@@ -273,7 +275,9 @@ footer {
   color: white;
   background: transparent image_url($bg_image) repeat;
 
-  @include inline("• ", 4px);
+  ul {
+    @include inline("• ", 4px);
+  }
 
   a, a:hover {
     color: white;
