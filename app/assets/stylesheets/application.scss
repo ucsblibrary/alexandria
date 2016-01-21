@@ -20,6 +20,24 @@
   top: -999px;
 }
 
+@mixin inline($separator, $sep) {
+  ul, li {
+    /* http://www.alistapart.com/articles/taminglists/ */
+    display: inline;
+    margin: 0;
+    padding-left: 0;
+  }
+  li + li {
+    // old IE doesn't recognize ::before, so this keeps items at least a little separate
+    padding-left: $sep/2;
+    &::before {
+      font-style: normal;
+      content: $separator;
+      padding-right: $sep/2;
+    }
+  }
+}
+
 // These are the numbers used by Bootstrap
 $breakpoint1: 1200px;
 $breakpoint2: 992px;
@@ -265,54 +283,57 @@ label.remove_time_span {
   }
 }
 
-//---------------------------
-#footer {
+// ------
+// Footer
+// ------
+footer {
   margin-top: 1em;
-  font: 14px 'Helvetica Neue',Helvetica,Arial,sans-serif;
+  padding: 1em;
+  overflow: hidden;
+  min-height: 8em;
+
+  font: 'Helvetica Neue',Helvetica,Arial,sans-serif;
   color: white;
-  padding: 1.5em 0 1em 0;
   background: transparent image_url($bg_image) repeat;
 
-  .copyright {
-    margin-left: $footer_left_margin;
-    font-size: 11px;
-  }
-
-  p {
-    margin-left: $footer_left_margin;
-  }
+  @include inline("• ", 4px);
 
   a, a:hover {
     color: white;
     text-decoration: none;
   }
 }
-
-#footer_left {
-  width: 75%;
+.adrl {
+  padding-bottom: 1em;
+}
+.copyright {
+  font-size: 82.5%;
+}
+.ucsb-small {
+  margin-top: .5em;
 }
 
-#footer_right {
-  width: 20%;
-  margin-left: 78%;
-  margin-top: -4em;
-  margin-bottom: 0.1em;
-
-  .logo-link {
-    width: 90%;
-    margin-top: 0.5em;
-    img { width: 100%; }
+@media screen and (min-width: $breakpoint3) {
+  footer {
+    position: relative;
   }
-
-  div + div {
-    padding-top: 1em;
+  .adrl {
+    float: left;
+    max-width: 50%;
+  }
+  .contact {
+    min-width: 20em;
+    position: absolute;
+    right: 0;
   }
 }
+
 .ucsb-small {
   float: left;
   clear: right;
   padding-right: 1em;
 }
+
 .document-thumbnail img {
   max-height: 200px;
 }
