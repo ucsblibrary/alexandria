@@ -78,6 +78,14 @@ $bg_image: 'ADRL_BG_1280x160.png';
   }
 }
 
+.navbar-nav,
+.nav {
+  & > li > a {
+    margin: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
 
 // -------
 // General
@@ -508,11 +516,8 @@ label.remove_time_span {
     height: 75px;
     margin-left: 2px;
   }
-
-  .navbar-right {
-    margin-top: 1.5em;
-  }
 }
+
 
 // --------
 // Carousel
