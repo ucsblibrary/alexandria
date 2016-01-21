@@ -216,36 +216,6 @@ label.remove_time_span {
   margin: 2em 0;
 }
 
-//-----------------------------------
-// For "show more"/"show less" links
-//-----------------------------------
-
-.more-less-toggle {
-  float: right;
-}
-
-.show-less {
-  @include hide;
-}
-
-// Fields marked with .reveal-js will be hidden at first,
-// then revealed by javascript.  These fields should stay
-// hidden if the user has disabled javascript in the browser.
-.reveal-js {
-  @include hide;
-}
-
-.link-style {
-  color: $link-color;
-
-  &:hover {
-    color: darken($link-color, 15%);
-    text-decoration: underline;
-    cursor: pointer;
-  }
-}
-
-//-----------------------------------
 #header-navbar {
   background: transparent image_url($bg_image) repeat;
   padding-top: 10px;
