@@ -20,6 +20,12 @@
   top: -999px;
 }
 
+// These are the numbers used by Bootstrap
+$breakpoint1: 1200px;
+$breakpoint2: 992px;
+$breakpoint3: 768px;
+$breakpoint4: 480px;
+
 $welcome_blue: #004E6E;
 $primary_link_color: #ffcb05;
 $default_link_color: #fff;
@@ -27,9 +33,6 @@ $default_link_color: #fff;
 $top_margin: 20px;
 $inner_width: 70%;
 $footer_left_margin: 1.5%;
-
-$breakpoint1: 1400px;
-$breakpoint2: 850px;
 
 $logo_image: 'ADRL_Logo_363x84.png';
 $bg_image: 'ADRL_BG_1280x160.png';
@@ -51,7 +54,7 @@ $bg_image: 'ADRL_BG_1280x160.png';
     width: 30em;
   }
 }
-@media screen and (max-width: $breakpoint2) {
+@media screen and (max-width: $breakpoint3) {
   .navbar-form .input-group > .form-control {
     width: 100%;
   }
@@ -397,20 +400,20 @@ table#downloads {
   font-weight: normal;
 }
 
-@media screen and (min-width: 850px) {
-  .page-splash-container #left_column {
+@media screen and (min-width: $breakpoint3) {
+  #left_column {
     width: 48%;
     float: left;
   }
 
-  .page-splash-container #right_column {
+  #right_column {
     width: 48%;
     float: right;
   }
 }
 
-.page-splash-container #left_column,
-.page-splash-container #right_column {
+#left_column,
+#right_column {
   text-align: left;
 
   h4 {
@@ -485,7 +488,7 @@ header {
 }
 
 
-@media screen and (min-width: $breakpoint2) {
+@media screen and (min-width: $breakpoint3) {
   .login-link {
     float: right;
   }
