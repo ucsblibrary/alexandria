@@ -144,8 +144,26 @@ h6 {
     }
   }
 }
+@media screen and (min-width: $breakpoint3) {
+  .splash > ul {
+    float: right;
+    padding-right: 1em;
+  }
+}
+
+.login-link {
+  a {
+    color: $primary_link_color;
+  }
+}
+@media screen and (min-width: $breakpoint3) {
+  .login-link {
+    float: right;
+  }
+}
 
 .large-logo {
+  clear: both;
   text-align: center;
 
   img {
@@ -309,18 +327,6 @@ footer {
     min-width: 20em;
     position: absolute;
     right: 0;
-  }
-}
-
-.login-link {
-  a {
-    color: $primary_link_color;
-  }
-}
-
-@media screen and (min-width: $breakpoint3) {
-  .login-link {
-    float: right;
   }
 }
 
