@@ -78,6 +78,9 @@ $bg_image: 'ADRL_BG_1280x160.png';
   }
 }
 
+.navbar {
+  border-radius: 0;
+}
 .navbar-nav,
 .nav {
   & > li > a {
@@ -136,31 +139,38 @@ h6 {
     color: white;
     text-decoration: none;
   }
-
-  & > ul {
-    @include inline("• ", 4px);
-    li a {
-      color: #9d9d9d;
-    }
-  }
-}
-@media screen and (min-width: $breakpoint3) {
-  .splash > ul {
-    float: right;
-    padding-right: 1em;
-  }
 }
 
+ul.catalog-nav {
+  float: left;
+  clear: left;
+
+  @include inline("• ", 4px);
+  li a {
+    color: #9d9d9d;
+  }
+}
 .login-link {
+  float: left;
+  clear: left;
+
   a {
     color: $primary_link_color;
   }
 }
 @media screen and (min-width: $breakpoint3) {
+  ul.catalog-nav {
+    float: right;
+    clear: none;
+    padding-right: 1em;
+  }
   .login-link {
     float: right;
+    clear: none;
+    padding-top: 0;
   }
 }
+
 
 .large-logo {
   clear: both;
@@ -404,9 +414,34 @@ table#downloads {
   a { color: $welcome_blue; }
 }
 
-// -------------------------------------
-// Blacklight: Forms and Collections (?)
-// -------------------------------------
+// ----------
+// Blacklight
+// ----------
+
+nav.navbar {
+  background: transparent image_url($bg_image) repeat;
+  padding: 1em;
+  color: white;
+}
+
+.navbar-logo {
+  float: left;
+
+  span {
+    @include hide;
+  }
+}
+@media screen and (max-width: $breakpoint2) {
+  .navbar-logo {
+    clear: right;
+    padding-bottom: 0.5em;
+  }
+}
+@media screen and (max-width: $breakpoint4) {
+  .navbar-logo img {
+    width: 100%;
+  }
+}
 
 // FIXME: less specificity
 .input-group {
@@ -513,20 +548,6 @@ label.remove_time_span {
 .collection-representative {
   max-height: 150px;
   margin: 2em 0;
-}
-
-#header-navbar {
-  background: transparent image_url($bg_image) repeat;
-  padding-top: 10px;
-  color: white;
-
-  .navbar-brand {
-    background: transparent image_url($logo_image) no-repeat top left;
-    background-size: 80%;
-    width: 318px;
-    height: 75px;
-    margin-left: 2px;
-  }
 }
 
 

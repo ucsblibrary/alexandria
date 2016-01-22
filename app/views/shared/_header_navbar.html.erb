@@ -1,0 +1,12 @@
+<nav class="navbar">
+  <a class="navbar-logo" href="<%= root_path %>" title="Main page">
+    <%= image_tag 'ADRL_Logo_363x84.png', alt: 'ADRL logo' %>
+    <span><%= application_name %></span></a>
+  <%= render partial: '/user_util_links' %>
+</nav>
+
+<div id="search-navbar" class="navbar navbar-default navbar-static-top" role="navigation">
+  <div class="<%= container_classes %>">
+    <%= render_search_bar  %>
+  </div>
+</div>
