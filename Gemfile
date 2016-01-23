@@ -25,7 +25,7 @@ gem 'rdf-vocab', '~> 0.8.4'
 
 gem 'blacklight', '~> 6.0.0'
 gem 'blacklight_range_limit', github: 'projectblacklight/blacklight_range_limit'
-gem 'blacklight-gallery', github: 'projectblacklight/blacklight-gallery'
+gem 'blacklight-gallery', '~> 0.5.0'
 gem 'settingslogic'
 
 gem 'rsolr', '~> 1.0.12'

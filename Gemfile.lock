@@ -21,16 +21,6 @@ GIT
       activesupport (>= 3.0.0)
 
 GIT
-  remote: git://github.com/projectblacklight/blacklight-gallery.git
-  revision: 814bbbcd2a78de224cec3282c7a66087750468d8
-  specs:
-    blacklight-gallery (0.4.0)
-      blacklight (> 6.0.0.pre, < 7)
-      bootstrap-sass (~> 3.0)
-      openseadragon (>= 0.2.0)
-      rails
-
-GIT
   remote: git://github.com/projectblacklight/blacklight_range_limit.git
   revision: 95b5546512ebaed49d7425d6a6c34ee6b47b6b3d
   specs:
@@ -154,6 +144,11 @@ GEM
     blacklight-access_controls (0.3.0)
       blacklight (~> 6.0)
       cancancan (~> 1.8)
+    blacklight-gallery (0.5.0)
+      blacklight (> 6.0.0.pre, < 7)
+      bootstrap-sass (~> 3.0)
+      openseadragon (>= 0.2.0)
+      rails
     bootstrap-sass (3.3.6)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
@@ -634,7 +629,7 @@ DEPENDENCIES
   american_date (~> 1.1.0)
   awesome_print
   blacklight (~> 6.0.0)
-  blacklight-gallery!
+  blacklight-gallery (~> 0.5.0)
   blacklight_range_limit!
   byebug
   capistrano (= 3.4.0)
