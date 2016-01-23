@@ -30,18 +30,6 @@ GIT
       rails (>= 3.0, < 5.0)
 
 GIT
-  remote: git://github.com/projecthydra/hydra-collections.git
-  revision: 7bd3941ac6d11c21cfd0962ff2f24905bc2dc41e
-  specs:
-    hydra-collections (6.0.0)
-      blacklight (>= 5.10)
-      deprecation (~> 0.1)
-      hydra-head (~> 9.1)
-      hydra-works (~> 0.4)
-      rdf (~> 1.99)
-      rdf-vocab (~> 0)
-
-GIT
   remote: git://github.com/traject/traject.git
   revision: 656a992c400a472bf5b738ec7a3aa208cc449472
   branch: allow_nil_default
@@ -243,6 +231,13 @@ GEM
       blacklight-access_controls (~> 0.1)
       cancancan (~> 1.8)
       deprecation (~> 0.2)
+    hydra-collections (7.0.0)
+      blacklight (~> 6.0)
+      deprecation (~> 0.1)
+      hydra-head (~> 9.1)
+      hydra-works (~> 0.4)
+      rdf (~> 1.99)
+      rdf-vocab (~> 0)
     hydra-core (9.6.0)
       active-fedora (~> 9.1)
       hydra-access-controls (= 9.6.0)
@@ -644,7 +639,7 @@ DEPENDENCIES
   devise_ldap_authenticatable
   ezid-client (~> 1.2.0)
   factory_girl_rails (~> 4.4)
-  hydra-collections!
+  hydra-collections (= 7.0.0)
   hydra-editor (~> 1.2.0)
   hydra-head (~> 9.6.0)
   hydra-role-management
