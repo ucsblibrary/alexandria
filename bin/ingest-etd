@@ -86,7 +86,6 @@ EOS
 end
 
 puts 'Now ingesting...'
-sleep 5
 
 begin
   pid = fork do
