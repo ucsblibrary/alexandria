@@ -214,12 +214,13 @@ describe RecordsController do
     routes { Rails.application.routes }
 
     let!(:person) { create(:person) }
-    let(:target_id) { '92/20/85/43/92208543-9840-4f8b-8e97-561ba46cfd6f' }
+    let(:target_id) { '92208543-9840-4f8b-8e97-561ba46cfd6f' }
     let(:fedora_path) { ActiveFedora.config.credentials[:url] + ActiveFedora.config.credentials[:base_path] }
+    let(:target_url) { "#{fedora_path}/92/20/85/43/#{target_id}" }
 
     let(:form_params) do
       # This is how it looks when the javascript adds the data to the form.
-      { 'subject_merge_target_attributes' => { '0' => { 'hidden_label' => 'Topic 3', 'id' => "#{fedora_path}/#{target_id}" } } }
+      { 'subject_merge_target_attributes' => { '0' => { 'hidden_label' => 'Topic 3', 'id' => target_url } } }
     end
 
     it 'queues a job to merge the records' do

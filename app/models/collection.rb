@@ -18,8 +18,4 @@ class Collection < ActiveFedora::Base
   def self.indexer
     CollectionIndexer
   end
-
-  def to_param
-    Identifier.noidify(id)
-  end
 end

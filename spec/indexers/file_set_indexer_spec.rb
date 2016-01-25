@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe FileSetIndexer do
-  let(:file_set) { FileSet.new(id: 'bf/74/27/75/bf742775-2a24-46dc-889e-cca03b27b5f3') }
+  let(:file_set) { FileSet.new(id: 'bf742775-2a24-46dc-889e-cca03b27b5f3') }
   before do
     Hydra::Works::AddFileToFileSet.call(file_set,
                                         File.new(fixture_file_path('pdf/sample.pdf')),
@@ -14,7 +14,7 @@ describe FileSetIndexer do
     subject { indexer.generate_solr_document }
 
     it 'has the url, name and file size' do
-      expect(subject['original_download_url_ss']).to eq 'http://test.host/downloads/bf%2F74%2F27%2F75%2Fbf742775-2a24-46dc-889e-cca03b27b5f3'
+      expect(subject['original_download_url_ss']).to eq 'http://test.host/downloads/bf742775-2a24-46dc-889e-cca03b27b5f3'
       expect(subject['original_filename_ss']).to eq 'sample.pdf'
       expect(subject['original_file_size_ss']).to eq 218_882
     end

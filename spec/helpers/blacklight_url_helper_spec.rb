@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe BlacklightUrlHelper do
   describe '#url_for_document' do
-    let(:document) { SolrDocument.new(has_model_ssim: [model], id: 'fk/4v/98/fk4v989d9j', identifier_ssm: ['ark:/99999/fk4v989d9j']) }
+    let(:document) { SolrDocument.new(has_model_ssim: [model], id: 'fk4v989d9j', identifier_ssm: ['ark:/99999/fk4v989d9j']) }
     context 'with an image' do
       let(:model) { Image.to_class_uri }
       subject { helper.url_for_document(document) }
@@ -19,7 +19,7 @@ describe BlacklightUrlHelper do
       context "without an ark" do
         let(:search_state) { double('SearchState', url_for_document: document) }
         before { allow(helper).to receive(:search_state).and_return(search_state) }
-        let(:document) { SolrDocument.new(has_model_ssim: [model], id: 'fk/4v/98/fk4v989d9j') }
+        let(:document) { SolrDocument.new(has_model_ssim: [model], id: 'fk4v989d9j') }
         it { is_expected.to eq '/catalog/fk4v989d9j' }
       end
     end

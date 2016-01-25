@@ -1,5 +1,4 @@
 class RecordsController < ApplicationController
-  prepend_before_action :convert_noid_to_id
   load_resource only: [:destroy]
   load_and_authorize_resource only: [:new_merge, :merge]
 
@@ -64,12 +63,5 @@ class RecordsController < ApplicationController
     def fetch_merge_target
       attrs = params.select { |key| key.match(/^.*merge_target_attributes$/) }.values.first || {}
       attrs.fetch('0', {}).fetch('id', nil)
-    end
-
-    def convert_noid_to_id
-      return unless params[:id]
-      if id = Identifier.treeify(params[:id])
-        params[:id] = id
-      end
     end
 end

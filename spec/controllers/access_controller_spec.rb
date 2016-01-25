@@ -6,7 +6,7 @@ describe AccessController do
 
   before do
     sign_in user
-    allow(ActiveFedora::Base).to receive(:find).with('12/3/123').and_return(mock_etd)
+    allow(ActiveFedora::Base).to receive(:find).with('123').and_return(mock_etd)
   end
 
   describe '#edit' do

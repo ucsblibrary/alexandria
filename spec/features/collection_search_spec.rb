@@ -12,7 +12,7 @@ feature 'Collection search page' do
     let!(:collection1) { create(:public_collection, title: 'Red') }
     let!(:collection2) do
       create(:public_collection, title: 'Pink',
-                                 id: 'fk/4v/98/9d/fk4v989d9j',
+                                 id: 'fk4v989d9j',
                                  identifier: ['ark:/99999/fk4v989d9j'],
                                  extent: ['7 photos'])
     end

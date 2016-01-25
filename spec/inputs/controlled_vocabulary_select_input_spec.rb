@@ -40,7 +40,7 @@ describe 'ControlledVocabularySelectInput', type: :input do
     end
 
     context 'for an ActiveFedora object' do
-      let(:value) { Person.new(id: 'ff/ff/ff/ffffff', foaf_name: 'Item 1') }
+      let(:value) { Person.new(id: 'ffffff', foaf_name: 'Item 1') }
       it 'renders multi-value' do
         expect(subject).to have_selector('input.image_creator.multi_value')
         expect(subject).to have_field('image[creator_attributes][0][hidden_label]', with: 'Item 1')
