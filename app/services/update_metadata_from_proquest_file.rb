@@ -41,7 +41,16 @@ class UpdateMetadataFromProquestFile
 
   def embargo_release_date
     return @embargo_end if @embargo_end
-    @embargo_end = if attributes[:DISS_delayed_release].blank?
+    # If the field DISS_agreement_decision_date is blank, that means
+    # this is a pre-Spring 2014 ETD without the ADRL-specific embargo
+    # metadata; see
+    # https://wiki.library.ucsb.edu/display/repos/ETD+Sample+Files+for+DCE.
+    # In that case, parse the ProQuest embargo code.  If there is an
+    # DISS_agreement_decision_date, calculate the embargo by comparing
+    # the agreement date with the delayed release date.
+    #
+    # See also https://help.library.ucsb.edu/browse/DIGREPO-466
+    @embargo_end = if attributes[:DISS_agreement_decision_date].blank?
                      parse_embargo_code
                    else
                      parse_delayed_release_date
@@ -93,7 +102,7 @@ class UpdateMetadataFromProquestFile
     end
 
     def no_embargo?
-      attributes[:embargo_code] == '0' || infinite_embargo?
+      attributes[:embargo_code] == '0' || embargo_release_date.blank?
     end
 
     def infinite_embargo?
@@ -133,7 +142,9 @@ class UpdateMetadataFromProquestFile
 
     # Calculate the release date based on <DISS_delayed_release>
     def parse_delayed_release_date
-      if attributes[:DISS_delayed_release] =~ /^.*2\s*year.*\Z/i
+      if attributes[:DISS_delayed_release].blank?
+        nil
+      elsif attributes[:DISS_delayed_release] =~ /^.*2\s*year.*\Z/i
         two_year_embargo
       elsif attributes[:DISS_delayed_release] =~ /^.*1\s*year.*\Z/i
         one_year_embargo

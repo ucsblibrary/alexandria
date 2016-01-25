@@ -355,6 +355,18 @@ describe UpdateMetadataFromProquestFile do
           expect(reloaded.visibility_after_embargo).to be_nil
         end
       end
+
+      context 'with ProQuest embargo but without ADRL embargo' do
+        let(:file)  { "#{fixture_path}/proquest/Hough_ucsb_0035D_12328_DATA.xml" }
+
+        it 'sets the access policy, no embargo' do
+          expect(reloaded.admin_policy_id).to eq AdminPolicy::PUBLIC_CAMPUS_POLICY_ID
+          expect(reloaded.under_embargo?).to be_falsey
+          expect(reloaded.embargo_release_date).to be_nil
+          expect(reloaded.visibility_during_embargo).to be_nil
+          expect(reloaded.visibility_after_embargo).to be_nil
+        end
+      end
     end
   end # describe "#run"
 end
