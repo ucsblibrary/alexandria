@@ -2,11 +2,12 @@ require 'rails_helper'
 require 'importer'
 describe Importer::Factory::ImageFactory do
   let(:factory) { described_class.new(attributes) }
-  let(:collection_attrs) { { accession_number: ['SBHC Mss 36'] } }
+  let(:collection_attrs) { { accession_number: ['SBHC Mss 36'], title: 'Test collection' } }
 
   let(:attributes) do
     {
-      collection: collection_attrs, files: [], accession_number: ['123'],
+      collection: collection_attrs.slice(:accession_number), files: [], accession_number: ['123'],
+      title: 'Test image',
       notes_attributes: [{ value: 'Title from item.' }],
       issued_attributes: [{ start: ['1925'], finish: [], label: [], start_qualifier: [], finish_qualifier: [] }]
     }
@@ -16,7 +17,7 @@ describe Importer::Factory::ImageFactory do
   before { allow($stdout).to receive(:puts) }
 
   context 'when a collection already exists' do
-    let!(:coll) { Collection.create(collection_attrs) }
+    let!(:coll) { Collection.create!(collection_attrs) }
 
     it 'should not create a new collection' do
       expect(coll.members.size).to eq 0

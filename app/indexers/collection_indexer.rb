@@ -1,4 +1,4 @@
-class CollectionIndexer < Hydra::PCDM::CollectionIndexer
+class CollectionIndexer < CurationConcerns::CollectionIndexer
   def rdf_service
     RDF::DeepIndexingService
   end

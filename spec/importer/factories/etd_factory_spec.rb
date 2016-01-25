@@ -3,12 +3,13 @@ require 'importer'
 
 describe Importer::Factory::ETDFactory do
   let(:factory) { described_class.new(attributes, Settings.proquest_directory) }
-  let(:collection_attrs) { { accession_number: ['etds'] } }
+  let(:collection_attrs) { { accession_number: ['etds'], title: 'test collection' } }
 
   let(:attributes) do
     {
       id: 'f3gt5k61',
-      collection: collection_attrs, files: [],
+      title: 'Test Thesis',
+      collection: collection_attrs.slice(:accession_number), files: [],
       created_attributes: [{ start: [2014] }],
       system_number: ['123'],
       author: ['Valerie'],
@@ -30,7 +31,7 @@ describe Importer::Factory::ETDFactory do
   end
 
   context 'when a collection already exists' do
-    let!(:coll) { Collection.create(collection_attrs) }
+    let!(:coll) { Collection.create!(collection_attrs) }
 
     it 'should not create a new collection' do
       expect(coll.members.size).to eq 0
@@ -72,7 +73,7 @@ describe Importer::Factory::ETDFactory do
   end
 
   describe 'update an existing record' do
-    let!(:coll) { Collection.create(collection_attrs) }
+    let!(:coll) { Collection.create!(collection_attrs) }
     let(:old_date) { 2222 }
     let(:old_date_attrs) { { created_attributes: [{ start: [old_date] }] }.with_indifferent_access }
 
@@ -120,7 +121,7 @@ describe Importer::Factory::ETDFactory do
         { id: 'f3gt5k61',
           system_number: ['123'],
           identifier: ['ark:/48907/f3gt5k61'],
-          collection: collection_attrs,
+          collection: collection_attrs.slice(:accession_number),
         }.with_indifferent_access
       end
 

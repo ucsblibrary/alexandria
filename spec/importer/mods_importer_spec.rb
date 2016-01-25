@@ -76,7 +76,7 @@ describe Importer::ModsImporter do
         # skip creating files
         allow_any_instance_of(Importer::Factory::ImageFactory).to receive(:after_create)
       end
-      let!(:coll) { Collection.create(accession_number: ['SBHC Mss 36']) }
+      let!(:coll) { Collection.create!(accession_number: ['SBHC Mss 36'], title: 'Test Collection') }
 
       it 'it adds image to existing collection' do
         expect(coll.members.size).to eq 0
@@ -124,7 +124,7 @@ describe Importer::ModsImporter do
     end
 
     context 'when the collection already exists' do
-      let!(:existing) { Collection.create(accession_number: ['SBHC Mss 78']) }
+      let!(:existing) { Collection.create!(accession_number: ['SBHC Mss 78'], title: 'Test Collection') }
 
       it 'it adds metadata to existing collection' do
         coll = nil

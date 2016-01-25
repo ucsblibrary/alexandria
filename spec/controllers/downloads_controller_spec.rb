@@ -20,8 +20,7 @@ describe DownloadsController do
       end
     end
     let(:etd) do
-      ETD.new(ordered_members: [file_set],
-              admin_policy_id: policy_id)
+      build(:etd, ordered_members: [file_set], admin_policy_id: policy_id)
     end
 
     before do

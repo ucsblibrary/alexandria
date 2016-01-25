@@ -155,6 +155,11 @@ module Metadata
     belongs_to :admin_policy, class_name: 'Hydra::AdminPolicy', predicate: ActiveFedora::RDF::ProjectHydra.isGovernedBy
   end
 
+  # Override of CurationConcerns. Since we have admin_policy rather than users with edit permission
+  def paranoid_permissions
+    true
+  end
+
   def time_span_blank(attributes)
     time_span_attributes.all? do |key|
       Array(attributes[key]).all?(&:blank?)
