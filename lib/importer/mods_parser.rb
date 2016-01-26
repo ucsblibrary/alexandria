@@ -207,9 +207,11 @@ module Importer
       def build_date(node)
         finish = finish_point(node)
         start = start_point(node)
-        [{ start: start.map(&:text), finish: finish.map(&:text), label: date_label(node),
+        dates = [{ start: start.map(&:text), finish: finish.map(&:text), label: date_label(node),
            start_qualifier: qualifier(start), finish_qualifier: qualifier(finish)
         }]
+        dates.delete_if{|date| date.values.all?{|value| value.blank? }}
+        dates
       end
 
       def qualifier(nodes)

@@ -28,6 +28,7 @@ describe Importer::ModsParser do
   end
 
   describe '#attributes for an Image record' do
+    let(:ns_decl) { "xmlns='#{Mods::MODS_NS}'" }
     let(:file) { 'spec/fixtures/mods/cusbspcsbhc78_100239.xml' }
 
     it 'finds metadata for the image' do
@@ -120,6 +121,17 @@ describe Importer::ModsParser do
       end
     end
 
+    context 'without date_created' do
+      let(:parser) { Importer::ModsParser.new(nil) }
+      let(:xml) { "<mods #{ns_decl}><originInfo><dateValid encoding=\"w3cdtf\">1989-12-01</dateValid></originInfo></mods>" }
+
+      before { allow(parser).to receive(:mods).and_return(Mods::Record.new.from_str(xml)) }
+
+      it "doesn't return a set of empty date attributes (which would cause an empty TimeSpan to be created)" do
+        expect(attributes[:created_attributes]).to eq []
+      end
+    end
+
     context 'with a file that has a range of dateIssued' do
       let(:file) { 'spec/fixtures/mods/cusbspcmss36_110089.xml' }
       it 'imports issued' do
@@ -135,7 +147,6 @@ describe Importer::ModsParser do
     end
 
     context 'with date_copyrighted' do
-      let(:ns_decl) { "xmlns='#{Mods::MODS_NS}'" }
       let(:parser) { Importer::ModsParser.new(nil) }
       let(:xml) { "<mods #{ns_decl}><originInfo><copyrightDate encoding=\"w3cdtf\">1985-12-01</copyrightDate></originInfo></mods>" }
       before { allow(parser).to receive(:mods).and_return(Mods::Record.new.from_str(xml)) }
@@ -145,7 +156,6 @@ describe Importer::ModsParser do
     end
 
     context 'with dateValid' do
-      let(:ns_decl) { "xmlns='#{Mods::MODS_NS}'" }
       let(:parser) { Importer::ModsParser.new(nil) }
       let(:xml) { "<mods #{ns_decl}><originInfo><dateValid encoding=\"w3cdtf\">1989-12-01</dateValid></originInfo></mods>" }
       before { allow(parser).to receive(:mods).and_return(Mods::Record.new.from_str(xml)) }
