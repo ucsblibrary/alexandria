@@ -12,15 +12,8 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'therubyracer', platforms: :ruby
 
-gem 'hydra-head', '~> 9.6.0'
-gem 'active-fedora', '~> 9.7.0'
-
-gem 'active-triples', '~> 0.7.4'
-gem 'hydra-editor', '~> 1.2.0'
 gem 'hydra-role-management'
-gem 'hydra-collections', '7.0.0'
-gem 'curation_concerns', github: 'projecthydra-labs/curation_concerns'
-gem 'hydra-works', '0.6.0'
+gem 'curation_concerns', '~> 0.6.0'
 gem 'rdf-marmotta', '~> 0.0.8'
 gem 'rdf-vocab', '~> 0.8.4'
 
