@@ -12,7 +12,7 @@ describe Record do
     end
 
     context 'when record is referenced by another record' do
-      let!(:image) { Image.create(creator: [record]) }
+      let!(:image) { Image.create!(creator: [record], title: 'Test image') }
       before { record.reload }
 
       it 'returns list of object IDs' do

@@ -3,27 +3,24 @@ require 'importer'
 require 'importer/mods_parser'
 
 describe Importer::ModsImporter do
-  def stub_out_indexer
-    # Stub out the fetch to avoid calls to external services
-    allow_any_instance_of(ActiveTriples::Resource).to receive(:fetch) { 'stubbed' }
-  end
-
   let(:image_directory) { 'spec/fixtures/images' }
   let(:importer) { Importer::ModsImporter.new(image_directory) }
 
   before do
+    AdminPolicy.ensure_admin_policy_exists
     allow($stdout).to receive(:puts) # squelch output
-    stub_out_indexer
+    # Stub out the fetch to avoid calls to external services
+    allow_any_instance_of(ActiveTriples::Resource).to receive(:fetch) { 'stubbed' }
   end
 
   describe '#import an Image' do
     before do
       Collection.destroy_all
-      if ActiveFedora::Base.exists? 'fk/41/23/45/fk41234567'
-        ActiveFedora::Base.find('fk/41/23/45/fk41234567').destroy(eradicate: true)
+      if ActiveFedora::Base.exists? 'fk41234567'
+        ActiveFedora::Base.find('fk41234567').destroy(eradicate: true)
       end
-      if ActiveFedora::Base.exists? 'fk/49/87/65/fk49876543'
-        ActiveFedora::Base.find('fk/49/87/65/fk49876543').destroy(eradicate: true)
+      if ActiveFedora::Base.exists? 'fk49876543'
+        ActiveFedora::Base.find('fk49876543').destroy(eradicate: true)
       end
     end
     let(:file) { 'spec/fixtures/mods/cusbspcmss36_110108.xml' }
@@ -71,15 +68,15 @@ describe Importer::ModsImporter do
     context 'when the collection already exists' do
       before do
         # This ID comes from the ezid VCR cassette:
-        if ActiveFedora::Base.exists? 'fk/4c/25/2k/fk4c252k0f'
-          ActiveFedora::Base.find('fk/4c/25/2k/fk4c252k0f').destroy(eradicate: true)
+        if ActiveFedora::Base.exists? 'fk4c252k0f'
+          ActiveFedora::Base.find('fk4c252k0f').destroy(eradicate: true)
         end
         Collection.destroy_all
 
         # skip creating files
         allow_any_instance_of(Importer::Factory::ImageFactory).to receive(:after_create)
       end
-      let!(:coll) { Collection.create(accession_number: ['SBHC Mss 36']) }
+      let!(:coll) { Collection.create!(accession_number: ['SBHC Mss 36'], title: 'Test Collection') }
 
       it 'it adds image to existing collection' do
         expect(coll.members.size).to eq 0
@@ -98,8 +95,8 @@ describe Importer::ModsImporter do
   describe '#import a Collection' do
     before do
       # This ID comes from the ezid VCR cassette:
-      if ActiveFedora::Base.exists? 'fk/4c/25/2k/fk4c252k0f'
-        ActiveFedora::Base.find('fk/4c/25/2k/fk4c252k0f').destroy(eradicate: true)
+      if ActiveFedora::Base.exists? 'fk4c252k0f'
+        ActiveFedora::Base.find('fk4c252k0f').destroy(eradicate: true)
       end
       Collection.destroy_all
     end
@@ -115,7 +112,7 @@ describe Importer::ModsImporter do
         Person.count
       }.by(1)
 
-      expect(coll.id).to match /^fk\/4\w\/\w{2}\/\w{2}\/fk4\w{7}$/
+      expect(coll.id).to match /^fk4\w{7}$/
       expect(coll.accession_number).to eq ['SBHC Mss 78']
       expect(coll.title).to eq 'Joel Conway / Flying A Studio photograph collection'
       expect(coll.admin_policy_id).to eq AdminPolicy::PUBLIC_POLICY_ID
@@ -127,7 +124,7 @@ describe Importer::ModsImporter do
     end
 
     context 'when the collection already exists' do
-      let!(:existing) { Collection.create(accession_number: ['SBHC Mss 78']) }
+      let!(:existing) { Collection.create!(accession_number: ['SBHC Mss 78'], title: 'Test Collection') }
 
       it 'it adds metadata to existing collection' do
         coll = nil
@@ -144,8 +141,8 @@ describe Importer::ModsImporter do
     context 'when the person already exists' do
       before do
         # This ID comes from the ezid VCR cassette:
-        if ActiveFedora::Base.exists? 'fk/4c/25/2k/fk4c252k0f'
-          ActiveFedora::Base.find('fk/4c/25/2k/fk4c252k0f').destroy(eradicate: true)
+        if ActiveFedora::Base.exists? 'fk4c252k0f'
+          ActiveFedora::Base.find('fk4c252k0f').destroy(eradicate: true)
         end
         Person.destroy_all
       end
@@ -179,8 +176,8 @@ describe Importer::ModsImporter do
     context 'when rights_holder has strings or uris' do
       before do
         # This ID comes from the ezid VCR cassette:
-        if ActiveFedora::Base.exists? 'fk/4c/25/2k/fk4c252k0f'
-          ActiveFedora::Base.find('fk/4c/25/2k/fk4c252k0f').destroy(eradicate: true)
+        if ActiveFedora::Base.exists? 'fk4c252k0f'
+          ActiveFedora::Base.find('fk4c252k0f').destroy(eradicate: true)
         end
         Agent.delete_all
         Agent.create(foaf_name: frodo) # existing rights holder

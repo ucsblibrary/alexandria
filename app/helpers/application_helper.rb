@@ -1,8 +1,10 @@
 module ApplicationHelper
+  include CurationConcerns::CatalogHelper
+
   def link_to_collection(stuff)
     collection_id = Array(stuff.fetch(:document)[ImageIndexer::COLLECTION]).first
     if collection_id
-      link_to stuff.fetch(:value).first, collections.collection_path(Identifier.noidify(collection_id))
+      link_to stuff.fetch(:value).first, collections.collection_path(collection_id)
     else
       stuff.fetch(:value).first
     end

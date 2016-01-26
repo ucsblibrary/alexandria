@@ -1,6 +1,7 @@
-# This file contains some overrides to embargo behavior from
-# the hydra-access-controls gem, so when you include it in a
-# model, it must be included *after* you include
+# Because we are using admin_policies instead of directly writing users
+# and groups with access to each work, we need to override the default
+# embargo behavior from the hydra-access-controls gem.
+# When you include it in a model, it must be included *after* you include
 # Hydra::AccessControls::Embargoable.
 
 module EmbargoBehavior

@@ -65,7 +65,9 @@ describe Image do
     end
 
     context 'for date created' do
-      it 'should allow blank ids' do
+      before { subject.title = 'Test title' }
+
+      it 'allows blank ids' do
         subject.save!
         subject.reload
 
@@ -85,8 +87,10 @@ describe Image do
 
     context 'for notes' do
       before do
+        subject.title = 'Test title'
         subject.notes_attributes = [{ value: 'Title from item.' }, { value: "Postcard caption: 25. Light-House Tower Sta. Barbara Earth Quake.\n6-29-25." }, { value: "[Identification of Item], Santa Barbara picture\npostcards collection. SBHC Mss 36. Department of Special Collections, UC Santa Barbara\nLibrary, University of California, Santa Barbara.", note_type: 'preferred citation' }]
       end
+
       it 'has notes' do
         subject.save!
         subject.reload
@@ -157,8 +161,13 @@ describe Image do
     end
 
     context "with a local vocabulary" do
-      before { AdminPolicy.ensure_admin_policy_exists }
+      before do
+        AdminPolicy.ensure_admin_policy_exists
+        subject.title = 'Test title'
+      end
+
       let(:topic) { Topic.create(label: ['Birds of California']) }
+
       it 'allows local vocabularies' do
         subject.lc_subject = [topic]
         expect(subject).to be_valid

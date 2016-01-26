@@ -1,12 +1,13 @@
 class ETD < ActiveFedora::Base
-  include Hydra::Works::WorkBehavior
+  include CurationConcerns::WorkBehavior
   include Metadata
   include LocalAuthorityHashAccessor
   include HumanReadableType
+  include EmbargoBehavior
+
   self.human_readable_type = "Thesis or dissertation"
 
-  include Hydra::AccessControls::Embargoable
-  include EmbargoBehavior
+  validates :title, presence: { message: 'Your work must have a title.' }
 
   property :system_number, predicate: ::RDF::Vocab::MODS.recordIdentifier do |index|
     index.as :symbol
@@ -51,10 +52,6 @@ class ETD < ActiveFedora::Base
 
   def embargo_indexer_class
     EmbargoIndexer
-  end
-
-  def to_param
-    Identifier.noidify(id)
   end
 
   # When a collection of these are rendered, which partial should be used

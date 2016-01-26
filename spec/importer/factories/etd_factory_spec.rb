@@ -3,12 +3,13 @@ require 'importer'
 
 describe Importer::Factory::ETDFactory do
   let(:factory) { described_class.new(attributes, Settings.proquest_directory) }
-  let(:collection_attrs) { { accession_number: ['etds'] } }
+  let(:collection_attrs) { { accession_number: ['etds'], title: 'test collection' } }
 
   let(:attributes) do
     {
-      id: 'f3/gt/5k/61/f3gt5k61',
-      collection: collection_attrs, files: [],
+      id: 'f3gt5k61',
+      title: 'Test Thesis',
+      collection: collection_attrs.slice(:accession_number), files: [],
       created_attributes: [{ start: [2014] }],
       system_number: ['123'],
       author: ['Valerie'],
@@ -17,8 +18,8 @@ describe Importer::Factory::ETDFactory do
   end
 
   before do
-    if ETD.exists? 'f3/gt/5k/61/f3gt5k61'
-      ETD.find('f3/gt/5k/61/f3gt5k61').destroy(eradicate: true)
+    if ETD.exists? 'f3gt5k61'
+      ETD.find('f3gt5k61').destroy(eradicate: true)
     end
 
     # The destroy ^up there^ is not removing the ETD from the collection.
@@ -30,7 +31,7 @@ describe Importer::Factory::ETDFactory do
   end
 
   context 'when a collection already exists' do
-    let!(:coll) { Collection.create(collection_attrs) }
+    let!(:coll) { Collection.create!(collection_attrs) }
 
     it 'should not create a new collection' do
       expect(coll.members.size).to eq 0
@@ -40,7 +41,7 @@ describe Importer::Factory::ETDFactory do
       end.to change { Collection.count }.by(0)
       expect(coll.reload.members.size).to eq 1
       expect(coll.members.first).to be_instance_of ETD
-      expect(obj.id).to eq 'f3/gt/5k/61/f3gt5k61'
+      expect(obj.id).to eq 'f3gt5k61'
       expect(obj.system_number).to eq ['123']
       expect(obj.identifier).to eq ['ark:/48907/f3gt5k61']
       expect(obj.author).to eq ['Valerie']
@@ -72,7 +73,7 @@ describe Importer::Factory::ETDFactory do
   end
 
   describe 'update an existing record' do
-    let!(:coll) { Collection.create(collection_attrs) }
+    let!(:coll) { Collection.create!(collection_attrs) }
     let(:old_date) { 2222 }
     let(:old_date_attrs) { { created_attributes: [{ start: [old_date] }] }.with_indifferent_access }
 
@@ -117,10 +118,10 @@ describe Importer::Factory::ETDFactory do
 
     context "when the ETD has existing created date, but new attributes don't have a date" do
       let(:attributes) do
-        { id: 'f3/gt/5k/61/f3gt5k61',
+        { id: 'f3gt5k61',
           system_number: ['123'],
           identifier: ['ark:/48907/f3gt5k61'],
-          collection: collection_attrs,
+          collection: collection_attrs.slice(:accession_number),
         }.with_indifferent_access
       end
 

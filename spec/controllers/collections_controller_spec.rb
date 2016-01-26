@@ -35,7 +35,7 @@ describe CollectionsController do
   end
 
   describe '#show' do
-    let(:collection) { create :public_collection, id: 'fk/4v/98/9d/fk4v989d9j', members: [image, private_image], identifier: ['ark:/99999/fk4v989d9j'] }
+    let(:collection) { create :public_collection, id: 'fk4v989d9j', members: [image, private_image], identifier: ['ark:/99999/fk4v989d9j'] }
     let(:private_image) { create :image }
     let(:image) { create :public_image }
 

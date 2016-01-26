@@ -47,7 +47,7 @@ describe SolrDocument do
 
   describe '#to_param' do
     let(:noid) { 'f123456789' }
-    let(:id)   { '12/34/56/f123456789' }
+    let(:id)   { 'f123456789' }
 
     subject { document.to_param }
 

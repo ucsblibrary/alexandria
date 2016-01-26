@@ -40,7 +40,7 @@ describe 'RelatorInput', type: :input do
     end
 
     context 'for an ActiveFedora object' do
-      let(:person) { Person.new(id: 'ff/ff/ff/ffffff', foaf_name: 'Item 1') }
+      let(:person) { Person.new(id: 'ffffff', foaf_name: 'Item 1') }
       let(:value) { ImageForm::Contributor.new(person, :actor) }
 
       it 'renders multi-value' do

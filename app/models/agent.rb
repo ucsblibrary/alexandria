@@ -9,10 +9,6 @@ class Agent < ActiveFedora::Base
     index.as :stored_searchable, :symbol # Need :symbol for exact match for ObjectFactory find_or_create_* methods.
   end
 
-  def to_param
-    Identifier.noidify(id)
-  end
-
   # When a collection of these are rendered, which partial should be used
   def to_partial_path
     'catalog/document'

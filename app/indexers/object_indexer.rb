@@ -1,4 +1,4 @@
-class ObjectIndexer < ActiveFedora::IndexingService
+class ObjectIndexer < CurationConcerns::WorkIndexer
   def rdf_service
     RDF::DeepIndexingService
   end

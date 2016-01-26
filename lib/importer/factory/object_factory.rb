@@ -57,7 +57,7 @@ module Importer::Factory
       unless attrs[:identifier].present?
         identifier = mint_ark
         attrs[:identifier] = [identifier.id]
-        attrs[:id] = Identifier.treeify(identifier.id.split(/\//).last)
+        attrs[:id] = identifier.id.split(/\//).last
       end
 
       # There's a bug in ActiveFedora when there are many

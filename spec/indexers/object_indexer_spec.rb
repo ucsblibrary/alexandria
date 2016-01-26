@@ -211,7 +211,7 @@ describe ObjectIndexer do
   end
 
   context 'with collections' do
-    let(:image) { Image.create! } #(collections: [boring_books, long_books]) }
+    let(:image) { Image.create!(title: 'Test image') }
     let!(:long_books) { Collection.create!(title: 'Long Books', ordered_members: [image]) }
     let!(:boring_books) { Collection.create!(title: 'Boring Books', ordered_members: [image]) }
 
@@ -225,7 +225,7 @@ describe ObjectIndexer do
     let!(:acq_note) { Note.create!(note_type: 'acquisition', value: 'Acq Note') }
     let!(:cit_note) { Note.create!(note_type: 'preferred citation', value: 'Citation Note') }
 
-    let(:image) { Image.create(notes: [acq_note, cit_note]) }
+    let(:image) { Image.create!(notes: [acq_note, cit_note], title: 'Test image') }
 
     it 'indexes with labels' do
       expect(image.notes).to include(acq_note, cit_note)

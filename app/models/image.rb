@@ -1,13 +1,13 @@
 class Image < ActiveFedora::Base
-  include Hydra::Works::WorkBehavior
+  include CurationConcerns::WorkBehavior
   include Metadata
   include NestedAttributes
   include LocalAuthorityHashAccessor
-  include HumanReadableType
+  include EmbargoBehavior
+
   self.human_readable_type = "Image"
 
-  include Hydra::AccessControls::Embargoable
-  include EmbargoBehavior
+  validates :title, presence: { message: 'Your work must have a title.' }
 
   has_and_belongs_to_many :issued, predicate: ::RDF::DC.issued, class_name: 'TimeSpan', inverse_of: :issued_images
 
@@ -21,10 +21,6 @@ class Image < ActiveFedora::Base
 
   def self.indexer
     ImageIndexer
-  end
-
-  def to_param
-    Identifier.noidify(id)
   end
 
   # When a collection of these are rendered, which partial should be used

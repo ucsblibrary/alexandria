@@ -21,6 +21,7 @@ describe 'collections/show.html.erb' do
     allow(view).to receive(:blacklight_configuration_context).and_return(blacklight_configuration_context)
     allow(view).to receive(:current_search_session).and_return nil
     allow(view).to receive(:render_index_doc_actions).and_return nil
+    allow(view).to receive(:current_user).and_return(build(:user))
     view.lookup_context.prefixes += ['catalog']
     assign(:response, response)
     assign(:collection, collection)

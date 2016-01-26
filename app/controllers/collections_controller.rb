@@ -1,8 +1,9 @@
 class CollectionsController < ApplicationController
-  before_action :find_collection_by_treeifed_id, only: :show
   include Hydra::Catalog
   include Hydra::CollectionsControllerBehavior
 
+  # TODO: Remove when we go to curation_concerns
+  load_and_authorize_resource only: :show
   skip_before_filter :authenticate_user!
 
   def collections_search_builder_class
@@ -46,23 +47,5 @@ class CollectionsController < ApplicationController
       else
         super(*args)
       end
-    end
-
-  private
-
-    # Don't mutate the params hash, because that will screw up the kaminari pagination links
-    # cancan's load_resource method is skipped if the @collection is already loaded as happens here:
-    def find_collection_by_treeifed_id
-      id = Identifier.treeify(params[:id])
-      return if id.nil?
-      @collection = Collection.find(id)
-    rescue ActiveFedora::ObjectNotFoundError => e
-      logger.error "404 Error\n" \
-        "CollectionsController: #{e} thrown while searching for #{params[:id]}\n" \
-        "\t#{params.inspect}\n"
-      @unknown_type = 'Collection'
-      @unknown_id = params[:id]
-      render 'errors/not_found', status: 404
-      return false
     end
 end

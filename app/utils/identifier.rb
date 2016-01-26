@@ -1,9 +1,11 @@
 module Identifier
   def self.treeify(identifier)
+    raise "Treeify?"
     (identifier.scan(/..?/).first(4) + [identifier]).join('/')
   end
 
   def self.noidify(id)
+    raise "Noidify?"
     id.to_s.split('/')[-1]
   end
 
@@ -14,8 +16,6 @@ module Identifier
   end
 
   def self.ark_to_id(ark)
-    if a = ark_to_noid(ark)
-      treeify(a)
-    end
+    ark_to_noid(ark)
   end
 end
