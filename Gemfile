@@ -13,7 +13,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'therubyracer', platforms: :ruby
 
 gem 'hydra-role-management'
-gem 'curation_concerns', '~> 0.6.0'
+gem 'curation_concerns', github: 'projecthydra-labs/curation_concerns', branch: 'route_with_block'
 gem 'rdf-marmotta', '~> 0.0.8'
 gem 'rdf-vocab', '~> 0.8.4'
 
