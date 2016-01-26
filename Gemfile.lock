@@ -21,20 +21,6 @@ GIT
       activesupport (>= 3.0.0)
 
 GIT
-  remote: git://github.com/projectblacklight/blacklight.git
-  revision: f8d8564ac00ab434e9ff567e3d39750debc9ac0e
-  specs:
-    blacklight (6.0.0)
-      bootstrap-sass (~> 3.2)
-      deprecation
-      globalid
-      kaminari (>= 0.15)
-      nokogiri (~> 1.6)
-      rails (>= 4.1, < 5)
-      rsolr (~> 1.0.11)
-      twitter-typeahead-rails (~> 0.11)
-
-GIT
   remote: git://github.com/projectblacklight/blacklight_advanced_search.git
   revision: 4cbb1c8f3426adfd07e2dc8383b498ca427e3039
   branch: no_monkey_patch
@@ -149,6 +135,15 @@ GEM
     bcp47 (0.3.3)
       i18n
     bcrypt (3.1.10)
+    blacklight (6.0.1)
+      bootstrap-sass (~> 3.2)
+      deprecation
+      globalid
+      kaminari (>= 0.15)
+      nokogiri (~> 1.6)
+      rails (>= 4.1, < 5)
+      rsolr (~> 1.0.11)
+      twitter-typeahead-rails (~> 0.11)
     blacklight-access_controls (0.3.0)
       blacklight (~> 6.0)
       cancancan (~> 1.8)
@@ -672,7 +667,7 @@ PLATFORMS
 DEPENDENCIES
   american_date (~> 1.1.0)
   awesome_print
-  blacklight!
+  blacklight (~> 6.0.1)
   blacklight-gallery (~> 0.5.0)
   blacklight_advanced_search!
   blacklight_range_limit!

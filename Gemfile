@@ -17,7 +17,7 @@ gem 'curation_concerns', '~> 0.6.0'
 gem 'rdf-marmotta', '~> 0.0.8'
 gem 'rdf-vocab', '~> 0.8.4'
 
-gem 'blacklight', github: 'projectblacklight/blacklight'
+gem 'blacklight', '~> 6.0.1'
 gem 'blacklight_range_limit', github: 'projectblacklight/blacklight_range_limit'
 gem 'blacklight_advanced_search', github: 'projectblacklight/blacklight_advanced_search', branch: 'no_monkey_patch'
 gem 'blacklight-gallery', '~> 0.5.0'
