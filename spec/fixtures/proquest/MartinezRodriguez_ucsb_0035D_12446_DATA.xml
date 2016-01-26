@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<DISS_submission publishing_option="0" embargo_code="2" third_party_search="N">
+  <DISS_authorship>
+    <DISS_author type="primary">
+      <DISS_name>
+        <DISS_surname>Martinez Rodriguez</DISS_surname>
+        <DISS_fname>Nadine</DISS_fname>
+        <DISS_middle>Rachel</DISS_middle>
+        <DISS_suffix/>
+        <DISS_affiliation>University of California, Santa Barbara</DISS_affiliation>
+      </DISS_name>
+    </DISS_author>
+  </DISS_authorship>
+  <DISS_description page_count="147" type="doctoral" external_id="http://dissertations.umi.com/ucsb:12446" apply_for_copyright="no">
+    <DISS_title>Wet Adhesion: The Advancement from Mussel Plaques to Applications</DISS_title>
+    <DISS_dates>
+      <DISS_comp_date>2014</DISS_comp_date>
+      <DISS_accept_date>01/01/2014</DISS_accept_date>
+    </DISS_dates>
+    <DISS_degree>Ph.D.</DISS_degree>
+    <DISS_institution>
+      <DISS_inst_code>0035</DISS_inst_code>
+      <DISS_inst_name>University of California, Santa Barbara</DISS_inst_name>
+      <DISS_inst_contact>Molecular, Cellular &amp; Developmental Biology</DISS_inst_contact>
+      <DISS_processing_code>D</DISS_processing_code>
+    </DISS_institution>
+    <DISS_advisor>
+      <DISS_name>
+        <DISS_surname>Waite</DISS_surname>
+        <DISS_fname>John</DISS_fname>
+        <DISS_middle>H</DISS_middle>
+      </DISS_name>
+    </DISS_advisor>
+    <DISS_cmte_member>
+      <DISS_name>
+        <DISS_surname>Israelachvili</DISS_surname>
+        <DISS_fname>Jacob</DISS_fname>
+        <DISS_middle>N</DISS_middle>
+        <DISS_suffix/>
+        <DISS_affiliation/>
+      </DISS_name>
+    </DISS_cmte_member>
+    <DISS_cmte_member>
+      <DISS_name>
+        <DISS_surname>Foltz</DISS_surname>
+        <DISS_fname>Kathy</DISS_fname>
+        <DISS_middle/>
+        <DISS_suffix/>
+        <DISS_affiliation/>
+      </DISS_name>
+    </DISS_cmte_member>
+    <DISS_cmte_member>
+      <DISS_name>
+        <DISS_surname>Valentine</DISS_surname>
+        <DISS_fname>Megan</DISS_fname>
+        <DISS_middle/>
+        <DISS_suffix/>
+        <DISS_affiliation/>
+      </DISS_name>
+    </DISS_cmte_member>
+    <DISS_categorization>
+      <DISS_category>
+        <DISS_cat_code>0306</DISS_cat_code>
+        <DISS_cat_desc>Biology</DISS_cat_desc>
+      </DISS_category>
+      <DISS_category>
+        <DISS_cat_code>0542</DISS_cat_code>
+        <DISS_cat_desc>Chemical engineering</DISS_cat_desc>
+      </DISS_category>
+      <DISS_keyword>bioadhesion, biofilm, collagen, interfacial pH, mussel adhesive plaque, Mussel foot protein</DISS_keyword>
+      <DISS_language>en</DISS_language>
+    </DISS_categorization>
+  </DISS_description>
+  <DISS_content>
+    <DISS_abstract>
+      <DISS_para>Marine mussels use a mixture of proteins rich in 3,4-dihydroxyphenylalanine (dopa) to adhere to surfaces underwater. This dissertation focuses on the marine mussel adhesive system which serves as an inspiration for the development of next generation wet adhesives. The mechanism of interaction of mussel foot proteins with different surfaces under biologically relevant wet conditions from macroscopic (mussel foot) to nanoscopic (peptides that make the mussel foot proteins) scales was investigated. </DISS_para>
+      <DISS_para>The performance of strong adhesion is highly dependent on surface preparation and failure occurs from weak energetic interactions between the adhesive polymer and substrate interface. How marine mussels adhere to surfaces in natural conditions despite the harsh conditions present was studied. Confocal microscopy was used to observe the mussels distal depression during plaque formation to clean and fouled surfaces. Results demonstrated mussels do not clean surfaces coated with complex biofilms and gold films coated on silica surfaces. </DISS_para>
+      <DISS_para>Previous studies using the surface forces apparatus (SFA) have demonstrated that sticky proteins require an acidic environment to maintain adhesion to mineral surfaces. The mussel prevents oxidation of the critical amino acid dopa that is partially responsible for adhesion to mineral surfaces by lowering the local pH during plaque formation. A fluorescent tagged lipid bilayer on mica was developed to measure the local pH of the mussel's distal depression during plaque formation. Mussels tailor the local environment by lowering the pH in the range of 3.5 - 4.7 during the secretion of the adhesive proteins to the surface to limit the oxidation of dopa. </DISS_para>
+      <DISS_para>To further investigate the adhesive proteins at the nanoscale and apply them to biologically relevant systems, the SFA was used to measure the interaction of collagen type-1 (COL1A1) to natural mussel foot protein-3 (mfp-3). COL1A1 is the most abundant protein in the human body and measuring the interactions of collagen to mfps will aid in the development of tunable adhesives for medical and dental applications. At low pH, COL1A1 increased the cohesive energy of interaction between unoxidized mfp-3 films. Oxidation of the mfp-3 films significantly decreased the cohesion -however, when COLA1 was injected between the mfp-3 films, the cohesion was recovered. Cohesion was achieved by COL1A1 bridging to the two mfp-3 oxidized protein films.</DISS_para>
+      <DISS_para>A partial recombinant construct of mfp-1 (rmefp-1) and a short decapeptide dimer (mfp-1 pep dimer) with and without Dopa was assessed for their cohesive and adhesive properties to mica and silicone surface using the SFA. Results demonstrated at low pH (3.7), both the unmodified and Dopa-containing rmfp-1 show similar adhesion energy to mica and cohesion or self-interaction energy of Wc = 4.9 ± 0.6 mJ/m2. Cohesion between two Dopa-containing rmfp-1 surfaces can be doubled by Fe3+ chelation (Wc ~ 10 mJ/m2), but remains unchanged with unmodified rmfp-1.Our results demonstrate recombinant proteins that mimic mfps have cohesive and adhesive properties with and with metal chelation by Fe3+. Understanding the role of surface preparation, protein-surface interactions and protein length is very crucial in determining the performance of synthetic polymer based on marine inspired adhesion.</DISS_para>
+    </DISS_abstract>
+    <DISS_binary type="PDF">MartinezRodriguez_ucsb_0035D_12446.pdf</DISS_binary>
+    <DISS_attachment>
+      <DISS_file_name>mussel movie.mp4</DISS_file_name>
+      <DISS_file_category>video</DISS_file_category>
+      <DISS_file_descr>Mussel plaque formation on biofilm</DISS_file_descr>
+    </DISS_attachment>
+    <DISS_attachment>
+      <DISS_file_name>mussel on clean glass.mp4</DISS_file_name>
+      <DISS_file_category>video</DISS_file_category>
+      <DISS_file_descr>Mussel plaque formation</DISS_file_descr>
+    </DISS_attachment>
+  </DISS_content>
+  <DISS_restriction/>
+  <DISS_repository>
+    <DISS_version>2014-06-04 13:56:24</DISS_version>
+    <DISS_agreement_decision_date>2013-12-15 19:40:31</DISS_agreement_decision_date>
+    <DISS_acceptance>1</DISS_acceptance>
+    <DISS_delayed_release>1 years</DISS_delayed_release>
+    <DISS_access_option>Campus use only</DISS_access_option>
+  </DISS_repository>
+</DISS_submission>

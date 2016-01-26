@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<DISS_submission publishing_option="0" embargo_code="0" third_party_search="Y">
+  <DISS_authorship>
+    <DISS_author type="primary">
+      <DISS_name>
+        <DISS_surname>Flowers</DISS_surname>
+        <DISS_fname>Kristen</DISS_fname>
+        <DISS_middle/>
+        <DISS_suffix/>
+        <DISS_affiliation>University of California, Santa Barbara</DISS_affiliation>
+      </DISS_name>
+    </DISS_author>
+  </DISS_authorship>
+  <DISS_description page_count="333" type="doctoral" external_id="http://dissertations.umi.com/ucsb:12540" apply_for_copyright="no">
+    <DISS_title>Search for supersymmetry at CMS in events with b-tagged jets and missing transverse energy at 8 TeV</DISS_title>
+    <DISS_dates>
+      <DISS_comp_date>2015</DISS_comp_date>
+      <DISS_accept_date>01/01/2015</DISS_accept_date>
+    </DISS_dates>
+    <DISS_degree>Ph.D.</DISS_degree>
+    <DISS_institution>
+      <DISS_inst_code>0035</DISS_inst_code>
+      <DISS_inst_name>University of California, Santa Barbara</DISS_inst_name>
+      <DISS_inst_contact>Physics</DISS_inst_contact>
+      <DISS_processing_code>D</DISS_processing_code>
+    </DISS_institution>
+    <DISS_advisor>
+      <DISS_name>
+        <DISS_surname>Richman</DISS_surname>
+        <DISS_fname>Jeffrey</DISS_fname>
+        <DISS_middle/>
+      </DISS_name>
+    </DISS_advisor>
+    <DISS_cmte_member>
+      <DISS_name>
+        <DISS_surname>Stuart</DISS_surname>
+        <DISS_fname>David</DISS_fname>
+        <DISS_middle/>
+        <DISS_suffix/>
+        <DISS_affiliation/>
+      </DISS_name>
+    </DISS_cmte_member>
+    <DISS_cmte_member>
+      <DISS_name>
+        <DISS_surname>Giddings</DISS_surname>
+        <DISS_fname>Steve</DISS_fname>
+        <DISS_middle/>
+        <DISS_suffix/>
+        <DISS_affiliation/>
+      </DISS_name>
+    </DISS_cmte_member>
+    <DISS_categorization>
+      <DISS_category>
+        <DISS_cat_code>0798</DISS_cat_code>
+        <DISS_cat_desc>Particle physics</DISS_cat_desc>
+      </DISS_category>
+      <DISS_keyword/>
+      <DISS_language>en</DISS_language>
+    </DISS_categorization>
+  </DISS_description>
+  <DISS_content>
+    <DISS_abstract>
+      <DISS_para>This dissertation presents results from a search for physics beyond the </DISS_para>
+      <DISS_para>Standard Model, using 19.39 pb-1 of data collected by the CMS detector </DISS_para>
+      <DISS_para>at the Large Hadron Collider, during its 2012 operation at center of mass energy of 8 TeV. </DISS_para>
+      <DISS_para>It focuses on models of supersymmetry that lead to </DISS_para>
+      <DISS_para>final states with multiple jets, especially those from </DISS_para>
+      <DISS_para>b-quark decay, and a large amount of missing transverse momentum. </DISS_para>
+      <DISS_para>The amounts of background from </DISS_para>
+      <DISS_para>top-quark, W+jets, Z to invisible, and multi-jet production </DISS_para>
+      <DISS_para>are determined from data-driven techniques. </DISS_para>
+      <DISS_para>In particular, this includes a novel estimation of the missing transverse energy spectrum from </DISS_para>
+      <DISS_para>semi-leptonic top/anti-top decay, </DISS_para>
+      <DISS_para>which takes advantage of the precise knowledge of the W boson polarization. </DISS_para>
+      <DISS_para>Predicted yields are consistent with simulated Standard Model </DISS_para>
+      <DISS_para>processes and the observed data. </DISS_para>
+      <DISS_para>Since no evidence of new physics is </DISS_para>
+      <DISS_para>observed, limits are placed on the rate of gluino pair production to a </DISS_para>
+      <DISS_para>final state with four b-quarks and two neutralinos. </DISS_para>
+      <DISS_para>This process is excluded at 95% CL for a gluino with mass 1225 GeV and </DISS_para>
+      <DISS_para>a neutralino with mass up to 350 GeV.</DISS_para>
+    </DISS_abstract>
+    <DISS_binary type="PDF">Flowers_ucsb_0035D_12540.pdf</DISS_binary>
+  </DISS_content>
+  <DISS_restriction/>
+  <DISS_repository>
+    <DISS_version>2015-02-27 20:47:45</DISS_version>
+    <DISS_agreement_decision_date>2015-03-20 18:39:24</DISS_agreement_decision_date>
+    <DISS_acceptance>1</DISS_acceptance>
+    <DISS_delayed_release/>
+    <DISS_access_option>Open access</DISS_access_option>
+  </DISS_repository>
+</DISS_submission>

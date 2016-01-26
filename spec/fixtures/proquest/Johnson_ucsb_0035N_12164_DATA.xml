@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<DISS_submission publishing_option="0" embargo_code="3" third_party_search="N">
+  <DISS_authorship>
+    <DISS_author type="primary">
+      <DISS_name>
+        <DISS_surname>Johnson</DISS_surname>
+        <DISS_fname>Arianne</DISS_fname>
+        <DISS_middle/>
+        <DISS_suffix/>
+        <DISS_affiliation>University of California, Santa Barbara</DISS_affiliation>
+      </DISS_name>
+    </DISS_author>
+  </DISS_authorship>
+  <DISS_description page_count="20" type="masters" external_id="http://dissertations.umi.com/ucsb:12164" apply_for_copyright="no">
+    <DISS_title>Association between a dopamine transporter polymorphism and fractional anisotropy in the substantia nigra: a diffusion tensor imaging study</DISS_title>
+    <DISS_dates>
+      <DISS_comp_date>2014</DISS_comp_date>
+      <DISS_accept_date>01/01/2014</DISS_accept_date>
+    </DISS_dates>
+    <DISS_degree>M.A.</DISS_degree>
+    <DISS_institution>
+      <DISS_inst_code>0035</DISS_inst_code>
+      <DISS_inst_name>University of California, Santa Barbara</DISS_inst_name>
+      <DISS_inst_contact>Psychology</DISS_inst_contact>
+      <DISS_processing_code>N</DISS_processing_code>
+    </DISS_institution>
+    <DISS_advisor>
+      <DISS_name>
+        <DISS_surname>Grafton</DISS_surname>
+        <DISS_fname>Scott</DISS_fname>
+        <DISS_middle/>
+      </DISS_name>
+    </DISS_advisor>
+    <DISS_cmte_member>
+      <DISS_name>
+        <DISS_surname>Grafton</DISS_surname>
+        <DISS_fname>Scott</DISS_fname>
+        <DISS_middle/>
+        <DISS_suffix/>
+        <DISS_affiliation/>
+      </DISS_name>
+    </DISS_cmte_member>
+    <DISS_cmte_member>
+      <DISS_name>
+        <DISS_surname>Gazzaniga</DISS_surname>
+        <DISS_fname>Michael</DISS_fname>
+        <DISS_middle/>
+        <DISS_suffix/>
+        <DISS_affiliation/>
+      </DISS_name>
+    </DISS_cmte_member>
+    <DISS_cmte_member>
+      <DISS_name>
+        <DISS_surname>Janusonis</DISS_surname>
+        <DISS_fname>Skirmantas</DISS_fname>
+        <DISS_middle/>
+        <DISS_suffix/>
+        <DISS_affiliation/>
+      </DISS_name>
+    </DISS_cmte_member>
+    <DISS_categorization>
+      <DISS_category>
+        <DISS_cat_code>0621</DISS_cat_code>
+        <DISS_cat_desc>Psychology</DISS_cat_desc>
+      </DISS_category>
+      <DISS_keyword/>
+      <DISS_language>en</DISS_language>
+    </DISS_categorization>
+  </DISS_description>
+  <DISS_content>
+    <DISS_abstract>
+      <DISS_para>Previous research has shown that fractional anisotropy (FA) is significantly less in the substantia nigra (SN) of patients with Parkinson's disease (PD) relative to controls.  This is likely indicative of dopamine (DA) cell loss, which in turn likely reflects a co-occuring loss of dopamine transporter (DAT). In the present diffusion tensor imaging (DTI) study, it was hypothesized that differences in DAT genotype in a healthy population would also be associated with differences in FA within the SN.  Specifically, it was hypothesized that the 9/9 genotype would be associated with increased FA values relative to the 9/10 or 10/10 genotype within the mid-dorsal caudal (MDC) SN.  In 82 subjects (5 9/9 genotype, 36 9/10 genotype, and 41 10/10 genotype), a significant difference was found between the 9/9 and 9/10 groups within the MDC SN ROI (p = .027).  No significant FA differences were found between the 9/9 and 10/10 groups (p = .306).  As expected, no FA differences were found in the control region of the cerebral peduncle in the 9/9 versus the 9/10 or 10/10 group (p = .382 and p = .344, respectively).  Additionally, no differences were found in MDC SN FA for control genotype, serotonin transporter (SERT) (p = .836), which was hypothesized not to be associated with microstructural MDC SN differences.  These results demonstrate that normal genetic variation can influence brainstem FA values, which might reflect dopamine transporter (DAT) site-specific changes in cell structure, showing that SN FA values may be used as a potential DAT density marker and biomarker for DAT related cognitive performance and disease states.</DISS_para>
+    </DISS_abstract>
+    <DISS_binary type="PDF">Johnson_ucsb_0035N_12164.pdf</DISS_binary>
+  </DISS_content>
+  <DISS_restriction/>
+  <DISS_repository>
+    <DISS_version>2014-06-04 17:56:24</DISS_version>
+    <DISS_agreement_decision_date>2014-06-11 23:12:18</DISS_agreement_decision_date>
+    <DISS_acceptance>1</DISS_acceptance>
+    <DISS_delayed_release>2 years</DISS_delayed_release>
+    <DISS_access_option>Campus use only</DISS_access_option>
+  </DISS_repository>
+</DISS_submission>

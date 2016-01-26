@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<DISS_submission publishing_option="0" embargo_code="4" third_party_search="N">
+  <DISS_authorship>
+    <DISS_author type="primary">
+      <DISS_name>
+        <DISS_surname>Shockey</DISS_surname>
+        <DISS_fname>Benjamin</DISS_fname>
+        <DISS_middle>Travis</DISS_middle>
+        <DISS_suffix/>
+        <DISS_affiliation>University of California, Santa Barbara</DISS_affiliation>
+      </DISS_name>
+    </DISS_author>
+  </DISS_authorship>
+  <DISS_description page_count="170" type="doctoral" external_id="http://dissertations.umi.com/ucsb:11990" apply_for_copyright="no">
+    <DISS_title>The Queer Flâneur Abroad: Global Itinerancy, Cognitive Mapping, and the Spatial Construction of Queer Subjectivity in Four British Novelists, 1886-1988</DISS_title>
+    <DISS_dates>
+      <DISS_comp_date>2013</DISS_comp_date>
+      <DISS_accept_date>01/01/2013</DISS_accept_date>
+    </DISS_dates>
+    <DISS_degree>Ph.D.</DISS_degree>
+    <DISS_institution>
+      <DISS_inst_code>0035</DISS_inst_code>
+      <DISS_inst_name>University of California, Santa Barbara</DISS_inst_name>
+      <DISS_inst_contact>English</DISS_inst_contact>
+      <DISS_processing_code>D</DISS_processing_code>
+    </DISS_institution>
+    <DISS_advisor>
+      <DISS_name>
+        <DISS_surname>Boscagli</DISS_surname>
+        <DISS_fname>Maurizia</DISS_fname>
+        <DISS_middle/>
+      </DISS_name>
+    </DISS_advisor>
+    <DISS_cmte_member>
+      <DISS_name>
+        <DISS_surname>Duffy</DISS_surname>
+        <DISS_fname>Enda</DISS_fname>
+        <DISS_middle/>
+        <DISS_suffix/>
+        <DISS_affiliation/>
+      </DISS_name>
+    </DISS_cmte_member>
+    <DISS_cmte_member>
+      <DISS_name>
+        <DISS_surname>Scott</DISS_surname>
+        <DISS_fname>Darieck</DISS_fname>
+        <DISS_middle/>
+        <DISS_suffix/>
+        <DISS_affiliation/>
+      </DISS_name>
+    </DISS_cmte_member>
+    <DISS_categorization>
+      <DISS_category>
+        <DISS_cat_code>0593</DISS_cat_code>
+        <DISS_cat_desc>British and Irish literature</DISS_cat_desc>
+      </DISS_category>
+      <DISS_category>
+        <DISS_cat_code>0492</DISS_cat_code>
+        <DISS_cat_desc>GLBT studies</DISS_cat_desc>
+      </DISS_category>
+      <DISS_keyword/>
+      <DISS_language>en</DISS_language>
+    </DISS_categorization>
+  </DISS_description>
+  <DISS_content>
+    <DISS_abstract>
+      <DISS_para>Situated at the intersection of Modernist studies, queer history, and 20th century Anglophone literature, "The Queer Flaneur Abroad" explores the historical and cultural contexts surrounding four queer male British novelists in order to interrogate the function of global travel and queer spaces in the formation of contemporary queer male subjectivity. Beginning with the Victorian &lt;italic&gt;fin de siècle&lt;/italic&gt; and the aftermath of the Wilde trial, it examines the works and lives of Fredrick Rolfe (Baron Corvo) and E.M. Forster to argue that travel and exile in the Mediterranean and Global South afforded early 20th century queer male novelists the opportunity to pursue erotic activity in a context freed from the rigid mores of British society, while simultaneously providing, in Hellenism and classicism, the opportunity to cloak their desires in legitimating discourses and produce cultural texts whose circulation established and nurtured a burgeoning transnational community of queer men. At the same time, as demonstrated both in Forster's &lt;italic&gt;A Room with a View&lt;/italic&gt; and in his biographical experience in Alexandria, modern formations of public space were creating new sites for cross-class, -race, and -cultural contacts in the imperial metropolis. As the century progressed, the role of travel and queer space shifted. In his 1962 novel &lt;italic&gt;Down There on a Visit&lt;/italic&gt; Christopher Isherwood pays homage to travel as a mode of sexual exploration and self-discovery while ultimately dismissing it in favor of the radical subjective and political potential inherent in desiring queer relationships and their power to forge communal belonging. The project closes with an analysis of Alan Hollinghurst's 1988 novel &lt;italic&gt;The Swimming-Pool Library&lt;/italic&gt;, in which through the exploration of queer spaces such as the gym, the night club, and others, Hollinghurst takes a backward glance at the 20th century forces of homophobia and colonialism that conspired together to produce a present in which queer men of all colors, social backgrounds and nationalities might come together in queer spaces to counter their distinctive and shared histories of oppression. Ultimately, the arc traced by the spaces formulating 20th century queer male subjectivity delineates that subject traveling, over a century, from pathologized isolation toward communal belonging.</DISS_para>
+    </DISS_abstract>
+    <DISS_binary type="PDF">Shockey_ucsb_0035D_11990.pdf</DISS_binary>
+  </DISS_content>
+  <DISS_restriction>
+    <DISS_sales_restriction code="1" remove="2017-04-24 00:00:00"/>
+  </DISS_restriction>
+  <DISS_repository>
+    <DISS_version/>
+    <DISS_agreement_decision_date/>
+    <DISS_acceptance/>
+    <DISS_delayed_release/>
+    <DISS_access_option>Campus use only</DISS_access_option>
+  </DISS_repository>
+</DISS_submission>
