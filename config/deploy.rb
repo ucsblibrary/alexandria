@@ -35,6 +35,7 @@ ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
 
 set :linked_files,
     %w(
+      config/application.yml
       config/blacklight.yml
       config/database.yml
       config/ezid.yml
