@@ -151,7 +151,7 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('sub_location', :displayable, type: :string), label: I18n.t('simple_form.labels.image.sub_location')
     config.add_show_field solr_name('system_number', :symbol), label: 'System Number'
     config.add_show_field solr_name('restrictions', :stored_searchable), label: 'Restrictions'
-    config.add_show_field solr_name('work_type', :stored_searchable), label: 'Type of Resource'
+    config.add_show_field solr_name('work_type_label', :stored_searchable), label: 'Type of Resource'
     config.add_show_field solr_name('finding_aid', :stored_searchable), label: 'Finding Aid'
 
     # ETD only fields:

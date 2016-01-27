@@ -4,6 +4,7 @@
 var searchUris = {
   'lcnames':        '/qa/search/loc/names',
   'lcsh':           '/qa/search/loc/subjects',
+  'lcrt':           '/qa/search/local/work_type',
   'tgm':            '/qa/search/loc/graphicMaterials',
   'aat':            '/qa/search/getty/aat',
   'local_subjects': '/qa/search/local/subjects',
@@ -17,6 +18,7 @@ var searchUris = {
     'location':         searchUris['lcnames'],
     'sub_location':     '/qa/search/local/sub_location',
     'lc_subject':       searchUris['lcsh'],
+    'work_type':        searchUris['lcrt'],
     'rights_holder':    searchUris['local_names'],
     'contributor':      searchUris['lcnames'],
     'institution':      searchUris['lcnames'],

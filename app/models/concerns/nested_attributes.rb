@@ -18,6 +18,7 @@ module NestedAttributes
     accepts_nested_attributes_for :language, reject_if: id_blank, allow_destroy: true
     accepts_nested_attributes_for :rights_holder, reject_if: id_blank, allow_destroy: true
     accepts_nested_attributes_for :institution, reject_if: id_blank, allow_destroy: true
+    accepts_nested_attributes_for :work_type, reject_if: id_blank, allow_destroy: true
 
     accepts_nested_attributes_for :notes, reject_if: :all_blank, allow_destroy: true
 

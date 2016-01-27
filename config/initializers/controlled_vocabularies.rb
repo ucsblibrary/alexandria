@@ -13,6 +13,7 @@ LinkedVocabs.add_vocabulary('rights', 'http://opaquenamespace.org/ns/rights/')
 LinkedVocabs.add_vocabulary('lc_orgs', 'http://id.loc.gov/vocabulary/organizations/')
 LinkedVocabs.add_vocabulary('ldp', 'http://www.w3.org/ns/ldp#')
 LinkedVocabs.add_vocabulary('lccs', 'http://id.loc.gov/vocabulary/preservation/copyrightStatus')
+LinkedVocabs.add_vocabulary('lcrt', 'http://id.loc.gov/vocabulary/resourceTypes')
 
 require 'vocabularies/local'
 Oargun::ControlledVocabularies::Creator.use_vocabulary :lcnames, class: Oargun::Vocabularies::LCNAMES

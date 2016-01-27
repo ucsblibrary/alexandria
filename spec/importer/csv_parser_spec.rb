@@ -62,7 +62,7 @@ describe Importer::CSVParser do
     # Make sure we haven't broken the work_type attribute by
     # adding the *_type pattern matching to the parser.
     it 'correctly finds work_type' do
-      expect(first_record[:work_type]).to eq ['notated music']
+      expect(first_record[:work_type]).to eq ['http://id.loc.gov/vocabulary/resourceTypes/not']
     end
   end
 

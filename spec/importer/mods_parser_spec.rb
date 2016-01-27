@@ -94,7 +94,7 @@ describe Importer::ModsParser do
     end
 
     it 'imports work_type' do
-      expect(attributes[:work_type]).to eq ['still image']
+      expect(attributes[:work_type]).to eq ['http://id.loc.gov/vocabulary/resourceTypes/img']
     end
 
     it 'imports digital origin' do
@@ -203,7 +203,7 @@ describe Importer::ModsParser do
       expect(attributes[:lc_subject]).to eq ['http://id.loc.gov/authorities/names/n87914041', 'http://id.loc.gov/authorities/subjects/sh85088047', 'http://id.loc.gov/authorities/subjects/sh99005024']
       expect(attributes[:form_of_work]).to eq ['http://vocab.getty.edu/aat/300046300', 'http://vocab.getty.edu/aat/300128343']
       expect(attributes[:language]).to eq ['http://id.loc.gov/vocabulary/iso639-2/zxx']
-      expect(attributes[:work_type]).to eq ['still image']
+      expect(attributes[:work_type]).to eq ['http://id.loc.gov/vocabulary/resourceTypes/img']
       expect(attributes[:sub_location]).to eq ['Department of Special Collections']
 
       # TODO: There is another location in the fixture file

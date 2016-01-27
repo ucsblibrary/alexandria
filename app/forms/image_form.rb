@@ -35,7 +35,7 @@ class ImageForm
     # Refactor this to call super when this PR is merged: https://github.com/projecthydra-labs/hydra-editor/pull/60
     def initialize_field(key)
       # Don't initialize fields that use the SubjectManager
-      return if [:lc_subject, :form_of_work, :rights_holder, :institution].include?(key)
+      return if [:lc_subject, :form_of_work, :rights_holder, :institution, :work_type].include?(key)
 
       if key == :contributor
         self[key] = multiplex_contributors
@@ -153,6 +153,7 @@ class ImageForm
 
       permitted << { location_attributes: [:id, :_destroy] }
       permitted << { lc_subject_attributes: [:id, :_destroy] }
+      permitted << { work_type_attributes: [:id, :_destroy] }
       permitted << { form_of_work_attributes: [:id, :_destroy] }
       permitted << { license_attributes: [:id, :_destroy] }
       permitted << { copyright_status_attributes: [:id, :_destroy] }

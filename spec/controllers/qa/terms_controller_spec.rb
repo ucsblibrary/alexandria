@@ -21,6 +21,14 @@ describe Qa::TermsController do
     end
   end
 
+  describe 'work_type vocabulary' do
+    it 'returns terms' do
+      get :search, vocab: 'local', subauthority: 'work_type', q: 'image'
+      expect(response).to be_success
+      expect(response.body).to eq "[{\"id\":\"http://id.loc.gov/vocabulary/resourceTypes/img\",\"label\":\"Still image\"},{\"id\":\"http://id.loc.gov/vocabulary/resourceTypes/mov\",\"label\":\"Moving image\"}]"
+    end
+  end
+
   describe 'local names' do
     let!(:agent) { Agent.create(foaf_name: 'Frodo Baggins') }
 

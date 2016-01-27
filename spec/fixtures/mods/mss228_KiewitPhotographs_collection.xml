@@ -3,7 +3,7 @@
   <mods:titleInfo usage="primary">
     <mods:title>John S. Kiewit photography collection</mods:title>
   </mods:titleInfo>
-  <mods:typeOfResource collection="yes">still image</mods:typeOfResource>
+  <mods:typeOfResource collection="yes" authority="lcrt" authorityURI="http://id.loc.gov/vocabulary/resourceTypes" valueURI="http://id.loc.gov/vocabulary/resourceTypes/img">still image</mods:typeOfResource>
   <mods:genre authority="aat" authorityURI="http://vocab.getty.edu/aat" valueURI="http://vocab.getty.edu/aat/300046300">Photographs</mods:genre>
   <mods:originInfo>
     <mods:dateCreated>circa 1968-2000</mods:dateCreated>

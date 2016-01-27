@@ -72,7 +72,7 @@ module Importer
         digital_origin: mods.physical_description.digitalOrigin.map(&:text),
         publisher: mods.origin_info.publisher.map(&:text),
         form_of_work: mods.genre.valueURI.map { |uri| RDF::URI.new(uri) },
-        work_type: mods.typeOfResource.map(&:text),
+        work_type: mods.xpath('//mods:mods/mods:typeOfResource/@valueURI', NAMESPACES).map { |uri| RDF::URI.new(uri.value) },
         citation: citation,
         notes_attributes: notes,
         record_origin: record_origin,

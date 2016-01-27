@@ -92,9 +92,10 @@ module Metadata
 
     validates_vocabulary_of :license
 
-    property :work_type, predicate: RDF::Vocab::DC.type do |index|
+    property :work_type, predicate: RDF::Vocab::DC.type, class_name: Oargun::ControlledVocabularies::ResourceType do |index|
       index.as :stored_searchable, :facetable
     end
+    validates_vocabulary_of :work_type
 
     property :series_name, predicate: RDF::URI('http://opaquenamespace.org/ns/seriesName') do |index|
       index.as :displayable
