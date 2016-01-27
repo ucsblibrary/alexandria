@@ -40,8 +40,7 @@ GIT
 
 GIT
   remote: git://github.com/projecthydra-labs/curation_concerns.git
-  revision: b42bd8709fd4b776bc2f86682d872f5a34f6e902
-  branch: route_with_block
+  revision: 7538320dc84e5ac9f358d08e9ec1275a5e2ad486
   specs:
     curation_concerns (0.6.0)
       blacklight (~> 6.0)
@@ -63,6 +62,19 @@ GIT
       redlock (~> 0.1.2)
       resque (~> 1.23)
       resque-pool (~> 0.3)
+
+GIT
+  remote: git://github.com/projecthydra/hydra-collections.git
+  revision: 58e654cf2a9d0a2e2099ffbb107eb4f29ce35992
+  branch: multivalue_metadata
+  specs:
+    hydra-collections (7.0.0)
+      blacklight (~> 6.0)
+      deprecation (~> 0.1)
+      hydra-head (~> 9.1)
+      hydra-works (~> 0.4)
+      rdf (~> 1.99)
+      rdf-vocab (~> 0)
 
 GIT
   remote: git://github.com/traject/traject.git
@@ -274,13 +286,6 @@ GEM
       blacklight-access_controls (~> 0.1)
       cancancan (~> 1.8)
       deprecation (~> 0.2)
-    hydra-collections (7.0.0)
-      blacklight (~> 6.0)
-      deprecation (~> 0.1)
-      hydra-head (~> 9.1)
-      hydra-works (~> 0.4)
-      rdf (~> 1.99)
-      rdf-vocab (~> 0)
     hydra-core (9.6.0)
       active-fedora (~> 9.1)
       hydra-access-controls (= 9.6.0)
@@ -691,6 +696,7 @@ DEPENDENCIES
   devise_ldap_authenticatable
   ezid-client (~> 1.2.0)
   factory_girl_rails (~> 4.4)
+  hydra-collections!
   hydra-role-management
   jbuilder (~> 2.0)
   jettywrapper

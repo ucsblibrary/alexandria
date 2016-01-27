@@ -39,6 +39,10 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = false # true won't work on view specs
   end
 
+  config.before(:suite) do
+    AdminPolicy.ensure_admin_policy_exists
+  end
+
   # The settings below are suggested to provide a good initial experience
   # with RSpec, but feel free to customize to your heart's content.
   #   # These two settings work together to allow you to limit a spec run

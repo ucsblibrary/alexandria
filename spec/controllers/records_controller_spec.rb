@@ -12,7 +12,7 @@ describe RecordsController do
   before { allow_any_instance_of(RDF::DeepIndexingService).to receive(:fetch_external) }
 
   describe '#update' do
-    let(:image) { Image.create!(creator_attributes: initial_creators, title: 'test title') }
+    let(:image) { create(:image, creator_attributes: initial_creators) }
 
     context 'Adding new creators' do
       let(:initial_creators) { [{ id: 'http://id.loc.gov/authorities/names/n87914041' }] }

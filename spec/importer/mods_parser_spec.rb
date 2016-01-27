@@ -112,7 +112,7 @@ describe Importer::ModsParser do
     it 'finds metadata for the collection' do
       expect(attributes[:collection][:id]).to eq 'sbhcmss78'
       expect(attributes[:collection][:accession_number]).to eq ['SBHC Mss 78']
-      expect(attributes[:collection][:title]).to eq 'Joel Conway / Flying A Studio photograph collection'
+      expect(attributes[:collection][:title]).to eq ['Joel Conway / Flying A Studio photograph collection']
     end
 
     context 'with a range of dateCreated' do
@@ -167,7 +167,7 @@ describe Importer::ModsParser do
     context 'with a file that has an alternative title' do
       let(:file) { 'spec/fixtures/mods/cusbspcmss36_110089.xml' }
       it 'distinguishes between title and alternative title' do
-        expect(attributes[:title]).to eq 'Patio, Gavit residence'
+        expect(attributes[:title]).to eq ['Patio, Gavit residence']
         expect(attributes[:alternative]).to eq ['Lotusland']
       end
     end
@@ -194,7 +194,7 @@ describe Importer::ModsParser do
     it 'finds the metadata' do
       expect(attributes[:id]).to eq 'sbhcmss78'
       expect(attributes[:accession_number]).to eq ['SBHC Mss 78']
-      expect(attributes[:title]).to eq 'Joel Conway / Flying A Studio photograph collection'
+      expect(attributes[:title]).to eq ['Joel Conway / Flying A Studio photograph collection']
       expect(attributes[:creator]).to be_nil
       expect(attributes[:collector]).to eq [{ name: 'Conway, Joel', type: 'personal' }]
       expect(attributes[:description]).to eq ['Black and white photographs relating to the Flying A Studios (aka American Film Manufacturing Company), a film company that operated in Santa Barbara (1912-1920).']

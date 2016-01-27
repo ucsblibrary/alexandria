@@ -247,7 +247,7 @@ describe UpdateMetadataFromProquestFile do
     let(:reloaded) { ETD.find(etd.id) } # reload the ETD to test persisted state
 
     let(:etd) do
-      obj = ETD.create!(title: 'Test thesis')
+      obj = create(:etd)
       obj.proquest.original_name = File.basename(file)
       obj.proquest.content = File.new(file)
       obj.proquest.mime_type = 'application/xml'
@@ -270,7 +270,7 @@ describe UpdateMetadataFromProquestFile do
       end
       let(:policy_id) { AdminPolicy::PUBLIC_POLICY_ID }
       let(:etd) do
-        obj = ETD.create!(admin_policy_id: policy_id, title: 'test thesis')
+        obj = create(:etd, admin_policy_id: policy_id)
         obj.proquest.original_name = 'my_data_file.xml'
         obj.proquest.content = 'something unparseable'
         obj.proquest.mime_type = 'application/xml'

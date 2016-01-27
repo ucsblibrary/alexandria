@@ -10,7 +10,7 @@ module CollectionSupport
                  identifier: [id] }
 
     attrs_for_images.each do |attrs|
-      image = Image.create!(defaults.merge(attrs))
+      image = FactoryGirl.create(:image, defaults.merge(attrs))
       collection.ordered_members << image
     end
     collection.save!

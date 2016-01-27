@@ -10,7 +10,7 @@ describe Importer::CSVParser do
   context "Importing just images" do
     it 'parses a record' do
       # Title must be singular
-      expect(first_record[:title]).to eq 'Dirge for violin and piano (violin part)'
+      expect(first_record[:title]).to eq ['Dirge for violin and piano (violin part)']
 
       expect(first_record[:files]).to eq ['dirge1.tif', 'dirge2.tif', 'dirge3.tif', 'dirge4.tif']
 
@@ -34,7 +34,7 @@ describe Importer::CSVParser do
       expect(collection_record[:type]).to eq 'Collection'
 
       # Title must be singular
-      expect(first_record[:title]).to eq 'Dirge for violin and piano (violin part)'
+      expect(first_record[:title]).to eq ['Dirge for violin and piano (violin part)']
 
       expect(collection_record[:finding_aid]).to eq ['Third shelf on the right']
     end

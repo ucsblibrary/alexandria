@@ -42,13 +42,12 @@ class ObjectFactoryWriter
     created = attributes.delete('created_start')
     attributes[:created_attributes] = [{ start: created }] if created
 
-    # title must be singular
-    attributes[:title] = attributes[:title].first
+    # id must be singular
     attributes[:id] = attributes[:id].first
 
     attributes[:files] = attributes.delete('filename')
 
-    attributes[:collection] = { id: 'etds', title: 'Electronic Theses and Dissertations', accession_number: ['etds'] }
+    attributes[:collection] = { id: 'etds', title: ['Electronic Theses and Dissertations'], accession_number: ['etds'] }
 
     build_object(attributes)
   end

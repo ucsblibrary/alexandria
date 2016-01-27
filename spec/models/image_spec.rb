@@ -2,8 +2,8 @@ require 'rails_helper'
 
 describe Image do
   it 'has a title' do
-    subject.title = 'War and Peace'
-    expect(subject.title).to eq 'War and Peace'
+    subject.title = ['War and Peace']
+    expect(subject.title).to eq ['War and Peace']
   end
 
   it 'has collections' do
@@ -65,7 +65,7 @@ describe Image do
     end
 
     context 'for date created' do
-      before { subject.title = 'Test title' }
+      before { subject.title = ['Test title'] }
 
       it 'allows blank ids' do
         subject.save!
@@ -87,7 +87,7 @@ describe Image do
 
     context 'for notes' do
       before do
-        subject.title = 'Test title'
+        subject.title = ['Test title']
         subject.notes_attributes = [{ value: 'Title from item.' }, { value: "Postcard caption: 25. Light-House Tower Sta. Barbara Earth Quake.\n6-29-25." }, { value: "[Identification of Item], Santa Barbara picture\npostcards collection. SBHC Mss 36. Department of Special Collections, UC Santa Barbara\nLibrary, University of California, Santa Barbara.", note_type: 'preferred citation' }]
       end
 
@@ -163,7 +163,7 @@ describe Image do
     context "with a local vocabulary" do
       before do
         AdminPolicy.ensure_admin_policy_exists
-        subject.title = 'Test title'
+        subject.title = ['Test title']
       end
 
       let(:topic) { Topic.create(label: ['Birds of California']) }

@@ -19,7 +19,7 @@ class ObjectIndexer < CurationConcerns::WorkIndexer
     super do |solr_doc|
       solr_doc[COLLECTION] = object.in_collections.map &:id
       # TODO: if we need to optimize, we could pull this from solr
-      solr_doc[COLLECTION_LABEL] = object.in_collections.map &:title
+      solr_doc[COLLECTION_LABEL] = object.in_collections.map(&:title).flatten
 
       solr_doc[CREATED] = created
       solr_doc[OTHER] = display_date('date_other')

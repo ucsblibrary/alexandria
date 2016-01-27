@@ -84,8 +84,8 @@ module Importer
       def extract_field(header, val, processed)
         return unless val
         case header
-        when 'title', 'type'
-          # title and type are singular
+        when 'type'
+          # type is singular
           processed[header.to_sym] = val
         when /^(created|issued|date_copyrighted|date_valid)_(.*)$/
           key = "#{Regexp.last_match(1)}_attributes".to_sym

@@ -166,7 +166,7 @@ describe ObjectIndexer do
   end
 
   context 'with a title' do
-    let(:image) { Image.new(title: 'War and Peace') }
+    let(:image) { Image.new(title: ['War and Peace']) }
 
     it 'should have a title' do
       expect(subject['title_tesim']).to eq ['War and Peace']
@@ -211,9 +211,9 @@ describe ObjectIndexer do
   end
 
   context 'with collections' do
-    let(:image) { Image.create!(title: 'Test image') }
-    let!(:long_books) { Collection.create!(title: 'Long Books', ordered_members: [image]) }
-    let!(:boring_books) { Collection.create!(title: 'Boring Books', ordered_members: [image]) }
+    let(:image) { create(:image) }
+    let!(:long_books) { Collection.create!(title: ['Long Books'], ordered_members: [image]) }
+    let!(:boring_books) { Collection.create!(title: ['Boring Books'], ordered_members: [image]) }
 
     it 'has collections' do
       expect(subject['collection_ssim']).to match_array [boring_books.id, long_books.id]
@@ -225,7 +225,7 @@ describe ObjectIndexer do
     let!(:acq_note) { Note.create!(note_type: 'acquisition', value: 'Acq Note') }
     let!(:cit_note) { Note.create!(note_type: 'preferred citation', value: 'Citation Note') }
 
-    let(:image) { Image.create!(notes: [acq_note, cit_note], title: 'Test image') }
+    let(:image) { create(:image, notes: [acq_note, cit_note]) }
 
     it 'indexes with labels' do
       expect(image.notes).to include(acq_note, cit_note)

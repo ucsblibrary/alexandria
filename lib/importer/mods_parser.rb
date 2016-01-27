@@ -175,7 +175,7 @@ module Importer
     def collection_name
       node_set = mods.at_xpath("//mods:relatedItem[@type='host']".freeze, NAMESPACES)
       return unless node_set
-      node_set.titleInfo.title.text.strip
+      [node_set.titleInfo.title.text.strip]
     end
 
     def human_readable_id
@@ -231,7 +231,7 @@ module Importer
       end
 
       def untyped_title
-        mods.xpath('/mods:mods/mods:titleInfo[not(@type)]/mods:title/text()', NAMESPACES).to_s
+        mods.xpath('/mods:mods/mods:titleInfo[not(@type)]/mods:title', NAMESPACES).map(&:text)
       end
 
       def alt_title

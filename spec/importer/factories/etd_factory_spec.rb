@@ -3,12 +3,12 @@ require 'importer'
 
 describe Importer::Factory::ETDFactory do
   let(:factory) { described_class.new(attributes, Settings.proquest_directory) }
-  let(:collection_attrs) { { accession_number: ['etds'], title: 'test collection' } }
+  let(:collection_attrs) { { accession_number: ['etds'], title: ['test collection'] } }
 
   let(:attributes) do
     {
       id: 'f3gt5k61',
-      title: 'Test Thesis',
+      title: ['Test Thesis'],
       collection: collection_attrs.slice(:accession_number), files: [],
       created_attributes: [{ start: [2014] }],
       system_number: ['123'],

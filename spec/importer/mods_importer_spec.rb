@@ -57,7 +57,7 @@ describe Importer::ModsImporter do
 
       coll = reloaded.in_collections.first
       expect(coll.accession_number).to eq ['SBHC Mss 36']
-      expect(coll.title).to eq 'Santa Barbara picture postcards collection'
+      expect(coll.title).to eq ['Santa Barbara picture postcards collection']
       expect(coll.members).to eq [reloaded]
       expect(coll.admin_policy_id).to eq AdminPolicy::PUBLIC_POLICY_ID
 
@@ -76,7 +76,7 @@ describe Importer::ModsImporter do
         # skip creating files
         allow_any_instance_of(Importer::Factory::ImageFactory).to receive(:after_create)
       end
-      let!(:coll) { Collection.create!(accession_number: ['SBHC Mss 36'], title: 'Test Collection') }
+      let!(:coll) { Collection.create!(accession_number: ['SBHC Mss 36'], title: ['Test Collection']) }
 
       it 'it adds image to existing collection' do
         expect(coll.members.size).to eq 0
@@ -114,7 +114,7 @@ describe Importer::ModsImporter do
 
       expect(coll.id).to match /^fk4\w{7}$/
       expect(coll.accession_number).to eq ['SBHC Mss 78']
-      expect(coll.title).to eq 'Joel Conway / Flying A Studio photograph collection'
+      expect(coll.title).to eq ['Joel Conway / Flying A Studio photograph collection']
       expect(coll.admin_policy_id).to eq AdminPolicy::PUBLIC_POLICY_ID
 
       expect(coll.collector.count).to eq 1
@@ -124,7 +124,7 @@ describe Importer::ModsImporter do
     end
 
     context 'when the collection already exists' do
-      let!(:existing) { Collection.create!(accession_number: ['SBHC Mss 78'], title: 'Test Collection') }
+      let!(:existing) { Collection.create!(accession_number: ['SBHC Mss 78'], title: ['Test Collection']) }
 
       it 'it adds metadata to existing collection' do
         coll = nil
@@ -134,7 +134,7 @@ describe Importer::ModsImporter do
 
         expect(coll.id).to eq existing.id
         expect(coll.accession_number).to eq ['SBHC Mss 78']
-        expect(coll.title).to eq 'Joel Conway / Flying A Studio photograph collection'
+        expect(coll.title).to eq ['Joel Conway / Flying A Studio photograph collection']
       end
     end
 

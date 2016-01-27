@@ -2,7 +2,7 @@ require 'factory_girl'
 
 FactoryGirl.define do
   factory :image do
-    title 'Test Image'
+    title ['Test Image']
     factory :public_image do
       before(:create) { AdminPolicy.ensure_admin_policy_exists }
       admin_policy_id AdminPolicy::PUBLIC_POLICY_ID

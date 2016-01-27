@@ -17,10 +17,6 @@ module Metadata
       index.as :symbol, :stored_searchable # symbol is needed for exact match search in the CollectionFactory
     end
 
-    property :title, predicate: RDF::Vocab::DC.title, multiple: false do |index|
-      index.as :stored_searchable
-    end
-
     property :alternative, predicate: RDF::Vocab::DC.alternative do |index|
       index.as :stored_searchable
     end

@@ -9,9 +9,9 @@ feature 'Collection search page' do
   end
 
   context 'with collections' do
-    let!(:collection1) { create(:public_collection, title: 'Red') }
+    let!(:collection1) { create(:public_collection, title: ['Red']) }
     let!(:collection2) do
-      create(:public_collection, title: 'Pink',
+      create(:public_collection, title: ['Pink'],
                                  id: 'fk4v989d9j',
                                  identifier: ['ark:/99999/fk4v989d9j'],
                                  extent: ['7 photos'])
@@ -37,12 +37,12 @@ feature 'Collection search page' do
       Image.destroy_all
     end
 
-    let(:pink)   { { title: 'Pink',   identifier: ['pink']   } }
-    let(:orange) { { title: 'Orange', identifier: ['orange'] } }
-    let(:banana) { { title: 'Banana', identifier: ['banana'] } }
+    let(:pink)   { { title: ['Pink'],   identifier: ['pink']   } }
+    let(:orange) { { title: ['Orange'], identifier: ['orange'] } }
+    let(:banana) { { title: ['Banana'], identifier: ['banana'] } }
 
-    let(:colors_attrs) { { title: 'Colors' } }
-    let(:fruits_attrs) { { title: 'Fruits' } }
+    let(:colors_attrs) { { title: ['Colors'] } }
+    let(:fruits_attrs) { { title: ['Fruits'] } }
 
     let!(:colors) { create_collection_with_images(colors_attrs, [pink, orange]) }
     let!(:fruits) { create_collection_with_images(fruits_attrs, [orange, banana]) }
@@ -56,14 +56,14 @@ feature 'Collection search page' do
       expect(page).to_not have_link('Banana', href: '/lib/banana')
 
       # Search for something that's not in this collection
-      fill_in 'collection_search', with: banana[:title]
+      fill_in 'collection_search', with: banana[:title].first
       click_button 'collection_submit'
 
       expect(page).to have_selector('#documents .document', count: 0)
       expect(page).to have_content 'No entries found'
 
       # Search for something within the collection:
-      fill_in 'collection_search', with: orange[:title]
+      fill_in 'collection_search', with: orange[:title].first
       click_button 'collection_submit'
 
       expect(page).to have_selector('#documents .document', count: 1)
@@ -81,7 +81,7 @@ feature 'Collection search page' do
       expect(page).to_not have_link('Banana', href: '/lib/banana')
 
       # Search for something that's not in this collection
-      fill_in 'q', with: banana[:title]
+      fill_in 'q', with: banana[:title].first
       click_button 'search'
 
       expect(page).to have_selector('#documents .document', count: 1)
