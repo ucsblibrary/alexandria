@@ -1,3 +1,4 @@
+require_relative 'inflections'
 CurationConcerns.configure do |config|
   config.register_curation_concern :image
   config.register_curation_concern :etd
