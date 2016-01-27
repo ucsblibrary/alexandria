@@ -30,7 +30,7 @@ describe AttachFilesToETD do
       expect(etd.file_sets[1].original_file.mime_type).to eq 'image/tiff'
       expect(etd.file_sets[2].original_file.mime_type).to eq 'image/tiff'
 
-      expect(etd.proquest.size).to eq 4613
+      expect(etd.proquest.size).to eq 6005
     end
 
     it 'adds metadata from the ProQuest file to the ETD' do
