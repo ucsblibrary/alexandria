@@ -63,7 +63,6 @@ module Importer::Factory
       # There's a bug in ActiveFedora when there are many
       # habtm <-> has_many associations, where they won't all get saved.
       # https://github.com/projecthydra/active_fedora/issues/874
-      build_time_spans(attrs)
       build_notes(attrs)
       klass.new(attrs) do |obj|
         obj.save!
@@ -75,16 +74,6 @@ module Importer::Factory
         end
         log_created(obj)
       end
-    end
-
-    def build_time_spans(attrs)
-      [:created, :date_other, :date_valid, :issued].each do |name|
-        build_time_span(name, attrs)
-      end
-    end
-
-    def build_time_span(name, attrs)
-      build_nested(name, TimeSpan, attrs)
     end
 
     def build_nested(name, klass, attrs)

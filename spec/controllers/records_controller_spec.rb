@@ -66,8 +66,6 @@ describe RecordsController do
         }
       end
 
-      let(:time_span) { TimeSpan.new(ts_attributes) }
-
       let(:initial_creators) { [{ id: 'http://id.loc.gov/authorities/names/n87914041' }] }
 
       context 'created' do
@@ -82,28 +80,28 @@ describe RecordsController do
 
             created_date = image.created.first
 
-            expect(image.created.count).to eq(1)
+            expect(image.created.count).to eq 1
 
-            expect(created_date.start).to eq(['2014'])
+            expect(created_date.start).to eq ['2014']
             expect(created_date).to be_persisted
           end
         end
 
         context 'when the created date already exists' do
           before do
-            time_span.save!
-            image.created << time_span
+            image.created.build(ts_attributes)
+            image.created_will_change!
             image.save!
           end
 
           it 'allows deletion of the existing timespan' do
             image.reload
-            expect(image.created.count).to eq(1)
+            expect(image.created.count).to eq 1
 
             patch :update, id: image, image: {
               creator_attribues: initial_creators,
               created_attributes: {
-                '0' => { id: time_span.id, _destroy: 'true' }
+                '0' => { id: image.created.first.id, _destroy: 'true' }
               },
             }
 
@@ -115,7 +113,7 @@ describe RecordsController do
           it 'allows updating the existing timespan' do
             patch :update, id: image, image: {
               created_attributes: {
-                '0' => ts_attributes.merge(id: time_span.id, start: ['1337'], start_qualifier: ['approximate'])
+                '0' => ts_attributes.merge(id: image.created.first.id, start: ['1337'], start_qualifier: ['approximate'])
               },
               creator_attributes: initial_creators,
             }
@@ -126,9 +124,9 @@ describe RecordsController do
 
             created_date = image.created.first
 
-            expect(created_date.id).to eq(time_span.id)
-            expect(created_date.start).to eq(['1337'])
-            expect(created_date.start_qualifier).to eq(['approximate'])
+            expect(image.created.size).to eq 1
+            expect(created_date.start).to eq ['1337']
+            expect(created_date.start_qualifier).to eq ['approximate']
           end
         end
       end

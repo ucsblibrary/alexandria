@@ -1,4 +1,4 @@
-class TimeSpan < ActiveFedora::Base
+class TimeSpan < ActiveTriples::Resource
   property :start, predicate: ::RDF::Vocab::EDM.begin
   property :finish, predicate: ::RDF::Vocab::EDM.end
   property :start_qualifier, predicate: ::RDF::Vocab::CRM.P79_beginning_is_qualified_by
@@ -6,11 +6,26 @@ class TimeSpan < ActiveFedora::Base
   property :label, predicate: ::RDF::SKOS.prefLabel
   property :note, predicate: ::RDF::SKOS.note
 
-  has_many :images, inverse_of: :created, class_name: 'Image'
-  has_many :issued_images, inverse_of: :issued, class_name: 'Image'
-  has_many :date_other_images, inverse_of: :date_other, class_name: 'Image'
-  has_many :date_valid_images, inverse_of: :date_valid, class_name: 'Image'
-  has_many :date_copyrighted_images, inverse_of: :date_copyrighted, class_name: 'Image'
+  def initialize(uri=RDF::Node.new, parent=nil)
+    uri = if uri.try(:node?)
+      RDF::URI("#timespan_#{uri.to_s.gsub('_:','')}")
+    elsif uri.to_s.include?("#")
+      RDF::URI(uri)
+    end
+    super
+  end
+
+  def final_parent
+    parent
+  end
+
+  def persisted?
+    type.include?(RDF::URI("http://fedora.info/definitions/v4/repository#Resource"))
+  end
+
+  def new_record?
+    !persisted?
+  end
 
   # MODS date qualifiers
   APPROX = 'approximate'

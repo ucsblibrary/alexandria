@@ -57,10 +57,11 @@ module Importer::Factory
         if existing_date != new_date
           # Create or update the existing date.
           if time_span = obj.created.to_a.first
-            time_span.update(created_attributes.first)
+            time_span.attributes = created_attributes.first
           else
             obj.created.build(created_attributes.first)
           end
+          obj.created_will_change!
         end
       end
   end

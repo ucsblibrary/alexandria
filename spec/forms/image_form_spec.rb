@@ -74,27 +74,26 @@ describe ImageForm do
     let(:model_attributes) { ImageForm.model_attributes(params) }
 
     context 'for complex nested associations' do
-      context 'with an activefedora prefix' do
-        let(:request_params) do
-          {
-            created_attributes: {
-              '0' => {
-                id: "#{ActiveFedora.fedora.host}/test/de/ad/be/ef/deadbeef",
-                start: ['1337'],
-                start_qualifier: ['approximate'],
-                finish: ['2015'],
-                finish_qualifier: ['exact'],
-                label: ['some-label'],
-                note: ['some-note'],
-              }
+      let(:request_params) do
+        {
+          created_attributes: {
+            '0' => {
+              id: "#{ActiveFedora.fedora.host}/test/de/ad/be/ef/deadbeef",
+              start: ['1337'],
+              start_qualifier: ['approximate'],
+              finish: ['2015'],
+              finish_qualifier: ['exact'],
+              label: ['some-label'],
+              note: ['some-note'],
             }
-          }.with_indifferent_access
-        end
-        it 'removes the activefedora prefix from the id' do
-          created_attributes = model_attributes.fetch(:created_attributes)
+          }
+        }.with_indifferent_access
+      end
 
-          expect(created_attributes.fetch('0').fetch(:id)).to eq('de/ad/be/ef/deadbeef')
-        end
+      it 'has the full URI as the id' do
+        created_attributes = model_attributes.fetch(:created_attributes)
+
+        expect(created_attributes.fetch('0').fetch(:id)).to eq("#{ActiveFedora.fedora.host}/test/de/ad/be/ef/deadbeef")
       end
     end
 

@@ -101,13 +101,9 @@ module Metadata
     end
 
     # Dates
-    has_and_belongs_to_many :created, predicate: RDF::Vocab::DC.created, class_name: 'TimeSpan', inverse_of: :images
-    has_and_belongs_to_many :date_other, predicate: RDF::Vocab::DC.date, class_name: 'TimeSpan', inverse_of: :date_other_images
-    has_and_belongs_to_many :date_valid, predicate: RDF::Vocab::DC.valid, class_name: 'TimeSpan', inverse_of: :date_valid_images
-
-    # Not tackling these now. No demonstrated need yet.
-    # has_and_belongs_to_many :date_accepted, predicate: RDF::Vocab::DC.dateAccepted, class_name: 'TimeSpan'
-    # has_and_belongs_to_many :date_submitted, predicate: RDF::Vocab::DC.dateSubmitted, class_name: 'TimeSpan'
+    property :created, predicate: RDF::Vocab::DC.created, class_name: 'TimeSpan'
+    property :date_other, predicate: RDF::Vocab::DC.date, class_name: 'TimeSpan'
+    property :date_valid, predicate: RDF::Vocab::DC.valid, class_name: 'TimeSpan'
 
     # RDA
     property :form_of_work, predicate: RDF::URI('http://www.rdaregistry.info/Elements/w/#formOfWork.en'),
@@ -156,19 +152,9 @@ module Metadata
     true
   end
 
-  def time_span_blank(attributes)
-    time_span_attributes.all? do |key|
-      Array(attributes[key]).all?(&:blank?)
-    end
-  end
-
-  def time_span_attributes
-    [:start, :start_qualifier, :finish, :finish_qualifier, :label, :note]
-  end
-
   def controlled_properties
     @controlled_properties ||= self.class.properties.each_with_object([]) do |(key, value), arr|
-      if value['class_name'] && (value['class_name'] < ActiveTriples::Resource || value['class_name'].new.resource.class < ActiveTriples::Resource)
+      if value.class_name && value.class_name.include?(LinkedVocabs::Controlled)
         arr << key
       end
     end
