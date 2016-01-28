@@ -116,6 +116,8 @@ class CatalogController < ApplicationController
     config.add_show_field 'foaf_name_tesim', label: 'Name'
     config.add_show_field 'uri_ssim', label: 'URI'
     config.add_show_field 'label_tesim', label: 'Label'
+    config.add_show_field 'has_model_ssim', label: 'Type', if: :show_type?
+
     Metadata::RELATIONS.each do |key, _value|
       config.add_show_field solr_name("#{key}_label", :stored_searchable), label: key.to_s.titleize
     end
@@ -243,4 +245,9 @@ class CatalogController < ApplicationController
     document = stuff.fetch(:document)
     can?(:edit, document) && !document.etd?
   end
+
+  def show_type?(_, document)
+    LocalAuthority.local_authority?(document)
+  end
+
 end

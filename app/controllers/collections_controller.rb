@@ -48,4 +48,11 @@ class CollectionsController < ApplicationController
         super(*args)
       end
     end
+
+    # This method is used in CatalogController's config,
+    # so it needs to be defined.
+    def show_type?(_, _document)
+      false
+    end
+
 end
