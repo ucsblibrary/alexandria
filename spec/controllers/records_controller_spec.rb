@@ -83,6 +83,7 @@ describe RecordsController do
             expect(image.created.count).to eq 1
 
             expect(created_date.start).to eq ['2014']
+            created_date.persisted?
             expect(created_date).to be_persisted
           end
         end

@@ -1,4 +1,5 @@
 class TimeSpan < ActiveTriples::Resource
+  configure type: ::RDF::Vocab::EDM.TimeSpan
   property :start, predicate: ::RDF::Vocab::EDM.begin
   property :finish, predicate: ::RDF::Vocab::EDM.end
   property :start_qualifier, predicate: ::RDF::Vocab::CRM.P79_beginning_is_qualified_by
@@ -20,11 +21,11 @@ class TimeSpan < ActiveTriples::Resource
   end
 
   def persisted?
-    type.include?(RDF::URI("http://fedora.info/definitions/v4/repository#Resource"))
+    !new_record?
   end
 
   def new_record?
-    !persisted?
+    id.start_with?('#')
   end
 
   # MODS date qualifiers
