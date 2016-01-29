@@ -16,7 +16,7 @@ describe Importer::CSVParser do
 
       expect(first_record[:copyright_status]).to eq [RDF::URI('http://id.loc.gov/vocabulary/preservation/copyrightStatus/cpr')]
 
-      expect(first_record[:collection]).to eq(id: 'pasmss45', title: 'Mildred Couper papers', accession_number: ['PA Mss 45'])
+      expect(first_record[:collection]).to eq(id: 'pasmss45', title: ['Mildred Couper papers'], accession_number: ['PA Mss 45'])
 
       expect(first_record[:created_attributes]).to eq [{ start: ['1937'] }]
       expect(first_record[:composer]).to eq [RDF::URI('http://id.loc.gov/authorities/names/no93011759')]

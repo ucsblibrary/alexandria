@@ -130,7 +130,7 @@ module Importer
       end
 
       def update_collection(collection, field, val)
-        val = [val] if field == 'accession_number'
+        val = [val] unless ['admin_policy_id', 'id'].include? field
         collection[field.to_sym] = val
       end
 
