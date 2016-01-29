@@ -22,9 +22,18 @@ describe Importer::CSVImporter do
   context 'when the model specified on the row' do
     let(:csv_file) { "#{fixture_path}/csv/pamss045_with_type.csv" }
     let(:importer) { described_class.new(csv_file, image_directory) }
+    let(:collection_factory) { double }
+    let(:image_factory) { double }
+
     it 'creates new images and collections' do
-      expect_any_instance_of(Importer::Factory::CollectionFactory).to receive(:run)
-      expect_any_instance_of(Importer::Factory::ImageFactory).to receive(:run)
+      expect(Importer::Factory::CollectionFactory).to receive(:new)
+        .with(hash_excluding(:type), image_directory)
+        .and_return(collection_factory)
+      expect(collection_factory).to receive(:run)
+      expect(Importer::Factory::ImageFactory).to receive(:new)
+        .with(hash_excluding(:type), image_directory)
+        .and_return(image_factory)
+      expect(image_factory).to receive(:run)
       importer.import_all
     end
   end
