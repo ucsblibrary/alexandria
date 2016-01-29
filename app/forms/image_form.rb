@@ -94,16 +94,7 @@ class ImageForm
     end
 
     def self.model_attributes(form_params)
-      clean_params = demultiplex_contributors(super)
-
-      # TODO: put this chunk in a method
-      NESTED_ASSOCIATIONS.each do |assoc|
-        Array(clean_params["#{assoc}_attributes"]).each do |_index, attrs|
-          strip_active_fedora_prefix!(attrs)
-        end
-      end
-
-      clean_params
+      demultiplex_contributors(super)
     end
 
     def self.demultiplex_contributors(attrs)
@@ -122,12 +113,6 @@ class ImageForm
           relations[attr_key] << row.with_indifferent_access
         end
       )
-    end
-
-    def self.strip_active_fedora_prefix!(model_attributes)
-      if model_attributes[:id] && model_attributes[:id].present?
-        model_attributes[:id].to_s.gsub! /#{fedora_url_prefix}/, ''
-      end
     end
 
     def self.fedora_url_prefix

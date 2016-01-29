@@ -25,5 +25,15 @@ module NestedAttributes
     accepts_nested_attributes_for :created, reject_if: :time_span_blank, allow_destroy: true
     accepts_nested_attributes_for :date_other, reject_if: :time_span_blank, allow_destroy: true
     accepts_nested_attributes_for :date_valid, reject_if: :time_span_blank, allow_destroy: true
+
+    resource_class.send(:define_method, :time_span_blank) do |attributes|
+      time_span_attributes.all? do |key|
+        Array(attributes[key]).all?(&:blank?)
+      end
+    end
+
+    resource_class.send(:define_method, :time_span_attributes) do
+      [:start, :start_qualifier, :finish, :finish_qualifier, :label, :note]
+    end
   end
 end

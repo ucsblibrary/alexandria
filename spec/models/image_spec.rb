@@ -125,7 +125,7 @@ describe Image do
   end
 
   describe 'dates' do
-    let(:image) { Image.new }
+    let(:image) { build(:image) }
 
     describe 'ranges' do
       before do
@@ -138,6 +138,17 @@ describe Image do
         expect(image.created.first.finish).to eq ['1912']
         expect(image.issued.first.start).to eq ['1913']
         expect(image.issued.first.finish).to eq ['1917']
+      end
+
+      context "when loading from fedora" do
+        before do
+          image.save!
+          image.reload
+        end
+
+        it 'loads them' do
+          expect(image.issued.first.start).to eq ['1913']
+        end
       end
     end
 

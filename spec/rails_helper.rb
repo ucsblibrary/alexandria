@@ -14,7 +14,7 @@ end
 Capybara.javascript_driver = :poltergeist
 
 # HttpLogger.logger = Logger.new(STDOUT)
-# HttpLogger.ignore = [/\/solr/]
+# HttpLogger.ignore = [/\/solr/, /\/marmotta/]
 # HttpLogger.colorize = true
 # HttpLogger.log_headers = false
 

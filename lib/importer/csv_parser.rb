@@ -65,7 +65,7 @@ module Importer
 
       def time_span_headers
         %w(created issued date_copyrighted date_valid).flat_map do |prefix|
-          TimeSpan.attribute_names.map { |attribute| "#{prefix}_#{attribute}" }
+          TimeSpan.properties.keys.map { |attribute| "#{prefix}_#{attribute}" }
         end
       end
 

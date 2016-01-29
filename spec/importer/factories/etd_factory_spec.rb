@@ -97,7 +97,7 @@ describe Importer::Factory::ETDFactory do
         etd.reload
         expect(etd.created.flat_map(&:start)).to eq [old_date]
 
-        expect { obj = factory.update(etd) }.not_to change { TimeSpan.count }
+        obj = factory.update(etd)
         etd.reload
         expect(etd.created.flat_map(&:start)).to eq [2014]
       end
