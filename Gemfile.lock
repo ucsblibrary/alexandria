@@ -22,11 +22,11 @@ GIT
 
 GIT
   remote: git://github.com/projectblacklight/blacklight_advanced_search.git
-  revision: 4cbb1c8f3426adfd07e2dc8383b498ca427e3039
+  revision: 7c7552f4df606b6078cc024a182a582a3188d1e5
   branch: no_monkey_patch
   specs:
     blacklight_advanced_search (6.0.0)
-      blacklight (> 6.0.0.pre, < 7)
+      blacklight (~> 6.0.1)
       parslet
 
 GIT
@@ -384,7 +384,7 @@ GEM
     mime-types (2.99)
     mini_magick (4.3.6)
     mini_portile2 (2.0.0)
-    minitest (5.8.3)
+    minitest (5.8.4)
     mods (2.0.3)
       iso-639
       nokogiri
@@ -452,7 +452,7 @@ GEM
       activesupport (>= 4.2.0.beta, < 5.0)
       nokogiri (~> 1.6.0)
       rails-deprecated_sanitizer (>= 1.0.1)
-    rails-html-sanitizer (1.0.2)
+    rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
     rails_autolink (1.1.6)
       rails (> 3.1)
@@ -618,7 +618,7 @@ GEM
     sprockets (3.5.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
-    sprockets-rails (3.0.0)
+    sprockets-rails (3.0.1)
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
