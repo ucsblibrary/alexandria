@@ -1,7 +1,6 @@
 module Importer
   class CSVParser
     include Enumerable
-    URI_FIELDS = %w(lc_subject language form_of_work institution rights_holder copyright_status license) + Metadata::MARCREL.keys.map(&:to_s)
 
     def initialize(file_name)
       @file_name = file_name
@@ -115,7 +114,12 @@ module Importer
       def extract_multi_value_field(header, val, processed, key = nil)
         key ||= header.to_sym
         processed[key] ||= []
-        processed[key] << (URI_FIELDS.include?(header) ? RDF::URI(val.rstrip) : val)
+        val = val.strip
+        processed[key] << (looks_like_uri?(val) ? RDF::URI(val) : val)
+      end
+
+      def looks_like_uri?(str)
+        str =~ /^https?:\/\//
       end
 
       def update_local_authority(header, val, processed)
