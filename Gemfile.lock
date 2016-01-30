@@ -21,15 +21,6 @@ GIT
       activesupport (>= 3.0.0)
 
 GIT
-  remote: git://github.com/projectblacklight/blacklight_advanced_search.git
-  revision: 7c7552f4df606b6078cc024a182a582a3188d1e5
-  branch: no_monkey_patch
-  specs:
-    blacklight_advanced_search (6.0.0)
-      blacklight (~> 6.0.1)
-      parslet
-
-GIT
   remote: git://github.com/projecthydra-labs/curation_concerns.git
   revision: 7538320dc84e5ac9f358d08e9ec1275a5e2ad486
   specs:
@@ -181,6 +172,9 @@ GEM
       bootstrap-sass (~> 3.0)
       openseadragon (>= 0.2.0)
       rails
+    blacklight_advanced_search (6.0.1)
+      blacklight (~> 6.0.1)
+      parslet
     blacklight_range_limit (6.0.0)
       blacklight (>= 6.0.0.pre2, < 7)
       jquery-rails
@@ -675,7 +669,6 @@ DEPENDENCIES
   awesome_print
   blacklight (~> 6.0.1)
   blacklight-gallery (~> 0.5.0)
-  blacklight_advanced_search!
   blacklight_range_limit (~> 6.0.0)
   byebug
   capistrano (= 3.4.0)
