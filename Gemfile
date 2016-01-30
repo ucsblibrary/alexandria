@@ -26,7 +26,7 @@ gem 'settingslogic'
 gem 'rsolr', '~> 1.0.12'
 
 gem 'mods', '~> 2.0.3'
-gem 'oargun', path: '../oargun'
+gem 'oargun', github: 'curationexperts/oargun', ref: 'fbadc10181a73d6fd2cec218f6f16fe20a1f2ea2'
 gem 'linked_vocabs', '~> 0.3.1'
 gem 'riiif', '~> 0.2.0'
 gem 'ezid-client', '~> 1.2.0'

@@ -1,4 +1,17 @@
 GIT
+  remote: git://github.com/curationexperts/oargun.git
+  revision: fbadc10181a73d6fd2cec218f6f16fe20a1f2ea2
+  ref: fbadc10181a73d6fd2cec218f6f16fe20a1f2ea2
+  specs:
+    oargun (0.0.1)
+      active-fedora (~> 9.0)
+      active-triples (>= 0.6.0)
+      activesupport (~> 4.0)
+      linked_vocabs (~> 0.2)
+      rdf-vocab (~> 0.8)
+      rest-client (~> 1.7)
+
+GIT
   remote: git://github.com/jcoyne/kaminari.git
   revision: 7f7108e12bdd64eb5a76177633768feb14df5453
   branch: sufia
@@ -59,17 +72,6 @@ GIT
       marc-fastxmlwriter (~> 1.0)
       slop (>= 3.4.5, < 4.0)
       yell
-
-PATH
-  remote: ../oargun
-  specs:
-    oargun (0.0.1)
-      active-fedora (~> 9.0)
-      active-triples (>= 0.6.0)
-      activesupport (~> 4.0)
-      linked_vocabs (~> 0.2)
-      rdf-vocab (~> 0.8)
-      rest-client (~> 1.7)
 
 GEM
   remote: https://rubygems.org/
