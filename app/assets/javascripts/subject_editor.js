@@ -21,6 +21,7 @@ function SubjectManager(element, options) {
 var label_for = {
     lcnames: "LC Names",
     lcsh: "LC Subject Headings",
+    lcrt: "LC Resource Types",
     tgm: "Graphic Materials",
     aat: "Art & Architecture Thesaurus",
     local_names: 'Local Names',
@@ -125,6 +126,7 @@ $.fn.manage_subject_fields = function(option) {
 Blacklight.onLoad(function() {
   $('.form-group.image_lc_subject').manage_subject_fields({ fieldName: 'lc_subject', vocabularies: ['lcnames', 'lcsh', 'tgm', 'local_subjects', 'local_names'] });
   $('.form-group.image_form_of_work').manage_subject_fields({ fieldName: 'form_of_work', vocabularies: ['aat', 'tgm'] });
+  $('.form-group.image_work_type').manage_subject_fields({ fieldName: 'work_type', vocabularies: ['lcrt'] });
   $('.form-group.image_rights_holder').manage_subject_fields({ fieldName: 'rights_holder', vocabularies: ['local_names', 'lcnames'] });
   $('.form-group.image_institution').manage_subject_fields({ fieldName: 'institution', vocabularies: ['lcnames', 'local_names'] });
 });

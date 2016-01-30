@@ -9,7 +9,7 @@
       <mods:roleTerm type="text" authority="marcrelator" authorityURI="http://id.loc.gov/vocabulary/relators" valueURI="http://id.loc.gov/vocabulary/relators/col">Collector</mods:roleTerm>
     </mods:role>
   </mods:name>
-  <mods:typeOfResource collection="yes">still image</mods:typeOfResource>
+  <mods:typeOfResource collection="yes" authority="lcrt" authorityURI="http://id.loc.gov/vocabulary/resourceTypes" valueURI="http://id.loc.gov/vocabulary/resourceTypes/img">still image</mods:typeOfResource>
   <mods:genre authority="aat" authorityURI="http://vocab.getty.edu/aat" valueURI="http://vocab.getty.edu/aat/300046300">Photographs</mods:genre>
   <mods:genre authority="aat" authorityURI="http://vocab.getty.edu/aat" valueURI="http://vocab.getty.edu/aat/300128343">Black-and-white negatives</mods:genre>
   <mods:originInfo>

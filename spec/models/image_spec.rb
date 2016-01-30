@@ -186,6 +186,17 @@ describe Image do
     end
   end
 
+  describe 'work_type' do
+    context "with a literal value" do
+      let(:image) { Image.new(work_type: ['foo']) }
+
+      it "isn't valid" do
+        expect(image).not_to be_valid
+        expect(image.errors[:base]).to eq ["`foo' for `work_type' property is expected to be a URI, but it is a String"]
+      end
+    end
+  end
+
   describe '#[]' do
     context 'with a local creator' do
       let(:person) { Person.create(foaf_name: 'Tony') }

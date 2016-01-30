@@ -6,7 +6,7 @@
   <mods:titleInfo type="alternative">
     <mods:title>Lotusland</mods:title>
   </mods:titleInfo>
-  <mods:typeOfResource>still image</mods:typeOfResource>
+  <mods:typeOfResource authority="lcrt" authorityURI="http://id.loc.gov/vocabulary/resourceTypes" valueURI="http://id.loc.gov/vocabulary/resourceTypes/img">still image</mods:typeOfResource>
   <mods:genre authority="aat" authorityURI="http://vocab.getty.edu/aat" valueURI="http://vocab.getty.edu/aat/300026819">Picture postcards</mods:genre>
   <mods:genre authority="aat" authorityURI="http://vocab.getty.edu/aat" valueURI="http://vocab.getty.edu/aat/300026816">Postcards</mods:genre>
   <mods:originInfo>

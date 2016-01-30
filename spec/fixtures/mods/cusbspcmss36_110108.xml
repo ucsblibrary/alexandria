@@ -3,7 +3,7 @@
   <mods:titleInfo usage="primary">
     <mods:title>Arlington Hotel, Santa Barbara earthquake</mods:title>
   </mods:titleInfo>
-  <mods:typeOfResource>still image</mods:typeOfResource>
+  <mods:typeOfResource authority="lcrt" authorityURI="http://id.loc.gov/vocabulary/resourceTypes" valueURI="http://id.loc.gov/vocabulary/resourceTypes/img">still image</mods:typeOfResource>
   <mods:genre authority="aat" authorityURI="http://vocab.getty.edu/aat" valueURI="http://vocab.getty.edu/aat/300192703">Photographic postcards</mods:genre>
   <mods:genre authority="aat" authorityURI="http://vocab.getty.edu/aat" valueURI="http://vocab.getty.edu/aat/300026816">Postcards</mods:genre>
   <mods:genre authority="aat" authorityURI="http://vocab.getty.edu/aat" valueURI="http://vocab.getty.edu/aat/300046300">Photographs</mods:genre>
