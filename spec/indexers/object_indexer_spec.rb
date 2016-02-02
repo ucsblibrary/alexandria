@@ -222,14 +222,13 @@ describe ObjectIndexer do
   end
 
   context 'with notes' do
-    let!(:acq_note) { Note.create!(note_type: 'acquisition', value: 'Acq Note') }
-    let!(:cit_note) { Note.create!(note_type: 'preferred citation', value: 'Citation Note') }
+    let!(:acq_note) {{ note_type: 'acquisition', value: 'Acq Note' }}
+    let!(:cit_note) {{ note_type: 'preferred citation', value: 'Citation Note' }}
 
-    let(:image) { create(:image, notes: [acq_note, cit_note]) }
+    let(:image) { Image.new(notes_attributes: [acq_note, cit_note]) }
 
     it 'indexes with labels' do
-      expect(image.notes).to include(acq_note, cit_note)
-      expect(subject['note_label_tesim']).to include(acq_note.value, cit_note.value)
+      expect(subject['note_label_tesim']).to include(acq_note[:value], cit_note[:value])
     end
   end
 

@@ -13,6 +13,7 @@ class Collection < ActiveFedora::Base
   accepts_nested_attributes_for :issued, reject_if: :time_span_blank, allow_destroy: true
   accepts_nested_attributes_for :date_copyrighted, reject_if: :time_span_blank, allow_destroy: true
 
+  # must be included after all properties are declared
   include NestedAttributes
 
   def self.indexer
