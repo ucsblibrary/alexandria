@@ -86,15 +86,24 @@ describe Image do
     end
 
     context 'for notes' do
+      let(:notes) { [title_note, caption_note, cite_note] }
+
+      let(:title_note) {{ value: ['Title from item.'] }}
+      let(:caption_note) {{ value: ["Postcard caption: 25. Light-House Tower Sta. Barbara Earth Quake.\n6-29-25."] }}
+      let(:cite_note) {{ note_type: ['preferred citation'],
+        value: ["[Identification of Item], Santa Barbara picture\npostcards collection. SBHC Mss 36. Department of Special Collections, UC Santa Barbara\nLibrary, University of California, Santa Barbara."] }}
+
       before do
         subject.title = ['Test title']
-        subject.notes_attributes = [{ value: 'Title from item.' }, { value: "Postcard caption: 25. Light-House Tower Sta. Barbara Earth Quake.\n6-29-25." }, { value: "[Identification of Item], Santa Barbara picture\npostcards collection. SBHC Mss 36. Department of Special Collections, UC Santa Barbara\nLibrary, University of California, Santa Barbara.", note_type: 'preferred citation' }]
+        notes.each {|note| subject.notes.build(note) }
+        subject.save!
+        subject.reload
       end
 
       it 'has notes' do
-        subject.save!
-        subject.reload
         expect(subject.notes.size).to eq 3
+        expect(subject.notes.flat_map(&:note_type)).to eq cite_note[:note_type]
+        expect(subject.notes.flat_map(&:value).sort).to eq [title_note[:value], caption_note[:value], cite_note[:value]].flatten.sort
       end
     end
 

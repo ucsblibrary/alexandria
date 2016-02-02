@@ -139,7 +139,7 @@ module Metadata
       index.as :stored_searchable
     end
 
-    has_and_belongs_to_many :notes, predicate: RDF::Vocab::MODS.note
+    property :notes, predicate: RDF::Vocab::MODS.note, class_name: 'Note'
 
     def self.contributor_fields
       RELATIONS.keys

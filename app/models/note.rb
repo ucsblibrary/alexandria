@@ -1,6 +1,6 @@
-class Note < ActiveFedora::Base
-  property :value, predicate: ::RDF::Vocab::MODS.noteGroupValue, multiple: false
-  property :note_type, predicate: ::RDF::Vocab::MODS.noteGroupType, multiple: false
+class Note < ActiveTriples::Resource
+  include StoredInline
 
-  has_many :images, inverse_of: :notes
+  property :value, predicate: ::RDF::Vocab::MODS.noteGroupValue
+  property :note_type, predicate: ::RDF::Vocab::MODS.noteGroupType
 end

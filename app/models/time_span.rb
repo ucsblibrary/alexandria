@@ -1,4 +1,6 @@
 class TimeSpan < ActiveTriples::Resource
+  include StoredInline
+
   configure type: ::RDF::Vocab::EDM.TimeSpan
   property :start, predicate: ::RDF::Vocab::EDM.begin
   property :finish, predicate: ::RDF::Vocab::EDM.end
@@ -6,27 +8,6 @@ class TimeSpan < ActiveTriples::Resource
   property :finish_qualifier, predicate: ::RDF::Vocab::CRM.P80_end_is_qualified_by
   property :label, predicate: ::RDF::SKOS.prefLabel
   property :note, predicate: ::RDF::SKOS.note
-
-  def initialize(uri=RDF::Node.new, parent=nil)
-    uri = if uri.try(:node?)
-      RDF::URI("#timespan_#{uri.to_s.gsub('_:','')}")
-    elsif uri.to_s.include?("#")
-      RDF::URI(uri)
-    end
-    super
-  end
-
-  def final_parent
-    parent
-  end
-
-  def persisted?
-    !new_record?
-  end
-
-  def new_record?
-    id.start_with?('#')
-  end
 
   # MODS date qualifiers
   APPROX = 'approximate'
