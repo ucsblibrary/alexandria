@@ -1,4 +1,5 @@
 require_relative 'inflections'
+require_relative 'settings'
 CurationConcerns.configure do |config|
   config.register_curation_concern :image
   config.register_curation_concern :etd
@@ -53,7 +54,7 @@ CurationConcerns.configure do |config|
   # config.derivatives_path = File.join(Rails.root, 'tmp', 'derivatives')
 
   # If you have ffmpeg installed and want to transcode audio and video uncomment this line
-  # config.enable_ffmpeg = true
+  config.enable_ffmpeg = true
 
   # CurationConcerns uses NOIDs for files and collections instead of Fedora UUIDs
   # where NOID = 10-character string and UUID = 32-character string w/ hyphens
@@ -63,7 +64,7 @@ CurationConcerns.configure do |config|
   # config.noid_template = ".reeddeeddk"
 
   # Store identifier minter's state in a file for later replayability
-  # config.minter_statefile = '/tmp/minter-state'
+  config.minter_statefile = Settings.minter_state
 
   # Specify the prefix for Redis keys:
   # config.redis_namespace = "curation_concerns"
@@ -78,4 +79,3 @@ CurationConcerns.configure do |config|
 end
 
 Date::DATE_FORMATS[:standard] = '%m/%d/%Y'
-
