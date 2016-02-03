@@ -1,0 +1,3 @@
+[submodule "provisioning/osx"]
+	path = provisioning/osx
+	url = https://github.library.ucsb.edu/ADRL/osx-setup.git
