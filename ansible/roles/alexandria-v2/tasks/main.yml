@@ -1,0 +1,6 @@
+---
+# roles/alexandria-v2/tasks/main.yml
+#
+- include: adrl-dm.yml
+- include: automount.yml
+- include: config.yml
