@@ -1,3 +1,7 @@
 [submodule "provisioning/osx"]
 	path = provisioning/osx
 	url = https://github.library.ucsb.edu/ADRL/osx-setup.git
+[submodule "provisioning/centos"]
+	path = provisioning/centos
+	url = https://github.com/dunn/sufia-centos.git
+	branch = ADRL
