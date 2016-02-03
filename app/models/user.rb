@@ -43,6 +43,10 @@ class User < ActiveRecord::Base
     !new_record?
   end
 
+  def metadata_admin?
+    group_list.include?(AdminPolicy::META_ADMIN_GROUP)
+  end
+
   private
 
     def cached_groups(&_block)

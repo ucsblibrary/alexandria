@@ -75,6 +75,11 @@ class SolrDocument
     end
   end
 
+  def public_uri
+    return nil unless LocalAuthority.local_authority?(self)
+    Array(self['public_uri_ssim']).first
+  end
+
   private
 
     def load_file_sets(ids)

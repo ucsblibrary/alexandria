@@ -3,6 +3,8 @@ module BlacklightUrlHelper
 
   def url_for_document(doc, options = {})
     return unless doc
+    return doc.public_uri if doc.public_uri
+
     case Array(doc['has_model_ssim']).first
     when 'Collection'
       collections.collection_path(doc)

@@ -18,6 +18,7 @@ describe 'catalog/_show_image.html.erb' do
     allow(view).to receive(:blacklight_config) { config }
     allow(view).to receive(:blacklight_configuration_context).and_return(blacklight_configuration_context)
     allow(controller).to receive(:show_type?).and_return(false)
+    allow(controller).to receive(:admin_user?).and_return(false)
     render partial: 'catalog/show_image', locals: { document: document }
   end
 

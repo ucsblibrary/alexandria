@@ -82,20 +82,20 @@ describe CatalogController do
       let(:user) { create :admin }
 
       context 'when the record is a local authority' do
-        let(:doc) { SolrDocument.new('active_fedora_model_ssi' => 'Person') }
+        let(:doc) { SolrDocument.new('has_model_ssim' => 'Person') }
 
         it { is_expected.to be true }
       end
 
       context "when the record isn't a local authority" do
         # For now we don't want to show the delete link for certain types of records that aren't local authority records, like images.
-        let(:doc) { SolrDocument.new('active_fedora_model_ssi' => 'Image') }
+        let(:doc) { SolrDocument.new('has_model_ssim' => 'Image') }
         it { is_expected.to be false }
       end
     end
 
     context 'for a non-admin user' do
-      let(:doc) { SolrDocument.new('active_fedora_model_ssi' => 'Person') }
+      let(:doc) { SolrDocument.new('has_model_ssim' => 'Person') }
       let(:user) { create :user }
       it { is_expected.to be false }
     end
@@ -109,7 +109,7 @@ describe CatalogController do
     end
 
     context 'for a non-admin user' do
-      let(:doc) { SolrDocument.new('active_fedora_model_ssi' => 'Person') }
+      let(:doc) { SolrDocument.new('has_model_ssim' => 'Person') }
       let(:user) { create :user }
       it { is_expected.to be false }
     end
@@ -118,12 +118,12 @@ describe CatalogController do
       let(:user) { create :admin }
 
       context 'when the record is a local authority' do
-        let(:doc) { SolrDocument.new('active_fedora_model_ssi' => 'Person') }
+        let(:doc) { SolrDocument.new('has_model_ssim' => 'Person') }
         it { is_expected.to be true }
       end
 
       context "when the record isn't a local authority" do
-        let(:doc) { SolrDocument.new('active_fedora_model_ssi' => 'Image') }
+        let(:doc) { SolrDocument.new('has_model_ssim' => 'Image') }
         it { is_expected.to be false }
       end
     end

@@ -114,7 +114,8 @@ class CatalogController < ApplicationController
     # solr fields to be displayed in the show (single result) view
     # The ordering of the field names is the order of the display
     config.add_show_field 'foaf_name_tesim', label: 'Name'
-    config.add_show_field 'uri_ssim', label: 'URI'
+    config.add_show_field 'uri_ssim', label: 'Fedora URI', if: :admin_user?
+    config.add_show_field 'public_uri_ssim', label: 'URI'
     config.add_show_field 'label_tesim', label: 'Label'
     config.add_show_field 'has_model_ssim', label: 'Type', if: :show_type?
 
