@@ -14,6 +14,11 @@ describe SolrDocument do
       subject { document.etd? }
       it { is_expected.to be false }
     end
+
+    describe '#public_uri' do
+      subject { document.public_uri }
+      it { is_expected.to be nil }
+    end
   end
 
   context 'for an etd' do

@@ -18,11 +18,19 @@ module LocalAuthorityBase
   def to_solr(solr_doc = {})
     super.tap do |solr_doc|
       solr_doc['uri_ssim'] = uri
+      solr_doc['public_uri_ssim'] = public_uri
     end
+  end
+
+  def public_uri
+    return nil if new_record?
+    url_method_name = "authorities_#{self.class.to_s.downcase}_url".to_sym
+    Rails.application.routes.url_helpers.send(url_method_name, self, host: Rails.application.config.host_name)
   end
 
   def initialize(attributes_or_id = nil, &block)
     super
     self.admin_policy_id = AdminPolicy::PUBLIC_POLICY_ID
   end
+
 end

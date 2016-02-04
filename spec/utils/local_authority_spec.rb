@@ -26,12 +26,12 @@ describe LocalAuthority do
 
     context 'for a solr document' do
       context 'that is a local authority' do
-        let(:record) { SolrDocument.new('active_fedora_model_ssi' => 'Topic') }
+        let(:record) { SolrDocument.new('has_model_ssim' => 'Topic') }
         it { is_expected.to eq true }
       end
 
       context 'that isnt a local authority' do
-        let(:record) { SolrDocument.new('active_fedora_model_ssi' => 'Image') }
+        let(:record) { SolrDocument.new('has_model_ssim' => 'Image') }
         it { is_expected.to eq false }
       end
     end
@@ -41,12 +41,12 @@ describe LocalAuthority do
     subject { LocalAuthority.local_name_authority?(record) }
 
     context 'a record that is a local name' do
-      let(:record) { SolrDocument.new('active_fedora_model_ssi' => 'Group') }
+      let(:record) { SolrDocument.new('has_model_ssim' => 'Group') }
       it { is_expected.to eq true }
     end
 
     context 'a record that isnt a local name' do
-      let(:record) { SolrDocument.new('active_fedora_model_ssi' => 'Topic') }
+      let(:record) { SolrDocument.new('has_model_ssim' => 'Topic') }
       it { is_expected.to eq false }
     end
   end
@@ -55,12 +55,12 @@ describe LocalAuthority do
     subject { LocalAuthority.local_subject_authority?(record) }
 
     context 'a record that is a local subject' do
-      let(:record) { SolrDocument.new('active_fedora_model_ssi' => 'Topic') }
+      let(:record) { SolrDocument.new('has_model_ssim' => 'Topic') }
       it { is_expected.to eq true }
     end
 
     context 'a record that isnt a local subject' do
-      let(:record) { SolrDocument.new('active_fedora_model_ssi' => 'Agent') }
+      let(:record) { SolrDocument.new('has_model_ssim' => 'Agent') }
       it { is_expected.to eq false }
     end
   end
