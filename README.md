@@ -1,5 +1,116 @@
 [![Build Status](https://travis-ci.org/curationexperts/alexandria-v2.svg?branch=master)](https://travis-ci.org/curationexperts/alexandria-v2)
 
+# Setup
+
+## OSX
+
+1. `bin/provision local`
+
+2. `bin/rails server`
+
+5. The following services should be running; `brew services restart [program]` if not:
+
+    - Tomcat: http://localhost:8080/
+
+        - Solr: http://localhost:8080/hydra
+
+        - Fedora: http://localhost:8080/fedora/
+
+        - Marmotta: http://localhost:8080/marmotta
+
+    - PostgreSQL: <http://localhost:5432>
+
+    - Redis: <http://localhost:6379>
+
+## Vagrant
+
+### Prerequisites
+
+- Ansible 2.0.0 or higher
+- Vagrant 1.7.2 or higher
+- VirtualBox 4.3.30 or higher
+
+### Part A: get or build a Vagrant Box with CentOS 7.0 on it.
+
+- Option 1: Get a Vagrant box already built from another developer
+- Option 2: Build your own Vagrant box.
+
+#### Building your own Vagrant box:
+
+1. If you didn’t clone this repository with `--recursive`, fetch the
+   submodules with `git submodule init && git submodule update`.
+
+2. Download a Centos-7 disk image (ISO):
+
+    ```
+    curl ftp://ftp.ucsb.edu//pub/mirrors/linux/centos/7.1.1503/isos/x86_64/CentOS-7-x86_64-Minimal-1503-01.iso -o vagrant-centos/isos/CentOS-7-x86_64-Minimal-1503-01.iso
+    ```
+
+3. Run the setup script: `cd vagrant-centos && ./setup isos/CentOS-7-x86_64-Minimal-1503-01.iso ks.cfg`
+
+## Part B: Start a local VM
+
+1. If you didn’t clone this repository with `--recursive`, fetch the
+   submodules with `git submodule init && git submodule update`.
+
+2. `bin/provision development`
+
+    Once the VM is created, you can SSH into it with `vagrant ssh` or
+    manually by using the config produced by `vagrant ssh-config`.
+
+4. `make vagrant` to deploy with Capistrano
+
+5. The following services should be running; `sudo service [program] restart` if not:
+
+    - Apache/Passenger (httpd): http://localhost:8484/
+
+    - Tomcat: http://localhost:2424/
+
+        - Solr: http://localhost:2424/hydra
+
+        - Fedora: http://localhost:2424/fedora/
+
+        - Marmotta: http://localhost:2424/marmotta
+
+    - PostgreSQL: <http://localhost:5432>
+
+    - Redis: <http://localhost:6379>
+
+## vSphere
+
+### Prerequisites
+
+- Ansible 2.0.0 or higher
+- 4GB+ RAM on the server
+
+### Steps
+
+1. `bin/provision production` to provision the production server
+
+    - It’s (relatively) safe to set `REMOTE_USER` as root, since a
+      non-root `deploy` user will be created for Capistrano.
+
+2. Add `/home/deploy/.ssh/id_rsa.pub` to the authorized keys for the ADRL repository.
+
+3. `SERVER=alexandria.ucsb.edu REPO=git@github.library.ucsb.edu:ADRL/alexandria.git make prod` to deploy with Capistrano.
+
+# Troubleshooting
+
+- **mod_passenger fails to compile**
+
+    There’s probably not enough memory on the server.
+
+- **`SSHKit::Command::Failed: bundle exit status: 137` during `bundle install`**
+
+    Probably not enough memory.
+
+- **Nokogiri fails to compile**
+
+    Add the following to `config/deploy.rb`:
+
+    ```ruby
+    set :bundle_env_variables, nokogiri_use_system_libraries: 1
+
 # Ingesting
 
 (See also: <https://github.com/curationexperts/alexandria-v2/wiki>)
