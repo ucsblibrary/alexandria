@@ -14,10 +14,4 @@ class Agent < ActiveFedora::Base
     'catalog/document'
   end
 
-  # This allows us to scope queries directly against a specific subclass,
-  # Otherwise, "Agent.all" would return instances of any subclass of Agent
-  # (e.g. Person)
-  def self.exact_model
-    where(has_model_ssim: to_s)
-  end
 end

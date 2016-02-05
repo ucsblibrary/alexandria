@@ -3,6 +3,13 @@ module LocalAuthorityBase
 
   included do
     belongs_to :admin_policy, class_name: 'Hydra::AdminPolicy', predicate: ActiveFedora::RDF::ProjectHydra.isGovernedBy
+
+    # This allows us to scope queries directly against a
+    # specific subclass.  Otherwise, "Agent.all" would return
+    # instances of any subclass of Agent (e.g. Person).
+    def self.exact_model
+      where(has_model_ssim: to_s)
+    end
   end
 
   # This asserts that this record is valid for a vocab. This works around

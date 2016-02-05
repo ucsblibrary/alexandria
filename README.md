@@ -12,6 +12,16 @@ provisioning.  Make sure it is up-to-date when running ingests.
 The remote fileshare with supporting images is automatically mounted
 to `/opt/ingest/data`.
 
+## Local Authorities
+
+### Exporting Local Authorities to a CSV File
+
+Run the export script `bin/export-authorities`
+
+### Importing Local Authorities from a CSV File
+
+TODO
+
 ## ETDs
 
 The ETD collection is created separately from individual records.  See
