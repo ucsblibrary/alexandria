@@ -50,7 +50,7 @@ describe Exporter::LocalAuthorityExporter do
     let!(:tools) { create(:topic, label: ['hydra', 'blacklight', 'fedora', 'solr']) }
     let!(:fun) { create(:topic, label: ['happy hour', 'nerdy jokes']) }
 
-    let(:headers) { ['type', 'id', 'public_uri', 'name', 'name', 'name', 'name'] }
+    let(:headers) { ['type', 'id', 'name', 'name', 'name', 'name'] }
 
     it 'exports the local authorities' do
       exporter.run
@@ -62,7 +62,7 @@ describe Exporter::LocalAuthorityExporter do
       expect(contents.count).to eq 8
 
       expect(contents[0].split(',')).to eq headers
-      expect(contents[1].split(',')).to eq ['Agent', agent.id, agent.public_uri, agent.foaf_name]
+      expect(contents[1].split(',')).to eq ['Agent', agent.id, agent.foaf_name]
 
       line2 = contents[2].split(',')
       line3 = contents[3].split(',')
@@ -70,23 +70,23 @@ describe Exporter::LocalAuthorityExporter do
       # We don't know what order they will be in.  Decide if
       # we should compare this line to "justin" or "alicia".
       person = line2[1] == justin.id ? justin : alicia
-      expect(line2).to eq ['Person', person.id, person.public_uri, person.foaf_name]
+      expect(line2).to eq ['Person', person.id, person.foaf_name]
 
       person = line3[1] == justin.id ? justin : alicia
-      expect(line3).to eq ['Person', person.id, person.public_uri, person.foaf_name]
+      expect(line3).to eq ['Person', person.id, person.foaf_name]
 
-      expect(contents[4].split(',')).to eq ['Group', devs.id, devs.public_uri, devs.foaf_name]
-      expect(contents[5].split(',')).to eq ['Organization', dce.id, dce.public_uri, dce.foaf_name]
+      expect(contents[4].split(',')).to eq ['Group', devs.id, devs.foaf_name]
+      expect(contents[5].split(',')).to eq ['Organization', dce.id, dce.foaf_name]
 
       line6 = contents[6].split(',')
       line7 = contents[7].split(',')
 
       # We don't know what order the topics will be in.
       topic = line6[1] == fun.id ? fun : tools
-      expect(line6).to eq ['Topic', topic.id, topic.public_uri] + topic.label
+      expect(line6).to eq ['Topic', topic.id] + topic.label
 
       topic = line7[1] == fun.id ? fun : tools
-      expect(line7).to eq ['Topic', topic.id, topic.public_uri] + topic.label
+      expect(line7).to eq ['Topic', topic.id] + topic.label
     end
   end  # run
 
