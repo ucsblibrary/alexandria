@@ -68,7 +68,7 @@ module Exporter
               end
       names = Array(names)
       self.max_names = names.count if names.count > max_names
-      [object.id, object.public_uri] + names
+      [object.class.to_s, object.id, object.public_uri] + names
     end
 
     # We don't know how many headers we'll need until after we
@@ -87,7 +87,7 @@ module Exporter
     end
 
     def headers
-      ['id', 'public_uri'] + Array.new(max_names){|i| 'name' }
+      ['type', 'id', 'public_uri'] + Array.new(max_names){|i| 'name' }
     end
 
     def clean_up_temp_file
