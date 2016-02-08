@@ -22,7 +22,7 @@ GIT
 
 GIT
   remote: git://github.com/projecthydra-labs/curation_concerns.git
-  revision: 7538320dc84e5ac9f358d08e9ec1275a5e2ad486
+  revision: 194b8e5c3b6b9a4a7695510dc3a637b831c3b810
   specs:
     curation_concerns (0.6.0)
       blacklight (~> 6.0)
@@ -39,6 +39,7 @@ GIT
       active_fedora-noid (~> 1.0)
       hydra-collections (~> 7.0)
       hydra-head (~> 9.3)
+      hydra-pcdm (~> 0.3.2)
       hydra-works (~> 0.6)
       qa (~> 0.5)
       redlock (~> 0.1.2)
@@ -110,9 +111,9 @@ GEM
       deprecation (~> 0.1)
       linkeddata (~> 1.1)
       rdf (~> 1.1)
-    active_attr (0.8.5)
-      activemodel (>= 3.0.2, < 5.0)
-      activesupport (>= 3.0.2, < 5.0)
+    active_attr (0.9.0)
+      activemodel (>= 3.0.2, < 5.1)
+      activesupport (>= 3.0.2, < 5.1)
     active_fedora-noid (1.0.3)
       active-fedora (~> 9.7)
       noid (~> 0.7)
@@ -131,7 +132,7 @@ GEM
       activemodel (= 4.2.5)
       activesupport (= 4.2.5)
       arel (~> 6.0)
-    activerecord-import (0.10.0)
+    activerecord-import (0.11.0)
       activerecord (>= 3.0)
     activesupport (4.2.5)
       i18n (~> 0.7)
@@ -236,7 +237,7 @@ GEM
       devise (>= 3.4.1)
       net-ldap (>= 0.6.0, <= 0.11)
     diff-lcs (1.2.5)
-    domain_name (0.5.25)
+    domain_name (0.5.20160128)
       unf (>= 0.0.5, < 1.0.0)
     dot-properties (0.1.3)
     ebnf (1.0.0)
@@ -295,7 +296,7 @@ GEM
       hydra-access-controls (= 9.7.1)
       hydra-core (= 9.7.1)
       rails (>= 3.2.6)
-    hydra-pcdm (0.4.0)
+    hydra-pcdm (0.3.2)
       active-fedora (~> 9.6)
       activefedora-aggregation (~> 0.6)
       mime-types (>= 1)
@@ -303,10 +304,10 @@ GEM
       blacklight
       bootstrap_form
       cancancan
-    hydra-works (0.7.0)
+    hydra-works (0.6.0)
       hydra-derivatives (~> 3.0)
       hydra-file_characterization (~> 0.3, >= 0.3.3)
-      hydra-pcdm (~> 0.4)
+      hydra-pcdm (~> 0.3)
     i18n (0.7.0)
     iso-639 (0.2.5)
     jbuilder (2.4.0)
@@ -582,8 +583,8 @@ GEM
     simple_form (3.1.1)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
-    sinatra (1.4.6)
-      rack (~> 1.4)
+    sinatra (1.4.7)
+      rack (~> 1.5)
       rack-protection (~> 1.4)
       tilt (>= 1.3, < 3)
     slop (3.6.0)
@@ -641,7 +642,7 @@ GEM
       json (>= 1.8.0)
     unf (0.1.4)
       unf_ext
-    unf_ext (0.0.7.1)
+    unf_ext (0.0.7.2)
     vcr (3.0.1)
     vegas (0.1.11)
       rack (>= 1.0.0)
