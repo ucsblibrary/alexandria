@@ -7,15 +7,17 @@ describe ImageIndexer do
   subject { ImageIndexer.new(image).generate_solr_document }
 
   context 'with a file_set' do
+    let(:file_set) { double(files: [file]) }
+    let(:file) { double(id: 's1/78/4k/72/s1784k724/files/6185235a-79b2-4c29-8c24-4d6ad9b11470') }
     before do
-      allow(image).to receive_messages(member_ids: ['bf/74/27/75/bf742775-2a24-46dc-889e-cca03b27b5f3'])
+      allow(image).to receive_messages(file_sets: [file_set])
     end
     let(:image) { Image.new }
 
     it 'has images' do
-      expect(subject['thumbnail_url_ssm']).to eq ['http://test.host/images/bf%2F74%2F27%2F75%2Fbf742775-2a24-46dc-889e-cca03b27b5f3%2Foriginal/full/300,/0/default.jpg']
-      expect(subject['image_url_ssm']).to eq ['http://test.host/images/bf%2F74%2F27%2F75%2Fbf742775-2a24-46dc-889e-cca03b27b5f3%2Foriginal/full/600,/0/default.jpg']
-      expect(subject['large_image_url_ssm']).to eq ['http://test.host/images/bf%2F74%2F27%2F75%2Fbf742775-2a24-46dc-889e-cca03b27b5f3%2Foriginal/full/1000,/0/default.jpg']
+      expect(subject['thumbnail_url_ssm']).to eq ['http://test.host/images/s1%2F78%2F4k%2F72%2Fs1784k724%2Ffiles%2F6185235a-79b2-4c29-8c24-4d6ad9b11470/full/300,/0/default.jpg']
+      expect(subject['image_url_ssm']).to eq ['http://test.host/images/s1%2F78%2F4k%2F72%2Fs1784k724%2Ffiles%2F6185235a-79b2-4c29-8c24-4d6ad9b11470/full/600,/0/default.jpg']
+      expect(subject['large_image_url_ssm']).to eq ['http://test.host/images/s1%2F78%2F4k%2F72%2Fs1784k724%2Ffiles%2F6185235a-79b2-4c29-8c24-4d6ad9b11470/full/1000,/0/default.jpg']
     end
   end
 

@@ -22,11 +22,13 @@ class ImageIndexer < ObjectIndexer
     end
 
     def file_set_images(size = '600,')
-      object.member_ids.map do |id|
+      object.file_sets.map do |file_set|
+        file = file_set.files.first
+        next unless file
         Riiif::Engine.routes.url_helpers.image_url(
-          "#{id}/original",
+          file.id,
           size: size,
-          host: host,
+          host: host
         )
       end
     end
