@@ -13,7 +13,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'therubyracer', platforms: :ruby
 
 gem 'hydra-role-management'
-gem 'hydra-collections', github: 'projecthydra/hydra-collections', branch: 'multivalue_metadata'
+gem 'hydra-collections', github: 'projecthydra/hydra-collections'
 gem 'curation_concerns', github: 'projecthydra-labs/curation_concerns'
 gem 'rdf-marmotta', '~> 0.0.8'
 gem 'rdf-vocab', '~> 0.8.4'
