@@ -24,11 +24,7 @@ class SolrDocument
   # @example
   #   link_to '...', SolrDocument(id: 'bXXXXXX5').new => <a href="/dams_object/bXXXXXX5">...</a>
   def to_model
-    @model ||= if curation_concern?
-                 ActiveFedora::Base.load_instance_from_solr(id, self)
-               else
-                 super
-               end
+    @model ||= ActiveFedora::Base.load_instance_from_solr(id, self)
   end
 
   # Something besides a local authority

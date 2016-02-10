@@ -30,8 +30,6 @@ class CatalogController < ApplicationController
   # https://groups.google.com/d/msg/blacklight-development/l_zHRF_GQc8/_qUUbJSs__YJ
   CatalogController.blacklight_config.show.document_actions.delete(:sms)
 
-  add_show_tools_partial(:merge, partial: 'catalog/merge_link', if: :show_merge_link?)
-  add_show_tools_partial(:delete, partial: 'catalog/delete', if: :show_delete_link?)
   add_show_tools_partial(:edit, partial: 'catalog/edit', if: :editor?)
   add_show_tools_partial(:download, partial: 'catalog/download')
   add_show_tools_partial(:access, partial: 'catalog/access', if: :show_embargos_link?)
@@ -110,13 +108,6 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name('form_of_work_label', :stored_searchable), label: 'Type'
     config.add_index_field solr_name('location_label', :stored_searchable), label: 'Location'
     config.add_index_field solr_name('language', :stored_searchable), label: 'Language'
-
-    # solr fields to be displayed in the show (single result) view
-    # The ordering of the field names is the order of the display
-    config.add_show_field 'foaf_name_tesim', label: 'Name'
-    config.add_show_field 'public_uri_ssim', label: 'URI'
-    config.add_show_field 'label_tesim', label: 'Label'
-    config.add_show_field 'has_model_ssim', label: 'Type', if: :show_type?
 
     Metadata::RELATIONS.each do |key, _value|
       config.add_show_field solr_name("#{key}_label", :stored_searchable), label: key.to_s.titleize
@@ -224,16 +215,6 @@ class CatalogController < ApplicationController
     @current_ability ||= Ability.new(current_user, on_campus?)
   end
 
-  def show_delete_link?(_config, options)
-    LocalAuthority.local_authority?(options.fetch(:document)) &&
-      can?(:destroy, :local_authorities)
-  end
-
-  def show_merge_link?(_config, options)
-    LocalAuthority.local_authority?(options.fetch(:document)) &&
-      can?(:merge, options.fetch(:document))
-  end
-
   def show_embargos_link?(_config, options)
     doc = options.fetch(:document)
     doc.curation_concern? && can?(:update_rights, doc)
@@ -245,9 +226,4 @@ class CatalogController < ApplicationController
     document = stuff.fetch(:document)
     can?(:edit, document) && !document.etd?
   end
-
-  def show_type?(_, document)
-    LocalAuthority.local_authority?(document)
-  end
-
 end

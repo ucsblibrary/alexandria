@@ -50,11 +50,11 @@ Rails.application.routes.draw do
 
   resources :local_authorities, only: :index
 
-  get 'authorities/agents/:id', to: 'catalog#show', as: 'authorities_agent'
-  get 'authorities/people/:id', to: 'catalog#show', as: 'authorities_person'
-  get 'authorities/groups/:id', to: 'catalog#show', as: 'authorities_group'
-  get 'authorities/organizations/:id', to: 'catalog#show', as: 'authorities_organization'
-  get 'authorities/topics/:id', to: 'catalog#show', as: 'authorities_topic'
+  get 'authorities/agents/:id',        to: 'local_authorities#show', as: 'agent'
+  get 'authorities/people/:id',        to: 'local_authorities#show', as: 'person'
+  get 'authorities/groups/:id',        to: 'local_authorities#show', as: 'group'
+  get 'authorities/organizations/:id', to: 'local_authorities#show', as: 'organization'
+  get 'authorities/topics/:id',        to: 'local_authorities#show', as: 'topic'
 
   devise_for :users
   mount Hydra::RoleManagement::Engine => '/'

@@ -31,8 +31,9 @@ module LocalAuthorityBase
 
   def public_uri
     return nil if new_record?
-    url_method_name = "authorities_#{self.class.to_s.downcase}_url".to_sym
-    Rails.application.routes.url_helpers.send(url_method_name, self, host: Rails.application.config.host_name)
+    routes = Rails.application.routes.url_helpers
+    builder = ActionDispatch::Routing::PolymorphicRoutes::HelperMethodBuilder
+    builder.polymorphic_method routes, self, nil, :url, host: Rails.application.config.host_name
   end
 
   def initialize(attributes_or_id = nil, &block)

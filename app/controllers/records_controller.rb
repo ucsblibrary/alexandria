@@ -44,6 +44,17 @@ class RecordsController < ApplicationController
     end
   end
 
+  protected
+
+    def redirect_after_create
+      polymorphic_url(resource)
+    end
+
+    def redirect_after_update
+      polymorphic_url(resource)
+    end
+
+
   private
 
     # Override method from hydra-editor to insert record origin

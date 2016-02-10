@@ -46,4 +46,42 @@ describe LocalAuthoritiesController do
       end
     end
   end # logged in as admin
+
+  describe '#show_delete_link?' do
+    let(:doc) { SolrDocument.new('has_model_ssim' => 'Person') }
+    subject { controller.send(:show_delete_link?, nil, document: doc) }
+
+    before do
+      allow(controller).to receive(:current_user).and_return(user)
+    end
+
+    context 'for an admin user' do
+      let(:user) { create :admin }
+      it { is_expected.to be true }
+    end
+
+    context 'for a non-admin user' do
+      let(:user) { create :user }
+      it { is_expected.to be false }
+    end
+  end
+
+  describe '#show_merge_link?' do
+    let(:doc) { SolrDocument.new('has_model_ssim' => 'Person') }
+    subject { controller.send(:show_merge_link?, nil, document: doc) }
+
+    before do
+      allow(controller).to receive(:current_user).and_return(user)
+    end
+
+    context 'for a non-admin user' do
+      let(:user) { create :user }
+      it { is_expected.to be false }
+    end
+
+    context 'for an admin user' do
+      let(:user) { create :admin }
+      it { is_expected.to be true }
+    end
+  end
 end
