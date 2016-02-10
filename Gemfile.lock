@@ -105,7 +105,7 @@ GEM
       om (~> 3.1)
       rdf-rdfxml (~> 1.1)
       rsolr (~> 1.0.10)
-    active-triples (0.7.4)
+    active-triples (0.7.5)
       activemodel (>= 3.0.0)
       activesupport (>= 3.0.0)
       deprecation (~> 0.1)
@@ -664,6 +664,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active-triples (~> 0.7.5)
   american_date (~> 1.1.0)
   awesome_print
   blacklight (~> 6.0.1)
