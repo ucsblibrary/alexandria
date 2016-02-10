@@ -43,8 +43,4 @@ class ApplicationController < ActionController::Base
     can?(:discover, Hydra::AccessControls::Embargo) || can?(:destroy, :local_authorities)
   end
 
-  def admin_user?(_, _document)
-    current_user && current_user.metadata_admin?
-  end
-
 end

@@ -2,16 +2,6 @@ require 'rails_helper'
 
 describe User do
 
-  describe '#metadata_admin?' do
-    let(:admin_user) { build(:metadata_admin) }
-    let(:user) { build(:user) }
-
-    it 'knows when a user is a metadata admin' do
-      expect(user.metadata_admin?).to be_falsey
-      expect(admin_user.metadata_admin?).to be_truthy
-    end
-  end
-
   describe '#groups' do
     let(:user) { described_class.new }
     subject { user.groups }
