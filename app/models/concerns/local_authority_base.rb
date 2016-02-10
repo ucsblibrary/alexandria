@@ -41,4 +41,8 @@ module LocalAuthorityBase
     self.admin_policy_id = AdminPolicy::PUBLIC_POLICY_ID
   end
 
+  # When a collection of these are rendered, which partial should be used
+  def to_partial_path
+    'catalog/document'
+  end
 end

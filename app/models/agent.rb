@@ -8,10 +8,4 @@ class Agent < ActiveFedora::Base
   property :foaf_name, predicate: ::RDF::Vocab::FOAF.name, multiple: false do |index|
     index.as :stored_searchable, :symbol # Need :symbol for exact match for ObjectFactory find_or_create_* methods.
   end
-
-  # When a collection of these are rendered, which partial should be used
-  def to_partial_path
-    'catalog/document'
-  end
-
 end
