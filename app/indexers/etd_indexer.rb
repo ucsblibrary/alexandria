@@ -6,7 +6,6 @@ class ETDIndexer < ObjectIndexer
 
       solr_doc[Solrizer.solr_name('department', :facetable)] = department(solr_doc)
       solr_doc[Solrizer.solr_name('dissertation', :displayable)] = "#{object.dissertation_degree.first}--#{object.dissertation_institution.first}, #{object.dissertation_year.first}"
-      solr_doc[Solrizer.solr_name('creator_label', :facetable)] = solr_doc[Solrizer.solr_name('author', :facetable)]
     end
   end
 

@@ -1,6 +1,7 @@
 # Selects a sortable (singular) creator and unions all the contributor
 # subtypes together into a single solr field.
 class ContributorIndexer
+  FACETABLE_CONTRIBUTOR = Solrizer.solr_name('contributor_label', :facetable)
   CONTRIBUTOR_LABEL = Solrizer.solr_name('contributor_label', :stored_searchable)
   SORTABLE_CREATOR = Solrizer.solr_name('creator_label', :sortable)
   CREATOR_MULTIPLE = Solrizer.solr_name('creator_label', :stored_searchable)
@@ -22,6 +23,7 @@ class ContributorIndexer
   def generate_solr_document(solr_doc)
     solr_doc[SORTABLE_CREATOR] = sortable_creator(solr_doc)
     solr_doc[CONTRIBUTOR_LABEL] = contributors
+    solr_doc[FACETABLE_CONTRIBUTOR] = solr_doc[CONTRIBUTOR_LABEL]
     solr_doc
   end
 
@@ -33,11 +35,12 @@ class ContributorIndexer
     end
 
     # @return [NilClass, Array] Union of all the MARC relators. If non exist, return nil
+    # Returns the rdf label if it's a URI, otherwise the value itself.
     def contributors
       Metadata::MARCREL.keys.each_with_object([]) do |field, list|
         next if object[field].empty?
         list.push *object[field].map { |val|
-          val.respond_to?(:rdf_label) ? val.rdf_label.first : nil
+          val.respond_to?(:rdf_label) ? val.rdf_label.first : val
         }
       end
     end

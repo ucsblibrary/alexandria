@@ -26,7 +26,7 @@
     <section id="browse-by">
       Or browse by
       <%= link_to 'Collection', collections.collections_path %>,
-      <%= link_to 'Creator', facet_catalog_path(Solrizer.solr_name('creator_label', :facetable)) %>,
+      <%= link_to 'Contributor', facet_catalog_path(ContributorIndexer::FACETABLE_CONTRIBUTOR) %>,
       <%= link_to 'Format', facet_catalog_path(Solrizer.solr_name('work_type', :facetable)) %>,
       or
       <%= link_to 'Subject', facet_catalog_path(Solrizer.solr_name('lc_subject_label', :facetable)) %>
