@@ -1,11 +1,11 @@
 GIT
   remote: git://github.com/curationexperts/oargun.git
-  revision: fbadc10181a73d6fd2cec218f6f16fe20a1f2ea2
-  ref: fbadc10181a73d6fd2cec218f6f16fe20a1f2ea2
+  revision: 8d4b556107ca4c042380acb918cffd5b21baaeac
+  ref: 8d4b556
   specs:
     oargun (0.0.1)
       active-fedora (~> 9.0)
-      active-triples (>= 0.6.0)
+      active-triples (>= 0.7.5)
       activesupport (~> 4.0)
       linked_vocabs (~> 0.2)
       rdf-vocab (~> 0.8)
