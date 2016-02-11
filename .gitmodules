@@ -3,5 +3,4 @@
 	url = https://github.library.ucsb.edu/ADRL/osx-setup.git
 [submodule "provisioning/centos"]
 	path = provisioning/centos
-	url = https://github.com/dunn/sufia-centos.git
-	branch = ADRL
+	url = https://github.com/acozine/sufia-centos.git
