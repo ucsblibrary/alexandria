@@ -80,7 +80,7 @@ class CatalogController < ApplicationController
     #
     # :show may be set to false if you don't want the facet to be drawn in the
     # facet bar
-    config.add_facet_field solr_name('work_type', :facetable), label: 'Type of Resource'
+    config.add_facet_field solr_name('work_type_label', :facetable), label: 'Type of Resource'
     config.add_facet_field solr_name('location_label', :facetable), label: 'Location'
     config.add_facet_field ContributorIndexer::FACETABLE_CONTRIBUTOR, label: 'Contributor'
     config.add_facet_field solr_name('lc_subject_label', :facetable), label: 'Subject', limit: 20
