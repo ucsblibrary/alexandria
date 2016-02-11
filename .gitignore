@@ -13,6 +13,7 @@ public/assets
 
 # Ignore provisioning files
 ansible.cfg
+ansible/variables.cfg
 fedora-data
 hosts
 ingest
