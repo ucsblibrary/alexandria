@@ -260,10 +260,10 @@ if [ "$1" == "production" ]; then
 
 elif [ "$1" == "vagrant" ] || [ "$1" == "development" ]; then
 
-  if [ "$2" == "" ]; then
-    run_cmd "vagrant up"
-  else
+  if [[ -e ".vagrant/machines/default/virtualbox/id" ]]; then
     run_cmd "vagrant provision"
+  else
+    run_cmd "vagrant up"
   fi
 
   if [ "$EXIT_STATUS" == "0" ]; then
