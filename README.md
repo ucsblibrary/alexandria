@@ -28,16 +28,13 @@ To run the import script use `bin/ingest-authorities <csv_file>`
 
 ## ETDs
 
-The ETD collection is created separately from individual records.  See
-https://wiki.library.ucsb.edu/pages/viewpage.action?pageId=16288317 on
-creating it.
-
-Once the collection has been created, `bin/ingest-etd` can be used to
-ingest records:
-
 1. SSH into the server and `cd` to the “current” directory: `cd /opt/alex2/current`.
 
 2. Run the ETD script: `bundle exec bin/ingest-etd /opt/ingest/data/etds/2adrl_ready/*.zip`.
+
+After you import the individual ETDs, you need to add the collection-level record to the repository. See
+https://wiki.library.ucsb.edu/pages/viewpage.action?pageId=16288317 on
+creating it.
 
 ## Images
 
