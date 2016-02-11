@@ -28,6 +28,8 @@ describe ObjectFactoryWriter do
         'dissertation_institution' => [nil],
         'dissertation_year' => [nil],
         'fulltext_link' => [nil],
+        'fulltext_link' => [nil],
+        'work_type' => [RDF::URI('http://id.loc.gov/vocabulary/resourceTypes/txt')]
       }
     end
 
@@ -43,17 +45,19 @@ describe ObjectFactoryWriter do
           extent: ['1 online resource (147 pages)'],
           description: ['Marine mussels use a mixture of proteins...', 'The performance of strong adhesion...'],
           title: ['How to be awesome'],
-          'degree_grantor' => ['University of California, Santa Barbara Mathematics'],
-          'place_of_publication' => ['[Santa Barbara, Calif.]'],
-          'publisher' => ['University of California, Santa Barbara'],
-          'issued' => ['2013'],
+          degree_grantor: ['University of California, Santa Barbara Mathematics'],
+          place_of_publication: ['[Santa Barbara, Calif.]'],
+          publisher: ['University of California, Santa Barbara'],
+          issued: ['2013'],
           degree_supervisor: %w(Paul Hector),
           system_number: [],
           language: [],
           dissertation_degree: [],
           dissertation_institution: [],
           dissertation_year: [],
-          fulltext_link: [] }.with_indifferent_access
+          fulltext_link: [],
+          work_type: [RDF::URI('http://id.loc.gov/vocabulary/resourceTypes/txt')]
+        }.with_indifferent_access
       )
 
       writer.put(traject_context)

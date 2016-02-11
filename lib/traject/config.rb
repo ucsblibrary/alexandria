@@ -1,14 +1,20 @@
 require 'traject'
-require File.expand_path('../config/environment', __FILE__)
+require File.expand_path('../../../config/environment', __FILE__)
 Rails.application.eager_load!
 AdminPolicy.ensure_admin_policy_exists
-require 'object_factory_writer'
+ require 'object_factory_writer'
 require 'traject/macros/marc_format_classifier'
 require 'traject/macros/marc21_semantics'
+require 'traject/debug_writer'
+require 'traject/extract_work_type'
+require 'traject/extract_ark'
+require 'traject/extract_fulltext_link'
 require 'solrizer'
-require_relative 'app/utils/identifier'
 extend Traject::Macros::Marc21Semantics
 extend Traject::Macros::MarcFormats
+extend ExtractWorkType
+extend ExtractArk
+extend ExtractFulltextLink
 
 settings do
   provide 'writer_class_name', 'ObjectFactoryWriter'
@@ -17,24 +23,13 @@ settings do
   provide 'processing_thread_pool', 0
 end
 
-ark_extractor = MarcExtractor.new('024a', separator: nil)
-
-to_field 'identifier', lambda { |record, accumulator, context|
-  fields = ark_extractor.extract(record).compact
-  if fields.empty?
-    puts 'No ARK, Skipping.'
-    context.skip!
-  else
-    # TODO: update ARK to point at alexandria-v2?
-    accumulator << fields.first
-  end
-}
-
+to_field 'identifier', extract_ark
 to_field 'id', lambda { |_record, accumulator, context|
   accumulator << Identifier.ark_to_id(context.output_hash['identifier'].first)
 }
 
 to_field 'author', extract_marc('100a', trim_punctuation: true, default: nil)
+to_field "work_type", extract_work_type
 to_field 'created_start', marc_publication_date
 to_field 'dissertation_degree', extract_marc('502b', default: nil)
 to_field 'dissertation_institution', extract_marc('502c', default: nil)
@@ -57,10 +52,6 @@ to_field 'relators', extract_marc('720e', allow_duplicates: true)
 to_field 'description', extract_marc('520a', default: nil)
 
 to_field 'degree_grantor', extract_marc('710ab', trim_punctuation: true, default: nil)
-
-extract856u = MarcExtractor.new('856u', separator: nil)
-to_field 'fulltext_link', lambda { |record, accumulator|
-  accumulator << extract856u.extract(record).grep(/proquest/).first
-}
+to_field 'fulltext_link', extract_fulltext_link
 
 to_field 'filename', extract_marc('956f', default: nil)

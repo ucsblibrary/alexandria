@@ -5,5 +5,5 @@
 export RAILS_ENV=production
 
 for xml in "$@"; do
-    bundle exec traject -c traject_config.rb "$xml"
+    bundle exec traject -c lib/traject/config.rb "$xml"
 done
