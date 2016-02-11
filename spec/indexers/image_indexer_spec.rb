@@ -50,10 +50,22 @@ describe ImageIndexer do
     end
   end
 
+  context 'with location' do
+    let(:location) { RDF::URI('http://id.loc.gov/authorities/subjects/sh85072779') }
+    let(:image) { Image.new(location: [location]) }
+    it "indexes a label" do
+      VCR.use_cassette('location') do
+        expect(subject['location_sim']).to eq [location]
+        expect(subject['location_label_sim']).to eq ['Kodiak Island (Alaska)']
+        expect(subject['location_label_tesim']).to eq ['Kodiak Island (Alaska)']
+      end
+    end
+  end
+
   context 'with local and LOC rights holders' do
-    let(:regents_uri) { RDF::URI.new('http://id.loc.gov/authorities/names/n85088322') }
+    let(:regents_uri) { RDF::URI('http://id.loc.gov/authorities/names/n85088322') }
     let(:valerie) { Agent.create(foaf_name: 'Valerie') }
-    let(:valerie_uri) { RDF::URI.new(valerie.uri) }
+    let(:valerie_uri) { RDF::URI(valerie.uri) }
 
     let(:image) { Image.new(rights_holder: [valerie_uri, regents_uri]) }
 

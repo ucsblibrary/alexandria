@@ -1,4 +1,5 @@
 module ExtractWorkType
+  # Transfor leader field 006 into a LOC Resource Type URI
   def extract_work_type
     work_type = {
       'a' => RDF::URI('http://id.loc.gov/vocabulary/resourceTypes/txt'),

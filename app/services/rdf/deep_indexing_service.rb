@@ -1,5 +1,6 @@
 class RDF::DeepIndexingService < ActiveFedora::RDF::IndexingService
-  # We're overiding the default indexer in order to index the RDF labels
+  # We're overiding the default indexer in order to index the RDF labels. In order
+  # for this to be called, you must specify at least one default indexer on the property.
   # @param [Hash] solr_doc
   # @param [String] solr_field_key
   # @param [Hash] field_info
