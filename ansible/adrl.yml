@@ -43,9 +43,9 @@
     smtp_domain:
     smtp_password:
 
-    # AD credentials for Stash
-    ad_git_user: "{{ lookup('env', 'AD_GIT_USER') }}"
-    ad_git_pass: "{{ lookup('env', 'AD_GIT_PASS') }}"
+    file_server: ""
+    mount_point: "{{ project_base }}/ingest"
+    mount_opts: -fstype=cifs,ro,sec=ntlm,noexec,_netdev
 
   roles:
     - { role: housekeeping, sudo: yes }

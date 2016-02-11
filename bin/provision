@@ -51,8 +51,6 @@ export REMOTE_USER='$REMOTE_USER'
 export SECRET='$SECRET'
 export SERVER='$SERVER'
 export SOLR_HOME='$SOLR_HOME'
-export AD_GIT_PASS='$AD_GIT_PASS'
-export AD_GIT_USER='$AD_GIT_USER'
 export SUDO_FLAG='$SUDO_FLAG'
 export TOMCAT='$TOMCAT'
 EOF
@@ -135,6 +133,8 @@ else
   export REMOTE_USER
   export REMOTE_GROUP
 
+  export IDENTITY="$HOME/.ssh/id_rsa"
+
   if [[ "$1" == "local" ]]; then
     PROJECT_BASE=$(pwd)
     CONF_PATH="$PROJECT_BASE/$PROJECT_NAME/config"
@@ -149,13 +149,6 @@ else
   export TOMCAT
   export MARMOTTA_HOME="$PROJECT_BASE/marmotta"
   export SOLR_HOME="$PROJECT_BASE/solr"
-
-  if [[ "$1" != "local" ]]; then
-    echo -n "Specify path to identity file (default ~/.ssh/id_rsa): "
-    read -r -e IDENTITY
-    IDENTITY=${IDENTITY:-"$HOME/.ssh/id_rsa"}
-    export IDENTITY
-  fi
 
   if [ "$1" == "production" ]; then
     echo -n "Prompt for sudo password? [Y/n]: "
@@ -174,18 +167,11 @@ else
   echo "Setting SERVER to '$SERVER'"
   export SERVER
 
-  echo -n "Enter username for cloning from Stash/GH Enterprise: "
-  read -r AD_GIT_USER
-  echo "Setting AD_GIT_USER to '$AD_GIT_USER'"
-  export AD_GIT_USER
-
-  echo -n "Enter AD password for $AD_GIT_USER: "
-  read -r -s AD_GIT_PASS
-  export AD_GIT_PASS
-
-  echo
-  echo -n "Enter the contact form email address: "
-  read -r EMAIL
+  if [[ "$1" == "production" ]]; then
+    EMAIL=
+  else
+    EMAIL=$(git config --get user.email | tr -d '\n')
+  fi
   echo "Setting EMAIL to '$EMAIL'"
   export EMAIL
 
