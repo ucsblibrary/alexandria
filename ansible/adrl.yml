@@ -1,11 +1,13 @@
 - name: ADRL on CentOS
   hosts: all
   remote_user: vagrant
+
   vars:
     deploy_user: deploy
     deploy_group: deploy
+    keyfile: "{{ lookup('env', 'IDENTITY') }}.pub"
     deploy_keys:
-      - "{{ lookup('env', 'IDENTITY') }}.pub"
+      - "{{ lookup('file', keyfile) }}"
 
     server_name: "{{ lookup('env', 'SERVER') }}"
     project_base: "{{ lookup('env', 'PROJECT_BASE') }}"
