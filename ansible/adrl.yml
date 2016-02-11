@@ -31,9 +31,6 @@
 
     fedora_pass: "{{ lookup('env', 'FEDORA_PASS') }}"
 
-    # DCE's is available in Secret Server
-    ldap_admin_password: "{{ lookup('env', 'LDAP_PASS') }}"
-
     contact_email: "{{ lookup('env', 'EMAIL') }}"
 
     # SMTP
@@ -44,18 +41,9 @@
     smtp_domain:
     smtp_password:
 
-    # Active Directory login; this is used to mount the data folders
-    # from svmwindows and to clone the metadata repository from Stash
-    svm_user: "{{ lookup('env', 'SVM_USER') }}"
-    svm_pass: "{{ lookup('env', 'SVM_PASS') }}"
-
     # AD credentials for Stash
     ad_git_user: "{{ lookup('env', 'AD_GIT_USER') }}"
     ad_git_pass: "{{ lookup('env', 'AD_GIT_PASS') }}"
-
-    ezid_user: "{{ lookup('env', 'EZID_USER') }}"
-    ezid_pass: "{{ lookup('env', 'EZID_PASS') }}"
-    ezid_default_shoulder: "{{ lookup('env', 'EZID_SHOULDER') }}"
 
   roles:
     - { role: housekeeping, sudo: yes }

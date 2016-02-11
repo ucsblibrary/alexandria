@@ -27,5 +27,6 @@ Vagrant.configure(2) do |config|
   config.vm.provision 'ansible' do |ansible|
     ansible.verbose = 'vv'
     ansible.playbook = 'ansible/adrl.yml'
+    ansible.raw_arguments = %w(--ask-vault-pass -e @ansible/dev_vars.yml)
   end
 end

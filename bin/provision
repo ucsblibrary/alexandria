@@ -38,13 +38,9 @@ write_savepoint() {
 #!/bin/bash
 export CONF_PATH='$CONF_PATH'
 export EMAIL='$EMAIL'
-export EZID_PASS='$EZID_PASS'
-export EZID_SHOULDER='$EZID_SHOULDER'
-export EZID_USER='$EZID_USER'
 export FEDORA_PASS='$FEDORA_PASS'
 export H_PG_PASS='$H_PG_PASS'
 export IDENTITY='$IDENTITY'
-export LDAP_PASS='$LDAP_PASS'
 export MARMOTTA_HOME='$MARMOTTA_HOME'
 export M_PG_PASS='$M_PG_PASS'
 export PG_PASS='$PG_PASS'
@@ -58,8 +54,6 @@ export SOLR_HOME='$SOLR_HOME'
 export AD_GIT_PASS='$AD_GIT_PASS'
 export AD_GIT_USER='$AD_GIT_USER'
 export SUDO_FLAG='$SUDO_FLAG'
-export SVM_PASS='$SVM_PASS'
-export SVM_USER='$SVM_USER'
 export TOMCAT='$TOMCAT'
 EOF
 }
@@ -180,31 +174,6 @@ else
   echo "Setting SERVER to '$SERVER'"
   export SERVER
 
-  echo -n "Enter password for the LDAP server: "
-  read -r -s LDAP_PASS
-  export LDAP_PASS
-
-  echo
-  echo -n "Enter Ezid username: "
-  read -r EZID_USER
-  echo "Setting EZID_USER to '$EZID_USER'"
-  export EZID_USER
-
-  echo -n "Enter password for Ezid: "
-  read -r -s EZID_PASS
-  export EZID_PASS
-
-  if [ "$1" == "production" ]; then
-    echo
-    echo -n "Enter shoulder for Ezid: "
-    read -r EZID_SHOULDER
-    echo "Setting EZID_SHOULDER to '$EZID_SHOULDER'"
-  else
-    EZID_SHOULDER='ark:/99999/fk4'
-    echo
-  fi
-  export EZID_SHOULDER
-
   echo -n "Enter username for cloning from Stash/GH Enterprise: "
   read -r AD_GIT_USER
   echo "Setting AD_GIT_USER to '$AD_GIT_USER'"
@@ -213,18 +182,6 @@ else
   echo -n "Enter AD password for $AD_GIT_USER: "
   read -r -s AD_GIT_PASS
   export AD_GIT_PASS
-
-  if [[ "$1" != "local" ]]; then
-    echo
-    echo -n "Enter Active Directory username for mounting SVM: "
-    read -r SVM_USER
-    echo "Setting SVM_USER to '$SVM_USER'"
-    export SVM_USER
-
-    echo -n "Enter AD password for $SVM_USER: "
-    read -r -s SVM_PASS
-    export SVM_PASS
-  fi
 
   echo
   echo -n "Enter the contact form email address: "
