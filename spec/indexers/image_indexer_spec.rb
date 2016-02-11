@@ -50,6 +50,16 @@ describe ImageIndexer do
     end
   end
 
+  context 'with work type' do
+    let(:work_type) { RDF::URI('http://id.loc.gov/vocabulary/resourceTypes/img') }
+    let(:image) { Image.new(work_type: [work_type]) }
+    it "indexes a label" do
+      expect(subject['work_type_sim']).to eq [work_type]
+      expect(subject['work_type_label_sim']).to eq ['Still Image']
+      expect(subject['work_type_label_tesim']).to eq ['Still Image']
+    end
+  end
+
   context 'with location' do
     let(:location) { RDF::URI('http://id.loc.gov/authorities/subjects/sh85072779') }
     let(:image) { Image.new(location: [location]) }
