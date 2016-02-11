@@ -52,9 +52,7 @@ module Metadata
     end
 
     property :location, predicate: RDF::Vocab::DC.spatial,
-                        class_name: Oargun::ControlledVocabularies::Geographic do |index|
-      index.as :stored_searchable, :facetable
-    end
+                        class_name: Oargun::ControlledVocabularies::Geographic
 
     property :place_of_publication, predicate: RDF::Vocab::MARCRelators.pup do |index|
       index.as :stored_searchable
