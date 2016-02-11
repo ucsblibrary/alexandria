@@ -16,11 +16,15 @@ to `/opt/ingest/data`.
 
 ### Exporting Local Authorities to a CSV File
 
-Run the export script `bin/export-authorities`
+To export local authorities from the local machine, run the export script `bin/export-authorities`
+If you need to export local authorities on a remote box and don't want to run the process  on that box, 
+see the notes in the wiki: [Exporting Local Authorities](https://github.com/curationexperts/alexandria-v2/wiki/Exporting-Local-Authorities-(especially-from-remote-systems)) 
 
 ### Importing Local Authorities from a CSV File
 
-TODO
+To import local authorities to the local system, you will need a CSV file defining the authorities to import.  
+Ideally, this is an export from another system created by the exporter above.   
+To run the import script use `bin/ingest-authorities <csv_file>`  
 
 ## ETDs
 
