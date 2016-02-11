@@ -28,7 +28,6 @@ describe ObjectFactoryWriter do
         'dissertation_institution' => [nil],
         'dissertation_year' => [nil],
         'fulltext_link' => [nil],
-        'fulltext_link' => [nil],
         'work_type' => [RDF::URI('http://id.loc.gov/vocabulary/resourceTypes/txt')]
       }
     end
