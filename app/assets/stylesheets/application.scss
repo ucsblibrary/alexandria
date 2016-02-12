@@ -448,6 +448,10 @@ table#downloads {
   }
 }
 
+.twitter-typeahead {
+  float: none;
+}
+
 nav.navbar {
   background: transparent image_url($bg_image) repeat;
   padding: 1em;
