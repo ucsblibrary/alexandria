@@ -1,3 +1,4 @@
+# Provides search and display of local authority records
 class LocalAuthoritiesController < ApplicationController
   include Hydra::Catalog
   include Hydra::Controller::ControllerBehavior

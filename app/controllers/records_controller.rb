@@ -1,3 +1,4 @@
+# Extends and customizes the RecordsController in hydra-editor
 class RecordsController < ApplicationController
   load_resource only: [:destroy]
   load_and_authorize_resource only: [:new_merge, :merge]

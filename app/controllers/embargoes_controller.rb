@@ -1,3 +1,5 @@
+# TODO: Merge this with CurationConcerns
+# Provides a mechanism to interact with embargos.
 class EmbargoesController < ApplicationController
   include Hydra::Collections::AcceptsBatches
   include Hydra::Controller::ControllerBehavior

@@ -1,3 +1,4 @@
+# Provides a helper to convert ARK paths to a ActiveFedora id
 module ConvertIds
   extend ActiveSupport::Concern
 

@@ -1,3 +1,6 @@
+# TODO: Merge this with CurationConcerns
+# Overrides the CollectionsController provided by hydra-collections
+# it provides display and search within collections.
 class CollectionsController < ApplicationController
   include Hydra::Catalog
   include Hydra::CollectionsControllerBehavior
