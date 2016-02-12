@@ -2,7 +2,7 @@ class FileSetIndexer < CurationConcerns::FileSetIndexer
   def generate_solr_document
     super do |solr_doc|
       if object.original_file
-        # TODO a lot of these properties are indexed in CurationConcerns under other names
+        # TODO: a lot of these properties are indexed in CurationConcerns under other names
         solr_doc['original_download_url_ss'.freeze] = original_download_url
         solr_doc['original_filename_ss'.freeze] = original_filename
         solr_doc['original_file_size_ss'.freeze] = original_file_size

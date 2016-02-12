@@ -133,11 +133,11 @@ class UpdateMetadataFromProquestFile
 
     # Calculate the release date based on <DISS_delayed_release>
     def parse_delayed_release_date
-      if attributes[:DISS_delayed_release].match(/^.*2\s*year.*\Z/i)
+      if attributes[:DISS_delayed_release] =~ /^.*2\s*year.*\Z/i
         two_year_embargo
-      elsif attributes[:DISS_delayed_release].match(/^.*1\s*year.*\Z/i)
+      elsif attributes[:DISS_delayed_release] =~ /^.*1\s*year.*\Z/i
         one_year_embargo
-      elsif attributes[:DISS_delayed_release].match(/^.*6\s*month.*\Z/i)
+      elsif attributes[:DISS_delayed_release] =~ /^.*6\s*month.*\Z/i
         six_month_embargo
       else
         Date.parse(attributes[:DISS_delayed_release])
@@ -163,9 +163,9 @@ class UpdateMetadataFromProquestFile
     end
 
     def parse_access_option
-      if attributes[:DISS_access_option].match(/^.*open access.*\Z/i)
+      if attributes[:DISS_access_option] =~ /^.*open access.*\Z/i
         AdminPolicy::PUBLIC_POLICY_ID
-      elsif attributes[:DISS_access_option].match(/^.*campus use.*\Z/i)
+      elsif attributes[:DISS_access_option] =~ /^.*campus use.*\Z/i
         AdminPolicy::PUBLIC_CAMPUS_POLICY_ID
       else
         # If we can't figure out the correct policy,

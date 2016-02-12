@@ -30,7 +30,6 @@ class LocalAuthoritiesController < ApplicationController
     config.add_show_field 'label_tesim', label: 'Label'
     config.add_show_field 'has_model_ssim', label: 'Type'
 
-
     config.default_solr_params = {
       qf: 'foaf_name_tesim label_tesim',
       wt: 'json',
@@ -71,7 +70,7 @@ class LocalAuthoritiesController < ApplicationController
       can?(:edit, document)
     end
 
-    def show_delete_link?(_config, options)
+    def show_delete_link?(_config, _options)
       can?(:destroy, :local_authorities)
     end
 

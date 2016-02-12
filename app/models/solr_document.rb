@@ -54,7 +54,7 @@ class SolrDocument
   end
 
   def to_param
-    Identifier.ark_to_noid(ark) || id# || Identifier.noidify(id)
+    Identifier.ark_to_noid(ark) || id # || Identifier.noidify(id)
   end
 
   def ark

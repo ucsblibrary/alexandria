@@ -25,10 +25,10 @@ module LocalAuthorityHashAccessor
     # @returns true if the target is a local authority record
     def local_object?(item)
       item.respond_to?(:rdf_subject) &&
-      item.rdf_subject.is_a?(RDF::URI) &&
-      item.rdf_subject.start_with?(ActiveFedora.fedora.host) &&
-      # item.class.include?(LinkedVocabs::Controlled) # TODO this could replace the last term
-      (item.is_a?(Oargun::ControlledVocabularies::Creator) ||
-       item.is_a?(Oargun::ControlledVocabularies::Subject))
+        item.rdf_subject.is_a?(RDF::URI) &&
+        item.rdf_subject.start_with?(ActiveFedora.fedora.host) &&
+        # item.class.include?(LinkedVocabs::Controlled) # TODO this could replace the last term
+        (item.is_a?(Oargun::ControlledVocabularies::Creator) ||
+         item.is_a?(Oargun::ControlledVocabularies::Subject))
     end
 end

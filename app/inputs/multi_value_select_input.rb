@@ -36,7 +36,7 @@ class MultiValueSelectInput < MultiValueInput
       @rendered_first_element = true
 
       selected_option = value.respond_to?(:id) ? value.id : value
-      html_options.merge!(prompt: '') if selected_option.blank?
+      html_options[:prompt] = '' if selected_option.blank?
       template.select_tag(attribute_name, template.options_for_select(select_options, selected_option), html_options)
     end
 end

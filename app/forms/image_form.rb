@@ -22,7 +22,7 @@ class ImageForm
     model.record_origin
   end
 
-  NESTED_ASSOCIATIONS = [:created, :issued, :date_valid, :date_other, :date_copyrighted]
+  NESTED_ASSOCIATIONS = [:created, :issued, :date_valid, :date_other, :date_copyrighted].freeze
 
   protected
 
@@ -55,11 +55,11 @@ class ImageForm
       if reflection.collection?
         association = model.send(key)
 
-        if association.empty?
-          self[key] = Array(association.build)
-        else
-          self[key] = association
-        end
+        self[key] = if association.empty?
+                      Array(association.build)
+                    else
+                      association
+                    end
       else
         self[key] = model.send(key)
         self[key] = AdminPolicy::PUBLIC_POLICY_ID if key == :admin_policy_id && !self[key]

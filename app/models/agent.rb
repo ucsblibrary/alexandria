@@ -16,5 +16,4 @@ class Agent < ActiveFedora::Base
   def sync_label
     self.label = Array(foaf_name)
   end
-
 end

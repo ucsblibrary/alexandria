@@ -4,7 +4,7 @@ class Image < ActiveFedora::Base
   include EmbargoBehavior
   include LocalAuthorityHashAccessor
 
-  self.human_readable_type = "Image"
+  self.human_readable_type = 'Image'
 
   validates :title, presence: { message: 'Your work must have a title.' }
 

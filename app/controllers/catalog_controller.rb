@@ -21,9 +21,9 @@ class CatalogController < ApplicationController
     permissions = current_ability.permissions_doc(params[:id])
     return if can?(:discover, permissions)
 
-    fail Hydra::AccessDenied.new(
-           'You do not have sufficient access privileges to access this document.',
-           :discover, params[:id])
+    raise Hydra::AccessDenied.new(
+      'You do not have sufficient access privileges to access this document.',
+      :discover, params[:id])
   end
 
   # Turn off SMS
