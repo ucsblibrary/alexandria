@@ -1,6 +1,9 @@
 Style/IndentationConsistency:
   EnforcedStyle: rails
 
+Lint/AssignmentInCondition:
+  Enabled: false
+
 Metrics/LineLength:
   Enabled: false
 
