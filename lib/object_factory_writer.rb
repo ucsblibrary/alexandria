@@ -69,7 +69,7 @@ class ObjectFactoryWriter
       factory.new(attributes, Settings.proquest_directory).run
     end
 
-    # TODO this can be branched by the `work_type' attribute
+    # TODO: this can be branched by the `work_type' attribute
     def factory
       Importer::Factory.for('ETD')
     end

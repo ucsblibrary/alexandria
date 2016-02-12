@@ -2,7 +2,7 @@ require 'traject'
 require File.expand_path('../../../config/environment', __FILE__)
 Rails.application.eager_load!
 AdminPolicy.ensure_admin_policy_exists
- require 'object_factory_writer'
+require 'object_factory_writer'
 require 'traject/macros/marc_format_classifier'
 require 'traject/macros/marc21_semantics'
 require 'traject/debug_writer'
@@ -29,7 +29,7 @@ to_field 'id', lambda { |_record, accumulator, context|
 }
 
 to_field 'author', extract_marc('100a', trim_punctuation: true, default: nil)
-to_field "work_type", extract_work_type
+to_field 'work_type', extract_work_type
 to_field 'created_start', marc_publication_date
 to_field 'dissertation_degree', extract_marc('502b', default: nil)
 to_field 'dissertation_institution', extract_marc('502c', default: nil)

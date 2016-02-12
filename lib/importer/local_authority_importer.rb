@@ -1,7 +1,6 @@
 # Create local authorities with data imported from a CSV file
 module Importer
   class LocalAuthorityImporter
-
     attr_accessor :input_file
 
     def initialize(file)
@@ -41,7 +40,7 @@ module Importer
     def transform_attributes(attrs, model)
       attributes = { id: attrs[:id] }
 
-      list_of_names = Array(attrs).flat_map {|a| a.first == :name ? a - [a[0]] : nil }.compact
+      list_of_names = Array(attrs).flat_map { |a| a.first == :name ? a - [a[0]] : nil }.compact
       names = if model.attribute_names.include?('foaf_name')
                 { foaf_name:  list_of_names.first }
               else
@@ -69,6 +68,5 @@ module Importer
     def log_updated(obj)
       puts "   Updated #{obj.class.to_s.downcase}: #{obj.id} #{obj.rdf_label}"
     end
-
   end
 end

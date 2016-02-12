@@ -1,8 +1,8 @@
 module ExtractFulltextLink
   def extract_fulltext_link
     extract856u = Traject::MarcExtractor.new('856u', separator: nil)
-    lambda { |record, accumulator|
+    lambda do |record, accumulator|
       accumulator << extract856u.extract(record).grep(/proquest/).first
-    }
+    end
   end
 end

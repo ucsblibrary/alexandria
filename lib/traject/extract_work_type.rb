@@ -14,10 +14,10 @@ module ExtractWorkType
       'g' => RDF::URI('http://id.loc.gov/vocabulary/resourceTypes/mov'),
       'r' => RDF::URI('http://id.loc.gov/vocabulary/resourceTypes/art'),
       'm' => RDF::URI('http://id.loc.gov/vocabulary/resourceTypes/mul'),
-      'p' => RDF::URI('http://id.loc.gov/vocabulary/resourceTypes/mix')
+      'p' => RDF::URI('http://id.loc.gov/vocabulary/resourceTypes/mix'),
     }
-    lambda { |record, accumulator|
+    lambda do |record, accumulator|
       accumulator << work_type[record.leader.slice(6)]
-    }
+    end
   end
 end
