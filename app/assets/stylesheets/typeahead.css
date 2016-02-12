@@ -1,6 +1,5 @@
 .twitter-typeahead {
   width: 100%;
-  z-index: inherit;
 }
 
 .twitter-typeahead + input + input + .field-controls > button {
