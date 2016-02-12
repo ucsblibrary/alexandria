@@ -1,22 +1,17 @@
-<% if has_user_authentication_provider? %>
-  <ul class="nav navbar-nav">
+<%=
+r = ''
+return r unless has_user_authentication_provider?
+r << '<p class="login-link">'
+if current_user
+  r << (link_to t('blacklight.header_links.logout'), destroy_user_session_path)
 
-    <% if current_user %>
-      <li class='login-link'>
-        <%= link_to t('blacklight.header_links.logout'), destroy_user_session_path %>
-      </li>
+  unless current_user.to_s.blank?
+    r << ": #{current_user}"
+  end
 
-      <% unless current_user.to_s.blank? -%>
-        <li class='login-link'>
-          <p><%= current_user %></p>
-        </li>
-      <% end %>
-
-    <% else %>
-      <li class='login-link'>
-        <%= link_to 'Login', new_user_session_path %>
-      </li>
-    <% end %>
-
-  </ul>
-<% end %>
+else
+  r << (link_to 'Login', new_user_session_path)
+end
+r << '</p>'
+r.html_safe
+%>

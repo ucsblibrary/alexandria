@@ -1,36 +1,20 @@
-<div class="page-header-splash">
-  <div class="page-header-container">
+<header class="splash">
+  <%= render partial: '/user_util_links' %>
 
-    <div class="top-links">
-      <div class="pull-right login-link">
-        <%= render 'shared/login_link' %>
-      </div>
-
-      <ul class="nav navbar-nav">
-        <%= render_nav_actions do |config, action|%>
-          <li class="<%= config['class'] %>"><%= action %></li>
-        <% end %>
-      </ul>
-    </div>
-    <div class='clearfix'></div>
-
-
-    <div class="large-logo">
-      <%= link_to image_tag("ADRL_Large_Logo_805x186.png", { alt: "ADRL Logo" }), root_path, { title: "ADRL Home" } %>
-    </div>
-
-    <div id="splash-search-bar">
-      <%= render 'catalog/search_form' %>
-    </div>
-
-    <section id="browse-by">
-      Or browse by
-      <%= link_to 'Collection', collections.collections_path %>,
-      <%= link_to 'Contributor', facet_catalog_path(ContributorIndexer::FACETABLE_CONTRIBUTOR) %>,
-      <%= link_to 'Format', facet_catalog_path(Solrizer.solr_name('work_type', :facetable)) %>,
-      or
-      <%= link_to 'Subject', facet_catalog_path(Solrizer.solr_name('lc_subject_label', :facetable)) %>
-    </section>
-
+  <div class="large-logo">
+    <%= link_to image_tag("ADRL_Large_Logo_805x186.png", { alt: "ADRL Logo" }), root_path, { title: "ADRL Home" } %>
   </div>
-</div>
+
+  <div id="splash-search-bar">
+    <%= render 'catalog/search_form' %>
+  </div>
+
+  <section id="browse-by">
+    Or browse by
+    <%= link_to 'Collection', collections.collections_path %>,
+    <%= link_to 'Contributor', facet_catalog_path(ContributorIndexer::FACETABLE_CONTRIBUTOR) %>,
+    <%= link_to 'Format', facet_catalog_path(Solrizer.solr_name('work_type', :facetable)) %>,
+    or
+    <%= link_to 'Subject', facet_catalog_path(Solrizer.solr_name('lc_subject_label', :facetable)) %>
+  </section>
+</header>

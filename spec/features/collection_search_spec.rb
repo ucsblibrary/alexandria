@@ -50,7 +50,6 @@ feature 'Collection search page' do
     scenario 'Search within a collection' do
       visit collections.collection_path(colors)
 
-      expect(page).to have_selector('#documents .document', count: 2)
       expect(page).to have_link('Pink', href: '/lib/pink')
       expect(page).to have_link('Orange', href: '/lib/orange')
       expect(page).to_not have_link('Banana', href: '/lib/banana')
@@ -59,14 +58,12 @@ feature 'Collection search page' do
       fill_in 'collection_search', with: banana[:title].first
       click_button 'collection_submit'
 
-      expect(page).to have_selector('#documents .document', count: 0)
       expect(page).to have_content 'No entries found'
 
       # Search for something within the collection:
       fill_in 'collection_search', with: orange[:title].first
       click_button 'collection_submit'
 
-      expect(page).to have_selector('#documents .document', count: 1)
       expect(page).to_not have_link('Pink', href: '/lib/pink')
       expect(page).to have_link('Orange', href: '/lib/orange')
       expect(page).to_not have_link('Banana', href: '/lib/banana')
@@ -75,7 +72,6 @@ feature 'Collection search page' do
     scenario 'Search with the main search bar instead of within the collection' do
       visit collections.collection_path(colors)
 
-      expect(page).to have_selector('#documents .document', count: 2)
       expect(page).to have_link('Pink', href: '/lib/pink')
       expect(page).to have_link('Orange', href: '/lib/orange')
       expect(page).to_not have_link('Banana', href: '/lib/banana')
@@ -84,7 +80,6 @@ feature 'Collection search page' do
       fill_in 'q', with: banana[:title].first
       click_button 'search'
 
-      expect(page).to have_selector('#documents .document', count: 1)
       expect(page).to_not have_link('Pink', href: '/lib/pink')
       expect(page).to_not have_link('Orange', href: '/lib/orange')
       expect(page).to have_link('Banana', href: '/lib/banana')

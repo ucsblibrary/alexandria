@@ -1,18 +1,16 @@
-<div id="footer">
-  <div id="footer_left">
-    <p>
-      <%= link_to 'About ADRL', about_path %>
-      &nbsp; &middot; &nbsp;
-      <%= link_to 'Contact Us', contact_us_form_path %>
-    </p>
+<footer>
+  <div class="meta-adrl">
+    <ul>
+      <li><%= link_to 'About ADRL', about_path %></li>
+      <li><%= link_to 'Contact Us', contact_us_form_path %></li>
+    </ul>
 
     <div class="copyright">
-      Copyright &copy; <%= Date.today.year %>
-      &nbsp;The Regents of the University of California, All Rights Reserved.
+      Copyright 2014–<%= Date.today.year %> The Regents of the University of California, All Rights Reserved.
     </div>
   </div>
 
-  <div id="footer_right">
+  <div class="meta-ucsb">
     <div class="logo-link">
       <%= link_to "http://www.library.ucsb.edu" do %>
         <%= image_tag 'library-logo.png', alt: "UCSB Library Logo" %>
@@ -27,5 +25,4 @@
       <% end %>
     </div>
   </div>
-
-</div>
+</footer>

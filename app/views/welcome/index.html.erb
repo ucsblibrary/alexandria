@@ -1,42 +1,33 @@
-<div class="page-splash-container">
+<div id="main_header">
+  <h2> Providing access for research, teaching and discovery to unique digital research materials from UC Santa Barbara Library. </h2>
+</div>
 
-	<div id="main_header">
-    <h2> Providing access for research, teaching and discovery to unique digital research materials from UC Santa Barbara Library. </h2>
-	</div>
-	
-	<div class="welcome_inner">
+<div class="welcome_inner">
+	<div id="left_column">
+    <h4>About This Site</h4>
+    <p>
+      The Alexandria Digital Research Library (ADRL) is UC Santa
+      Barbara Library's home for collections of digital research
+      materials. Building on the expertise that UCSB developed in the
+      1990s with the Alexandria Digital Library, the new ADRL will be
+      a comprehensive digital library featuring unique research texts,
+      data, images, maps, and audio and video recordings. ADRL
+      launched in April 2014, with its first collection:
+      <%= link_to 'electronic theses and dissertations', search_catalog_path('f[active_fedora_model_ssi][]' => 'ETD') %>
+      by UCSB students.
+    </p>
+    <%= link_to 'Read more...', about_path %>
+  </div>
 
-	  <div id="left_column">
-	    <h4> About This Site </h4>
-      <p>
-        The Alexandria Digital Research Library (ADRL) is UC
-        Santa Barbara Library's home for collections of
-        digital research materials. Building on the
-        expertise that UCSB developed in the 1990s with the
-        Alexandria Digital Library, the new ADRL will be a
-        comprehensive digital library featuring unique
-        research texts, data, images, maps, and audio and
-        video recordings. ADRL launched in April 2014, with
-        its first collection:
-        <%= link_to 'electronic theses and dissertations', search_catalog_path('f[active_fedora_model_ssi][]' => 'ETD') %>
-        by UCSB students.
-      </p>
-      <%= link_to 'Read more...', about_path %>
-    </div>
-
-    <div id="right_column">
-      <h4> How to Use This Site </h4>
-      <p>
-        Enter one or more words into the search box above
-        to search the bibliographic records of all items in the
-        Alexandria Digital Research Library, or select
-        "Browse by collection" to explore a specific
-        collection. Some materials in ADRL are subject to
-        copyright and other access restrictions. Therefore,
-        not all materials are made available to the public.
-      </p>
-    </div>
-    <div class='clearfix'></div>
-
-	</div>
+  <div id="right_column">
+    <h4> How to Use This Site </h4>
+    <p>
+      Enter one or more words into the search box above to search the
+      bibliographic records of all items in the Alexandria Digital
+      Research Library, or select "Browse by collection" to explore a
+      specific collection. Some materials in ADRL are subject to
+      copyright and other access restrictions. Therefore, not all
+      materials are made available to the public.
+    </p>
+  </div>
 </div>

@@ -1,9 +1,7 @@
-<div class="navbar-right">
-  <ul class="nav navbar-nav">
-    <%= render_nav_actions do |config, action|%>
-      <li class="<%= config['class'] %>"><%= action %></li>
-    <% end %>
-  </ul>
+<%= render 'shared/login_link' %>
 
-  <%= render 'shared/login_link' %>
-</div>
+<ul class="catalog-nav">
+  <%= render_nav_actions do |config, action|%>
+    <li class="<%= config['class'] %>"><%= action %></li>
+  <% end %>
+</ul>
