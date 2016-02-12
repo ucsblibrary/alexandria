@@ -196,13 +196,15 @@ else
   write_hosts_local > hosts
   write_conf > ansible.cfg
 
-  run_cmd "ansible-playbook provisioning/osx/adrl.yml -vv --connection=local"
+  run_cmd "ansible-playbook provisioning/osx/adrl.yml -vv --connection=local --ask-vault-pass -e @ansible/dev_vars.yml"
 
   if [ "$EXIT_STATUS" == "0" ]; then
     rm -f $1-*.log
     echo "Provisioning complete."
     echo
-    echo "Run \`bin/rails server\` to start WEBRick."
+    echo "1. Run \`tomcat/bin/catalina start\` to start Tomcat."
+    echo "2. Run \`bundle exec rake db:migrate\`."
+    echo "3. Run \`bin/rails server\` to start WEBRick."
   else
     echo "$(tput bold)==> Configuration saved to $1$NOW.log$(tput sgr0)"
     echo "Re-run with \`bin/create local $1$NOW.log\`, or delete it NOW."
