@@ -441,6 +441,13 @@ table#downloads {
   background-color: inherit;
 }
 
+.panel-body {
+  padding: 5px 10px 20px 10px;
+  li + li {
+    margin-top: 1em;
+  }
+}
+
 nav.navbar {
   background: transparent image_url($bg_image) repeat;
   padding: 1em;
