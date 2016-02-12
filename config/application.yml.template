@@ -1,7 +1,7 @@
 defaults: &defaults
   download_root: 'tmp/download_root'
   marmotta_host: localhost:8180
-  internal_local_vocab_root: <%= "http://#{Rails.application.config.host_name}" %>
+  internal_local_vocab_root: http://<%= Rails.application.config.host_name %>
   minter_state: 'tmp/minter-state'
 development:
   <<: *defaults
