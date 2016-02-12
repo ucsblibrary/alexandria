@@ -10,8 +10,8 @@
       - "{{ lookup('file', keyfile) }}"
 
     server_name: "{{ lookup('env', 'SERVER') }}"
-    project_base: "{{ lookup('env', 'PROJECT_BASE') }}"
-    project_name: alexandria
+    project_base: /opt
+    project_name: alexandria-v2
     install_path: "{{ project_base }}/install"
 
     rails_env: production
@@ -20,10 +20,10 @@
 
     # `tomcat` is the directory in the Tomcat installation where
     # servlets, libraries and configuration files can be installed
-    tomcat: "{{ lookup('env', 'TOMCAT') }}"
-    marmotta_home: "{{ lookup('env', 'MARMOTTA_HOME') }}"
+    tomcat: /usr/share/tomcat
+    marmotta_home: "{{ project_base }}/marmotta"
     solr_context: hydra
-    solr_home: "{{ lookup('env', 'SOLR_HOME') }}"
+    solr_home: "{{ project_base }}/solr"
 
     # Password for the 'postgres' user
     pg_pass: "{{ lookup('env', 'PG_PASS') }}"

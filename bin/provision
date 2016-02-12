@@ -36,23 +36,19 @@ run_cmd() {
 write_savepoint() {
   cat <<EOF
 #!/bin/bash
-export CONF_PATH='$CONF_PATH'
 export EMAIL='$EMAIL'
 export FEDORA_PASS='$FEDORA_PASS'
 export H_PG_PASS='$H_PG_PASS'
 export IDENTITY='$IDENTITY'
-export MARMOTTA_HOME='$MARMOTTA_HOME'
 export M_PG_PASS='$M_PG_PASS'
 export PG_PASS='$PG_PASS'
 export PORT='$PORT'
-export PROJECT_BASE='$PROJECT_BASE'
 export REMOTE_GROUP='$REMOTE_GROUP'
 export REMOTE_USER='$REMOTE_USER'
 export SECRET='$SECRET'
 export SERVER='$SERVER'
 export SOLR_HOME='$SOLR_HOME'
 export SUDO_FLAG='$SUDO_FLAG'
-export TOMCAT='$TOMCAT'
 EOF
 }
 
@@ -96,7 +92,6 @@ else
   #
   # Set variables
   #
-  PROJECT_NAME=alexandria-v2
   # These variables are stored in secrets.yml, so we can SSH and check
   # them if need be.
   #
@@ -134,21 +129,6 @@ else
   export REMOTE_GROUP
 
   export IDENTITY="$HOME/.ssh/id_rsa"
-
-  if [[ "$1" == "local" ]]; then
-    PROJECT_BASE=$(pwd)
-    CONF_PATH="$PROJECT_BASE/$PROJECT_NAME/config"
-    TOMCAT="$PROJECT_BASE/tomcat"
-  else
-    PROJECT_BASE=/opt
-    CONF_PATH="$PROJECT_BASE/$PROJECT_NAME/shared/config"
-    TOMCAT=/usr/share/tomcat
-  fi
-  export PROJECT_BASE
-  export CONF_PATH
-  export TOMCAT
-  export MARMOTTA_HOME="$PROJECT_BASE/marmotta"
-  export SOLR_HOME="$PROJECT_BASE/solr"
 
   if [ "$1" == "production" ]; then
     echo -n "Prompt for sudo password? [Y/n]: "
