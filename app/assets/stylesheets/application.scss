@@ -141,7 +141,7 @@ h6 {
   }
 }
 
-ul.catalog-nav {
+.catalog-nav {
   float: left;
   clear: left;
 
@@ -150,6 +150,12 @@ ul.catalog-nav {
     color: #9d9d9d;
   }
 }
+.dropdown-menu {
+  li a {
+    color: #000;
+  }
+}
+
 .login-link {
   float: left;
   clear: left;
