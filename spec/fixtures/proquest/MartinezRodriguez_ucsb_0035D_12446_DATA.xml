@@ -9,6 +9,41 @@
         <DISS_suffix/>
         <DISS_affiliation>University of California, Santa Barbara</DISS_affiliation>
       </DISS_name>
+      <DISS_contact type="current">
+        <DISS_contact_effdt>09/12/2014</DISS_contact_effdt>
+        <DISS_phone_fax type="P">
+          <DISS_cntry_cd>0</DISS_cntry_cd>
+          <DISS_area_code>666</DISS_area_code>
+          <DISS_phone_num>4201999</DISS_phone_num>
+          <DISS_phone_ext/>
+        </DISS_phone_fax>
+        <DISS_address>
+          <DISS_addrline>1 Fake Road</DISS_addrline>
+          <DISS_city>Unreal City</DISS_city>
+          <DISS_st>State of Denial</DISS_st>
+          <DISS_pcode>00000</DISS_pcode>
+          <DISS_country>Earth</DISS_country>
+        </DISS_address>
+        <DISS_email>fake@hotmail.con</DISS_email>
+      </DISS_contact>
+      <DISS_contact type="future">
+        <DISS_contact_effdt>09/12/2014</DISS_contact_effdt>
+        <DISS_phone_fax type="P">
+          <DISS_cntry_cd>0</DISS_cntry_cd>
+          <DISS_area_code>666</DISS_area_code>
+          <DISS_phone_num>4201999</DISS_phone_num>
+          <DISS_phone_ext/>
+        </DISS_phone_fax>
+        <DISS_address>
+          <DISS_addrline>1 Fake Road</DISS_addrline>
+          <DISS_city>Unreal City</DISS_city>
+          <DISS_st>State of Denial</DISS_st>
+          <DISS_pcode>00000</DISS_pcode>
+          <DISS_country>Earth</DISS_country>
+        </DISS_address>
+        <DISS_email>fake@hotmail.con</DISS_email>
+      </DISS_contact>
+      <DISS_citizenship>N/A</DISS_citizenship>
     </DISS_author>
   </DISS_authorship>
   <DISS_description page_count="147" type="doctoral" external_id="http://dissertations.umi.com/ucsb:12446" apply_for_copyright="no">
