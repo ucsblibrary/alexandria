@@ -2,18 +2,24 @@
 - file: path={{ project_base }}/ingest/metadata state=directory
 
 - name: clone adrl-dm repository to {{ project_base }}/ingest/
-  git: repo=https://{{ ad_git_user }}:{{ ad_git_pass }}@stash.library.ucsb.edu/scm/cms/adrl-dm.git \
-       dest={{ project_base }}/ingest/metadata/adrl-dm
+  git:
+    repo: https://{{ ad_git_user }}:{{ ad_git_pass }}@stash.library.ucsb.edu/scm/cms/adrl-dm.git
+    dest: "{{ project_base }}/ingest/metadata/adrl-dm"
   no_log: True
 
 - name: remove password from remote url
-  command: git config remote.origin.url https://stash.library.ucsb.edu/scm/cms/adrl-dm.git \
-           chdir={{ project_base }}/ingest/metadata/adrl-dm
+  command: git config remote.origin.url https://stash.library.ucsb.edu/scm/cms/adrl-dm.git
+  args:
+    chdir: "{{ project_base }}/ingest/metadata/adrl-dm"
 
 - name: ensure {{ deploy_user }} owns ingest directories
   become: yes
-  file: path={{ item }} owner={{ deploy_user }} group={{ deploy_group }} \
-        state=directory recurse=yes
+  file:
+    path: "{{ item }}"
+    owner: "{{ deploy_user }}"
+    group: "{{ deploy_group }}"
+    state: directory
+    recurse: yes
   with_items:
     - "{{ etd_download_root }}"
     - "{{ project_base }}/ingest/metadata"
