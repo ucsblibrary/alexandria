@@ -78,6 +78,13 @@ $bg_image: 'ADRL_BG_1280x160.png';
   }
 }
 
+// Prevent list item numbers from disappearing past the left edge of their containers
+@media screen and (max-width: $breakpoint2) {
+  .container-fluid {
+    padding-left: 40px;
+  }
+}
+
 .navbar {
   border-radius: 0;
 }
