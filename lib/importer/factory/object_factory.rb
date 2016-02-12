@@ -84,7 +84,7 @@ module Importer::Factory
     end
 
     def klass
-      fail 'You must implement the klass method'
+      raise 'You must implement the klass method'
     end
 
     # @return [Ezid::Identifier] the new identifier
@@ -181,14 +181,14 @@ module Importer::Factory
           'family' => Group,
           'person' => Person,
           'group' => Group,
-          'organization' => Organization
+          'organization' => Organization,
         }
       end
 
       def topic_classes
         @topic_classes ||= {
           'topic' => Topic,
-          'subject' => Topic
+          'subject' => Topic,
         }.merge(contributor_classes)
       end
 
@@ -209,6 +209,5 @@ module Importer::Factory
       def path_for(obj)
         "http://#{host}/lib/#{obj.ark}"
       end
-
   end
 end

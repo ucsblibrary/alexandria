@@ -2,7 +2,7 @@ module Importer
   class ModsParser
     ORIGIN_TEXT = 'Converted from MODS 3.4 to local RDF profile by ADRL'.freeze
 
-    NAMESPACES = { 'mods'.freeze => Mods::MODS_NS }
+    NAMESPACES = { 'mods'.freeze => Mods::MODS_NS }.freeze
 
     def initialize(file)
       @file = file
@@ -208,9 +208,9 @@ module Importer
         finish = finish_point(node)
         start = start_point(node)
         dates = [{ start: start.map(&:text), finish: finish.map(&:text), label: date_label(node),
-           start_qualifier: qualifier(start), finish_qualifier: qualifier(finish)
+                   start_qualifier: qualifier(start), finish_qualifier: qualifier(finish)
         }]
-        dates.delete_if{|date| date.values.all?{|value| value.blank? }}
+        dates.delete_if { |date| date.values.all?(&:blank?) }
         dates
       end
 
@@ -219,7 +219,7 @@ module Importer
       end
 
       def finish_point(node)
-        node.css("[point=\"end\"]")
+        node.css('[point="end"]')
       end
 
       def start_point(node)

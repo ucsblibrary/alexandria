@@ -1,7 +1,7 @@
 namespace :fedora do
   desc 'Cleans the ActiveFedora repository'
   task clean: [:environment] do
-    if Rails.env.production? && ENV['DO_IT'].to_s.downcase != 'true'
+    if Rails.env.production? && !ENV['DO_IT'].to_s.casecmp('true').zero?
       puts 'Failsafe: refusing to clean Fedora when RAILS_ENV=production'
       puts
       puts 'If you really want to do this, run:'

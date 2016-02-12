@@ -32,9 +32,9 @@ module Importer
         # Allow headers with the pattern *_type to specify the
         # record type for a local authority.
         # e.g. For an author, author_type might be 'Person'.
-        difference.delete_if {|h| h.match(type_header_pattern) }
+        difference.delete_if { |h| h.match(type_header_pattern) }
 
-        fail "Invalid headers: #{difference.join(', ')}" unless difference.blank?
+        raise "Invalid headers: #{difference.join(', ')}" unless difference.blank?
 
         validate_header_pairs(row)
         row
@@ -46,15 +46,14 @@ module Importer
         errors = []
         row.each_with_index do |header, i|
           next if header == 'work_type' || header == 'note_type'
-          if header.match(type_header_pattern)
-            next_header = row[i + 1]
-            field_name = header.gsub('_type', '')
-            if next_header != field_name
-              errors << "Invalid headers: '#{header}' column must be immediately followed by '#{field_name}' column."
-            end
+          next unless header.match(type_header_pattern)
+          next_header = row[i + 1]
+          field_name = header.gsub('_type', '')
+          if next_header != field_name
+            errors << "Invalid headers: '#{header}' column must be immediately followed by '#{field_name}' column."
           end
         end
-        fail errors.join(", ") unless errors.blank?
+        raise errors.join(', ') unless errors.blank?
       end
 
       def valid_headers
@@ -134,7 +133,7 @@ module Importer
       end
 
       def update_collection(collection, field, val)
-        val = [val] unless ['admin_policy_id', 'id'].include? field
+        val = [val] unless %w(admin_policy_id id).include? field
         collection[field.to_sym] = val
       end
 
