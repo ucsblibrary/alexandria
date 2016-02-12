@@ -9,7 +9,7 @@ require 'rspec/rails'
 require 'capybara/rails'
 require 'capybara/poltergeist'
 Capybara.register_driver :poltergeist do |app|
-  Capybara::Poltergeist::Driver.new(app, { js_errors: false })
+  Capybara::Poltergeist::Driver.new(app, js_errors: false)
 end
 Capybara.javascript_driver = :poltergeist
 
@@ -47,7 +47,9 @@ RSpec.configure do |config|
   config.before :suite do
     DatabaseCleaner.clean_with(:truncation)
     ActiveFedora::Cleaner.clean!
+    AdminPolicy.ensure_admin_policy_exists
   end
+
   config.before :each do
     if Capybara.current_driver == :rack_test
       DatabaseCleaner.strategy = :transaction

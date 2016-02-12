@@ -16,15 +16,19 @@ describe Importer::LocalAuthorityImporter do
 
   describe '#run (create new records)' do
     # These are the objects we expect to create
-    let(:mark) {{ id: 'agent-1', name: 'Mark', model: Agent }}
-    let(:justin) {{ id: 'person-1', name: 'Justin', model: Person }}
-    let(:alicia) {{ id: 'person-2', name: 'Alicia', model: Person }}
-    let(:devs) {{ id: 'group-1', name: 'DCE Dev Team', model: Group }}
-    let(:dce) {{ id: 'org-1', name: 'DCE', model: Organization }}
-    let(:tools) {{ id: 'topic-1', model: Topic,
-                   name: ['hydra', 'blacklight', 'fedora', 'solr'] }}
-    let(:fun) {{ id: 'topic-2', model: Topic,
-                 name: ['happy hour', 'nerdy jokes'] }}
+    let(:mark) { { id: 'agent-1', name: 'Mark', model: Agent } }
+    let(:justin) { { id: 'person-1', name: 'Justin', model: Person } }
+    let(:alicia) { { id: 'person-2', name: 'Alicia', model: Person } }
+    let(:devs) { { id: 'group-1', name: 'DCE Dev Team', model: Group } }
+    let(:dce) { { id: 'org-1', name: 'DCE', model: Organization } }
+    let(:tools) do
+      { id: 'topic-1', model: Topic,
+        name: %w(hydra blacklight fedora solr) }
+    end
+    let(:fun) do
+      { id: 'topic-2', model: Topic,
+        name: ['happy hour', 'nerdy jokes'] }
+    end
 
     before { AdminPolicy.ensure_admin_policy_exists }
 
@@ -46,10 +50,9 @@ describe Importer::LocalAuthorityImporter do
     end
   end  # run (create new records)
 
-
   describe '#run (update existing record)' do
     let(:input_file) { File.join(fixture_path, 'local_authority_csv', 'justin.csv') }
-    let(:justin) {{ id: 'person-1', name: 'Justin' }}
+    let(:justin) { { id: 'person-1', name: 'Justin' } }
     let(:old_name) { 'Old name should get replaced' }
 
     before do
@@ -68,21 +71,19 @@ describe Importer::LocalAuthorityImporter do
     end
   end  # run (update existing record)
 
-
   describe '#model' do
     context 'when the model name is lowercase' do
       subject { importer.model(attrs) }
-      let(:attrs) {{ type: 'person' }}
+      let(:attrs) { { type: 'person' } }
       it { is_expected.to eq Person }
     end
 
     context 'when the model name is blank' do
-      let(:attrs) {{ type: '' }}
+      let(:attrs) { { type: '' } }
 
       it 'raises an error' do
         expect { importer.model(attrs) }.to raise_error '"type" column cannot be blank'
       end
     end
   end
-
 end

@@ -222,8 +222,8 @@ describe ObjectIndexer do
   end
 
   context 'with notes' do
-    let!(:acq_note) {{ note_type: 'acquisition', value: 'Acq Note' }}
-    let!(:cit_note) {{ note_type: 'preferred citation', value: 'Citation Note' }}
+    let!(:acq_note) { { note_type: 'acquisition', value: 'Acq Note' } }
+    let!(:cit_note) { { note_type: 'preferred citation', value: 'Citation Note' } }
 
     let(:image) { Image.new(notes_attributes: [acq_note, cit_note]) }
 

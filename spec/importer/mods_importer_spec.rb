@@ -30,8 +30,8 @@ describe Importer::ModsImporter do
 
     it 'creates a new image, files, and a collection' do
       image = nil
-      expect(identifier1).to receive(:target=).with(/http:\/\/test\.host\/lib\/ark:\/99999\/fk41234567$/)
-      expect(identifier2).to receive(:target=).with(/http:\/\/test\.host\/lib\/ark:\/99999\/fk49876543$/)
+      expect(identifier1).to receive(:target=).with(%r{http://test\.host/lib/ark:/99999/fk41234567$})
+      expect(identifier2).to receive(:target=).with(%r{http://test\.host/lib/ark:/99999/fk49876543$})
       expect(identifier1).to receive(:save)
       expect(identifier2).to receive(:save)
       expect_any_instance_of(Importer::Factory::ImageFactory).to receive(:mint_ark).and_return(identifier1)
@@ -51,7 +51,7 @@ describe Importer::ModsImporter do
       reloaded = Image.find(image.id)
       expect(reloaded.file_sets.first).not_to be_nil
 
-      expect(reloaded.identifier.first).to match /^ark:\/99999\/fk4\w{7}$/
+      expect(reloaded.identifier.first).to match %r{^ark:/99999/fk4\w{7}$}
 
       expect(reloaded.admin_policy_id).to eq AdminPolicy::PUBLIC_POLICY_ID
 
@@ -112,7 +112,7 @@ describe Importer::ModsImporter do
         Person.count
       }.by(1)
 
-      expect(coll.id).to match /^fk4\w{7}$/
+      expect(coll.id).to match(/^fk4\w{7}$/)
       expect(coll.accession_number).to eq ['SBHC Mss 78']
       expect(coll.title).to eq ['Joel Conway / Flying A Studio photograph collection']
       expect(coll.admin_policy_id).to eq AdminPolicy::PUBLIC_POLICY_ID
@@ -187,7 +187,7 @@ describe Importer::ModsImporter do
       it 'finds or creates the rights holders' do
         expect do
           VCR.use_cassette('ezid') do
-            coll = importer.import(file)
+            importer.import(file)
           end
         end.to change { Agent.exact_model.count }.by(1)
 

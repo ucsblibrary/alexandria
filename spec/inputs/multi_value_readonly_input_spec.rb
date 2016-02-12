@@ -13,7 +13,7 @@ describe 'MultiValueReadonlyInput', type: :input do
     end
     it 'renders multi-value' do
       # 'field-wrapper' is the class that causes the editor to be displayed. We don't want that.
-      expect(subject).not_to match /field-wrapper/
+      expect(subject).not_to match(/field-wrapper/)
     end
   end
 

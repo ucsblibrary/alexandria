@@ -153,7 +153,7 @@ describe ImageForm do
       end
     end
 
-    describe "#admin_policy_id" do
+    describe '#admin_policy_id' do
       let(:field) { :admin_policy_id }
       subject { form.admin_policy_id }
       it { is_expected.to eq 'authorities/policies/public' }

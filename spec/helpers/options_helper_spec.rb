@@ -19,32 +19,28 @@ describe OptionsHelper do
   describe '#license_options' do
     subject { helper.license_options }
     it do
-      is_expected.to eq ({
-        'CC-BY' => 'http://creativecommons.org/licenses/by/4.0/',
-        'CC-BY-NC' => 'http://creativecommons.org/licenses/by-nc/4.0/',
-        'CC-BY-NC-ND' => 'http://creativecommons.org/licenses/by-nc-nd/4.0/',
-        'CC-BY-NC-SA' => 'http://creativecommons.org/licenses/by-nc-sa/4.0/',
-        'CC-BY-ND' => 'http://creativecommons.org/licenses/by-sa/4.0/',
-        'CC-BY-SA' => 'http://creativecommons.org/licenses/by-nd/4.0/',
-        'CC0' => 'http://creativecommons.org/publicdomain/zero/1.0/',
-        'Education Use Permitted' => 'http://opaquenamespace.org/ns/rights/educational/',
-        'Free Access - No Re-Use' => 'http://www.europeana.eu/rights/rr-f/',
-        'Orphan Works' => 'http://opaquenamespace.org/ns/rights/orphan-work-us/',
-        'Public Domain' => 'http://creativecommons.org/publicdomain/mark/1.0/',
-        'Rights Reserved - Restricted Access' => 'http://www.europeana.eu/rights/rr-r/',
-        'Unknown' => 'http://www.europeana.eu/rights/unknown/',
-      })
+      is_expected.to eq('CC-BY' => 'http://creativecommons.org/licenses/by/4.0/',
+                        'CC-BY-NC' => 'http://creativecommons.org/licenses/by-nc/4.0/',
+                        'CC-BY-NC-ND' => 'http://creativecommons.org/licenses/by-nc-nd/4.0/',
+                        'CC-BY-NC-SA' => 'http://creativecommons.org/licenses/by-nc-sa/4.0/',
+                        'CC-BY-ND' => 'http://creativecommons.org/licenses/by-sa/4.0/',
+                        'CC-BY-SA' => 'http://creativecommons.org/licenses/by-nd/4.0/',
+                        'CC0' => 'http://creativecommons.org/publicdomain/zero/1.0/',
+                        'Education Use Permitted' => 'http://opaquenamespace.org/ns/rights/educational/',
+                        'Free Access - No Re-Use' => 'http://www.europeana.eu/rights/rr-f/',
+                        'Orphan Works' => 'http://opaquenamespace.org/ns/rights/orphan-work-us/',
+                        'Public Domain' => 'http://creativecommons.org/publicdomain/mark/1.0/',
+                        'Rights Reserved - Restricted Access' => 'http://www.europeana.eu/rights/rr-r/',
+                        'Unknown' => 'http://www.europeana.eu/rights/unknown/')
     end
   end
 
   describe '#copyright_status_options' do
     subject { helper.copyright_status_options }
     it do
-      is_expected.to eq ({
-        'public domain' => 'http://id.loc.gov/vocabulary/preservation/copyrightStatus/pub',
-        'copyrighted' => 'http://id.loc.gov/vocabulary/preservation/copyrightStatus/cpr',
-        'unknown' => 'http://id.loc.gov/vocabulary/preservation/copyrightStatus/unk',
-      })
+      is_expected.to eq('public domain' => 'http://id.loc.gov/vocabulary/preservation/copyrightStatus/pub',
+                        'copyrighted' => 'http://id.loc.gov/vocabulary/preservation/copyrightStatus/cpr',
+                        'unknown' => 'http://id.loc.gov/vocabulary/preservation/copyrightStatus/unk')
     end
   end
 

@@ -21,8 +21,8 @@ describe Exporter::LocalAuthorityExporter do
   end
 
   context "when the export dir doesn't exist" do
-    before { FileUtils.rm_rf(dir, :secure => true) }
-    after  { FileUtils.rm_rf(dir, :secure => true) }
+    before { FileUtils.rm_rf(dir, secure: true) }
+    after  { FileUtils.rm_rf(dir, secure: true) }
 
     it 'creates the directory' do
       expect(File.exist?(dir)).to be_falsey
@@ -34,12 +34,10 @@ describe Exporter::LocalAuthorityExporter do
   describe '#run' do
     before do
       AdminPolicy.ensure_admin_policy_exists
-      LocalAuthority.local_authority_models.each do |model|
-        model.destroy_all
-      end
+      LocalAuthority.local_authority_models.each(&:destroy_all)
     end
 
-    after { FileUtils.rm_rf(dir, :secure => true) }
+    after { FileUtils.rm_rf(dir, secure: true) }
 
     # Create some different types of local authorities
     let!(:agent) { create(:agent, foaf_name: 'Mark') }
@@ -47,10 +45,10 @@ describe Exporter::LocalAuthorityExporter do
     let!(:alicia) { create(:person, foaf_name: 'Alicia') }
     let!(:devs) { create(:group, foaf_name: 'DCE Dev Team') }
     let!(:dce) { create(:organization, foaf_name: 'DCE') }
-    let!(:tools) { create(:topic, label: ['hydra', 'blacklight', 'fedora', 'solr']) }
+    let!(:tools) { create(:topic, label: %w(hydra blacklight fedora solr)) }
     let!(:fun) { create(:topic, label: ['happy hour', 'nerdy jokes']) }
 
-    let(:headers) { ['type', 'id', 'name', 'name', 'name', 'name'] }
+    let(:headers) { %w(type id name name name name) }
 
     it 'exports the local authorities' do
       exporter.run
@@ -88,6 +86,5 @@ describe Exporter::LocalAuthorityExporter do
       topic = line7[1] == fun.id ? fun : tools
       expect(line7).to eq ['Topic', topic.id] + topic.label
     end
-  end  # run
-
+  end # run
 end

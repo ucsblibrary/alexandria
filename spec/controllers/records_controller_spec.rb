@@ -166,7 +166,7 @@ describe RecordsController do
 
         it 'access is denied' do
           delete :destroy, id: person
-          expect(flash[:alert]).to match /You are not authorized/
+          expect(flash[:alert]).to match(/You are not authorized/)
           expect(response).to redirect_to controller: :catalog, action: 'show'
         end
       end
@@ -203,7 +203,7 @@ describe RecordsController do
 
       it 'access is denied' do
         get :new_merge, id: person
-        expect(flash[:alert]).to match /You are not authorized/
+        expect(flash[:alert]).to match(/You are not authorized/)
         expect(response).to redirect_to controller: :catalog, action: 'show'
       end
     end
@@ -237,7 +237,7 @@ describe RecordsController do
         expect(MergeRecordsJob).to_not receive(:perform_later)
         post :merge, { id: person }.merge(form_params)
         expect(response).to render_template(:new_merge)
-        expect(flash[:alert]).to match /Error:  Unable to queue merge job.  Please fill in all required fields./
+        expect(flash[:alert]).to match(/Error:  Unable to queue merge job\.  Please fill in all required fields\./)
       end
     end
 
@@ -246,7 +246,7 @@ describe RecordsController do
 
       it 'access is denied' do
         post :merge, { id: person }.merge(form_params)
-        expect(flash[:alert]).to match /You are not authorized/
+        expect(flash[:alert]).to match(/You are not authorized/)
         expect(response).to redirect_to controller: :catalog, action: 'show'
       end
     end
