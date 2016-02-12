@@ -61,4 +61,5 @@
     - { role: '../provisioning/centos/roles/smtp' }
     - { role: '../provisioning/centos/roles/ldap' }
     - { role: '../provisioning/centos/roles/hostname' }
+    - { role: '../provisioning/centos/roles/automount' }
     - { role: alexandria-v2, sudo: yes }
