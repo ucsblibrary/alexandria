@@ -179,13 +179,6 @@ else
   chmod 600 "$1$NOW.log"
 fi
 
-# Symlink Ansible roles
-if [[ "$1" == "local" ]]; then
-  ln -sf "$(pwd)/provisioning/osx/roles/*" ansible/roles/
-else
-  ln -sf "$(pwd)/provisioning/centos/roles/*" ansible/roles/
-fi
-
 if [ "$1" == "production" ]; then
   write_hosts > hosts
   write_conf > ansible.cfg

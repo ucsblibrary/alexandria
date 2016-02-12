@@ -48,18 +48,18 @@
     mount_opts: -fstype=cifs,ro,sec=ntlm,noexec,_netdev
 
   roles:
-    - { role: housekeeping, sudo: yes }
-    - { role: ruby }
-    - { role: hydra-stack }
-    - { role: services }
-    - { role: ffmpeg }
+    - { role: '../provisioning/centos/roles/housekeeping', sudo: yes }
+    - { role: '../provisioning/centos/roles/ruby' }
+    - { role: '../provisioning/centos/roles/hydra-stack' }
+    - { role: '../provisioning/centos/roles/services' }
+    - { role: '../provisioning/centos/roles/ffmpeg' }
     # - { role: imagemagick }
-    - { role: passenger, sudo: yes }
-    - { role: marmotta }
-    - { role: app-config, sudo: yes }
-    - { role: ezid }
-    - { role: smtp }
-    - { role: ldap }
-    - { role: hostname }
+    - { role: '../provisioning/centos/roles/passenger', sudo: yes }
+    - { role: '../provisioning/centos/roles/marmotta' }
+    - { role: '../provisioning/centos/roles/app-config', sudo: yes }
+    - { role: '../provisioning/centos/roles/ezid' }
+    - { role: '../provisioning/centos/roles/smtp' }
+    - { role: '../provisioning/centos/roles/ldap' }
+    - { role: '../provisioning/centos/roles/hostname' }
     - { role: alexandria-v2, sudo: yes }
-    - { role: sshd }
+    - { role: '../provisioning/centos/roles/sshd' }
