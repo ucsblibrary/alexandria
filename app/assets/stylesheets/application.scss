@@ -90,6 +90,12 @@ $bg_image: 'ADRL_BG_1280x160.png';
   }
 }
 
+.dl-horizontal dt {
+  width: initial;
+  text-overflow: inherit;
+  white-space: inherit;
+}
+
 // -------
 // General
 // -------
