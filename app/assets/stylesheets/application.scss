@@ -424,6 +424,10 @@ table#downloads {
 // Blacklight
 // ----------
 
+#search-navbar .input-group-addon.for-search-field {
+  background-color: inherit;
+}
+
 nav.navbar {
   background: transparent image_url($bg_image) repeat;
   padding: 1em;
