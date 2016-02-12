@@ -142,7 +142,7 @@ module Importer::Factory
         name = attrs.fetch(:name)
         klass = contributor_classes[type]
         contributor = klass.where(foaf_name_ssim: name).first || klass.create(foaf_name: name)
-        RDF::URI.new(contributor.uri)
+        RDF::URI(contributor.public_uri)
       end
 
       def find_or_create_local_rights_holder(name)
@@ -154,7 +154,7 @@ module Importer::Factory
 
         rights_holder = klass.exact_model.where(foaf_name_ssim: name).first
         rights_holder ||= klass.create(foaf_name: name)
-        RDF::URI.new(rights_holder.uri)
+        RDF::URI.new(rights_holder.public_uri)
       end
 
       def find_or_create_local_subject(subj_hash)
@@ -166,7 +166,7 @@ module Importer::Factory
           klass = topic_classes[type]
           name = subj_hash.fetch(:name)
           subj = klass.where(label_ssim: name).first || klass.create(label: Array(name))
-          RDF::URI.new(subj.uri)
+          RDF::URI.new(subj.public_uri)
         end
       end
 

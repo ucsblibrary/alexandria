@@ -25,7 +25,7 @@ describe Importer::Factory::ObjectFactory do
         expect(rh.fetch(:rights_holder).map(&:class).uniq).to eq [RDF::URI]
         local_rights_holder = Agent.first
         expect(local_rights_holder.foaf_name).to eq regents_string
-        expect(rh.fetch(:rights_holder)).to eq [regents_uri, local_rights_holder.uri]
+        expect(rh.fetch(:rights_holder)).to eq [regents_uri, local_rights_holder.public_uri]
       end
     end
 
@@ -38,7 +38,7 @@ describe Importer::Factory::ObjectFactory do
           rh = subject.find_or_create_rights_holders(attributes)
         end.to change { Agent.exact_model.count }.by(0)
 
-        expect(rh.fetch(:rights_holder).map(&:to_s)).to eq [regents_uri, existing_rh.uri]
+        expect(rh.fetch(:rights_holder).map(&:to_s)).to eq [regents_uri, existing_rh.public_uri]
       end
     end
 
@@ -108,7 +108,7 @@ describe Importer::Factory::ObjectFactory do
         expect(contributors[:contributor].map(&:class).uniq).to eq [RDF::URI]
         new_person = Person.first
         expect(new_person.foaf_name).to eq joel
-        expect(contributors[:contributor]).to include new_person.uri
+        expect(contributors[:contributor]).to include new_person.public_uri
         expect(contributors[:contributor]).to include afmc
       end
     end
@@ -128,7 +128,7 @@ describe Importer::Factory::ObjectFactory do
         expect(contributors[:contributor].count).to eq 2
         expect(contributors[:contributor].map(&:class).uniq).to eq [RDF::URI]
         expect(contributors[:contributor]).to include afmc
-        expect(contributors[:contributor]).to include person.uri
+        expect(contributors[:contributor]).to include person.public_uri
       end
     end
 
@@ -188,7 +188,7 @@ describe Importer::Factory::ObjectFactory do
         subj = Topic.first
         expect(subj.label).to eq ['A Local Subj']
 
-        expect(attrs[:lc_subject]).to eq [bilbo.uri, afmc, subj.uri]
+        expect(attrs[:lc_subject]).to eq [bilbo.public_uri, afmc, subj.public_uri]
       end
     end
   end  # find_or_create_subjects
