@@ -9,7 +9,7 @@ describe Topic do
     end
   end
 
-  describe "#in_vocab?" do
+  describe '#in_vocab?' do
     subject { topic.in_vocab? }
     it { is_expected.to be true }
   end

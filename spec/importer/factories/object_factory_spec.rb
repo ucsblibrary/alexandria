@@ -66,16 +66,16 @@ describe Importer::Factory::ObjectFactory do
     end
 
     context 'when the type is specified' do
-      let(:attributes) {
+      let(:attributes) do
         { rights_holder: [{ name: 'Bilbo Baggins',
                             type: 'Person' }] }
-      }
+      end
 
       it 'creates the local rights holder' do
         rh = nil
-        expect {
+        expect do
           rh = subject.find_or_create_rights_holders(attributes)
-        }.to change { Person.count }.by(1)
+        end.to change { Person.count }.by(1)
         expect(rh.fetch(:rights_holder).map(&:class)).to eq [RDF::URI]
       end
     end
@@ -146,40 +146,39 @@ describe Importer::Factory::ObjectFactory do
 
     context 'with class directly given in the type field' do
       # The attributes hash that comes from the CSVParser
-      let(:attributes) {
+      let(:attributes) do
         { creator: [{ name: 'Bilbo Baggins', type: 'Person' }],
           composer: [{ name: 'Frodo', type: 'Group' }] }
-      }
+      end
       let(:fields) { [:creator, :composer] }
 
       it 'creates the local authorities' do
         expect do
-          contributors = subject.find_or_create_contributors(fields, attributes)
+          subject.find_or_create_contributors(fields, attributes)
         end.to change { Person.count }.by(1)
           .and change { Group.count }.by(1)
       end
     end
   end  # '#find_or_create_contributors'
 
-
   describe '#find_or_create_subjects' do
-    let(:attributes) {
+    let(:attributes) do
       { lc_subject: [{ name: 'Bilbo Baggins', type: 'Person' },
                      afmc_uri,
-                     { name: 'A Local Subj', type: 'Topic' } ] }
-    }
+                     { name: 'A Local Subj', type: 'Topic' }] }
+    end
 
     context "local authorities don't exist yet" do
-      before {
+      before do
         Person.delete_all
         Topic.delete_all
-      }
+      end
 
-      it "creates the missing local subjects" do
+      it 'creates the missing local subjects' do
         attrs = nil
-        expect {
+        expect do
           attrs = subject.find_or_create_subjects(attributes)
-        }.to change { Person.count }.by(1)
+        end.to change { Person.count }.by(1)
           .and change { Topic.count }.by(1)
 
         bilbo = Person.first
@@ -192,5 +191,4 @@ describe Importer::Factory::ObjectFactory do
       end
     end
   end  # find_or_create_subjects
-
 end

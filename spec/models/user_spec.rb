@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 describe User do
-
   describe '#groups' do
     let(:user) { described_class.new }
     subject { user.groups }

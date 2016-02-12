@@ -50,7 +50,7 @@ describe CatalogController do
 
         it 'access is denied' do
           expect(response).to redirect_to root_path
-          expect(flash[:alert]).to match /You do not have sufficient access privileges/
+          expect(flash[:alert]).to match(/You do not have sufficient access privileges/)
         end
       end
     end

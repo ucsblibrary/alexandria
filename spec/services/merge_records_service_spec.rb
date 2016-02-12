@@ -47,9 +47,12 @@ describe MergeRecordsService do
 
   describe '#run' do
     subject { described_class.new(old_name, new_name) }
+    let!(:image1) { create(:image, id: 'image1', creator: [old_name], lc_subject: [old_name]) }
+    let!(:image2) { create(:image, id: 'image2', photographer: [old_name], lc_subject: [old_name, new_name, other_name]) }
+
+    let!(:collection) { create(:collection, collector: [old_name, other_name]) }
 
     before do
-      [old_name, new_name, image1, image2, collection] # create the records
       old_name.reload
       subject.run
       image1.reload
@@ -84,9 +87,11 @@ describe MergeRecordsService do
     end
 
     context 'with bad arguments' do
+      let!(:old_name) { create(:person, foaf_name: 'Old Name') }
+      let!(:new_name) { create(:person, foaf_name: 'New Name') }
+
       before do
-        [old_name, new_name] # create the records
-        new_name.destroy     # merge target does not exist
+        new_name.destroy # merge target does not exist
       end
 
       it 'raises an error' do

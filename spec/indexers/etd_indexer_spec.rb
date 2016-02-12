@@ -47,7 +47,7 @@ describe ETDIndexer do
     it { is_expected.to eq 'Ph.D.--University of California, Santa Barbara, 2014' }
   end
 
-  describe "indexing department as a facet" do
+  describe 'indexing department as a facet' do
     let(:etd) do
       ETD.new(degree_grantor: ['University of California, Santa Barbara. Mechanical Engineering'])
     end

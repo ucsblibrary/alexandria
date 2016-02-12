@@ -18,9 +18,7 @@ describe Importer::Factory::ETDFactory do
   end
 
   before do
-    if ETD.exists? 'f3gt5k61'
-      ETD.find('f3gt5k61').destroy(eradicate: true)
-    end
+    ETD.find('f3gt5k61').destroy(eradicate: true) if ETD.exists? 'f3gt5k61'
 
     # The destroy ^up there^ is not removing the ETD from the collection.
     Collection.destroy_all
@@ -84,7 +82,7 @@ describe Importer::Factory::ETDFactory do
         etd.reload
         expect(etd.created.flat_map(&:start)).to eq [2014]
 
-        obj = factory.update(etd)
+        factory.update(etd)
         etd.reload
         expect(etd.created.flat_map(&:start)).to eq [2014]
       end
@@ -97,7 +95,7 @@ describe Importer::Factory::ETDFactory do
         etd.reload
         expect(etd.created.flat_map(&:start)).to eq [old_date]
 
-        obj = factory.update(etd)
+        factory.update(etd)
         etd.reload
         expect(etd.created.flat_map(&:start)).to eq [2014]
       end
@@ -110,7 +108,7 @@ describe Importer::Factory::ETDFactory do
         etd.reload
         expect(etd.created).to eq []
 
-        obj = factory.update(etd)
+        factory.update(etd)
         etd.reload
         expect(etd.created.flat_map(&:start)).to eq [2014]
       end
@@ -131,7 +129,7 @@ describe Importer::Factory::ETDFactory do
         etd.reload
         expect(etd.created.first.start).to eq [old_date]
 
-        obj = factory.update(etd)
+        factory.update(etd)
         etd.reload
         expect(etd.created.first.start).to eq [old_date]
       end

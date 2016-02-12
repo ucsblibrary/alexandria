@@ -53,7 +53,7 @@ describe ImageIndexer do
   context 'with work type' do
     let(:work_type) { RDF::URI('http://id.loc.gov/vocabulary/resourceTypes/img') }
     let(:image) { Image.new(work_type: [work_type]) }
-    it "indexes a label" do
+    it 'indexes a label' do
       VCR.use_cassette('resource_type') do
         expect(subject['work_type_sim']).to eq [work_type]
         expect(subject['work_type_label_sim']).to eq ['Still Image']
@@ -65,7 +65,7 @@ describe ImageIndexer do
   context 'with location' do
     let(:location) { RDF::URI('http://id.loc.gov/authorities/subjects/sh85072779') }
     let(:image) { Image.new(location: [location]) }
-    it "indexes a label" do
+    it 'indexes a label' do
       VCR.use_cassette('location') do
         expect(subject['location_sim']).to eq [location]
         expect(subject['location_label_sim']).to eq ['Kodiak Island (Alaska)']

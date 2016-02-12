@@ -7,7 +7,7 @@ describe Importer::CSVParser do
   let(:file) { 'spec/fixtures/csv/pamss045.csv' }
   let(:first_record) { parser.first }
 
-  context "Importing just images" do
+  context 'Importing just images' do
     it 'parses a record' do
       # Title must be singular
       expect(first_record[:title]).to eq ['Dirge for violin and piano (violin part)']
@@ -25,7 +25,7 @@ describe Importer::CSVParser do
     end
   end
 
-  context "Importing images and collections" do
+  context 'Importing images and collections' do
     let(:file) { 'spec/fixtures/csv/pamss045_with_type.csv' }
     let(:collection_record) { parser.to_a.last }
 
@@ -40,19 +40,22 @@ describe Importer::CSVParser do
     end
   end
 
-
   describe 'parsing local authorities' do
     let(:file) { 'spec/fixtures/csv/pamss045_with_local_authorities.csv' }
 
     let(:composer_uri) { RDF::URI('http://id.loc.gov/authorities/names/no93011759') }
-    let(:composer_person) {{ type: 'Person',
-                             name: 'J. Anderson' }}
-    let(:composer_group)  {{ type: 'Group',
-                             name: 'Anderson Choir' }}
+    let(:composer_person) do
+      { type: 'Person',
+        name: 'J. Anderson' }
+    end
+    let(:composer_group) do
+      { type: 'Group',
+        name: 'Anderson Choir' }
+    end
     let(:micro_music) { RDF::URI('http://id.loc.gov/authorities/subjects/sh85084939') }
     let(:women_comp) { RDF::URI('http://id.loc.gov/authorities/subjects/sh85147508') }
-    let(:jefrey)  {{ type: 'Person', name: 'Jefrey' }}
-    let(:jef_topic)  {{ type: 'Topic', name: "Jef's Topic" }}
+    let(:jefrey) { { type: 'Person', name: 'Jefrey' } }
+    let(:jef_topic)  { { type: 'Topic', name: "Jef's Topic" } }
 
     it 'captures the types to pass on to the importer' do
       expect(first_record[:composer]).to eq [composer_uri, composer_person, composer_group]
@@ -66,17 +69,16 @@ describe Importer::CSVParser do
     end
   end
 
-
   describe 'validating CSV headers' do
     subject { parser.send(:validate_headers, headers) }
 
     context 'with valid headers' do
-      let(:headers) { ["accession_number", "title"] }
+      let(:headers) { %w(accession_number title) }
       it { is_expected.to eq headers }
     end
 
     context 'with invalid headers' do
-      let(:headers) { ["something bad", "title"] }
+      let(:headers) { ['something bad', 'title'] }
 
       it 'raises an error' do
         expect { subject }.to raise_error 'Invalid headers: something bad'
@@ -84,7 +86,7 @@ describe Importer::CSVParser do
     end
 
     context 'with "*_type" fields for local authorities' do
-      let(:headers) { ["rights_holder", "rights_holder_type", "rights_holder", "title"] }
+      let(:headers) { %w(rights_holder rights_holder_type rights_holder title) }
       it { is_expected.to eq headers }
     end
 
@@ -93,7 +95,7 @@ describe Importer::CSVParser do
     # authority.  If the columns aren't in the correct order,
     # raise an error.
     context 'with columns in the wrong order' do
-      let(:headers) { ["rights_holder_type", "rights_holder_type", "rights_holder", "title"] }
+      let(:headers) { %w(rights_holder_type rights_holder_type rights_holder title) }
 
       it 'raises an error' do
         expect { subject }.to raise_error "Invalid headers: 'rights_holder_type' column must be immediately followed by 'rights_holder' column."
@@ -101,21 +103,20 @@ describe Importer::CSVParser do
     end
 
     context 'with nil headers' do
-      let(:headers) { ["title", nil] }
+      let(:headers) { ['title', nil] }
       it { is_expected.to eq headers }
     end
 
     # It doesn't expect a matching column for "work_type"
     context 'with work_type column' do
-      let(:headers) { ["work_type", "rights_holder", "title"] }
+      let(:headers) { %w(work_type rights_holder title) }
       it { is_expected.to eq headers }
     end
 
     # note_type is handled separately
     context 'with note_type column' do
-      let(:headers) { ["note_type", "note_value", "title"] }
+      let(:headers) { %w(note_type note_value title) }
       it { is_expected.to eq headers }
     end
   end
-
 end

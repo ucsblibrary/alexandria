@@ -88,14 +88,16 @@ describe Image do
     context 'for notes' do
       let(:notes) { [title_note, caption_note, cite_note] }
 
-      let(:title_note) {{ value: ['Title from item.'] }}
-      let(:caption_note) {{ value: ["Postcard caption: 25. Light-House Tower Sta. Barbara Earth Quake.\n6-29-25."] }}
-      let(:cite_note) {{ note_type: ['preferred citation'],
-        value: ["[Identification of Item], Santa Barbara picture\npostcards collection. SBHC Mss 36. Department of Special Collections, UC Santa Barbara\nLibrary, University of California, Santa Barbara."] }}
+      let(:title_note) { { value: ['Title from item.'] } }
+      let(:caption_note) { { value: ["Postcard caption: 25. Light-House Tower Sta. Barbara Earth Quake.\n6-29-25."] } }
+      let(:cite_note) do
+        { note_type: ['preferred citation'],
+          value: ["[Identification of Item], Santa Barbara picture\npostcards collection. SBHC Mss 36. Department of Special Collections, UC Santa Barbara\nLibrary, University of California, Santa Barbara."] }
+      end
 
       before do
         subject.title = ['Test title']
-        notes.each {|note| subject.notes.build(note) }
+        notes.each { |note| subject.notes.build(note) }
         subject.save!
         subject.reload
       end
@@ -127,7 +129,7 @@ describe Image do
       image.to_solr
     end
 
-    describe "human_readable_type" do
+    describe 'human_readable_type' do
       subject { image.to_solr[Solrizer.solr_name('human_readable_type', :facetable)] }
       it { is_expected.to eq 'Image' }
     end
@@ -149,7 +151,7 @@ describe Image do
         expect(image.issued.first.finish).to eq ['1917']
       end
 
-      context "when loading from fedora" do
+      context 'when loading from fedora' do
         before do
           image.save!
           image.reload
@@ -172,7 +174,7 @@ describe Image do
   end
 
   describe 'lc_subject' do
-    context "with a literal value" do
+    context 'with a literal value' do
       let(:image) { Image.new(lc_subject: ['foo']) }
       it "isn't valid" do
         expect(image).not_to be_valid
@@ -180,7 +182,7 @@ describe Image do
       end
     end
 
-    context "with a local vocabulary" do
+    context 'with a local vocabulary' do
       before do
         AdminPolicy.ensure_admin_policy_exists
         subject.title = ['Test title']
@@ -196,7 +198,7 @@ describe Image do
   end
 
   describe 'work_type' do
-    context "with a literal value" do
+    context 'with a literal value' do
       let(:image) { Image.new(work_type: ['foo']) }
 
       it "isn't valid" do

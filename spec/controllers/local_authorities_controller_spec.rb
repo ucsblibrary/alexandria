@@ -15,7 +15,7 @@ describe LocalAuthoritiesController do
       before { get :index }
 
       it 'access is denied' do
-        expect(flash[:alert]).to match /You are not authorized/
+        expect(flash[:alert]).to match(/You are not authorized/)
         expect(response).to redirect_to root_path
       end
     end
@@ -26,16 +26,20 @@ describe LocalAuthoritiesController do
     before { sign_in admin }
 
     describe 'get index' do
-      let(:image) { create(:public_image) }
-
       before do
         ActiveFedora::Cleaner.clean!
         AdminPolicy.ensure_admin_policy_exists
-        [person, group, org, agent, image, topic] # create the objects
-        get :index
       end
 
+      let!(:image) { create(:public_image) }
+      let!(:person) { create(:person) }
+      let!(:group) { create(:group) }
+      let!(:org) { create(:org) }
+      let!(:agent) { create(:agent) }
+      let!(:topic) { Topic.create!(label: ['A Local Subject']) }
+
       it 'only shows the models for local authorities' do
+        get :index
         doc_ids = assigns[:document_list].map(&:id)
         expect(doc_ids).to include(person.id)
         expect(doc_ids).to include(group.id)
