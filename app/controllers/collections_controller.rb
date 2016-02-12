@@ -57,5 +57,4 @@ class CollectionsController < ApplicationController
     def show_type?(_, _document)
       false
     end
-
 end

@@ -109,5 +109,5 @@ module Metadata
       depicted:                              RDF::Vocab::MARCRelators.dpc,
       distributor:                           RDF::Vocab::MARCRelators.dst,
       # publisher:                             RDF::Vocab::MARCRelators.pbl
-    }
+    }.freeze
 end

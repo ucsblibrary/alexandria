@@ -5,7 +5,7 @@ class ETD < ActiveFedora::Base
   include HumanReadableType
   include EmbargoBehavior
 
-  self.human_readable_type = "Thesis or dissertation"
+  self.human_readable_type = 'Thesis or dissertation'
 
   validates :title, presence: { message: 'Your work must have a title.' }
 

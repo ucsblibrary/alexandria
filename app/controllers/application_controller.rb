@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
 
   def deny_access(exception)
     if controller.name == 'embargoes'
-      redirect_to({ controller: :catalog,  action: 'show' }, alert: exception.message)
+      redirect_to({ controller: :catalog, action: 'show' }, alert: exception.message)
     else
       super
     end
@@ -40,5 +40,4 @@ class ApplicationController < ActionController::Base
   def admin_menu?
     can?(:discover, Hydra::AccessControls::Embargo) || can?(:destroy, :local_authorities)
   end
-
 end

@@ -13,7 +13,7 @@ class RDF::DeepIndexingService < ActiveFedora::RDF::IndexingService
     when String
       append_label(solr_doc, solr_field_key, field_info, val)
     else
-      fail ArgumentError, "Can't handle #{val.class}"
+      raise ArgumentError, "Can't handle #{val.class}"
     end
   end
 

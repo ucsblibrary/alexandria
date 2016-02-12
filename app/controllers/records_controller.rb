@@ -6,7 +6,7 @@ class RecordsController < ApplicationController
   include RecordsControllerBehavior
 
   def deny_access(exception)
-    redirect_to({ controller: :catalog,  action: 'show' }, alert: exception.message)
+    redirect_to({ controller: :catalog, action: 'show' }, alert: exception.message)
   end
 
   def destroy
@@ -58,7 +58,6 @@ class RecordsController < ApplicationController
     def redirect_after_update
       polymorphic_url(resource)
     end
-
 
   private
 
