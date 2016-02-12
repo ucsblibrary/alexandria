@@ -11,8 +11,15 @@ public/assets
 /db/*.sqlite3
 /db/*.sqlite3-journal
 
-# Ignore ansible roles
-/ansible/roles
+# Ignore provisioning files
+ansible.cfg
+fedora-data
+hosts
+ingest
+install
+marmotta
+solr
+tomcat
 
 # Ignore all logfiles and tempfiles.
 /log/*

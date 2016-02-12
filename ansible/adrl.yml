@@ -1,0 +1,75 @@
+- name: ADRL on CentOS
+  hosts: all
+  remote_user: vagrant
+  vars:
+    deploy_user: deploy
+    deploy_group: deploy
+    deploy_keys:
+      - "{{ lookup('env', 'IDENTITY') }}.pub"
+
+    server_name: "{{ lookup('env', 'SERVER') }}"
+    project_base: "{{ lookup('env', 'PROJECT_BASE') }}"
+    project_name: alexandria
+    install_path: "{{ project_base }}/install"
+
+    rails_env: production
+    rails_secret_key_base: "{{ lookup('env', 'SECRET') }}"
+    config_path: "{{ project_base }}/{{ project_name }}/shared/config"
+
+    # `tomcat` is the directory in the Tomcat installation where
+    # servlets, libraries and configuration files can be installed
+    tomcat: "{{ lookup('env', 'TOMCAT') }}"
+    marmotta_home: "{{ lookup('env', 'MARMOTTA_HOME') }}"
+    solr_context: hydra
+    solr_home: "{{ lookup('env', 'SOLR_HOME') }}"
+
+    # Password for the 'postgres' user
+    pg_pass: "{{ lookup('env', 'PG_PASS') }}"
+    # Passwords for hydra and marmotta roles
+    hydra_pg_pass: "{{ lookup('env', 'H_PG_PASS') }}"
+    marmotta_pg_pass: "{{ lookup('env', 'M_PG_PASS') }}"
+
+    fedora_pass: "{{ lookup('env', 'FEDORA_PASS') }}"
+
+    # DCE's is available in Secret Server
+    ldap_admin_password: "{{ lookup('env', 'LDAP_PASS') }}"
+
+    contact_email: "{{ lookup('env', 'EMAIL') }}"
+
+    # SMTP
+    smtp_address: 
+    smtp_port: 25
+    smtp_user: "{{ lookup('env', 'SMTP_USER') }}"
+    # leave blank
+    smtp_domain:
+    smtp_password:
+
+    # Active Directory login; this is used to mount the data folders
+    # from svmwindows and to clone the metadata repository from Stash
+    svm_user: "{{ lookup('env', 'SVM_USER') }}"
+    svm_pass: "{{ lookup('env', 'SVM_PASS') }}"
+
+    # AD credentials for Stash
+    ad_git_user: "{{ lookup('env', 'AD_GIT_USER') }}"
+    ad_git_pass: "{{ lookup('env', 'AD_GIT_PASS') }}"
+
+    ezid_user: "{{ lookup('env', 'EZID_USER') }}"
+    ezid_pass: "{{ lookup('env', 'EZID_PASS') }}"
+    ezid_default_shoulder: "{{ lookup('env', 'EZID_SHOULDER') }}"
+
+  roles:
+    - { role: housekeeping, sudo: yes }
+    - { role: ruby }
+    - { role: hydra-stack }
+    - { role: services }
+    - { role: ffmpeg }
+    # - { role: imagemagick }
+    - { role: passenger, sudo: yes }
+    - { role: marmotta }
+    - { role: app-config, sudo: yes }
+    - { role: ezid }
+    - { role: smtp }
+    - { role: ldap }
+    - { role: hostname }
+    - { role: alexandria-v2, sudo: yes }
+    - { role: sshd }
