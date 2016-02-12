@@ -62,4 +62,3 @@
     - { role: '../provisioning/centos/roles/ldap' }
     - { role: '../provisioning/centos/roles/hostname' }
     - { role: alexandria-v2, sudo: yes }
-    - { role: '../provisioning/centos/roles/sshd' }
