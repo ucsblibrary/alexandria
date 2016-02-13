@@ -1,5 +1,6 @@
-module BlacklightUrlHelper
-  include Blacklight::UrlHelperBehavior
+module CurationConcernsHelper
+  include ::BlacklightHelper
+  include CurationConcerns::MainAppHelpers
 
   def url_for_document(doc, options = {})
     return unless doc
@@ -12,7 +13,7 @@ module BlacklightUrlHelper
       if doc.ark
         ark_path(doc.ark.html_safe)
       else
-        solr_document_path(super)
+        solr_document_path(search_state.url_for_document(doc, options))
       end
     else
       super

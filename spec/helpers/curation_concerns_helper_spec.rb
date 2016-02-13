@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe BlacklightUrlHelper do
+describe CurationConcernsHelper do
   describe '#url_for_document' do
     subject { helper.url_for_document(document) }
 
