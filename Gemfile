@@ -12,6 +12,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'therubyracer', platforms: :ruby
 
+gem 'hydra-head', github: 'projecthydra/hydra-head', branch: 'replace_uri_with_graph'
 gem 'hydra-role-management'
 gem 'hydra-collections', github: 'projecthydra/hydra-collections'
 gem 'curation_concerns', github: 'projecthydra-labs/curation_concerns'

@@ -18,6 +18,17 @@ class SolrDocument
   # Do content negotiation for AF models.
   use_extension(Hydra::ContentNegotiation)
 
+  # This overrides the connection provided by Hydra::ContentNegotiation so we
+  # can get the model too.
+  module ConnectionWithModel
+    def connection
+      # TODO: clean the fedora added triples out.
+      @connection ||= CleanConnection.new(ActiveFedora.fedora.connection)
+    end
+  end
+
+  use_extension(ConnectionWithModel)
+
   ##
   # Offer the source (ActiveFedora-based) model to Rails for some of the
   # Rails methods (e.g. link_to).
@@ -82,4 +93,5 @@ class SolrDocument
       docs = ActiveFedora::SolrService.query("{!terms f=id}#{ids.join(',')}").map { |res| SolrDocument.new(res) }
       ids.map { |id| docs.find { |doc| doc.id == id } }
     end
+
 end
