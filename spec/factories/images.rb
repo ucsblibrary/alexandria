@@ -3,6 +3,7 @@ require 'factory_girl'
 FactoryGirl.define do
   factory :image do
     title ['Test Image']
+    work_type [RDF::URI('http://id.loc.gov/vocabulary/resourceTypes/img')]
     identifier { [Time.now.strftime('%m%d%Y%M%S') + rand(1_000_000).to_s] }
     factory :public_image do
       admin_policy_id AdminPolicy::PUBLIC_POLICY_ID
