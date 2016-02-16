@@ -1,12 +1,17 @@
 defaults: &defaults
   download_root: 'tmp/download_root'
-  marmotta_host: localhost:8180
+  ezid_host: ezid.cdlib.org
+  ezid_port: 443
   internal_local_vocab_root: http://<%= Rails.application.config.host_name %>
+  marmotta_host: localhost:8180
   minter_state: 'tmp/minter-state'
+
 development:
   <<: *defaults
+
 test:
   <<: *defaults
+
 production:
   <<: *defaults
   marmotta_host: localhost:8080
