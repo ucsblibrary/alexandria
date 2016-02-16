@@ -17,7 +17,7 @@ module OptionsHelper
   end
 
   def license_options
-    local_uri_options('license')
+    local_uri_options('rights')
   end
 
   # @return Hash of relators in JSON with creator and contributor at the top.

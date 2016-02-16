@@ -7,9 +7,9 @@ describe Qa::TermsController do
     AdminPolicy.ensure_admin_policy_exists
   end
 
-  describe 'license vocabulary' do
+  describe 'rights vocabulary' do
     it 'returns terms' do
-      get :search, vocab: 'local', subauthority: 'license', q: 'ND'
+      get :search, vocab: 'local', subauthority: 'rights', q: 'ND'
       expect(response).to be_success
     end
   end
