@@ -36,11 +36,9 @@ def unzip(zipfile, dest)
   xml ||= []
   system 'unzip', '-o', zipfile, '-d', dest
 
-  Dir.chdir dest do
-    Dir.glob("#{dest}/**/*.xml") do |x|
-      puts "Found #{x}"
-      xml << x
-    end
+  Dir.glob("#{dest}/**/*.xml") do |x|
+    puts "Found #{x}"
+    xml << x
   end
 
   xml
