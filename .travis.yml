@@ -9,7 +9,6 @@ before_script:
   - "cp config/application.yml.template config/application.yml"
   - "cp config/blacklight.yml.template config/blacklight.yml"
   - "cp config/database.yml.template config/database.yml"
-  - "cp config/ezid.yml.template config/ezid.yml"
   - "cp config/fedora.yml.template config/fedora.yml"
   - "cp config/ldap.yml.template config/ldap.yml"
   - "cp config/redis.yml.template config/redis.yml"
