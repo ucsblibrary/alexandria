@@ -103,6 +103,14 @@ $bg_image: 'ADRL_BG_1280x160.png';
   white-space: inherit;
 }
 
+li .row {
+  margin: initial;
+}
+.row:before, .row:after {
+  content: initial;
+  display: initial;
+}
+
 // -------
 // General
 // -------
@@ -589,6 +597,34 @@ label.remove_time_span {
   margin: 2em 0;
 }
 
+.search-results-list li + li {
+  margin-top: 2em;
+}
+
+.documentHeader {
+  position: relative;
+  h3 {
+    font-size: 100%;
+  }
+}
+.index-document-functions {
+  border: 1px solid #ddd;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05);
+  .checkbox {
+    padding: 5px;
+    text-align: center;
+  }
+}
+
+@media screen and (min-width: $breakpoint3) {
+  .index-document-functions {
+    max-width: 20%;
+    position: absolute;
+    right: 0;
+  }
+}
 
 // --------
 // Carousel
