@@ -52,11 +52,15 @@ class RecordsController < ApplicationController
   protected
 
     def redirect_after_create
-      polymorphic_url(resource)
+      redirect_after_update
     end
 
     def redirect_after_update
-      polymorphic_url(resource)
+      if resource.class.include? LocalAuthorityBase
+        polymorphic_url(resource)
+      else
+        solr_document_path(resource.id)
+      end
     end
 
   private

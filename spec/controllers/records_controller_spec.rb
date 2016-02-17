@@ -11,6 +11,16 @@ describe RecordsController do
   # Don't fetch external records (speed up)
   before { allow_any_instance_of(RDF::DeepIndexingService).to receive(:fetch_external) }
 
+  describe '#create' do
+    context "of a local authority" do
+      it "is successful" do
+        post :create, type: 'Person', person: { foaf_name: 'Kylo Ren' }
+        expect(response).to redirect_to Rails.application.routes.url_helpers.person_path(assigns[:record])
+        expect(assigns[:record].foaf_name).to eq 'Kylo Ren'
+      end
+    end
+  end
+
   describe '#update' do
     let(:image) { create(:image, creator_attributes: initial_creators) }
 
@@ -31,6 +41,7 @@ describe RecordsController do
         patch :update, id: image, image: { contributor_attributes: contributor_attributes }
         expect(image.reload.creator_ids).to eq ['http://id.loc.gov/authorities/names/n87914041',
                                                 'http://id.loc.gov/authorities/names/n87141298']
+        expect(response).to redirect_to(Rails.application.routes.url_helpers.solr_document_path(image.id))
       end
     end
 
