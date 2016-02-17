@@ -85,11 +85,9 @@ end
 
 puts 'Now ingesting...'
 
-begin
-  pid = fork do
-    exec File.expand_path('../traject-xml', __FILE__), "#{marc_directory}/#{output_file}"
-  end
-ensure
-  Process.wait pid
-  FileUtils.rm_rf temp
-end
+require 'traject/command_line'
+cmdline = Traject::CommandLine.new(['-c', 'lib/traject/etd_config.rb', "#{marc_directory}/#{output_file}"])
+result = cmdline.execute
+FileUtils.rm_rf temp
+
+exit 1 unless result # non-zero exit status on process telling us there's problems.

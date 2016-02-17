@@ -47,8 +47,6 @@ class ObjectFactoryWriter
 
     attributes[:files] = attributes.delete('filename')
 
-    attributes[:collection] = { id: 'etds', title: ['Electronic Theses and Dissertations'], accession_number: ['etds'] }
-
     build_object(attributes)
   end
 
@@ -66,12 +64,32 @@ class ObjectFactoryWriter
     end
 
     def build_object(attributes)
-      factory.new(attributes, Settings.proquest_directory).run
+      work_type = attributes.fetch('work_type').first
+      attributes[:collection] = collection_attributes(work_type)
+
+      factory(work_type).new(attributes, Settings.proquest_directory).run
     end
 
-    # TODO: this can be branched by the `work_type' attribute
-    def factory
-      Importer::Factory.for('ETD')
+    def collection_attributes(work_type)
+      case work_type
+      when RDF::URI('http://id.loc.gov/vocabulary/resourceTypes/txt')
+        { id: 'etds', title: ['Electronic Theses and Dissertations'], accession_number: ['etds'] }
+      when RDF::URI('http://id.loc.gov/vocabulary/resourceTypes/aum')
+        { id: 'cylinders', title: ['Wax Cylinders'], accession_number: ['cylinders'], admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID }
+      else
+        raise ArgumentError, "Unknown work type #{work_type}"
+      end
+    end
+
+    def factory(work_type)
+      case work_type
+      when RDF::URI('http://id.loc.gov/vocabulary/resourceTypes/txt')
+        Importer::Factory.for('ETD')
+      when RDF::URI('http://id.loc.gov/vocabulary/resourceTypes/aum')
+        Importer::Factory.for('AudioRecording')
+      else
+        raise ArgumentError, "Unknown work type #{work_type}"
+      end
     end
 
     # @param [Array] names : a list of names

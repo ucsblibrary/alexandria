@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<zs:searchRetrieveResponse xmlns:zs="http://www.loc.gov/zing/srw/"><zs:version>1.1</zs:version><zs:numberOfRecords>1</zs:numberOfRecords><zs:records><zs:record><zs:recordSchema>info:srw/schema/1/marcxml-v1.1</zs:recordSchema><zs:recordPacking>xml</zs:recordPacking><zs:recordData><record xmlns="http://www.loc.gov/MARC21/slim">
+<!-- Length implementation at offset 22 should hold a digit. Assuming 0 -->
+  <leader>01762njm a2200409 a 4500</leader>
+  <controlfield tag="001">002556253</controlfield>
+  <controlfield tag="005">20131221203112.0</controlfield>
+  <controlfield tag="007">se imsznnmwhna</controlfield>
+  <controlfield tag="007">cr|nn||||a|ump</controlfield>
+  <controlfield tag="008">990514s1903    njusgn g            eng d</controlfield>
+  <datafield tag="028" ind1="0" ind2="0">
+    <subfield code="a">8525</subfield>
+    <subfield code="b">Edison Gold Moulded Record</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(OCoLC)41363324</subfield>
+  </datafield>
+  <datafield tag="024" ind1=" " ind2="7">
+    <subfield code="a">ark:/48907/f3999999</subfield>
+    <subfield code="2">local</subfield>
+  </datafield>
+  <datafield tag="040" ind1=" " ind2=" ">
+    <subfield code="a">SYB</subfield>
+    <subfield code="c">SYB</subfield>
+    <subfield code="d">CUT</subfield>
+  </datafield>
+  <datafield tag="100" ind1="1" ind2=" ">
+    <subfield code="a">Allen, Thos. S.,</subfield>
+    <subfield code="d">1876-1919.</subfield>
+  </datafield>
+  <datafield tag="245" ind1="1" ind2="0">
+    <subfield code="a">Any rags</subfield>
+    <subfield code="h">[sound recording] /</subfield>
+    <subfield code="c">[Allen].</subfield>
+  </datafield>
+  <datafield tag="260" ind1=" " ind2=" ">
+    <subfield code="a">Orange, N.J. :</subfield>
+    <subfield code="b">Edison Gold Moulded Record,</subfield>
+    <subfield code="c">[1903]</subfield>
+  </datafield>
+  <datafield tag="300" ind1=" " ind2=" ">
+    <subfield code="a">1 cylinder (ca. 2 min.) :</subfield>
+    <subfield code="b">160 rpm ;</subfield>
+    <subfield code="c">2 1/4 x 4 in.</subfield>
+  </datafield>
+  <datafield tag="561" ind1=" " ind2=" ">
+    <subfield code="a">Todd collection.</subfield>
+    <subfield code="5">CU-SB</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Edison Gold Moulded Record: 8525.</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Year of release and descriptor from "The Edison Phonograph Monthly," v.1 (1903/1904).</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">"Coon song."</subfield>
+  </datafield>
+  <datafield tag="511" ind1="0" ind2=" ">
+    <subfield code="a">Arthur Collins.</subfield>
+  </datafield>
+  <datafield tag="520" ind1="8" ind2=" ">
+    <subfield code="a">Baritone solo with orchestra accompaniment.</subfield>
+  </datafield>
+  <datafield tag="590" ind1=" " ind2=" ">
+    <subfield code="a">Copies 2, 3 are possible alternate takes.</subfield>
+  </datafield>
+  <datafield tag="530" ind1=" " ind2=" ">
+    <subfield code="a">Also available online via the Internet.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Popular music</subfield>
+    <subfield code="y">1901-1910.</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Collins, Arthur.</subfield>
+    <subfield code="4">voc</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="3">Audio files:</subfield>
+    <subfield code="u">http://www.library.ucsb.edu/OBJID/Cylinder4374</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="3">Audio files:</subfield>
+    <subfield code="u">http://www.library.ucsb.edu/OBJID/Cylinder4373</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="3">Audio files:</subfield>
+    <subfield code="u">http://www.library.ucsb.edu/OBJID/Cylinder4377</subfield>
+  </datafield>
+  <datafield tag="852" ind1="4" ind2="0">
+    <subfield code="a">CU-SB</subfield>
+    <subfield code="b">MAIN</subfield>
+    <subfield code="c">SPPA</subfield>
+    <subfield code="j">Cylinder 4373</subfield>
+    <subfield code="z">Copy 1</subfield>
+    <subfield code="n">us</subfield>
+    <subfield code="x">lwh 2/02/2004 item</subfield>
+    <subfield code="9">1</subfield>
+    <subfield code="4">Main Library</subfield>
+    <subfield code="5">Special Coll., Performing Arts</subfield>
+  </datafield>
+  <datafield tag="852" ind1="4" ind2="0">
+    <subfield code="a">CU-SB</subfield>
+    <subfield code="b">MAIN</subfield>
+    <subfield code="c">SPPA</subfield>
+    <subfield code="j">Cylinder 4374</subfield>
+    <subfield code="t">2</subfield>
+    <subfield code="z">Copy 2</subfield>
+    <subfield code="n">us</subfield>
+    <subfield code="x">jrt 01/22/04 item</subfield>
+    <subfield code="9">1</subfield>
+    <subfield code="4">Main Library</subfield>
+    <subfield code="5">Special Coll., Performing Arts</subfield>
+  </datafield>
+  <datafield tag="852" ind1="4" ind2="0">
+    <subfield code="a">CU-SB</subfield>
+    <subfield code="b">MAIN</subfield>
+    <subfield code="c">SPPA</subfield>
+    <subfield code="j">Cylinder 4377</subfield>
+    <subfield code="t">3</subfield>
+    <subfield code="z">Copy 3</subfield>
+    <subfield code="n">us</subfield>
+    <subfield code="x">lwh 2/02/2004 item</subfield>
+    <subfield code="9">1</subfield>
+    <subfield code="4">Main Library</subfield>
+    <subfield code="5">Special Coll., Performing Arts</subfield>
+  </datafield>
+  <datafield tag="940" ind1=" " ind2=" ">
+    <subfield code="a">OCLC</subfield>
+  </datafield>
+  <datafield tag="948" ind1=" " ind2=" ">
+    <subfield code="a">LTI 12/16/2013</subfield>
+  </datafield>
+  <datafield tag="994" ind1=" " ind2=" ">
+    <subfield code="a">X0</subfield>
+    <subfield code="b">CUT</subfield>
+  </datafield>
+  <datafield tag="049" ind1=" " ind2=" ">
+    <subfield code="a">CUTM</subfield>
+  </datafield>
+  </record></zs:recordData><zs:recordPosition>1</zs:recordPosition></zs:record>
+</zs:records></zs:searchRetrieveResponse>

@@ -3,6 +3,7 @@ module Importer
     extend ActiveSupport::Autoload
 
     eager_autoload do
+      autoload :AudioRecordingFactory
       autoload :CollectionFactory
       autoload :ETDFactory
       autoload :ImageFactory

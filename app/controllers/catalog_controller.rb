@@ -145,9 +145,8 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('work_type_label', :stored_searchable), label: 'Type of Resource'
     config.add_show_field solr_name('finding_aid', :stored_searchable), label: 'Finding Aid'
 
-    # ETD only fields:
     config.add_show_field solr_name('degree_grantor', :symbol), label: 'Degree Grantor'
-    config.add_show_field solr_name('etd_subjects', :stored_searchable), label: 'Subjects'
+    config.add_show_field solr_name('marc_subjects', :stored_searchable), label: 'Subjects'
     config.add_show_field solr_name('keywords', :stored_searchable), label: 'Keywords'
     config.add_show_field solr_name('copyright', :displayable), label: 'Copyright'
     config.add_show_field solr_name('dissertation', :displayable), label: 'Dissertation'
