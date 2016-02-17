@@ -1,6 +1,8 @@
+require 'exporter/base_exporter'
+
 module Exporter
-  class LocalAuthorityExporter
-    attr_reader :export_dir, :export_file_name, :export_file
+  class LocalAuthorityExporter < BaseExporter
+
     attr_reader :temp_file_name, :temp_file
 
     # Some local authorities can have multiple labels, so we
@@ -11,46 +13,36 @@ module Exporter
     attr_accessor :max_names
 
     def initialize(dir = nil, file_name = nil)
-      @export_dir = dir || default_dir
-      @export_file_name = file_name || default_file_name
-      @export_file = File.join(export_dir, export_file_name)
+      super
       @temp_file_name = File.basename(export_file_name, '.*') + '.tmp'
       @temp_file = File.join(export_dir, temp_file_name)
       @max_names = 1
     end
 
-    def default_dir
-      File.join(Rails.root, 'tmp', 'exports')
-    end
-
     def default_file_name
-      time = Time.now.strftime('%Y_%m_%d_%H%M%S')
-      "export_authorities_#{time}.csv"
+      "export_authorities_#{timestamp}.csv"
     end
 
-    def run
-      print_object_counts
-      make_export_dir
-      write_data_to_temp_file
-      write_headers_and_data_to_export_file
-      clean_up_temp_file
-      puts 'Export complete.'
+    def classes_to_export
+      LocalAuthority.local_authority_models
     end
 
     def print_object_counts
-      puts 'Number of local authorities to export:'
-      LocalAuthority.local_authority_models.each do |model|
+      puts 'Number of records to export:'
+      classes_to_export.each do |model|
         puts "   #{model}: #{model.exact_model.count}"
       end
     end
 
-    def make_export_dir
-      FileUtils.mkdir_p(export_dir)
+    def export_data
+      write_data_to_temp_file
+      write_headers_and_data_to_export_file
+      clean_up_temp_file
     end
 
     def write_data_to_temp_file
       CSV.open(temp_file, 'w') do |csv|
-        LocalAuthority.local_authority_models.each do |model|
+        classes_to_export.each do |model|
           puts "Exporting #{model} objects..."
           model.exact_model.each do |fedora_object|
             csv << object_data(fedora_object)
@@ -82,7 +74,6 @@ module Exporter
         csv << headers
         CSV.foreach(temp_file) { |row| csv << row }
       end
-      puts "Local authorities were exported to: #{export_file}"
     end
 
     def headers
