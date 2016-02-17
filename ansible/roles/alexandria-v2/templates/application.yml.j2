@@ -1,0 +1,19 @@
+defaults: &defaults
+  download_root: 'tmp/download_root'
+  internal_local_vocab_root: <%= ActiveFedora.fedora.host %>
+  minter_state: 'tmp/minter-state'
+
+development:
+  <<: *defaults
+  marmotta_host: {{ server_name }}:8080
+
+test:
+  <<: *defaults
+  marmotta_host: localhost:8180
+
+production:
+  <<: *defaults
+  download_root: {{ etd_download_root }}
+  internal_local_vocab_root: 'http://alexandria.ucsb.edu:8080/fedora/rest'
+  marmotta_host: {{ server_name }}:8080
+  minter_state: {{ minter_state_location }}

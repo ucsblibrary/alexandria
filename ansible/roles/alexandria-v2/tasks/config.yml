@@ -1,0 +1,12 @@
+---
+- name: install application config files
+  become: yes
+  template:
+    src: "{{ item }}.j2"
+    dest: "{{ config_path }}/{{ item }}"
+    group: "{{ deploy_group }}"
+    owner: "{{ deploy_user }}"
+    backup: no
+    mode: 0600
+  with_items:
+    - application.yml

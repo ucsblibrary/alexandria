@@ -1,10 +1,16 @@
 language: ruby
 cache: bundler
 sudo: false
+
+git:
+  submodules: false
+
 rvm:
   - 2.2.4
+
 jdk:
   - oraclejdk8
+
 before_script:
   - "cp config/application.yml.template config/application.yml"
   - "cp config/blacklight.yml.template config/blacklight.yml"

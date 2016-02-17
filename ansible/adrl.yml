@@ -1,0 +1,65 @@
+- name: ADRL on CentOS
+  hosts: all
+  remote_user: vagrant
+
+  vars:
+    deploy_user: deploy
+    deploy_group: deploy
+    keyfile: "{{ lookup('env', 'IDENTITY') }}.pub"
+    deploy_keys:
+      - "{{ lookup('file', keyfile) }}"
+
+    server_name: "{{ lookup('env', 'SERVER') }}"
+    project_base: /opt
+    project_name: alexandria-v2
+    install_path: "{{ project_base }}/install"
+
+    rails_env: production
+    rails_secret_key_base: "{{ lookup('env', 'SECRET') }}"
+    config_path: "{{ project_base }}/{{ project_name }}/shared/config"
+
+    # `tomcat` is the directory in the Tomcat installation where
+    # servlets, libraries and configuration files can be installed
+    tomcat: /usr/share/tomcat
+    marmotta_home: "{{ project_base }}/marmotta"
+    solr_context: hydra
+    solr_home: "{{ project_base }}/solr"
+
+    # Password for the 'postgres' user
+    pg_pass: "{{ lookup('env', 'PG_PASS') }}"
+    # Passwords for hydra and marmotta roles
+    hydra_pg_pass: "{{ lookup('env', 'H_PG_PASS') }}"
+    marmotta_pg_pass: "{{ lookup('env', 'M_PG_PASS') }}"
+
+    fedora_pass: "{{ lookup('env', 'FEDORA_PASS') }}"
+
+    contact_email: "{{ lookup('env', 'EMAIL') }}"
+
+    # SMTP
+    smtp_address: 
+    smtp_port: 25
+    smtp_user: "{{ lookup('env', 'SMTP_USER') }}"
+    # leave blank
+    smtp_domain:
+    smtp_password:
+
+    file_server: ""
+    mount_point: "{{ project_base }}/ingest"
+    mount_opts: -fstype=cifs,ro,sec=ntlm,noexec,_netdev
+
+  roles:
+    - { role: '../provisioning/centos/roles/housekeeping', sudo: yes }
+    - { role: '../provisioning/centos/roles/ruby' }
+    - { role: '../provisioning/centos/roles/services' }
+    - { role: '../provisioning/centos/roles/hydra-stack' }
+    - { role: '../provisioning/centos/roles/ffmpeg' }
+    # - { role: imagemagick }
+    - { role: '../provisioning/centos/roles/passenger', sudo: yes }
+    - { role: '../provisioning/centos/roles/marmotta' }
+    - { role: '../provisioning/centos/roles/app-config', sudo: yes }
+    - { role: '../provisioning/centos/roles/ezid' }
+    - { role: '../provisioning/centos/roles/smtp' }
+    - { role: '../provisioning/centos/roles/ldap' }
+    - { role: '../provisioning/centos/roles/hostname' }
+    - { role: '../provisioning/centos/roles/automount' }
+    - { role: alexandria-v2, sudo: yes }

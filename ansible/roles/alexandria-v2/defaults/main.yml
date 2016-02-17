@@ -1,0 +1,9 @@
+---
+# roles/alexandria-v2/defaults/main.yml
+project_name: alexandria-v2
+project_base: /opt
+server_name: 127.0.0.1
+deploy_user: deploy
+deploy_group: deploy
+minter_state_location: "{{ project_base }}/{{ project_name }}/shared/minter-state"
+etd_download_root: "{{ project_base }}/download_root"
