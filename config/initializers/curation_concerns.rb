@@ -1,6 +1,8 @@
 require_relative 'inflections'
 require_relative 'settings'
 CurationConcerns.configure do |config|
+  # Injected via `rails g curation_concerns:work AudioRecording`
+  config.register_curation_concern :audio_recording
   config.register_curation_concern :image
   config.register_curation_concern :etd
 
