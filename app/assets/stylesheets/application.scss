@@ -441,7 +441,11 @@ table#downloads {
   background-color: inherit;
 }
 
-.panel-body {
+// JIRA: DIGREPO-472
+.panel-body ul {
+  margin-bottom: 0;
+}
+.show-tools .panel-body {
   padding: 5px 10px 20px 10px;
   li + li {
     margin-top: 1em;
