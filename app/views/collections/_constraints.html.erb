@@ -3,6 +3,6 @@
       <div id="appliedParams" class="clearfix constraints-container">
         <%=link_to t('blacklight.search.start_over'), start_over_path, :class => "catalog_startOverLink btn btn-sm btn-text", :id=>"startOverLink" %>
         <span class="constraints-label"><%= t('blacklight.search.filters.title') %></span>
-        <%= render_constraints(params.merge(route_set: collections)) %>
+        <%= render_constraints(params.to_h.merge(route_set: collections)) %>
       </div>
 <% end %>

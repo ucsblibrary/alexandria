@@ -1,8 +1,4 @@
 module CollectionsHelper
-  def has_collection_search_parameters?
-    !params[:cq].blank?
-  end
-
   # If the description is too long, include a more/less toggle
   # to truncate and show/hide long descriptions.
   def render_description(solr_doc)

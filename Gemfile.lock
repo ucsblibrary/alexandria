@@ -21,34 +21,8 @@ GIT
       activesupport (>= 3.0.0)
 
 GIT
-  remote: git://github.com/projecthydra-labs/curation_concerns.git
-  revision: 194b8e5c3b6b9a4a7695510dc3a637b831c3b810
-  specs:
-    curation_concerns (0.6.0)
-      blacklight (~> 6.0)
-      blacklight_advanced_search (~> 6.0)
-      breadcrumbs_on_rails (~> 2.3)
-      curation_concerns-models (= 0.6.0)
-      hydra-editor (~> 1.1)
-      hydra-head (~> 9.6)
-      jquery-ui-rails
-      rails_autolink
-      simple_form (~> 3.1)
-    curation_concerns-models (0.6.0)
-      active_attr
-      active_fedora-noid (~> 1.0)
-      hydra-collections (~> 7.0)
-      hydra-head (~> 9.3)
-      hydra-pcdm (~> 0.3.2)
-      hydra-works (~> 0.6)
-      qa (~> 0.5)
-      redlock (~> 0.1.2)
-      resque (~> 1.23)
-      resque-pool (~> 0.3)
-
-GIT
   remote: git://github.com/projecthydra/hydra-collections.git
-  revision: ded0679e49720fd3ee66bea4afff1f8f829b7d32
+  revision: 825f79fb6909b113886181adac95c49aab1198f6
   specs:
     hydra-collections (7.0.0)
       blacklight (~> 6.0)
@@ -116,7 +90,7 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
-    active-fedora (9.8.2)
+    active-fedora (9.9.0)
       active-triples (~> 0.7.1)
       activesupport (>= 4.1.0)
       deprecation
@@ -165,10 +139,14 @@ GEM
     american_date (1.1.1)
     arel (6.0.3)
     ast (2.2.0)
-    autoprefixer-rails (6.3.2)
+    autoprefixer-rails (6.3.3)
       execjs
       json
     awesome_print (1.6.1)
+    babel-source (5.8.35)
+    babel-transpiler (0.7.0)
+      babel-source (>= 4.0, < 6)
+      execjs (~> 2.0)
     bcp47 (0.3.3)
       i18n
     bcrypt (3.1.10)
@@ -236,6 +214,27 @@ GEM
     concurrent-ruby (1.0.0)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
+    curation_concerns (0.8.0)
+      blacklight (~> 6.0)
+      blacklight_advanced_search (~> 6.0)
+      breadcrumbs_on_rails (~> 2.3)
+      curation_concerns-models (= 0.8.0)
+      hydra-editor (~> 1.1)
+      hydra-head (~> 9.6)
+      jquery-ui-rails
+      rails_autolink
+      simple_form (~> 3.1)
+      sprockets-es6
+    curation_concerns-models (0.8.0)
+      active_attr
+      active_fedora-noid (~> 1.0)
+      hydra-collections (~> 7.0)
+      hydra-head (~> 9.3)
+      hydra-works (~> 0.7)
+      qa (~> 0.5)
+      redlock (~> 0.1.2)
+      resque (~> 1.23)
+      resque-pool (~> 0.3)
     curb (0.9.1)
     daemons (1.2.3)
     database_cleaner (1.5.1)
@@ -298,7 +297,7 @@ GEM
       simple_form (~> 3.1.0)
     hydra-file_characterization (0.3.3)
       activesupport (>= 3.0.0)
-    hydra-pcdm (0.3.2)
+    hydra-pcdm (0.4.0)
       active-fedora (~> 9.6)
       activefedora-aggregation (~> 0.6)
       mime-types (>= 1)
@@ -306,10 +305,10 @@ GEM
       blacklight
       bootstrap_form
       cancancan
-    hydra-works (0.6.0)
+    hydra-works (0.7.0)
       hydra-derivatives (~> 3.0)
       hydra-file_characterization (~> 0.3, >= 0.3.3)
-      hydra-pcdm (~> 0.3)
+      hydra-pcdm (~> 0.4)
     i18n (0.7.0)
     iso-639 (0.2.5)
     jbuilder (2.4.0)
@@ -612,6 +611,10 @@ GEM
     sprockets (3.5.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
+    sprockets-es6 (0.9.0)
+      babel-source (>= 5.8.11)
+      babel-transpiler
+      sprockets (>= 3.0.0)
     sprockets-rails (3.0.1)
       actionpack (>= 4.0)
       activesupport (>= 4.0)
@@ -677,7 +680,7 @@ DEPENDENCIES
   capistrano-passenger
   capistrano-rails (>= 1.1.3)
   capybara
-  curation_concerns!
+  curation_concerns (~> 0.8.0)
   curb
   database_cleaner
   devise (~> 3.5.2)

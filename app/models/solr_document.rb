@@ -2,6 +2,7 @@
 class SolrDocument
   include Blacklight::Solr::Document
   include Blacklight::Gallery::OpenseadragonSolrDocument
+  include CurationConcerns::SolrDocumentBehavior
 
   # self.unique_key = 'id'
 
@@ -28,15 +29,6 @@ class SolrDocument
   end
 
   use_extension(ConnectionWithModel)
-
-  ##
-  # Offer the source (ActiveFedora-based) model to Rails for some of the
-  # Rails methods (e.g. link_to).
-  # @example
-  #   link_to '...', SolrDocument(id: 'bXXXXXX5').new => <a href="/dams_object/bXXXXXX5">...</a>
-  def to_model
-    @model ||= ActiveFedora::Base.load_instance_from_solr(id, self)
-  end
 
   # Something besides a local authority
   def curation_concern?
@@ -66,13 +58,14 @@ class SolrDocument
   end
 
   def to_param
-    Identifier.ark_to_noid(ark) || id # || Identifier.noidify(id)
+    Identifier.ark_to_noid(ark) || id
   end
 
   def ark
     Array(self[Solrizer.solr_name('identifier', :displayable)]).first
   end
 
+  # TODO: investigate if this method is still needed.
   def file_sets
     @file_sets ||= begin
       if ids = self[Solrizer.solr_name('member_ids', :symbol)]
