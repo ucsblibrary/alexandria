@@ -38,7 +38,6 @@ set :linked_files,
       config/application.yml
       config/blacklight.yml
       config/database.yml
-      config/ezid.yml
       config/fedora.yml
       config/ldap.yml
       config/redis.yml
