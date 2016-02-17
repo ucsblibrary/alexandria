@@ -1,4 +1,5 @@
 module Importer
+
   module Factory
     module WithAssociatedCollection
       def create_attributes
@@ -12,8 +13,7 @@ module Importer
       def after_save(obj)
         super
         return unless attributes.key?(:collection)
-        collection = find_collection
-        add_to_collection(obj, collection) if collection
+        add_to_collection(obj, collection)
 
         # Reindex the object with the collection label.
         obj.update_index
@@ -24,10 +24,12 @@ module Importer
         collection.save!
       end
 
-      def find_collection
-        collection_attrs = attributes.fetch(:collection).merge(admin_policy_id: attributes[:admin_policy_id])
-        CollectionFactory.new(collection_attrs).run(&:save!)
-      end
+      private
+
+        def collection
+          collection_attrs = attributes.fetch(:collection).merge(admin_policy_id: attributes[:admin_policy_id])
+          CollectionFactory.new(collection_attrs).find_or_create
+        end
     end
   end
 end

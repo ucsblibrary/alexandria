@@ -1,5 +1,6 @@
 require 'rails_helper'
 require 'importer'
+
 describe Importer::Factory::ImageFactory do
   let(:factory) { described_class.new(attributes) }
   let(:collection_attrs) { { accession_number: ['SBHC Mss 36'], title: ['Test collection'] } }
@@ -19,8 +20,9 @@ describe Importer::Factory::ImageFactory do
   context 'when a collection already exists' do
     let!(:coll) { Collection.create!(collection_attrs) }
 
-    it 'should not create a new collection' do
+    it 'does not create a new collection' do
       expect(coll.members.size).to eq 0
+      expect_any_instance_of(Collection).to receive(:save!).once
       expect do
         VCR.use_cassette('ezid') do
           factory.run
