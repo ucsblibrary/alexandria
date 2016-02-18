@@ -3,14 +3,14 @@ r = ''
 return r unless has_user_authentication_provider?
 r << '<p class="login-link">'
 if current_user
-  r << (link_to t('blacklight.header_links.logout'), destroy_user_session_path)
+  r << (link_to t('blacklight.header_links.logout'), main_app.destroy_user_session_path)
 
   unless current_user.to_s.blank?
     r << ": #{current_user}"
   end
 
 else
-  r << (link_to 'Login', new_user_session_path)
+  r << (link_to 'Login', main_app.new_user_session_path)
 end
 r << '</p>'
 r.html_safe

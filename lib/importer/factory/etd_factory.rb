@@ -35,12 +35,8 @@ module Importer::Factory
       etd.save # force a reindex after the files are created
     end
 
-    def log_created(obj)
-      puts "  Created #{klass.to_s.downcase} #{obj.id} (#{attributes[:system_number].first})"
-    end
-
-    def log_updated(obj)
-      puts "  Updated #{klass.to_s.downcase} #{obj.id} (#{attributes[:system_number].first})"
+    def system_identifier_field
+      :system_number
     end
 
     private

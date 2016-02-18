@@ -75,16 +75,20 @@ module Importer::Factory
       end
     end
 
+    def system_identifier_field
+      :accession_number
+    end
+
     def log_created(obj)
-      puts "  Created #{klass.to_s.downcase} #{obj.id} (#{attributes[:accession_number].first})"
+      puts "  Created #{klass.model_name.human} #{obj.id} (#{attributes[system_identifier_field].first})"
     end
 
     def log_updated(obj)
-      puts "  Updated #{klass.to_s.downcase} #{obj.id} (#{attributes[:accession_number].first})"
+      puts "  Updated #{klass.model_name.human} #{obj.id} (#{attributes[system_identifier_field].first})"
     end
 
     def klass
-      raise 'You must implement the klass method'
+      raise NotImplementedError, 'You must implement the klass method'
     end
 
     # @return [Ezid::Identifier] the new identifier

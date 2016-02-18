@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-
-# Must be run from /opt/alex2/current/ on the application server
-
-for xml in "$@"; do
-    bundle exec traject -c lib/traject/config.rb "$xml"
-done

@@ -1,6 +1,7 @@
 class ETD < ActiveFedora::Base
   include CurationConcerns::WorkBehavior
   include Metadata
+  include MarcMetadata
   include LocalAuthorityHashAccessor
   include HumanReadableType
   include EmbargoBehavior
@@ -8,10 +9,6 @@ class ETD < ActiveFedora::Base
   self.human_readable_type = 'Thesis or dissertation'
 
   validates :title, presence: { message: 'Your work must have a title.' }
-
-  property :system_number, predicate: ::RDF::Vocab::MODS.recordIdentifier do |index|
-    index.as :symbol
-  end
 
   property :isbn, predicate: ::RDF::Vocab::Identifiers.isbn do |index|
     index.as :symbol
@@ -24,16 +21,7 @@ class ETD < ActiveFedora::Base
   property :keywords, predicate: ::RDF::Vocab::SCHEMA.keywords do |index|
     index.as :stored_searchable
   end
-
-  property :etd_subjects, predicate: ::RDF::Vocab::DC11.subject do |index|
-    index.as :stored_searchable, :facetable
-  end
-
   property :issued, predicate: ::RDF::Vocab::DC.issued do |index|
-    index.as :displayable
-  end
-
-  property :fulltext_link, predicate: ::RDF::Vocab::Bibframe.otherEdition do |index|
     index.as :displayable
   end
 

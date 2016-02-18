@@ -5,7 +5,6 @@ AdminPolicy.ensure_admin_policy_exists
 require 'object_factory_writer'
 require 'traject/macros/marc_format_classifier'
 require 'traject/macros/marc21_semantics'
-require 'traject/debug_writer'
 require 'traject/extract_work_type'
 require 'traject/extract_ark'
 require 'traject/extract_fulltext_link'
@@ -34,7 +33,7 @@ to_field 'created_start', marc_publication_date
 to_field 'dissertation_degree', extract_marc('502b', default: nil)
 to_field 'dissertation_institution', extract_marc('502c', default: nil)
 to_field 'dissertation_year', extract_marc('502d', trim_punctuation: true, default: nil)
-to_field 'etd_subjects', extract_marc('650', trim_punctuation: true, default: nil)
+to_field 'marc_subjects', extract_marc('650', trim_punctuation: true, default: nil)
 to_field 'extent', extract_marc('300a', default: nil)
 to_field 'form_of_work', extract_marc('655a', trim_punctuation: true, default: nil)
 to_field 'isbn', extract_marc('020a', default: nil)

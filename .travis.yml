@@ -6,8 +6,7 @@ git:
   submodules: false
 
 rvm:
-  - 2.2.4
-
+  - 2.3.0
 jdk:
   - oraclejdk8
 
