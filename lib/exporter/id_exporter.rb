@@ -36,7 +36,7 @@ module Exporter
     end
 
     def headers
-      %w(type fedora_id accession_number ark title)
+      %w(type id accession_number identifier title)
     end
 
     def object_data(object)

@@ -57,7 +57,7 @@ module Importer
       end
 
       def valid_headers
-        Image.attribute_names + %w(type note_value note_type files) +
+        Image.attribute_names + %w(id type note_value note_type files) +
           time_span_headers + collection_headers
       end
 
@@ -82,8 +82,8 @@ module Importer
       def extract_field(header, val, processed)
         return unless val
         case header
-        when 'type'
-          # type is singular
+        when 'type', 'id'
+          # type and id are singular
           processed[header.to_sym] = val
         when /^(created|issued|date_copyrighted|date_valid)_(.*)$/
           key = "#{Regexp.last_match(1)}_attributes".to_sym

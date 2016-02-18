@@ -41,7 +41,7 @@ describe Exporter::IdExporter do
                              identifier: ['ark:/123/thesis'],
                              accession_number: ['thesis_123']) }
 
-    let(:headers) { %w(type fedora_id accession_number ark title) }
+    let(:headers) { %w(type id accession_number identifier title) }
 
     it 'exports the records' do
       exporter.run
