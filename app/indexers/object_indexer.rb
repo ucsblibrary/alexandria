@@ -17,9 +17,9 @@ class ObjectIndexer < CurationConcerns::WorkIndexer
 
   def generate_solr_document
     super do |solr_doc|
-      solr_doc[COLLECTION] = object.in_collections.map &:id
-      # TODO: if we need to optimize, we could pull this from solr
-      solr_doc[COLLECTION_LABEL] = object.in_collections.map(&:title).flatten
+      collection_ids, collection_titles = collections
+      solr_doc[COLLECTION] = collection_ids
+      solr_doc[COLLECTION_LABEL] = collection_titles
 
       solr_doc[CREATED] = created
       solr_doc[OTHER] = display_date('date_other')
@@ -35,6 +35,15 @@ class ObjectIndexer < CurationConcerns::WorkIndexer
   end
 
   private
+
+    # returns two arrays, a list of ids and a list of titles
+    def collections
+      return [] unless object.id
+      query = ActiveFedora::SolrQueryBuilder.construct_query_for_rel(member_ids: object.id,
+                                                                     has_model: Collection.to_class_uri)
+      results = ActiveFedora::SolrService.query(query, fl: 'title_tesim id'.freeze)
+      results.map { |coll| [coll['id'], coll['title_tesim']] }.transpose.map(&:flatten)
+    end
 
     def index_contributors(solr_doc)
       ContributorIndexer.new(object).generate_solr_document(solr_doc)
