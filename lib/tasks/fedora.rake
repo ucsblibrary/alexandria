@@ -13,4 +13,17 @@ namespace :fedora do
       puts 'Finished'
     end
   end
+
+  desc 'Print fedora object counts'
+  task count: [:environment] do
+    models = CurationConcerns.config.curation_concerns +
+      [Collection, FileSet] +
+      LocalAuthority.local_authority_models - [Agent]
+
+    puts "Number of objects in fedora:"
+    models.each do |model|
+      puts "  #{model}: #{model.count}"
+    end
+    puts "  Agent: #{Agent.exact_model.count}"
+  end
 end
