@@ -80,11 +80,11 @@ module Importer::Factory
     end
 
     def log_created(obj)
-      puts "  Created #{klass.model_name.human} #{obj.id} (#{attributes[system_identifier_field].first})"
+      puts "  Created #{klass.model_name.human} #{obj.id} (#{Array(attributes[system_identifier_field]).first})"
     end
 
     def log_updated(obj)
-      puts "  Updated #{klass.model_name.human} #{obj.id} (#{attributes[system_identifier_field].first})"
+      puts "  Updated #{klass.model_name.human} #{obj.id} (#{Array(attributes[system_identifier_field]).first})"
     end
 
     def klass
