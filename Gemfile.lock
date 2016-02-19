@@ -21,6 +21,32 @@ GIT
       activesupport (>= 3.0.0)
 
 GIT
+  remote: git://github.com/projecthydra-labs/curation_concerns.git
+  revision: cc5a5ed7e0fc4ef810032b52539c0089a29a23fd
+  specs:
+    curation_concerns (0.8.0)
+      blacklight (~> 6.0)
+      blacklight_advanced_search (~> 6.0)
+      breadcrumbs_on_rails (~> 2.3)
+      curation_concerns-models (= 0.8.0)
+      hydra-editor (~> 1.1)
+      hydra-head (~> 9.6)
+      jquery-ui-rails
+      rails_autolink
+      simple_form (~> 3.1)
+      sprockets-es6
+    curation_concerns-models (0.8.0)
+      active_attr
+      active_fedora-noid (~> 1.0)
+      hydra-collections (~> 7.0)
+      hydra-head (~> 9.3)
+      hydra-works (~> 0.7)
+      qa (~> 0.5)
+      redlock (~> 0.1.2)
+      resque (~> 1.23)
+      resque-pool (~> 0.3)
+
+GIT
   remote: git://github.com/projecthydra/hydra-collections.git
   revision: 825f79fb6909b113886181adac95c49aab1198f6
   specs:
@@ -214,27 +240,6 @@ GEM
     concurrent-ruby (1.0.0)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
-    curation_concerns (0.8.0)
-      blacklight (~> 6.0)
-      blacklight_advanced_search (~> 6.0)
-      breadcrumbs_on_rails (~> 2.3)
-      curation_concerns-models (= 0.8.0)
-      hydra-editor (~> 1.1)
-      hydra-head (~> 9.6)
-      jquery-ui-rails
-      rails_autolink
-      simple_form (~> 3.1)
-      sprockets-es6
-    curation_concerns-models (0.8.0)
-      active_attr
-      active_fedora-noid (~> 1.0)
-      hydra-collections (~> 7.0)
-      hydra-head (~> 9.3)
-      hydra-works (~> 0.7)
-      qa (~> 0.5)
-      redlock (~> 0.1.2)
-      resque (~> 1.23)
-      resque-pool (~> 0.3)
     curb (0.9.1)
     daemons (1.2.3)
     database_cleaner (1.5.1)
@@ -680,7 +685,7 @@ DEPENDENCIES
   capistrano-passenger
   capistrano-rails (>= 1.1.3)
   capybara
-  curation_concerns (~> 0.8.0)
+  curation_concerns!
   curb
   database_cleaner
   devise (~> 3.5.2)
