@@ -148,7 +148,7 @@ else
   export SERVER
 
   if [[ "$1" == "production" ]]; then
-    EMAIL=
+    EMAIL=adrl@library.ucsb.edu
   else
     EMAIL=$(git config --get user.email | tr -d '\n')
   fi
@@ -163,7 +163,7 @@ if [ "$1" == "production" ]; then
   write_hosts > hosts
   write_conf > ansible.cfg
 
-  run_cmd "ansible-playbook ansible/adrl.yml -vv -u $REMOTE_USER"
+  run_cmd "ansible-playbook ansible/adrl.yml -vv -u $REMOTE_USER -e @ansible/prod_vars.yml"
   if [ "$EXIT_STATUS" == "0" ]; then
     rm -f $1*.log
     echo "Provisioning complete."

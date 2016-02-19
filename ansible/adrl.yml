@@ -1,6 +1,6 @@
 - name: ADRL on CentOS
   hosts: all
-  remote_user: vagrant
+  remote_user: "{{ lookup('env', 'REMOTE_USER') }}"
 
   vars:
     deploy_user: deploy
