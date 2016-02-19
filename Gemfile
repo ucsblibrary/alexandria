@@ -16,7 +16,7 @@ gem 'therubyracer', platforms: :ruby
 gem 'hydra-head', github: 'projecthydra/hydra-head', branch: 'replace_uri_with_graph'
 gem 'hydra-role-management'
 gem 'hydra-collections', github: 'projecthydra/hydra-collections'
-gem 'curation_concerns', '~> 0.8.0'
+gem 'curation_concerns', github: 'projecthydra-labs/curation_concerns'
 gem 'active-triples', '~> 0.7.5'
 gem 'rdf-marmotta', '~> 0.0.8'
 gem 'rdf-vocab', '~> 0.8.4'
