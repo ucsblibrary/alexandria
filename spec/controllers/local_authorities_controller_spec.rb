@@ -1,31 +1,28 @@
 require 'rails_helper'
 
 describe LocalAuthoritiesController do
-  let(:person) { create(:person) }
-  let(:group) { create(:group) }
-  let(:org) { create(:org) }
-  let(:agent) { create(:agent) }
-  let(:topic) { Topic.create!(label: ['A Local Subject']) }
+  describe "#show" do
+    let(:topic) { Topic.create!(label: ['A Local Subject']) }
+    it 'shows public urls' do
+      get :show, id: topic, format: :ttl
+      expect(response.body).to include "<http://test.host/authorities/topics/#{topic.id}> <http://www.w3.org/2000/01/rdf-schema#label> \"A Local Subject\";"
+    end
+  end
 
-  describe 'a regular user' do
-    let(:user) { create :user }
+  describe "#index" do
     before { sign_in user }
-
-    describe 'get index' do
-      before { get :index }
-
+    describe 'a regular user' do
+      let(:user) { create :user }
       it 'access is denied' do
+        get :index
         expect(flash[:alert]).to match(/You are not authorized/)
         expect(response).to redirect_to root_path
       end
     end
-  end
 
-  describe 'logged in as admin user' do
-    let(:admin) { create :admin }
-    before { sign_in admin }
+    describe 'logged in as admin user' do
+      let(:user) { create :admin }
 
-    describe 'get index' do
       before do
         ActiveFedora::Cleaner.clean!
         AdminPolicy.ensure_admin_policy_exists
@@ -48,8 +45,8 @@ describe LocalAuthoritiesController do
         expect(doc_ids).to_not include(image.id)
         expect(doc_ids).to include(topic.id)
       end
-    end
-  end # logged in as admin
+    end # logged in as admin
+  end
 
   describe '#show_delete_link?' do
     let(:doc) { SolrDocument.new('has_model_ssim' => 'Person') }
