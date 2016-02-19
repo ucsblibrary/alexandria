@@ -110,6 +110,7 @@
 
     ```ruby
     set :bundle_env_variables, nokogiri_use_system_libraries: 1
+    ```
 
 # Ingesting
 
