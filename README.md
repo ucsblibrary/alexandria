@@ -204,6 +204,10 @@ For example, see the "lc_subject", "composer", and "rights_holder" fields in [th
 (https://github.com/curationexperts/alexandria-v2/blob/master/spec/fixtures/csv/pamss045_with_local_authorities.csv).
 
 
+# Caveats
+
+* Reindexing all objects (to an empty solr) requires two passes (`2.times { ActiveFedora::Base.reindex_everything }`). This situtation is not common. The first pass will guarantee that the collections are indexed, and the second pass will index the collection name on all the objects. The object indexer looks up the collection name from solr for speed.
+
 # Troubleshooting
 
 - **Passenger fails to spawn process**
