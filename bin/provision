@@ -38,6 +38,7 @@ write_savepoint() {
 #!/bin/bash
 export EMAIL='$EMAIL'
 export FEDORA_PASS='$FEDORA_PASS'
+export GH_USER='$GH_USER'
 export H_PG_PASS='$H_PG_PASS'
 export IDENTITY='$IDENTITY'
 export M_PG_PASS='$M_PG_PASS'
@@ -128,7 +129,6 @@ else
   export REMOTE_GROUP
 
   export IDENTITY="$HOME/.ssh/id_rsa"
-
   if [ "$1" == "production" ]; then
     echo -n "Prompt for sudo password? [Y/n]: "
     read -r sudopass
@@ -150,6 +150,10 @@ else
     EMAIL=adrl@library.ucsb.edu
   else
     EMAIL=$(git config --get user.email | tr -d '\n')
+    echo -n "Enter your GitHub username (for fetching your public key): "
+    read -r GH_USER
+    echo "Setting GH_USER to '$GH_USER'"
+    export GH_USER
   fi
   echo "Setting EMAIL to '$EMAIL'"
   export EMAIL

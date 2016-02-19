@@ -5,9 +5,8 @@
   vars:
     deploy_user: adrl
     deploy_group: adrl
-    keyfile: "{{ lookup('env', 'IDENTITY') }}.pub"
     deploy_keys:
-      - "{{ lookup('file', keyfile) }}"
+      - "{{ lookup('env', 'GH_USER') }}"
 
     server_name: "{{ lookup('env', 'SERVER') }}"
     project_base: /opt
