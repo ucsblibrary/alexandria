@@ -3,8 +3,8 @@
   remote_user: "{{ lookup('env', 'REMOTE_USER') }}"
 
   vars:
-    deploy_user: deploy
-    deploy_group: deploy
+    deploy_user: adrl
+    deploy_group: adrl
     keyfile: "{{ lookup('env', 'IDENTITY') }}.pub"
     deploy_keys:
       - "{{ lookup('file', keyfile) }}"
