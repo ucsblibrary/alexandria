@@ -13,9 +13,13 @@ fi
 # Functions
 #
 
-# @param [String] The hash length (256, 512, etc.)
 mkpasswd() {
-  openssl rand -base64 64 | shasum -a "$1" | tr -d '\n\ -'
+  if [[ ! -x $(which sha256sum 2>/dev/null) ]]; then
+    SHASUM=gsha256sum
+  else
+    SHASUM=sha256sum
+  fi
+  openssl rand -base64 64 | "$SHASUM" | tr -d '\n\ -'
 }
 
 # Pretty-prints and runs a command, exiting when there's non-zero output
@@ -96,17 +100,17 @@ else
   # them if need be.
   #
   # FIXME: store them in Secret Server and fetch via the API at run-time
-  SECRET="$(mkpasswd 512)"
+  SECRET="$(mkpasswd)"
   export SECRET
 
-  FEDORA_PASS="$(mkpasswd 256)"
+  FEDORA_PASS="$(mkpasswd)"
   export FEDORA_PASS
 
-  PG_PASS="$(mkpasswd 256)"
+  PG_PASS="$(mkpasswd)"
   export PG_PASS
-  H_PG_PASS="$(mkpasswd 256)"
+  H_PG_PASS="$(mkpasswd)"
   export H_PG_PASS
-  M_PG_PASS="$(mkpasswd 256)"
+  M_PG_PASS="$(mkpasswd)"
   export M_PG_PASS
 
   ANSIBLE_CONFIG="$(pwd)/ansible.cfg"
