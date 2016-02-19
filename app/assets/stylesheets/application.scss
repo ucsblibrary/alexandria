@@ -55,6 +55,9 @@ $footer_left_margin: 1.5%;
 $logo_image: 'ADRL_Logo_363x84.png';
 $bg_image: 'ADRL_BG_1280x160.png';
 
+$blue: $welcome_blue;
+@import 'curation_concerns/modules/forms';
+
 // -------------------
 // Bootstrap overrides
 // -------------------
