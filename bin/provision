@@ -162,7 +162,7 @@ if [ "$1" == "production" ]; then
   write_hosts > hosts
   write_conf > ansible.cfg
 
-  run_cmd "ansible-playbook ansible/adrl.yml -vv -u $REMOTE_USER -e @ansible/prod_vars.yml"
+  run_cmd "ansible-playbook ansible/adrl.yml -vv -u $REMOTE_USER -e @ansible/prod_vars.yml$SUDO_FLAG"
   if [ "$EXIT_STATUS" == "0" ]; then
     rm -f $1*.log
     echo "Provisioning complete."
