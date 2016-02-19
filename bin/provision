@@ -42,7 +42,6 @@ export H_PG_PASS='$H_PG_PASS'
 export IDENTITY='$IDENTITY'
 export M_PG_PASS='$M_PG_PASS'
 export PG_PASS='$PG_PASS'
-export PORT='$PORT'
 export REMOTE_GROUP='$REMOTE_GROUP'
 export REMOTE_USER='$REMOTE_USER'
 export SECRET='$SECRET'
@@ -55,7 +54,7 @@ EOF
 write_hosts() {
   cat <<EOF
 [default]
-default ansible_ssh_port=$PORT ansible_ssh_host=$SERVER
+default ansible_ssh_port=22 ansible_ssh_host=$SERVER
 EOF
 }
 
