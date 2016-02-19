@@ -135,7 +135,7 @@ else
     read -r sudopass
     sudopass=${sudopass:-"n"}
     if [ "$sudopass" == "Y" ] || [ "$sudopass" == "y" ]; then
-      export SUDO_FLAG=" -K"
+      export SUDO_FLAG=" --ask-become-pass"
     fi
   fi
 
