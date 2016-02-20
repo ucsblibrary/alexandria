@@ -14,5 +14,11 @@ module MarcMetadata
     property :system_number, predicate: ::RDF::Vocab::MODS.recordIdentifier do |index|
       index.as :symbol
     end
+
+    property :issued, predicate: ::RDF::Vocab::DC.issued do |index|
+      index.as :displayable
+    end
+
+    property :date_copyrighted, predicate: ::RDF::Vocab::DC.dateCopyrighted
   end
 end

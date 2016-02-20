@@ -21,11 +21,6 @@ class ETD < ActiveFedora::Base
   property :keywords, predicate: ::RDF::Vocab::SCHEMA.keywords do |index|
     index.as :stored_searchable
   end
-  property :issued, predicate: ::RDF::Vocab::DC.issued do |index|
-    index.as :displayable
-  end
-
-  property :date_copyrighted, predicate: ::RDF::Vocab::DC.dateCopyrighted
   property :dissertation_degree, predicate: ::RDF::Vocab::Bibframe.dissertationDegree
   property :dissertation_institution, predicate: ::RDF::Vocab::Bibframe.dissertationInstitution
   property :dissertation_year, predicate: ::RDF::Vocab::Bibframe.dissertationYear
