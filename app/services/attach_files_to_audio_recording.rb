@@ -29,7 +29,7 @@ class AttachFilesToAudioRecording
     end
 
     def attach_files(number)
-      file_set = FileSet.new
+      file_set = FileSet.create
       attach_original(file_set, number)
       attach_restored(file_set, number)
       audio.ordered_members << file_set
@@ -52,6 +52,7 @@ class AttachFilesToAudioRecording
         Hydra::Works::AddFileToFileSet.call(file_set,
                                             File.new(rest_path),
                                             :restored)
+        CreateDerivativesJob.perform_later(file_set.id, rest_path)
       else
         $stderr.puts "Unable to find restored for #{number} in #{files_directory}"
       end

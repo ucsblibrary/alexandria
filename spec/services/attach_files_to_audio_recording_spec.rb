@@ -61,8 +61,10 @@ describe AttachFilesToAudioRecording do
     end
 
     it 'attaches files' do
+      expect(CreateDerivativesJob).to receive(:perform_later).exactly(3).times
       described_class.run(audio, files_dir, cylinder_names)
       expect(audio.file_sets).to all(be_kind_of FileSet)
+      expect(audio.file_sets.size).to eq 3
     end
   end
 end
