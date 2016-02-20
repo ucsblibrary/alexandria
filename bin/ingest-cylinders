@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 marc_file = ARGV[0]
-bin_path = ARGV[1]
+files_directory = ARGV[1]
 
 if marc_file.nil?
   $stderr.puts "Usage: #{$PROGRAM_NAME} <marc file> <content directory>"
@@ -9,7 +9,7 @@ if marc_file.nil?
   exit(1)
 end
 
-if bin_path.nil?
+if files_directory.nil?
   $stderr.puts 'Binary directory was left blank. No binaries will be ingested'
 end
 
@@ -24,7 +24,9 @@ require 'importer'
 puts 'Starting import...'
 
 require 'traject/command_line'
-cmdline = Traject::CommandLine.new(['-c', 'lib/traject/audio_config.rb', "#{marc_file}"])
+cmdline = Traject::CommandLine.new(['-c', 'lib/traject/audio_config.rb',
+                                    '-s', "files_directory=#{files_directory}",
+                                    "#{marc_file}"])
 result = cmdline.execute
 
 exit 1 unless result # non-zero exit status on process telling us there's problems.

@@ -44,4 +44,5 @@ to_field 'relators', extract_marc('720e', allow_duplicates: true)
 to_field 'description', extract_marc('520a', default: nil)
 to_field 'fulltext_link', extract_fulltext_link
 
-to_field 'filename', extract_marc('956f', default: nil)
+# This is the cylinder name
+to_field 'filename', extract_marc('852j', default: nil)

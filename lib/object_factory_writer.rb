@@ -84,12 +84,17 @@ class ObjectFactoryWriter
     def factory(work_type)
       case work_type
       when RDF::URI('http://id.loc.gov/vocabulary/resourceTypes/txt')
-        Importer::Factory.for('ETD')
+        Importer::Factory.for('ETD', files_directory)
       when RDF::URI('http://id.loc.gov/vocabulary/resourceTypes/aum')
-        Importer::Factory.for('AudioRecording')
+        #TODO pass a filedirectory here.
+        Importer::Factory.for('AudioRecording', files_directory)
       else
         raise ArgumentError, "Unknown work type #{work_type}"
       end
+    end
+
+    def files_directory
+      @settings['files_directory']
     end
 
     # @param [Array] names : a list of names
