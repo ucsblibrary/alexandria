@@ -67,7 +67,7 @@ class ObjectFactoryWriter
       work_type = attributes.fetch('work_type').first
       attributes[:collection] = collection_attributes(work_type)
 
-      factory(work_type).new(attributes, Settings.proquest_directory).run
+      factory(work_type).new(attributes, files_directory).run
     end
 
     def collection_attributes(work_type)
@@ -84,17 +84,17 @@ class ObjectFactoryWriter
     def factory(work_type)
       case work_type
       when RDF::URI('http://id.loc.gov/vocabulary/resourceTypes/txt')
-        Importer::Factory.for('ETD', files_directory)
+        Importer::Factory.for('ETD')
       when RDF::URI('http://id.loc.gov/vocabulary/resourceTypes/aum')
         #TODO pass a filedirectory here.
-        Importer::Factory.for('AudioRecording', files_directory)
+        Importer::Factory.for('AudioRecording')
       else
         raise ArgumentError, "Unknown work type #{work_type}"
       end
     end
 
     def files_directory
-      @settings['files_directory']
+      @settings.fetch('files_directory', Settings.proquest_directory)
     end
 
     # @param [Array] names : a list of names

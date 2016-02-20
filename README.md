@@ -148,6 +148,13 @@ After you import the individual ETDs, you need to add the collection-level recor
 https://wiki.library.ucsb.edu/pages/viewpage.action?pageId=16288317 on
 creating it.
 
+## Wax Cylinders
+
+Run the import script
+```
+RAILS_ENV=production bin/ingest-cylinders spec/fixtures/marcxml/cylinder_sample_marc.xml  /data/objects-cylinders
+```
+
 ## Images
 
 ### MODS
