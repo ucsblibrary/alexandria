@@ -22,7 +22,8 @@ GIT
 
 GIT
   remote: https://github.com/projecthydra-labs/curation_concerns.git
-  revision: 25919321cdb003aa35a5b9d25f52669346b5dc5e
+  revision: bb6e7ee85b17fd431c931d24138d367576a058fa
+  branch: ingest
   specs:
     curation_concerns (0.8.0)
       blacklight (~> 6.0)
