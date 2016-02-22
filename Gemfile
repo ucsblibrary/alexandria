@@ -13,10 +13,10 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'therubyracer', platforms: :ruby
 
-gem 'hydra-head', github: 'projecthydra/hydra-head', branch: 'replace_uri_with_graph'
+gem 'hydra-head', git: 'https://github.com/projecthydra/hydra-head.git', branch: 'replace_uri_with_graph'
 gem 'hydra-role-management'
-gem 'hydra-collections', github: 'projecthydra/hydra-collections'
-gem 'curation_concerns', github: 'projecthydra-labs/curation_concerns'
+gem 'hydra-collections', git: 'https://github.com/projecthydra/hydra-collections.git'
+gem 'curation_concerns', git: 'https://github.com/projecthydra-labs/curation_concerns.git'
 gem 'active-triples', '~> 0.7.5'
 gem 'rdf-marmotta', '~> 0.0.8'
 gem 'rdf-vocab', '~> 0.8.4'
@@ -29,19 +29,19 @@ gem 'settingslogic'
 gem 'rsolr', '~> 1.0.12'
 
 gem 'mods', '~> 2.0.3'
-gem 'oargun', github: 'curationexperts/oargun', ref: '8d4b556'
+gem 'oargun', git: 'https://github.com/curationexperts/oargun.git', ref: '8d4b556'
 gem 'linked_vocabs', '~> 0.3.1'
 gem 'riiif', '~> 0.2.0'
 gem 'ezid-client', '~> 1.2.0'
 gem 'qa', '~> 0.5.0'
 
-gem 'kaminari', github: 'jcoyne/kaminari', branch: 'sufia'
+gem 'kaminari', git: 'https://github.com/jcoyne/kaminari.git', branch: 'sufia'
 
 gem 'devise', '~> 3.5.2'
 gem 'devise_ldap_authenticatable'
 gem 'devise-guests', '~> 0.5.0'
 
-gem 'traject', github: 'traject/traject', require: false, branch: 'allow_nil_default'
+gem 'traject', git: 'https://github.com/traject/traject.git', require: false, branch: 'allow_nil_default'
 
 gem 'resque-status'
 gem 'resque-pool'
