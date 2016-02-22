@@ -44,6 +44,14 @@ class User < ActiveRecord::Base
     !new_record?
   end
 
+  def self.batchuser
+    User.find_by_user_key(batchuser_key) || User.create!(Devise.authentication_keys.first => batchuser_key)
+  end
+
+  def self.batchuser_key
+    'batchuser'
+  end
+
   private
 
     def cached_groups(&_block)

@@ -18,7 +18,7 @@ describe AttachFilesToAudioRecording do
     before do
       # squelch output
       allow($stdout).to receive(:puts)
-      allow(CurationConcerns::FileSetActor).to receive(:new).with(FileSet, nil).and_return(actor)
+      allow(CurationConcerns::FileSetActor).to receive(:new).with(FileSet, User.batchuser).and_return(actor)
 
       allow(Dir).to receive(:glob).with('/data/objects-cylinders/**/cusb-cyl4373a.wav')
                                   .and_return(['/data/objects-cylinders/4000s/4373/cusb-cyl4373a.wav'])
