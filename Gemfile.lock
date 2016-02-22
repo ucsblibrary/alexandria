@@ -22,7 +22,7 @@ GIT
 
 GIT
   remote: https://github.com/projecthydra-labs/curation_concerns.git
-  revision: cc5a5ed7e0fc4ef810032b52539c0089a29a23fd
+  revision: 25919321cdb003aa35a5b9d25f52669346b5dc5e
   specs:
     curation_concerns (0.8.0)
       blacklight (~> 6.0)
@@ -165,9 +165,8 @@ GEM
     american_date (1.1.1)
     arel (6.0.3)
     ast (2.2.0)
-    autoprefixer-rails (6.3.3)
+    autoprefixer-rails (6.3.3.1)
       execjs
-      json
     awesome_print (1.6.1)
     babel-source (5.8.35)
     babel-transpiler (0.7.0)
@@ -176,13 +175,13 @@ GEM
     bcp47 (0.3.3)
       i18n
     bcrypt (3.1.10)
-    blacklight (6.0.1)
+    blacklight (6.0.2)
       bootstrap-sass (~> 3.2)
       deprecation
       globalid
       kaminari (>= 0.15)
       nokogiri (~> 1.6)
-      rails (>= 4.1, < 5)
+      rails (>= 4.2, < 6)
       rsolr (~> 1.0.11)
       twitter-typeahead-rails (~> 0.11)
     blacklight-access_controls (0.3.0)
@@ -381,7 +380,7 @@ GEM
       unf
     marc-fastxmlwriter (1.0.0)
       marc (~> 1.0)
-    mime-types (2.99)
+    mime-types (2.99.1)
     mini_magick (4.4.0)
     mini_portile2 (2.0.0)
     minitest (5.8.4)

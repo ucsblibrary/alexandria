@@ -30,29 +30,25 @@ class AttachFilesToAudioRecording
 
     def attach_files(number)
       file_set = FileSet.create
-      attach_original(file_set, number)
-      attach_restored(file_set, number)
+      actor = CurationConcerns::FileSetActor.new(file_set, nil)
+      attach_original(actor, number)
+      attach_restored(actor, number)
       audio.ordered_members << file_set
     end
 
-    def attach_original(file_set, number)
+    def attach_original(actor, number)
       if orig_path = original_path(number)
         puts "  Attaching original #{orig_path}"
-        Hydra::Works::AddFileToFileSet.call(file_set,
-                                            File.new(orig_path),
-                                            :original_file)
+        actor.create_content(File.new(orig_path))
       else
         $stderr.puts "Unable to find original for #{number} in #{files_directory}"
       end
     end
 
-    def attach_restored(file_set, number)
+    def attach_restored(actor, number)
       if rest_path = restored_path(number)
         puts "  Attaching restored #{rest_path}"
-        Hydra::Works::AddFileToFileSet.call(file_set,
-                                            File.new(rest_path),
-                                            :restored)
-        CreateDerivativesJob.perform_later(file_set.id, rest_path)
+        actor.create_content(File.new(rest_path), 'restored')
       else
         $stderr.puts "Unable to find restored for #{number} in #{files_directory}"
       end
