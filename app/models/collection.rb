@@ -1,7 +1,7 @@
 class Collection < ActiveFedora::Base
   include ::CurationConcerns::CollectionBehavior
-  # include Hydra::AccessControls::Permissions
   include Metadata
+  include WithAdminPolicy
   include LocalAuthorityHashAccessor
 
   property :issued, predicate: ::RDF::DC.issued, class_name: 'TimeSpan'

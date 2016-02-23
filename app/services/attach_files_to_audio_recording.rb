@@ -29,7 +29,7 @@ class AttachFilesToAudioRecording
     end
 
     def attach_files(number)
-      file_set = FileSet.create
+      file_set = FileSet.create!(admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID)
       actor = CurationConcerns::FileSetActor.new(file_set, User.batchuser)
       attach_original(actor, number)
       attach_restored(actor, number)

@@ -1,9 +1,8 @@
 module LocalAuthorityBase
   extend ActiveSupport::Concern
+  include WithAdminPolicy
 
   included do
-    belongs_to :admin_policy, class_name: 'Hydra::AdminPolicy', predicate: ActiveFedora::RDF::ProjectHydra.isGovernedBy
-
     # This allows us to scope queries directly against a
     # specific subclass.  Otherwise, "Agent.all" would return
     # instances of any subclass of Agent (e.g. Person).

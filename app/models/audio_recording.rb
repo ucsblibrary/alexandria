@@ -1,5 +1,6 @@
 class AudioRecording < ActiveFedora::Base
   include ::CurationConcerns::WorkBehavior
+  include WithAdminPolicy
   include Metadata
   include MarcMetadata
   include NestedAttributes

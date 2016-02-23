@@ -1,6 +1,7 @@
 class Image < ActiveFedora::Base
   include CurationConcerns::WorkBehavior
   include Metadata
+  include WithAdminPolicy
   include EmbargoBehavior
   include LocalAuthorityHashAccessor
 
