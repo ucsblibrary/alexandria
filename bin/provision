@@ -13,9 +13,13 @@ fi
 # Functions
 #
 
-# @param [String] The hash length (256, 512, etc.)
 mkpasswd() {
-  openssl rand -base64 64 | shasum -a "$1" | tr -d '\n\ -'
+  if [[ ! -x $(which sha256sum 2>/dev/null) ]]; then
+    SHASUM=gsha256sum
+  else
+    SHASUM=sha256sum
+  fi
+  openssl rand -base64 64 | "$SHASUM" | tr -d '\n\ -'
 }
 
 # Pretty-prints and runs a command, exiting when there's non-zero output
@@ -38,11 +42,11 @@ write_savepoint() {
 #!/bin/bash
 export EMAIL='$EMAIL'
 export FEDORA_PASS='$FEDORA_PASS'
+export GH_USER='$GH_USER'
 export H_PG_PASS='$H_PG_PASS'
 export IDENTITY='$IDENTITY'
 export M_PG_PASS='$M_PG_PASS'
 export PG_PASS='$PG_PASS'
-export PORT='$PORT'
 export REMOTE_GROUP='$REMOTE_GROUP'
 export REMOTE_USER='$REMOTE_USER'
 export SECRET='$SECRET'
@@ -55,7 +59,7 @@ EOF
 write_hosts() {
   cat <<EOF
 [default]
-default ansible_ssh_port=$PORT ansible_ssh_host=$SERVER
+default ansible_ssh_port=22 ansible_ssh_host=$SERVER
 EOF
 }
 
@@ -96,17 +100,17 @@ else
   # them if need be.
   #
   # FIXME: store them in Secret Server and fetch via the API at run-time
-  SECRET="$(mkpasswd 512)"
+  SECRET="$(mkpasswd)"
   export SECRET
 
-  FEDORA_PASS="$(mkpasswd 256)"
+  FEDORA_PASS="$(mkpasswd)"
   export FEDORA_PASS
 
-  PG_PASS="$(mkpasswd 256)"
+  PG_PASS="$(mkpasswd)"
   export PG_PASS
-  H_PG_PASS="$(mkpasswd 256)"
+  H_PG_PASS="$(mkpasswd)"
   export H_PG_PASS
-  M_PG_PASS="$(mkpasswd 256)"
+  M_PG_PASS="$(mkpasswd)"
   export M_PG_PASS
 
   ANSIBLE_CONFIG="$(pwd)/ansible.cfg"
@@ -129,13 +133,12 @@ else
   export REMOTE_GROUP
 
   export IDENTITY="$HOME/.ssh/id_rsa"
-
   if [ "$1" == "production" ]; then
     echo -n "Prompt for sudo password? [Y/n]: "
     read -r sudopass
     sudopass=${sudopass:-"n"}
     if [ "$sudopass" == "Y" ] || [ "$sudopass" == "y" ]; then
-      export SUDO_FLAG=" -K"
+      export SUDO_FLAG=" --ask-become-pass"
     fi
   fi
 
@@ -148,9 +151,13 @@ else
   export SERVER
 
   if [[ "$1" == "production" ]]; then
-    EMAIL=
+    EMAIL=adrl@library.ucsb.edu
   else
     EMAIL=$(git config --get user.email | tr -d '\n')
+    echo -n "Enter your GitHub username (for fetching your public key): "
+    read -r GH_USER
+    echo "Setting GH_USER to '$GH_USER'"
+    export GH_USER
   fi
   echo "Setting EMAIL to '$EMAIL'"
   export EMAIL
@@ -163,7 +170,7 @@ if [ "$1" == "production" ]; then
   write_hosts > hosts
   write_conf > ansible.cfg
 
-  run_cmd "ansible-playbook ansible/adrl.yml -vv -u $REMOTE_USER"
+  run_cmd "ansible-playbook ansible/adrl.yml -vv -u $REMOTE_USER -e @ansible/prod_vars.yml$SUDO_FLAG"
   if [ "$EXIT_STATUS" == "0" ]; then
     rm -f $1*.log
     echo "Provisioning complete."
