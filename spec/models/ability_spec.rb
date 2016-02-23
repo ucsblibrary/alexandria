@@ -17,6 +17,7 @@ describe Ability do
   let(:ability) { Ability.new(user) }
   let(:local_group) { create(:group) }
 
+  let(:public_file_set) { create(:public_file_set) }
   let(:public_image) { create(:public_image) }
   let(:discovery_image) { create(:image, :discovery) }
   let(:restricted_image) { create(:image, :restricted) }
@@ -34,6 +35,8 @@ describe Ability do
 
       is_expected.to be_able_to(:discover, discovery_image)
       is_expected.not_to be_able_to(:discover, restricted_image)
+
+      is_expected.to be_able_to(:read, public_file_set)
 
       is_expected.not_to be_able_to(:read, :local_authorities)
       is_expected.not_to be_able_to(:destroy, :local_authorities)
