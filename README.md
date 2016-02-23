@@ -2,9 +2,15 @@
 
 # Setup
 
+The `bin/provision` wrapper script’s optional second argument is a
+list of pre-defined variables; see the format in
+`ansible/variables.cfg.template`.  If `bin/provision` is run without a
+second argument, it will prompt you for the values and write a
+temporary file that can be re-used on failed plays.
+
 ## OSX
 
-1. `bin/provision local`
+1. `bin/provision local [variables.cfg]`
 
 2. `bin/rails server`
 
@@ -53,7 +59,7 @@
 1. If you didn’t clone this repository with `--recursive`, fetch the
    submodules with `git submodule init && git submodule update`.
 
-2. `bin/provision development`
+2. `bin/provision development [variables.cfg]`
 
     Once the VM is created, you can SSH into it with `vagrant ssh` or
     manually by using the config produced by `vagrant ssh-config`.
@@ -85,7 +91,7 @@
 
 ### Steps
 
-1. `bin/provision production` to provision the production server
+1. `bin/provision production [variables.cfg]` to provision the production server
 
     - It’s (relatively) safe to set `REMOTE_USER` as root, since a
       non-root `deploy` user will be created for Capistrano.
@@ -129,14 +135,14 @@ to `/opt/ingest/data`.
 ### Exporting Local Authorities to a CSV File
 
 To export local authorities from the local machine, run the export script `bin/export-authorities`
-If you need to export local authorities on a remote box and don't want to run the process  on that box, 
-see the notes in the wiki: [Exporting Local Authorities](https://github.com/curationexperts/alexandria-v2/wiki/Exporting-Local-Authorities-(especially-from-remote-systems)) 
+If you need to export local authorities on a remote box and don't want to run the process  on that box,
+see the notes in the wiki: [Exporting Local Authorities](https://github.com/curationexperts/alexandria-v2/wiki/Exporting-Local-Authorities-(especially-from-remote-systems))
 
 ### Importing Local Authorities from a CSV File
 
-To import local authorities to the local system, you will need a CSV file defining the authorities to import.  
-Ideally, this is an export from another system created by the exporter above.   
-To run the import script use `bin/ingest-authorities <csv_file>`  
+To import local authorities to the local system, you will need a CSV file defining the authorities to import.
+Ideally, this is an export from another system created by the exporter above.
+To run the import script use `bin/ingest-authorities <csv_file>`
 
 ## ETDs
 

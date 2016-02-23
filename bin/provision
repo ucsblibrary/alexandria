@@ -51,7 +51,6 @@ export REMOTE_GROUP='$REMOTE_GROUP'
 export REMOTE_USER='$REMOTE_USER'
 export SECRET='$SECRET'
 export SERVER='$SERVER'
-export SOLR_HOME='$SOLR_HOME'
 export SUDO_FLAG='$SUDO_FLAG'
 EOF
 }
@@ -162,8 +161,8 @@ else
   echo "Setting EMAIL to '$EMAIL'"
   export EMAIL
 
-  write_savepoint > "$1$NOW.log"
-  chmod 600 "$1$NOW.log"
+  write_savepoint > "$1$NOW.cfg"
+  chmod 600 "$1$NOW.cfg"
 fi
 
 if [ "$1" == "production" ]; then
@@ -172,13 +171,13 @@ if [ "$1" == "production" ]; then
 
   run_cmd "ansible-playbook ansible/adrl.yml -vv -u $REMOTE_USER -e @ansible/prod_vars.yml$SUDO_FLAG"
   if [ "$EXIT_STATUS" == "0" ]; then
-    rm -f $1*.log
+    rm -f $1*.cfg
     echo "Provisioning complete."
     echo
     echo "Run \`SERVER=$SERVER make prod\` to deploy with Capistrano."
   else
-    echo "$(tput bold)==> Configuration saved to $1$NOW.log$(tput sgr0)"
-    echo 'Re-run with `bin/create production'" $1$NOW.log"'`'", or delete it NOW."
+    echo "$(tput bold)==> Configuration saved to $1$NOW.cfg$(tput sgr0)"
+    echo 'Re-run with `bin/create production'" $1$NOW.cfg"'`'", or delete it NOW."
   fi
 
 elif [ "$1" == "vagrant" ] || [ "$1" == "development" ]; then
@@ -190,14 +189,14 @@ elif [ "$1" == "vagrant" ] || [ "$1" == "development" ]; then
   fi
 
   if [ "$EXIT_STATUS" == "0" ]; then
-    rm -f $1*.log
+    rm -f $1*.cfg
     echo "Provisioning complete."
     echo
     echo "Run \`make vagrant\` to deploy with Capistrano."
     echo
   else
-    echo "$(tput bold)==> Configuration saved to $1$NOW.log$(tput sgr0)"
-    echo 'Re-run with `bin/create development'" $1$NOW.log"'`'", or delete it NOW."
+    echo "$(tput bold)==> Configuration saved to $1$NOW.cfg$(tput sgr0)"
+    echo 'Re-run with `bin/create development'" $1$NOW.cfg"'`'", or delete it NOW."
   fi
 else
   write_hosts_local > hosts
@@ -206,14 +205,14 @@ else
   run_cmd "ansible-playbook provisioning/osx/adrl.yml -vv --connection=local --ask-vault-pass -e @ansible/dev_vars.yml"
 
   if [ "$EXIT_STATUS" == "0" ]; then
-    rm -f $1-*.log
+    rm -f $1-*.cfg
     echo "Provisioning complete."
     echo
     echo "1. Run \`tomcat/bin/catalina start\` to start Tomcat."
     echo "2. Run \`bundle exec rake db:migrate\`."
     echo "3. Run \`bin/rails server\` to start WEBRick."
   else
-    echo "$(tput bold)==> Configuration saved to $1$NOW.log$(tput sgr0)"
-    echo "Re-run with \`bin/create local $1$NOW.log\`, or delete it NOW."
+    echo "$(tput bold)==> Configuration saved to $1$NOW.cfg$(tput sgr0)"
+    echo "Re-run with \`bin/create local $1$NOW.cfg\`, or delete it NOW."
   fi
 fi
