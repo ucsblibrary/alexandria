@@ -6,11 +6,6 @@ module Importer::Factory
       ETD
     end
 
-    def update(obj)
-      update_created_date(obj)
-      super
-    end
-
     def create_attributes
       # When we first create an ETD, we might not yet have the
       # metadata from ProQuest that contains the access and
@@ -38,27 +33,5 @@ module Importer::Factory
     def system_identifier_field
       :system_number
     end
-
-    private
-
-      def update_created_date(obj)
-        created_attributes = attributes.delete(:created_attributes)
-        return if created_attributes.blank?
-
-        new_date = created_attributes.first.fetch(:start, nil)
-        return unless new_date
-
-        existing_date = obj.created.flat_map(&:start)
-
-        if existing_date != new_date
-          # Create or update the existing date.
-          if time_span = obj.created.to_a.first
-            time_span.attributes = created_attributes.first
-          else
-            obj.created.build(created_attributes.first)
-          end
-          obj.created_will_change!
-        end
-      end
   end
 end

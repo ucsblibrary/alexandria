@@ -25,6 +25,7 @@ module Importer::Factory
     end
 
     def update(obj)
+      update_created_date(obj)
       obj.attributes = update_attributes
       obj.save!
       after_save(obj)
@@ -129,6 +130,26 @@ module Importer::Factory
     end
 
     private
+
+      def update_created_date(obj)
+        created_attributes = attributes.delete(:created_attributes)
+        return if created_attributes.blank?
+
+        new_date = created_attributes.first.fetch(:start, nil)
+        return unless new_date
+
+        existing_date = obj.created.flat_map(&:start)
+
+        if existing_date != new_date
+          # Create or update the existing date.
+          if time_span = obj.created.to_a.first
+            time_span.attributes = created_attributes.first
+          else
+            obj.created.build(created_attributes.first)
+          end
+          obj.created_will_change!
+        end
+      end
 
       def contributors_for_field(attrs, field)
         attrs[field].each_with_object([]) do |value, object|
