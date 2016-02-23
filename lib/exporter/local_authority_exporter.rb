@@ -55,7 +55,13 @@ module Exporter
       names = if object.respond_to?(:foaf_name)
                 object.foaf_name
               else
-                object.label
+                # Normally we would just use object.label to
+                # get the label for a Topic, but the predicate
+                # for the label property has changed since the
+                # previous release, so we need to look for the
+                # old predicate.
+                label = object.resource.query([nil, RDF::Vocab::SKOS.prefLabel, nil]).to_a.first
+                label.blank? ? object.label : label.object.to_s
               end
       names = Array(names)
       self.max_names = names.count if names.count > max_names
