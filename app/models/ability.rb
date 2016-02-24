@@ -85,18 +85,6 @@ class Ability
     groups
   end
 
-  # To check if user can download a file, find the parent object
-  # that the file belongs to (e.g. ETD or Image), and check
-  # if the user has read permissions for that object.
-  # This method comes from hydra-access-controls gem.
-  def download_permissions
-    can :download, FileSet do |file|
-      file.in_works.any? do |parent_object|
-        can? :read, parent_object
-      end
-    end
-  end
-
   def user_groups
     groups = super
 

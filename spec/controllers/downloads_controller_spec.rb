@@ -13,19 +13,11 @@ describe DownloadsController do
 
   describe '#show' do
     let(:file_set) do
-      FileSet.new do |fs|
+      FileSet.new(admin_policy_id: policy_id) do |fs|
         Hydra::Works::AddFileToFileSet.call(fs,
                                             File.new(File.join(fixture_path, 'pdf', 'sample.pdf')),
                                             :original_file)
       end
-    end
-    let(:etd) do
-      build(:etd, ordered_members: [file_set], admin_policy_id: policy_id)
-    end
-
-    before do
-      AdminPolicy.ensure_admin_policy_exists
-      etd.save!
     end
 
     context 'a metadata admin user' do
