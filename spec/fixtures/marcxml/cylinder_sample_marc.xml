@@ -23,9 +23,25 @@
     <subfield code="c">SYB</subfield>
     <subfield code="d">CUT</subfield>
   </datafield>
+  <datafield tag="100" ind1="3" ind2=" ">
+    <subfield code="a">Allen</subfield>
+    <subfield code="c">field c text</subfield>
+    <subfield code="d"> 1876 </subfield>
+    <subfield code="q">field q text</subfield>
+  </datafield>
   <datafield tag="100" ind1="1" ind2=" ">
     <subfield code="a">Allen, Thos. S.,</subfield>
     <subfield code="d">1876-1919.</subfield>
+    <subfield code="e"> arranger of music</subfield>
+    <subfield code="4"> itr </subfield>
+    <subfield code="4">LYR</subfield>
+    <subfield code="z"></subfield>
+    <subfield code="z">something else</subfield>
+  </datafield>
+  <datafield tag="110" ind1="2" ind2=" ">
+    <subfield code="a">Louisiana Five.</subfield>
+    <subfield code="a">text from b.</subfield>
+    <subfield code="4">sng</subfield>
   </datafield>
   <datafield tag="245" ind1="1" ind2="0">
     <subfield code="a">Any rags</subfield>
@@ -74,6 +90,12 @@
   <datafield tag="700" ind1="1" ind2=" ">
     <subfield code="a">Collins, Arthur.</subfield>
     <subfield code="4">voc</subfield>
+  </datafield>
+  <datafield tag="710" ind1="1" ind2=" ">
+    <subfield code="a">United States.</subfield>
+    <subfield code="b">National Guard Bureau.</subfield>
+    <subfield code="b">Fife and Drum Corps.</subfield>
+    <subfield code="4">prf</subfield>
   </datafield>
   <datafield tag="856" ind1="4" ind2="1">
     <subfield code="3">Audio files:</subfield>
