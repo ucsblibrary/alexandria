@@ -21,7 +21,7 @@ module Importer::Factory
         puts "  * File doesn't exist at #{path}"
         return
       end
-      file_set = FileSet.new
+      file_set = FileSet.new(admin_policy_id: image.admin_policy_id)
       puts "  Attaching binary #{file_name}"
       Hydra::Works::AddFileToFileSet.call(file_set,
                                           File.new(path),

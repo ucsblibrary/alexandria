@@ -5,17 +5,41 @@ describe Importer::Factory::ImageFactory do
   let(:factory) { described_class.new(attributes) }
   let(:collection_attrs) { { accession_number: ['SBHC Mss 36'], title: ['Test collection'] } }
 
+  let(:files) { [] }
   let(:attributes) do
     {
-      collection: collection_attrs.slice(:accession_number), files: [], accession_number: ['123'],
+      collection: collection_attrs.slice(:accession_number), files: files, accession_number: ['123'],
       title: ['Test image'],
+      admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID,
       notes_attributes: [{ value: 'Title from item.' }],
       issued_attributes: [{ start: ['1925'], finish: [], label: [], start_qualifier: [], finish_qualifier: [] }]
     }
   end
 
   # squelch output
-  before { allow($stdout).to receive(:puts) }
+  before do
+    allow($stdout).to receive(:puts)
+    Collection.destroy_all
+    ActiveFedora::Base.find('fk4c252k0f').destroy(eradicate: true) if ActiveFedora::Base.exists?('fk4c252k0f')
+  end
+
+  context "with files" do
+    let(:factory) { described_class.new(attributes, "tmp/files") }
+    let(:files) { ['img.png'] }
+    let(:file) { double("the file") }
+    let!(:coll) { Collection.create!(collection_attrs) }
+    before do
+      allow(File).to receive(:exist?).and_return(true)
+      allow(File).to receive(:new).and_return(file)
+    end
+    it "creates file sets with admin policies" do
+      expect(Hydra::Works::AddFileToFileSet).to receive(:call).with(FileSet, file, :original_file)
+      VCR.use_cassette('ezid') do
+        obj = factory.run
+        expect(obj.file_sets.first.admin_policy_id).to eq AdminPolicy::PUBLIC_POLICY_ID
+      end
+    end
+  end
 
   context 'when a collection already exists' do
     let!(:coll) { Collection.create!(collection_attrs) }

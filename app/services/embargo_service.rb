@@ -11,6 +11,13 @@ module EmbargoService
     work.embargo.save!
   end
 
+  def self.copy_embargo(src, dest)
+    dest.visibility_during_embargo = RDF::URI(src.visibility_during_embargo.id)
+    dest.visibility_after_embargo = RDF::URI(src.visibility_after_embargo.id)
+    dest.embargo_release_date = src.embargo_release_date
+    dest.embargo.save!
+  end
+
   def self.remove_embargo(work)
     work.embargo.destroy if work.embargo
     # TODO: this shouldn't be necessary, but if omitted raises a stack trace:

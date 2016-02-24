@@ -15,29 +15,30 @@ describe AttachFilesToETD do
     end
 
     before do
-      AdminPolicy.ensure_admin_policy_exists
       allow_any_instance_of(ZipfileService).to receive(:extract_files).and_return(file_struct)
 
       # squelch output
-      allow($stdout).to receive(:puts)
+      # allow($stdout).to receive(:puts)
 
       described_class.run(etd, file)
     end
 
-    it 'attaches files' do
+    it 'attaches files with admin_policy and embargo and adds metadata from ProQuest' do
       expect(etd.file_sets).to all(be_kind_of FileSet)
       expect(etd.file_sets[0].original_file.size).to eq 218_882
+      expect(etd.file_sets[0].admin_policy_id).to eq AdminPolicy::DISCOVERY_POLICY_ID
       expect(etd.file_sets[1].original_file.mime_type).to eq 'image/tiff'
       expect(etd.file_sets[2].original_file.mime_type).to eq 'image/tiff'
 
       expect(etd.proquest.size).to eq 6005
-    end
 
-    it 'adds metadata from the ProQuest file to the ETD' do
       expect(etd.embargo_release_date).to eq Date.parse('2016/06/11')
       expect(etd.visibility_during_embargo.id).to eq ActiveFedora::Base.id_to_uri(AdminPolicy::DISCOVERY_POLICY_ID)
+      expect(etd.file_sets[0].visibility_during_embargo.id).to eq ActiveFedora::Base.id_to_uri(AdminPolicy::DISCOVERY_POLICY_ID)
       expect(etd.visibility_after_embargo.id).to eq ActiveFedora::Base.id_to_uri(AdminPolicy::PUBLIC_CAMPUS_POLICY_ID)
+      expect(etd.file_sets[0].visibility_after_embargo.id).to eq ActiveFedora::Base.id_to_uri(AdminPolicy::PUBLIC_CAMPUS_POLICY_ID)
       expect(etd.under_embargo?).to eq true
+      expect(etd.file_sets[0].under_embargo?).to eq true
     end
   end
 end

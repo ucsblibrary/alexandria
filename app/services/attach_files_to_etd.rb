@@ -33,11 +33,12 @@ class AttachFilesToETD
 
     def attach_original_and_supplimentals(paths)
       paths.each do |path|
-        file_set = FileSet.new
+        file_set = FileSet.new(admin_policy_id: etd.admin_policy_id)
         puts "  Attaching binary #{path}"
         Hydra::Works::AddFileToFileSet.call(file_set,
                                             File.new(path),
                                             :original_file)
+        EmbargoService.copy_embargo(etd, file_set) if etd.under_embargo?
         etd.ordered_members << file_set
       end
     end
