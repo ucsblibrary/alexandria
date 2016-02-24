@@ -41,7 +41,7 @@ gem 'devise', '~> 3.5.2'
 gem 'devise_ldap_authenticatable'
 gem 'devise-guests', '~> 0.5.0'
 
-gem 'traject', git: 'https://github.com/traject/traject.git', require: false, branch: 'allow_nil_default'
+gem 'traject', git: 'https://github.com/traject/traject.git', require: false
 
 gem 'resque-status'
 gem 'resque-pool'
