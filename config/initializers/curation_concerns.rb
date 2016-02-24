@@ -6,35 +6,6 @@ CurationConcerns.configure do |config|
   config.register_curation_concern :image
   config.register_curation_concern :etd
 
-  config.fits_to_desc_mapping = {
-    file_title: :title,
-    file_author: :creator
-  }
-
-  config.max_days_between_audits = 7
-
-  config.resource_types = Qa::Authorities::Local.subauthority_for('work_type').all.inject({}) do |terms, term|
-    terms[term['label']] = term['id']
-    terms
-  end
-
-  config.display_microdata = true
-  config.microdata_default_type = 'http://schema.org/CreativeWork'
-
-  config.resource_types_to_schema = config.resource_types.map do |k, v|
-    [k, I18n.t("curation_concerns.schema_org.resource_type.#{v}", default: config.microdata_default_type)]
-  end.to_h
-
-  config.permission_levels = {
-    'Choose Access' => 'none',
-    'View/Download' => 'read',
-    'Edit' => 'edit'
-  }
-
-  config.owner_permission_levels = {
-    'Edit' => 'edit'
-  }
-
   # Enable displaying usage statistics in the UI
   # Defaults to FALSE
   # Requires a Google Analytics id and OAuth2 keyfile.  See README for more info

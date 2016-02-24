@@ -13,10 +13,10 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'therubyracer', platforms: :ruby
 
-gem 'hydra-head', git: 'https://github.com/projecthydra/hydra-head.git', branch: 'replace_uri_with_graph'
+gem 'hydra-head', git: 'https://github.com/projecthydra/hydra-head.git'
 gem 'hydra-role-management'
-gem 'hydra-collections', git: 'https://github.com/projecthydra/hydra-collections.git'
-gem 'curation_concerns', git: 'https://github.com/projecthydra-labs/curation_concerns.git', branch: 'ingest'
+gem 'hydra-collections', '~> 8.0.0'
+gem 'curation_concerns', git: 'https://github.com/projecthydra-labs/curation_concerns.git', branch: 'hydra-collections-8'
 gem 'active-triples', '~> 0.7.5'
 gem 'rdf-marmotta', '~> 0.0.8'
 gem 'rdf-vocab', '~> 0.8.4'
@@ -41,7 +41,7 @@ gem 'devise', '~> 3.5.2'
 gem 'devise_ldap_authenticatable'
 gem 'devise-guests', '~> 0.5.0'
 
-gem 'traject', git: 'https://github.com/traject/traject.git', require: false
+gem 'traject', '~> 2.3.0'
 
 gem 'resque-status'
 gem 'resque-pool'

@@ -22,8 +22,8 @@ GIT
 
 GIT
   remote: https://github.com/projecthydra-labs/curation_concerns.git
-  revision: bb6e7ee85b17fd431c931d24138d367576a058fa
-  branch: ingest
+  revision: 794f31f876093fbf3cbe246dd2aea100ba325ba6
+  branch: hydra-collections-8
   specs:
     curation_concerns (0.8.0)
       blacklight (~> 6.0)
@@ -39,7 +39,7 @@ GIT
     curation_concerns-models (0.8.0)
       active_attr
       active_fedora-noid (~> 1.0)
-      hydra-collections (~> 7.0)
+      hydra-collections (~> 8.0)
       hydra-head (~> 9.3)
       hydra-works (~> 0.7)
       qa (~> 0.5)
@@ -48,51 +48,24 @@ GIT
       resque-pool (~> 0.3)
 
 GIT
-  remote: https://github.com/projecthydra/hydra-collections.git
-  revision: 825f79fb6909b113886181adac95c49aab1198f6
-  specs:
-    hydra-collections (7.0.0)
-      blacklight (~> 6.0)
-      deprecation (~> 0.1)
-      hydra-head (~> 9.1)
-      hydra-works (~> 0.4)
-      rdf (~> 1.99)
-      rdf-vocab (~> 0)
-
-GIT
   remote: https://github.com/projecthydra/hydra-head.git
-  revision: aca8b16fb7b0c1625acb74afef19cdeb62764370
-  branch: replace_uri_with_graph
+  revision: 7647f2eacdd73f905c212963993f67957a93b2e6
   specs:
-    hydra-access-controls (9.7.1)
-      active-fedora (~> 9.8)
+    hydra-access-controls (9.8.0)
+      active-fedora (~> 9.9)
       activesupport (~> 4.0)
       blacklight (>= 5.16)
       blacklight-access_controls (~> 0.1)
       cancancan (~> 1.8)
       deprecation (~> 0.2)
-    hydra-core (9.7.1)
+    hydra-core (9.8.0)
       active-fedora (~> 9.8)
-      hydra-access-controls (= 9.7.1)
+      hydra-access-controls (= 9.8.0)
       rails (~> 4.0)
-    hydra-head (9.7.1)
-      hydra-access-controls (= 9.7.1)
-      hydra-core (= 9.7.1)
+    hydra-head (9.8.0)
+      hydra-access-controls (= 9.8.0)
+      hydra-core (= 9.8.0)
       rails (>= 3.2.6)
-
-GIT
-  remote: https://github.com/traject/traject.git
-  revision: d97cd18da88aa67ff01482298cabd31cebdcf97e
-  specs:
-    traject (2.2.1)
-      concurrent-ruby (>= 0.8.0)
-      dot-properties (>= 0.1.1)
-      hashie (~> 3.1)
-      httpclient (~> 2.5)
-      marc (~> 1.0)
-      marc-fastxmlwriter (~> 1.0)
-      slop (>= 3.4.5, < 4.0)
-      yell
 
 GEM
   remote: https://rubygems.org/
@@ -289,6 +262,14 @@ GEM
       domain_name (~> 0.5)
     http_logger (0.5.1)
     httpclient (2.7.1)
+    hydra-collections (8.0.0)
+      active-fedora (~> 9.9)
+      blacklight (~> 6.0)
+      deprecation (~> 0.1)
+      hydra-head (~> 9.1)
+      hydra-works (~> 0.4)
+      rdf (~> 1.99)
+      rdf-vocab (~> 0)
     hydra-derivatives (3.0.0)
       active-fedora (~> 9.0)
       activesupport (~> 4.0)
@@ -310,7 +291,7 @@ GEM
       blacklight
       bootstrap_form
       cancancan
-    hydra-works (0.7.0)
+    hydra-works (0.7.1)
       hydra-derivatives (~> 3.0)
       hydra-file_characterization (~> 0.3, >= 0.3.3)
       hydra-pcdm (~> 0.4)
@@ -637,6 +618,15 @@ GEM
     thread_safe (0.3.5)
     tilt (2.0.2)
     timecop (0.7.3)
+    traject (2.3.0)
+      concurrent-ruby (>= 0.8.0)
+      dot-properties (>= 0.1.1)
+      hashie (~> 3.1)
+      httpclient (~> 2.5)
+      marc (~> 1.0)
+      marc-fastxmlwriter (~> 1.0)
+      slop (>= 3.4.5, < 4.0)
+      yell
     turbolinks (2.5.3)
       coffee-rails
     twitter-typeahead-rails (0.11.1)
@@ -693,7 +683,7 @@ DEPENDENCIES
   devise_ldap_authenticatable
   ezid-client (~> 1.2.0)
   factory_girl_rails (~> 4.4)
-  hydra-collections!
+  hydra-collections (~> 8.0.0)
   hydra-head!
   hydra-role-management
   jbuilder (~> 2.0)
@@ -723,7 +713,7 @@ DEPENDENCIES
   sqlite3
   therubyracer
   timecop (= 0.7.3)
-  traject!
+  traject (~> 2.3.0)
   turbolinks
   uglifier (~> 2.7.2)
   vcr
