@@ -1,5 +1,9 @@
 ---
-- file: path={{ project_base }}/ingest/metadata state=directory
+- name: create the metadata directory for ingest
+  file:
+      path: "{{ project_base }}/ingest/metadata"
+      state: directory
+      owner: "{{ ansible_ssh_user }}"
 
 - name: clone adrl-dm repository to {{ project_base }}/ingest/
   git:
