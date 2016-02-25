@@ -21,6 +21,16 @@ describe Ability do
   let(:public_image) { create(:public_image) }
   let(:discovery_image) { create(:image, :discovery) }
   let(:restricted_image) { create(:image, :restricted) }
+  let(:file_set_of_public_audio) do
+    create(:public_file_set).tap do |fs|
+      create(:public_audio, ordered_members: [fs])
+    end
+  end
+  let(:file_set_of_public_image) do
+    create(:public_file_set).tap do |fs|
+      create(:public_image, ordered_members: [fs])
+    end
+  end
 
   context 'for a user who is not logged in' do
     let(:user) { User.new }
@@ -43,6 +53,9 @@ describe Ability do
 
       is_expected.not_to be_able_to(:new_merge, local_group)
       is_expected.not_to be_able_to(:merge, local_group)
+
+      is_expected.not_to be_able_to(:download_original, file_set_of_public_audio)
+      is_expected.to be_able_to(:download_original, file_set_of_public_image)
     end
   end
 
@@ -90,6 +103,8 @@ describe Ability do
 
       is_expected.not_to be_able_to(:discover, Hydra::AccessControls::Embargo)
       is_expected.not_to be_able_to(:edit_rights, ActiveFedora::Base)
+
+      is_expected.to be_able_to(:download_original, file_set_of_public_audio)
     end
   end
 
