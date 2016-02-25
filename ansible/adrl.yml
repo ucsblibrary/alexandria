@@ -52,13 +52,15 @@
     - { role: '../provisioning/centos/roles/services' }
     - { role: '../provisioning/centos/roles/hydra-stack' }
     - { role: '../provisioning/centos/roles/ffmpeg' }
-    # - { role: imagemagick }
+    - { role: '../provisioning/centos/roles/imagemagick' }
     - { role: '../provisioning/centos/roles/passenger', become: yes }
     - { role: '../provisioning/centos/roles/marmotta' }
     - { role: '../provisioning/centos/roles/app-config', become: yes }
     - { role: '../provisioning/centos/roles/ezid' }
     - { role: '../provisioning/centos/roles/smtp' }
     - { role: '../provisioning/centos/roles/ldap' }
+    - { role: '../provisioning/centos/roles/riiif' }
     - { role: '../provisioning/centos/roles/hostname' }
     - { role: '../provisioning/centos/roles/automount' }
+    - { role: '../provisioning/centos/roles/deploy' }
     - { role: alexandria-v2, become: yes }
