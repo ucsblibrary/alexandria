@@ -13,7 +13,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'therubyracer', platforms: :ruby
 
-gem 'hydra-head', git: 'https://github.com/projecthydra/hydra-head.git'
+gem 'hydra-head', '~> 9.8.1'
 gem 'hydra-role-management'
 gem 'hydra-collections', '~> 8.0.0'
 gem 'curation_concerns', git: 'https://github.com/projecthydra-labs/curation_concerns.git', branch: 'hydra-collections-8'

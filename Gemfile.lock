@@ -47,26 +47,6 @@ GIT
       resque (~> 1.23)
       resque-pool (~> 0.3)
 
-GIT
-  remote: https://github.com/projecthydra/hydra-head.git
-  revision: 7647f2eacdd73f905c212963993f67957a93b2e6
-  specs:
-    hydra-access-controls (9.8.0)
-      active-fedora (~> 9.9)
-      activesupport (~> 4.0)
-      blacklight (>= 5.16)
-      blacklight-access_controls (~> 0.1)
-      cancancan (~> 1.8)
-      deprecation (~> 0.2)
-    hydra-core (9.8.0)
-      active-fedora (~> 9.8)
-      hydra-access-controls (= 9.8.0)
-      rails (~> 4.0)
-    hydra-head (9.8.0)
-      hydra-access-controls (= 9.8.0)
-      hydra-core (= 9.8.0)
-      rails (>= 3.2.6)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -262,6 +242,13 @@ GEM
       domain_name (~> 0.5)
     http_logger (0.5.1)
     httpclient (2.7.1)
+    hydra-access-controls (9.8.1)
+      active-fedora (~> 9.9)
+      activesupport (~> 4.0)
+      blacklight (>= 5.16)
+      blacklight-access_controls (~> 0.1)
+      cancancan (~> 1.8)
+      deprecation (~> 0.2)
     hydra-collections (8.0.0)
       active-fedora (~> 9.9)
       blacklight (~> 6.0)
@@ -270,6 +257,10 @@ GEM
       hydra-works (~> 0.4)
       rdf (~> 1.99)
       rdf-vocab (~> 0)
+    hydra-core (9.8.1)
+      active-fedora (~> 9.8)
+      hydra-access-controls (= 9.8.1)
+      rails (~> 4.0)
     hydra-derivatives (3.0.0)
       active-fedora (~> 9.0)
       activesupport (~> 4.0)
@@ -283,6 +274,10 @@ GEM
       simple_form (~> 3.1.0)
     hydra-file_characterization (0.3.3)
       activesupport (>= 3.0.0)
+    hydra-head (9.8.1)
+      hydra-access-controls (= 9.8.1)
+      hydra-core (= 9.8.1)
+      rails (>= 3.2.6)
     hydra-pcdm (0.4.0)
       active-fedora (~> 9.6)
       activefedora-aggregation (~> 0.6)
@@ -684,7 +679,7 @@ DEPENDENCIES
   ezid-client (~> 1.2.0)
   factory_girl_rails (~> 4.4)
   hydra-collections (~> 8.0.0)
-  hydra-head!
+  hydra-head (~> 9.8.1)
   hydra-role-management
   jbuilder (~> 2.0)
   jettywrapper
