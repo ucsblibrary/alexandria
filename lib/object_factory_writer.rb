@@ -76,9 +76,9 @@ class ObjectFactoryWriter
 
     def collection_attributes(work_type)
       case work_type
-      when ETD_TYPES
+      when *ETD_TYPES
         { id: 'etds', title: ['Electronic Theses and Dissertations'], accession_number: ['etds'] }
-      when AUDIO_TYPES
+      when *AUDIO_TYPES
         { id: 'cylinders',
           title: ['Wax Cylinders'],
           accession_number: ['Cylinders'],
@@ -90,9 +90,9 @@ class ObjectFactoryWriter
 
     def factory(work_type)
       case work_type
-      when ETD_TYPES
+      when *ETD_TYPES
         Importer::Factory.for('ETD'.freeze)
-      when AUDIO_TYPES
+      when *AUDIO_TYPES
         Importer::Factory.for('AudioRecording'.freeze)
       else
         raise ArgumentError, "Unknown work type #{work_type}"
