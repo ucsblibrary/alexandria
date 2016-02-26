@@ -14,7 +14,7 @@ class AttachFilesToAudioRecording
   def run
     cylinder_names.each do |cylinder_name|
       number = cylinder_name.sub(/^Cylinder /, '')
-      attach_files(number)
+      attach_files(cylinder_name, number)
     end
   end
 
@@ -28,8 +28,9 @@ class AttachFilesToAudioRecording
       Dir.glob(File.join(files_directory, '**', "cusb-cyl#{number}b.wav")).first
     end
 
-    def attach_files(number)
-      file_set = FileSet.create!(admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID)
+    def attach_files(cylinder_name, number)
+      file_set = FileSet.create!(label: cylinder_name,
+                                 admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID)
       actor = CurationConcerns::FileSetActor.new(file_set, User.batchuser)
       attach_original(actor, number)
       attach_restored(actor, number)
