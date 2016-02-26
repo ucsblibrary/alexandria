@@ -9,6 +9,10 @@ describe 'Traject importer' do
     let(:command) { Traject::CommandLine.new(['-c', traject_config, marc_file]) }
 
     before do
+      # IDs from the ezid VCR cassette and MARC file
+      ids = ['f3999999', 'fk4c252k0f']
+      ids.each {|id| ActiveFedora::Base.find(id).destroy(eradicate: true) if ActiveFedora::Base.exists? id }
+
       AudioRecording.destroy_all
       Organization.destroy_all
       Person.destroy_all
