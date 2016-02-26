@@ -4,11 +4,13 @@ require 'traject/macros/marc21_semantics'
 require 'traject/extract_work_type'
 require 'traject/extract_ark'
 require 'traject/extract_fulltext_link'
+require 'traject/extract_contributors'
 extend Traject::Macros::Marc21Semantics
 extend Traject::Macros::MarcFormats
 extend ExtractWorkType
 extend ExtractArk
 extend ExtractFulltextLink
+extend ExtractContributors
 
 settings do
   provide 'writer_class_name', 'ObjectFactoryWriter'
@@ -23,7 +25,6 @@ to_field 'id', lambda { |_record, accumulator, context|
   accumulator << Identifier.ark_to_id(context.output_hash['identifier'].first)
 }
 
-to_field 'author', extract_marc('100a', trim_punctuation: true)
 to_field 'alternative', extract_marc('130:240:246:740')
 to_field 'work_type', extract_work_type
 to_field 'created_start', marc_publication_date
@@ -36,9 +37,8 @@ to_field 'publisher', extract_marc('264b', trim_punctuation: true)
 to_field 'system_number', extract_marc('001')
 to_field 'title', extract_marc('245ab', trim_punctuation: true)
 
-# Names with relators, e.g. thesis advisor
-to_field 'names',    extract_marc('720a')
-to_field 'relators', extract_marc('720e', allow_duplicates: true)
+to_field 'contributors', extract_contributors
+
 to_field 'description', extract_marc('520a')
 to_field 'fulltext_link', extract_fulltext_link
 

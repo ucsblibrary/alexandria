@@ -33,6 +33,9 @@ class ObjectFactoryWriter
 
     attributes = defaults.merge(from_traject)
 
+    contrib = Array(attributes.delete('contributors')).first
+    attributes.merge!(contrib) unless contrib.blank?
+
     relators = parse_relators(attributes.delete('names'), attributes.delete('relators'))
 
     if relators

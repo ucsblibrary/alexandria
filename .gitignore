@@ -28,6 +28,7 @@ tomcat
 /tmp
 /jetty
 .rvmrc
+.byebug_history
 
 # Passwords etc
 config/*.yml
