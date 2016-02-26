@@ -11,4 +11,10 @@ describe AudioRecordingPresenter do
     let(:attributes) { { 'restrictions_tesim' => ['test restrictions'] } }
     it { is_expected.to eq ['test restrictions'] }
   end
+
+  describe 'alternative' do
+    subject { presenter.alternative }
+    let(:attributes) { { 'alternative_tesim' => ['test alternative'] } }
+    it { is_expected.to eq ['test alternative'] }
+  end
 end

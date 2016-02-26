@@ -1,3 +1,3 @@
 class AudioRecordingPresenter < CurationConcerns::WorkShowPresenter
-  delegate :restrictions, to: :solr_document
+  delegate :restrictions, :alternative, to: :solr_document
 end

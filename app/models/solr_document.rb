@@ -85,6 +85,10 @@ class SolrDocument
     fetch('restrictions_tesim', [])
   end
 
+  def alternative
+    fetch('alternative_tesim', [])
+  end
+
   private
 
     def load_file_sets(ids)

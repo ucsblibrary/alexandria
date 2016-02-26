@@ -24,6 +24,7 @@ to_field 'id', lambda { |_record, accumulator, context|
 }
 
 to_field 'author', extract_marc('100a', trim_punctuation: true)
+to_field 'alternative', extract_marc('130:240:246:740')
 to_field 'work_type', extract_work_type
 to_field 'created_start', marc_publication_date
 to_field 'marc_subjects', extract_marc('650', trim_punctuation: true)

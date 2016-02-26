@@ -6,6 +6,7 @@ describe 'curation_concerns/audio_recordings/show.html.erb' do
                                          title_tesim: 'My Audio',
                                          description_tesim: 'Just a cylinder',
                                          restrictions_tesim: ["Don't be evil"],
+                                         alternative_tesim: ["my alt title"],
                                          has_model_ssim: ['AudioRecording']) }
 
   before do
@@ -20,6 +21,7 @@ describe 'curation_concerns/audio_recordings/show.html.erb' do
     render
     expect(rendered).to have_content 'Just a cylinder'
     expect(rendered).to have_content "Don't be evil"
+    expect(rendered).to have_content "my alt title"
   end
 end
 
