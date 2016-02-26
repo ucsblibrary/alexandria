@@ -81,6 +81,10 @@ class SolrDocument
     Array(self['public_uri_ssim']).first
   end
 
+  def restrictions
+    fetch('restrictions_tesim', [])
+  end
+
   private
 
     def load_file_sets(ids)

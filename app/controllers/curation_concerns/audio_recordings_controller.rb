@@ -4,6 +4,13 @@ class CurationConcerns::AudioRecordingsController < ApplicationController
 
   self.theme = 'alexandria'
 
+  # Gives the class of the show presenter. Override this if you want
+  # to use a different presenter.
+  def show_presenter
+    # CurationConcerns::WorkShowPresenter
+    ::AudioRecordingPresenter
+  end
+
   def search_builder_class
     ::WorkSearchBuilder
   end
