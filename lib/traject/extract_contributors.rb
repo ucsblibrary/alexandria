@@ -66,6 +66,7 @@ module ExtractContributors
     roles = sub_4 + sub_e
 
     if roles.blank?
+      print_blank_role_warning(field)
       [:performer]
     else
       roles.map {|r| ROLE_MAP.fetch(r.value.strip.downcase) }
@@ -95,6 +96,10 @@ module ExtractContributors
     else
       NAME_TYPE_MAP.fetch(field.indicator1, 'agent'.freeze)
     end
+  end
+
+  def print_blank_role_warning(field)
+    $stdout.puts "    WARNING: Unable to determine contributor role.  Expected to find subfield 'e' or '4', but subfield wasn't found.  MARC field: #{field.tag}"
   end
 
 end
