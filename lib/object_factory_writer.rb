@@ -94,7 +94,7 @@ class ObjectFactoryWriter
     end
 
     def files_directory
-      @settings.fetch('files_directory', Settings.proquest_directory)
+      @settings['files_directory']
     end
 
     # @param [Array] names : a list of names

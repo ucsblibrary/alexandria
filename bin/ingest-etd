@@ -1,93 +1,27 @@
 #!/usr/bin/env ruby
 
-require 'curb'
-require 'fileutils'
-require 'nokogiri'
-require 'pathname'
-require 'yaml'
+puts "Loading environment..."
+require File.expand_path('../../config/environment', __FILE__)
 
-env = ENV['RAILS_ENV'] || 'development'
+require 'importer'
+Rails.application.eager_load!
+AdminPolicy.ensure_admin_policy_exists
 
-conf = File.expand_path('../../config/application.yml', __FILE__)
-@settings = YAML.load(File.open(conf).read)[env]
-
-def proquest_directory
-  File.join(@settings['download_root'], 'proquest')
-end
-
-def marc_directory
-  File.join(@settings['download_root'], 'marc')
-end
-
-def pegasus_path
-  @settings['pegasus_sru_endpoint']
-end
-
-Dir.mkdir @settings['download_root'] unless Pathname.new(@settings['download_root']).exist?
-Dir.mkdir marc_directory unless Pathname.new(marc_directory).exist?
-Dir.mkdir proquest_directory unless Pathname.new(proquest_directory).exist?
-
-# @param [String] zipfile The path to the .zip file
-#
-# @return [Array]
-def unzip(zipfile, dest)
-  FileUtils.cp zipfile, proquest_directory
-
-  xml ||= []
-  system 'unzip', '-o', zipfile, '-d', dest
-
-  Dir.glob("#{dest}/**/*.xml") do |x|
-    puts "Found #{x}"
-    xml << x
-  end
-
-  xml
-end
-
-temp = File.join(@settings['download_root'], "#{Time.now.to_i}")
-Dir.mkdir temp
-
-@xml = []
-
-ARGV.each do |f|
-  @xml << unzip(f, temp)
-end
-
-marcs = []
-@xml.flatten.uniq.each do |x|
-  binary_filename = Nokogiri::XML(File.open(x)).css('DISS_binary').children.first.to_s
-
-  search = Curl::Easy.perform("#{Rails.application.secrets.sru_host}/sba01pub?version=1.1&operation=searchRetrieve&maximumRecords=1&startRecord=1&query=(marc.947.a=pqd%20and%20marc.956.f=#{binary_filename})")
-
-  if !search.body_str.include?('zs:numberOfRecords>1')
-    puts "Error: failed to retrieve record for #{binary_filename}"
-  else
-    entry = search.body_str.sub("<?xml version=\"1.0\"?>\n<zs:searchRetrieveResponse xmlns:zs=\"http://www.loc.gov/zing/srw/\"><zs:version>1.1</zs:version><zs:numberOfRecords>1</zs:numberOfRecords><zs:records>", '')
-    entry.sub!('</zs:records></zs:searchRetrieveResponse>', '')
-
-    marcs << entry
-  end
-end
-
-puts "Copied zipfiles to #{proquest_directory}"
+Dir.mkdir Settings.download_root unless Pathname.new(Settings.download_root).exist?
+Dir.mkdir Settings.marc_directory unless Pathname.new(Settings.marc_directory).exist?
+Dir.mkdir Settings.proquest_directory unless Pathname.new(Settings.proquest_directory).exist?
 
 output_file = "MARC_#{Time.now.to_i}.xml"
-File.open(File.join(marc_directory, output_file), 'w') do |f|
-  f.write <<-EOS
-<?xml version="1.0"?>
-<zs:searchRetrieveResponse xmlns:zs="http://www.loc.gov/zing/srw/"><zs:version>1.1</zs:version><zs:numberOfRecords>#{marcs.count}</zs:numberOfRecords><zs:records>
-EOS
-  f.write marcs.join("\n")
-  f.write('</zs:records></zs:searchRetrieveResponse>')
-
-  puts "Wrote MARC metadata to #{marc_directory}/"
-end
+Importer::ETDImporter.write_marc_file(ARGV, output_file)
 
 puts 'Now ingesting...'
 
+require 'traject'
 require 'traject/command_line'
-cmdline = Traject::CommandLine.new(['-c', 'lib/traject/etd_config.rb', "#{marc_directory}/#{output_file}"])
+args = ['-c', 'lib/traject/etd_config.rb']
+args << '-s' << "files_directory=#{Settings.proquest_directory}"
+args << File.join(Settings.marc_directory, output_file)
+cmdline = Traject::CommandLine.new(args)
 result = cmdline.execute
-FileUtils.rm_rf temp
 
 exit 1 unless result # non-zero exit status on process telling us there's problems.

@@ -8,6 +8,7 @@ module Importer
   extend ActiveSupport::Autoload
   autoload :ModsImporter
   autoload :CSVImporter
+  autoload :ETDImporter
   autoload :LocalAuthorityImporter
   autoload :ModsParser
   autoload :CSVParser
