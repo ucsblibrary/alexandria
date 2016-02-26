@@ -1,14 +1,17 @@
 ---
 - name: create the metadata directory for ingest
+  become: yes
   file:
-      path: "{{ project_base }}/ingest/metadata"
-      state: directory
-      owner: "{{ ansible_ssh_user }}"
+    path: "{{ project_base }}/ingest/metadata"
+    state: directory
+    owner: "{{ ansible_ssh_user }}"
 
 - name: clone adrl-dm repository to {{ project_base }}/ingest/
   git:
     repo: https://{{ ad_git_user }}:{{ ad_git_pass }}@stash.library.ucsb.edu/scm/cms/adrl-dm.git
     dest: "{{ project_base }}/ingest/metadata/adrl-dm"
+    force: yes
+    recursive: no
   no_log: True
 
 - name: remove password from remote url
