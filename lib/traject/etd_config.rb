@@ -1,7 +1,3 @@
-require 'traject'
-require File.expand_path('../../../config/environment', __FILE__)
-Rails.application.eager_load!
-AdminPolicy.ensure_admin_policy_exists
 require 'object_factory_writer'
 require 'traject/macros/marc_format_classifier'
 require 'traject/macros/marc21_semantics'

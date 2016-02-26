@@ -18,7 +18,7 @@ module Importer::Factory
 
     def after_save(audio)
       super # Calls after_save in WithAssociatedCollection
-      return unless files_directory && attributes[:files]
+      return unless files_directory.present? && attributes[:files]
 
       AttachFilesToAudioRecording.run(audio, files_directory, attributes[:files])
       audio.save # force a reindex after the files are created

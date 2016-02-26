@@ -75,7 +75,7 @@ class ObjectFactoryWriter
       when RDF::URI('http://id.loc.gov/vocabulary/resourceTypes/txt')
         { id: 'etds', title: ['Electronic Theses and Dissertations'], accession_number: ['etds'] }
       when RDF::URI('http://id.loc.gov/vocabulary/resourceTypes/aum')
-        { id: 'cylinders', title: ['Wax Cylinders'], accession_number: ['cylinders'], admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID }
+        { id: 'cylinders', title: ['Wax Cylinders'], accession_number: ['Cylinders'], admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID }
       else
         raise ArgumentError, "Unknown work type #{work_type}"
       end
