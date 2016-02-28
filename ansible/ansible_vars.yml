@@ -33,13 +33,17 @@ rails_env: production
 # server_name: # FQDN, for example: sandbox.curationexperts.com; default is 127.0.0.1
 # install_path: # default is /opt/install
 #
-## capistrano variables
-# capistrano_user: # default is deploy
-# capistrano_group: # default is deploy
+## capistrano/auto-deploy variables
+# deploy_user: # default is deploy
+# deploy_group: # default is deploy
 #
 ## hydra variables
 # solr_context: # default is hydra
 # base_path: # fedora base, default is prod
+# fedora_version: # default is 4.4
+# fedora_256: # sha 256 of the fedora version you're installing
+# solr_version: # default is 
+# solr_256: # sha 256 signature of the solr version you're installing
 #
 # database variables
 pg_pass: 
@@ -80,10 +84,12 @@ ezid_password:
 ## NO default - see http://ezid.cdlib.org/doc/apidoc.html
 # ezid_default_shoulder: # the base for your ezid values, default is ark:/99999/fk4
 #
-## application.yml variables
+## alexandria-specific variables
 # minter_state_location: # the location of the counter for new objects, default is /opt/{{ project_name }}/shared/minter-state
 # etd_download_root: # location for the ETD downloads, default is /opt/download_root
-# marmotta_host: # location for the marmotta connection, default is localhost:8080
+# marmotta_server: # location for the marmotta connection, default is 127.0.0.1, port is hard-coded to 8080 for now
+# ad_git_user: # the user to connect to UCSB git repos
+# ad_git_pass: # the password to connect to UCSB git repos
 #
 ## other variables
 rails_secret_key_base: 
