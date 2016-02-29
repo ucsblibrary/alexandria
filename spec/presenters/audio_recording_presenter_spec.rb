@@ -17,4 +17,10 @@ describe AudioRecordingPresenter do
     let(:attributes) { { 'alternative_tesim' => ['test alternative'] } }
     it { is_expected.to eq ['test alternative'] }
   end
+
+  describe 'language' do
+    subject { presenter.language }
+    let(:attributes) { { 'language_label_ssm' => ['English'] } }
+    it { is_expected.to eq ['English'] }
+  end
 end

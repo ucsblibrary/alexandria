@@ -89,6 +89,11 @@ class SolrDocument
     fetch('alternative_tesim', [])
   end
 
+  # this overrides CurationConcerns to use the language_label_ssm field
+  def language
+    fetch('language_label_ssm', [])
+  end
+
   private
 
     def load_file_sets(ids)
