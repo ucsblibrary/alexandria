@@ -29,12 +29,11 @@ describe DownloadsController do
       end
 
       context 'downloads a restricted object' do
-
         it 'is successful' do
           get :show, id: file_set
           expect(response).to be_successful
           # expect(response.headers['Content-Type']).to eq 'application/pdf'
-          expect(response.headers['Content-Disposition']).to eq "inline; filename=\"sample.pdf\""
+          expect(response.headers['Content-Disposition']).to eq 'inline; filename="sample.pdf"'
         end
       end
 
@@ -52,7 +51,7 @@ describe DownloadsController do
         it 'returns attachment as the disposition' do
           get :show, id: file_set, file: 'mp3', dl: true
           expect(response).to be_successful
-          expect(response.headers['Content-Disposition']).to eq "attachment; filename=\"real-name.mp3\""
+          expect(response.headers['Content-Disposition']).to eq 'attachment; filename="real-name.mp3"'
         end
       end
     end

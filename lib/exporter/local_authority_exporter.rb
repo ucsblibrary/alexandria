@@ -2,7 +2,6 @@ require 'exporter/base_exporter'
 
 module Exporter
   class LocalAuthorityExporter < BaseExporter
-
     attr_reader :temp_file_name, :temp_file
 
     # Some local authorities can have multiple labels, so we

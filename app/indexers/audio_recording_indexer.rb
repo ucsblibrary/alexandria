@@ -12,4 +12,3 @@ class AudioRecordingIndexer < ObjectIndexer
       object.issued.first.display_label
     end
 end
-

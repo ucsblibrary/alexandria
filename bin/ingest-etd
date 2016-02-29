@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-puts "Loading environment..."
+puts 'Loading environment...'
 require File.expand_path('../../config/environment', __FILE__)
 
 require 'importer'

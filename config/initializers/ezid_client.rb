@@ -1,5 +1,5 @@
 file = Rails.root.join('config/application.yml')
-fail "You are missing a configuration file: #{file}." unless File.exist?(file)
+raise "You are missing a configuration file: #{file}." unless File.exist?(file)
 
 begin
   yml = YAML.load_file(file)
@@ -8,7 +8,7 @@ rescue StandardError
 end
 
 if yml.nil? || !yml.is_a?(Hash)
-  fail("#{file} was found, but was blank or malformed.\n")
+  raise("#{file} was found, but was blank or malformed.\n")
 end
 
 options = yml.fetch(Rails.env).with_indifferent_access

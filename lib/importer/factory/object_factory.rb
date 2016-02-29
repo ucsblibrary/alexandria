@@ -228,7 +228,7 @@ module Importer::Factory
           'person' => Person,
           'group' => Group,
           'organization' => Organization,
-          'agent' => Agent
+          'agent' => Agent,
         }
       end
 

@@ -85,8 +85,8 @@ describe ImageForm do
               finish_qualifier: ['exact'],
               label: ['some-label'],
               note: ['some-note'],
-            }
-          }
+            },
+          },
         }.with_indifferent_access
       end
 
@@ -109,7 +109,7 @@ describe ImageForm do
               id: "#{ActiveFedora.fedora.host}/test/de/ad/be/ef/deadbeef",
               predicate: 'photographer',
             },
-          }
+          },
         }.with_indifferent_access
       end
 

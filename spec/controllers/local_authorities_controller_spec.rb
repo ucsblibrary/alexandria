@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe LocalAuthoritiesController do
-  describe "#show" do
+  describe '#show' do
     let(:topic) { Topic.create!(label: ['A Local Subject']) }
     it 'shows public urls' do
       get :show, id: topic, format: :ttl
@@ -9,7 +9,7 @@ describe LocalAuthoritiesController do
     end
   end
 
-  describe "#index" do
+  describe '#index' do
     before { sign_in user }
     describe 'a regular user' do
       let(:user) { create :user }

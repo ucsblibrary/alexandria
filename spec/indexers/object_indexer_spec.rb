@@ -114,9 +114,9 @@ describe ObjectIndexer do
 
       let(:image) do
         Image.new(created_attributes: [
-          { start: mid_2, finish: latest },
-          { start: earliest, finish: mid_1 },
-        ])
+                    { start: mid_2, finish: latest },
+                    { start: earliest, finish: mid_1 },
+                  ])
       end
 
       it 'makes a sortable date field' do

@@ -18,4 +18,3 @@ feature 'Collection show page:' do
     expect(page).to have_content 'Baritone solo with orchestra accompaniment.'
   end
 end
-

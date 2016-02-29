@@ -1,22 +1,21 @@
 module ExtractContributors
-
   # For wax cylinder recordings, we want to capture
   # contributor data from fields 100, 110, 700, and 710
   # of the MARC record.
-  TAGS = ['100', '110', '700', '710']
+  TAGS = %w(100 110 700 710).freeze
 
   # For each field, which subfields do we use to construct the
   # contributor's name?
-  SUBFIELD_MAP = { '100' => ['a', 'c', 'd', 'q'],
-                   '110' => ['a', 'b'],
-                   '700' => ['a', 'b', 'c', 'd', 'q'],
-                   '710' => ['a', 'b'] }
+  SUBFIELD_MAP = { '100' => %w(a c d q),
+                   '110' => %w(a b),
+                   '700' => %w(a b c d q),
+                   '710' => %w(a b) }.freeze
 
   # Decide which type of local authority to create, based on
   # the field indicators
   NAME_TYPE_MAP = { '0' => 'person',
                     '1' => 'person',
-                    '3' => 'group' }
+                    '3' => 'group' }.freeze
 
   # Find the attribute name based on what's in subfield 4 or e.
   ROLE_MAP = { 'arr' => :arranger,
@@ -39,14 +38,13 @@ module ExtractContributors
                'lyricist' => :lyricist,
                'performer' => :performer,
                'singer' => :singer,
-               'speaker' => :speaker }
-
+               'speaker' => :speaker }.freeze
 
   def extract_contributors
     lambda do |record, accumulator|
-      fields = record.fields.select{|f| TAGS.include?(f.tag) }
+      fields = record.fields.select { |f| TAGS.include?(f.tag) }
 
-      contributors = Hash.new
+      contributors = {}
       fields.each do |field|
         keys = roles_for(field)
         value = data_for(field)
@@ -61,24 +59,22 @@ module ExtractContributors
   end
 
   def roles_for(field)
-    sub_4 = field.subfields.select {|s| s.code == '4'.freeze }
-    sub_e = field.subfields.select {|s| s.code == 'e'.freeze }
+    sub_4 = field.subfields.select { |s| s.code == '4'.freeze }
+    sub_e = field.subfields.select { |s| s.code == 'e'.freeze }
     roles = sub_4 + sub_e
 
     if roles.blank?
       print_blank_role_warning(field)
       [:performer]
     else
-      roles.map {|r| ROLE_MAP.fetch(r.value.strip.downcase) }
+      roles.map { |r| ROLE_MAP.fetch(r.value.strip.downcase) }
     end
   end
 
   def data_for(field)
     strings = field.subfields.inject([]) do |values, subfield|
       v = subfield.value.strip
-      if !v.blank? && relevant_subfield?(field.tag, subfield)
-        values << v
-      end
+      values << v if !v.blank? && relevant_subfield?(field.tag, subfield)
       values
     end
 
@@ -101,5 +97,4 @@ module ExtractContributors
   def print_blank_role_warning(field)
     $stdout.puts "    WARNING: Unable to determine contributor role.  Expected to find subfield 'e' or '4', but subfield wasn't found.  MARC field: #{field.tag}"
   end
-
 end

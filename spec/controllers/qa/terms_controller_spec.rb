@@ -25,7 +25,7 @@ describe Qa::TermsController do
     it 'returns terms' do
       get :search, vocab: 'local', subauthority: 'work_type', q: 'image'
       expect(response).to be_success
-      expect(response.body).to eq "[{\"id\":\"http://id.loc.gov/vocabulary/resourceTypes/img\",\"label\":\"Still image\"},{\"id\":\"http://id.loc.gov/vocabulary/resourceTypes/mov\",\"label\":\"Moving image\"}]"
+      expect(response.body).to eq '[{"id":"http://id.loc.gov/vocabulary/resourceTypes/img","label":"Still image"},{"id":"http://id.loc.gov/vocabulary/resourceTypes/mov","label":"Moving image"}]'
     end
   end
 

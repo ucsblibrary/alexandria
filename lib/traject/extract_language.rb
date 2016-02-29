@@ -8,4 +8,3 @@ module ExtractLanguage
     end
   end
 end
-

@@ -12,8 +12,8 @@ describe RecordsController do
   before { allow_any_instance_of(RDF::DeepIndexingService).to receive(:fetch_external) }
 
   describe '#create' do
-    context "of a local authority" do
-      it "is successful" do
+    context 'of a local authority' do
+      it 'is successful' do
         post :create, type: 'Person', person: { foaf_name: 'Kylo Ren' }
         expect(response).to redirect_to Rails.application.routes.url_helpers.person_path(assigns[:record])
         expect(assigns[:record].foaf_name).to eq 'Kylo Ren'
@@ -113,7 +113,7 @@ describe RecordsController do
             patch :update, id: image, image: {
               creator_attribues: initial_creators,
               created_attributes: {
-                '0' => { id: image.created.first.id, _destroy: 'true' }
+                '0' => { id: image.created.first.id, _destroy: 'true' },
               },
             }
 
@@ -125,7 +125,7 @@ describe RecordsController do
           it 'allows updating the existing timespan' do
             patch :update, id: image, image: {
               created_attributes: {
-                '0' => ts_attributes.merge(id: image.created.first.id, start: ['1337'], start_qualifier: ['approximate'])
+                '0' => ts_attributes.merge(id: image.created.first.id, start: ['1337'], start_qualifier: ['approximate']),
               },
               creator_attributes: initial_creators,
             }

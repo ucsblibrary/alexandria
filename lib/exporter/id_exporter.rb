@@ -7,7 +7,6 @@ require 'exporter/base_exporter'
 
 module Exporter
   class IdExporter < BaseExporter
-
     def default_file_name
       "export_ids_#{timestamp}.csv"
     end
@@ -42,6 +41,5 @@ module Exporter
     def object_data(object)
       [object.class.to_s, object.id, object.accession_number.first, object.ark, Array(object.title).first]
     end
-
   end
 end

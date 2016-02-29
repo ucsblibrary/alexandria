@@ -48,7 +48,7 @@ describe OptionsHelper do
     subject { helper.relators_json }
     it { is_expected.to be_html_safe }
     it 'begins with creator and contributor' do
-      expect(subject).to start_with "{\"creator\":\"Creator\",\"contributor\":\"Contributor\""
+      expect(subject).to start_with '{"creator":"Creator","contributor":"Contributor"'
     end
   end
 end

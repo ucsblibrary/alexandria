@@ -1,6 +1,5 @@
 module Exporter
   class BaseExporter
-
     attr_reader :export_dir, :export_file_name, :export_file
 
     def initialize(dir = nil, file_name = nil)
@@ -40,6 +39,5 @@ module Exporter
       puts "Records were exported to: #{export_file}"
       puts 'Export complete.'
     end
-
   end
 end

@@ -56,4 +56,3 @@ class AttachFilesToAudioRecording
       end
     end
 end
-

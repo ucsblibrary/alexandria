@@ -28,7 +28,7 @@ puts 'Starting import...'
 require 'traject/command_line'
 args = ['-c', 'lib/traject/audio_config.rb']
 args << '-s' << "files_directory=#{files_directory}" if files_directory
-args << "#{marc_file}"
+args << marc_file.to_s
 cmdline = Traject::CommandLine.new(args)
 result = cmdline.execute
 

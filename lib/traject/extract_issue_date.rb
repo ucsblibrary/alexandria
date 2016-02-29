@@ -5,12 +5,12 @@ module ExtractIssueDate
     lambda do |record, accumulator|
       date = date_extractor.extract(record).compact.first
       attrs = if date.last == 'u'
-        start_date = date.gsub(/u/, '0').to_i
-        finish_date = start_date + 9
-        { start: [start_date], start_qualifier: ['approximate'],
-          finish: [finish_date], finish_qualifier: ['approximate'] }
-      else
-        { start: date.to_i }
+                start_date = date.tr('u', '0').to_i
+                finish_date = start_date + 9
+                { start: [start_date], start_qualifier: ['approximate'],
+                  finish: [finish_date], finish_qualifier: ['approximate'] }
+              else
+                { start: date.to_i }
       end
       accumulator << attrs
     end

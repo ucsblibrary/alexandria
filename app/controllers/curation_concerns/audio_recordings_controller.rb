@@ -16,7 +16,7 @@ class CurationConcerns::AudioRecordingsController < ApplicationController
   end
 
   # Overrides the Blacklight::Catalog to point at main_app
-  def search_action_url options = {}
+  def search_action_url(options = {})
     main_app.search_catalog_path(options)
   end
 end

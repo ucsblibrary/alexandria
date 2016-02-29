@@ -29,7 +29,7 @@ describe ZipfileService do
         '/tmp/jcoyne/Murray_ucsb_0035D_12159_DATA.xml',
         ['/tmp/jcoyne/SupplementalFile1.pdf',
          '/tmp/jcoyne/SupplementalFile2.pdf',
-         '/tmp/jcoyne/SupplementalFile3.pdf'],
+         '/tmp/jcoyne/SupplementalFile3.pdf']
       )
     end
   end

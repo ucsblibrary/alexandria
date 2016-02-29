@@ -7,4 +7,3 @@ puts 'Starting export...'
 
 ActiveFedora::Base.translate_id_to_uri = ActiveFedora::Core::FedoraIdTranslator
 Exporter::IdExporter.new.run
-

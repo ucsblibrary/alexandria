@@ -1,5 +1,4 @@
 module Importer
-
   module Factory
     module WithAssociatedCollection
       def create_attributes

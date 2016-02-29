@@ -78,7 +78,7 @@ describe SolrDocument do
       SolrDocument.new(
         visibility_during_embargo_ssim: ['authorities/policies/ucsb_on_campus'],
         visibility_after_embargo_ssim: ['authorities/policies/public'],
-        embargo_release_date_dtsi: '2010-10-10T00:00:00Z',
+        embargo_release_date_dtsi: '2010-10-10T00:00:00Z'
       )
     end
     subject { document.after_embargo_status }

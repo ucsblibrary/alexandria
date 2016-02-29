@@ -6,8 +6,8 @@ class ObjectFactoryWriter
   attr_reader :settings
 
   AUDIO_TYPES = [RDF::URI('http://id.loc.gov/vocabulary/resourceTypes/aum'),
-                 RDF::URI('http://id.loc.gov/vocabulary/resourceTypes/aun')]
-  ETD_TYPES   = [RDF::URI('http://id.loc.gov/vocabulary/resourceTypes/txt')]
+                 RDF::URI('http://id.loc.gov/vocabulary/resourceTypes/aun')].freeze
+  ETD_TYPES   = [RDF::URI('http://id.loc.gov/vocabulary/resourceTypes/txt')].freeze
 
   def initialize(argSettings)
     @settings = Traject::Indexer::Settings.new(argSettings)

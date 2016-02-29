@@ -1,6 +1,5 @@
 module Importer
   module ETDImporter
-
     def self.write_marc_file(zipfiles, output_file)
       marcs = find_marc_for_zipfiles(zipfiles)
       puts "Copied zipfiles to #{Settings.proquest_directory}"
@@ -18,6 +17,7 @@ module Importer
     end
 
     private
+
       # @param [String] zipfile The path to the .zip file
       #
       # @return [Array]
@@ -63,7 +63,7 @@ module Importer
         end
       end
 
-      def self.find_marc_for_zipfiles(zipfiles)
+      def self.find_marc_for_zipfiles(_zipfiles)
         temp = File.join(Settings.download_root, Time.now.to_i.to_s)
         Dir.mkdir temp
         xml = ARGV.map { |f| unzip(f, temp) }.flatten.uniq

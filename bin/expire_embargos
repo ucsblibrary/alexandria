@@ -4,12 +4,12 @@ print 'Loading environment... '
 require File.expand_path('../../config/environment', __FILE__)
 puts Rails.env
 require 'expire_embargos'
-puts "Starting to expire embargos..."
+puts 'Starting to expire embargos...'
 
 size = ExpireEmbargos.run
 
 if size == 0
-  puts "There are no objects with expired embargos."
+  puts 'There are no objects with expired embargos.'
 else
   puts "Expired #{size} objects."
 end

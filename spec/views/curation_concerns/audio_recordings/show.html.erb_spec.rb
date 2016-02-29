@@ -2,19 +2,21 @@ require 'rails_helper'
 
 describe 'curation_concerns/audio_recordings/show.html.erb' do
   let(:presenter) { AudioRecordingPresenter.new(solr_document, nil) }
-  let(:solr_document) { SolrDocument.new(id: '123',
-                                         title_tesim: 'My Audio',
-                                         description_tesim: 'Just a cylinder',
-                                         restrictions_tesim: ["Don't be evil"],
-                                         alternative_tesim: ["my alt title"],
-                                         language_label_ssm: ['English'],
-                                         issue_number_ssm: ['Edison Gold Moulded Record: 8958'],
-                                         issued_ssm: ['ca. 1903 - 1906'],
-                                         matrix_number_ssm: ['12345'],
-                                         has_model_ssim: ['AudioRecording']) }
+  let(:solr_document) do
+    SolrDocument.new(id: '123',
+                     title_tesim: 'My Audio',
+                     description_tesim: 'Just a cylinder',
+                     restrictions_tesim: ["Don't be evil"],
+                     alternative_tesim: ['my alt title'],
+                     language_label_ssm: ['English'],
+                     issue_number_ssm: ['Edison Gold Moulded Record: 8958'],
+                     issued_ssm: ['ca. 1903 - 1906'],
+                     matrix_number_ssm: ['12345'],
+                     has_model_ssim: ['AudioRecording'])
+  end
 
   before do
-    stub_template "curation_concerns/base/_related_files.html.erb" => 'files'
+    stub_template 'curation_concerns/base/_related_files.html.erb' => 'files'
     view.lookup_context.prefixes += ['curation_concerns/base']
     assign(:presenter, presenter)
   end
@@ -32,4 +34,3 @@ describe 'curation_concerns/audio_recordings/show.html.erb' do
     expect(rendered).to have_content 'ca. 1903 - 1906'
   end
 end
-

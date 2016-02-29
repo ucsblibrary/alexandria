@@ -28,7 +28,7 @@ set :linked_dirs, %w(
 SSHKit.config.command_map[:rake] = 'bundle exec rake'
 
 # Default branch is :master
-set :branch, ENV["REVISION"] || ENV["BRANCH_NAME"] || "master"
+set :branch, ENV['REVISION'] || ENV['BRANCH_NAME'] || 'master'
 
 # Default value for :pty is false
 # set :pty, true

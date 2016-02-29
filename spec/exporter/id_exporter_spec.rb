@@ -20,26 +20,34 @@ describe Exporter::IdExporter do
 
   describe '#run' do
     before do
-      [Image, ETD, Collection].each { |model| model.destroy_all }
+      [Image, ETD, Collection].each(&:destroy_all)
       AdminPolicy.ensure_admin_policy_exists
     end
 
     after { FileUtils.rm_rf(dir, secure: true) }
 
     # Create some records to export
-    let!(:animals) { create(:collection,
-                            title: ['My Favorite Animals'],
-                            identifier: ['ark:/123/animals'],
-                            accession_number: ['animals_123']) }
-    let!(:puppies) { create(:image, title: ['Puppies'],
-                            identifier: ['ark:/123/puppies'],
-                            accession_number: ['puppies_123']) }
-    let!(:kitties) { create(:image, title: ['Kitties'],
-                            identifier: ['ark:/123/kitties'],
-                            accession_number: ['kitties_123']) }
-    let!(:etd) { ETD.create!(title: ['Cute Animals Thesis'],
-                             identifier: ['ark:/123/thesis'],
-                             accession_number: ['thesis_123']) }
+    let!(:animals) do
+      create(:collection,
+             title: ['My Favorite Animals'],
+             identifier: ['ark:/123/animals'],
+             accession_number: ['animals_123'])
+    end
+    let!(:puppies) do
+      create(:image, title: ['Puppies'],
+                     identifier: ['ark:/123/puppies'],
+                     accession_number: ['puppies_123'])
+    end
+    let!(:kitties) do
+      create(:image, title: ['Kitties'],
+                     identifier: ['ark:/123/kitties'],
+                     accession_number: ['kitties_123'])
+    end
+    let!(:etd) do
+      ETD.create!(title: ['Cute Animals Thesis'],
+                  identifier: ['ark:/123/thesis'],
+                  accession_number: ['thesis_123'])
+    end
 
     let(:headers) { %w(type id accession_number identifier title) }
 
@@ -69,6 +77,5 @@ describe Exporter::IdExporter do
 
       expect(contents[4].split(',')).to eq ['ETD', etd.id, etd.accession_number.first, etd.ark, etd.title.first]
     end
-  end  # run
-
+  end # run
 end

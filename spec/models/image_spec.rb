@@ -74,9 +74,9 @@ describe Image do
         subject.attributes = {
           created_attributes: {
             '0' => {
-              start: ['2014']
-            }
-          }
+              start: ['2014'],
+            },
+          },
         }
 
         subject.save!

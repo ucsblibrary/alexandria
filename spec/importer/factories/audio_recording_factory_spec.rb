@@ -2,7 +2,7 @@ require 'rails_helper'
 require 'importer'
 
 describe Importer::Factory::AudioRecordingFactory do
-  let(:files_directory) { double("Files directory") }
+  let(:files_directory) { double('Files directory') }
   let(:factory) { described_class.new(attributes, files_directory) }
   let(:collection_attrs) { { accession_number: ['cylinders'], title: ['Wax cylinders'] } }
 
@@ -11,11 +11,11 @@ describe Importer::Factory::AudioRecordingFactory do
       id: 'f3999999',
       title: ['Test Wax Cylinder'],
       collection: collection_attrs.slice(:accession_number),
-      files: ["Cylinder 4373", "Cylinder 4374", "Cylinder 4377"],
+      files: ['Cylinder 4373', 'Cylinder 4374', 'Cylinder 4377'],
       issued_attributes: [{ start: [2014] }],
       system_number: ['123'],
       author: ['Valerie'],
-      identifier: ['ark:/48907/f3999999']
+      identifier: ['ark:/48907/f3999999'],
     }.with_indifferent_access
   end
 
@@ -51,7 +51,7 @@ describe Importer::Factory::AudioRecordingFactory do
   describe '#create_attributes' do
     subject { factory.create_attributes }
 
-    it "adds the default attributes" do
+    it 'adds the default attributes' do
       expect(subject[:admin_policy_id]).to eq AdminPolicy::PUBLIC_POLICY_ID
       expect(subject[:restrictions].first).to match(/^MP3 files of the restored cylinders available for download are copyrighted by the Regents of the University of California/)
     end
@@ -139,4 +139,3 @@ describe Importer::Factory::AudioRecordingFactory do
     end
   end # update an existing record
 end
-

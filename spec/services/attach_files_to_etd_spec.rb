@@ -10,7 +10,7 @@ describe AttachFilesToETD do
         "#{Rails.root}/spec/fixtures/pdf/sample.pdf",
         "#{Rails.root}/spec/fixtures/proquest/Johnson_ucsb_0035N_12164_DATA.xml",
         ["#{Rails.root}/spec/fixtures/images/cusbspcmss36_110108_1_a.tif",
-         "#{Rails.root}/spec/fixtures/images/cusbspcmss36_110108_2_a.tif"],
+         "#{Rails.root}/spec/fixtures/images/cusbspcmss36_110108_2_a.tif"]
       )
     end
 

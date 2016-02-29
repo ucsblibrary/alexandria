@@ -2,7 +2,6 @@ require 'rails_helper'
 require 'traject/command_line'
 
 describe 'Traject importer' do
-
   describe 'import a cylinder record' do
     let(:marc_file) { File.join(fixture_path, 'marcxml', 'cylinder_sample_marc.xml') }
     let(:traject_config) { File.join(Rails.root, 'lib', 'traject', 'audio_config.rb') }
@@ -10,8 +9,8 @@ describe 'Traject importer' do
 
     before do
       # IDs from the ezid VCR cassette and MARC file
-      ids = ['f3999999', 'fk4c252k0f']
-      ids.each {|id| ActiveFedora::Base.find(id).destroy(eradicate: true) if ActiveFedora::Base.exists? id }
+      ids = %w(f3999999 fk4c252k0f)
+      ids.each { |id| ActiveFedora::Base.find(id).destroy(eradicate: true) if ActiveFedora::Base.exists? id }
 
       AudioRecording.destroy_all
       Organization.destroy_all
@@ -46,17 +45,17 @@ describe 'Traject importer' do
       end
 
       # Check local authorities were created for performers
-      ids = audio.performer.map {|s| s.rdf_label.first.gsub(Regexp.new('^.*\/'), '') }
-      perfs = ids.map {|id| ActiveFedora::Base.find(id) }
-      org, group = perfs.partition {|obj| obj.is_a?(Organization) }.map(&:first)
+      ids = audio.performer.map { |s| s.rdf_label.first.gsub(Regexp.new('^.*\/'), '') }
+      perfs = ids.map { |id| ActiveFedora::Base.find(id) }
+      org, group = perfs.partition { |obj| obj.is_a?(Organization) }.map(&:first)
       expect(org.foaf_name).to eq 'United States. National Guard Bureau. Fife and Drum Corps.'
       expect(group.foaf_name).to eq 'Allen field c text 1876 field q text'
       expect(group.class).to eq Group
 
       # Check local authorities were created for singers
-      ids = audio.singer.map {|s| s.rdf_label.first.gsub(Regexp.new('^.*\/'), '') }
-      singers = ids.map {|id| ActiveFedora::Base.find(id) }
-      org, person = singers.partition {|obj| obj.is_a?(Organization) }.map(&:first)
+      ids = audio.singer.map { |s| s.rdf_label.first.gsub(Regexp.new('^.*\/'), '') }
+      singers = ids.map { |id| ActiveFedora::Base.find(id) }
+      org, person = singers.partition { |obj| obj.is_a?(Organization) }.map(&:first)
       expect(org.foaf_name).to eq 'Louisiana Five. text from b.'
       expect(person.foaf_name).to eq 'Collins, Arthur.'
       expect(person.class).to eq Person
@@ -74,5 +73,4 @@ describe 'Traject importer' do
       end
     end
   end
-
 end
