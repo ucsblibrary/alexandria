@@ -98,11 +98,14 @@ class SolrDocument
     fetch('issue_number_ssm', [])
   end
 
+  def matrix_number
+    fetch('matrix_number_ssm', [])
+  end
+
   private
 
     def load_file_sets(ids)
       docs = ActiveFedora::SolrService.query("{!terms f=id}#{ids.join(',')}").map { |res| SolrDocument.new(res) }
       ids.map { |id| docs.find { |doc| doc.id == id } }
     end
-
 end

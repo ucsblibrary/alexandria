@@ -9,6 +9,11 @@ class AudioRecording < ActiveFedora::Base
     index.as :displayable
   end
 
+  property :matrix_number,
+           predicate: ::RDF::URI('http://id.loc.gov/vocabulary/identifiers/matrix-number') do |index|
+    index.as :displayable
+  end
+
   include NestedAttributes
   validates :title, presence: { message: 'Your work must have a title.' }
 

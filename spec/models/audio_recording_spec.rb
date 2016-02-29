@@ -18,5 +18,11 @@ describe AudioRecording do
       subject { audio.to_solr['issue_number_ssm'] }
       it { is_expected.to eq ['12345'] }
     end
+
+    describe 'matrix_number' do
+      let(:audio) { described_class.new(matrix_number: ['12345']) }
+      subject { audio.to_solr['matrix_number_ssm'] }
+      it { is_expected.to eq ['12345'] }
+    end
   end
 end
