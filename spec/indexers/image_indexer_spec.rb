@@ -4,7 +4,7 @@ describe ImageIndexer do
   before do
     ActiveFedora::Cleaner.clean!
   end
-  subject { ImageIndexer.new(image).generate_solr_document }
+  subject { described_class.new(image).generate_solr_document }
 
   context 'with a file_set' do
     let(:file_set) { double(files: [file]) }
@@ -30,7 +30,7 @@ describe ImageIndexer do
       end
     end
 
-    context 'with an issued date' do
+    context 'with an copyrighted date' do
       let(:copyrighted) { ['1913'] }
       let(:image) { Image.new(date_copyrighted_attributes: [{ start: copyrighted }]) }
 

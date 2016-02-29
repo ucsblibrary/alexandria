@@ -35,4 +35,10 @@ describe AudioRecordingPresenter do
     let(:attributes) { { 'matrix_number_ssm' => ['123456'] } }
     it { is_expected.to eq ['123456'] }
   end
+
+  describe 'issued' do
+    subject { presenter.issued }
+    let(:attributes) { { 'issued_ssm' => ['ca. 1903 - 1906'] } }
+    it { is_expected.to eq ['ca. 1903 - 1906'] }
+  end
 end

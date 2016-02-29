@@ -102,6 +102,10 @@ class SolrDocument
     fetch('matrix_number_ssm', [])
   end
 
+  def issued
+    fetch(ObjectIndexer::ISSUED, [])
+  end
+
   private
 
     def load_file_sets(ids)

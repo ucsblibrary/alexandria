@@ -26,6 +26,7 @@ module Importer::Factory
 
     def update(obj)
       update_created_date(obj)
+      update_issued_date(obj)
       obj.attributes = update_attributes
       obj.save!
       after_save(obj)
@@ -148,6 +149,26 @@ module Importer::Factory
             obj.created.build(created_attributes.first)
           end
           obj.created_will_change!
+        end
+      end
+
+      def update_issued_date(obj)
+        issued_attributes = attributes.delete(:issued_attributes)
+        return if issued_attributes.blank?
+
+        new_date = issued_attributes.first.fetch(:start, nil)
+        return unless new_date
+
+        existing_date = obj.issued.flat_map(&:start)
+
+        if existing_date != new_date
+          # Create or update the existing date.
+          if time_span = obj.issued.to_a.first
+            time_span.attributes = issued_attributes.first
+          else
+            obj.issued.build(issued_attributes.first)
+          end
+          obj.issued_will_change!
         end
       end
 

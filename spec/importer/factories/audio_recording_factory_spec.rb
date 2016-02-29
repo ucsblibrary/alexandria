@@ -12,7 +12,7 @@ describe Importer::Factory::AudioRecordingFactory do
       title: ['Test Wax Cylinder'],
       collection: collection_attrs.slice(:accession_number),
       files: ["Cylinder 4373", "Cylinder 4374", "Cylinder 4377"],
-      created_attributes: [{ start: [2014] }],
+      issued_attributes: [{ start: [2014] }],
       system_number: ['123'],
       author: ['Valerie'],
       identifier: ['ark:/48907/f3999999']
@@ -76,48 +76,48 @@ describe Importer::Factory::AudioRecordingFactory do
   describe 'update an existing record' do
     let!(:coll) { Collection.create!(collection_attrs) }
     let(:old_date) { 2222 }
-    let(:old_date_attrs) { { created_attributes: [{ start: [old_date] }] }.with_indifferent_access }
+    let(:old_date_attrs) { { issued_attributes: [{ start: [old_date] }] }.with_indifferent_access }
 
-    context "when the created date hasn't changed" do
+    context "when the issued date hasn't changed" do
       let!(:audio) { create(:audio, attributes.except(:collection, :files)) }
 
       it "doesn't add a new duplicate date" do
         audio.reload
-        expect(audio.created.flat_map(&:start)).to eq [2014]
+        expect(audio.issued.flat_map(&:start)).to eq [2014]
 
         factory.update(audio)
         audio.reload
-        expect(audio.created.flat_map(&:start)).to eq [2014]
+        expect(audio.issued.flat_map(&:start)).to eq [2014]
       end
     end
 
-    context 'when the created date has changed' do
+    context 'when the issued date has changed' do
       let!(:audio) { create(:audio, attributes.except(:collection, :files).merge(old_date_attrs)) }
 
       it 'updates the existing date instead of adding a new one' do
         audio.reload
-        expect(audio.created.flat_map(&:start)).to eq [old_date]
+        expect(audio.issued.flat_map(&:start)).to eq [old_date]
 
         factory.update(audio)
         audio.reload
-        expect(audio.created.flat_map(&:start)).to eq [2014]
+        expect(audio.issued.flat_map(&:start)).to eq [2014]
       end
     end
 
-    context "when the AudioRecording doesn't have existing created date" do
-      let!(:audio) { create(:audio, attributes.except(:collection, :files, :created_attributes)) }
+    context "when the AudioRecording doesn't have existing issued date" do
+      let!(:audio) { create(:audio, attributes.except(:collection, :files, :issued_attributes)) }
 
       it 'adds the new date' do
         audio.reload
-        expect(audio.created).to eq []
+        expect(audio.issued).to eq []
 
         factory.update(audio)
         audio.reload
-        expect(audio.created.flat_map(&:start)).to eq [2014]
+        expect(audio.issued.flat_map(&:start)).to eq [2014]
       end
     end
 
-    context "when the AudioRecording has existing created date, but new attributes don't have a date" do
+    context "when the AudioRecording has existing issued date, but new attributes don't have a date" do
       let(:attributes) do
         { id: 'f3999999',
           system_number: ['123'],
@@ -130,11 +130,11 @@ describe Importer::Factory::AudioRecordingFactory do
 
       it "doesn't change the existing date" do
         audio.reload
-        expect(audio.created.first.start).to eq [old_date]
+        expect(audio.issued.first.start).to eq [old_date]
 
         factory.update(audio)
         audio.reload
-        expect(audio.created.first.start).to eq [old_date]
+        expect(audio.issued.first.start).to eq [old_date]
       end
     end
   end # update an existing record

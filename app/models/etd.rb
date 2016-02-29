@@ -26,6 +26,10 @@ class ETD < ActiveFedora::Base
   property :dissertation_institution, predicate: ::RDF::Vocab::Bibframe.dissertationInstitution
   property :dissertation_year, predicate: ::RDF::Vocab::Bibframe.dissertationYear
 
+  property :issued, predicate: ::RDF::Vocab::DC.issued do |index|
+    index.as :displayable
+  end
+
   include NestedAttributes
 
   contains :proquest

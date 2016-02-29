@@ -15,10 +15,6 @@ module MarcMetadata
       index.as :symbol
     end
 
-    property :issued, predicate: ::RDF::Vocab::DC.issued do |index|
-      index.as :displayable
-    end
-
     property :date_copyrighted, predicate: ::RDF::Vocab::DC.dateCopyrighted
   end
 end
