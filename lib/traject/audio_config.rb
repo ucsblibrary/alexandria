@@ -6,6 +6,7 @@ require 'traject/extract_ark'
 require 'traject/extract_fulltext_link'
 require 'traject/extract_contributors'
 require 'traject/extract_language'
+require 'traject/extract_issue_number'
 extend Traject::Macros::Marc21Semantics
 extend Traject::Macros::MarcFormats
 extend ExtractWorkType
@@ -13,9 +14,11 @@ extend ExtractArk
 extend ExtractFulltextLink
 extend ExtractContributors
 extend ExtractLanguage
+extend ExtractIssueNumber
 
 settings do
   provide 'writer_class_name', 'ObjectFactoryWriter'
+  #provide 'writer_class_name', 'DebugWriter'
   provide 'marc_source.type', 'xml'
   # Don't use threads. Workaround for https://github.com/fcrepo4/fcrepo4/issues/880
   provide 'processing_thread_pool', 0
@@ -32,6 +35,7 @@ to_field 'work_type', extract_work_type
 to_field 'created_start', marc_publication_date
 to_field 'marc_subjects', extract_marc('650', trim_punctuation: true)
 to_field 'extent', extract_marc('300a')
+to_field 'issue_number', extract_issue_number
 to_field 'form_of_work', extract_marc('655a', trim_punctuation: true)
 to_field 'language', extract_language
 to_field 'place_of_publication', extract_marc('264a', trim_punctuation: true)

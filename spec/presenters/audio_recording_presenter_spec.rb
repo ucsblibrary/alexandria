@@ -23,4 +23,10 @@ describe AudioRecordingPresenter do
     let(:attributes) { { 'language_label_ssm' => ['English'] } }
     it { is_expected.to eq ['English'] }
   end
+
+  describe 'issue_number' do
+    subject { presenter.issue_number }
+    let(:attributes) { { 'issue_number_ssm' => ['Edison Gold Moulded Record: 8958'] } }
+    it { is_expected.to eq ['Edison Gold Moulded Record: 8958'] }
+  end
 end

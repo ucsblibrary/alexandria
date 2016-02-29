@@ -94,6 +94,10 @@ class SolrDocument
     fetch('language_label_ssm', [])
   end
 
+  def issue_number
+    fetch('issue_number_ssm', [])
+  end
+
   private
 
     def load_file_sets(ids)

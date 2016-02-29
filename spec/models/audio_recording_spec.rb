@@ -12,5 +12,11 @@ describe AudioRecording do
       subject { audio.to_solr[Solrizer.solr_name('human_readable_type', :facetable)] }
       it { is_expected.to eq 'Audio Recording' }
     end
+
+    describe 'issue_number' do
+      let(:audio) { described_class.new(issue_number: ['12345']) }
+      subject { audio.to_solr['issue_number_ssm'] }
+      it { is_expected.to eq ['12345'] }
+    end
   end
 end
