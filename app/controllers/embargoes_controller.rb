@@ -3,9 +3,6 @@
 class EmbargoesController < ApplicationController
   include Hydra::Collections::AcceptsBatches
   include Hydra::Controller::ControllerBehavior
-  include ConvertIds
-
-  before_action :convert_ark_to_id, only: [:destroy]
 
   attr_accessor :curation_concern
   helper_method :curation_concern

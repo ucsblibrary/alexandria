@@ -9,7 +9,7 @@ module CurationConcernsHelper
     case Array(doc['has_model_ssim']).first
     when 'Collection'
       collections.collection_path(doc)
-    when 'Image', 'ETD'
+    when 'Image', 'ETD', 'AudioRecording'
       if doc.ark
         ark_path(doc.ark.html_safe)
       else

@@ -2,10 +2,8 @@ class CatalogController < ApplicationController
   include CurationConcerns::CatalogController
   include BlacklightRangeLimit::ControllerOverride
   # helper Openseadragon::OpenseadragonHelper
-  include ConvertIds
 
   self.theme = 'alexandria'
-  before_action :convert_ark_to_id, only: :show
 
   rescue_from Blacklight::Exceptions::RecordNotFound do |e|
     logger.error "(Blacklight::Exceptions::RecordNotFound): #{e.inspect}"

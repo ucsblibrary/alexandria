@@ -1,3 +1,8 @@
+class AudioRoutingConcern
+  def matches?(request)
+    AudioRecording.exists?(request.params[:id])
+  end
+end
 Rails.application.routes.draw do
   concern :range_searchable, BlacklightRangeLimit::Routes::RangeSearchable.new
   root 'welcome#index'
@@ -30,23 +35,8 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'lib/:id' => 'catalog#show', constraints: { id: /ark:\/\d{5}\/f\w{7,9}/ }
-
-  # resources :downloads, only: :show
-  # resources :embargoes, only: [:index, :destroy] do
-  #   collection do
-  #     patch :update
-  #   end
-  # end
-  #
-  # resources :etds, only: [] do
-  #   resource :access, only: [:edit, :update, :destroy], controller: 'access'
-  #   concerns :exportable
-  # end
-  # resources :images, only: [] do
-  #   resource :access, only: [:edit, :update, :destroy], controller: 'access'
-  #   concerns :exportable
-  # end
+  get 'lib/:prot/:shoulder/:id' => 'curation_concerns/audio_recordings#show', constraints: AudioRoutingConcern.new
+  get 'lib/:prot/:shoulder/:id' => 'catalog#show'
 
   resources :local_authorities, only: :index
 
