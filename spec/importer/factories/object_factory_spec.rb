@@ -9,6 +9,43 @@ describe Importer::Factory::ObjectFactory do
   let(:afmc) { 'http://id.loc.gov/authorities/names/n87914041' }
   let(:afmc_uri) { RDF::URI.new(afmc) }
 
+  describe '#find' do
+    context 'existing object' do
+      let(:importer) { Importer::Factory::ImageFactory.new(attributes, './tmp') }
+      subject { importer.find }
+
+      let(:a_num) { ['acc num 1', 'acc num 2'] }
+      let(:image_attrs) {{ title: ['Something Title'], accession_number: a_num }}
+      let!(:image) { create(:image, image_attrs) }
+
+      context 'with an id' do
+        let(:attributes) {{ id: image.id }}
+
+        it 'finds the exisiting object' do
+          expect(subject.class).to eq Image
+          expect(subject.title).to eq image_attrs[:title]
+        end
+      end
+
+      context 'with accession_number' do
+        let(:attributes) {{ accession_number: [image.accession_number.first] }}
+
+        it 'finds the exisiting object' do
+          expect(subject.class).to eq Image
+          expect(subject.title).to eq image_attrs[:title]
+        end
+      end
+
+      context 'with neither id nor accession_number' do
+        let(:attributes) {{ accession_number: [] }}
+
+        it 'raises an error' do
+          expect { subject }.to raise_error 'Missing identifier: Unable to search for existing object without either fedora ID or accession_number'
+        end
+      end
+    end
+  end
+
   describe '#find_or_create_rights_holders' do
     before { Agent.destroy_all }
     let(:regents_uri) { 'http://id.loc.gov/authorities/names/n85088322' }
