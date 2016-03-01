@@ -23,3 +23,15 @@
       line: "{{ item }}"
   with_items:
     - "  marmotta_host: localhost:8180"
+
+- name: override the default resque-pool.yml
+  # this prevents 2 processes from creating file containers at the same time
+  # see issue #626
+  become: yes
+  template: 
+      src: resque-pool.yml.j2
+      dest: "{{ config_path }}/resque-pool.yml"
+      owner: "{{ deploy_user }}"
+      group: "{{ deploy_group }}"
+      backup: no
+  
