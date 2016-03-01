@@ -50,7 +50,13 @@ module Importer::Factory
     end
 
     def find
-      klass.find(attributes[:id]) if klass.exists?(attributes[:id])
+      if attributes[:id]
+        klass.find(attributes[:id]) if klass.exists?(attributes[:id])
+      elsif !attributes[system_identifier_field].blank?
+        klass.where(Solrizer.solr_name(system_identifier_field, :symbol) => attributes[system_identifier_field]).first
+      else
+        raise "Missing identifier: Unable to search for existing object without either fedora ID or #{system_identifier_field}"
+      end
     end
 
     def create
