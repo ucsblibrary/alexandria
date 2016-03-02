@@ -91,6 +91,10 @@
     <subfield code="a">Collins, Arthur.</subfield>
     <subfield code="4">voc</subfield>
   </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Milner, David,</subfield>
+    <subfield code="e">performer.</subfield>
+  </datafield>
   <datafield tag="710" ind1="1" ind2=" ">
     <subfield code="a">United States.</subfield>
     <subfield code="b">National Guard Bureau.</subfield>

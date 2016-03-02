@@ -17,8 +17,8 @@ describe 'Traject importer' do
       Group.destroy_all
 
       # Less output when running specs
-      allow($stdout).to receive(:puts)
-      allow($stderr).to receive(:puts)
+      # allow($stdout).to receive(:puts)
+      # allow($stderr).to receive(:puts)
 
       # Don't fetch external records during specs
       allow_any_instance_of(RDF::DeepIndexingService).to receive(:fetch_external)
@@ -34,7 +34,7 @@ describe 'Traject importer' do
 
         # These new records should have been created
         expect(AudioRecording.count).to eq 1
-        expect(Person.count).to eq 2
+        expect(Person.count).to eq 3
         expect(Group.count).to eq 1
         expect(Organization.count).to eq 2
 
@@ -50,12 +50,15 @@ describe 'Traject importer' do
         end
 
         # Check local authorities were created for performers
-        ids = audio.performer.map { |s| s.rdf_label.first.gsub(Regexp.new('^.*\/'), '') }
+        ids = audio.performer.map { |s| s.rdf_label.first.gsub(%r{^.*\/}, '') }
         perfs = ids.map { |id| ActiveFedora::Base.find(id) }
-        org, group = perfs.partition { |obj| obj.is_a?(Organization) }.map(&:first)
+        org = perfs.find { |target| target.is_a? Organization }
+        group = perfs.find { |target| target.is_a? Group }
+        person = perfs.find { |target| target.is_a? Person }
+
         expect(org.foaf_name).to eq 'United States. National Guard Bureau. Fife and Drum Corps.'
         expect(group.foaf_name).to eq 'Allen field c text 1876 field q text'
-        expect(group.class).to eq Group
+        expect(person.foaf_name).to eq 'Milner, David,'
 
         # Check local authorities were created for singers
         ids = audio.singer.map { |s| s.rdf_label.first.gsub(Regexp.new('^.*\/'), '') }

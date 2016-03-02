@@ -59,15 +59,16 @@ module ExtractContributors
   end
 
   def roles_for(field)
-    sub_4 = field.subfields.select { |s| s.code == '4'.freeze }
+    sub_4 = field.subfields.select { |s| s.code == '4'.freeze }.map(&:value)
     sub_e = field.subfields.select { |s| s.code == 'e'.freeze }
+              .map { |role| Traject::Macros::Marc21.trim_punctuation(role.value) }
     roles = sub_4 + sub_e
 
     if roles.blank?
       print_blank_role_warning(field)
       [:performer]
     else
-      roles.map { |r| ROLE_MAP.fetch(r.value.strip.downcase) }
+      roles.map { |r| ROLE_MAP.fetch(r.strip.downcase) }
     end
   end
 
