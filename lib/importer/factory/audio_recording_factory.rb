@@ -20,7 +20,7 @@ module Importer::Factory
       return unless files_directory.present? && attributes[:files]
 
       AttachFilesToAudioRecording.run(audio, files_directory, attributes[:files])
-      audio.save # force a reindex after the files are created
+      audio.save! # Save the association with the attached files.
     end
   end
 end

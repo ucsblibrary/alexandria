@@ -25,37 +25,37 @@ describe AttachFilesToAudioRecording do
           .and_return(['/data/objects-cylinders/4000s/4373/cusb-cyl4373a.wav'])
         allow(File).to receive(:new).with('/data/objects-cylinders/4000s/4373/cusb-cyl4373a.wav')
           .and_return(file1)
-        expect(actor).to receive(:create_content).with(file1)
+        expect(actor).to receive(:create_content).with(file1).and_return(true)
 
         allow(Dir).to receive(:glob).with('/data/objects-cylinders/**/cusb-cyl4373b.wav')
           .and_return(['/data/objects-cylinders/4000s/4373/cusb-cyl4373b.wav'])
         allow(File).to receive(:new).with('/data/objects-cylinders/4000s/4373/cusb-cyl4373b.wav')
           .and_return(file2)
-        expect(actor).to receive(:create_content).with(file2, 'restored')
+        expect(actor).to receive(:create_content).with(file2, 'restored').and_return(true)
 
         allow(Dir).to receive(:glob).with('/data/objects-cylinders/**/cusb-cyl4374a.wav')
           .and_return(['/data/objects-cylinders/4000s/4374/cusb-cyl4374a.wav'])
         allow(File).to receive(:new).with('/data/objects-cylinders/4000s/4374/cusb-cyl4374a.wav')
           .and_return(file3)
-        expect(actor).to receive(:create_content).with(file3)
+        expect(actor).to receive(:create_content).with(file3).and_return(true)
 
         allow(Dir).to receive(:glob).with('/data/objects-cylinders/**/cusb-cyl4374b.wav')
           .and_return(['/data/objects-cylinders/4000s/4374/cusb-cyl4374b.wav'])
         allow(File).to receive(:new).with('/data/objects-cylinders/4000s/4374/cusb-cyl4374b.wav')
           .and_return(file4)
-        expect(actor).to receive(:create_content).with(file4, 'restored')
+        expect(actor).to receive(:create_content).with(file4, 'restored').and_return(true)
 
         allow(Dir).to receive(:glob).with('/data/objects-cylinders/**/cusb-cyl4377a.wav')
           .and_return(['/data/objects-cylinders/4000s/4377/cusb-cyl4377a.wav'])
         allow(File).to receive(:new).with('/data/objects-cylinders/4000s/4377/cusb-cyl4377a.wav')
           .and_return(file5)
-        expect(actor).to receive(:create_content).with(file5)
+        expect(actor).to receive(:create_content).with(file5).and_return(true)
 
         allow(Dir).to receive(:glob).with('/data/objects-cylinders/**/cusb-cyl4377b.wav')
           .and_return(['/data/objects-cylinders/4000s/4377/cusb-cyl4377b.wav'])
         allow(File).to receive(:new).with('/data/objects-cylinders/4000s/4377/cusb-cyl4377b.wav')
           .and_return(file6)
-        expect(actor).to receive(:create_content).with(file6, 'restored')
+        expect(actor).to receive(:create_content).with(file6, 'restored').and_return(true)
       end
 
       it 'attaches files' do
@@ -63,6 +63,7 @@ describe AttachFilesToAudioRecording do
         expect(audio.file_sets).to all(be_kind_of FileSet)
         expect(audio.file_sets.size).to eq 3
         first_fs = audio.file_sets.first
+        expect(audio.representative).to eq first_fs
         expect(first_fs.date_uploaded).to be_kind_of Date
         expect(first_fs.label).to eq 'Cylinder 4373'
         expect(first_fs.admin_policy_id).to eq AdminPolicy::PUBLIC_POLICY_ID

@@ -36,7 +36,8 @@ class AttachFilesToAudioRecording
                                  date_uploaded: now,
                                  date_modified: now)
       actor = CurationConcerns::FileSetActor.new(file_set, User.batchuser)
-      attach_original(actor, number)
+      # Set the representative if it doesn't already exist and a file was attached.
+      audio.representative ||= file_set if attach_original(actor, number)
       attach_restored(actor, number)
       audio.ordered_members << file_set
     end
@@ -47,6 +48,7 @@ class AttachFilesToAudioRecording
         actor.create_content(File.new(orig_path))
       else
         $stderr.puts "Unable to find original for #{number} in #{files_directory}"
+        false
       end
     end
 
