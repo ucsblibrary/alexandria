@@ -16,7 +16,7 @@ describe 'curation_concerns/audio_recordings/show.html.erb' do
   end
 
   before do
-    stub_template 'curation_concerns/base/_related_files.html.erb' => 'files'
+    stub_template 'curation_concerns/audio_recordings/_related_files.html.erb' => 'files'
     view.lookup_context.prefixes += ['curation_concerns/base']
     assign(:presenter, presenter)
   end
