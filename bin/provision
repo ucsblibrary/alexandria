@@ -156,8 +156,9 @@ else
     echo -n "Enter your GitHub username (for fetching your public key): "
     read -r GH_USER
     echo "Setting GH_USER to '$GH_USER'"
-    export GH_USER
+    export GH_USER="https://github.com/$GH_USER.keys"
   fi
+
   echo "Setting EMAIL to '$EMAIL'"
   export EMAIL
 

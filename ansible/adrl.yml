@@ -6,7 +6,7 @@
     deploy_user: adrl
     deploy_group: adrl
     deploy_keys:
-      - "https://github.com/{{ lookup('env', 'GH_USER') }}.keys"
+      - "{{ lookup('env', 'GH_USER') }}"
 
     server_name: "{{ lookup('env', 'SERVER') }}"
     project_base: /opt
