@@ -41,6 +41,7 @@ describe 'Traject importer' do
         audio = AudioRecording.first
 
         expect(audio.language.first.rdf_subject).to eq RDF::URI('http://id.loc.gov/vocabulary/iso639-2/eng')
+        expect(audio.matrix_number).to eq []
         expect(audio.in_collections).to eq [collection]
 
         # Check all the contributors are correct

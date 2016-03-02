@@ -7,7 +7,8 @@ module ExtractMatrixNumber
     lambda do |record, accumulator|
       a_field = a_extractor.extract(record).compact.first
       b_field = b_extractor.extract(record).compact.first
-      accumulator << "#{b_field} : #{a_field}"
+      result = [b_field, a_field].compact
+      accumulator << result.join(' : '.freeze) unless result.empty?
     end
   end
 end
