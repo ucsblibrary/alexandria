@@ -1,8 +1,6 @@
 class ImageIndexer < ObjectIndexer
   def generate_solr_document
     super do |solr_doc|
-      # TODO: the CurationConcern::WorkIndexer also indexes thumbnails. De-duplicate
-      solr_doc['thumbnail_url_ssm'.freeze] = file_set_thumbnails
       solr_doc['image_url_ssm'.freeze] = file_set_images
       solr_doc['large_image_url_ssm'.freeze] = file_set_large_images
       solr_doc[ISSUED] = issued
@@ -13,7 +11,8 @@ class ImageIndexer < ObjectIndexer
 
   private
 
-    def file_set_thumbnails
+    # Called by the CurationConcerns::WorkIndexer
+    def thumbnail_path
       file_set_images('300,'.freeze)
     end
 

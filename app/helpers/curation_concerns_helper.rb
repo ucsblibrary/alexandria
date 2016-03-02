@@ -2,8 +2,11 @@ module CurationConcernsHelper
   include ::BlacklightHelper
   include CurationConcerns::MainAppHelpers
 
+  # @param [SolrDocument, CurationConcerns::FileSetPresenter] doc
   def url_for_document(doc, options = {})
     return unless doc
+    # Pull the wrapped solr_doc out of FileSetPresenter
+    doc = doc.solr_document if doc.respond_to? :solr_document
     return doc.public_uri if doc.public_uri
 
     case Array(doc['has_model_ssim']).first

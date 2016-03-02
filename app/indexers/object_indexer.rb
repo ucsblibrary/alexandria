@@ -3,6 +3,8 @@ class ObjectIndexer < CurationConcerns::WorkIndexer
     RDF::DeepIndexingService
   end
 
+  self.thumbnail_field = 'thumbnail_url_ssm'.freeze
+
   ISSUED = Solrizer.solr_name('issued', :displayable)
   CREATED = Solrizer.solr_name('created', :displayable)
   COPYRIGHTED = Solrizer.solr_name('date_copyrighted', :displayable)

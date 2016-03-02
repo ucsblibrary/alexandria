@@ -51,7 +51,7 @@ class CatalogController < ApplicationController
     # solr field configuration for search results/index views
     config.index.title_field = solr_name('title', :stored_searchable)
     config.index.display_type_field = 'has_model_ssim'
-    config.index.thumbnail_field = 'thumbnail_url_ssm'
+    config.index.thumbnail_field = ObjectIndexer.thumbnail_field
 
     config.show.partials = [:media, :show]
 
