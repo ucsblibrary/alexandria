@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<zs:searchRetrieveResponse xmlns:zs="http://www.loc.gov/zing/srw/"><zs:version>1.1</zs:version><zs:numberOfRecords>1</zs:numberOfRecords><zs:records><zs:record><zs:recordSchema>info:srw/schema/1/marcxml-v1.1</zs:recordSchema><zs:recordPacking>xml</zs:recordPacking><zs:recordData><record xmlns="http://www.loc.gov/MARC21/slim">
+<!-- Length implementation at offset 22 should hold a digit. Assuming 0 -->
+  <leader>01282cjm a2200349 a 4500</leader>
+  <controlfield tag="001">002559341</controlfield>
+  <controlfield tag="005">20131221203113.0</controlfield>
+  <controlfield tag="007">se imsznnmwhna</controlfield>
+  <controlfield tag="007">cr|nn||||a|ump</controlfield>
+  <controlfield tag="008">990513s1905    njumrn g                d</controlfield>
+  <datafield tag="024" ind1="7" ind2=" ">
+    <subfield code="a">ark:/48907/f3888888</subfield>
+    <subfield code="2">local</subfield>
+  </datafield>
+  <datafield tag="028" ind1="0" ind2="0">
+    <subfield code="a">8946</subfield>
+    <subfield code="b">Edison Gold Moulded Record</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(OCoLC)41358634</subfield>
+  </datafield>
+  <datafield tag="040" ind1=" " ind2=" ">
+    <subfield code="a">SYB</subfield>
+    <subfield code="c">SYB</subfield>
+    <subfield code="d">CUT</subfield>
+  </datafield>
+  <datafield tag="100" ind1="1" ind2=" ">
+    <subfield code="a">Reeves, David Wallis,</subfield>
+    <subfield code="d">1838-1900.</subfield>
+  </datafield>
+  <datafield tag="245" ind1="1" ind2="0">
+    <subfield code="a">Ye ancients</subfield>
+    <subfield code="h">[sound recording] :</subfield>
+    <subfield code="b">march /</subfield>
+    <subfield code="c">[David Wallis?] Reeves.</subfield>
+  </datafield>
+    <datafield tag="260" ind1=" " ind2=" ">
+    <subfield code="a">Orange, N.J. :</subfield>
+    <subfield code="b">Edison Gold Moulded Record,</subfield>
+    <subfield code="c">[1905]</subfield>
+  </datafield>
+  <datafield tag="300" ind1=" " ind2=" ">
+    <subfield code="a">1 cylinder (ca. 2 min.) :</subfield>
+    <subfield code="b">160 rpm ;</subfield>
+    <subfield code="c">2 1/4 x 4 in.</subfield>
+  </datafield>
+  <datafield tag="561" ind1=" " ind2=" ">
+    <subfield code="a">Todd collection.</subfield>
+    <subfield code="5">CU-SB</subfield>
+  </datafield>
+    <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Edison Gold Moulded Record: 8946.</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Year of release from "The Edison Phonograph Monthly," v.2 (1904/1905).</subfield>
+  </datafield>
+  <datafield tag="511" ind1="0" ind2=" ">
+    <subfield code="a">Edison Concert Band.</subfield>
+  </datafield>
+  <datafield tag="530" ind1=" " ind2=" ">
+    <subfield code="a">Also available online via the Internet.</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="7">
+    <subfield code="a">Marches (Music)</subfield>
+    <subfield code="2">lcgft</subfield>
+  </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Band music.</subfield>
+  </datafield>
+  <datafield tag="710" ind1="2" ind2=" ">
+    <subfield code="a">Edison Concert Band.</subfield>
+    <subfield code="4">prf</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="3">Audio files:</subfield>
+    <subfield code="u">http://www.library.ucsb.edu/OBJID/Cylinder3007</subfield>
+  </datafield>
+  <datafield tag="852" ind1="4" ind2="0">
+    <subfield code="a">CU-SB</subfield>
+    <subfield code="b">MAIN</subfield>
+    <subfield code="c">SPPA</subfield>
+    <subfield code="j">Cylinder 3007</subfield>
+    <subfield code="n">us</subfield>
+    <subfield code="x">lwh 2/02/2004 item</subfield>
+    <subfield code="9">1</subfield>
+    <subfield code="4">Main Library</subfield>
+    <subfield code="5">Special Coll., Performing Arts</subfield>
+  </datafield>
+    <datafield tag="940" ind1=" " ind2=" ">
+    <subfield code="a">OCLC</subfield>
+  </datafield>
+  <datafield tag="948" ind1=" " ind2=" ">
+    <subfield code="a">LTI 10/13/2015</subfield>
+  </datafield>
+  <datafield tag="994" ind1=" " ind2=" ">
+    <subfield code="a">X0</subfield>
+    <subfield code="b">CUT</subfield>
+  </datafield>
+  <datafield tag="049" ind1=" " ind2=" ">
+    <subfield code="a">CUTM</subfield>
+  </datafield>
+  </record></zs:recordData><zs:recordPosition>2</zs:recordPosition></zs:record>
+</zs:records></zs:searchRetrieveResponse>
