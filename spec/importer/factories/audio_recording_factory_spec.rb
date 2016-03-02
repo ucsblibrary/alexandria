@@ -61,7 +61,7 @@ describe Importer::Factory::AudioRecordingFactory do
     let(:attributes) do
       { files: ['Cylinder 9999'] }
     end
-    let(:audio) { AudioRecording.create }
+    let(:audio) { AudioRecording.create!(title: ['test title']) }
 
     before { allow(factory).to receive(:add_object_to_collection) }
 
