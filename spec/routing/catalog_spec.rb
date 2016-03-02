@@ -9,7 +9,7 @@ describe 'routes to CatalogController:' do
 
   context "when the ark is a audio" do
     before do
-      allow(AudioRecording).to receive(:exists?).and_return(true)
+      allow(ActiveFedora::SolrService).to receive(:query).and_return([{}])
     end
     it 'has routes for arks' do
       expect(get: '/lib/ark:/99999/fk41234567')

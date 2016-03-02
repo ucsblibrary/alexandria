@@ -1,8 +1,14 @@
 class AudioRoutingConcern
   def matches?(request)
-    AudioRecording.exists?(request.params[:id])
+    query = [
+      ActiveFedora::SolrQueryBuilder.raw_query(SOLR_DOCUMENT_ID, request.params[:id]),
+      ActiveFedora::SolrQueryBuilder.construct_query_for_rel(has_model: AudioRecording.to_class_uri)]
+        .join(' AND '.freeze)
+    results = ActiveFedora::SolrService.query query, fl: 'has_model_ssim'
+    results.present?
   end
 end
+
 Rails.application.routes.draw do
   concern :range_searchable, BlacklightRangeLimit::Routes::RangeSearchable.new
   root 'welcome#index'
