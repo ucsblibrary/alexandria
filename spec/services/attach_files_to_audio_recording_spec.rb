@@ -62,8 +62,10 @@ describe AttachFilesToAudioRecording do
         described_class.run(audio, files_dir, cylinder_names)
         expect(audio.file_sets).to all(be_kind_of FileSet)
         expect(audio.file_sets.size).to eq 3
-        expect(audio.file_sets.first.label).to eq 'Cylinder 4373'
-        expect(audio.file_sets.first.admin_policy_id).to eq AdminPolicy::PUBLIC_POLICY_ID
+        first_fs = audio.file_sets.first
+        expect(first_fs.date_uploaded).to be_kind_of Date
+        expect(first_fs.label).to eq 'Cylinder 4373'
+        expect(first_fs.admin_policy_id).to eq AdminPolicy::PUBLIC_POLICY_ID
       end
     end
 

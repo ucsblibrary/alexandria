@@ -30,8 +30,11 @@ class AttachFilesToAudioRecording
     end
 
     def attach_files(cylinder_name, number)
+      now = CurationConcerns::TimeService.time_in_utc
       file_set = FileSet.create!(label: cylinder_name,
-                                 admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID)
+                                 admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID,
+                                 date_uploaded: now,
+                                 date_modified: now)
       actor = CurationConcerns::FileSetActor.new(file_set, User.batchuser)
       attach_original(actor, number)
       attach_restored(actor, number)
