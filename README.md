@@ -212,7 +212,7 @@ Usage Notes:
 
 * If the value of the column is a String (for new local authorities), add a matching ```*_type``` column.  The columns must be in pairs (e.g. "composer_type" and "composer"), and the ```*_type``` column must come first.
 
-* The possible values for the ```*_type``` fields are:  Person, Group, Organization, and Subject.
+* The possible values for the ```*_type``` fields are:  Person, Group, Organization, and Topic.
 
 For example, see the "lc_subject", "composer", and "rights_holder" fields in [the example CSV file in the spec fixtures]
 (https://github.com/curationexperts/alexandria-v2/blob/master/spec/fixtures/csv/pamss045_with_local_authorities.csv).
