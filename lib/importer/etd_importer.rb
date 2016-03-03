@@ -66,9 +66,10 @@ module Importer
       def self.find_marc_for_zipfiles(zipfiles)
         temp = File.join(Settings.download_root, Time.now.to_i.to_s)
         Dir.mkdir temp
-        xml = zipfiles.map { |f| unzip(f, temp) }.flatten.uniq
-        xml.map { |x| parse_file(x) }
+        marc = zipfiles.map { |f| unzip(f, temp) }.flatten.uniq
+                .map { |x| parse_file(x) }
         FileUtils.rm_rf temp
+        marc
       end
   end
 end
