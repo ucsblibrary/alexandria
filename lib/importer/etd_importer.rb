@@ -63,10 +63,10 @@ module Importer
         end
       end
 
-      def self.find_marc_for_zipfiles(_zipfiles)
+      def self.find_marc_for_zipfiles(zipfiles)
         temp = File.join(Settings.download_root, Time.now.to_i.to_s)
         Dir.mkdir temp
-        xml = ARGV.map { |f| unzip(f, temp) }.flatten.uniq
+        xml = zipfiles.map { |f| unzip(f, temp) }.flatten.uniq
         FileUtils.rm_rf temp
         xml.map { |x| parse_file(x) }
       end
