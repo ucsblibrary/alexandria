@@ -7,3 +7,5 @@ deploy_user: adrl
 deploy_group: adrl
 minter_state_location: "{{ project_base }}/{{ project_name }}/shared/minter-state"
 etd_download_root: "{{ project_base }}/download_root"
+derivatives_directory: "{{ project_base }}/{{ project_name }}/derivatives"
+uploads_directory: "{{ project_base }}/{{ project_name }}/uploads"
