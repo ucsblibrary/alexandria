@@ -6,8 +6,8 @@ module Importer
 
       File.open(File.join(Settings.marc_directory, output_file), 'w') do |f|
         f.write <<-EOS
-      <?xml version="1.0"?>
-      <zs:searchRetrieveResponse xmlns:zs="http://www.loc.gov/zing/srw/"><zs:version>1.1</zs:version><zs:numberOfRecords>#{marcs.count}</zs:numberOfRecords><zs:records>
+<?xml version="1.0"?>
+<zs:searchRetrieveResponse xmlns:zs="http://www.loc.gov/zing/srw/"><zs:version>1.1</zs:version><zs:numberOfRecords>#{marcs.count}</zs:numberOfRecords><zs:records>
       EOS
         f.write marcs.join("\n")
         f.write('</zs:records></zs:searchRetrieveResponse>')
