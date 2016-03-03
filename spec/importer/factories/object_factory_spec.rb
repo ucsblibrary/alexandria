@@ -228,4 +228,74 @@ describe Importer::Factory::ObjectFactory do
       end
     end
   end  # find_or_create_subjects
+
+  describe 'update existing image' do
+    let(:importer) { Importer::Factory::ImageFactory.new(attributes, './tmp') }
+    let(:old_note) {{ note_type: 'old type', value: 'old value' }}
+    let(:image) { create(:image, notes_attributes: [old_note]) }
+
+    context 'when there are no new notes (but old notes exist)' do
+      let(:attributes) {{ id: image.id, title: ['new title'] }}
+
+      it 'clears out the old notes' do
+        expect(image.notes.count).to eq 1
+        expect(image.notes[0].note_type).to eq ['old type']
+        expect(image.notes[0].value).to eq ['old value']
+
+        importer.run
+        reloaded = image.reload
+
+        expect(reloaded.notes.count).to eq 1
+        expect(reloaded.notes[0].note_type).to eq ['']
+        expect(reloaded.notes[0].value).to eq ['']
+      end
+    end
+
+    context 'with new notes' do
+      let(:attributes) {
+        { id: image.id,
+          note:  [ 'an untyped note',
+                  { type: "type 1", name: "note 1" },
+                  { type: "type 2", name: "note 2" }] }
+      }
+
+      it 'updates the notes' do
+        expect(image.notes.count).to eq 1
+        expect(image.notes[0].note_type).to eq ['old type']
+        expect(image.notes[0].value).to eq ['old value']
+
+        importer.run
+        reloaded = image.reload
+
+        expect(reloaded.notes[0].note_type).to eq ['']
+        expect(reloaded.notes[0].value).to eq ['an untyped note']
+        expect(reloaded.notes[1].note_type).to eq ['type 1']
+        expect(reloaded.notes[1].value).to eq ['note 1']
+        expect(reloaded.notes[2].note_type).to eq ['type 2']
+        expect(reloaded.notes[2].value).to eq ['note 2']
+        expect(reloaded.notes.count).to eq 3
+      end
+    end
+  end
+
+  describe '#transform_attributes' do
+    let(:importer) { Importer::Factory::ImageFactory.new(attributes, './tmp') }
+    subject { importer.send(:transform_attributes) }
+
+    context 'with notes' do
+      let(:attributes) {
+        { note:  [ 'an untyped note',
+                  { type: "type 1", name: "note 1" },
+                  { type: "type 2", name: "note 2" }] }
+      }
+
+      it 'parses the notes attributes' do
+        expect(subject[:note]).to be_nil
+        expect(subject[:notes_attributes][0]).to eq({ note_type: nil, value: 'an untyped note' })
+        expect(subject[:notes_attributes][1]).to eq({ note_type: 'type 1', value: 'note 1' })
+        expect(subject[:notes_attributes][2]).to eq({ note_type: 'type 2', value: 'note 2' })
+      end
+    end
+  end
+
 end

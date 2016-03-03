@@ -34,6 +34,7 @@ module Importer::Factory
       raise "Object doesn't exist" unless object
       update_created_date(object)
       update_issued_date(object)
+      update_notes(object)
       object.attributes = update_attributes
       run_callbacks(:save) do
         object.save!
@@ -178,6 +179,30 @@ module Importer::Factory
         end
       end
 
+      def update_notes(obj)
+        new_notes = Array(attributes.delete(:note))
+        count = [new_notes.count, obj.notes.count].max
+
+        for i in 0..(count - 1) do
+          new_attrs = if new_notes[i].is_a?(Hash)
+                        { note_type: new_notes[i][:type],
+                          value: new_notes[i][:name] }
+                      else
+                        { note_type: [''],
+                          value: new_notes[i] || [''] }
+                      end
+
+          existing_note = obj.notes[i]
+          if existing_note
+            existing_note.attributes = new_attrs
+          else
+            obj.notes.build(new_attrs)
+          end
+        end
+
+        obj.notes_will_change!
+      end
+
       def contributors_for_field(attrs, field)
         attrs[field].each_with_object([]) do |value, object|
           object << case value
@@ -249,10 +274,24 @@ module Importer::Factory
         contributors = find_or_create_contributors(klass.contributor_fields, attributes)
         rights_holders = find_or_create_rights_holders(attributes)
         subjects = find_or_create_subjects(attributes)
+        notes = extract_notes(attributes)
 
         attributes.merge(contributors)
                   .merge(rights_holders)
                   .merge(subjects)
+                  .merge(notes)
+      end
+
+      def extract_notes(attributes)
+        notes = Array(attributes.delete(:note))
+        notes = notes.map do |n|
+          if n.is_a? Hash
+            { note_type: n[:type], value: n[:name] }
+          else
+            { note_type: nil, value: n }
+          end
+        end
+        { notes_attributes: notes }
       end
 
       def host

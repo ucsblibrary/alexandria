@@ -45,7 +45,7 @@ module Importer
       def validate_header_pairs(row)
         errors = []
         row.each_with_index do |header, i|
-          next if header == 'work_type' || header == 'note_type'
+          next if header == 'work_type'
           next unless header.match(type_header_pattern)
           next_header = row[i + 1]
           field_name = header.gsub('_type', '')
@@ -57,7 +57,7 @@ module Importer
       end
 
       def valid_headers
-        Image.attribute_names + %w(id type note_value note_type files) +
+        Image.attribute_names + %w(id type note_type note files) +
           time_span_headers + collection_headers
       end
 
@@ -90,20 +90,17 @@ module Importer
           # TODO: this only handles one date of each type
           processed[key] ||= [{}]
           update_date(processed[key].first, Regexp.last_match(2), val)
-        when 'note_value', 'note_type'
-          $stderr.puts "Note property: #{header} => #{val}"
-        # TODO: extract notes
         when 'work_type'
           extract_multi_value_field(header, val, processed)
         when type_header_pattern
-          update_local_authority(header, val, processed)
+          update_typed_field(header, val, processed)
         when /^collection_(.*)$/
           processed[:collection] ||= {}
           update_collection(processed[:collection], Regexp.last_match(1), val)
         else
           last_entry = Array(processed[header.to_sym]).last
           if last_entry.is_a?(Hash) && !last_entry[:name]
-            update_local_authority(header, val, processed)
+            update_typed_field(header, val, processed)
           else
             extract_multi_value_field(header, val, processed)
           end
@@ -121,7 +118,8 @@ module Importer
         str =~ /^https?:\/\//
       end
 
-      def update_local_authority(header, val, processed)
+      # Fields that have an associated *_type column
+      def update_typed_field(header, val, processed)
         if header.match(type_header_pattern)
           stripped_header = header.gsub('_type', '')
           processed[stripped_header.to_sym] ||= []
