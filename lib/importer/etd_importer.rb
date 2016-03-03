@@ -1,3 +1,4 @@
+require 'tmpdir'
 module Importer
   module ETDImporter
     def self.write_marc_file(zipfiles, output_file)
@@ -64,12 +65,12 @@ module Importer
       end
 
       def self.find_marc_for_zipfiles(zipfiles)
-        temp = File.join(Settings.download_root, Time.now.to_i.to_s)
-        Dir.mkdir temp
-        marc = zipfiles.map { |f| unzip(f, temp) }.flatten.uniq
-                .map { |x| parse_file(x) }
-        FileUtils.rm_rf temp
-        marc
+        Dir.mktmpdir do |temp|
+          zipfiles
+            .map { |f| unzip(f, temp) }
+            .flatten.uniq
+            .map { |x| parse_file(x) }
+        end
       end
   end
 end
