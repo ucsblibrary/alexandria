@@ -22,8 +22,7 @@ GIT
 
 GIT
   remote: https://github.com/projecthydra-labs/curation_concerns.git
-  revision: a15f76b1b734eaf23246fea83fc0a1d578dac97e
-  branch: configure_thumbnail
+  revision: a76b6ba762ff94368f008a61c3379f7e8e71fdbe
   specs:
     curation_concerns (0.9.0)
       blacklight (~> 6.0)
