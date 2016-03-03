@@ -7,12 +7,6 @@
  *
 */
 
-@import 'bootstrap-sprockets';
-@import 'bootstrap';
-@import 'blacklight/blacklight';
-@import 'blacklight_gallery/default';
-@import 'hydra-editor/multi_value_fields';
-
 @mixin hide {
   position: absolute;
   left: -999em;
@@ -45,6 +39,9 @@ $breakpoint3: 768px;
 $breakpoint4: 480px;
 
 $welcome_blue: #004E6E;
+// picked up by CurationConcerns
+$blue: $welcome_blue;
+
 $primary_link_color: #ffcb05;
 $default_link_color: #fff;
 
@@ -55,7 +52,11 @@ $footer_left_margin: 1.5%;
 $logo_image: 'ADRL_Logo_363x84.png';
 $bg_image: 'ADRL_BG_1280x160.png';
 
-$blue: $welcome_blue;
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
+@import 'blacklight/blacklight';
+@import 'blacklight_gallery/default';
+@import 'hydra-editor/multi_value_fields';
 @import 'curation_concerns/modules/forms';
 @import 'curation_concerns/modules/attributes';
 
@@ -612,6 +613,9 @@ label.remove_time_span {
   }
 }
 .index-document-functions {
+  overflow: hidden;
+  width: 100%;
+
   border: 1px solid #ddd;
   background-color: #f5f5f5;
   border-radius: 4px;
@@ -628,6 +632,12 @@ label.remove_time_span {
     position: absolute;
     right: 0;
   }
+}
+
+.thumbnail .index-document-functions {
+  max-width: inherit;
+  position: inherit;
+  right: inherit;
 }
 
 // --------
