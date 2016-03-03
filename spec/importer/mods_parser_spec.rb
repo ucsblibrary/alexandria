@@ -110,7 +110,6 @@ describe Importer::ModsParser do
     end
 
     it 'finds metadata for the collection' do
-      expect(attributes[:collection][:id]).to eq 'sbhcmss78'
       expect(attributes[:collection][:accession_number]).to eq ['SBHC Mss 78']
       expect(attributes[:collection][:title]).to eq ['Joel Conway / Flying A Studio photograph collection']
     end
@@ -192,7 +191,6 @@ describe Importer::ModsParser do
     let(:file) { 'spec/fixtures/mods/sbhcmss78_FlyingAStudios_collection.xml' }
 
     it 'finds the metadata' do
-      expect(attributes[:id]).to eq 'sbhcmss78'
       expect(attributes[:accession_number]).to eq ['SBHC Mss 78']
       expect(attributes[:title]).to eq ['Joel Conway / Flying A Studio photograph collection']
       expect(attributes[:creator]).to be_nil
