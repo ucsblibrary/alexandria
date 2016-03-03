@@ -109,11 +109,7 @@ module Importer
     end
 
     def identifiers
-      human_readable_id = mods.identifier.map(&:text)
-      {
-        id: persistent_id(human_readable_id.first),
-        accession_number: human_readable_id,
-      }
+      { accession_number: mods.identifier.map(&:text) }
     end
 
     def record_origin
@@ -166,7 +162,7 @@ module Importer
     end
 
     def collection
-      { id: persistent_id(human_readable_id.first),
+      {
         accession_number: human_readable_id,
         title: collection_name,
       }
