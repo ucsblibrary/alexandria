@@ -4,7 +4,7 @@ module Importer
     def self.write_marc_file(zipfiles, output_file)
       marcs = find_marc_for_zipfiles(zipfiles)
 
-      File.open(File.join(Settings.marc_directory, output_file), 'w') do |f|
+      File.open(output_file, 'w') do |f|
         f.write <<-EOS
 <?xml version="1.0"?>
 <zs:searchRetrieveResponse xmlns:zs="http://www.loc.gov/zing/srw/"><zs:version>1.1</zs:version><zs:numberOfRecords>#{marcs.count}</zs:numberOfRecords><zs:records>
@@ -12,7 +12,7 @@ module Importer
         f.write marcs.join("\n")
         f.write('</zs:records></zs:searchRetrieveResponse>')
 
-        puts "Wrote MARC metadata to #{Settings.marc_directory}/"
+        puts "Wrote MARC metadata to #{output_file}"
       end
     end
 
