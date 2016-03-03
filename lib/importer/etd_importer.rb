@@ -22,7 +22,7 @@ module Importer
       #
       # @return [Array]
       def self.unzip(zipfile, dest)
-        FileUtils.cp zipfile, proquest_directory
+        FileUtils.cp zipfile, Settings.proquest_directory
 
         xml ||= []
         system 'unzip', '-o', zipfile, '-d', dest
