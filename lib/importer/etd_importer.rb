@@ -3,7 +3,6 @@ module Importer
   module ETDImporter
     def self.write_marc_file(zipfiles, output_file)
       marcs = find_marc_for_zipfiles(zipfiles)
-      puts "Copied zipfiles to #{Settings.proquest_directory}"
 
       File.open(File.join(Settings.marc_directory, output_file), 'w') do |f|
         f.write <<-EOS
@@ -23,7 +22,10 @@ module Importer
       #
       # @return [Array]
       def self.unzip(zipfile, dest)
-        FileUtils.cp zipfile, Settings.proquest_directory
+        unless File.exist?("#{Settings.proquest_directory}/#{File.basename(zipfile)}")
+          FileUtils.cp zipfile, Settings.proquest_directory
+          puts "Copied zipfiles to #{Settings.proquest_directory}"
+        end
 
         xml ||= []
         system 'unzip', '-o', zipfile, '-d', dest
