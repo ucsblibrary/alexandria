@@ -67,8 +67,8 @@ module Importer
         temp = File.join(Settings.download_root, Time.now.to_i.to_s)
         Dir.mkdir temp
         xml = zipfiles.map { |f| unzip(f, temp) }.flatten.uniq
-        FileUtils.rm_rf temp
         xml.map { |x| parse_file(x) }
+        FileUtils.rm_rf temp
       end
   end
 end
