@@ -22,11 +22,6 @@ module Importer
       #
       # @return [Array]
       def self.unzip(zipfile, dest)
-        unless File.exist?("#{Settings.proquest_directory}/#{File.basename(zipfile)}")
-          FileUtils.cp zipfile, Settings.proquest_directory
-          puts "Copied zipfiles to #{Settings.proquest_directory}"
-        end
-
         xml ||= []
         system 'unzip', '-o', zipfile, '-d', dest
 
