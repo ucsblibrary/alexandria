@@ -57,18 +57,16 @@ describe Importer::Factory::AudioRecordingFactory do
     end
   end
 
-  describe 'after_save' do
+  describe 'attach_files' do
     let(:attributes) do
-      { files: ['Cylinder 9999'] }
+      { id: 'f3999999', files: ['Cylinder 9999'] }
     end
-    let(:audio) { AudioRecording.create!(title: ['test title']) }
-
-    before { allow(factory).to receive(:add_object_to_collection) }
+    let!(:audio) { create(:audio, attributes.except(:files)) }
 
     context "if the audio doesn't have attached files" do
       it 'attaches files' do
         expect(AttachFilesToAudioRecording).to receive(:run).with(audio, files_directory, attributes[:files])
-        factory.after_save(audio)
+        factory.run
       end
     end
   end
@@ -85,7 +83,7 @@ describe Importer::Factory::AudioRecordingFactory do
         audio.reload
         expect(audio.issued.flat_map(&:start)).to eq [2014]
 
-        factory.update(audio)
+        factory.run
         audio.reload
         expect(audio.issued.flat_map(&:start)).to eq [2014]
       end
@@ -98,7 +96,7 @@ describe Importer::Factory::AudioRecordingFactory do
         audio.reload
         expect(audio.issued.flat_map(&:start)).to eq [old_date]
 
-        factory.update(audio)
+        factory.run
         audio.reload
         expect(audio.issued.flat_map(&:start)).to eq [2014]
       end
@@ -111,7 +109,7 @@ describe Importer::Factory::AudioRecordingFactory do
         audio.reload
         expect(audio.issued).to eq []
 
-        factory.update(audio)
+        factory.run
         audio.reload
         expect(audio.issued.flat_map(&:start)).to eq [2014]
       end
@@ -132,7 +130,7 @@ describe Importer::Factory::AudioRecordingFactory do
         audio.reload
         expect(audio.issued.first.start).to eq [old_date]
 
-        factory.update(audio)
+        factory.run
         audio.reload
         expect(audio.issued.first.start).to eq [old_date]
       end

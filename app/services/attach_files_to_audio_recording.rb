@@ -12,6 +12,7 @@ class AttachFilesToAudioRecording
   end
 
   def run
+    # only attach files once
     return if audio.file_sets.count > 0
     cylinder_names.each do |cylinder_name|
       number = cylinder_name.sub(/^Cylinder /, '')

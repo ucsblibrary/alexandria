@@ -4,12 +4,13 @@ require 'importer'
 describe Importer::Factory::ETDFactory do
   let(:factory) { described_class.new(attributes, Settings.proquest_directory) }
   let(:collection_attrs) { { accession_number: ['etds'], title: ['test collection'] } }
+  let(:files) { [] }
 
   let(:attributes) do
     {
       id: 'f3gt5k61',
       title: ['Test Thesis'],
-      collection: collection_attrs.slice(:accession_number), files: [],
+      collection: collection_attrs.slice(:accession_number), files: files,
       created_attributes: [{ start: [2014] }],
       system_number: ['123'],
       author: ['Valerie'],
@@ -54,18 +55,15 @@ describe Importer::Factory::ETDFactory do
     end
   end
 
-  describe 'after_save' do
-    let(:attributes) do
-      { files: ['Plunkett_ucsb_0035D_11862.pdf'] }
-    end
-    let(:etd) { ETD.create }
-
-    before { allow(factory).to receive(:add_object_to_collection) }
+  describe 'attach_files' do
+    let(:files) { ['Plunkett_ucsb_0035D_11862.pdf'] }
+    let(:attributes) { { id: 'f3gt5k61', files: files } }
+    let(:etd) { create(:etd, attributes.except(:files)) }
 
     context "if the etd doesn't have attached proquest data" do
       it 'attaches files' do
-        expect(AttachFilesToETD).to receive(:run).with(etd, attributes[:files].first)
-        factory.after_save(etd)
+        expect(AttachFilesToETD).to receive(:run).with(etd, "tmp/download_root/proquest", attributes[:files])
+        factory.run
       end
     end
   end
@@ -82,7 +80,7 @@ describe Importer::Factory::ETDFactory do
         etd.reload
         expect(etd.created.flat_map(&:start)).to eq [2014]
 
-        factory.update(etd)
+        factory.run
         etd.reload
         expect(etd.created.flat_map(&:start)).to eq [2014]
       end
@@ -95,7 +93,7 @@ describe Importer::Factory::ETDFactory do
         etd.reload
         expect(etd.created.flat_map(&:start)).to eq [old_date]
 
-        factory.update(etd)
+        factory.run
         etd.reload
         expect(etd.created.flat_map(&:start)).to eq [2014]
       end
@@ -108,7 +106,7 @@ describe Importer::Factory::ETDFactory do
         etd.reload
         expect(etd.created).to eq []
 
-        factory.update(etd)
+        factory.run
         etd.reload
         expect(etd.created.flat_map(&:start)).to eq [2014]
       end
@@ -129,7 +127,7 @@ describe Importer::Factory::ETDFactory do
         etd.reload
         expect(etd.created.first.start).to eq [old_date]
 
-        factory.update(etd)
+        factory.run
         etd.reload
         expect(etd.created.first.start).to eq [old_date]
       end
