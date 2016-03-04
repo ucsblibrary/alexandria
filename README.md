@@ -217,6 +217,9 @@ Usage Notes:
 For example, see the "lc_subject", "composer", and "rights_holder" fields in [the example CSV file in the spec fixtures]
 (https://github.com/curationexperts/alexandria-v2/blob/master/spec/fixtures/csv/pamss045_with_local_authorities.csv).
 
+#### How to specify the type of a Note for CSV ingest
+
+The Notes work the same way as the local authorites (see section above):  If the note has a type that needs to be specified, then you must have a ```note_type``` column, followed by a ```note``` column.
 
 # Caveats
 

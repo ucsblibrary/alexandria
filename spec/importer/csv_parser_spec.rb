@@ -40,7 +40,7 @@ describe Importer::CSVParser do
     end
   end
 
-  describe 'parsing local authorities' do
+  describe 'parsing fields with a type column' do
     let(:file) { 'spec/fixtures/csv/pamss045_with_local_authorities.csv' }
 
     let(:composer_uri) { RDF::URI('http://id.loc.gov/authorities/names/no93011759') }
@@ -54,12 +54,15 @@ describe Importer::CSVParser do
     end
     let(:micro_music) { RDF::URI('http://id.loc.gov/authorities/subjects/sh85084939') }
     let(:women_comp) { RDF::URI('http://id.loc.gov/authorities/subjects/sh85147508') }
-    let(:jefrey) { { type: 'Person', name: 'Jefrey' } }
-    let(:jef_topic)  { { type: 'Topic', name: "Jef's Topic" } }
+    let(:jefrey) {{ type: 'Person', name: 'Jefrey' }}
+    let(:jef_topic)  {{ type: 'Topic', name: "Jef's Topic" }}
+    let(:note) {{ type: 'original',
+                  name: 'From the Ronald H. McPeak underwater and coastal California photographs, Mss 292.' }}
 
     it 'captures the types to pass on to the importer' do
       expect(first_record[:composer]).to eq [composer_uri, composer_person, composer_group]
       expect(first_record[:lc_subject]).to eq [micro_music, jef_topic, jefrey, women_comp]
+      expect(first_record[:note]).to eq [note]
     end
 
     # Make sure we haven't broken the work_type attribute by
@@ -85,8 +88,8 @@ describe Importer::CSVParser do
       end
     end
 
-    context 'with "*_type" fields for local authorities' do
-      let(:headers) { %w(rights_holder rights_holder_type rights_holder title) }
+    context 'with "*_type" columns' do
+      let(:headers) { %w(rights_holder rights_holder_type rights_holder title note_type note) }
       it { is_expected.to eq headers }
     end
 
@@ -95,10 +98,10 @@ describe Importer::CSVParser do
     # authority.  If the columns aren't in the correct order,
     # raise an error.
     context 'with columns in the wrong order' do
-      let(:headers) { %w(rights_holder_type rights_holder_type rights_holder title) }
+      let(:headers) { %w(note note_type rights_holder_type rights_holder_type rights_holder title) }
 
       it 'raises an error' do
-        expect { subject }.to raise_error "Invalid headers: 'rights_holder_type' column must be immediately followed by 'rights_holder' column."
+        expect { subject }.to raise_error "Invalid headers: 'note_type' column must be immediately followed by 'note' column., Invalid headers: 'rights_holder_type' column must be immediately followed by 'rights_holder' column."
       end
     end
 
@@ -110,12 +113,6 @@ describe Importer::CSVParser do
     # It doesn't expect a matching column for "work_type"
     context 'with work_type column' do
       let(:headers) { %w(work_type rights_holder title) }
-      it { is_expected.to eq headers }
-    end
-
-    # note_type is handled separately
-    context 'with note_type column' do
-      let(:headers) { %w(note_type note_value title) }
       it { is_expected.to eq headers }
     end
   end
