@@ -15,7 +15,7 @@ gem 'therubyracer', platforms: :ruby
 
 gem 'hydra-head', '~> 9.8.1'
 gem 'hydra-role-management'
-gem 'hydra-collections', '~> 8.0.0'
+gem 'hydra-collections', '~> 8.1.0'
 gem 'curation_concerns', git: 'https://github.com/projecthydra-labs/curation_concerns.git'
 gem 'active-triples', '~> 0.7.5'
 gem 'rdf-marmotta', '~> 0.0.8'
