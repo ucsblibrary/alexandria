@@ -373,7 +373,9 @@ footer {
 }
 
 .document-thumbnail img {
+  float: right;
   max-height: 200px;
+  margin-top: 0;
 }
 
 select.search_field.form-control {
