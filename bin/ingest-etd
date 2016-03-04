@@ -11,17 +11,28 @@ Dir.mkdir Settings.download_root unless Pathname.new(Settings.download_root).exi
 Dir.mkdir Settings.marc_directory unless Pathname.new(Settings.marc_directory).exist?
 Dir.mkdir Settings.proquest_directory unless Pathname.new(Settings.proquest_directory).exist?
 
-output_file = "MARC_#{Time.now.to_i}.xml"
+output_file = File.join(Settings.marc_directory, "MARC_#{Time.now.to_i}.xml")
 Importer::ETDImporter.write_marc_file(ARGV, output_file)
 
-puts 'Now ingesting...'
+result = nil
+begin
+  ARGV.each do |zip|
+    unless File.dirname(zip) == Settings.proquest_directory
+      FileUtils.cp zip, Settings.proquest_directory
+    end
+  end
 
-require 'traject'
-require 'traject/command_line'
-args = ['-c', 'lib/traject/etd_config.rb']
-args << '-s' << "files_directory=#{Settings.proquest_directory}"
-args << File.join(Settings.marc_directory, output_file)
-cmdline = Traject::CommandLine.new(args)
-result = cmdline.execute
+  puts 'Now ingesting...'
+
+  require 'traject'
+  require 'traject/command_line'
+  args = ['-c', 'lib/traject/etd_config.rb']
+  args << '-s' << "files_directory=#{Settings.proquest_directory}"
+  args << output_file
+  cmdline = Traject::CommandLine.new(args)
+  result = cmdline.execute
+ensure
+  FileUtils.rm_f Dir["#{Settings.proquest_directory}/*.zip"]
+end
 
 exit 1 unless result # non-zero exit status on process telling us there's problems.
