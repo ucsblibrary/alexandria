@@ -1,7 +1,13 @@
 require 'importer/log_subscriber'
 module Importer::Factory
   class ObjectFactory
-    attr_reader :attributes, :files_directory
+    extend ActiveModel::Callbacks
+    define_model_callbacks :save, :create
+    after_save :attach_files
+
+    class_attribute :klass, :attach_files_service, :system_identifier_field
+
+    attr_reader :attributes, :files_directory, :object
 
     def initialize(attributes, files_dir = nil)
       @files_directory = files_dir
@@ -9,36 +15,30 @@ module Importer::Factory
     end
 
     def run
-      if obj = find
+      if @object = find
         ActiveSupport::Notifications.instrument('import.importer',
                                                 id: attributes[:id], name: 'UPDATE', klass: klass) do
-          update(obj)
+          update
         end
       else
         ActiveSupport::Notifications.instrument('import.importer',
                                                 id: attributes[:id], name: 'CREATE', klass: klass) do
-          obj = create
+          create
         end
       end
-      yield(obj) if block_given?
-      obj
+      yield(object) if block_given?
+      object
     end
 
-    def update(obj)
-      update_created_date(obj)
-      update_issued_date(obj)
-      obj.attributes = update_attributes
-      obj.save!
-      after_save(obj)
-      log_updated(obj)
-    end
-
-    # override after_save if you want to put something here.
-    def after_save(obj)
-    end
-
-    # override after_create if you want to put something here.
-    def after_create(obj)
+    def update
+      raise "Object doesn't exist" unless object
+      update_created_date(object)
+      update_issued_date(object)
+      object.attributes = update_attributes
+      run_callbacks(:save) do
+        object.save!
+      end
+      log_updated(object)
     end
 
     def create_attributes
@@ -47,6 +47,13 @@ module Importer::Factory
 
     def update_attributes
       transform_attributes.except(:id, :files)
+    end
+
+    def attach_files
+      return unless files_directory.present? && attributes[:files]
+
+      attach_files_service.run(object, files_directory, attributes[:files])
+      object.save! # Save the association with the attached files.
     end
 
     def find
@@ -71,20 +78,17 @@ module Importer::Factory
       # There's a bug in ActiveFedora when there are many
       # habtm <-> has_many associations, where they won't all get saved.
       # https://github.com/projecthydra/active_fedora/issues/874
-      klass.new(attrs) do |obj|
-        obj.save!
-        after_create(obj)
-        after_save(obj)
-        if identifier
-          identifier.target = path_for(obj)
-          identifier.save
+      @object = klass.new(attrs)
+      run_callbacks :save do
+        run_callbacks :create do
+          object.save!
         end
-        log_created(obj)
       end
-    end
-
-    def system_identifier_field
-      :accession_number
+      if identifier
+        identifier.target = path_for(object)
+        identifier.save
+      end
+      log_created(object)
     end
 
     def log_created(obj)
@@ -93,10 +97,6 @@ module Importer::Factory
 
     def log_updated(obj)
       puts "  Updated #{klass.model_name.human} #{obj.id} (#{Array(attributes[system_identifier_field]).first})"
-    end
-
-    def klass
-      raise NotImplementedError, 'You must implement the klass method'
     end
 
     # @return [Ezid::Identifier] the new identifier

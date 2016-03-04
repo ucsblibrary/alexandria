@@ -18,9 +18,9 @@ describe AttachFilesToETD do
       allow_any_instance_of(ZipfileService).to receive(:extract_files).and_return(file_struct)
 
       # squelch output
-      # allow($stdout).to receive(:puts)
+      allow($stdout).to receive(:puts)
 
-      described_class.run(etd, file)
+      described_class.run(etd, nil, file)
     end
 
     it 'attaches files with admin_policy and embargo and adds metadata from ProQuest' do

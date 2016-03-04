@@ -1,6 +1,12 @@
 module Importer
   module Factory
     module WithAssociatedCollection
+      extend ActiveSupport::Concern
+
+      included do
+        after_save :maybe_add_to_collection
+      end
+
       def create_attributes
         super.except(:collection)
       end
@@ -9,13 +15,12 @@ module Importer
         super.except(:collection)
       end
 
-      def after_save(obj)
-        super
+      def maybe_add_to_collection
         return unless attributes.key?(:collection)
-        add_to_collection(obj, collection)
+        add_to_collection(object, collection)
 
         # Reindex the object with the collection label.
-        obj.update_index
+        object.update_index
       end
 
       def add_to_collection(obj, collection)

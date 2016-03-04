@@ -1,11 +1,17 @@
 class AttachFilesToETD
-  def self.run(etd, pdf_file_name)
-    AttachFilesToETD.new(etd, pdf_file_name).run
+  def self.run(etd, files_directory, files)
+    Rails.logger.warn "Files for etd #{etd.id} were: #{files}, expected only 1" unless files.size == 1
+
+    # Only import proquest files once
+    if etd.proquest.new_record?
+      # TODO: move to background job
+      AttachFilesToETD.new(etd, files_directory, files.first).run
+    end
   end
 
   attr_reader :etd, :pdf_file_name
 
-  def initialize(etd, pdf_file_name)
+  def initialize(etd, _files_directory, pdf_file_name)
     @etd = etd
     @pdf_file_name = pdf_file_name
   end

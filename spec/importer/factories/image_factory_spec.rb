@@ -32,11 +32,28 @@ describe Importer::Factory::ImageFactory do
       allow(File).to receive(:exist?).and_return(true)
       allow(File).to receive(:new).and_return(file)
     end
-    it 'creates file sets with admin policies' do
-      expect(Hydra::Works::AddFileToFileSet).to receive(:call).with(FileSet, file, :original_file)
-      VCR.use_cassette('ezid') do
-        obj = factory.run
-        expect(obj.file_sets.first.admin_policy_id).to eq AdminPolicy::PUBLIC_POLICY_ID
+    context "for a new image" do
+      it 'creates file sets with admin policies' do
+        expect(Hydra::Works::AddFileToFileSet).to receive(:call).with(FileSet, file, :original_file)
+        VCR.use_cassette('ezid') do
+          obj = factory.run
+          expect(obj.file_sets.first.admin_policy_id).to eq AdminPolicy::PUBLIC_POLICY_ID
+        end
+      end
+    end
+
+    context "for an existing image without files" do
+      before do
+        create(:image, id: 'fk4c252k0f', accession_number: ['123'])
+      end
+      it 'creates file sets with admin policies' do
+        expect {
+          expect(Hydra::Works::AddFileToFileSet).to receive(:call).with(FileSet, file, :original_file)
+          VCR.use_cassette('ezid') do
+            obj = factory.run
+            expect(obj.file_sets.first.admin_policy_id).to eq AdminPolicy::PUBLIC_POLICY_ID
+          end
+        }.not_to change { Image.count }
       end
     end
   end
