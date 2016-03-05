@@ -581,6 +581,13 @@ label.remove_time_span {
   }
 }
 
+.blacklight-catalog-show {
+  dl {
+    padding-top: 1em;
+    clear: both;
+ }
+}
+
 .blacklight-collections-show {
   h1 {
     margin-top: $top_margin;
