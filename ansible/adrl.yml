@@ -62,5 +62,4 @@
     - { role: '../provisioning/centos/roles/riiif' }
     - { role: '../provisioning/centos/roles/hostname' }
     - { role: '../provisioning/centos/roles/automount' }
-    - { role: '../provisioning/centos/roles/deploy' }
     - { role: alexandria-v2, become: yes }
