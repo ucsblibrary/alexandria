@@ -59,7 +59,7 @@ temporary file that can be re-used on failed plays.
 1. If you didn’t clone this repository with `--recursive`, fetch the
    submodules with `git submodule init && git submodule update`.
 
-2. `bin/provision development [variables.cfg]`
+2. `bin/provision vagrant [variables.cfg]`
 
     Once the VM is created, you can SSH into it with `vagrant ssh` or
     manually by using the config produced by `vagrant ssh-config`.
@@ -82,7 +82,7 @@ temporary file that can be re-used on failed plays.
 
     - Redis: <http://localhost:6379>
 
-## vSphere
+## Production or staging server
 
 ### Prerequisites
 
@@ -91,7 +91,10 @@ temporary file that can be re-used on failed plays.
 
 ### Steps
 
-1. `bin/provision production [variables.cfg]` to provision the production server
+1. `bin/provision production [variables.cfg]` to provision the
+   production server; or
+
+    `bin/provision staging [variables.cfg]` to provision a staging server.
 
     - It’s (relatively) safe to set `REMOTE_USER` as root, since a
       non-root `deploy` user will be created for Capistrano.

@@ -2,10 +2,10 @@
 
 if [[ "$1" != "local" &&
         "$1" != "vagrant" &&
-        "$1" != "development" &&
+        "$1" != "staging" &&
         "$1" != "production" ]]; then
   echo "$(tput setaf 124)Bad argument:$(tput sgr0) $1"
-  echo "Usage: bin/create <development|production>"
+  echo "Usage: bin/create <vagrant|staging|production>"
   exit 1
 fi
 
@@ -115,7 +115,7 @@ else
   ANSIBLE_CONFIG="$(pwd)/ansible.cfg"
   export ANSIBLE_CONFIG
 
-  if [ "$1" == "production" ]; then
+  if [[ "$1" == "production" || "$1" == "staging" ]]; then
     echo -n "Set REMOTE_USER (default 'root'): "
     read -r REMOTE_USER
     REMOTE_USER=${REMOTE_USER:-"root"}
@@ -132,24 +132,24 @@ else
   export REMOTE_GROUP
 
   export IDENTITY="$HOME/.ssh/id_rsa"
-  if [ "$1" == "production" ]; then
+  if [[ "$1" == "production" || "$1" == "staging" ]]; then
     echo -n "Prompt for sudo password? [Y/n]: "
     read -r sudopass
     sudopass=${sudopass:-"n"}
-    if [ "$sudopass" == "Y" ] || [ "$sudopass" == "y" ]; then
+    if [[ "$sudopass" == "Y" || "$sudopass" == "y" ]]; then
       export SUDO_FLAG=" --ask-become-pass"
     fi
   fi
 
   SERVER=${SERVER:-"localhost"}
-  if [ "$1" == "production" ]; then
+  if [[ "$1" == "production" || "$1" == "staging" ]]; then
     echo -n "Set SERVER: "
     read -r SERVER
   fi
   echo "Setting SERVER to '$SERVER'"
   export SERVER
 
-  if [[ "$1" == "production" ]]; then
+  if [[ "$1" == "production" || "$1" == "staging" ]]; then
     EMAIL=adrl@library.ucsb.edu
   else
     EMAIL=$(git config --get user.email | tr -d '\n')
@@ -166,11 +166,16 @@ else
   chmod 600 "$1$NOW.cfg"
 fi
 
-if [ "$1" == "production" ]; then
+if [[ "$1" == "production" || "$1" == "staging" ]]; then
   write_hosts > hosts
   write_conf > ansible.cfg
 
-  run_cmd "ansible-playbook ansible/adrl.yml -vv -u $REMOTE_USER --ask-vault-pass -e @ansible/prod_vars.yml$SUDO_FLAG"
+  if [[ "$1" == "production" ]]; then
+    run_cmd "ansible-playbook ansible/adrl.yml -vv -u $REMOTE_USER --ask-vault-pass -e @ansible/prod_vars.yml$SUDO_FLAG"
+  else
+    run_cmd "ansible-playbook ansible/adrl.yml -vv -u $REMOTE_USER --ask-vault-pass -e @ansible/dev_vars.yml$SUDO_FLAG"
+  fi
+
   if [ "$EXIT_STATUS" == "0" ]; then
     rm -f $1*.cfg
     echo "Provisioning complete."
@@ -178,7 +183,7 @@ if [ "$1" == "production" ]; then
     echo "Run \`SERVER=$SERVER make prod\` to deploy with Capistrano."
   else
     echo "$(tput bold)==> Configuration saved to $1$NOW.cfg$(tput sgr0)"
-    echo 'Re-run with `bin/create production'" $1$NOW.cfg"'`'", or delete it NOW."
+    echo 'Re-run with `bin/create "$1'" $1$NOW.cfg"'`'", or delete it NOW."
   fi
 
 elif [ "$1" == "vagrant" ] || [ "$1" == "development" ]; then
