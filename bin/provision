@@ -13,7 +13,7 @@ if [[ "$1" != "local" &&
         "$1" != "staging" &&
         "$1" != "production" ]]; then
   echo "$(tput setaf 124)Bad argument:$(tput sgr0) $1"
-  echo "Usage: bin/create <local|vagrant|test|staging|production>"
+  echo "Usage: bin/provision <local|vagrant|test|staging|production>"
   exit 1
 fi
 
