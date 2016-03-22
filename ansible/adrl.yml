@@ -32,7 +32,7 @@
     smtp_user: "{{ lookup('env', 'SMTP_USER') }}"
     # leave blank
     smtp_domain:
-    smtp_password:
+    smtp_pass:
 
     file_server: ""
     mount_point: "{{ project_base }}/ingest"
