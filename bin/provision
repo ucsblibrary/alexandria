@@ -44,14 +44,12 @@ export EMAIL='$EMAIL'
 export FEDORA_PASS='$FEDORA_PASS'
 export GH_USER='$GH_USER'
 export H_PG_PASS='$H_PG_PASS'
-export IDENTITY='$IDENTITY'
 export M_PG_PASS='$M_PG_PASS'
 export PG_PASS='$PG_PASS'
 export REMOTE_GROUP='$REMOTE_GROUP'
 export REMOTE_USER='$REMOTE_USER'
 export SECRET='$SECRET'
 export SERVER='$SERVER'
-export SUDO_FLAG='$SUDO_FLAG'
 EOF
 }
 
@@ -131,16 +129,6 @@ else
   export REMOTE_USER
   export REMOTE_GROUP
 
-  export IDENTITY="$HOME/.ssh/id_rsa"
-  if [[ "$1" == "production" || "$1" == "staging" ]]; then
-    echo -n "Prompt for sudo password? [Y/n]: "
-    read -r sudopass
-    sudopass=${sudopass:-"n"}
-    if [[ "$sudopass" == "Y" || "$sudopass" == "y" ]]; then
-      export SUDO_FLAG=" --ask-become-pass"
-    fi
-  fi
-
   SERVER=${SERVER:-"localhost"}
   if [[ "$1" == "production" || "$1" == "staging" ]]; then
     echo -n "Set SERVER: "
@@ -171,9 +159,9 @@ if [[ "$1" == "production" || "$1" == "staging" ]]; then
   write_conf > ansible.cfg
 
   if [[ "$1" == "production" ]]; then
-    run_cmd "ansible-playbook ansible/adrl.yml -vv -u $REMOTE_USER --ask-vault-pass -e @ansible/prod_vars.yml$SUDO_FLAG"
+    run_cmd "ansible-playbook ansible/adrl.yml -vv -u $REMOTE_USER --ask-become-pass --ask-vault-pass -e @ansible/prod_vars.yml"
   else
-    run_cmd "ansible-playbook ansible/adrl.yml -vv -u $REMOTE_USER --ask-vault-pass -e @ansible/dev_vars.yml$SUDO_FLAG"
+    run_cmd "ansible-playbook ansible/adrl.yml -vv -u $REMOTE_USER --ask-become-pass --ask-vault-pass -e @ansible/dev_vars.yml"
   fi
 
   if [ "$EXIT_STATUS" == "0" ]; then
