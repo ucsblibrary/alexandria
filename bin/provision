@@ -156,7 +156,7 @@ if [[ "$vsphere" == true ]]; then
 
   if [[ "$1" == "production" ]]; then
     run_cmd "ansible-playbook ansible/adrl.yml -vv -u $REMOTE_USER --ask-become-pass --ask-vault-pass -e @ansible/prod_vars.yml"
-  elif [[ "$1" == "stage" ]]; then
+  elif [[ "$1" == "staging" ]]; then
     run_cmd "ansible-playbook ansible/adrl.yml -vv -u $REMOTE_USER --ask-become-pass --ask-vault-pass -e @ansible/stage_vars.yml"
   elif [[ "$1" == "test" ]]; then
     run_cmd "ansible-playbook ansible/adrl.yml -vv -u $REMOTE_USER --ask-become-pass --ask-vault-pass -e @ansible/dev_vars.yml"
