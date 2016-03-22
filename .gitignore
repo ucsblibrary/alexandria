@@ -12,10 +12,13 @@ public/assets
 /db/*.sqlite3-journal
 
 # Ignore provisioning files
-ansible.cfg
-ansible/variables.cfg
-fedora-data
+*.cfg
+ansible/*.cfg
 hosts
+
+# ignore ADRL data files
+download_root
+fedora-data
 ingest
 install
 marmotta
@@ -23,6 +26,8 @@ solr
 tomcat
 
 # Ignore all logfiles and tempfiles.
+*.log
+logs
 /log/*
 !/log/.keep
 /tmp
