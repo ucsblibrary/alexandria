@@ -1,9 +1,6 @@
 #!/bin/bash
 export EMAIL=''
-export FEDORA_PASS=''
-export H_PG_PASS=''
-export M_PG_PASS=''
-export PG_PASS=''
+export GH_USER=''
 export REMOTE_GROUP=''
 export REMOTE_USER=''
 export SECRET=''

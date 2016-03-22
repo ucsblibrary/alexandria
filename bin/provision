@@ -2,12 +2,15 @@
 
 if [[ "$1" != "local" &&
         "$1" != "vagrant" &&
+        "$1" != "test" &&
         "$1" != "staging" &&
         "$1" != "production" ]]; then
   echo "$(tput setaf 124)Bad argument:$(tput sgr0) $1"
-  echo "Usage: bin/create <vagrant|staging|production>"
+  echo "Usage: bin/create <local|vagrant|test|staging|production>"
   exit 1
 fi
+
+vsphere=$(test "$1" == "production" || "$1" == "staging" || "$1" == "test")
 
 #
 # Functions
@@ -41,11 +44,7 @@ write_savepoint() {
   cat <<EOF
 #!/bin/bash
 export EMAIL='$EMAIL'
-export FEDORA_PASS='$FEDORA_PASS'
 export GH_USER='$GH_USER'
-export H_PG_PASS='$H_PG_PASS'
-export M_PG_PASS='$M_PG_PASS'
-export PG_PASS='$PG_PASS'
 export REMOTE_GROUP='$REMOTE_GROUP'
 export REMOTE_USER='$REMOTE_USER'
 export SECRET='$SECRET'
@@ -100,16 +99,6 @@ else
   SECRET="$(mkpasswd)"
   export SECRET
 
-  FEDORA_PASS="$(mkpasswd)"
-  export FEDORA_PASS
-
-  PG_PASS="$(mkpasswd)"
-  export PG_PASS
-  H_PG_PASS="$(mkpasswd)"
-  export H_PG_PASS
-  M_PG_PASS="$(mkpasswd)"
-  export M_PG_PASS
-
   ANSIBLE_CONFIG="$(pwd)/ansible.cfg"
   export ANSIBLE_CONFIG
 
@@ -130,14 +119,14 @@ else
   export REMOTE_GROUP
 
   SERVER=${SERVER:-"localhost"}
-  if [[ "$1" == "production" || "$1" == "staging" ]]; then
+  if [[ "$vsphere" == true ]]; then
     echo -n "Set SERVER: "
     read -r SERVER
   fi
   echo "Setting SERVER to '$SERVER'"
   export SERVER
 
-  if [[ "$1" == "production" || "$1" == "staging" ]]; then
+  if [[ "$vsphere" == true ]]; then
     EMAIL=adrl@library.ucsb.edu
   else
     EMAIL=$(git config --get user.email | tr -d '\n')
@@ -154,13 +143,15 @@ else
   chmod 600 "$1$NOW.cfg"
 fi
 
-if [[ "$1" == "production" || "$1" == "staging" ]]; then
+if [[ "$vsphere" == true ]]; then
   write_hosts > hosts
   write_conf > ansible.cfg
 
   if [[ "$1" == "production" ]]; then
     run_cmd "ansible-playbook ansible/adrl.yml -vv -u $REMOTE_USER --ask-become-pass --ask-vault-pass -e @ansible/prod_vars.yml"
-  else
+  elif [[ "$1" == "stage" ]]; then
+    run_cmd "ansible-playbook ansible/adrl.yml -vv -u $REMOTE_USER --ask-become-pass --ask-vault-pass -e @ansible/stage_vars.yml"
+  elif [[ "$1" == "test" ]]; then
     run_cmd "ansible-playbook ansible/adrl.yml -vv -u $REMOTE_USER --ask-become-pass --ask-vault-pass -e @ansible/dev_vars.yml"
   fi
 
@@ -174,7 +165,7 @@ if [[ "$1" == "production" || "$1" == "staging" ]]; then
     echo 'Re-run with `bin/create "$1'" $1$NOW.cfg"'`'", or delete it NOW."
   fi
 
-elif [ "$1" == "vagrant" ] || [ "$1" == "development" ]; then
+elif [[ "$1" == "vagrant" ]]; then
 
   if [[ -e ".vagrant/machines/default/virtualbox/id" ]]; then
     run_cmd "vagrant provision"
@@ -192,7 +183,7 @@ elif [ "$1" == "vagrant" ] || [ "$1" == "development" ]; then
     echo "$(tput bold)==> Configuration saved to $1$NOW.cfg$(tput sgr0)"
     echo 'Re-run with `bin/create development'" $1$NOW.cfg"'`'", or delete it NOW."
   fi
-else
+elif [[ "$1" == "local" ]]; then
   write_hosts_local > hosts
   write_conf > ansible.cfg
 

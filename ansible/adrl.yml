@@ -24,14 +24,6 @@
     solr_context: hydra
     solr_home: "{{ project_base }}/solr"
 
-    # Password for the 'postgres' user
-    pg_pass: "{{ lookup('env', 'PG_PASS') }}"
-    # Passwords for hydra and marmotta roles
-    hydra_pg_pass: "{{ lookup('env', 'H_PG_PASS') }}"
-    marmotta_pg_pass: "{{ lookup('env', 'M_PG_PASS') }}"
-
-    fedora_pass: "{{ lookup('env', 'FEDORA_PASS') }}"
-
     contact_email: "{{ lookup('env', 'EMAIL') }}"
 
     # SMTP
