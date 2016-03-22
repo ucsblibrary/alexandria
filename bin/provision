@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+if [[ "${BASH_SOURCE[0]}" == "provision" ]]; then
+   cd .. || exit 1
+elif [[ "${BASH_SOURCE[0]}" != "bin/provision" ]]; then
+  echo "$(tput setaf 124)Run the provisioning script from the root of the ADRL repository.$(tput sgr0)"
+  exit 1
+fi
+
 if [[ "$1" != "local" &&
         "$1" != "vagrant" &&
         "$1" != "test" &&
