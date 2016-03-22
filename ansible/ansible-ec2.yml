@@ -6,12 +6,12 @@
 # copy this file and ansible_vars.yml to sufia-centos directory
 # run the playbook with the command:
 # "ansible-playbook -i hosts ansible-ec2.yml"
-# 
+#
 - hosts: localhost
   connection: local
   gather_facts: False
   vars_files:
-    - ansible_vars.yml
+    - ec2_vars.yml
   roles:
     - launch_ec2
 
@@ -19,8 +19,8 @@
   name: configuration
   user: centos
   vars_files:
-    - ansible_vars.yml
-  gather_facts: true  
+    - ec2_vars.yml
+  gather_facts: true
   roles:
     - { role: ec2, become: yes }
     - { role: housekeeping, become: yes }
