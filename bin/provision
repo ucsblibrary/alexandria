@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-if [[ "${BASH_SOURCE[0]}" == "provision" ]]; then
+if [[ "${BASH_SOURCE[0]}" == "provision" || "${BASH_SOURCE[0]}" == "./provision" ]]; then
    cd .. || exit 1
-elif [[ "${BASH_SOURCE[0]}" != "bin/provision" ]]; then
-  echo "$(tput setaf 124)Run the provisioning script from the root of the ADRL repository.$(tput sgr0)"
+elif [[ "${BASH_SOURCE[0]}" != "bin/provision" || "${BASH_SOURCE[0]}" != "./bin/provision" ]]; then
+  echo "$(tput setaf 124)Please run the provisioning script from the root of the ADRL repository.$(tput sgr0)"
   exit 1
 fi
 
@@ -12,8 +12,12 @@ if [[ "$1" != "local" &&
         "$1" != "test" &&
         "$1" != "staging" &&
         "$1" != "production" ]]; then
-  echo "$(tput setaf 124)Bad argument:$(tput sgr0) $1"
-  echo "Usage: bin/provision <local|vagrant|test|staging|production>"
+  if [[ -z "$1" ]]; then
+    echo "$(tput setaf 124)Script Input Error: No argument provided$(tput sgr0)"
+  else
+    echo "$(tput setaf 124)Bad argument:$(tput sgr0) $1"
+  fi
+  echo "Script Usage: bin/provision <local|vagrant|test|staging|production>"
   exit 1
 fi
 
@@ -77,7 +81,7 @@ EOF
 write_conf() {
 cat <<EOF
 [defaults]
-private_key_file = $IDENTITY
+#private_key_file = $IDENTITY
 host_key_checking = False
 control_path = %(directory)s/%%h-%%r
 inventory = $(pwd)/hosts
@@ -202,7 +206,7 @@ elif [[ "$1" == "local" ]]; then
     echo
     echo "1. Run \`tomcat/bin/catalina start\` to start Tomcat."
     echo "2. Run \`bundle exec rake db:migrate\`."
-    echo "3. Run \`bin/rails server\` to start WEBRick."
+    echo "3. Run \`bin/rails server\` to start WEBrick."
   else
     echo "$(tput bold)==> Configuration saved to $1$NOW.cfg$(tput sgr0)"
     echo "Re-run with \`bin/create local $1$NOW.cfg\`, or delete it NOW."
