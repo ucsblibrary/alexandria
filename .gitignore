@@ -14,6 +14,7 @@ public/assets
 # Ignore provisioning files
 *.cfg
 ansible/*.cfg
+ansible/*.retry
 hosts
 
 # ignore ADRL data files
