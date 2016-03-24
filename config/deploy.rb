@@ -3,7 +3,7 @@ lock '3.4.0'
 
 set :application, 'alexandria-v2'
 set :scm, :git
-set :repo_url, ENV.fetch('REPO', 'https://github.com/curationexperts/alexandria-v2.git')
+set :repo_url, ENV.fetch('REPO', 'https://github.library.ucsb.edu/ADRL/alexandria.git')
 set :deploy_to, '/opt/alexandria-v2'
 
 set :stages, %w(production vagrant)
