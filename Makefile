@@ -12,4 +12,4 @@ spec:
 	CI=1 RAILS_ENV=test bundle exec rake ci --trace
 
 vagrant:
-	SERVER=127.0.0.1 BRANCH_NAME=$(BRANCH) REPO=/vagrant bundle exec cap vagrant deploy
+	HOSTNAME=127.0.0.1 BRANCH_NAME=$(BRANCH) REPO=/vagrant bundle exec cap vagrant deploy

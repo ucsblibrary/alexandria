@@ -69,10 +69,11 @@ write_savepoint() {
 #!/bin/bash
 export EMAIL='$EMAIL'
 export GH_USER='$GH_USER'
+export PRIVATE_IP='$PRIVATE_IP'
+export PUBLIC_IP='$PUBLIC_IP'
 export REMOTE_GROUP='$REMOTE_GROUP'
 export REMOTE_USER='$REMOTE_USER'
 export SECRET='$SECRET'
-export SERVER='$SERVER'
 EOF
 }
 
@@ -143,13 +144,21 @@ else
   export REMOTE_USER
   export REMOTE_GROUP
 
-  SERVER=${SERVER:-"localhost"}
-  if [[ $vsphere == true ]]; then
-    echo -n "Set Remote SERVER (FQDN or IP): "
-    read -r SERVER
+  PUBLIC_IP="localhost"
+  if [[ "$vsphere" == true ]]; then
+    echo -n "What is the publically available IP/FQDN? "
+    read -r PUBLIC_IP
   fi
-  echo "Setting Remote SERVER to '$SERVER'"
-  export SERVER
+  echo "Setting PUBLIC_IP to '$PUBLIC_IP'"
+  export PUBLIC_IP
+
+  PRIVATE_IP="$PUBLIC_IP"
+  if [[ "$vsphere" == true ]]; then
+    echo -n "What is the private IP/FQDN? (optional, defaults to $PUBLIC_IP) "
+    read -r PRIVATE_IP
+  fi
+  echo "Setting PRIVATE_IP to '$PRIVATE_IP'"
+  export PRIVATE_IP
 
   if [[ $vsphere == true ]]; then
     EMAIL=adrl@library.ucsb.edu
@@ -194,7 +203,7 @@ if [[ $vsphere == true ]]; then
     rm -f $1*.cfg
     echo "Provisioning complete."
     echo
-    echo "Run \`SERVER=$SERVER make prod\` to deploy with Capistrano."
+    echo "Run \`HOSTNAME=$PRIVATE_IP make prod\` to deploy with Capistrano."
   else
     echo "$(tput bold)==> Ansible Deployment Did Not Complete(tput sgr0)"
     echo "$(tput bold)==> Configuration saved to $1$NOW.cfg$(tput sgr0)"

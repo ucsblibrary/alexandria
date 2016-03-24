@@ -13,7 +13,9 @@
     deploy_keys:
       - "{{ lookup('env', 'GH_USER') }}"
 
-    server_name: "{{ lookup('env', 'SERVER') }}"
+    server_name: "{{ lookup('env', 'PRIVATE_IP') }}"
+    public_ip: "{{ lookup('env', 'PUBLIC_IP') }}"
+
     project_base: /opt
     project_name: alexandria-v2
     install_path: "{{ project_base }}/install"
@@ -57,6 +59,5 @@
     - { role: '../provisioning/centos/roles/smtp' }
     - { role: '../provisioning/centos/roles/ldap' }
     - { role: '../provisioning/centos/roles/riiif' }
-    - { role: '../provisioning/centos/roles/hostname' }
     - { role: '../provisioning/centos/roles/automount' }
     - { role: alexandria-v2, become: yes }

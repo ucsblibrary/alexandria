@@ -27,6 +27,23 @@
   with_items:
     - "  marmotta_host: localhost:8180"
 
+- name: add config/environments directory
+  become: yes
+  file:
+    path: "{{ config_path }}/environments"
+    owner: "{{ deploy_user }}"
+    group: "{{ deploy_group }}"
+    state: directory
+
+- name: add production environment configuration
+  become: yes
+  template:
+    src: production.rb.j2
+    dest: "{{ config_path }}/environments/production.rb"
+    owner: "{{ deploy_user }}"
+    group: "{{ deploy_group }}"
+    backup: no
+
 - name: override the default resque-pool.yml
   # this prevents 2 processes from creating file containers at the same time
   # see issue #626
