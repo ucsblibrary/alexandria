@@ -55,12 +55,15 @@ class CatalogController < ApplicationController
 
     config.show.partials = [:media, :show]
 
-    # solr fields that will be treated as facets by the blacklight application
-    #   The ordering of the field names is the order of the display
+    # Solr fields that will be treated as facets by the blacklight application
+    #
+    # The ordering of the field names is the order of the display.
     #
     # Setting a limit will trigger Blacklight's 'more' facet values link.
     #
-    # * If left unset, then all facet values returned by solr will be displayed.
+    # * If left unset, then all facet values returned by solr will be
+    #   displayed (not always all results in Fedora; see
+    #   https://github.library.ucsb.edu/ADRL/alexandria/issues/13)
     #
     # * If set to an integer, then "f.somefield.facet.limit" will be added to
     #   solr request, with actual solr request being +1 your configured limit --
