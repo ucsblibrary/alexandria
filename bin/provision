@@ -21,7 +21,11 @@ if [[ "$1" != "local" &&
   exit 1
 fi
 
-vsphere=$(test "$1" == "production" || "$1" == "staging" || "$1" == "test")
+if [[ "$1" == "production" || "$1" == "staging" || "$1" == "test" ]]; then
+  vsphere=true
+else
+  vsphere=false
+fi
 
 #
 # Functions
