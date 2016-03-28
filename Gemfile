@@ -80,4 +80,8 @@ group :development do
   gem 'capistrano-rails', '>= 1.1.3'
   gem 'capistrano-bundler'
   gem 'capistrano-passenger'
+
+  gem 'method_source'
+  gem 'pry'
+  gem 'pry-doc'
 end
