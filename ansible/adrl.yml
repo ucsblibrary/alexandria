@@ -2,6 +2,11 @@
   hosts: all
   remote_user: "{{ lookup('env', 'REMOTE_USER') }}"
 
+  # Set in prod_vars.yml, stage_vars.yml, etc.
+  environment:
+    http_proxy: "{{ proxy }}"
+    https_proxy: "{{ proxy }}"
+
   vars:
     deploy_user: adrl
     deploy_group: adrl
