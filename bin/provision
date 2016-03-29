@@ -203,7 +203,7 @@ if [[ $vsphere == true ]]; then
     rm -f $1*.cfg
     echo "Provisioning complete."
     echo
-    echo "Run \`HOSTNAME=$PRIVATE_IP make prod\` to deploy with Capistrano."
+    echo "Run \`SERVER=$PRIVATE_IP make prod\` to deploy with Capistrano."
   else
     echo "$(tput bold)==> Ansible Deployment Did Not Complete(tput sgr0)"
     echo "$(tput bold)==> Configuration saved to $1$NOW.cfg$(tput sgr0)"
