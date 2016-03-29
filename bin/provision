@@ -1,17 +1,25 @@
 #!/usr/bin/env bash
 
+echo
 if [[ "${BASH_SOURCE[0]}" == "provision" || "${BASH_SOURCE[0]}" == "./provision" ]]; then
-   cd .. || exit 1
-elif [[ "${BASH_SOURCE[0]}" != "bin/provision" || "${BASH_SOURCE[0]}" != "./bin/provision" ]]; then
   echo "$(tput setaf 124)Please run the provisioning script from the root of the ADRL repository.$(tput sgr0)"
+  echo "$(tput setaf 124)From that root directory you can issue the command \"./bin/provision\".$(tput sgr0)"
+  echo "$(tput setaf 124)Attempting to change into that directory....$(tput sgr0)"
+  cd .. || exit 1
+  echo "$(tput setaf 124)Successful directory change, continuing.$(tput sgr0)"
+  echo
+elif [[ "${BASH_SOURCE[0]}" != "bin/provision" && "${BASH_SOURCE[0]}" != "./bin/provision" ]]; then
+  echo "$(tput setaf 124)Please run the provisioning script from the root of the ADRL repository.$(tput sgr0)"
+  echo "$(tput setaf 124)From that root directory you can issue the command \"bin/provision\".$(tput sgr0)"
+  echo
   exit 1
 fi
 
 if [[ "$1" != "local" &&
-        "$1" != "vagrant" &&
-        "$1" != "test" &&
-        "$1" != "staging" &&
-        "$1" != "production" ]]; then
+      "$1" != "vagrant" &&
+      "$1" != "test" &&
+      "$1" != "staging" &&
+      "$1" != "production" ]]; then
   if [[ -z "$1" ]]; then
     echo "$(tput setaf 124)Script Input Error: No argument provided$(tput sgr0)"
   else
@@ -21,7 +29,13 @@ if [[ "$1" != "local" &&
   exit 1
 fi
 
-vsphere=$(test "$1" == "production" || "$1" == "staging" || "$1" == "test")
+vsphere=false;
+if [[ "$1" == "production" || "$1" == "staging" || "$1" == "test" ]]; then
+  vsphere=true
+fi
+if [ $vsphere ]; then
+  echo "$(tput setaf 124)Provisioning ADRL Hydra for vSphere: Envrionment $1.$(tput sgr0)"
+fi
 
 #
 # Functions
@@ -113,10 +127,10 @@ else
   ANSIBLE_CONFIG="$(pwd)/ansible.cfg"
   export ANSIBLE_CONFIG
 
-  if [[ "$1" == "production" || "$1" == "staging" ]]; then
-    echo -n "Set REMOTE_USER (default 'root'): "
+  if [ $vsphere ]; then
+    echo -n "Set REMOTE_USER For Ansible SSH Access [ansible]: "
     read -r REMOTE_USER
-    REMOTE_USER=${REMOTE_USER:-"root"}
+    REMOTE_USER=${REMOTE_USER:-"ansible"}
     REMOTE_GROUP="$REMOTE_USER"
   elif [[ "$1" == "local" ]]; then
     REMOTE_USER="$USER"
@@ -126,18 +140,19 @@ else
     REMOTE_GROUP=vagrant
   fi
   echo "Setting REMOTE_USER to '$REMOTE_USER'"
+  echo "Setting REMOTE_GROUP to '$REMOTE_GROUP'"
   export REMOTE_USER
   export REMOTE_GROUP
 
   SERVER=${SERVER:-"localhost"}
-  if [[ "$vsphere" == true ]]; then
-    echo -n "Set SERVER: "
+  if [ $vsphere ]; then
+    echo -n "Set Remote SERVER (FQDN or IP): "
     read -r SERVER
   fi
-  echo "Setting SERVER to '$SERVER'"
+  echo "Setting Remote SERVER to '$SERVER'"
   export SERVER
 
-  if [[ "$vsphere" == true ]]; then
+  if [ $vsphere ]; then
     EMAIL=adrl@library.ucsb.edu
   else
     EMAIL=$(git config --get user.email | tr -d '\n')
@@ -147,23 +162,33 @@ else
     export GH_USER="https://github.com/$GH_USER.keys"
   fi
 
-  echo "Setting EMAIL to '$EMAIL'"
+  echo "Setting ADRL EMAIL address to '$EMAIL'"
   export EMAIL
 
   write_savepoint > "$1$NOW.cfg"
   chmod 600 "$1$NOW.cfg"
+  echo "Created Configuration Save Point in File $1$NOW.cfg"
 fi
 
 if [[ "$vsphere" == true ]]; then
   write_hosts > hosts
+  echo "Created Ansible Hosts File: hosts"
   write_conf > ansible.cfg
+  echo "Created Ansible Configuration File: ansible.cfg"
+# sosi
+  ANS_DEBUG="-vv"
+  ANS_USER=" -u $REMOTE_USER"
+  ANS_PASSFLG=" --ask-become-pass"
+  ANS_VAULTFLG=" --ask-vault-pass"
+  ANS_FLAGS=${ANS_DEBUG}${ANS_USER}${ANS_PASSFLG}${ANS_VAULTFLG}
 
   if [[ "$1" == "production" ]]; then
     run_cmd "ansible-playbook ansible/adrl.yml -vv -u $REMOTE_USER --ask-become-pass --ask-vault-pass -e @ansible/prod_vars.yml"
   elif [[ "$1" == "staging" ]]; then
     run_cmd "ansible-playbook ansible/adrl.yml -vv -u $REMOTE_USER --ask-become-pass --ask-vault-pass -e @ansible/stage_vars.yml"
   elif [[ "$1" == "test" ]]; then
-    run_cmd "ansible-playbook ansible/adrl.yml -vv -u $REMOTE_USER --ask-become-pass --ask-vault-pass -e @ansible/dev_vars.yml"
+    run_cmd "ansible-playbook ansible/adrl.yml ${ANS_FLAGS} -e @ansible/dev_vars.yml"
+#    run_cmd "ansible-playbook ansible/adrl.yml -vv -u $REMOTE_USER --ask-become-pass --ask-vault-pass -e @ansible/dev_vars.yml"
   fi
 
   if [ "$EXIT_STATUS" == "0" ]; then
@@ -172,8 +197,9 @@ if [[ "$vsphere" == true ]]; then
     echo
     echo "Run \`SERVER=$SERVER make prod\` to deploy with Capistrano."
   else
+    echo "$(tput bold)==> Ansible Deployment Did Not Complete(tput sgr0)"
     echo "$(tput bold)==> Configuration saved to $1$NOW.cfg$(tput sgr0)"
-    echo 'Re-run with `bin/create "$1'" $1$NOW.cfg"'`'", or delete it NOW."
+    echo "Please correct then re-run with \"bin/provision $1 $1$NOW.cfg\", or delete it NOW."
   fi
 
 elif [[ "$1" == "vagrant" ]]; then
@@ -192,7 +218,7 @@ elif [[ "$1" == "vagrant" ]]; then
     echo
   else
     echo "$(tput bold)==> Configuration saved to $1$NOW.cfg$(tput sgr0)"
-    echo 'Re-run with `bin/create development'" $1$NOW.cfg"'`'", or delete it NOW."
+    echo 'Re-run with `bin/provison development'" $1$NOW.cfg"'`'", or delete it NOW."
   fi
 elif [[ "$1" == "local" ]]; then
   write_hosts_local > hosts
@@ -209,6 +235,6 @@ elif [[ "$1" == "local" ]]; then
     echo "3. Run \`bin/rails server\` to start WEBrick."
   else
     echo "$(tput bold)==> Configuration saved to $1$NOW.cfg$(tput sgr0)"
-    echo "Re-run with \`bin/create local $1$NOW.cfg\`, or delete it NOW."
+    echo "Re-run with \`bin/provison local $1$NOW.cfg\`, or delete it NOW."
   fi
 fi
