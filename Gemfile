@@ -34,7 +34,9 @@ gem 'riiif', '~> 0.2.0'
 gem 'ezid-client', '~> 1.2.0'
 gem 'qa', '~> 0.5.0'
 
-gem 'kaminari', git: 'https://github.com/jcoyne/kaminari.git', branch: 'sufia'
+gem 'kaminari', '~> 0.16.3'
+# https://github.com/amatsuda/kaminari/pull/636
+gem 'kaminari_route_prefix'
 
 gem 'devise', '~> 3.5.2'
 gem 'devise_ldap_authenticatable'
@@ -80,4 +82,8 @@ group :development do
   gem 'capistrano-rails', '>= 1.1.3'
   gem 'capistrano-bundler'
   gem 'capistrano-passenger'
+
+  gem 'method_source'
+  gem 'pry'
+  gem 'pry-doc'
 end

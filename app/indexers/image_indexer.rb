@@ -35,7 +35,7 @@ class ImageIndexer < ObjectIndexer
     def host
       hostname = Rails.application.config.host_name
       if hostname == 'localhost'.freeze || hostname == '127.0.0.1'.freeze
-        "#{hostname}:#{Rails.application.secrets.localhost_port}"
+        "#{hostname}:#{Settings.localhost_port}"
       else
         hostname
       end

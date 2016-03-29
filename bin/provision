@@ -7,7 +7,6 @@ if [[ "${BASH_SOURCE[0]}" == "provision" || "${BASH_SOURCE[0]}" == "./provision"
   echo "$(tput setaf 124)Attempting to change into that directory....$(tput sgr0)"
   cd .. || exit 1
   echo "$(tput setaf 124)Successful directory change, continuing.$(tput sgr0)"
-  echo
 elif [[ "${BASH_SOURCE[0]}" != "bin/provision" && "${BASH_SOURCE[0]}" != "./bin/provision" ]]; then
   echo "$(tput setaf 124)Please run the provisioning script from the root of the ADRL repository.$(tput sgr0)"
   echo "$(tput setaf 124)From that root directory you can issue the command \"bin/provision\".$(tput sgr0)"
