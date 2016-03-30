@@ -1,7 +1,7 @@
 class AudioRoutingConcern
   def matches?(request)
     query = [
-      ActiveFedora::SolrQueryBuilder.raw_query(SOLR_DOCUMENT_ID, request.params[:id]),
+      ActiveFedora::SolrQueryBuilder.raw_query(ActiveFedora.id_field, request.params[:id]),
       ActiveFedora::SolrQueryBuilder.construct_query_for_rel(has_model: AudioRecording.to_class_uri)]
         .join(' AND '.freeze)
     results = ActiveFedora::SolrService.query query, fl: 'has_model_ssim'
