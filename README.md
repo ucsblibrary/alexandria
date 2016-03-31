@@ -1,12 +1,36 @@
 [![Build Status](https://travis-ci.org/curationexperts/alexandria-v2.svg?branch=master)](https://travis-ci.org/curationexperts/alexandria-v2)
 
-# Setup
+# Provisioning
+
+For provisioning, there is a wrapper script that runs Ansible for us:
+`bin/provision`.  Run it from the root directory:
+
+```shell
+bin/provision <production|staging|test|vagrant|local> [variables.cfg]
+```
 
 The `bin/provision` wrapper script’s optional second argument is a
 list of pre-defined variables; see the format in
 `ansible/variables.cfg.template`.  If `bin/provision` is run without a
 second argument, it will prompt you for the values and write a
 temporary file that can be re-used on failed plays.
+
+Variables for passwords and other sensitive information are kept in
+encryped Ansible Vault files: `ansible/prod_vars.yml`,
+`ansible/stage_vars.yml`, and `ansible/dev_vars.yml`.  When you run
+`bin/provision <production|staging|test|vagrant|local>` (`test`,
+`vagrant`, and `local` all use `dev_vars.yml`), Ansible will prompt
+you for the password to decrypt the corresponding file; the passwords
+are in Secret Server.
+
+Some of the Rails configuration files are written by Ansible during
+provisioning, since they contain server-specific information and
+should not be committed to Git.  The list of files/directories that
+are createed or modified during provisioning corresponds to the
+`linked_dirs` and `linked_files` in `config/deploy.rb`.  They are
+written to the server in the `shared` directory of the project root,
+and are symlinked into each `release` directory by Capistrano each
+time we deploy.
 
 ## OSX
 
