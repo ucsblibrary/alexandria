@@ -37,11 +37,11 @@ class ContributorIndexer
     # @return [NilClass, Array] Union of all the MARC relators. If non exist, return nil
     # Returns the rdf label if it's a URI, otherwise the value itself.
     def contributors
-      Metadata::MARCREL.keys.each_with_object([]) do |field, list|
+      Metadata::MARCREL.keys.map do |field|
         next if object[field].empty?
-        list.push *object[field].map { |val|
+        object[field].map do |val|
           val.respond_to?(:rdf_label) ? val.rdf_label.first : val
-        }
-      end
+        end
+      end.flatten
     end
 end
