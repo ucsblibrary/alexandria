@@ -62,7 +62,7 @@ describe Importer::Factory::ETDFactory do
 
     context "if the etd doesn't have attached proquest data" do
       it 'attaches files' do
-        expect(AttachFilesToETD).to receive(:run).with(etd, "tmp/download_root/proquest", attributes[:files])
+        expect(AttachFilesToETD).to receive(:run).with(etd, "#{Settings.download_root}/proquest", attributes[:files])
         factory.run
       end
     end
