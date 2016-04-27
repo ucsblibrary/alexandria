@@ -42,6 +42,6 @@ class ContributorIndexer
         object[field].map do |val|
           val.respond_to?(:rdf_label) ? val.rdf_label.first : val
         end
-      end.flatten
+      end.flatten.compact
     end
 end
