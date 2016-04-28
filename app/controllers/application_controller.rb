@@ -13,6 +13,16 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  # https://github.library.ucsb.edu/ADRL/alexandria/issues/22
+  rescue_from ActionController::InvalidAuthenticityToken do |e|
+    logger.error "(ActionController::InvalidAuthenticityToken): #{e}"
+    if params[:redirect]
+      redirect_to params[:redirect]
+    else
+      redirect_to :back
+    end
+  end
+
   def on_campus?
     return false unless request.remote_ip
     on_campus_network_prefixes.any? { |prefix| request.remote_ip.start_with?(prefix) }
