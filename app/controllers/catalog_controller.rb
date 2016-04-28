@@ -81,15 +81,15 @@ class CatalogController < ApplicationController
     #
     # :show may be set to false if you don't want the facet to be drawn in the
     # facet bar
-    config.add_facet_field solr_name('work_type_label', :facetable), label: 'Type of Resource'
-    config.add_facet_field solr_name('location_label', :facetable), label: 'Location'
+    config.add_facet_field solr_name('work_type_label', :facetable), label: 'Type of Resource', limit: true
+    config.add_facet_field solr_name('location_label', :facetable), label: 'Location', limit: true
     config.add_facet_field ContributorIndexer::FACETABLE_CONTRIBUTOR, label: 'Contributor', limit: true
     config.add_facet_field solr_name('lc_subject_label', :facetable), label: 'Subject', limit: 20
-    config.add_facet_field solr_name('publisher', :facetable), label: 'Publisher'
+    config.add_facet_field solr_name('publisher', :facetable), label: 'Publisher', limit: true
     config.add_facet_field ObjectIndexer::FACETABLE_YEAR, label: 'Year', range: true
-    config.add_facet_field solr_name('form_of_work_label', :facetable), label: 'Type'
-    config.add_facet_field solr_name('collection_label', :symbol), label: 'Collection'
-    config.add_facet_field solr_name('department', :facetable), label: 'Department'
+    config.add_facet_field solr_name('form_of_work_label', :facetable), label: 'Type', limit: true
+    config.add_facet_field solr_name('collection_label', :symbol), label: 'Collection', limit: true
+    config.add_facet_field solr_name('department', :facetable), label: 'Department', limit: true
 
     # Have BL send all facet field names to Solr, which has been the default
     # previously. Simply remove these lines if you'd rather use Solr request
