@@ -71,4 +71,8 @@ Rails.application.routes.draw do
     get 'new_merge', on: :member
     post 'merge', on: :member
   end
+
+  get '404', to: 'error#not_found'
+  get '422', to: 'error#server_error'
+  get '500', to: 'error#server_error'
 end
