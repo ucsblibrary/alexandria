@@ -1,0 +1,146 @@
+#!/usr/bin/env ruby
+
+require 'optparse'
+require File.expand_path('../../lib/version', __FILE__)
+
+options = {
+  format: nil,
+  metadata: nil,
+  data: [],
+  object: nil,
+}
+
+OptionParser.new do |o|
+  o.version = ADRL_VERSION
+
+  o.on('-h', '--help', 'Prints this help') do
+    puts o
+    exit
+  end
+
+  o.on('-f', '--format STRING', 'Metadata format (csv, mods, etd, cyl)') do |t|
+    options[:format] = t
+  end
+
+  o.on('-m', '--metadata PATH', 'Path to metadata files/directory') do |m|
+    options[:metadata] = m
+  end
+
+  o.on('-d', '--data PATH', 'Path to data files/directory') do |d|
+    options[:data] = [d]
+  end
+
+  o.on('-o', '--object STRING', 'The type of object (e.g. Image, Collection)') do |ob|
+    options[:object] = ob
+  end
+
+  if ARGV.empty?
+    puts o
+    exit 1
+  end
+end.parse!(ARGV)
+
+# Add remaining arguments (most likely from file globbing the -d argument) to :data
+options[:data] += ARGV if options[:data]
+
+# ETDs don't need an object type specified
+# Cylinders can be ingested without data
+if %w(csv mods).include? options[:format]
+  if options[:object].nil?
+    unless options[:data].nil?
+      $stderr.puts 'Data path specified, but no object type given'
+      exit 1
+    end
+    # If no object specified, default to Collection
+    options[:object] = 'Collection'
+  end
+end
+
+# ETD metadata is fetched at the time of ingest
+unless options[:format] == 'etd'
+  unless File.exist?(options[:metadata]) || Dir.exist?(options[:metadata])
+    $stderr.puts "Bad path provided for metadata: #{options[:metadata]}"
+    exit 1
+  end
+end
+
+require 'find'
+require 'traject'
+require 'traject/command_line'
+
+puts 'Loading environment...'
+require File.expand_path('../../config/environment', __FILE__)
+require File.expand_path('../../lib/importer', __FILE__)
+puts "Running in #{Rails.env} mode..."
+
+case options[:format]
+when 'csv'
+  meta = []
+  Find.find(options[:metadata]) do |path|
+    next unless File.extname(path) == '.csv'
+    meta << path
+  end
+  meta.each do |m|
+    size = Importer::CSVImporter.new(m, options[:data], options[:object]).import_all
+    puts "Imported #{size} CSV records"
+  end
+  exit 0
+when 'mods'
+  size = Importer::ModsImporter.new(options[:data], options[:metadata]).import_all
+  puts "Imported #{size} Mods records"
+  exit 0
+when 'etd'
+  Rails.application.eager_load!
+  AdminPolicy.ensure_admin_policy_exists
+
+  Dir.mkdir Settings.download_root unless Pathname.new(Settings.download_root).exist?
+  Dir.mkdir Settings.marc_directory unless Pathname.new(Settings.marc_directory).exist?
+  Dir.mkdir Settings.proquest_directory unless Pathname.new(Settings.proquest_directory).exist?
+
+  output_file = File.join(Settings.marc_directory, "MARC_#{Time.now.to_i}.xml")
+  Importer::ETDImporter.write_marc_file(options[:data], output_file)
+
+  result = nil
+  begin
+    options[:data].each do |zip|
+      unless File.dirname(zip) == Settings.proquest_directory
+        FileUtils.cp zip, Settings.proquest_directory
+      end
+    end
+
+    puts 'Now ingesting...'
+
+    args = ['-c', 'lib/traject/etd_config.rb']
+    args << '-s' << "files_directory=#{Settings.proquest_directory}"
+    args << output_file
+    cmdline = Traject::CommandLine.new(args)
+    result = cmdline.execute
+  ensure
+    FileUtils.rm_f Dir["#{Settings.proquest_directory}/*.zip"]
+  end
+  if result
+    exit 0
+  else
+    exit 1
+  end
+when 'cyl'
+  Rails.application.eager_load!
+  AdminPolicy.ensure_admin_policy_exists
+
+  meta = []
+  Find.find(options[:metadata]) do |path|
+    next unless File.extname(path) == '.xml'
+    meta << path
+  end
+
+  meta.each do |m|
+    args = ['-c', 'lib/traject/audio_config.rb']
+    # FIXME: Allow multiple metadata and data files/directories
+    args << '-s' << "files_directory=#{options[:data].first}" if options[:data]
+    args << m
+    cmdline = Traject::CommandLine.new(args)
+    result = cmdline.execute
+    exit 1 unless result
+  end
+  exit 0
+end

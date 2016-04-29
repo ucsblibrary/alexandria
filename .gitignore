@@ -13,23 +13,23 @@ public/assets
 
 # Ignore provisioning files
 *.cfg
-ansible/*.cfg
-ansible/*.retry
-hosts
+/ansible/*.cfg
+/ansible/*.retry
+/hosts
 
 # ignore ADRL data files
-download_root
-fedora-data
-ingest
-install
-marmotta
-solr
-tomcat
-uploads
+/download_root
+/fedora-data
+/ingest
+/install
+/marmotta
+/solr
+/tomcat
+/uploads
 
 # Ignore all logfiles and tempfiles.
 *.log
-logs
+/logs
 /log/*
 !/log/.keep
 /tmp
@@ -38,7 +38,7 @@ logs
 .byebug_history
 
 # Passwords etc
-config/*.yml
+/config/*.yml
 
-tags
-env
+/tags
+/env

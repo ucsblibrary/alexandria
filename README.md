@@ -164,6 +164,17 @@ provisioning.  Make sure it is up-to-date when running ingests.
 The remote fileshare with supporting images is automatically mounted
 to `/opt/ingest/data`.
 
+Most ingests can be performed with `bin/ingest`:
+```
+$ bin/ingest -h
+Usage: ingest [options]
+    -h, --help                       Prints this help
+    -f, --format STRING              Metadata format (csv, mods, etd, cyl)
+    -m, --metadata PATH              Path to metadata files/directory
+    -d, --data PATH                  Path to data files/directory
+    -o, --object STRING              The type of object (e.g. Image, Collection)
+```
+
 ## Local Authorities
 
 ### Exporting Local Authorities to a CSV File
@@ -182,7 +193,7 @@ To run the import script use `bin/ingest-authorities <csv_file>`
 
 1. SSH into the server and `cd` to the “current” directory: `cd /opt/alex2/current`.
 
-2. Run the ETD script: `bundle exec bin/ingest-etd /opt/ingest/data/etds/2adrl_ready/*.zip`.
+2. Run the ETD script: `RAILS_ENV=production bin/ingest -f etd -d /opt/ingest/data/etds/2adrl_ready/*.zip`.
 
 After you import the individual ETDs, you need to add the collection-level record to the repository. See
 https://wiki.library.ucsb.edu/pages/viewpage.action?pageId=16288317 on
@@ -192,7 +203,7 @@ creating it.
 
 Run the import script
 ```
-RAILS_ENV=production bin/ingest-cylinders spec/fixtures/marcxml/cylinder_sample_marc.xml  /data/objects-cylinders
+RAILS_ENV=production bin/ingest -f cyl -m spec/fixtures/marcxml/cylinder_sample_marc.xml -d /data/objects-cylinders
 ```
 
 ## Images
@@ -203,9 +214,9 @@ Importing a collection of MODS is a two-step process.  First the
 collection is created, then individual records with attachments are
 minted and added to the collection.
 
-1. Create a collection: `bin/ingest-mods ../mods-for-adrl/mods_demo_set/collection ../alexandria-images/mods_demo_images/`
+1. Create a collection: `bin/ingest -f mods -m ../mods-for-adrl/mods_demo_set/collection`
 
-2. Add the records: `bin/ingest-mods ../mods-for-adrl/mods_demo_set/objects ../alexandria-images/mods_demo_images/`
+2. Add the records: `bin/ingest -f mods -m ../mods-for-adrl/mods_demo_set/objects -d ../alexandria-images/mods_demo_images/`
 
 The first argument to the script is the directory that contains the
 MODS files.  The second argument is the directory that contains
@@ -214,7 +225,7 @@ supporting files, such as image files.
 ### CSV
 
 ```
-bin/ingest-csv <CSV file> [supporting files] [type]
+bin/ingest -f csv -m <CSV file> -d [supporting files] -o [object type]
 ```
 
 The first argument to the script is the CSV file that contains the
@@ -225,9 +236,9 @@ supporting files, such as image files, and the type: currently,
 Ingesting CSVs, like MODs, is a two-part process; first create the
 collection, then individual records:
 
-1. `bin/ingest-csv /path/to/collection.csv Collection`
+1. `bin/ingest -f csv -m /path/to/collection.csv -o Collection`
 
-2. `bin/ingest-csv /path/to/objects.csv /path/to/files Image`
+2. `bin/ingest -f csv -m /path/to/objects.csv -d /path/to/files -o Image`
 
 #### How to specify the type of a local authority for CSV ingest
 
