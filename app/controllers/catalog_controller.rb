@@ -28,6 +28,12 @@ class CatalogController < ApplicationController
   # https://groups.google.com/d/msg/blacklight-development/l_zHRF_GQc8/_qUUbJSs__YJ
   CatalogController.blacklight_config.show.document_actions.delete(:sms)
 
+  # TODO: re-implement this functionality
+  # https://github.library.ucsb.edu/ADRL/alexandria/pull/29
+  # https://help.library.ucsb.edu/browse/DIGREPO-504
+  CatalogController.blacklight_config.show.document_actions.delete(:email)
+  CatalogController.blacklight_config.show.document_actions.delete(:citation)
+
   add_show_tools_partial(:edit, partial: 'catalog/edit', if: :editor?)
   add_show_tools_partial(:download, partial: 'catalog/download')
   add_show_tools_partial(:access, partial: 'catalog/access', if: :show_embargos_link?)
