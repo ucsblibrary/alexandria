@@ -26,7 +26,16 @@ Hydra.configure do |_config|
     model = result.object.to_s.downcase.singularize
 
     routes = Rails.application.routes.url_helpers
-    builder = ActionDispatch::Routing::PolymorphicRoutes::HelperMethodBuilder
-    builder.polymorphic_method routes, model, nil, :url, id: id, host: Rails.application.config.host_name
+    if routes.respond_to?("#{model}_url".to_sym)
+      builder = ActionDispatch::Routing::PolymorphicRoutes::HelperMethodBuilder
+      return builder.polymorphic_method routes, model, nil, :url, id: id, host: Rails.application.config.host_name
+    end
+
+    record = ActiveFedora::Base.find(id)
+    if record.respond_to? :identifier
+      "http://#{Rails.application.config.host_name}/lib/#{record.identifier.first}"
+    else
+      record.uri
+    end
   end
 end
