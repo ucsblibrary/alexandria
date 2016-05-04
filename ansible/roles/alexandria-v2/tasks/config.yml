@@ -27,6 +27,17 @@
   with_items:
     - "  marmotta_host: localhost:8180"
 
+- name: Write SMTP To address to secrets.yml
+  become: yes
+  lineinfile:
+      backup: yes
+      dest: "{{ config_path }}/secrets.yml"
+      state: present
+      insertafter: ^default
+      line: "{{ item }}"
+  with_items:
+      - "  contact_us_email_to: {{ contact_email }}"
+
 - name: add config/environments directory
   become: yes
   file:
