@@ -50,6 +50,14 @@ describe CatalogController do
           expect(response.body).to include "<http://test.host/lib/#{ark}>"
         end
       end
+
+      context 'for a record with no ark' do
+        let(:record) { create :public_image, identifier: nil }
+
+        it 'shows public urls (not fedora urls)' do
+          expect(response.body).to include "<http://test.host/catalog/#{record.id}>"
+        end
+      end
     end
 
     context 'view a restricted file' do

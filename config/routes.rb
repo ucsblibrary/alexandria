@@ -42,7 +42,7 @@ Rails.application.routes.draw do
   end
 
   get 'lib/:prot/:shoulder/:id' => 'curation_concerns/audio_recordings#show', constraints: AudioRoutingConcern.new
-  get 'lib/:prot/:shoulder/:id' => 'catalog#show'
+  get 'lib/:prot/:shoulder/:id' => 'catalog#show', as: 'catalog_ark'
 
   resources :local_authorities, only: :index
 
