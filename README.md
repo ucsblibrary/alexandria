@@ -158,7 +158,7 @@ ansible-playbook ansible/ansible-ec2.yml --private-key=/path/to/private/half/of/
 
 The descriptive metadata repository
 (https://stash.library.ucsb.edu/projects/CMS/repos/adrl-dm/browse) is
-automatically cloned to `/opt/download_root/metadata` during
+automatically cloned to `/opt/ingest/metadata/adrl-dm` during
 provisioning.  Make sure it is up-to-date when running ingests.
 
 The remote fileshare with supporting images is automatically mounted
@@ -175,33 +175,23 @@ Usage: ingest [options]
     -o, --object STRING              The type of object (e.g. Image, Collection)
 ```
 
-## Local Authorities
-
-### Exporting Local Authorities to a CSV File
-
-To export local authorities from the local machine, run the export script `bin/export-authorities`
-If you need to export local authorities on a remote box and don't want to run the process  on that box,
-see the notes in the wiki: [Exporting Local Authorities](https://github.com/curationexperts/alexandria-v2/wiki/Exporting-Local-Authorities-(especially-from-remote-systems))
-
-### Importing Local Authorities from a CSV File
-
-To import local authorities to the local system, you will need a CSV file defining the authorities to import.
-Ideally, this is an export from another system created by the exporter above.
-To run the import script use `bin/ingest-authorities <csv_file>`
+Ingests should be done on the remote server in the “current” directory: `/opt/alexandria-v2/current`.
 
 ## ETDs
 
-1. SSH into the server and `cd` to the “current” directory: `cd /opt/alex2/current`.
+```
+RAILS_ENV=production bin/ingest -f etd -d /opt/ingest/data/etds/2adrl_ready/*.zip
+```
 
-2. Run the ETD script: `RAILS_ENV=production bin/ingest -f etd -d /opt/ingest/data/etds/2adrl_ready/*.zip`.
+After you import the individual ETDs, you need to add the
+collection-level record to the repository:
 
-After you import the individual ETDs, you need to add the collection-level record to the repository. See
-https://wiki.library.ucsb.edu/pages/viewpage.action?pageId=16288317 on
-creating it.
+```
+RAILS_ENV=production bin/ingest -f mods -m /opt/ingest/metadata/adrl-dm/ingest-ready/etds/
+```
 
 ## Wax Cylinders
 
-Run the import script
 ```
 RAILS_ENV=production bin/ingest -f cyl -m spec/fixtures/marcxml/cylinder_sample_marc.xml -d /data/objects-cylinders
 ```
@@ -214,31 +204,22 @@ Importing a collection of MODS is a two-step process.  First the
 collection is created, then individual records with attachments are
 minted and added to the collection.
 
-1. Create a collection: `bin/ingest -f mods -m ../mods-for-adrl/mods_demo_set/collection`
+1. Create a collection: `RAILS_ENV=production bin/ingest -f mods -m ../mods-for-adrl/mods_demo_set/collection`
 
-2. Add the records: `bin/ingest -f mods -m ../mods-for-adrl/mods_demo_set/objects -d ../alexandria-images/mods_demo_images/`
-
-The first argument to the script is the directory that contains the
-MODS files.  The second argument is the directory that contains
-supporting files, such as image files.
+2. Add the records: `RAILS_ENV=production bin/ingest -f mods -m ../mods-for-adrl/mods_demo_set/objects -d ../alexandria-images/mods_demo_images/`
 
 ### CSV
 
 ```
-bin/ingest -f csv -m <CSV file> -d [supporting files] -o [object type]
+RAILS_ENV=production bin/ingest -f csv -m <CSV file> -d [supporting files] -o [object type]
 ```
 
-The first argument to the script is the CSV file that contains the
-records.  Optional arguments are the directory that contains
-supporting files, such as image files, and the type: currently,
-`Image`, `ETD`, or `Collection`.
+If the object type is not specified, it defaults to “Collection”.  The
+other valid object type (as of now) is “Image”:
 
-Ingesting CSVs, like MODs, is a two-part process; first create the
-collection, then individual records:
-
-1. `bin/ingest -f csv -m /path/to/collection.csv -o Collection`
-
-2. `bin/ingest -f csv -m /path/to/objects.csv -d /path/to/files -o Image`
+```
+RAILS_ENV=production bin/ingest -f csv -m /path/to/metadata.csv -d /path/to/files -o Image
+```
 
 #### How to specify the type of a local authority for CSV ingest
 
@@ -265,6 +246,22 @@ For example, see the "lc_subject", "composer", and "rights_holder" fields in [th
 #### How to specify the type of a Note for CSV ingest
 
 The Notes work the same way as the local authorites (see section above):  If the note has a type that needs to be specified, then you must have a ```note_type``` column, followed by a ```note``` column.
+
+## Local Authorities
+
+### Exporting Local Authorities to a CSV File
+
+To export local authorities from the local machine, run the export
+script `RAILS_ENV=production bin/export-authorities`. If you need to
+export local authorities on a remote box and don't want to run the
+process on that box, see the notes in the wiki:
+[Exporting Local Authorities](https://github.com/curationexperts/alexandria-v2/wiki/Exporting-Local-Authorities-(especially-from-remote-systems))
+
+### Importing Local Authorities from a CSV File
+
+To import local authorities to the local system, you will need a CSV file defining the authorities to import.
+Ideally, this is an export from another system created by the exporter above.
+To run the import script use `RAILS_ENV=production bin/ingest-authorities <csv_file>`
 
 # Caveats
 
