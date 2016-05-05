@@ -60,7 +60,7 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 4.4'
   gem 'jettywrapper'
   # gem 'http_logger'
-  gem 'capybara'
+  gem 'capybara', '2.6.2'
   gem 'poltergeist'
   gem 'byebug'
   gem 'rubocop', require: false
