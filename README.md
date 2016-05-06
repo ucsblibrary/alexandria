@@ -175,7 +175,23 @@ Usage: ingest [options]
     -o, --object STRING              The type of object (e.g. Image, Collection)
 ```
 
-Ingests should be done on the remote server in the “current” directory: `/opt/alexandria-v2/current`.
+Ingests should be done on the remote ADRL server in the “current”
+directory: `/opt/alexandria-v2/current`.
+
+For large ingests, you’ll need to connect to ADRL from a machine
+that’s always running, or detach the ingest process so you can log out
+of the remote server.  The easiest way is with `nohup`; here’s how
+you’d ingest the sample ETDs on the test server:
+
+```
+ssh adrl@hostname
+cd /opt/alexandria-v2/current
+RAILS_ENV=production nohup bin/ingest -f etd -d /opt/download_root/proquest/etdadmin_upload_* >> log/ingest-$(date "+%Y.%m.%d").log 2>&1 &
+```
+
+That will allow you to log out of the machine, and write the output of
+the ingest script to a file in `/opt/alexandria-v2/current/log/` with
+the date of the ingest.
 
 ## ETDs
 
