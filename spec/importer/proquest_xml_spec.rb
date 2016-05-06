@@ -1,7 +1,6 @@
 require 'rails_helper'
-require 'importer/proquest_xml_parser'
 
-describe Importer::ProquestXmlParser do
+describe Proquest::XML do
   let(:parser) { described_class.new(File.read(file)) }
   let(:attributes) { parser.attributes }
 

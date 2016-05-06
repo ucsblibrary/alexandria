@@ -11,7 +11,7 @@ module Importer
     def run
       puts "Importing local authorities from: #{input_file}"
 
-      CSV.foreach(input_file, headers: true, header_converters: [:downcase, :symbol]) do |row|
+      ::CSV.foreach(input_file, headers: true, header_converters: [:downcase, :symbol]) do |row|
         create_or_update_fedora_object(row)
       end
     end

@@ -1,6 +1,5 @@
-require 'importer/proquest_xml_parser'
-
-class UpdateMetadataFromProquestFile
+module Proquest
+  class Metadata
   # This service assumes that the metadata file from ProQuest
   # has already been attached to the ETD record.  It will read
   # that file and update the ETD's metadata accordingly.
@@ -16,7 +15,7 @@ class UpdateMetadataFromProquestFile
 
   def run
     if attributes.blank?
-      puts "ProQuest metadata not found for ETD: #{etd.id}"
+      Rails.logger.warn "ProQuest metadata not found for ETD: #{etd.id}"
     else
       update_embargo_metadata!
       update_access_metadata
@@ -26,7 +25,7 @@ class UpdateMetadataFromProquestFile
 
   def attributes
     return @attributes if @attributes
-    @attributes = ::Importer::ProquestXmlParser.new(etd.proquest.content).attributes
+    @attributes = Proquest::XML.new(etd.proquest.content).attributes
     @attributes = {} if @attributes.all? { |_k, v| v.blank? }
     @attributes
   end
@@ -98,7 +97,7 @@ class UpdateMetadataFromProquestFile
     end
 
     def descriptive_attributes
-      attributes.except(*Importer::ProquestXmlParser.embargo_xpaths.keys)
+      attributes.except(*Proquest::XML.embargo_xpaths.keys)
     end
 
     def no_embargo?
@@ -191,4 +190,5 @@ class UpdateMetadataFromProquestFile
     def batch_3?
       attributes[:DISS_agreement_decision_date].nil?
     end
+  end
 end

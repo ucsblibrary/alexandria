@@ -18,6 +18,7 @@ public/assets
 /hosts
 
 # ignore ADRL data files
+/derivatives
 /download_root
 /fedora-data
 /ingest

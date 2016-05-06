@@ -152,136 +152,19 @@ ansible-playbook ansible/ansible-ec2.yml --private-key=/path/to/private/half/of/
     set :bundle_env_variables, nokogiri_use_system_libraries: 1
     ```
 
-# Ingesting
+# Ingesting records
 
-(See also: <https://github.com/curationexperts/alexandria-v2/wiki>)
-
-The descriptive metadata repository
-(https://stash.library.ucsb.edu/projects/CMS/repos/adrl-dm/browse) is
-automatically cloned to `/opt/ingest/metadata/adrl-dm` during
-provisioning.  Make sure it is up-to-date when running ingests.
-
-The remote fileshare with supporting images is automatically mounted
-to `/opt/ingest/data`.
-
-Most ingests can be performed with `bin/ingest`:
-```
-$ bin/ingest -h
-Usage: ingest [options]
-    -h, --help                       Prints this help
-    -f, --format STRING              Metadata format (csv, mods, etd, cyl)
-    -m, --metadata PATH              Path to metadata files/directory
-    -d, --data PATH                  Path to data files/directory
-    -o, --object STRING              The type of object (e.g. Image, Collection)
-```
-
-Ingests should be done on the remote ADRL server in the “current”
-directory: `/opt/alexandria-v2/current`.
-
-For large ingests, you’ll need to connect to ADRL from a machine
-that’s always running, or detach the ingest process so you can log out
-of the remote server.  The easiest way is with `nohup`; here’s how
-you’d ingest the sample ETDs on the test server:
-
-```
-ssh adrl@hostname
-cd /opt/alexandria-v2/current
-RAILS_ENV=production nohup bin/ingest -f etd -d /opt/download_root/proquest/etdadmin_upload_* >> log/ingest-$(date "+%Y.%m.%d").log 2>&1 &
-```
-
-That will allow you to log out of the machine, and write the output of
-the ingest script to a file in `/opt/alexandria-v2/current/log/` with
-the date of the ingest.
-
-## ETDs
-
-```
-RAILS_ENV=production bin/ingest -f etd -d /opt/ingest/data/etds/2adrl_ready/*.zip
-```
-
-After you import the individual ETDs, you need to add the
-collection-level record to the repository:
-
-```
-RAILS_ENV=production bin/ingest -f mods -m /opt/ingest/metadata/adrl-dm/ingest-ready/etds/
-```
-
-## Wax Cylinders
-
-```
-RAILS_ENV=production bin/ingest -f cyl -m spec/fixtures/marcxml/cylinder_sample_marc.xml -d /data/objects-cylinders
-```
-
-## Images
-
-### MODS
-
-Importing a collection of MODS is a two-step process.  First the
-collection is created, then individual records with attachments are
-minted and added to the collection.
-
-1. Create a collection: `RAILS_ENV=production bin/ingest -f mods -m ../mods-for-adrl/mods_demo_set/collection`
-
-2. Add the records: `RAILS_ENV=production bin/ingest -f mods -m ../mods-for-adrl/mods_demo_set/objects -d ../alexandria-images/mods_demo_images/`
-
-### CSV
-
-```
-RAILS_ENV=production bin/ingest -f csv -m <CSV file> -d [supporting files] -o [object type]
-```
-
-If the object type is not specified, it defaults to “Collection”.  The
-other valid object type (as of now) is “Image”:
-
-```
-RAILS_ENV=production bin/ingest -f csv -m /path/to/metadata.csv -d /path/to/files -o Image
-```
-
-#### How to specify the type of a local authority for CSV ingest
-
-The CSV importer will create local authorities for local names or subjects that don't yet exist.
-
-To specify a new local authority in the CSV file, use pairs of columns for the type and name of the authority.  For example, if you have a collector called "Joel Conway", you need 2 columns in your CSV file:
-
-1. A "collector_type" column with the value "Person"
-2. A "collector" column with the value "Joel Conway"
-
-You only need the matching ```*_type``` column if you are trying to add a new local authority.  For URIs, just put them straight into the "collector" column, without adding a "collector_type" column.
-
-Usage Notes:
-
-* If the value of the column is a URI (for external authorities or pre-existing local authorities), then don't use the matching ```*_type``` column.
-
-* If the value of the column is a String (for new local authorities), add a matching ```*_type``` column.  The columns must be in pairs (e.g. "composer_type" and "composer"), and the ```*_type``` column must come first.
-
-* The possible values for the ```*_type``` fields are:  Person, Group, Organization, and Topic.
-
-For example, see the "lc_subject", "composer", and "rights_holder" fields in [the example CSV file in the spec fixtures]
-(https://github.com/curationexperts/alexandria-v2/blob/master/spec/fixtures/csv/pamss045_with_local_authorities.csv).
-
-#### How to specify the type of a Note for CSV ingest
-
-The Notes work the same way as the local authorites (see section above):  If the note has a type that needs to be specified, then you must have a ```note_type``` column, followed by a ```note``` column.
-
-## Local Authorities
-
-### Exporting Local Authorities to a CSV File
-
-To export local authorities from the local machine, run the export
-script `RAILS_ENV=production bin/export-authorities`. If you need to
-export local authorities on a remote box and don't want to run the
-process on that box, see the notes in the wiki:
-[Exporting Local Authorities](https://github.com/curationexperts/alexandria-v2/wiki/Exporting-Local-Authorities-(especially-from-remote-systems))
-
-### Importing Local Authorities from a CSV File
-
-To import local authorities to the local system, you will need a CSV file defining the authorities to import.
-Ideally, this is an export from another system created by the exporter above.
-To run the import script use `RAILS_ENV=production bin/ingest-authorities <csv_file>`
+See [INGESTING.md](INGESTING.md) and DCE’s wiki:
+<https://github.com/curationexperts/alexandria-v2/wiki>
 
 # Caveats
 
-* Reindexing all objects (to an empty solr) requires two passes (`2.times { ActiveFedora::Base.reindex_everything }`). This situtation is not common. The first pass will guarantee that the collections are indexed, and the second pass will index the collection name on all the objects. The object indexer looks up the collection name from solr for speed.
+* Reindexing all objects (to an empty solr) requires two passes
+  (`2.times { ActiveFedora::Base.reindex_everything }`). This
+  situtation is not common. The first pass will guarantee that the
+  collections are indexed, and the second pass will index the
+  collection name on all the objects. The object indexer looks up the
+  collection name from solr for speed.
 
 # Troubleshooting
 

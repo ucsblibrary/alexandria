@@ -3,8 +3,43 @@ module Importer::Factory
     include WithAssociatedCollection
 
     self.klass = AudioRecording
-    self.attach_files_service = AttachFilesToAudioRecording
     self.system_identifier_field = :system_number
+
+    def attach_files(object, cylinders)
+      return if object.file_sets.count > 0
+
+      number = object['fulltext_link'].first.sub(/.*Cylinder/, '')
+      files = cylinders.select { |c| c.include? "cusb-cyl#{number}" }
+
+      now = CurationConcerns::TimeService.time_in_utc
+      file_set = FileSet.create!(label: "Cylinder#{number}",
+                                 admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID,
+                                 date_uploaded: now,
+                                 date_modified: now)
+      actor = CurationConcerns::FileSetActor.new(file_set, User.batchuser)
+      # Set the representative if it doesn't already exist and a file was attached.
+      object.representative ||= file_set if attach_original(actor, number, files)
+      attach_restored(actor, number, files)
+      object.ordered_members << file_set
+    end
+
+    def attach_original(actor, number, cylinders)
+      if orig_path = cylinders.select { |c| c.include? "cusb-cyl#{number}a.wav" }.first
+        Rails.logger.debug "Attaching original #{orig_path}"
+        actor.create_content(File.new(orig_path))
+      else
+        $stderr.puts "No original file provided for Cylinder #{number}"
+      end
+    end
+
+    def attach_restored(actor, number, cylinders)
+      if rest_path = cylinders.select { |c| c.include? "cusb-cyl#{number}b.wav" }.first
+        Rails.logger.debug "Attaching restored #{rest_path}"
+        actor.create_content(File.new(rest_path), 'restored')
+      else
+        $stderr.puts "No restored file provided for Cylinder #{number}"
+      end
+    end
 
     # All AudioRecordings should be public
     def create_attributes

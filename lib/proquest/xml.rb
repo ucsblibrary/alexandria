@@ -1,8 +1,8 @@
 # Parse an XML metadata file from the ProQuest system, and
 # collect all the interesting values in the attributes hash.
 
-module Importer
-  class ProquestXmlParser
+module Proquest
+  class XML
     def initialize(file_contents)
       @doc = Nokogiri::XML(file_contents)
     end
@@ -10,11 +10,13 @@ module Importer
     def attributes
       embargo_attributes.merge(
         rights_holder: rights_holder,
-        date_copyrighted: date_copyrighted)
+        date_copyrighted: date_copyrighted
+      )
     end
 
     def self.embargo_xpaths
-      { embargo_code: 'DISS_submission/@embargo_code',
+      {
+        embargo_code: 'DISS_submission/@embargo_code',
         DISS_accept_date: '//DISS_accept_date',
         DISS_agreement_decision_date: '//DISS_agreement_decision_date',
         DISS_delayed_release: '//DISS_delayed_release',

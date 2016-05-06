@@ -1,146 +1,240 @@
 #!/usr/bin/env ruby
 
-require 'optparse'
-require File.expand_path('../../lib/version', __FILE__)
-
-options = {
-  format: nil,
-  metadata: nil,
-  data: [],
-  object: nil,
-}
-
-OptionParser.new do |o|
-  o.version = ADRL_VERSION
-
-  o.on('-h', '--help', 'Prints this help') do
-    puts o
-    exit
-  end
-
-  o.on('-f', '--format STRING', 'Metadata format (csv, mods, etd, cyl)') do |t|
-    options[:format] = t
-  end
-
-  o.on('-m', '--metadata PATH', 'Path to metadata files/directory') do |m|
-    options[:metadata] = m
-  end
-
-  o.on('-d', '--data PATH', 'Path to data files/directory') do |d|
-    options[:data] = [d]
-  end
-
-  o.on('-o', '--object STRING', 'The type of object (e.g. Image, Collection)') do |ob|
-    options[:object] = ob
-  end
-
-  if ARGV.empty?
-    puts o
-    exit 1
-  end
-end.parse!(ARGV)
-
-# Add remaining arguments (most likely from file globbing the -d argument) to :data
-options[:data] += ARGV if options[:data]
-
-# ETDs don't need an object type specified
-# Cylinders can be ingested without data
-if %w(csv mods).include? options[:format]
-  if options[:object].nil?
-    unless options[:data].nil?
-      $stderr.puts 'Data path specified, but no object type given'
-      exit 1
-    end
-    # If no object specified, default to Collection
-    options[:object] = 'Collection'
-  end
-end
-
-# ETD metadata is fetched at the time of ingest
-unless options[:format] == 'etd'
-  unless File.exist?(options[:metadata]) || Dir.exist?(options[:metadata])
-    $stderr.puts "Bad path provided for metadata: #{options[:metadata]}"
-    exit 1
-  end
-end
-
-require 'find'
-require 'traject'
-require 'traject/command_line'
-
 puts 'Loading environment...'
 require File.expand_path('../../config/environment', __FILE__)
-require File.expand_path('../../lib/importer', __FILE__)
 puts "Running in #{Rails.env} mode..."
 
-case options[:format]
-when 'csv'
-  meta = []
-  Find.find(options[:metadata]) do |path|
-    next unless File.extname(path) == '.csv'
-    meta << path
-  end
-  meta.each do |m|
-    size = Importer::CSVImporter.new(m, options[:data], options[:object]).import_all
-    puts "Imported #{size} CSV records"
-  end
-  exit 0
-when 'mods'
-  size = Importer::ModsImporter.new(options[:data], options[:metadata]).import_all
-  puts "Imported #{size} Mods records"
-  exit 0
-when 'etd'
-  Rails.application.eager_load!
-  AdminPolicy.ensure_admin_policy_exists
+require 'trollop'
 
-  Dir.mkdir Settings.download_root unless Pathname.new(Settings.download_root).exist?
-  Dir.mkdir Settings.marc_directory unless Pathname.new(Settings.marc_directory).exist?
-  Dir.mkdir Settings.proquest_directory unless Pathname.new(Settings.proquest_directory).exist?
+options = Trollop.options do
+  opt :data, 'Data file(s)/directory', type: :strings
+  opt :format, 'Metadata format (csv, mods, etd, cyl)', type: :string
+  opt :metadata, 'Metadata file(s)/directory', type: :strings
+  opt :skip, 'Skip the first N records', default: 0
+end
 
-  output_file = File.join(Settings.marc_directory, "MARC_#{Time.now.to_i}.xml")
-  Importer::ETDImporter.write_marc_file(options[:data], output_file)
+require File.expand_path('../../lib/importer', __FILE__)
+AdminPolicy.ensure_admin_policy_exists
 
-  result = nil
-  begin
-    options[:data].each do |zip|
-      unless File.dirname(zip) == Settings.proquest_directory
-        FileUtils.cp zip, Settings.proquest_directory
+# lib/exceptions.rb
+require 'exceptions'
+
+require 'fileutils'
+require 'find'
+require 'json'
+require 'traject'
+
+metadata_ext = case options[:format]
+               when 'csv'
+                 '.csv'
+               else
+                 '.xml'
+               end
+
+# For each argument passed to --metadata, if it's a file, add it
+# to the array, otherwise drill down and add each file within to
+# the array
+meta = if options[:metadata]
+         options[:metadata].map do |arg|
+           if File.file?(arg)
+             arg
+           else
+             next unless Dir.exist?(arg)
+             files = []
+             Find.find(arg) do |path|
+               next unless File.extname(path) == metadata_ext
+               files << path
+             end
+             files
+           end
+         end.flatten
+       else
+         []
+       end
+# For each argument passed to --data, if it's a file, add it to
+# the array, otherwise drill down and add each file within to the
+# array
+data = if options[:data]
+         options[:data].map do |arg|
+           if File.file?(arg)
+             arg
+           else
+             next unless Dir.exist?(arg)
+             datas = []
+             Find.find(arg) do |path|
+               next if File.directory?(path)
+               datas << path
+             end
+             datas
+           end
+         end.flatten
+       else
+         []
+       end
+
+######################
+# Begin ingest process
+######################
+begin
+  case options[:format]
+  when 'csv'
+    meta.each do |m|
+      head, tail = Importer::CSV.split(m)
+
+      if options[:skip] >= tail.length
+        raise ArgumentError, "Number of records skipped (#{options[:skip]}) greater than total records to ingest"
+      end
+
+      tail.each_with_index do |row, count|
+        next if options[:skip] > count
+
+        attrs = Importer::CSV.csv_attributes(head, row)
+        files = if attrs[:files].nil?
+                  []
+                else
+                  data.select { |d| attrs[:files].include? File.basename(d) }
+                end
+        begin
+          Importer::CSV.import(
+            attributes: attrs,
+            files: files
+          )
+          puts "Ingested #{count + 1} of #{tail.length} records"
+        # Other exceptions are already handled in CSV.import
+        rescue => e
+          puts e
+          puts e.backtrace
+          raise IngestError.new(reached: count)
+        rescue Interrupt
+          puts "\nIngest stopped, cleaning up..."
+          raise IngestError.new(reached: count)
+        end
       end
     end
-
-    puts 'Now ingesting...'
-
-    args = ['-c', 'lib/traject/etd_config.rb']
-    args << '-s' << "files_directory=#{Settings.proquest_directory}"
-    args << output_file
-    cmdline = Traject::CommandLine.new(args)
-    result = cmdline.execute
-  ensure
-    FileUtils.rm_f Dir["#{Settings.proquest_directory}/*.zip"]
-  end
-  if result
     exit 0
-  else
-    exit 1
-  end
-when 'cyl'
-  Rails.application.eager_load!
-  AdminPolicy.ensure_admin_policy_exists
+  when 'mods'
+    if options[:skip] >= meta.length
+      raise ArgumentError, "Number of records skipped (#{options[:skip]}) greater than total records to ingest"
+    end
 
-  meta = []
-  Find.find(options[:metadata]) do |path|
-    next unless File.extname(path) == '.xml'
-    meta << path
-  end
+    meta.each_with_index do |m, count|
+      next if options[:skip] > count
 
-  meta.each do |m|
-    args = ['-c', 'lib/traject/audio_config.rb']
-    # FIXME: Allow multiple metadata and data files/directories
-    args << '-s' << "files_directory=#{options[:data].first}" if options[:data]
-    args << m
-    cmdline = Traject::CommandLine.new(args)
-    result = cmdline.execute
-    exit 1 unless result
+      d = data.select do |f|
+        # FIXME: find a more reliable test
+        meta_base = File.basename(m, '.xml')
+        data_base = File.basename(f, File.extname(f))
+        data_base.include?(meta_base) || meta_base.include?(data_base)
+      end
+
+      begin
+        Importer::Mods.import(m, d)
+        puts "Ingested #{count + 1} of #{meta.length} records"
+      rescue => e
+        puts e
+        puts e.backtrace
+        raise IngestError.new(reached: count)
+      rescue Interrupt
+        puts "\nIngest stopped, cleaning up..."
+        raise IngestError.new(reached: count)
+      end
+    end
+    exit 0
+  when 'etd'
+    # lib/proquest
+    require 'proquest'
+
+    [Settings.download_root,
+     Settings.marc_directory,
+     Settings.proquest_directory].each do |dir|
+      FileUtils.mkdir_p dir unless Pathname.new(dir).exist?
+    end
+
+    if data.empty?
+      $stderr.puts 'Nothing found in the data path you specified.'
+      exit 1
+    end
+
+    Dir.mktmpdir do |temp|
+      etds = data.map.with_index do |zip, i|
+        # Don't unzip ETDs we won't use
+        if i >= options[:skip]
+          Proquest.extract(zip, "#{temp}/#{File.basename(zip)}")
+        end
+      end.compact
+
+      if etds.empty?
+        raise ArgumentError, "Number of records skipped (#{options[:skip]}) greater than total records to ingest"
+      end
+
+      xml = etds.map { |e| e[:xml] }
+      marc = MARC::XMLReader.new(
+        StringIO.new(Importer::ETD.fetch_marc(xml))
+      )
+
+      marc.each_with_index do |record, count|
+        # https://github.com/traject/traject/blob/master/lib/traject/indexer.rb#L101
+        indexer = Traject::Indexer.new
+        indexer.load_config_file('lib/traject/etd_config.rb')
+        indexer.settings(etd: etds[count])
+
+        begin
+          indexer.writer.put indexer.map_record(record)
+          # Since earlier we skipped the unzip operations we don't
+          # need, the array of records to iterate over is smaller, so
+          # we modify the numbers here so that we still get the
+          # correct "Ingested X of out Y records" readout.
+          puts "Ingested #{count + 1 + options[:skip]} of #{etds.length + options[:skip]} records"
+        rescue => e
+          puts e
+          puts e.backtrace
+          raise IngestError.new(reached: count)
+        rescue Interrupt
+          puts "\nIngest stopped, cleaning up..."
+          raise IngestError.new(reached: count)
+        end
+      end
+    end
+    exit 0
+  when 'cyl'
+    # XMLReader's Enumerable methods are destructive, so move the
+    # MARC::Records to an array so we can measure them:
+    # https://github.com/ruby-marc/ruby-marc/pull/47
+    marcs = meta.map do |m|
+      MARC::XMLReader.new(m).map { |o| o }
+    end.flatten
+
+    cylinders = marcs.length
+
+    if options[:skip] >= cylinders
+      raise ArgumentError, "Number of records skipped (#{options[:skip]}) greater than total records to ingest"
+    end
+
+    marcs.each_with_index do |record, count|
+      next if options[:skip] > count
+
+      # https://github.com/traject/traject/blob/master/lib/traject/indexer.rb#L101
+      indexer = Traject::Indexer.new
+      indexer.load_config_file('lib/traject/audio_config.rb')
+      indexer.settings(cylinders: data)
+
+      begin
+        indexer.writer.put indexer.map_record(record)
+        puts "Ingested #{count + 1} of #{cylinders} records"
+      rescue => e
+        puts e
+        puts e.backtrace
+        raise IngestError.new(reached: count)
+      rescue Interrupt
+        puts "\nIngest stopped, cleaning up..."
+        raise IngestError.new(reached: count)
+      end
+    end
+    exit 0
   end
-  exit 0
+rescue IngestError => e
+  puts
+  puts "Managed to ingest #{e.reached} objects."
+  puts
+  puts "To continue this ingest, re-run the command with `--skip #{e.reached}`"
 end

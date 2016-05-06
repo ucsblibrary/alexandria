@@ -3,15 +3,13 @@ module Importer::Factory
   class ObjectFactory
     extend ActiveModel::Callbacks
     define_model_callbacks :save, :create
-    after_save :attach_files
+    class_attribute :klass, :system_identifier_field
 
-    class_attribute :klass, :attach_files_service, :system_identifier_field
+    attr_reader :attributes, :files, :object
 
-    attr_reader :attributes, :files_directory, :object
-
-    def initialize(attributes, files_dir = nil)
-      @files_directory = files_dir
+    def initialize(attributes, files = [])
       @attributes = attributes
+      @files = files
     end
 
     def run
@@ -50,11 +48,11 @@ module Importer::Factory
       transform_attributes.except(:id, :files)
     end
 
-    def attach_files
-      return unless files_directory.present? && attributes[:files]
-
-      attach_files_service.run(object, files_directory, attributes[:files])
-      object.save! # Save the association with the attached files.
+    # Overridden in classes that inherit from ObjectFactory
+    #
+    # @param [Hash] object
+    # @param [String, Hash] files Either the path to the file or a hash with file metadata
+    def attach_files(object, files)
     end
 
     def find
@@ -80,6 +78,7 @@ module Importer::Factory
       # habtm <-> has_many associations, where they won't all get saved.
       # https://github.com/projecthydra/active_fedora/issues/874
       @object = klass.new(attrs)
+      attach_files(@object, @files)
       run_callbacks :save do
         run_callbacks :create do
           object.save!
@@ -93,11 +92,11 @@ module Importer::Factory
     end
 
     def log_created(obj)
-      puts "  Created #{klass.model_name.human} #{obj.id} (#{Array(attributes[system_identifier_field]).first})"
+      Rails.logger.debug "Created #{klass.model_name.human} #{obj.id} (#{Array(attributes[system_identifier_field]).first})"
     end
 
     def log_updated(obj)
-      puts "  Updated #{klass.model_name.human} #{obj.id} (#{Array(attributes[system_identifier_field]).first})"
+      Rails.logger.debug "Updated #{klass.model_name.human} #{obj.id} (#{Array(attributes[system_identifier_field]).first})"
     end
 
     # @return [Ezid::Identifier] the new identifier
@@ -210,7 +209,7 @@ module Importer::Factory
                       value
                     when Hash
                       find_or_create_local_contributor(value)
-          end
+                    end
         end
       end
 

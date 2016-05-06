@@ -1,6 +1,3 @@
-Style/IndentationConsistency:
-  EnforcedStyle: rails
-
 Lint/AssignmentInCondition:
   Enabled: false
 
@@ -9,6 +6,12 @@ Metrics/LineLength:
 
 Style/AsciiComments:
   Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/IndentationConsistency:
+  EnforcedStyle: rails
 
 Style/TrailingCommaInLiteral:
   EnforcedStyleForMultiline: comma

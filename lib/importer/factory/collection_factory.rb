@@ -13,8 +13,8 @@ module Importer::Factory
       run(&:save!)
     end
 
-    def attach_files
-      #nop
+    def attach_files(_, _)
+      # noop
     end
   end
 end

@@ -23,6 +23,7 @@ gem 'hydra-collections', '>= 8.1.1'
 gem 'hydra-head', '~> 9.8.1'
 gem 'hydra-role-management'
 gem 'linked_vocabs', '~> 0.3.1'
+gem 'marc'
 gem 'mods', '~> 2.0.3'
 gem 'oargun', git: 'https://github.com/curationexperts/oargun.git', ref: '8d4b556'
 gem 'qa', '~> 0.5.0'
@@ -44,8 +45,9 @@ gem 'settingslogic'
 gem 'resque-status'
 gem 'resque-pool'
 
-# for bin/ingest-etd
+# for bin/ingest
 gem 'curb'
+gem 'trollop'
 
 # When parsing the ETD metadata file from ProQuest,
 # some of the dates are American-style.

@@ -2,10 +2,8 @@ require 'rails_helper'
 require 'importer'
 
 describe Importer::Factory::ImageFactory do
-  let(:factory) { described_class.new(attributes) }
-  let(:collection_attrs) { { accession_number: ['SBHC Mss 36'], title: ['Test collection'] } }
-
   let(:files) { [] }
+  let(:collection_attrs) { { accession_number: ['SBHC Mss 36'], title: ['Test collection'] } }
   let(:attributes) do
     {
       collection: collection_attrs.slice(:accession_number), files: files, accession_number: ['123'],
@@ -15,6 +13,8 @@ describe Importer::Factory::ImageFactory do
       issued_attributes: [{ start: ['1925'], finish: [], label: [], start_qualifier: [], finish_qualifier: [] }]
     }
   end
+
+  let(:factory) { described_class.new(attributes, files) }
 
   # squelch output
   before do

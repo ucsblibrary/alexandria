@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'importer'
 
-describe Importer::ModsParser do
+describe Importer::Mods::Parser do
   let(:parser) { described_class.new(file) }
   let(:attributes) { parser.attributes }
 
@@ -56,7 +56,7 @@ describe Importer::ModsParser do
         formatted_date = date.to_s(:iso8601)
 
         Timecop.freeze(date) do
-          expect(attributes[:record_origin]).to eq ["#{formatted_date} Converted from CSV to MODS 3.4 using local mapping.", "#{formatted_date} #{Importer::ModsParser::ORIGIN_TEXT}"]
+          expect(attributes[:record_origin]).to eq ["#{formatted_date} Converted from CSV to MODS 3.4 using local mapping.", "#{formatted_date} #{Importer::Mods::Parser::ORIGIN_TEXT}"]
         end
       end
     end
@@ -121,7 +121,7 @@ describe Importer::ModsParser do
     end
 
     context 'without date_created' do
-      let(:parser) { Importer::ModsParser.new(nil) }
+      let(:parser) { Importer::Mods::Parser.new(nil) }
       let(:xml) { "<mods #{ns_decl}><originInfo><dateValid encoding=\"w3cdtf\">1989-12-01</dateValid></originInfo></mods>" }
 
       before { allow(parser).to receive(:mods).and_return(Mods::Record.new.from_str(xml)) }
@@ -146,7 +146,7 @@ describe Importer::ModsParser do
     end
 
     context 'with date_copyrighted' do
-      let(:parser) { Importer::ModsParser.new(nil) }
+      let(:parser) { Importer::Mods::Parser.new(nil) }
       let(:xml) { "<mods #{ns_decl}><originInfo><copyrightDate encoding=\"w3cdtf\">1985-12-01</copyrightDate></originInfo></mods>" }
       before { allow(parser).to receive(:mods).and_return(Mods::Record.new.from_str(xml)) }
       it 'imports date_copyrighted' do
@@ -155,7 +155,7 @@ describe Importer::ModsParser do
     end
 
     context 'with dateValid' do
-      let(:parser) { Importer::ModsParser.new(nil) }
+      let(:parser) { Importer::Mods::Parser.new(nil) }
       let(:xml) { "<mods #{ns_decl}><originInfo><dateValid encoding=\"w3cdtf\">1989-12-01</dateValid></originInfo></mods>" }
       before { allow(parser).to receive(:mods).and_return(Mods::Record.new.from_str(xml)) }
       it 'imports date_valid' do
@@ -216,7 +216,7 @@ describe Importer::ModsParser do
         formatted_date = date.to_s(:iso8601)
 
         Timecop.freeze(date) do
-          expect(attributes[:record_origin]).to eq ["#{formatted_date} Human created", "#{formatted_date} #{Importer::ModsParser::ORIGIN_TEXT}"]
+          expect(attributes[:record_origin]).to eq ["#{formatted_date} Human created", "#{formatted_date} #{Importer::Mods::Parser::ORIGIN_TEXT}"]
         end
       end
     end

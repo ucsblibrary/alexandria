@@ -4,7 +4,14 @@ require 'traject/command_line'
 describe 'Traject importer' do
   describe 'import a cylinder record' do
     let(:traject_config) { File.join(Rails.root, 'lib', 'traject', 'audio_config.rb') }
-    let(:command) { Traject::CommandLine.new(['-c', traject_config, marc_file]) }
+    let(:command) do
+      Traject::CommandLine.new(
+        # TODO: add sample audio files
+        %W(-c #{traject_config}
+           -s cylinders=
+           #{marc_file})
+      )
+    end
 
     let!(:collection) { Collection.create!(title: ['Wax Cylinders'], accession_number: ['Cylinders']) }
 

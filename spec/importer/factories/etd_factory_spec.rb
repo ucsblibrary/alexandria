@@ -2,9 +2,9 @@ require 'rails_helper'
 require 'importer'
 
 describe Importer::Factory::ETDFactory do
-  let(:factory) { described_class.new(attributes, Settings.proquest_directory) }
+  let(:factory) { described_class.new(attributes, {}) }
   let(:collection_attrs) { { accession_number: ['etds'], title: ['test collection'] } }
-  let(:files) { [] }
+  let(:files) { {} }
 
   let(:attributes) do
     {
@@ -26,7 +26,6 @@ describe Importer::Factory::ETDFactory do
 
     allow($stdout).to receive(:puts) # squelch output
     AdminPolicy.ensure_admin_policy_exists
-    allow(AttachFilesToETD).to receive(:run) # skip importing files
   end
 
   context 'when a collection already exists' do
@@ -62,8 +61,8 @@ describe Importer::Factory::ETDFactory do
 
     context "if the etd doesn't have attached proquest data" do
       it 'attaches files' do
-        expect(AttachFilesToETD).to receive(:run).with(etd, "#{Settings.download_root}/proquest", attributes[:files])
         factory.run
+        expect(ETD.find('f3gt5k61').files).to eq(['Plunkett_ucsb_0035D_11862.pdf'])
       end
     end
   end

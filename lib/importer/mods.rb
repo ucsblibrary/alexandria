@@ -1,5 +1,22 @@
-module Importer
-  class ModsParser
+module Importer::Mods
+  # @param [Array<String>] data
+  # @param [Array<String>] meta
+  # @return [Void]
+  def self.import(meta, data)
+    Rails.logger.debug "Importing: #{meta}"
+    parser = Parser.new(meta)
+    begin
+      ::Importer::Factory.for(parser.model.to_s).new(
+        parser.attributes.merge(admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID),
+        data).run
+    rescue => e
+      $stderr.puts e
+      $stderr.puts e.backtrace
+      raise IngestError
+    end
+  end
+
+  class Parser
     ORIGIN_TEXT = 'Converted from MODS 3.4 to local RDF profile by ADRL'.freeze
 
     NAMESPACES = { 'mods'.freeze => Mods::MODS_NS }.freeze
@@ -238,7 +255,7 @@ module Importer
           node.title.map do |title|
             value = title.text
             unless type == alternative
-              puts "  Transformtion: \"#{type} title\" will be stored as \"#{alternative} title\": #{value}"
+              Rails.logger.debug "Transformation: \"#{type} title\" will be stored as \"#{alternative} title\": #{value}"
             end
             value
           end

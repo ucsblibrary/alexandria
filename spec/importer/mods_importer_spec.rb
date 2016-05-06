@@ -1,10 +1,8 @@
 require 'rails_helper'
 require 'importer'
-require 'importer/mods_parser'
 
-describe Importer::ModsImporter do
-  let(:image_directory) { 'spec/fixtures/images' }
-  let(:importer) { Importer::ModsImporter.new(image_directory) }
+describe Importer::Mods do
+  let(:images) { Dir['spec/fixtures/images/*'] }
 
   before do
     AdminPolicy.ensure_admin_policy_exists
@@ -38,7 +36,7 @@ describe Importer::ModsImporter do
       expect_any_instance_of(Importer::Factory::CollectionFactory).to receive(:mint_ark).and_return(identifier2)
 
       expect do
-        image = importer.import(file)
+        image = Importer::Mods.import(file, images, 0)
       end.to change { Image.count }.by(1)
         .and change { FileSet.count }.by(2)
         .and change { Collection.count }.by(1)
@@ -83,7 +81,7 @@ describe Importer::ModsImporter do
 
         expect do
           VCR.use_cassette('ezid') do
-            importer.import(file)
+            Importer::Mods.import(file, images, 0)
           end
         end.to change { Collection.count }.by(0)
 
@@ -106,7 +104,7 @@ describe Importer::ModsImporter do
       coll = nil
       expect do
         VCR.use_cassette('ezid') do
-          coll = importer.import(file)
+          coll = Importer::Mods.import(file, [], 0)
         end
       end.to change { Collection.count }.by(1).and change {
         Person.count
@@ -129,7 +127,7 @@ describe Importer::ModsImporter do
       it 'it adds metadata to existing collection' do
         coll = nil
         expect do
-          coll = importer.import(file)
+          coll = Importer::Mods.import(file, [], 0)
         end.to change { Collection.count }.by(0)
 
         expect(coll.id).to eq existing.id
@@ -152,7 +150,7 @@ describe Importer::ModsImporter do
         coll = nil
         expect do
           VCR.use_cassette('ezid') do
-            coll = importer.import(file)
+            coll = Importer::Mods.import(file, [], 0)
           end
         end.to change { Collection.count }.by(1).and change {
           Person.count
@@ -181,13 +179,13 @@ describe Importer::ModsImporter do
         end
         Agent.delete_all
         Agent.create(foaf_name: frodo) # existing rights holder
-        allow_any_instance_of(Importer::ModsParser).to receive(:rights_holder) { [frodo, bilbo, pippin] }
+        allow_any_instance_of(Importer::Mods::Parser).to receive(:rights_holder) { [frodo, bilbo, pippin] }
       end
 
       it 'finds or creates the rights holders' do
         expect do
           VCR.use_cassette('ezid') do
-            importer.import(file)
+            Importer::Mods.import(file, images, 0)
           end
         end.to change { Agent.exact_model.count }.by(1)
 

@@ -2,15 +2,18 @@ require 'importer'
 require 'traject'
 
 class ObjectFactoryWriter
-  # The passed-in settings
   attr_reader :settings
 
   AUDIO_TYPES = [RDF::URI('http://id.loc.gov/vocabulary/resourceTypes/aum'),
                  RDF::URI('http://id.loc.gov/vocabulary/resourceTypes/aun')].freeze
   ETD_TYPES   = [RDF::URI('http://id.loc.gov/vocabulary/resourceTypes/txt')].freeze
 
-  def initialize(argSettings)
-    @settings = Traject::Indexer::Settings.new(argSettings)
+  def initialize(arg_settings)
+    # The passed-in settings
+    @settings = Traject::Indexer::Settings.new(arg_settings)
+
+    @cylinders = @settings['cylinders']
+    @etd = @settings['etd']
   end
 
   def serialize(context)
@@ -24,13 +27,14 @@ class ObjectFactoryWriter
 
   # Add a single context to fedora
   def put(context)
-    from_traject = context.output_hash.with_indifferent_access
+    from_traject = context.with_indifferent_access
 
     # Compact arrays to work around https://github.com/traject/traject/issues/113
     from_traject.each do |_, v|
       v.compact!
     end
 
+    # Attributes are assembled by Traject's MARC parser
     attributes = defaults.merge(from_traject)
 
     contrib = Array(attributes.delete('contributors')).first
@@ -54,7 +58,8 @@ class ObjectFactoryWriter
 
     attributes[:files] = attributes.delete('filename')
 
-    build_object(attributes)
+    metadata = @etd || @cylinders
+    build_object(attributes, metadata)
   end
 
   private
@@ -70,11 +75,10 @@ class ObjectFactoryWriter
       overwrite_fields.each_with_object(HashWithIndifferentAccess.new) { |k, h| h[k] = [] }
     end
 
-    def build_object(attributes)
+    def build_object(attributes, metadata)
       work_type = attributes.fetch('work_type').first
       attributes[:collection] = collection_attributes(work_type)
-
-      factory(work_type).new(attributes, files_directory).run
+      factory(work_type).new(attributes, metadata).run
     end
 
     def collection_attributes(work_type)
@@ -100,10 +104,6 @@ class ObjectFactoryWriter
       else
         raise ArgumentError, "Unknown work type #{work_type}"
       end
-    end
-
-    def files_directory
-      @settings['files_directory']
     end
 
     # @param [Array] names : a list of names
