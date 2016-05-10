@@ -89,14 +89,14 @@ GEM
     bcp47 (0.3.3)
       i18n
     bcrypt (3.1.11)
-    blacklight (6.0.2)
+    blacklight (6.2.0)
       bootstrap-sass (~> 3.2)
       deprecation
       globalid
       kaminari (>= 0.15)
       nokogiri (~> 1.6)
       rails (>= 4.2, < 6)
-      rsolr (~> 1.0.11)
+      rsolr (~> 1.0, >= 1.0.6)
       twitter-typeahead-rails (~> 0.11)
     blacklight-access_controls (0.3.0)
       blacklight (~> 6.0)
@@ -660,7 +660,7 @@ DEPENDENCIES
   active-triples (~> 0.7.5)
   american_date (~> 1.1.0)
   awesome_print
-  blacklight (~> 6.0.1)
+  blacklight (~> 6.2.0)
   blacklight-gallery (~> 0.5.0)
   blacklight_range_limit (~> 6.0.0)
   byebug
@@ -677,6 +677,7 @@ DEPENDENCIES
   devise_ldap_authenticatable
   ezid-client (~> 1.2.0)
   factory_girl_rails (~> 4.4)
+  hydra-collections (>= 8.1.1)
   hydra-head (~> 9.8.1)
   hydra-role-management
   jbuilder (~> 2.0)

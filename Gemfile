@@ -15,12 +15,13 @@ gem 'therubyracer', platforms: :ruby
 
 gem 'hydra-head', '~> 9.8.1'
 gem 'hydra-role-management'
+gem 'hydra-collections', '>= 8.1.1'
 gem 'curation_concerns', '~> 0.10.0'
 gem 'active-triples', '~> 0.7.5'
 gem 'rdf-marmotta', '~> 0.0.8'
 gem 'rdf-vocab', '~> 0.8.4'
 
-gem 'blacklight', '~> 6.0.1'
+gem 'blacklight', '~> 6.2.0'
 gem 'blacklight_range_limit', '~> 6.0.0'
 gem 'blacklight-gallery', '~> 0.5.0'
 gem 'settingslogic'
