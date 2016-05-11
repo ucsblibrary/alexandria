@@ -32,7 +32,7 @@ class ETD < ActiveFedora::Base
 
   include NestedAttributes
 
-  contains :proquest
+  has_subresource :proquest
 
   def self.indexer
     ETDIndexer
