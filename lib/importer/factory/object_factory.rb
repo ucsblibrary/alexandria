@@ -35,6 +35,7 @@ module Importer::Factory
       update_issued_date(object)
       update_notes(object)
       object.attributes = update_attributes
+      attach_files(object, @files)
       run_callbacks(:save) do
         object.save!
       end
