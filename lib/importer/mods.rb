@@ -1,14 +1,14 @@
 module Importer::Mods
+  # @param [String] meta
   # @param [Array<String>] data
-  # @param [Array<String>] meta
   # @return [Void]
   def self.import(meta, data)
     Rails.logger.debug "Importing: #{meta}"
     parser = Parser.new(meta)
     begin
       ::Importer::Factory.for(parser.model.to_s).new(
-        parser.attributes.merge(admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID),
-        data).run
+        parser.attributes.merge(admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID), data
+      ).run
     rescue => e
       $stderr.puts e
       $stderr.puts e.backtrace
@@ -45,8 +45,9 @@ module Importer::Mods
 
     # For now the only things we import are collections and
     # images, so if it's not a collection, assume it's an image.
-    # TODO:  Identify images or other record types based on
-    #        the data in <mods:typeOfResource>.
+    #
+    # TODO: Identify images or other record types based on the data in
+    # <mods:typeOfResource>.
     def image?
       !collection?
     end
@@ -60,6 +61,7 @@ module Importer::Mods
     end
 
     def record_attributes
+      # TODO: why a destructive merge?
       common_attributes.merge!(files: mods.extension.xpath('./fileName').map(&:text),
                                collection: collection,
                                series_name: mods.xpath("//mods:relatedItem[@type='series']", NAMESPACES).titleInfo.title.map(&:text))

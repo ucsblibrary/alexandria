@@ -117,6 +117,7 @@ begin
       raise ArgumentError, "Number of records skipped (#{options[:skip]}) greater than total records to ingest"
     end
 
+    # TODO: this currently assumes one record per metadata file
     meta.each_with_index do |m, count|
       next if options[:skip] > count
 

@@ -1,5 +1,12 @@
 [![Build Status](https://travis-ci.org/curationexperts/alexandria-v2.svg?branch=master)](https://travis-ci.org/curationexperts/alexandria-v2)
 
+# Developing
+
+After running `bundle install`, you can run tests with `make spec`.
+
+Documentation can be generated locally by installing `yardoc` with
+`gem install yardoc` then running `make doc`.
+
 # Provisioning
 
 For provisioning, there is a wrapper script that runs Ansible for us:
@@ -177,9 +184,3 @@ See {file:INGESTING.md} and DCE’s wiki:
     Try restarting Apache and deploying again.
 
 - **Timeout during assets precompile**:  Not sure yet!
-
-# Testing
-
-  * Make sure jetty is running
-  * Make sure marmotta is running, or CI environment variable is set to bypass marmotta
-  * `bundle exec rake spec`
