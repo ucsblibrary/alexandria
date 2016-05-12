@@ -1,0 +1,5 @@
+--title "Alexandria Digital Research Library"
+app/**/*.rb
+lib/**/*.rb
+-
+INGESTING.md

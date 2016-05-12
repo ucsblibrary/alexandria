@@ -1,3 +1,12 @@
+APP := $(wildcard app/**/*.rb)
+LIB := $(wildcard lib/**/*.rb)
+YARDOC := $(wildcard doc/*.html)
+
+$(YARDOC): INGESTING.md README.md $(APP) $(LIB)
+	bundle exec yardoc
+
+doc: doc/index.html
+
 BRANCH ?= $(shell git rev-parse --abbrev-ref HEAD | tr -d '\n')
 
 .PHONY: prod rubocop spec vagrant

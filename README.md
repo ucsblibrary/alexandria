@@ -154,7 +154,7 @@ ansible-playbook ansible/ansible-ec2.yml --private-key=/path/to/private/half/of/
 
 # Ingesting records
 
-See [INGESTING.md](INGESTING.md) and DCE’s wiki:
+See {file:INGESTING.md} and DCE’s wiki:
 <https://github.com/curationexperts/alexandria-v2/wiki>
 
 # Caveats

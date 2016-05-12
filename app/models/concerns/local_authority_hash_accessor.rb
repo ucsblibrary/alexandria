@@ -22,7 +22,7 @@ module LocalAuthorityHashAccessor
   private
 
     # @param [ActiveTriples::Resource] item
-    # @returns true if the target is a local authority record
+    # @return [Boolean] true if the target is a local authority record
     def local_object?(item)
       item.respond_to?(:rdf_subject) &&
         item.rdf_subject.is_a?(RDF::URI) &&

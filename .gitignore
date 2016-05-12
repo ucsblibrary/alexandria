@@ -7,6 +7,10 @@ public/assets
 # Ignore bundler config.
 /.bundle
 
+# Ignore generated docs
+/doc
+.yardoc
+
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-journal
