@@ -2,7 +2,7 @@ require 'rails_helper'
 require 'importer'
 
 describe Importer::Factory::ETDFactory do
-  let(:factory) { described_class.new(attributes, {}) }
+  let(:factory) { described_class.new(attributes, files) }
   let(:collection_attrs) { { accession_number: ['etds'], title: ['test collection'] } }
   let(:files) { {} }
 
@@ -55,14 +55,28 @@ describe Importer::Factory::ETDFactory do
   end
 
   describe 'attach_files' do
-    let(:files) { ['Plunkett_ucsb_0035D_11862.pdf'] }
-    let(:attributes) { { id: 'f3gt5k61', files: files } }
-    let(:etd) { create(:etd, attributes.except(:files)) }
+    ETD.find('f3gt5k61').destroy(eradicate: true) if ETD.exists? 'f3gt5k61'
 
-    context "if the etd doesn't have attached proquest data" do
+    let(:files) do
+      {
+        xml: 'spec/fixtures/proquest/Shockey_ucsb_0035D_11990_DATA.xml',
+        pdf: 'spec/fixtures/pdf/sample.pdf',
+        supplements: [],
+      }
+    end
+    let(:attributes) do
+      {
+        files: files,
+        id: 'f3gt5k61',
+        identifier: ['ark:/48907/f3gt5k61'],
+        title: ['plunk!'],
+      }
+    end
+
+    context 'when a PDF is provided' do
       it 'attaches files' do
         factory.run
-        expect(ETD.find('f3gt5k61').files).to eq(['Plunkett_ucsb_0035D_11862.pdf'])
+        expect(ETD.find('f3gt5k61').file_sets.first.files.first.file_name).to eq(['sample.pdf'])
       end
     end
   end

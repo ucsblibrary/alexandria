@@ -54,11 +54,9 @@ describe ImageIndexer do
     let(:work_type) { RDF::URI('http://id.loc.gov/vocabulary/resourceTypes/img') }
     let(:image) { Image.new(work_type: [work_type]) }
     it 'indexes a label' do
-      VCR.use_cassette('resource_type') do
-        expect(subject['work_type_sim']).to eq [work_type]
-        expect(subject['work_type_label_sim']).to eq ['Still Image']
-        expect(subject['work_type_label_tesim']).to eq ['Still Image']
-      end
+      expect(subject['work_type_sim']).to eq [work_type]
+      expect(subject['work_type_label_sim']).to eq ['Still Image']
+      expect(subject['work_type_label_tesim']).to eq ['Still Image']
     end
   end
 
@@ -66,11 +64,9 @@ describe ImageIndexer do
     let(:location) { RDF::URI('http://id.loc.gov/authorities/subjects/sh85072779') }
     let(:image) { Image.new(location: [location]) }
     it 'indexes a label' do
-      VCR.use_cassette('location') do
-        expect(subject['location_sim']).to eq [location]
-        expect(subject['location_label_sim']).to eq ['Kodiak Island (Alaska)']
-        expect(subject['location_label_tesim']).to eq ['Kodiak Island (Alaska)']
-      end
+      expect(subject['location_sim']).to eq [location]
+      expect(subject['location_label_sim']).to eq ['Kodiak Island (Alaska)']
+      expect(subject['location_label_tesim']).to eq ['Kodiak Island (Alaska)']
     end
   end
 
@@ -86,10 +82,8 @@ describe ImageIndexer do
     end
 
     it 'indexes with a label' do
-      VCR.use_cassette('rights_holder') do
-        expect(subject['rights_holder_ssim']).to eq [valerie_uri, regents_uri]
-        expect(subject['rights_holder_label_tesim']).to eq ['Valerie', 'University of California (System). Regents']
-      end
+      expect(subject['rights_holder_ssim']).to eq [valerie_uri, regents_uri]
+      expect(subject['rights_holder_label_tesim']).to eq ['Valerie', 'University of California (System). Regents']
     end
   end
 end

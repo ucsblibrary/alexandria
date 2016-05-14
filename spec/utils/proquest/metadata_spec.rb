@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe UpdateMetadataFromProquestFile do
+describe Proquest::Metadata do
   describe '#embargo_start_date' do
     let(:etd) { double }
     subject { described_class.new(etd).embargo_start_date }

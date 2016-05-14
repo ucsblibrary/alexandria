@@ -1,4 +1,5 @@
 require 'importer/log_subscriber'
+
 module Importer::Factory
   class ObjectFactory
     extend ActiveModel::Callbacks

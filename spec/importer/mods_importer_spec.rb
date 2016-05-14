@@ -2,7 +2,7 @@ require 'rails_helper'
 require 'importer'
 
 describe Importer::Mods do
-  let(:images) { Dir['spec/fixtures/images/*'] }
+  let(:images) { Dir['spec/fixtures/images/cusbspcmss36*.tif'] }
 
   before do
     AdminPolicy.ensure_admin_policy_exists
@@ -36,7 +36,7 @@ describe Importer::Mods do
       expect_any_instance_of(Importer::Factory::CollectionFactory).to receive(:mint_ark).and_return(identifier2)
 
       expect do
-        image = Importer::Mods.import(file, images, 0)
+        image = Importer::Mods.import(file, images)
       end.to change { Image.count }.by(1)
         .and change { FileSet.count }.by(2)
         .and change { Collection.count }.by(1)
@@ -65,10 +65,6 @@ describe Importer::Mods do
 
     context 'when the collection already exists' do
       before do
-        # This ID comes from the ezid VCR cassette:
-        if ActiveFedora::Base.exists? 'fk4c252k0f'
-          ActiveFedora::Base.find('fk4c252k0f').destroy(eradicate: true)
-        end
         Collection.destroy_all
 
         # skip creating files
@@ -80,9 +76,7 @@ describe Importer::Mods do
         expect(coll.members.size).to eq 0
 
         expect do
-          VCR.use_cassette('ezid') do
-            Importer::Mods.import(file, images, 0)
-          end
+          Importer::Mods.import(file, images)
         end.to change { Collection.count }.by(0)
 
         expect(coll.reload.members.size).to eq 1
@@ -92,10 +86,6 @@ describe Importer::Mods do
 
   describe '#import a Collection' do
     before do
-      # This ID comes from the ezid VCR cassette:
-      if ActiveFedora::Base.exists? 'fk4c252k0f'
-        ActiveFedora::Base.find('fk4c252k0f').destroy(eradicate: true)
-      end
       Collection.destroy_all
     end
     let(:file) { 'spec/fixtures/mods/sbhcmss78_FlyingAStudios_collection.xml' }
@@ -103,9 +93,7 @@ describe Importer::Mods do
     it 'creates a collection' do
       coll = nil
       expect do
-        VCR.use_cassette('ezid') do
-          coll = Importer::Mods.import(file, [], 0)
-        end
+        coll = Importer::Mods.import(file, [])
       end.to change { Collection.count }.by(1).and change {
         Person.count
       }.by(1)
@@ -127,7 +115,7 @@ describe Importer::Mods do
       it 'it adds metadata to existing collection' do
         coll = nil
         expect do
-          coll = Importer::Mods.import(file, [], 0)
+          coll = Importer::Mods.import(file, [])
         end.to change { Collection.count }.by(0)
 
         expect(coll.id).to eq existing.id
@@ -138,10 +126,6 @@ describe Importer::Mods do
 
     context 'when the person already exists' do
       before do
-        # This ID comes from the ezid VCR cassette:
-        if ActiveFedora::Base.exists? 'fk4c252k0f'
-          ActiveFedora::Base.find('fk4c252k0f').destroy(eradicate: true)
-        end
         Person.destroy_all
       end
       let!(:existing) { Person.create(foaf_name: 'Conway, Joel') }
@@ -149,9 +133,7 @@ describe Importer::Mods do
       it "doesn't create another person" do
         coll = nil
         expect do
-          VCR.use_cassette('ezid') do
-            coll = Importer::Mods.import(file, [], 0)
-          end
+          coll = Importer::Mods.import(file, [])
         end.to change { Collection.count }.by(1).and change {
           Person.count
         }.by(0)
@@ -173,10 +155,6 @@ describe Importer::Mods do
 
     context 'when rights_holder has strings or uris' do
       before do
-        # This ID comes from the ezid VCR cassette:
-        if ActiveFedora::Base.exists? 'fk4c252k0f'
-          ActiveFedora::Base.find('fk4c252k0f').destroy(eradicate: true)
-        end
         Agent.delete_all
         Agent.create(foaf_name: frodo) # existing rights holder
         allow_any_instance_of(Importer::Mods::Parser).to receive(:rights_holder) { [frodo, bilbo, pippin] }
@@ -184,9 +162,7 @@ describe Importer::Mods do
 
       it 'finds or creates the rights holders' do
         expect do
-          VCR.use_cassette('ezid') do
-            Importer::Mods.import(file, images, 0)
-          end
+          Importer::Mods.import(file, images)
         end.to change { Agent.exact_model.count }.by(1)
 
         rights_holders = Agent.exact_model

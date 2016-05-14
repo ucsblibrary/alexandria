@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'proquest'
 
 describe Proquest::XML do
   let(:parser) { described_class.new(File.read(file)) }

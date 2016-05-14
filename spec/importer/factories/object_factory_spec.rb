@@ -4,18 +4,18 @@ require 'importer'
 describe Importer::Factory::ObjectFactory do
   before { AdminPolicy.ensure_admin_policy_exists }
 
-  subject { Importer::Factory::CollectionFactory.new(attributes, './tmp') }
+  subject { Importer::Factory::CollectionFactory.new(attributes, []) }
 
   let(:afmc) { 'http://id.loc.gov/authorities/names/n87914041' }
   let(:afmc_uri) { RDF::URI.new(afmc) }
 
   describe '#find' do
     context 'existing object' do
-      let(:importer) { Importer::Factory::ImageFactory.new(attributes, './tmp') }
+      let(:importer) { Importer::Factory::ImageFactory.new(attributes, []) }
       subject { importer.find }
 
       let(:a_num) { ['acc num 1', 'acc num 2'] }
-      let(:image_attrs) {{ title: ['Something Title'], accession_number: a_num }}
+      let(:image_attrs) { { title: ['Something Title'], accession_number: a_num } }
       let!(:image) { create(:image, image_attrs) }
 
       context 'with an id' do
@@ -230,7 +230,7 @@ describe Importer::Factory::ObjectFactory do
   end  # find_or_create_subjects
 
   describe 'update existing image' do
-    let(:importer) { Importer::Factory::ImageFactory.new(attributes, './tmp') }
+    let(:importer) { Importer::Factory::ImageFactory.new(attributes, []) }
     let(:old_note) {{ note_type: 'old type', value: 'old value' }}
     let(:image) { create(:image, notes_attributes: [old_note]) }
 
@@ -279,7 +279,7 @@ describe Importer::Factory::ObjectFactory do
   end
 
   describe '#transform_attributes' do
-    let(:importer) { Importer::Factory::ImageFactory.new(attributes, './tmp') }
+    let(:importer) { Importer::Factory::ImageFactory.new(attributes, []) }
     subject { importer.send(:transform_attributes) }
 
     context 'with notes' do

@@ -1,3 +1,5 @@
+require File.expand_path('../../indexers/image_indexer.rb', __FILE__)
+
 class Image < ActiveFedora::Base
   include CurationConcerns::WorkBehavior
   include Metadata

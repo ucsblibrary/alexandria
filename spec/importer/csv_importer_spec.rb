@@ -10,15 +10,16 @@ describe Importer::CSV do
 
   let(:data) { Dir['spec/fixtures/images/*'] }
 
-  context 'when the model is passed' do
-    let(:csv_file) { "#{fixture_path}/csv/pamss045.csv" }
+  context 'when the model is specified' do
+    let(:csv_file) { "#{fixture_path}/csv/pamss045_with_type.csv" }
 
-    it 'creates 5 new images' do
+    before, after = nil
+    it 'creates a new image' do
       head, tail = Importer::CSV.split(csv_file)
-      expect(head.first).to eq('accession_number')
-      expect(tail.length).to eq(5)
+      expect(head.first).to eq('type')
+      expect(tail.length).to eq(2)
 
-      count = 0
+      before = Image.all.count
       tail.each do |row|
         attrs = Importer::CSV.csv_attributes(head, row)
         files = if attrs[:files].nil?
@@ -27,42 +28,19 @@ describe Importer::CSV do
                   data.select { |d| attrs[:files].include? File.basename(d) }
                 end
         Importer::CSV.import(
-          files: files,
-          model: 'Image',
-          row: row,
-          headers: head,
-          count: count)
-        count += 1
+          attributes: attrs,
+          files: files
+        )
+        after = Image.all.count
       end
-      expect(count).to eq(5)
+      expect(after - before).to eq(1)
+
+      img = Image.all.last
+      expect(img.title).to eq ['Dirge for violin and piano (violin part)']
+      expect(img.file_sets.count).to eq 4
+      expect(img.file_sets.map { |d| d.files.map(&:file_name) }.flatten)
+        .to eq(['dirge1.tif', 'dirge2.tif', 'dirge3.tif', 'dirge4.tif'])
+      expect(img.in_collections.first.title).to eq(['Mildred Couper papers'])
     end
   end
-
-  # context 'when the model specified on the row' do
-  #   let(:csv_file) { "#{fixture_path}/csv/pamss045_with_type.csv" }
-  #   let(:importer) { described_class.new(csv_file, image_directory) }
-  #   let(:collection_factory) { double }
-  #   let(:image_factory) { double }
-
-  #   it 'creates new images and collections' do
-  #     expect(Importer::Factory::CollectionFactory).to receive(:new)
-  #       .with(hash_excluding(:type), image_directory)
-  #       .and_return(collection_factory)
-  #     expect(collection_factory).to receive(:run)
-  #     expect(Importer::Factory::ImageFactory).to receive(:new)
-  #       .with(hash_excluding(:type), image_directory)
-  #       .and_return(image_factory)
-  #     expect(image_factory).to receive(:run)
-  #     importer.import_all
-  #   end
-  # end
-
-  # context 'when no model is specified' do
-  #   let(:csv_file) { "#{fixture_path}/csv/pamss045.csv" }
-  #   let(:importer) { described_class.new(csv_file, image_directory) }
-  #   it 'raises an error' do
-  #     expect { importer.import_all }.to raise_error(NoModelError, 'No model was specified')
-  #   end
-  # end
-
 end

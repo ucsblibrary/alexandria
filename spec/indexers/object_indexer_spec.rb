@@ -136,10 +136,8 @@ describe ObjectIndexer do
     let(:image) { Image.new(license: [pd_uri, by_uri, edu_uri]) }
 
     it 'indexes with a label' do
-      VCR.use_cassette('creative_commons') do
-        expect(subject['license_tesim']).to eq [pd_uri.to_s, by_uri.to_s, edu_uri.to_s]
-        expect(subject['license_label_tesim']).to eq ['Public Domain Mark 1.0', 'Attribution 4.0 International', 'Educational Use Permitted']
-      end
+      expect(subject['license_tesim']).to eq [pd_uri.to_s, by_uri.to_s, edu_uri.to_s]
+      expect(subject['license_label_tesim']).to eq ['Public Domain Mark 1.0', 'Attribution 4.0 International', 'Educational Use Permitted']
     end
   end
 
@@ -151,10 +149,8 @@ describe ObjectIndexer do
     let(:image) { Image.new(copyright_status: [public_domain_uri, copyright_uri, unknown_uri]) }
 
     it 'indexes with a label' do
-      VCR.use_cassette('copyright_status') do
-        expect(subject['copyright_status_tesim']).to eq [public_domain_uri, copyright_uri, unknown_uri]
-        expect(subject['copyright_status_label_tesim']).to eq ['public domain', 'copyrighted', 'unknown']
-      end
+      expect(subject['copyright_status_tesim']).to eq [public_domain_uri, copyright_uri, unknown_uri]
+      expect(subject['copyright_status_label_tesim']).to eq ['public domain', 'copyrighted', 'unknown']
     end
   end
 
@@ -178,10 +174,8 @@ describe ObjectIndexer do
     let(:image) { Image.new(lc_subject: lc_subject) }
 
     it 'should have a subject' do
-      VCR.use_cassette('lc_subject_hotels') do
-        expect(subject['lc_subject_tesim']).to eq ['http://id.loc.gov/authorities/subjects/sh85062487']
-        expect(subject['lc_subject_label_tesim']).to eq ['Hotels']
-      end
+      expect(subject['lc_subject_tesim']).to eq ['http://id.loc.gov/authorities/subjects/sh85062487']
+      expect(subject['lc_subject_label_tesim']).to eq ['Hotels']
     end
   end
 
@@ -196,17 +190,15 @@ describe ObjectIndexer do
     before { AdminPolicy.ensure_admin_policy_exists }
 
     it 'has a creator' do
-      VCR.use_cassette('lc_names_american_film') do
-        expect_any_instance_of(ContributorIndexer).to receive(:generate_solr_document) do |_, solr_doc|
-          solr_doc.merge!('contributors' => 'this', 'sorted_creator' => 'that')
-        end
-        expect(subject['creator_tesim']).to eq ['http://id.loc.gov/authorities/names/n87914041']
-        # The *_label_tesim is the result of the DeepIndexer
-        expect(subject['creator_label_tesim']).to eq ['American Film Manufacturing Company']
-        expect(subject['author_label_tesim']).to eq ['Frank']
-        expect(subject['contributors']).to eq 'this'
-        expect(subject['sorted_creator']).to eq 'that'
+      expect_any_instance_of(ContributorIndexer).to receive(:generate_solr_document) do |_, solr_doc|
+        solr_doc.merge!('contributors' => 'this', 'sorted_creator' => 'that')
       end
+      expect(subject['creator_tesim']).to eq ['http://id.loc.gov/authorities/names/n87914041']
+      # The *_label_tesim is the result of the DeepIndexer
+      expect(subject['creator_label_tesim']).to eq ['American Film Manufacturing Company']
+      expect(subject['author_label_tesim']).to eq ['Frank']
+      expect(subject['contributors']).to eq 'this'
+      expect(subject['sorted_creator']).to eq 'that'
     end
   end
 

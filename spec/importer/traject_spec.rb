@@ -4,13 +4,11 @@ require 'traject/command_line'
 describe 'Traject importer' do
   describe 'import a cylinder record' do
     let(:traject_config) { File.join(Rails.root, 'lib', 'traject', 'audio_config.rb') }
-    let(:command) do
-      Traject::CommandLine.new(
-        # TODO: add sample audio files
-        %W(-c #{traject_config}
-           -s cylinders=
-           #{marc_file})
-      )
+    let(:indexer) do
+      indexer = Traject::Indexer.new
+      indexer.load_config_file(traject_config)
+      indexer.settings(cylinders: [])
+      indexer
     end
 
     let!(:collection) { Collection.create!(title: ['Wax Cylinders'], accession_number: ['Cylinders']) }
@@ -31,13 +29,18 @@ describe 'Traject importer' do
       allow_any_instance_of(RDF::DeepIndexingService).to receive(:fetch_external)
     end
 
-    context "marcfile with language" do
-      let(:marc_file) { File.join(fixture_path, 'marcxml', 'cylinder_sample_marc.xml') }
+    context 'marcfile with language' do
+      let(:marc) do
+        MARC::XMLReader.new(
+          File.join(fixture_path, 'marcxml', 'cylinder_sample_marc.xml')
+        ).map { |o| o } # Convert from XMLReader stream to Array
+      end
+
       # IDs from the MARC file
       let(:id) { 'f3999999' }
 
       it 'creates the audio record' do
-        expect(command.execute).to be true
+        marc.each { |m| indexer.writer.put(indexer.map_record(m)) }
 
         # These new records should have been created
         expect(AudioRecording.count).to eq 1
@@ -90,13 +93,17 @@ describe 'Traject importer' do
       end
     end
 
-    context "marc file without language" do
-      let(:marc_file) { File.join(fixture_path, 'marcxml', 'cylinder_sample_without_language_marc.xml') }
+    context 'marc file without language' do
+      let(:marc) do
+        MARC::XMLReader.new(
+          File.join(fixture_path, 'marcxml', 'cylinder_sample_without_language_marc.xml')
+        ).map { |o| o } # Convert from XMLReader stream to Array
+      end
       # IDs from the MARC file
       let(:id) { 'f3888888' }
 
       it 'creates the audio record' do
-        expect(command.execute).to be true
+        marc.each { |m| indexer.writer.put(indexer.map_record(m)) }
 
         # These new records should have been created
         expect(AudioRecording.count).to eq 1
