@@ -29,11 +29,6 @@ class ObjectFactoryWriter
   def put(context)
     from_traject = context.with_indifferent_access
 
-    # Compact arrays to work around https://github.com/traject/traject/issues/113
-    from_traject.each do |_, v|
-      v.compact!
-    end
-
     # Attributes are assembled by Traject's MARC parser
     attributes = defaults.merge(from_traject)
 
