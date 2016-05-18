@@ -79,7 +79,7 @@ module Importer::Factory
       # habtm <-> has_many associations, where they won't all get saved.
       # https://github.com/projecthydra/active_fedora/issues/874
       @object = klass.new(attrs)
-      attach_files(@object, @files)
+      attach_files(@object, @files) unless @files.empty?
       run_callbacks :save do
         run_callbacks :create do
           object.save!
