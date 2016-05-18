@@ -14,7 +14,7 @@ development:
 
 test:
   host:
-  port: 3389
+  port: 389
   admin_user:
   admin_password:
   ssl: simple_tls
