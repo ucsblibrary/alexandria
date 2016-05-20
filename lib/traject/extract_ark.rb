@@ -8,7 +8,7 @@ module ExtractArk
         puts 'No ARK, Skipping.'
         context.skip!
       else
-        # TODO: update ARK to point at alexandria-v2?
+        # TODO: update ARK to point at alexandria?
         accumulator << fields.first
       end
     end
