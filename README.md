@@ -4,8 +4,8 @@
 
 After running `bundle install`, you can run tests with `make spec`.
 
-Documentation can be generated locally by installing `yardoc` with
-`gem install yardoc` then running `make doc`.
+HTML documentation can be generated locally by installing `yardoc`
+with `gem install yardoc` then running `make html`.
 
 # Provisioning
 
@@ -161,7 +161,7 @@ ansible-playbook ansible/ansible-ec2.yml --private-key=/path/to/private/half/of/
 
 # Ingesting records
 
-See {file:INGESTING.md} and DCE’s wiki:
+See {file:Ingesting.md} and DCE’s wiki:
 <https://github.com/curationexperts/alexandria-v2/wiki>
 
 # Caveats

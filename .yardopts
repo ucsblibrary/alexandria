@@ -1,5 +1,6 @@
 --title "Alexandria Digital Research Library"
+--output-dir html
 app/**/*.rb
 lib/**/*.rb
 -
-INGESTING.md
+doc/Ingesting.md

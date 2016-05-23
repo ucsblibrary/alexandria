@@ -1,11 +1,10 @@
 APP := $(wildcard app/**/*.rb)
 LIB := $(wildcard lib/**/*.rb)
-YARDOC := $(wildcard doc/*.html)
 
-$(YARDOC): INGESTING.md README.md $(APP) $(LIB)
+html/index.html: doc/Ingesting.md README.md $(APP) $(LIB)
 	bundle exec yardoc
 
-doc: doc/index.html
+html: html/index.html
 
 BRANCH ?= $(shell git rev-parse --abbrev-ref HEAD | tr -d '\n')
 

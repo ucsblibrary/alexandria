@@ -8,7 +8,7 @@ public/assets
 /.bundle
 
 # Ignore generated docs
-/doc
+/html
 .yardoc
 
 # Ignore the default SQLite database.
