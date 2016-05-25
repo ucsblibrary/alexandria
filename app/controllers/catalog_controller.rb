@@ -129,10 +129,24 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('date_copyrighted', :displayable), label: 'Copyright Date'
     config.add_show_field solr_name('date_other', :displayable), label: 'Other Dates'
     config.add_show_field solr_name('date_valid', :displayable), label: 'Valid Dates'
-    config.add_show_field solr_name('description', :stored_searchable), label: 'Description', separator: '<br><br>'.html_safe
+    config.add_show_field solr_name('description', :stored_searchable),
+                          label: 'Description',
+                          separator_options: {
+                            words_connector: '<br><br>'.html_safe,
+                            two_words_connector: '<br><br>'.html_safe,
+                            last_word_connector: '<br><br>'.html_safe,
+                          }
+
     config.add_show_field solr_name('digital_origin', :stored_searchable), label: 'Digital Origin'
     config.add_show_field solr_name('extent', :displayable), label: 'Extent'
-    config.add_show_field solr_name('form_of_work_label', :stored_searchable), label: 'Genre(s)', separator: '; '
+    config.add_show_field solr_name('form_of_work_label', :stored_searchable),
+                          label: 'Genre(s)',
+                          separator_options: {
+                            words_connector: '; ',
+                            two_words_connector: '; ',
+                            last_word_connector: '; ',
+                          }
+
     config.add_show_field solr_name('identifier', :displayable), label: 'ARK'
     config.add_show_field solr_name('institution_label', :stored_searchable), label: 'Contributing Institution'
     config.add_show_field solr_name('issued', :displayable), label: 'Issued Date'
