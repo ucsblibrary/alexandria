@@ -194,6 +194,7 @@ begin
 
         begin
           indexer.writer.put indexer.map_record(record)
+          indexer.writer.close
           # Since earlier we skipped the unzip operations we don't
           # need, the array of records to iterate over is smaller, so
           # we modify the numbers here so that we still get the
@@ -238,6 +239,7 @@ begin
 
       begin
         indexer.writer.put indexer.map_record(record)
+        indexer.writer.close
         end_record = Time.now
         puts "Ingested record #{count + 1} of #{cylinders} "\
              "in #{end_record - start_record} seconds (#{end_record - start_overall} seconds elapsed)"
