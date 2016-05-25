@@ -44,6 +44,8 @@ class ObjectFactoryWriter
       return
     end
 
+    attributes[:description] = [attributes[:description].join('\n\n')]
+
     # created date is a TimeSpan
     created = attributes.delete('created_start')
     attributes[:created_attributes] = [{ start: created }] if created
