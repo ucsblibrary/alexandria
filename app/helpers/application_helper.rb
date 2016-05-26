@@ -11,7 +11,9 @@ module ApplicationHelper
   end
 
   def display_notes(data)
-    safe_join(Array(data[:value]), '<br/>'.html_safe)
+    Array(data[:value]).map do |note|
+      "<p>#{note}</p>"
+    end.join('').html_safe
   end
 
   def not_simple_format(data)
