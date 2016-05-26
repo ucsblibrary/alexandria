@@ -75,6 +75,9 @@ data = if options[:data]
 ######################
 # Begin ingest process
 ######################
+start_overall = Time.now
+ingests = 0
+
 begin
   case options[:format]
   when 'csv'
@@ -88,6 +91,8 @@ begin
       tail.each_with_index do |row, count|
         next if options[:skip] > count
 
+        start_record = Time.now
+
         attrs = Importer::CSV.csv_attributes(head, row)
         files = if attrs[:files].nil?
                   []
@@ -99,7 +104,10 @@ begin
             attributes: attrs,
             files: files
           )
-          puts "Ingested #{count + 1} of #{tail.length} records"
+          end_record = Time.now
+          puts "Ingested record #{count + 1} of #{tail.length} "\
+                "in #{end_record - start_record} seconds (#{end_record - start_overall} seconds elapsed)"
+          ingests += 1
         # Other exceptions are already handled in CSV.import
         rescue => e
           puts e
@@ -111,7 +119,6 @@ begin
         end
       end
     end
-    exit 0
   when 'mods'
     if options[:skip] >= meta.length
       raise ArgumentError, "Number of records skipped (#{options[:skip]}) greater than total records to ingest"
@@ -120,6 +127,8 @@ begin
     # TODO: this currently assumes one record per metadata file
     meta.each_with_index do |m, count|
       next if options[:skip] > count
+
+      start_record = Time.now
 
       d = data.select do |f|
         # FIXME: find a more reliable test
@@ -130,7 +139,10 @@ begin
 
       begin
         Importer::Mods.import(m, d)
-        puts "Ingested #{count + 1} of #{meta.length} records"
+        end_record = Time.now
+        puts "Ingested record #{count + 1} of #{meta.length} "\
+             "in #{end_record - start_record} seconds (#{end_record - start_overall} seconds elapsed)"
+        ingests += 1
       rescue => e
         puts e
         puts e.backtrace
@@ -140,7 +152,6 @@ begin
         raise IngestError.new(reached: count)
       end
     end
-    exit 0
   when 'etd'
     # lib/proquest
     require 'proquest'
@@ -174,6 +185,8 @@ begin
       )
 
       marc.each_with_index do |record, count|
+        start_record = Time.now
+
         # https://github.com/traject/traject/blob/master/lib/traject/indexer.rb#L101
         indexer = Traject::Indexer.new
         indexer.load_config_file('lib/traject/etd_config.rb')
@@ -185,7 +198,10 @@ begin
           # need, the array of records to iterate over is smaller, so
           # we modify the numbers here so that we still get the
           # correct "Ingested X of out Y records" readout.
-          puts "Ingested #{count + 1 + options[:skip]} of #{etds.length + options[:skip]} records"
+          end_record = Time.now
+          puts "Ingested record #{count + 1 + options[:skip]} of #{etds.length + options[:skip]} "\
+               "in #{end_record - start_record} seconds (#{end_record - start_overall} seconds elapsed)"
+          ingests += 1
         rescue => e
           puts e
           puts e.backtrace
@@ -196,7 +212,6 @@ begin
         end
       end
     end
-    exit 0
   when 'cyl'
     # XMLReader's Enumerable methods are destructive, so move the
     # MARC::Records to an array so we can measure them:
@@ -214,6 +229,8 @@ begin
     marcs.each_with_index do |record, count|
       next if options[:skip] > count
 
+      start_record = Time.now
+
       # https://github.com/traject/traject/blob/master/lib/traject/indexer.rb#L101
       indexer = Traject::Indexer.new
       indexer.load_config_file('lib/traject/audio_config.rb')
@@ -221,7 +238,10 @@ begin
 
       begin
         indexer.writer.put indexer.map_record(record)
-        puts "Ingested #{count + 1} of #{cylinders} records"
+        end_record = Time.now
+        puts "Ingested record #{count + 1} of #{cylinders} "\
+             "in #{end_record - start_record} seconds (#{end_record - start_overall} seconds elapsed)"
+        ingests += 1
       rescue => e
         puts e
         puts e.backtrace
@@ -231,11 +251,13 @@ begin
         raise IngestError.new(reached: count)
       end
     end
-    exit 0
   end
+  end_overall = Time.now
+  puts "Ingested #{ingests} records in #{(end_overall - start_overall) / 60} minutes"
 rescue IngestError => e
   puts
-  puts "Managed to ingest #{e.reached} objects."
+  end_overall = Time.now
+  puts "Ingested #{ingests} records in #{(end_overall - start_overall) / 60} minutes"
   puts
   puts "To continue this ingest, re-run the command with `--skip #{e.reached}`"
 end
