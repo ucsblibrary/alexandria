@@ -36,6 +36,8 @@ module Importer::CSV
     end
   end
 
+  # @param [Array] row
+  # @return [Array]
   def self.validate_headers(row)
     row.compact!
 
@@ -52,6 +54,8 @@ module Importer::CSV
 
   # If you have a header like lc_subject_type, the next
   # header must be the corresponding field (e.g. lc_subject)
+  #
+  # @param [Array] row
   def self.validate_header_pairs(row)
     errors = []
     row.each_with_index do |header, i|
@@ -66,21 +70,30 @@ module Importer::CSV
     raise errors.join(', ') unless errors.blank?
   end
 
+  # @return [Array]
   def self.valid_headers
     Image.attribute_names + %w(id type note_type note files) +
       time_span_headers + collection_headers
   end
 
+  # @return [Array]
   def self.time_span_headers
     %w(created issued date_copyrighted date_valid).flat_map do |prefix|
       TimeSpan.properties.keys.map { |attribute| "#{prefix}_#{attribute}" }
     end
   end
 
+  # @return [Array]
   def self.collection_headers
     %w(collection_id collection_title collection_accession_number)
   end
 
+  # Maps a row of CSV metadata to the CSV headers
+  #
+  # @param [Array] headers
+  # @param [Array] row
+  #
+  # @return [Hash]
   def self.csv_attributes(headers, row)
     {}.tap do |processed|
       headers.each_with_index do |header, index|
@@ -89,6 +102,9 @@ module Importer::CSV
     end
   end
 
+  # @param [String] header
+  # @param [String] val
+  # @param [Hash] processed
   def self.extract_field(header, val, processed)
     return unless val
     case header
@@ -117,6 +133,10 @@ module Importer::CSV
     end
   end
 
+  # @param [String] header
+  # @param [String] val
+  # @param [Hash] processed
+  # @param [Symbol] key
   def self.extract_multi_value_field(header, val, processed, key = nil)
     key ||= header.to_sym
     processed[key] ||= []
@@ -124,11 +144,16 @@ module Importer::CSV
     processed[key] << (looks_like_uri?(val) ? RDF::URI(val) : val)
   end
 
+  # @param [String] str
   def self.looks_like_uri?(str)
     str =~ %r{^https?:\/\/}
   end
 
   # Fields that have an associated *_type column
+  #
+  # @param [String] header
+  # @param [String] val
+  # @param [Hash] processed
   def self.update_typed_field(header, val, processed)
     if header.match(TYPE_HEADER_PATTERN)
       stripped_header = header.gsub('_type', '')
@@ -140,6 +165,9 @@ module Importer::CSV
     end
   end
 
+  # @param [Hash] collection
+  # @param [String] field
+  # @param [String] val
   def self.update_collection(collection, field, val)
     val = [val] unless %w(admin_policy_id id).include? field
     collection[field.to_sym] = val
