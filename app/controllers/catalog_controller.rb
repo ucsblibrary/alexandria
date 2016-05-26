@@ -131,12 +131,7 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('date_valid', :displayable), label: 'Valid Dates'
     config.add_show_field solr_name('description', :stored_searchable),
                           label: 'Description',
-                          separator_options: {
-                            words_connector: '<br><br>'.html_safe,
-                            two_words_connector: '<br><br>'.html_safe,
-                            last_word_connector: '<br><br>'.html_safe,
-                          }
-
+                          helper_method: 'not_simple_format'
     config.add_show_field solr_name('digital_origin', :stored_searchable), label: 'Digital Origin'
     config.add_show_field solr_name('extent', :displayable), label: 'Extent'
     config.add_show_field solr_name('form_of_work_label', :stored_searchable),

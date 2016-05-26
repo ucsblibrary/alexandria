@@ -14,6 +14,10 @@ module ApplicationHelper
     safe_join(Array(data[:value]), '<br/>'.html_safe)
   end
 
+  def not_simple_format(data)
+    data[:value].first.split('\n\n').map { |para| "<p>#{para}</p>" }.join('').html_safe
+  end
+
   def display_link(data)
     href = data.fetch(:value).first
     link_to(href, href)
