@@ -12,7 +12,7 @@ describe ObjectFactoryWriter do
         'author' => ['Valerie'],
         'created_start' => ['2013'],
         'degree_grantor' => ['University of California, Santa Barbara Mathematics'],
-        'description' => ['Marine mussels use a mixture of proteins...', 'The performance of strong adhesion...'],
+        'description' => ['Marine mussels use a mixture of proteins...\n\nThe performance of strong adhesion...'],
         'dissertation_degree' => [],
         'dissertation_institution' => [],
         'dissertation_year' => [],
@@ -40,13 +40,11 @@ describe ObjectFactoryWriter do
           fulltext_link: [],
           author: ['Valerie'],
           degree_grantor: ['University of California, Santa Barbara Mathematics'],
-          degree_supervisor: %w(Paul Hector),
-          description: ['Marine mussels use a mixture of proteins...', 'The performance of strong adhesion...'],
+          description: ['Marine mussels use a mixture of proteins...\n\nThe performance of strong adhesion...'],
           dissertation_degree: [],
           dissertation_institution: [],
           dissertation_year: [],
           extent: ['1 online resource (147 pages)'],
-          files: ['My_stuff.pdf'], created_attributes: [{ start: ['2013'] }],
           id: 'fk/4z/p4/6p/fk4zp46p1g',
           identifier: ['ark:/99999/fk4zp46p1g'],
           isbn: ['1234'],
@@ -56,6 +54,9 @@ describe ObjectFactoryWriter do
           system_number: [],
           title: ['How to be awesome'],
           work_type: [RDF::URI('http://id.loc.gov/vocabulary/resourceTypes/txt')],
+          degree_supervisor: %w(Paul Hector),
+          created_attributes: [{ start: ['2013'] }],
+          files: ['My_stuff.pdf']
         }.with_indifferent_access, nil
       )
 
