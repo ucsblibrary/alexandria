@@ -1,7 +1,7 @@
 module Importer::Mods
   # @param [String] meta
   # @param [Array<String>] data
-  # @return [Void]
+  # @return [Image, Collection]
   def self.import(meta, data)
     Rails.logger.debug "Importing: #{meta}"
     parser = Parser.new(meta)
