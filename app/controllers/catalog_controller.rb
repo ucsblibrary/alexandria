@@ -152,7 +152,7 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('longitude', :displayable, type: :string), label: 'Longitude'
     config.add_show_field solr_name('note_label', :stored_searchable),
                           label: 'Notes',
-                          helper_method: 'display_notes'
+                          helper_method: 'not_simple_format'
     config.add_show_field solr_name('place_of_publication', :stored_searchable), label: 'Place of Publication'
     config.add_show_field solr_name('publisher', :stored_searchable), label: 'Publisher'
     config.add_show_field solr_name('rights_holder_label', :stored_searchable), label: 'Copyright Holder'
@@ -161,7 +161,7 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('system_number', :symbol), label: 'System Number'
     config.add_show_field solr_name('restrictions', :stored_searchable),
                           label: 'Restrictions',
-                          helper_method: 'display_notes'
+                          helper_method: 'not_simple_format'
     config.add_show_field solr_name('work_type_label', :stored_searchable), label: 'Type of Resource'
     config.add_show_field solr_name('finding_aid', :stored_searchable), label: 'Finding Aid'
 

@@ -248,6 +248,18 @@ module Importer::Factory
         end
       end
 
+      # Since arrays of RDF elements are not saved in order in Fedora,
+      # we join each element (each paragraph) into a single string
+      #
+      # @param [Hash] field
+      def join_paragraphs(field)
+        if field
+          field.join('\n\n')
+        else
+          ''
+        end
+      end
+
       # Map the type to the correct model.  Example:
       # <mods:name type="personal">
       # type="personal" should map to the Person model.
@@ -277,10 +289,15 @@ module Importer::Factory
         subjects = find_or_create_subjects(attributes)
         notes = extract_notes(attributes)
 
+        description = { description: [join_paragraphs(attributes[:description])] }
+        restrictions = { restrictions: [join_paragraphs(attributes[:restrictions])] }
+
         attributes.merge(contributors)
                   .merge(rights_holders)
                   .merge(subjects)
                   .merge(notes)
+                  .merge(description)
+                  .merge(restrictions)
       end
 
       def extract_notes(attributes)
