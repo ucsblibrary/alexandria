@@ -71,9 +71,12 @@ module Importer::Factory
       attrs = create_attributes
       # Don't mint arks for records that already have them (e.g. ETDs)
       unless attrs[:identifier].present?
-        identifier = mint_ark
+        identifier = Ezid::Identifier.mint(
+          profile: :erc,
+          erc_what: attrs[:title].first
+        )
         attrs[:identifier] = [identifier.id]
-        attrs[:id] = identifier.id.split(/\//).last
+        attrs[:id] = identifier.id.split(%r{\/}).last
       end
 
       # There's a bug in ActiveFedora when there are many
@@ -101,12 +104,6 @@ module Importer::Factory
       Rails.logger.debug "Updated #{klass.model_name.human} #{obj.id} (#{Array(attributes[system_identifier_field]).first})"
     end
 
-    # @return [Ezid::Identifier] the new identifier
-    def mint_ark
-      Ezid::Identifier.create
-    end
-
-    # TODO: refactor into `find_or_create_rdf_attribute'
     def find_or_create_contributors(fields, attrs)
       {}.tap do |contributors|
         fields.each do |field|
