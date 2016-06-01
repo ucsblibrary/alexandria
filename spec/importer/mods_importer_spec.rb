@@ -6,9 +6,6 @@ describe Importer::Mods do
 
   before do
     AdminPolicy.ensure_admin_policy_exists
-    allow($stdout).to receive(:puts) # squelch output
-    # Stub out the fetch to avoid calls to external services
-    allow_any_instance_of(ActiveTriples::Resource).to receive(:fetch) { 'stubbed' }
   end
 
   describe '#import an Image' do
@@ -23,17 +20,8 @@ describe Importer::Mods do
     end
     let(:file) { 'spec/fixtures/mods/cusbspcmss36_110108.xml' }
 
-    let(:identifier1) { double('ARK1', id: 'ark:/99999/fk41234567') }
-    let(:identifier2) { double('ARK2', id: 'ark:/99999/fk49876543') }
-
     it 'creates a new image, files, and a collection' do
       image = nil
-      expect(identifier1).to receive(:target=).with(%r{http://test\.host/lib/ark:/99999/fk41234567$})
-      expect(identifier2).to receive(:target=).with(%r{http://test\.host/lib/ark:/99999/fk49876543$})
-      expect(identifier1).to receive(:save)
-      expect(identifier2).to receive(:save)
-      expect_any_instance_of(Importer::Factory::ImageFactory).to receive(:mint_ark).and_return(identifier1)
-      expect_any_instance_of(Importer::Factory::CollectionFactory).to receive(:mint_ark).and_return(identifier2)
 
       expect do
         image = Importer::Mods.import(file, images)
