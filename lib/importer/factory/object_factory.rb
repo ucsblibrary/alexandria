@@ -1,3 +1,4 @@
+# coding: utf-8
 require 'importer/log_subscriber'
 
 module Importer::Factory
@@ -90,7 +91,23 @@ module Importer::Factory
         end
       end
       if identifier
-        identifier.target = path_for(object)
+        identifier[:target] = path_for(object)
+        # Arrays of TimeSpans
+        erc_date = object.created.first || object.issued.first
+        date_arr = erc_date.to_a
+        # Some TimeSpan arrays aren't arrays, what a world
+        identifier[:erc_when] = if date_arr.respond_to?(:first)
+                                  # if the array has multiple
+                                  # elements, format it as a range
+                                  # for Ezid
+                                  if date_arr.length > 1
+                                    "#{date_arr.first}–#{date_arr.last}"
+                                  else
+                                    date_arr.first
+                                  end
+                                else
+                                  date_arr
+                                end
         identifier.save
       end
       log_created(object)
