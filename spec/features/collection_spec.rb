@@ -3,13 +3,13 @@ require 'rails_helper'
 feature 'Collection show page:' do
   let(:red_attrs) do
     { title: ['Red'],
-      publisher: ['Colors Pub', 'Red Pub'],
+      contributor: ['Coloring book'],
       identifier: ['ark:/99999/fk4zp46p1g'],
       admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID }
   end
   let(:pink_attrs) do
     { title: ['Pink'],
-      publisher: ['Colors Pub', 'Pink Pub'],
+      contributor: ['Coloring book', 'Pinko'],
       identifier: ['ark:/99999/fk4v989d9j'],
       admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID }
   end
@@ -33,14 +33,14 @@ feature 'Collection show page:' do
     expect(page).to have_content red_attrs[:title].first
     expect(page).to have_content pink_attrs[:title].first
 
-    within('#facets #facet-publisher_sim') do
-      click_link 'Colors Pub'
+    within('#facets #facet-contributor_label_sim') do
+      click_link 'Coloring book'
     end
     expect(page).to have_content red_attrs[:title].first
     expect(page).to have_content pink_attrs[:title].first
 
-    within('#facets #facet-publisher_sim') do
-      click_link 'Pink Pub'
+    within('#facets #facet-contributor_label_sim') do
+      click_link 'Pinko'
     end
     expect(page).to_not have_content red_attrs[:title].first
     expect(page).to have_content pink_attrs[:title].first
