@@ -109,8 +109,8 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name('form_of_work_label', :stored_searchable), label: 'Format'
     config.add_index_field solr_name('collection_label', :symbol), label: 'Collection'
     config.add_index_field ContributorIndexer::CONTRIBUTOR_LABEL, label: 'Contributors'
-    config.add_index_field solr_name('created', :displayable), label: 'Date'
-    config.add_index_field solr_name('issued', :displayable), label: 'Date'
+    config.add_index_field solr_name('created', :displayable), label: 'Creation Date'
+    config.add_index_field solr_name('issued', :displayable), label: 'Issued Date'
 
     Metadata::RELATIONS.each do |key, _value|
       config.add_show_field solr_name("#{key}_label", :stored_searchable), label: key.to_s.titleize
