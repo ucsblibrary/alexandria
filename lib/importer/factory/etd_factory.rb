@@ -31,6 +31,13 @@ module Importer::Factory
       # supplements:
       # https://github.library.ucsb.edu/ADRL/alexandria/issues/45
       ([files[:pdf]] + files[:supplements]).each do |path|
+        # Skip files with the same name as an already-attached file
+        next if object.file_sets.any? do |fs|
+          fs.files.any? do |file|
+            file.file_name.any? { |f| f == File.basename(path) }
+          end
+        end
+
         file_set = FileSet.new(admin_policy_id: object.admin_policy_id)
         Rails.logger.debug "Attaching binary #{path}"
         Hydra::Works::AddFileToFileSet.call(file_set,
