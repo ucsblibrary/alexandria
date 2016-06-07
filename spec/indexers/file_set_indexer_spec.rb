@@ -16,8 +16,6 @@ describe FileSetIndexer do
     it 'has the url, name and file size' do
       expect(subject['original_download_url_ss']).to eq 'http://test.host/downloads/bf742775-2a24-46dc-889e-cca03b27b5f3'
       expect(subject['original_filename_ss']).to eq 'sample.pdf'
-      expect(subject['original_file_size_ss']).to eq 218_882
-      expect(subject['original_file_size_ss']).to eq 218_882
     end
 
     context "of an audio" do

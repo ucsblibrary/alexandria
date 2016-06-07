@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<DISS_submission publishing_option="0" embargo_code="2" third_party_search="N">
+  <DISS_authorship>
+    <DISS_author type="primary">
+      <DISS_name>
+        <DISS_surname>Miggs</DISS_surname>
+        <DISS_fname>Martin</DISS_fname>
+        <DISS_middle>M</DISS_middle>
+        <DISS_suffix/>
+        <DISS_affiliation>University of California, Santa Barbara</DISS_affiliation>
+      </DISS_name>
+      <DISS_contact type="current">
+        <DISS_contact_effdt>12/15/2014</DISS_contact_effdt>
+        <DISS_phone_fax type="P">
+          <DISS_cntry_cd>0</DISS_cntry_cd>
+          <DISS_area_code>666</DISS_area_code>
+          <DISS_phone_num>4201999</DISS_phone_num>
+          <DISS_phone_ext/>
+        </DISS_phone_fax>
+        <DISS_address>
+          <DISS_addrline>1 Fake Road</DISS_addrline>
+          <DISS_city>Unreal City</DISS_city>
+          <DISS_st>State of Denial</DISS_st>
+          <DISS_pcode>00000</DISS_pcode>
+          <DISS_country>Earth</DISS_country>
+        </DISS_address>
+        <DISS_email>fake@hotmail.con</DISS_email>
+      </DISS_contact>
+      <DISS_contact type="future">
+        <DISS_contact_effdt>12/15/2014</DISS_contact_effdt>
+        <DISS_phone_fax type="P">
+          <DISS_cntry_cd>0</DISS_cntry_cd>
+          <DISS_area_code>666</DISS_area_code>
+          <DISS_phone_num>4201999</DISS_phone_num>
+          <DISS_phone_ext/>
+        </DISS_phone_fax>
+        <DISS_address>
+          <DISS_addrline>1 Fake Road</DISS_addrline>
+          <DISS_city>Unreal City</DISS_city>
+          <DISS_st>State of Denial</DISS_st>
+          <DISS_pcode>00000</DISS_pcode>
+          <DISS_country>Earth</DISS_country>
+        </DISS_address>
+        <DISS_email>fake@hotmail.con</DISS_email>
+      </DISS_contact>
+      <DISS_citizenship>N/A</DISS_citizenship>
+    </DISS_author>
+  </DISS_authorship>
+  <DISS_description page_count="147" type="doctoral" external_id="http://dissertations.umi.com/ucsb:12446" apply_for_copyright="no">
+    <DISS_title>The New Luddites: Rejecting "Magic"</DISS_title>
+    <DISS_dates>
+      <DISS_comp_date>2014</DISS_comp_date>
+      <DISS_accept_date>01/01/2014</DISS_accept_date>
+    </DISS_dates>
+    <DISS_degree>Ph.D.</DISS_degree>
+    <DISS_institution>
+      <DISS_inst_code>0035</DISS_inst_code>
+      <DISS_inst_name>University of California, Santa Barbara</DISS_inst_name>
+      <DISS_inst_contact>History</DISS_inst_contact>
+      <DISS_processing_code>D</DISS_processing_code>
+    </DISS_institution>
+    <DISS_advisor>
+      <DISS_name>
+        <DISS_surname>Wilkins</DISS_surname>
+        <DISS_fname>Monica</DISS_fname>
+        <DISS_middle>H</DISS_middle>
+      </DISS_name>
+    </DISS_advisor>
+    <DISS_cmte_member>
+      <DISS_name>
+        <DISS_surname>Stick</DISS_surname>
+        <DISS_fname>Jane</DISS_fname>
+        <DISS_middle/>
+        <DISS_suffix/>
+        <DISS_affiliation/>
+      </DISS_name>
+    </DISS_cmte_member>
+    <DISS_cmte_member>
+      <DISS_name>
+        <DISS_surname>Folger</DISS_surname>
+        <DISS_fname>John</DISS_fname>
+        <DISS_middle/>
+        <DISS_suffix/>
+        <DISS_affiliation/>
+      </DISS_name>
+    </DISS_cmte_member>
+    <DISS_cmte_member>
+      <DISS_name>
+        <DISS_surname>Vance</DISS_surname>
+        <DISS_fname>Emmeline</DISS_fname>
+        <DISS_middle/>
+        <DISS_suffix/>
+        <DISS_affiliation/>
+      </DISS_name>
+    </DISS_cmte_member>
+    <DISS_categorization>
+      <DISS_category>
+        <DISS_cat_code>0306</DISS_cat_code>
+        <DISS_cat_desc>History</DISS_cat_desc>
+      </DISS_category>
+      <DISS_category>
+        <DISS_cat_code>0542</DISS_cat_code>
+        <DISS_cat_desc>Comparative literature</DISS_cat_desc>
+      </DISS_category>
+      <DISS_keyword>magic, technology, fear</DISS_keyword>
+      <DISS_language>en</DISS_language>
+    </DISS_categorization>
+  </DISS_description>
+  <DISS_content>
+    <DISS_abstract>
+      <DISS_para>The season and duties which brought Mr. Bertram back to Mansfield took Mr. Crawford into Norfolk. Everingham could not do without him in the beginning of September. He went for a fortnight -- a fortnight of such dullness to the Miss Bertrams as ought to have put them both on their guard, and made even Julia admit, in her jealousy of her sister, the absolute necessity of distrusting his attentions, and wishing him not to return; and a fortnight of sufficient leisure, in the intervals of shooting and sleeping, to have convinced the gentleman that he ought to keep longer away, had he been more in the habit of examining his own motives, and of reflecting to what the indulgence of his idle vanity was tending; but, thoughtless and selfish from prosperity and bad example, he would not look beyond the present moment. The sisters, handsome, clever, and encouraging, were an amusement to his sated mind; and finding nothing in Norfolk to equal the social pleasures of Mansfield, he gladly returned to it at the time appointed, and was welcomed thither quite as gladly by those whom he came to trifle with further.</DISS_para>
+    </DISS_abstract>
+    <DISS_binary type="PDF">Miggs_ucsb_0035D_12446.pdf</DISS_binary>
+    <DISS_attachment>
+      <DISS_file_name>muggle movie.mp4</DISS_file_name>
+      <DISS_file_category>video</DISS_file_category>
+      <DISS_file_descr>Historical film</DISS_file_descr>
+    </DISS_attachment>
+    <DISS_attachment>
+      <DISS_file_name>muggle on clean glass.mp4</DISS_file_name>
+      <DISS_file_category>video</DISS_file_category>
+      <DISS_file_descr>Just hanging out</DISS_file_descr>
+    </DISS_attachment>
+  </DISS_content>
+  <DISS_restriction/>
+  <DISS_repository>
+    <DISS_version>2014-06-04 13:56:24</DISS_version>
+    <DISS_agreement_decision_date>2014-12-15 19:40:31</DISS_agreement_decision_date>
+    <DISS_acceptance>1</DISS_acceptance>
+    <DISS_delayed_release>1 years</DISS_delayed_release>
+    <DISS_access_option>Campus use only</DISS_access_option>
+  </DISS_repository>
+</DISS_submission>
