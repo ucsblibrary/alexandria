@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: https://apitest:ez_id_password@ezid.cdlib.org/shoulder/ark:/99999/fk4
+    uri: https://ezid.cdlib.org/shoulder/ark:/99999/fk4
     body:
       encoding: UTF-8
       string: ''
@@ -17,29 +17,31 @@ http_interactions:
       - ezid.cdlib.org
       Content-Type:
       - text/plain; charset=UTF-8
+      Authorization:
+      - Basic YXBpdGVzdDphcGl0ZXN0
   response:
     status:
       code: 201
       message: CREATED
     headers:
       Date:
-      - Fri, 10 Apr 2015 15:38:50 GMT
+      - Tue, 07 Jun 2016 19:02:05 GMT
       Server:
-      - Apache/2.2.17 (Unix) mod_ssl/2.2.17 OpenSSL/1.0.1h mod_wsgi/3.3 Python/2.7.6
-      Vary:
-      - Cookie
+      - Apache/2.2.17 (Unix) mod_ssl/2.2.17 OpenSSL/1.0.1k-fips mod_wsgi/4.4.9 Python/2.7.6
       Content-Length:
       - '30'
+      Vary:
+      - Cookie
       Content-Type:
       - text/plain; charset=UTF-8
     body:
       encoding: UTF-8
       string: 'success: ark:/99999/fk4c252k0f'
     http_version: 
-  recorded_at: Fri, 10 Apr 2015 15:38:52 GMT
+  recorded_at: Tue, 07 Jun 2016 19:02:05 GMT
 - request:
     method: get
-    uri: https://apitest:ez_id_password@ezid.cdlib.org/id/ark:/99999/fk4c252k0f
+    uri: https://ezid.cdlib.org/id/ark:/99999/fk4c252k0f
     body:
       encoding: US-ASCII
       string: ''
@@ -54,38 +56,40 @@ http_interactions:
       - ezid.cdlib.org
       Content-Type:
       - text/plain; charset=UTF-8
+      Authorization:
+      - Basic YXBpdGVzdDphcGl0ZXN0
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Fri, 10 Apr 2015 15:38:57 GMT
+      - Tue, 07 Jun 2016 19:02:08 GMT
       Server:
-      - Apache/2.2.17 (Unix) mod_ssl/2.2.17 OpenSSL/1.0.1h mod_wsgi/3.3 Python/2.7.6
-      Vary:
-      - Cookie
+      - Apache/2.2.17 (Unix) mod_ssl/2.2.17 OpenSSL/1.0.1k-fips mod_wsgi/4.4.9 Python/2.7.6
       Content-Length:
       - '209'
+      Vary:
+      - Cookie
       Content-Type:
       - text/plain; charset=UTF-8
     body:
       encoding: UTF-8
       string: |
         success: ark:/99999/fk4c252k0f
-        _updated: 1428680330
+        _updated: 1465326125
         _target: http://ezid.cdlib.org/id/ark:/99999/fk4c252k0f
         _profile: erc
         _ownergroup: apitest
         _owner: apitest
         _export: yes
-        _created: 1428680330
+        _created: 1465326125
         _status: public
     http_version: 
-  recorded_at: Fri, 10 Apr 2015 15:38:58 GMT
+  recorded_at: Tue, 07 Jun 2016 19:02:08 GMT
 - request:
     method: post
-    uri: https://apitest:ez_id_password@ezid.cdlib.org/id/ark:/99999/fk4c252k0f
+    uri: https://ezid.cdlib.org/id/ark:/99999/fk4c252k0f
     body:
       encoding: UTF-8
       string: |-
@@ -104,24 +108,26 @@ http_interactions:
       - ezid.cdlib.org
       Content-Type:
       - text/plain; charset=UTF-8
+      Authorization:
+      - Basic YXBpdGVzdDphcGl0ZXN0
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Fri, 10 Apr 2015 15:38:57 GMT
+      - Tue, 07 Jun 2016 19:02:09 GMT
       Server:
-      - Apache/2.2.17 (Unix) mod_ssl/2.2.17 OpenSSL/1.0.1h mod_wsgi/3.3 Python/2.7.6
-      Vary:
-      - Cookie
+      - Apache/2.2.17 (Unix) mod_ssl/2.2.17 OpenSSL/1.0.1k-fips mod_wsgi/4.4.9 Python/2.7.6
       Content-Length:
       - '30'
+      Vary:
+      - Cookie
       Content-Type:
       - text/plain; charset=UTF-8
     body:
       encoding: UTF-8
       string: 'success: ark:/99999/fk4c252k0f'
     http_version: 
-  recorded_at: Fri, 10 Apr 2015 15:38:59 GMT
-recorded_with: VCR 2.9.3
+  recorded_at: Tue, 07 Jun 2016 19:02:09 GMT
+recorded_with: VCR 3.0.1
