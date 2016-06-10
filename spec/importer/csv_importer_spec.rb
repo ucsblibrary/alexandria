@@ -3,11 +3,6 @@ require 'exceptions'
 require 'importer'
 
 describe Importer::CSV do
-  def stub_out_indexer
-    # Stub out the fetch to avoid calls to external services
-    allow_any_instance_of(ActiveTriples::Resource).to receive(:fetch) { 'stubbed' }
-  end
-
   let(:data) { Dir['spec/fixtures/images/*'] }
 
   context 'when the model is specified' do
@@ -27,10 +22,12 @@ describe Importer::CSV do
                 else
                   data.select { |d| attrs[:files].include? File.basename(d) }
                 end
-        Importer::CSV.import(
-          attributes: attrs,
-          files: files
-        )
+        VCR.use_cassette('csv_importer') do
+          Importer::CSV.import(
+            attributes: attrs,
+            files: files
+          )
+        end
         after = Image.all.count
       end
       expect(after - before).to eq(1)

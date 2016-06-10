@@ -1,0 +1,479 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://id.loc.gov/authorities/subjects/sh85072779
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
+        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
+        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, application/trig,
+        application/x-trig, application/trix
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 303
+      message: SEE OTHER
+    headers:
+      Location:
+      - http://id.loc.gov/authorities/subjects/sh85072779.jsonld
+      Vary:
+      - Accept
+      X-Uri:
+      - http://id.loc.gov/authorities/subjects/sh85072779
+      X-Preflabel:
+      - Kodiak Island (Alaska)
+      Server:
+      - Apache
+      Content-Length:
+      - '0'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Thu, 09 Jun 2016 23:47:50 GMT
+      X-Varnish:
+      - '1039158426'
+      Age:
+      - '0'
+      Via:
+      - 1.1 varnish
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version:
+  recorded_at: Thu, 09 Jun 2016 23:47:53 GMT
+- request:
+    method: get
+    uri: http://id.loc.gov/authorities/subjects/sh85072779.jsonld
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
+        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
+        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, application/trig,
+        application/x-trig, application/trix
+      Accept-Encoding:
+      - gzip, deflate
+      Cookie:
+      - ''
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/ld+json
+      Cache-Control:
+      - public, max-age=1209600
+      Etag:
+      - 974837ab9616c4cc58060e5a075bfc3d
+      X-Uri:
+      - http://id.loc.gov/authorities/subjects/sh85072779
+      Server:
+      - Apache
+      Content-Length:
+      - '10726'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Thu, 09 Jun 2016 23:47:51 GMT
+      X-Varnish:
+      - '1039158429'
+      Age:
+      - '0'
+      Via:
+      - 1.1 varnish
+      Connection:
+      - keep-alive
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        WyAgeyAiQGlkIjogIl86YjdhdXRob3JpdGllc3N1YmplY3Rzc2g4NTA3Mjc3
+        OSIsICJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgt
+        bnMjZmlyc3QiOiBbIHsgIkBpZCI6ICJfOmI4YXV0aG9yaXRpZXNzdWJqZWN0
+        c3NoODUwNzI3NzkiIH0gXSwgImh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIv
+        MjItcmRmLXN5bnRheC1ucyNyZXN0IjogWyB7ICJAaWQiOiAiaHR0cDovL3d3
+        dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zI25pbCIgfSBdIH0s
+        ICB7ICJAaWQiOiAiXzpiOGF1dGhvcml0aWVzc3ViamVjdHNzaDg1MDcyNzc5
+        IiwgIkB0eXBlIjogWyAiaHR0cDovL3d3dy5sb2MuZ292L21hZHMvcmRmL3Yx
+        I0dlb2dyYXBoaWNFbGVtZW50IiBdLCAiaHR0cDovL3d3dy5sb2MuZ292L21h
+        ZHMvcmRmL3YxI2VsZW1lbnRWYWx1ZSI6IFsgeyAiQGxhbmd1YWdlIjogImVu
+        IiwKIkB2YWx1ZSI6ICJLb2RpYWsgSXNsYW5kIChBbGFza2EpIiB9IF0gfSwg
+        IHsgIkBpZCI6ICJfOmI2NmF1dGhvcml0aWVzc3ViamVjdHNzaDg1MDcyNzc5
+        IiwgIkB0eXBlIjogWyAiaHR0cDovL3d3dy5sb2MuZ292L21hZHMvcmRmL3Yx
+        I1NvdXJjZSIgXSwgImh0dHA6Ly93d3cubG9jLmdvdi9tYWRzL3JkZi92MSNj
+        aXRhdGlvbi1zb3VyY2UiOiBbIHsgIkB2YWx1ZSI6ICJXaWtpcGVkaWEsIEph
+        bi4gNSwgMjAwOSIgfSBdLCAiaHR0cDovL3d3dy5sb2MuZ292L21hZHMvcmRm
+        L3YxI2NpdGF0aW9uLW5vdGUiOiBbIHsgIkBsYW5ndWFnZSI6ICJlbiIsCiJA
+        dmFsdWUiOiAiKEtvZGlhayBJc2xhbmQgaXMgYSBsYXJnZSBpc2xhbmQgb24g
+        dGhlIHNvdXRoIGNvYXN0IG9mIHRoZSBVLlMuIHN0YXRlIG9mIEFsYXNrYSwg
+        c2VwYXJhdGVkIGZyb20gdGhlIEFsYXNrYSBtYWlubGFuZCBieSB0aGUgU2hl
+        bGlrb2YgU3RyYWl0LiBUaGUgbGFyZ2VzdCBpc2xhbmQgaW4gdGhlIEtvZGlh
+        ayBBcmNoaXBlbGFnbyBhbmQgYXQgODk3NSBzcS4ga20gKDM0NjUgc3F1YXJl
+        IG1pbGVzKSBpbiBhcmVhLCBpdCBpcyB0aGUgc2Vjb25kIGxhcmdlc3QgaXNs
+        YW5kIGluIHRoZSBVbml0ZWQgU3RhdGVzIGFuZCB0aGUgODB0aCBsYXJnZXN0
+        IGlzbGFuZCBpbiB0aGUgd29ybGQpIiB9IF0sICJodHRwOi8vd3d3LmxvYy5n
+        b3YvbWFkcy9yZGYvdjEjY2l0YXRpb24tc3RhdHVzIjogWyB7ICJAdmFsdWUi
+        OiAiZm91bmQiIH0gXSB9LCAgeyAiQGlkIjogIl86Yjg5YXV0aG9yaXRpZXNz
+        dWJqZWN0c3NoODUwNzI3NzkiLCAiQHR5cGUiOiBbICJodHRwOi8vaWQubG9j
+        Lmdvdi9vbnRvbG9naWVzL1JlY29yZEluZm8jUmVjb3JkSW5mbyIgXSwgImh0
+        dHA6Ly9pZC5sb2MuZ292L29udG9sb2dpZXMvUmVjb3JkSW5mbyNyZWNvcmRD
+        aGFuZ2VEYXRlIjogWyB7ICJAdHlwZSI6ICJodHRwOi8vd3d3LnczLm9yZy8y
+        MDAxL1hNTFNjaGVtYSNkYXRlVGltZSIsCiJAdmFsdWUiOiAiMjAxMS0wNi0w
+        M1QwNzoyNzo0NCIgfSBdLCAiaHR0cDovL2lkLmxvYy5nb3Yvb250b2xvZ2ll
+        cy9SZWNvcmRJbmZvI3JlY29yZFN0YXR1cyI6IFsgeyAiQHR5cGUiOiAiaHR0
+        cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEjc3RyaW5nIiwKIkB2YWx1
+        ZSI6ICJyZXZpc2VkIiB9IF0sICJodHRwOi8vaWQubG9jLmdvdi9vbnRvbG9n
+        aWVzL1JlY29yZEluZm8jcmVjb3JkQ29udGVudFNvdXJjZSI6IFsgeyAiQGlk
+        IjogImh0dHA6Ly9pZC5sb2MuZ292L3ZvY2FidWxhcnkvb3JnYW5pemF0aW9u
+        cy9kbGMiIH0gXSB9LCAgeyAiQGlkIjogIl86YjEyNmF1dGhvcml0aWVzc3Vi
+        amVjdHNzaDg1MDcyNzc5IiwgIkB0eXBlIjogWyAiaHR0cDovL3B1cmwub3Jn
+        L3ZvY2FiL2NoYW5nZXNldC9zY2hlbWEjQ2hhbmdlU2V0IiBdLCAiaHR0cDov
+        L3B1cmwub3JnL3ZvY2FiL2NoYW5nZXNldC9zY2hlbWEjc3ViamVjdE9mQ2hh
+        bmdlIjogWyB7ICJAaWQiOiAiaHR0cDovL2lkLmxvYy5nb3YvYXV0aG9yaXRp
+        ZXMvc3ViamVjdHMvc2g4NTA3Mjc3OSIgfSBdLCAiaHR0cDovL3B1cmwub3Jn
+        L3ZvY2FiL2NoYW5nZXNldC9zY2hlbWEjY3JlYXRvck5hbWUiOiBbIHsgIkBp
+        ZCI6ICJodHRwOi8vaWQubG9jLmdvdi92b2NhYnVsYXJ5L29yZ2FuaXphdGlv
+        bnMvZGxjIiB9IF0sICJodHRwOi8vcHVybC5vcmcvdm9jYWIvY2hhbmdlc2V0
+        L3NjaGVtYSNjcmVhdGVkRGF0ZSI6IFsgeyAiQHR5cGUiOiAiaHR0cDovL3d3
+        dy53My5vcmcvMjAwMS9YTUxTY2hlbWEjZGF0ZVRpbWUiLAoiQHZhbHVlIjog
+        IjIwMDUtMTItMjlUMDA6MDA6MDAiIH0gXSwgImh0dHA6Ly9wdXJsLm9yZy92
+        b2NhYi9jaGFuZ2VzZXQvc2NoZW1hI2NoYW5nZVJlYXNvbiI6IFsgeyAiQHR5
+        cGUiOiAiaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEjc3RyaW5n
+        IiwKIkB2YWx1ZSI6ICJuZXciIH0gXSB9LCAgeyAiQGlkIjogIl86YjUwYXV0
+        aG9yaXRpZXNzdWJqZWN0c3NoODUwNzI3NzkiLCAiQHR5cGUiOiBbICJodHRw
+        Oi8vd3d3LmxvYy5nb3YvbWFkcy9yZGYvdjEjU291cmNlIiBdLCAiaHR0cDov
+        L3d3dy5sb2MuZ292L21hZHMvcmRmL3YxI2NpdGF0aW9uLXNvdXJjZSI6IFsg
+        eyAiQHZhbHVlIjogIkdOSVMsIERlYy4gMjksIDIwMDUiIH0gXSwgImh0dHA6
+        Ly93d3cubG9jLmdvdi9tYWRzL3JkZi92MSNjaXRhdGlvbi1ub3RlIjogWyB7
+        ICJAbGFuZ3VhZ2UiOiAiZW4iLAoiQHZhbHVlIjogIihLb2RpYWsgSXNsYW5k
+        LCBpc2xhbmQsIGxhcmdlc3QgaXNsYW5kIGluIEFsYXNrYSwgdmFyaWFudDog
+        S2FkaWFrIElzbGFuZCkiIH0gXSwgImh0dHA6Ly93d3cubG9jLmdvdi9tYWRz
+        L3JkZi92MSNjaXRhdGlvbi1zdGF0dXMiOiBbIHsgIkB2YWx1ZSI6ICJmb3Vu
+        ZCIgfSBdIH0sICB7ICJAaWQiOiAiaHR0cDovL2RhdGEuYm5mLmZyL2Fyazov
+        MTIxNDgvY2IxMTkzMjE3OWgiLCAiQHR5cGUiOiBbICJodHRwOi8vd3d3Lmxv
+        Yy5nb3YvbWFkcy9yZGYvdjEjQXV0aG9yaXR5IiwgImh0dHA6Ly93d3cudzMu
+        b3JnLzIwMDQvMDIvc2tvcy9jb3JlI0NvbmNlcHQiIF0sICJodHRwOi8vd3d3
+        LmxvYy5nb3YvbWFkcy9yZGYvdjEjYXV0aG9yaXRhdGl2ZUxhYmVsIjogWyB7
+        ICJAbGFuZ3VhZ2UiOiAiRlIiLAoiQHZhbHVlIjogIktvZGlhayAoQWxhc2th
+        KSwgw45sZSIgfSBdLCAiaHR0cDovL3d3dy53My5vcmcvMjAwNC8wMi9za29z
+        L2NvcmUjcHJlZkxhYmVsIjogWyB7ICJAbGFuZ3VhZ2UiOiAiRlIiLAoiQHZh
+        bHVlIjogIktvZGlhayAoQWxhc2thKSwgw45sZSIgfSBdIH0sICB7ICJAaWQi
+        OiAiXzpiOTlhdXRob3JpdGllc3N1YmplY3Rzc2g4NTA3Mjc3OSIsICJAdHlw
+        ZSI6IFsgImh0dHA6Ly93d3cudzMub3JnLzIwMDgvMDUvc2tvcy14bCNMYWJl
+        bCIgXSwgImh0dHA6Ly93d3cudzMub3JnLzIwMDgvMDUvc2tvcy14bCNsaXRl
+        cmFsRm9ybSI6IFsgeyAiQGxhbmd1YWdlIjogImVuIiwKIkB2YWx1ZSI6ICJL
+        YWRpYWsgSXNsYW5kIChBbGFza2EpIiB9IF0gfSwgIHsgIkBpZCI6ICJfOmI3
+        NGF1dGhvcml0aWVzc3ViamVjdHNzaDg1MDcyNzc5IiwgIkB0eXBlIjogWyAi
+        aHR0cDovL3d3dy5sb2MuZ292L21hZHMvcmRmL3YxI1NvdXJjZSIgXSwgImh0
+        dHA6Ly93d3cubG9jLmdvdi9tYWRzL3JkZi92MSNjaXRhdGlvbi1zb3VyY2Ui
+        OiBbIHsgIkB2YWx1ZSI6ICJHZW9OYW1lcyBbYWxnb3JpdGhtaWNhbGx5IG1h
+        dGNoZWRdIiB9IF0sICJodHRwOi8vd3d3LmxvYy5nb3YvbWFkcy9yZGYvdjEj
+        Y2l0YXRpb24tbm90ZSI6IFsgeyAiQGxhbmd1YWdlIjogImVuIiwKIkB2YWx1
+        ZSI6ICJpc2xhbmQ7IDU3wrAyM8q5NDbKuk4gMTUzwrAyOcq5MDDKulciIH0g
+        XSwgImh0dHA6Ly93d3cubG9jLmdvdi9tYWRzL3JkZi92MSNjaXRhdGlvbi1z
+        dGF0dXMiOiBbIHsgIkB2YWx1ZSI6ICJmb3VuZCIgfSBdIH0sICB7ICJAaWQi
+        OiAiXzpiMzdhdXRob3JpdGllc3N1YmplY3Rzc2g4NTA3Mjc3OSIsICJAdHlw
+        ZSI6IFsgImh0dHA6Ly93d3cubG9jLmdvdi9tYWRzL3JkZi92MSNHZW9ncmFw
+        aGljIiwgImh0dHA6Ly93d3cubG9jLmdvdi9tYWRzL3JkZi92MSNWYXJpYW50
+        IiBdLCAiaHR0cDovL3d3dy5sb2MuZ292L21hZHMvcmRmL3YxI3ZhcmlhbnRM
+        YWJlbCI6IFsgeyAiQGxhbmd1YWdlIjogImVuIiwKIkB2YWx1ZSI6ICJLYWRp
+        YWsgSXNsYW5kIChBbGFza2EpIiB9IF0sICJodHRwOi8vd3d3LmxvYy5nb3Yv
+        bWFkcy9yZGYvdjEjZWxlbWVudExpc3QiOiBbIHsgIkBpZCI6ICJfOmI0MmF1
+        dGhvcml0aWVzc3ViamVjdHNzaDg1MDcyNzc5IiB9IF0gfSwgIHsgIkBpZCI6
+        ICJodHRwOi8vaWQubG9jLmdvdi9hdXRob3JpdGllcy9zdWJqZWN0cy9zaDg1
+        MDcyNzc5IiwgIkB0eXBlIjogWyAiaHR0cDovL3d3dy5sb2MuZ292L21hZHMv
+        cmRmL3YxI0dlb2dyYXBoaWMiLCAiaHR0cDovL3d3dy5sb2MuZ292L21hZHMv
+        cmRmL3YxI0F1dGhvcml0eSIsICJodHRwOi8vd3d3LnczLm9yZy8yMDA0LzAy
+        L3Nrb3MvY29yZSNDb25jZXB0IiBdLCAiaHR0cDovL3d3dy5sb2MuZ292L21h
+        ZHMvcmRmL3YxI2F1dGhvcml0YXRpdmVMYWJlbCI6IFsgeyAiQGxhbmd1YWdl
+        IjogImVuIiwKIkB2YWx1ZSI6ICJLb2RpYWsgSXNsYW5kIChBbGFza2EpIiB9
+        IF0sICJodHRwOi8vd3d3LmxvYy5nb3YvbWFkcy9yZGYvdjEjZWxlbWVudExp
+        c3QiOiBbIHsgIkBpZCI6ICJfOmI3YXV0aG9yaXRpZXNzdWJqZWN0c3NoODUw
+        NzI3NzkiIH0gXSwgImh0dHA6Ly93d3cubG9jLmdvdi9tYWRzL3JkZi92MSNo
+        YXNCcm9hZGVyQXV0aG9yaXR5IjogWyB7ICJAaWQiOiAiaHR0cDovL2lkLmxv
+        Yy5nb3YvYXV0aG9yaXRpZXMvc3ViamVjdHMvc2g4NTA2ODQ5OCIgfSwgeyAi
+        QGlkIjogImh0dHA6Ly9pZC5sb2MuZ292L2F1dGhvcml0aWVzL3N1YmplY3Rz
+        L3NoMjAwODAwODgyMCIgfSBdLCAiaHR0cDovL3d3dy5sb2MuZ292L21hZHMv
+        cmRmL3YxI2lzTWVtYmVyT2ZNQURTQ29sbGVjdGlvbiI6IFsgeyAiQGlkIjog
+        Imh0dHA6Ly9pZC5sb2MuZ292L2F1dGhvcml0aWVzL3N1YmplY3RzL2NvbGxl
+        Y3Rpb25fTENTSEF1dGhvcml6ZWRIZWFkaW5ncyIgfSwgeyAiQGlkIjogImh0
+        dHA6Ly9pZC5sb2MuZ292L2F1dGhvcml0aWVzL3N1YmplY3RzL2NvbGxlY3Rp
+        b25fTENTSF9HZW5lcmFsIiB9IF0sICJodHRwOi8vd3d3LmxvYy5nb3YvbWFk
+        cy9yZGYvdjEjaGFzQ2xvc2VFeHRlcm5hbEF1dGhvcml0eSI6IFsgeyAiQGlk
+        IjogImh0dHA6Ly9kYXRhLmJuZi5mci9hcms6LzEyMTQ4L2NiMTE5MzIxNzlo
+        IiB9IF0sICJodHRwOi8vd3d3LmxvYy5nb3YvbWFkcy9yZGYvdjEjaXNNZW1i
+        ZXJPZk1BRFNTY2hlbWUiOiBbIHsgIkBpZCI6ICJodHRwOi8vaWQubG9jLmdv
+        di9hdXRob3JpdGllcy9zdWJqZWN0cyIgfSBdLCAiaHR0cDovL3d3dy5sb2Mu
+        Z292L21hZHMvcmRmL3YxI2lkZW50aWZpZXNSV08iOiBbIHsgIkBpZCI6ICIi
+        IH0gXSwgImh0dHA6Ly93d3cubG9jLmdvdi9tYWRzL3JkZi92MSNoYXNWYXJp
+        YW50IjogWyB7ICJAaWQiOiAiXzpiMzdhdXRob3JpdGllc3N1YmplY3Rzc2g4
+        NTA3Mjc3OSIgfSBdLCAiaHR0cDovL2lkLmxvYy5nb3Yvdm9jYWJ1bGFyeS9p
+        ZGVudGlmaWVycy9sY2NuIjogWyB7ICJAdmFsdWUiOiAic2ggODUwNzI3Nzki
+        IH0gXSwgImh0dHA6Ly93d3cudzMub3JnLzIwMDIvMDcvb3dsI3NhbWVBcyI6
+        IFsgeyAiQGlkIjogImluZm86bGMvYXV0aG9yaXRpZXMvc2g4NTA3Mjc3OSIg
+        fSwgeyAiQGlkIjogImh0dHA6Ly9pZC5sb2MuZ292L2F1dGhvcml0aWVzL3No
+        ODUwNzI3NzkjY29uY2VwdCIgfSBdLCAiaHR0cDovL3d3dy5sb2MuZ292L21h
+        ZHMvcmRmL3YxI2hhc1NvdXJjZSI6IFsgeyAiQGlkIjogIl86YjUwYXV0aG9y
+        aXRpZXNzdWJqZWN0c3NoODUwNzI3NzkiIH0sIHsgIkBpZCI6ICJfOmI1OGF1
+        dGhvcml0aWVzc3ViamVjdHNzaDg1MDcyNzc5IiB9LCB7ICJAaWQiOiAiXzpi
+        NjZhdXRob3JpdGllc3N1YmplY3Rzc2g4NTA3Mjc3OSIgfSwgeyAiQGlkIjog
+        Il86Yjc0YXV0aG9yaXRpZXNzdWJqZWN0c3NoODUwNzI3NzkiIH0gXSwgImh0
+        dHA6Ly93d3cubG9jLmdvdi9tYWRzL3JkZi92MSNhZG1pbk1ldGFkYXRhIjog
+        WyB7ICJAaWQiOiAiXzpiODJhdXRob3JpdGllc3N1YmplY3Rzc2g4NTA3Mjc3
+        OSIgfSwgeyAiQGlkIjogIl86Yjg5YXV0aG9yaXRpZXNzdWJqZWN0c3NoODUw
+        NzI3NzkiIH0gXSwgImh0dHA6Ly93d3cudzMub3JnLzIwMDQvMDIvc2tvcy9j
+        b3JlI3ByZWZMYWJlbCI6IFsgeyAiQGxhbmd1YWdlIjogImVuIiwKIkB2YWx1
+        ZSI6ICJLb2RpYWsgSXNsYW5kIChBbGFza2EpIiB9IF0sICJodHRwOi8vd3d3
+        LnczLm9yZy8yMDA4LzA1L3Nrb3MteGwjYWx0TGFiZWwiOiBbIHsgIkBpZCI6
+        ICJfOmI5OWF1dGhvcml0aWVzc3ViamVjdHNzaDg1MDcyNzc5IiB9IF0sICJo
+        dHRwOi8vd3d3LnczLm9yZy8yMDA0LzAyL3Nrb3MvY29yZSNicm9hZGVyIjog
+        WyB7ICJAaWQiOiAiaHR0cDovL2lkLmxvYy5nb3YvYXV0aG9yaXRpZXMvc3Vi
+        amVjdHMvc2g4NTA2ODQ5OCIgfSwgeyAiQGlkIjogImh0dHA6Ly9pZC5sb2Mu
+        Z292L2F1dGhvcml0aWVzL3N1YmplY3RzL3NoMjAwODAwODgyMCIgfSBdLCAi
+        aHR0cDovL3d3dy53My5vcmcvMjAwNC8wMi9za29zL2NvcmUjY2xvc2VNYXRj
+        aCI6IFsgeyAiQGlkIjogImh0dHA6Ly9kYXRhLmJuZi5mci9hcms6LzEyMTQ4
+        L2NiMTE5MzIxNzloIiB9IF0sICJodHRwOi8vd3d3LnczLm9yZy8yMDA0LzAy
+        L3Nrb3MvY29yZSNpblNjaGVtZSI6IFsgeyAiQGlkIjogImh0dHA6Ly9pZC5s
+        b2MuZ292L2F1dGhvcml0aWVzL3N1YmplY3RzIiB9IF0sICJodHRwOi8vd3d3
+        LnczLm9yZy8yMDA0LzAyL3Nrb3MvY29yZSNhbHRMYWJlbCI6IFsgeyAiQGxh
+        bmd1YWdlIjogImVuIiwKIkB2YWx1ZSI6ICJLYWRpYWsgSXNsYW5kIChBbGFz
+        a2EpIiB9IF0sICJodHRwOi8vd3d3LnczLm9yZy8yMDA0LzAyL3Nrb3MvY29y
+        ZSNjaGFuZ2VOb3RlIjogWyB7ICJAaWQiOiAiXzpiMTI2YXV0aG9yaXRpZXNz
+        dWJqZWN0c3NoODUwNzI3NzkiIH0sIHsgIkBpZCI6ICJfOmIxMzRhdXRob3Jp
+        dGllc3N1YmplY3Rzc2g4NTA3Mjc3OSIgfSBdIH0sICB7ICJAaWQiOiAiaHR0
+        cDovL2lkLmxvYy5nb3YvYXV0aG9yaXRpZXMvc3ViamVjdHMvc2gyMDA4MDA4
+        ODIwIiwgIkB0eXBlIjogWyAiaHR0cDovL3d3dy5sb2MuZ292L21hZHMvcmRm
+        L3YxI0dlb2dyYXBoaWMiLCAiaHR0cDovL3d3dy5sb2MuZ292L21hZHMvcmRm
+        L3YxI0F1dGhvcml0eSIsICJodHRwOi8vd3d3LnczLm9yZy8yMDA0LzAyL3Nr
+        b3MvY29yZSNDb25jZXB0IiBdLCAiaHR0cDovL3d3dy5sb2MuZ292L21hZHMv
+        cmRmL3YxI2F1dGhvcml0YXRpdmVMYWJlbCI6IFsgeyAiQGxhbmd1YWdlIjog
+        ImVuIiwKIkB2YWx1ZSI6ICJLb2RpYWsgQXJjaGlwZWxhZ28gKEFsYXNrYSki
+        IH0gXSwgImh0dHA6Ly93d3cudzMub3JnLzIwMDAvMDEvcmRmLXNjaGVtYSNs
+        YWJlbCI6IFsgeyAiQGxhbmd1YWdlIjogImVuIiwKIkB2YWx1ZSI6ICJLb2Rp
+        YWsgQXJjaGlwZWxhZ28gKEFsYXNrYSkiIH0sIHsgIkBsYW5ndWFnZSI6ICJl
+        biIsCiJAdmFsdWUiOiAiS29kaWFrIEFyY2hpcGVsYWdvIChBbGFza2EpIiB9
+        IF0sICJodHRwOi8vd3d3LnczLm9yZy8yMDA0LzAyL3Nrb3MvY29yZSNwcmVm
+        TGFiZWwiOiBbIHsgIkBsYW5ndWFnZSI6ICJlbiIsCiJAdmFsdWUiOiAiS29k
+        aWFrIEFyY2hpcGVsYWdvIChBbGFza2EpIiB9IF0gfSwgIHsgIkBpZCI6ICJf
+        OmIxMzRhdXRob3JpdGllc3N1YmplY3Rzc2g4NTA3Mjc3OSIsICJAdHlwZSI6
+        IFsgImh0dHA6Ly9wdXJsLm9yZy92b2NhYi9jaGFuZ2VzZXQvc2NoZW1hI0No
+        YW5nZVNldCIgXSwgImh0dHA6Ly9wdXJsLm9yZy92b2NhYi9jaGFuZ2VzZXQv
+        c2NoZW1hI3N1YmplY3RPZkNoYW5nZSI6IFsgeyAiQGlkIjogImh0dHA6Ly9p
+        ZC5sb2MuZ292L2F1dGhvcml0aWVzL3N1YmplY3RzL3NoODUwNzI3NzkiIH0g
+        XSwgImh0dHA6Ly9wdXJsLm9yZy92b2NhYi9jaGFuZ2VzZXQvc2NoZW1hI2Ny
+        ZWF0b3JOYW1lIjogWyB7ICJAaWQiOiAiaHR0cDovL2lkLmxvYy5nb3Yvdm9j
+        YWJ1bGFyeS9vcmdhbml6YXRpb25zL2RsYyIgfSBdLCAiaHR0cDovL3B1cmwu
+        b3JnL3ZvY2FiL2NoYW5nZXNldC9zY2hlbWEjY3JlYXRlZERhdGUiOiBbIHsg
+        IkB0eXBlIjogImh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hI2Rh
+        dGVUaW1lIiwKIkB2YWx1ZSI6ICIyMDExLTA2LTAzVDA3OjI3OjQ0IiB9IF0s
+        ICJodHRwOi8vcHVybC5vcmcvdm9jYWIvY2hhbmdlc2V0L3NjaGVtYSNjaGFu
+        Z2VSZWFzb24iOiBbIHsgIkB0eXBlIjogImh0dHA6Ly93d3cudzMub3JnLzIw
+        MDEvWE1MU2NoZW1hI3N0cmluZyIsCiJAdmFsdWUiOiAicmV2aXNlZCIgfSBd
+        IH0sICB7ICJAaWQiOiAiXzpiODJhdXRob3JpdGllc3N1YmplY3Rzc2g4NTA3
+        Mjc3OSIsICJAdHlwZSI6IFsgImh0dHA6Ly9pZC5sb2MuZ292L29udG9sb2dp
+        ZXMvUmVjb3JkSW5mbyNSZWNvcmRJbmZvIiBdLCAiaHR0cDovL2lkLmxvYy5n
+        b3Yvb250b2xvZ2llcy9SZWNvcmRJbmZvI3JlY29yZENoYW5nZURhdGUiOiBb
+        IHsgIkB0eXBlIjogImh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1h
+        I2RhdGVUaW1lIiwKIkB2YWx1ZSI6ICIyMDA1LTEyLTI5VDAwOjAwOjAwIiB9
+        IF0sICJodHRwOi8vaWQubG9jLmdvdi9vbnRvbG9naWVzL1JlY29yZEluZm8j
+        cmVjb3JkU3RhdHVzIjogWyB7ICJAdHlwZSI6ICJodHRwOi8vd3d3LnczLm9y
+        Zy8yMDAxL1hNTFNjaGVtYSNzdHJpbmciLAoiQHZhbHVlIjogIm5ldyIgfSBd
+        LCAiaHR0cDovL2lkLmxvYy5nb3Yvb250b2xvZ2llcy9SZWNvcmRJbmZvI3Jl
+        Y29yZENvbnRlbnRTb3VyY2UiOiBbIHsgIkBpZCI6ICJodHRwOi8vaWQubG9j
+        Lmdvdi92b2NhYnVsYXJ5L29yZ2FuaXphdGlvbnMvZGxjIiB9IF0gfSwgIHsg
+        IkBpZCI6ICJfOmI1OGF1dGhvcml0aWVzc3ViamVjdHNzaDg1MDcyNzc5Iiwg
+        IkB0eXBlIjogWyAiaHR0cDovL3d3dy5sb2MuZ292L21hZHMvcmRmL3YxI1Nv
+        dXJjZSIgXSwgImh0dHA6Ly93d3cubG9jLmdvdi9tYWRzL3JkZi92MSNjaXRh
+        dGlvbi1zb3VyY2UiOiBbIHsgIkB2YWx1ZSI6ICJLb2RpYWsgYXJjaGlwZWxh
+        Z28gYmVhciBjb25zZXJ2YXRpb24gYW5kIG1hbmFnZW1lbnQgcGxhbiwgMjAw
+        MiwgdmlhIFdXVywgdmlld2VkIE5vdi4gMTQsIDIwMDg6IiB9IF0sICJodHRw
+        Oi8vd3d3LmxvYy5nb3YvbWFkcy9yZGYvdjEjY2l0YXRpb24tbm90ZSI6IFsg
+        eyAiQGxhbmd1YWdlIjogImVuIiwKIkB2YWx1ZSI6ICJwLiAxLTQgKFRoZSBL
+        b2RpYWsgYXJjaGlwZWxhZ28gaXMgbG9jYXRlZCBpbiBzb3V0aGNlbnRyYWwg
+        QWxhc2thOyB0aGUgYXJjaGlwZWxhZ28ncyB0aHJlZSBtYWluIGlzbGFuZHMg
+        KEtvZGlhaywgQWZvZ25haywgYW5kIFNodXlhaykgYW5kIG51bWVyb3VzIHNt
+        YWxsZXIgaXNsYW5kcyBlbmNvbXBhc3MgYWJvdXQgNSwwMDAgc3F1cmUgbWls
+        ZXMsIHN0cmV0Y2hpbmcgMTUwIG1pbGVzIGZyb20gbm9ydGggdG8gc291dGgg
+        YW5kIDQwIG1pbGVzIGZyb20gZWFzdCB0byB3ZXN0KSIgfSBdLCAiaHR0cDov
+        L3d3dy5sb2MuZ292L21hZHMvcmRmL3YxI2NpdGF0aW9uLXN0YXR1cyI6IFsg
+        eyAiQHZhbHVlIjogImZvdW5kIiB9IF0gfSwgIHsgIkBpZCI6ICJodHRwOi8v
+        aWQubG9jLmdvdi9hdXRob3JpdGllcy9zdWJqZWN0cy9zaDg1MDY4NDk4Iiwg
+        IkB0eXBlIjogWyAiaHR0cDovL3d3dy5sb2MuZ292L21hZHMvcmRmL3YxI0Nv
+        bXBsZXhTdWJqZWN0IiwgImh0dHA6Ly93d3cubG9jLmdvdi9tYWRzL3JkZi92
+        MSNBdXRob3JpdHkiLCAiaHR0cDovL3d3dy53My5vcmcvMjAwNC8wMi9za29z
+        L2NvcmUjQ29uY2VwdCIgXSwgImh0dHA6Ly93d3cubG9jLmdvdi9tYWRzL3Jk
+        Zi92MSNhdXRob3JpdGF0aXZlTGFiZWwiOiBbIHsgIkBsYW5ndWFnZSI6ICJl
+        biIsCiJAdmFsdWUiOiAiSXNsYW5kcy0tQWxhc2thIiB9IF0sICJodHRwOi8v
+        d3d3LnczLm9yZy8yMDAwLzAxL3JkZi1zY2hlbWEjbGFiZWwiOiBbIHsgIkBs
+        YW5ndWFnZSI6ICJlbiIsCiJAdmFsdWUiOiAiSXNsYW5kcy0tQWxhc2thIiB9
+        LCB7ICJAbGFuZ3VhZ2UiOiAiZW4iLAoiQHZhbHVlIjogIklzbGFuZHMtLUFs
+        YXNrYSIgfSBdLCAiaHR0cDovL3d3dy53My5vcmcvMjAwNC8wMi9za29zL2Nv
+        cmUjcHJlZkxhYmVsIjogWyB7ICJAbGFuZ3VhZ2UiOiAiZW4iLAoiQHZhbHVl
+        IjogIklzbGFuZHMtLUFsYXNrYSIgfSBdIH0sICB7ICJAaWQiOiAiXzpiNDNh
+        dXRob3JpdGllc3N1YmplY3Rzc2g4NTA3Mjc3OSIsICJAdHlwZSI6IFsgImh0
+        dHA6Ly93d3cubG9jLmdvdi9tYWRzL3JkZi92MSNHZW9ncmFwaGljRWxlbWVu
+        dCIgXSwgImh0dHA6Ly93d3cubG9jLmdvdi9tYWRzL3JkZi92MSNlbGVtZW50
+        VmFsdWUiOiBbIHsgIkBsYW5ndWFnZSI6ICJlbiIsCiJAdmFsdWUiOiAiS2Fk
+        aWFrIElzbGFuZCAoQWxhc2thKSIgfSBdIH0sICB7ICJAaWQiOiAiXzpiNDJh
+        dXRob3JpdGllc3N1YmplY3Rzc2g4NTA3Mjc3OSIsICJodHRwOi8vd3d3Lncz
+        Lm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjZmlyc3QiOiBbIHsgIkBp
+        ZCI6ICJfOmI0M2F1dGhvcml0aWVzc3ViamVjdHNzaDg1MDcyNzc5IiB9IF0s
+        ICJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMj
+        cmVzdCI6IFsgeyAiQGlkIjogImh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIv
+        MjItcmRmLXN5bnRheC1ucyNuaWwiIH0gXSB9LCAgeyAiQGlkIjogIiIsICJA
+        dHlwZSI6IFsgImh0dHA6Ly93d3cubG9jLmdvdi9tYWRzL3JkZi92MSNSV08i
+        LCAiaHR0cDovL3d3dy5sb2MuZ292L3N0YW5kYXJkcy9tYWRzL3JkZi92MSNH
+        ZW9ncmFwaGljIiBdLCAiaHR0cDovL3d3dy53My5vcmcvMjAwMC8wMS9yZGYt
+        c2NoZW1hI2xhYmVsIjogWyB7ICJAdmFsdWUiOiAiS29kaWFrIElzbGFuZCAo
+        QWxhc2thKSIgfSBdIH0gXQ==
+    http_version:
+  recorded_at: Thu, 09 Jun 2016 23:47:54 GMT
+- request:
+    method: get
+    uri: http://id.loc.gov/authorities/names/n85088322
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
+        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
+        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, application/trig,
+        application/x-trig, application/trix
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 303
+      message: SEE OTHER
+    headers:
+      Location:
+      - http://id.loc.gov/authorities/names/n85088322.jsonld
+      Vary:
+      - Accept
+      X-Uri:
+      - http://id.loc.gov/authorities/names/n85088322
+      X-Preflabel:
+      - University of California (System). Regents
+      Server:
+      - Apache
+      Content-Length:
+      - '0'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Thu, 09 Jun 2016 23:47:56 GMT
+      X-Varnish:
+      - '1039158454'
+      Age:
+      - '0'
+      Via:
+      - 1.1 varnish
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version:
+  recorded_at: Thu, 09 Jun 2016 23:47:59 GMT
+- request:
+    method: get
+    uri: http://id.loc.gov/authorities/names/n85088322.jsonld
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
+        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
+        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, application/trig,
+        application/x-trig, application/trix
+      Accept-Encoding:
+      - gzip, deflate
+      Cookie:
+      - ''
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/ld+json
+      Cache-Control:
+      - public, max-age=1209600
+      Etag:
+      - 622a2aab61b95e6dadb8818d5ca6fd5f
+      X-Uri:
+      - http://id.loc.gov/authorities/names/n85088322
+      Server:
+      - Apache
+      Content-Length:
+      - '10440'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Thu, 09 Jun 2016 23:47:57 GMT
+      X-Varnish:
+      - '1039158458'
+      Age:
+      - '0'
+      Via:
+      - 1.1 varnish
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: |-
+        [  { "@id": "_:b37authoritiesnamesn85088322", "http://www.w3.org/1999/02/22-rdf-syntax-ns#first": [ { "@id": "_:b38authoritiesnamesn85088322" } ] },  { "@id": "_:b040", "http://www.w3.org/1999/02/22-rdf-syntax-ns#first": [ { "@id": "_:b41authoritiesnamesn85088322" } ], "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest": [ { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#nil" } ] },  { "@id": "_:b50authoritiesnamesn85088322", "@type": [ "http://www.loc.gov/mads/rdf/v1#Source" ], "http://www.loc.gov/mads/rdf/v1#citation-source": [ { "@value": "Malin, P.E. Borehole geophone data, 1984:" } ], "http://www.loc.gov/mads/rdf/v1#citation-note": [ { "@language": "en",
+        "@value": "t.p. (Regents of the University of California)" } ], "http://www.loc.gov/mads/rdf/v1#citation-status": [ { "@value": "found" } ] },  { "@id": "_:b66authoritiesnamesn85088322", "@type": [ "http://www.loc.gov/mads/rdf/v1#Source" ], "http://www.loc.gov/mads/rdf/v1#citation-source": [ { "@value": "University of California home page, at profile of the University, 12/17/97:" } ], "http://www.loc.gov/mads/rdf/v1#citation-note": [ { "@language": "en",
+        "@value": "at governance (governance of the University is entrusted to the Board of Regents)" } ], "http://www.loc.gov/mads/rdf/v1#citation-status": [ { "@value": "found" } ] },  { "@id": "_:b28authoritiesnamesn85088322", "http://www.w3.org/1999/02/22-rdf-syntax-ns#first": [ { "@id": "_:b29authoritiesnamesn85088322" } ], "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest": [ { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#nil" } ] },  { "@id": "_:b8authoritiesnamesn85088322", "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest": [ { "@id": "_:b010" } ], "@type": [ "http://www.loc.gov/mads/rdf/v1#NameElement" ], "http://www.loc.gov/mads/rdf/v1#elementValue": [ { "@language": "en",
+        "@value": "University of California (System)." } ] },  { "@id": "_:b11authoritiesnamesn85088322", "@type": [ "http://www.loc.gov/mads/rdf/v1#NameElement" ], "http://www.loc.gov/mads/rdf/v1#elementValue": [ { "@language": "en",
+        "@value": "Regents" } ] },  { "@id": "_:b117authoritiesnamesn85088322", "@type": [ "http://purl.org/vocab/changeset/schema#ChangeSet" ], "http://purl.org/vocab/changeset/schema#subjectOfChange": [ { "@id": "http://id.loc.gov/authorities/names/n85088322" } ], "http://purl.org/vocab/changeset/schema#creatorName": [ { "@id": "http://id.loc.gov/vocabulary/organizations/di" } ], "http://purl.org/vocab/changeset/schema#createdDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2006-08-03T05:19:27" } ], "http://purl.org/vocab/changeset/schema#changeReason": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "revised" } ] },  { "@id": "_:b109authoritiesnamesn85088322", "@type": [ "http://purl.org/vocab/changeset/schema#ChangeSet" ], "http://purl.org/vocab/changeset/schema#subjectOfChange": [ { "@id": "http://id.loc.gov/authorities/names/n85088322" } ], "http://purl.org/vocab/changeset/schema#creatorName": [ { "@id": "http://id.loc.gov/vocabulary/organizations/di" } ], "http://purl.org/vocab/changeset/schema#createdDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "1985-08-05T00:00:00" } ], "http://purl.org/vocab/changeset/schema#changeReason": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "new" } ] },  { "@id": "_:b93authoritiesnamesn85088322", "@type": [ "http://www.w3.org/2008/05/skos-xl#Label" ], "http://www.w3.org/2008/05/skos-xl#literalForm": [ { "@language": "en",
+        "@value": "Regents of the University of California" } ] },  { "@id": "_:b41authoritiesnamesn85088322", "@type": [ "http://www.loc.gov/mads/rdf/v1#NameElement" ], "http://www.loc.gov/mads/rdf/v1#elementValue": [ { "@language": "en",
+        "@value": "Board of Regents" } ] },  { "@id": "_:b23authoritiesnamesn85088322", "@type": [ "http://www.loc.gov/mads/rdf/v1#CorporateName", "http://www.loc.gov/mads/rdf/v1#Variant" ], "http://www.loc.gov/mads/rdf/v1#variantLabel": [ { "@language": "en",
+        "@value": "Regents of the University of California" } ], "http://www.loc.gov/mads/rdf/v1#elementList": [ { "@id": "_:b28authoritiesnamesn85088322" } ] },  { "@id": "_:b82authoritiesnamesn85088322", "@type": [ "http://id.loc.gov/ontologies/RecordInfo#RecordInfo" ], "http://id.loc.gov/ontologies/RecordInfo#recordChangeDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2006-08-03T05:19:27" } ], "http://id.loc.gov/ontologies/RecordInfo#recordStatus": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "revised" } ], "http://id.loc.gov/ontologies/RecordInfo#recordContentSource": [ { "@id": "http://id.loc.gov/vocabulary/organizations/di" } ], "http://id.loc.gov/ontologies/RecordInfo#languageOfCataloging": [ { "@id": "http://id.loc.gov/vocabulary/iso639-2/eng" } ] },  { "@id": "_:b7authoritiesnamesn85088322", "http://www.w3.org/1999/02/22-rdf-syntax-ns#first": [ { "@id": "_:b8authoritiesnamesn85088322" } ] },  { "@id": "_:b38authoritiesnamesn85088322", "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest": [ { "@id": "_:b040" } ], "@type": [ "http://www.loc.gov/mads/rdf/v1#NameElement" ], "http://www.loc.gov/mads/rdf/v1#elementValue": [ { "@language": "en",
+        "@value": "University of California (System)." } ] },  { "@id": "_:b010", "http://www.w3.org/1999/02/22-rdf-syntax-ns#first": [ { "@id": "_:b11authoritiesnamesn85088322" } ], "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest": [ { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#nil" } ] },  { "@id": "_:b74authoritiesnamesn85088322", "@type": [ "http://id.loc.gov/ontologies/RecordInfo#RecordInfo" ], "http://id.loc.gov/ontologies/RecordInfo#recordChangeDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "1985-08-05T00:00:00" } ], "http://id.loc.gov/ontologies/RecordInfo#recordStatus": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "new" } ], "http://id.loc.gov/ontologies/RecordInfo#recordContentSource": [ { "@id": "http://id.loc.gov/vocabulary/organizations/di" } ], "http://id.loc.gov/ontologies/RecordInfo#languageOfCataloging": [ { "@id": "http://id.loc.gov/vocabulary/iso639-2/eng" } ] },  { "@id": "_:b98authoritiesnamesn85088322", "@type": [ "http://www.w3.org/2008/05/skos-xl#Label" ], "http://www.w3.org/2008/05/skos-xl#literalForm": [ { "@language": "en",
+        "@value": "University of California (System). Board of Regents" } ] },  { "@id": "_:b29authoritiesnamesn85088322", "@type": [ "http://www.loc.gov/mads/rdf/v1#NameElement" ], "http://www.loc.gov/mads/rdf/v1#elementValue": [ { "@language": "en",
+        "@value": "Regents of the University of California" } ] },  { "@id": "_:b58authoritiesnamesn85088322", "@type": [ "http://www.loc.gov/mads/rdf/v1#Source" ], "http://www.loc.gov/mads/rdf/v1#citation-source": [ { "@value": "Phone call to University of California, Santa Barbara, 7/25/85" } ], "http://www.loc.gov/mads/rdf/v1#citation-note": [ { "@language": "en",
+        "@value": "(Regents of the University of California is the governing body of the University of California statewide system; \"Regents of the University of California\" appears on publications of the campuses of the system, when a contract or grant is involved, since every grant or contract is made in the name of the regents)" } ], "http://www.loc.gov/mads/rdf/v1#citation-status": [ { "@value": "found" } ] },  { "@id": "http://id.loc.gov/authorities/names/n85088322", "@type": [ "http://www.loc.gov/mads/rdf/v1#CorporateName", "http://www.loc.gov/mads/rdf/v1#Authority", "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@language": "en",
+        "@value": "University of California (System). Regents" } ], "http://www.loc.gov/mads/rdf/v1#elementList": [ { "@id": "_:b7authoritiesnamesn85088322" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSCollection": [ { "@id": "http://id.loc.gov/authorities/names/collection_NamesAuthorizedHeadings" }, { "@id": "http://id.loc.gov/authorities/names/collection_LCNAF" } ], "http://www.loc.gov/mads/rdf/v1#hasExactExternalAuthority": [ { "@id": "http://viaf.org/viaf/sourceID/LC%7Cn+85088322#skos:Concept" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSScheme": [ { "@id": "http://id.loc.gov/authorities/names" } ], "http://www.loc.gov/mads/rdf/v1#identifiesRWO": [ { "@id": "" } ], "http://www.loc.gov/mads/rdf/v1#hasVariant": [ { "@id": "_:b23authoritiesnamesn85088322" }, { "@id": "_:b32authoritiesnamesn85088322" } ], "http://id.loc.gov/vocabulary/identifiers/lccn": [ { "@value": "n 85088322" } ], "http://id.loc.gov/vocabulary/identifiers/local": [ { "@value": "(OCoLC)oca01393152" }, { "@value": "(Uk)001445229" } ], "http://www.loc.gov/mads/rdf/v1#hasSource": [ { "@id": "_:b50authoritiesnamesn85088322" }, { "@id": "_:b58authoritiesnamesn85088322" }, { "@id": "_:b66authoritiesnamesn85088322" } ], "http://www.loc.gov/mads/rdf/v1#adminMetadata": [ { "@id": "_:b74authoritiesnamesn85088322" }, { "@id": "_:b82authoritiesnamesn85088322" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "en",
+        "@value": "University of California (System). Regents" } ], "http://www.w3.org/2008/05/skos-xl#altLabel": [ { "@id": "_:b93authoritiesnamesn85088322" }, { "@id": "_:b98authoritiesnamesn85088322" } ], "http://www.w3.org/2004/02/skos/core#exactMatch": [ { "@id": "http://viaf.org/viaf/sourceID/LC%7Cn+85088322#skos:Concept" } ], "http://www.w3.org/2004/02/skos/core#inScheme": [ { "@id": "http://id.loc.gov/authorities/names" } ], "http://www.w3.org/2004/02/skos/core#altLabel": [ { "@language": "en",
+        "@value": "Regents of the University of California" }, { "@language": "en",
+        "@value": "University of California (System). Board of Regents" } ], "http://www.w3.org/2004/02/skos/core#changeNote": [ { "@id": "_:b109authoritiesnamesn85088322" }, { "@id": "_:b117authoritiesnamesn85088322" } ] },  { "@id": "", "@type": [ "http://www.loc.gov/mads/rdf/v1#RWO", "http://xmlns.com/foaf/0.1/Organization" ], "http://www.w3.org/2000/01/rdf-schema#label": [ { "@value": "University of California (System). Regents" } ] },  { "@id": "_:b32authoritiesnamesn85088322", "@type": [ "http://www.loc.gov/mads/rdf/v1#CorporateName", "http://www.loc.gov/mads/rdf/v1#Variant" ], "http://www.loc.gov/mads/rdf/v1#variantLabel": [ { "@language": "en",
+        "@value": "University of California (System). Board of Regents" } ], "http://www.loc.gov/mads/rdf/v1#elementList": [ { "@id": "_:b37authoritiesnamesn85088322" } ] } ]
+    http_version:
+  recorded_at: Thu, 09 Jun 2016 23:47:59 GMT
+recorded_with: VCR 3.0.3

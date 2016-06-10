@@ -1,0 +1,587 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://creativecommons.org/publicdomain/mark/1.0/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
+        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
+        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, application/trig,
+        application/x-trig, application/trix
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 09 Jun 2016 23:48:01 GMT
+      Content-Type:
+      - text/html; charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - __cfduid=dad98f28932281b8e286f5e6ed107b3cc1465516081; expires=Fri, 09-Jun-17
+        23:48:01 GMT; path=/; domain=.creativecommons.org; HttpOnly
+      Vary:
+      - Accept-Encoding
+      X-Varnish:
+      - 408435548 408435429
+      Age:
+      - '48'
+      Via:
+      - 1.1 varnish-v4
+      Server:
+      - cloudflare-nginx
+      Cf-Ray:
+      - 2b0878d4761c0d67-LAX
+      Content-Encoding:
+      - gzip
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        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
+        Th9AAAA=
+    http_version:
+  recorded_at: Thu, 09 Jun 2016 23:48:01 GMT
+- request:
+    method: get
+    uri: http://creativecommons.org/licenses/by/4.0/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
+        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
+        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, application/trig,
+        application/x-trig, application/trix
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 09 Jun 2016 23:48:01 GMT
+      Content-Type:
+      - text/html; charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - __cfduid=dee96ebe0e0fbac127d741bfbc16da0951465516081; expires=Fri, 09-Jun-17
+        23:48:01 GMT; path=/; domain=.creativecommons.org; HttpOnly
+      Vary:
+      - Accept-Encoding
+      X-Varnish:
+      - 407916940 408725510
+      Age:
+      - '111'
+      Via:
+      - 1.1 varnish-v4
+      Server:
+      - cloudflare-nginx
+      Cf-Ray:
+      - 2b0878d5ab7120fc-LAX
+      Content-Encoding:
+      - gzip
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        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
+        aQcAAAD//wMA1rrK8qRWAAA=
+    http_version:
+  recorded_at: Thu, 09 Jun 2016 23:48:01 GMT
+- request:
+    method: get
+    uri: http://id.loc.gov/vocabulary/preservation/copyrightStatus/pub
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
+        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
+        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, application/trig,
+        application/x-trig, application/trix
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 303
+      message: SEE OTHER
+    headers:
+      Location:
+      - http://id.loc.gov/vocabulary/preservation/copyrightStatus/pub.jsonld
+      Vary:
+      - Accept
+      X-Uri:
+      - http://id.loc.gov/vocabulary/preservation/copyrightStatus/pub
+      X-Preflabel:
+      - public domain
+      Server:
+      - Apache
+      Content-Length:
+      - '0'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Thu, 09 Jun 2016 23:47:59 GMT
+      X-Varnish:
+      - '1039158467'
+      Age:
+      - '0'
+      Via:
+      - 1.1 varnish
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version:
+  recorded_at: Thu, 09 Jun 2016 23:48:02 GMT
+- request:
+    method: get
+    uri: http://id.loc.gov/vocabulary/preservation/copyrightStatus/pub.jsonld
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
+        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
+        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, application/trig,
+        application/x-trig, application/trix
+      Accept-Encoding:
+      - gzip, deflate
+      Cookie:
+      - ''
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/ld+json
+      Cache-Control:
+      - public, max-age=1209600
+      Etag:
+      - 0e62552a8ae85e239f5aab161df483cd
+      X-Uri:
+      - http://id.loc.gov/vocabulary/preservation/copyrightStatus/pub
+      Server:
+      - Apache
+      Content-Length:
+      - '3016'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Thu, 09 Jun 2016 23:47:59 GMT
+      X-Varnish:
+      - '1039158469'
+      Age:
+      - '0'
+      Via:
+      - 1.1 varnish
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: |-
+        [  { "@id": "_:b44vocabularypreservationcopyrightStatuspub", "@type": [ "http://purl.org/vocab/changeset/schema#ChangeSet" ], "http://purl.org/vocab/changeset/schema#subjectOfChange": [ { "@id": "http://id.loc.gov/vocabulary/preservation/copyrightStatus/pub" } ], "http://purl.org/vocab/changeset/schema#creatorName": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlcmrc" } ], "http://purl.org/vocab/changeset/schema#createdDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2012-08-01T00:00:00" } ], "http://purl.org/vocab/changeset/schema#changeReason": [ { "@value": "new" } ] },  { "@id": "_:b23vocabularypreservationcopyrightStatuspub", "@type": [ "http://id.loc.gov/ontologies/RecordInfo#RecordInfo" ], "http://id.loc.gov/ontologies/RecordInfo#recordChangeDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2012-08-01T00:00:00" } ], "http://id.loc.gov/ontologies/RecordInfo#recordStatus": [ { "@value": "new" } ], "http://id.loc.gov/ontologies/RecordInfo#recordContentSource": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlcmrc" } ] },  { "@id": "http://id.loc.gov/vocabulary/preservation/copyrightStatus/pub", "@type": [ "http://www.loc.gov/mads/rdf/v1#Topic", "http://www.loc.gov/mads/rdf/v1#Authority", "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@language": "en",
+        "@value": "public domain" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSCollection": [ { "@id": "http://id.loc.gov/vocabulary/preservation/copyrightStatus/collection_PREMIS" } ], "http://www.loc.gov/mads/rdf/v1#definitionNote": [ { "@language": "en",
+        "@value": "In the public domain and may used without copyright     restriction." } ], "http://www.loc.gov/mads/rdf/v1#code": [ { "@value": "pub" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSScheme": [ { "@id": "http://id.loc.gov/vocabulary/preservation/copyrightStatus" }, { "@id": "http://id.loc.gov/vocabulary/preservation" } ], "http://www.loc.gov/mads/rdf/v1#adminMetadata": [ { "@id": "_:b23vocabularypreservationcopyrightStatuspub" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "en",
+        "@value": "public domain" } ], "http://www.w3.org/2004/02/skos/core#definition": [ { "@language": "en",
+        "@value": "In the public domain and may used without copyright restriction." } ], "http://www.w3.org/2004/02/skos/core#notation": [ { "@value": "pub" } ], "http://www.w3.org/2004/02/skos/core#inScheme": [ { "@id": "http://id.loc.gov/vocabulary/preservation/copyrightStatus" }, { "@id": "http://id.loc.gov/vocabulary/preservation" } ], "http://www.w3.org/2004/02/skos/core#changeNote": [ { "@id": "_:b44vocabularypreservationcopyrightStatuspub" } ] },  { "@id": "http://id.loc.gov/vocabulary/preservation/copyrightStatus/collection_PREMIS", "@type": [ "http://www.loc.gov/mads/rdf/v1#MADSCollection" ], "http://www.w3.org/2000/01/rdf-schema#label": [ { "@language": "en",
+        "@value": "PREMIS    Copyright Status Collection" } ] } ]
+    http_version:
+  recorded_at: Thu, 09 Jun 2016 23:48:02 GMT
+- request:
+    method: get
+    uri: http://id.loc.gov/authorities/names/n81053687
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
+        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
+        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, application/trig,
+        application/x-trig, application/trix
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 303
+      message: SEE OTHER
+    headers:
+      Location:
+      - http://id.loc.gov/authorities/names/n81053687.jsonld
+      Vary:
+      - Accept
+      X-Uri:
+      - http://id.loc.gov/authorities/names/n81053687
+      X-Preflabel:
+      - Haggard, Merle
+      Server:
+      - Apache
+      Content-Length:
+      - '0'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Thu, 09 Jun 2016 23:48:00 GMT
+      X-Varnish:
+      - '1039158477'
+      Age:
+      - '0'
+      Via:
+      - 1.1 varnish
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version:
+  recorded_at: Thu, 09 Jun 2016 23:48:03 GMT
+- request:
+    method: get
+    uri: http://id.loc.gov/authorities/names/n81053687.jsonld
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
+        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
+        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, application/trig,
+        application/x-trig, application/trix
+      Accept-Encoding:
+      - gzip, deflate
+      Cookie:
+      - ''
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/ld+json
+      Cache-Control:
+      - public, max-age=1209600
+      Etag:
+      - 27b9da45683ee8f546303995c58ace94
+      X-Uri:
+      - http://id.loc.gov/authorities/names/n81053687
+      Server:
+      - Apache
+      Content-Length:
+      - '8773'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Thu, 09 Jun 2016 23:48:01 GMT
+      X-Varnish:
+      - '1039158480'
+      Age:
+      - '0'
+      Via:
+      - 1.1 varnish
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: |-
+        [  { "@id": "_:b7authoritiesnamesn81053687", "http://www.w3.org/1999/02/22-rdf-syntax-ns#first": [ { "@id": "_:b8authoritiesnamesn81053687" } ], "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest": [ { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#nil" } ] },  { "@id": "_:b64authoritiesnamesn81053687", "@type": [ "http://www.loc.gov/mads/rdf/v1#Source" ], "http://www.loc.gov/mads/rdf/v1#citation-source": [ { "@value": "New Grove dict. of Amer. mus." } ], "http://www.loc.gov/mads/rdf/v1#citation-note": [ { "@language": "en",
+        "@value": "(Haggard, Merle (Ronald); b. Apr. 6, 1937, Bakersfield, CA; country-music singer, songwriter, and guitarist)" } ], "http://www.loc.gov/mads/rdf/v1#citation-status": [ { "@value": "found" } ] },  { "@id": "_:b24authoritiesnamesn81053687", "@type": [ "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.w3.org/2000/01/rdf-schema#label": [ { "@value": "(edtf) 2016-04-06" } ] },  { "@id": "_:b111authoritiesnamesn81053687", "@type": [ "http://purl.org/vocab/changeset/schema#ChangeSet" ], "http://purl.org/vocab/changeset/schema#subjectOfChange": [ { "@id": "http://id.loc.gov/authorities/names/n81053687" } ], "http://purl.org/vocab/changeset/schema#creatorName": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlc" } ], "http://purl.org/vocab/changeset/schema#createdDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2016-04-07T07:53:28" } ], "http://purl.org/vocab/changeset/schema#changeReason": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "revised" } ] },  { "@id": "_:b32authoritiesnamesn81053687", "@type": [ "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.w3.org/2000/01/rdf-schema#label": [ { "@value": "(lcsh) Country music" } ] },  { "@id": "_:b50authoritiesnamesn81053687", "@type": [ "http://www.loc.gov/mads/rdf/v1#Source" ], "http://www.loc.gov/mads/rdf/v1#citation-source": [ { "@value": "The Best of Merle Haggard. [Phonodisc] 1968." } ], "http://www.loc.gov/mads/rdf/v1#citation-status": [ { "@value": "found" } ] },  { "@id": "_:b72authoritiesnamesn81053687", "@type": [ "http://www.loc.gov/mads/rdf/v1#Source" ], "http://www.loc.gov/mads/rdf/v1#citation-source": [ { "@value": "New York Times WWW site, viewed April 6, 2016" } ], "http://www.loc.gov/mads/rdf/v1#citation-note": [ { "@language": "en",
+        "@value": "(Merle Haggard; died Wednesday [April 6, 2016] on his 79th birthday; country music singer)" } ], "http://www.loc.gov/mads/rdf/v1#citation-status": [ { "@value": "found" } ] },  { "@id": "_:b40authoritiesnamesn81053687", "@type": [ "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.w3.org/2000/01/rdf-schema#label": [ { "@value": "male" } ] },  { "@id": "_:b88authoritiesnamesn81053687", "@type": [ "http://id.loc.gov/ontologies/RecordInfo#RecordInfo" ], "http://id.loc.gov/ontologies/RecordInfo#recordChangeDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2016-04-07T07:53:28" } ], "http://id.loc.gov/ontologies/RecordInfo#recordStatus": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "revised" } ], "http://id.loc.gov/ontologies/RecordInfo#recordContentSource": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlc" } ], "http://id.loc.gov/ontologies/RecordInfo#languageOfCataloging": [ { "@id": "http://id.loc.gov/vocabulary/iso639-2/eng" } ] },  { "@id": "http://id.loc.gov/authorities/names/n81053687", "@type": [ "http://www.loc.gov/mads/rdf/v1#PersonalName", "http://www.loc.gov/mads/rdf/v1#Authority", "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@language": "en",
+        "@value": "Haggard, Merle" } ], "http://www.loc.gov/mads/rdf/v1#elementList": [ { "@id": "_:b7authoritiesnamesn81053687" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSCollection": [ { "@id": "http://id.loc.gov/authorities/names/collection_NamesAuthorizedHeadings" }, { "@id": "http://id.loc.gov/authorities/names/collection_LCNAF" } ], "http://www.loc.gov/mads/rdf/v1#hasExactExternalAuthority": [ { "@id": "http://viaf.org/viaf/sourceID/LC%7Cn+81053687#skos:Concept" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSScheme": [ { "@id": "http://id.loc.gov/authorities/names" } ], "http://www.loc.gov/mads/rdf/v1#identifiesRWO": [ { "@id": "" } ], "http://www.loc.gov/mads/rdf/v1#note": [ { "@value": "[Merle Haggard is a country music singer and composer]" } ], "http://id.loc.gov/vocabulary/identifiers/lccn": [ { "@value": "n 81053687" } ], "http://id.loc.gov/vocabulary/identifiers/local": [ { "@value": "(OCoLC)oca00599178" } ], "http://www.loc.gov/mads/rdf/v1#hasSource": [ { "@id": "_:b50authoritiesnamesn81053687" }, { "@id": "_:b56authoritiesnamesn81053687" }, { "@id": "_:b64authoritiesnamesn81053687" }, { "@id": "_:b72authoritiesnamesn81053687" } ], "http://www.loc.gov/mads/rdf/v1#adminMetadata": [ { "@id": "_:b80authoritiesnamesn81053687" }, { "@id": "_:b88authoritiesnamesn81053687" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "en",
+        "@value": "Haggard, Merle" } ], "http://www.w3.org/2004/02/skos/core#exactMatch": [ { "@id": "http://viaf.org/viaf/sourceID/LC%7Cn+81053687#skos:Concept" } ], "http://www.w3.org/2004/02/skos/core#note": [ { "@value": "[Merle Haggard is a country music singer and composer]" } ], "http://www.w3.org/2004/02/skos/core#inScheme": [ { "@id": "http://id.loc.gov/authorities/names" } ], "http://www.w3.org/2004/02/skos/core#changeNote": [ { "@id": "_:b103authoritiesnamesn81053687" }, { "@id": "_:b111authoritiesnamesn81053687" } ] },  { "@id": "_:b8authoritiesnamesn81053687", "@type": [ "http://www.loc.gov/mads/rdf/v1#FullNameElement" ], "http://www.loc.gov/mads/rdf/v1#elementValue": [ { "@language": "en",
+        "@value": "Haggard, Merle" } ] },  { "@id": "_:b20authoritiesnamesn81053687", "@type": [ "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.w3.org/2000/01/rdf-schema#label": [ { "@value": "(edtf) 1937-04-06" } ] },  { "@id": "_:b80authoritiesnamesn81053687", "@type": [ "http://id.loc.gov/ontologies/RecordInfo#RecordInfo" ], "http://id.loc.gov/ontologies/RecordInfo#recordChangeDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "1981-10-07T00:00:00" } ], "http://id.loc.gov/ontologies/RecordInfo#recordStatus": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "new" } ], "http://id.loc.gov/ontologies/RecordInfo#recordContentSource": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlc" } ], "http://id.loc.gov/ontologies/RecordInfo#languageOfCataloging": [ { "@id": "http://id.loc.gov/vocabulary/iso639-2/eng" } ] },  { "@id": "_:b56authoritiesnamesn81053687", "@type": [ "http://www.loc.gov/mads/rdf/v1#Source" ], "http://www.loc.gov/mads/rdf/v1#citation-source": [ { "@value": "His Sing me back home, c1981:" } ], "http://www.loc.gov/mads/rdf/v1#citation-note": [ { "@language": "en",
+        "@value": "p. 17 (b. 4/6/37)" } ], "http://www.loc.gov/mads/rdf/v1#citation-status": [ { "@value": "found" } ] },  { "@id": "_:b103authoritiesnamesn81053687", "@type": [ "http://purl.org/vocab/changeset/schema#ChangeSet" ], "http://purl.org/vocab/changeset/schema#subjectOfChange": [ { "@id": "http://id.loc.gov/authorities/names/n81053687" } ], "http://purl.org/vocab/changeset/schema#creatorName": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlc" } ], "http://purl.org/vocab/changeset/schema#createdDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "1981-10-07T00:00:00" } ], "http://purl.org/vocab/changeset/schema#changeReason": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "new" } ] },  { "@id": "_:b36authoritiesnamesn81053687", "@type": [ "http://www.loc.gov/mads/rdf/v1#Occupation" ], "http://www.w3.org/2000/01/rdf-schema#label": [ { "@value": "(lcsh) Country musicians" } ] },  { "@id": "_:b28authoritiesnamesn81053687", "@type": [ "http://www.loc.gov/mads/rdf/v1#Geographic" ], "http://www.w3.org/2000/01/rdf-schema#label": [ { "@value": "(naf) Bakersfield (Calif.)" } ] },  { "@id": "", "@type": [ "http://www.loc.gov/mads/rdf/v1#RWO", "http://xmlns.com/foaf/0.1/Person" ], "http://www.w3.org/2000/01/rdf-schema#label": [ { "@value": "Haggard, Merle" } ], "http://www.loc.gov/mads/rdf/v1#birthDate": [ { "@id": "_:b20authoritiesnamesn81053687" } ], "http://www.loc.gov/mads/rdf/v1#deathDate": [ { "@id": "_:b24authoritiesnamesn81053687" } ], "http://www.loc.gov/mads/rdf/v1#birthPlace": [ { "@id": "_:b28authoritiesnamesn81053687" } ], "http://www.loc.gov/mads/rdf/v1#fieldOfActivity": [ { "@id": "_:b32authoritiesnamesn81053687" } ], "http://www.loc.gov/mads/rdf/v1#occupation": [ { "@id": "_:b36authoritiesnamesn81053687" } ], "http://www.loc.gov/mads/rdf/v1#gender": [ { "@id": "_:b40authoritiesnamesn81053687" } ] } ]
+    http_version:
+  recorded_at: Thu, 09 Jun 2016 23:48:03 GMT
+recorded_with: VCR 3.0.3

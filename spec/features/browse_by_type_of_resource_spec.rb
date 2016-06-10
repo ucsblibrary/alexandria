@@ -2,7 +2,9 @@ require 'rails_helper'
 
 describe 'Browsing by Type of Resource' do
   before do
-    create :public_etd, work_type: [RDF::URI('http://id.loc.gov/vocabulary/resourceTypes/txt')]
+    VCR.use_cassette('browse_by_type_of_resource') do
+      create :public_etd, work_type: [RDF::URI('http://id.loc.gov/vocabulary/resourceTypes/txt')]
+    end
   end
 
   specify do

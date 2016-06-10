@@ -20,8 +20,14 @@ Capybara.javascript_driver = :poltergeist
 
 require 'webmock'
 WebMock.enable!
-# WebMock.disable_net_connect!(:allow_localhost => true)
-WebMock.allow_net_connect!
+WebMock.disable_net_connect!(allow_localhost: true)
+# WebMock.allow_net_connect!
+
+VCR.configure do |config|
+  config.ignore_hosts '127.0.0.1', 'localhost'
+  config.cassette_library_dir = 'spec/fixtures/vcr'
+  config.hook_into :webmock
+end
 
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
 

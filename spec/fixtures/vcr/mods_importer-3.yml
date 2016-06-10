@@ -1,0 +1,228 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://id.loc.gov/authorities/names/pippin
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
+        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
+        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, application/trig,
+        application/x-trig, application/trix
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 303
+      message: SEE OTHER
+    headers:
+      Location:
+      - http://id.loc.gov/authorities/names/pippin.jsonld
+      Vary:
+      - Accept
+      Server:
+      - Apache
+      Content-Length:
+      - '0'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Thu, 09 Jun 2016 23:58:56 GMT
+      X-Varnish:
+      - '1039162344'
+      Age:
+      - '0'
+      Via:
+      - 1.1 varnish
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version:
+  recorded_at: Thu, 09 Jun 2016 23:58:59 GMT
+- request:
+    method: get
+    uri: http://id.loc.gov/authorities/names/pippin.jsonld
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
+        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
+        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, application/trig,
+        application/x-trig, application/trix
+      Accept-Encoding:
+      - gzip, deflate
+      Cookie:
+      - ''
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Content-Type:
+      - text/html; charset=UTF-8
+      Cache-Control:
+      - public, max-age=1209600
+      Etag:
+      - 2d6c620388d7bf99fbf2dead900ae76c
+      Server:
+      - Apache
+      Content-Length:
+      - '10816'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Thu, 09 Jun 2016 23:58:56 GMT
+      X-Varnish:
+      - '1039162349'
+      Age:
+      - '0'
+      Via:
+      - 1.1 varnish
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML+RDFa 1.0//EN\"\n            \"http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd\">\n<html
+        version=\"XHTML+RDFa 1.0\" xmlns=\"http://www.w3.org/1999/xhtml\" xmlns:madsrdf=\"http://www.loc.gov/mads/rdf/v1#\"
+        xmlns:ri=\"http://id.loc.gov/ontologies/RecordInfo#\" xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"
+        xmlns:rdfs=\"http://www.w3.org/2000/01/rdf-schema#\" xmlns:skos=\"http://www.w3.org/2004/02/skos/core#\"
+        xmlns:skosxl=\"http://www.w3.org/2008/05/skos-xl#\" xmlns:owl=\"http://www.w3.org/2002/07/owl#\"
+        xmlns:cs=\"http://www.w3.org/2003/06/sw-vocab-status/ns#\" xmlns:dcterms=\"http://purl.org/dc/terms/\">\n
+        \ <head>\n    <title>404 - LC Linked Data Service | Library of Congress</title>\n
+        \   <link rel=\"shortcut icon\" type=\"image/png\" href=\"/static/images/favicon.ico\"/>\n
+        \   <meta http-equiv=\"content-type\" content=\"application/xhtml+xml; charset=utf-8\"/>\n
+        \   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/>\n
+        \   <link rel=\"search\" href=\"/opensearch/\" type=\"application/opensearchdescription+xml\"
+        title=\"Library of Congress Authorities and Vocabularies Search\"/>\n    <meta
+        name=\"keywords\" content=\"404, LC Linked Data Service, linked data, Library
+        of Congress Subject Headings,                         subject headings, lcsh,
+        id.loc.gov, linked data,                         authorities, standards, vocabularies\"/>\n
+        \   <meta name=\"keywords\" content=\"404 - LC Linked Data Service | Library
+        of Congress , Library of Congress Subject Headings, Library of Congress Name
+        Authorities,                         subject headings, name authorities, lcsh,
+        lcnaf, id.loc.gov,  linked data,                         authorities, standards,
+        vocabularies\"/>\n    <!-- CSS -->\n    <link type=\"text/css\" media=\"screen\"
+        rel=\"stylesheet\" href=\"/static/css/2012/styles.css\"/>\n    <link type=\"text/css\"
+        media=\"print\" rel=\"stylesheet\" href=\"/static/css/2012/loc_print_v2.css\"/>\n
+        \   <!--[if lte IE 7]><link type=\"text/css\" media=\"screen\" rel=\"stylesheet\"
+        href=\"/static/css/2012/loc_lte_ie6.css\" /><![endif]-->\n    <!-- End CSS
+        -->\n    <!-- <script type=\"text/javascript\" src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js\"></script>
+        -->\n    <script type=\"text/javascript\" src=\"http://cdn.loc.gov/js/lib/jquery-1.8.2.min.js\"></script>\n
+        \   <script type=\"text/javascript\" src=\"http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js\"></script>\n
+        \   <script type=\"text/javascript\" src=\"/static/js/loc_expandcollapse.js\"></script>\n
+        \   <script type=\"text/javascript\" src=\"/static/js/jquery.validate.min.js\"></script>\n
+        \   <script type=\"text/javascript\" src=\"/static/js/jquery.form.js\"></script>\n
+        \   <script type=\"text/javascript\" src=\"/static/js/id.js\"></script>\n
+        \   <script type=\"text/javascript\" src=\"/static/js/swfobject.js\"></script>\n
+        \   <script type=\"text/javascript\">\n                    var uri = \"/authorities/names/pippin\";\n
+        \                   \n                    var graphgear_data = {\n                        xml:uri
+        + \".gg.xml\",\n                        header:''\n                    };\n
+        \                   \n                </script>\n    <script type=\"text/javascript\">\n
+        \                       // var uri = \"/authorities/names/pippin\";\n                    \n
+        \                       // $(function() {\n                        //    $(\"#loctoggler\").accordion(
+        { autoHeight: false } );\n                        // });\n                        \n
+        \                       $(document).ready(function() {\n                            //Default
+        Action\n                            $(\".tab_content\").hide(); //Hide all
+        content\n                            $(\"ul.tabnav li:first\").addClass(\"active\").show();
+        //Activate first tab\n                            $(\".tab_content:first\").show();
+        //Show first tab content\n    \n                            //On Click Event\n
+        \                           $(\"ul.tabnav li\").click(function() {\n                                $(\"ul.tabnav
+        li\").removeClass(\"active\"); //Remove any \"active\" class\n                                $(this).addClass(\"active\");
+        //Add \"active\" class to selected tab\n                                $(\".tab_content\").hide();
+        //Hide all tab content\n                                var activeTab = $(this).find(\"a\").attr(\"href\");
+        //Find the rel attribute value to identify the active tab + content\n                                if
+        ($(this).find(\"a\").attr(\"href\") == \"#tab2\") {\n                                    $(activeTab).show();
+        //Just show the content\n                                    $(\"#protovisforced\").empty().html('&lt;center&gt;&lt;img
+        src=\"/static/images/loading.gif\" /&gt;&lt;/center&gt;');\n                                    \n
+        \                                   $(graphgear);\n                                    //$.ajaxSetup({async:
+        false});\n                                    //$.getScript( uri + \".pvforced.js\");\n
+        \                                   //$(protovis_forced);\n                                    //$.ajaxSetup({async:
+        true});\n                                } else {\n                                    $(activeTab).fadeIn();
+        //Fade in the active content\n                                }\n                                return
+        false;\n                            });\n                        });\n                        \n
+        \                       $(function() {\n                            //$(\"#loctoggler
+        h3.loctoggler_expand\").toggler({initShow: \"div.collapse:eq(0)\"});\n                            $(\"#loctoggler
+        h3.loctoggler_expand\").toggler();\n                            $(\"#loctoggler\").expandAll({\n
+        \                               trigger: \"h3.loctoggler_expand\",\n                                ref:
+        \"h3.loctoggler_expand\",\n                                showMethod: \"slideDown\",\n
+        \                               hideMethod: \"slideUp\",\n                                oneSwitch
+        : false\n                            });\n                        });\n                    \n
+        \               </script>\n  </head>\n  <body><a id=\"skip\" href=\"#skip_menu\">skip
+        navigation</a><div id=\"container\"><div id=\"branding\"><h2>Library of Congress</h2><h3>Authorities
+        &amp; Vocabularies</h3></div><div id=\"h-wrapper\" class=\"fix-float\"><div
+        id=\"header\" class=\"fix-float\"><div class=\"logo\"><a href=\"http://www.loc.gov\"
+        accesskey=\"1\"><img src=\"/static/images/2012/img-head/logo-loc.png\" width=\"141\"
+        height=\"32\" alt=\"Library of Congress\"/></a></div><div class=\"nav\" style=\"box-sizing:
+        content-box;\"><ul>\n\t      <li><a class=\"btn-loc\" href=\"http://www.loc.gov/rr/askalib/\"
+        accesskey=\"2\">Ask a Librarian</a></li>\n\t      <li><a class=\"btn-loc\"
+        href=\"http://www.loc.gov/library/libarch-digital.html\" accesskey=\"3\">Digital
+        Collections</a></li>\n\t      <li><a class=\"btn-loc\" href=\"http://catalog.loc.gov/\"
+        accesskey=\"4\">Library Catalogs</a></li>\n\t    </ul></div><div class=\"search\"><form
+        action=\"http://www.loc.gov/search\" method=\"get\">\n\t      <label class=\"search_label\"
+        for=\"search\">Search</label>\n\t      <div class=\"search_wrap\"><input type=\"hidden\"
+        name=\"new\" value=\"true\"/><input id=\"search\" type=\"search\" name=\"q\"
+        maxlength=\"200\" accesskey=\"/\" title=\"Search the Library of Congress website\"
+        placeholder=\"Search Loc.gov\" class=\"locsuggest\"/><button class=\"button\"
+        id=\"search_button\" type=\"submit\">GO</button></div>\n\t    </form></div></div><script
+        src=\"http://cdn.loc.gov/suggest/library-of-congress.js\" type=\"text/javascript\"><!--
+        space --></script></div><div id=\"crumb_nav\"><a href=\"http://www.loc.gov\">The
+        Library of Congress</a><span> &gt; </span><a href=\"/\">Linked Data Service</a><span>
+        &gt; </span><a href=\"/authorities/names\">LC Name Authority File</a></div><!--
+        end id:topnav --><div id=\"content\"><div id=\"main_body_full\" class=\"w_742\"><div
+        id=\"page_head\"><span id=\"skip_menu\" style=\"width: 100%;\"><!-- --></span><h1
+        class=\"oneline\">404</h1></div><div title=\"404\"><br/><p style=\"font-weight:
+        bold;\">Page not found.  Do you think this is a problem?  <a href=\"/contact/\">Let
+        us know...</a></p><br/><br/></div></div></div><div id=\"f-wrapper\" class=\"fix-float\"><!--
+        begin: global footer --><div id=\"footer\" class=\"fix-float\"><div class=\"cols
+        heading\"><h2>Connect with the Library</h2><p><a class=\"ar-more foot\" href=\"http://www.loc.gov/homepage/connect.html\">All
+        ways to connect</a></p></div><div class=\"cols\"><h3>Find Us On</h3><a href=\"http://www.facebook.com/libraryofcongress\"><img
+        src=\"/static/images/2012/img-foot/facebook.gif\" alt=\"Facebook\" width=\"16\"
+        height=\"16\"/></a>   <a href=\"http://twitter.com/#!/librarycongress\"><img
+        src=\"/static/images/2012/img-foot/twitter.gif\" alt=\"Twitter\" width=\"16\"
+        height=\"16\"/></a>   <a href=\"http://www.youtube.com/libraryofcongress\"><img
+        src=\"/static/images/2012/img-foot/youtube.gif\" alt=\"YouTube\" width=\"16\"
+        height=\"16\"/></a>   <a href=\"http://www.flickr.com/photos/library_of_congress/\"><img
+        src=\"/static/images/2012/img-foot/flickr.gif\" alt=\"Flickr\" width=\"16\"
+        height=\"16\"/></a></div><div class=\"cols\"><h3>Subscribe &amp; Comment</h3><ul
+        class=\"plain\">\n\t      <li><a href=\"http://www.loc.gov/rss/\">RSS &amp;
+        E-Mail</a></li>\n\t      <li><a href=\"http://blogs.loc.gov/\">Blogs</a></li>\n\t
+        \   </ul></div><div class=\"cols\"><h3>Download &amp; Play</h3><ul class=\"plain\">\n\t
+        \     <li><a href=\"http://www.loc.gov/podcasts/\">Podcasts</a></li>\n\t      <li><a
+        href=\"http://www.loc.gov/today/cyberlc/index.php\">Webcasts</a></li>\n\t
+        \     <li><a href=\"http://itunes.apple.com/us/institution/library-of-congress/id386017159\"
+        class=\"external foot mod\">iTunesU<span> (external link)</span></a></li>\n\t
+        \   </ul></div><div class=\"cols\"><h3>Questions</h3><ul class=\"plain\">\n\t
+        \     <li><a href=\"http://www.loc.gov/rr/askalib/\">Ask a Librarian</a></li>\n\t
+        \     <li><a href=\"http://www.loc.gov/help/contact-general.html\" accesskey=\"8\">Contact
+        Us</a></li>\n\t    </ul></div><div class=\"clear\"><!-- --></div><p class=\"links\"><a
+        href=\"http://www.loc.gov/about/\">About</a> |\n            <a href=\"http://www.loc.gov/pressroom/login\">Press</a>
+        |\n            <a href=\"http://www.loc.gov/hr/employment/index.php\">Jobs</a>
+        |\n            <a href=\"http://www.loc.gov/philanthropy/index.php\">Donate</a><br/><a
+        href=\"http://www.loc.gov/about/oig/\">Inspector General</a> |\n            <a
+        href=\"http://www.loc.gov/homepage/legal.html\" accesskey=\"9\">Legal</a>
+        |\n            <a href=\"http://www.loc.gov/access/\" accesskey=\"0\">Accessibility</a>
+        |\n            <a href=\"http://www.loc.gov/global/disclaim.html\">External
+        Link Disclaimer</a> |\n            <a href=\"http://www.usa.gov/\">USA.gov</a></p><span
+        class=\"speech\"><a href=\"http://www.loc.gov/access/web.html\">Speech Enabled</a></span></div><!--
+        end id:footer --><!-- end id:f-wrapper --><!-- end: global footer --></div><div
+        class=\"clear\"><!-- blah --></div></div><div><script type=\"text/javascript\"
+        src=\"http://cdn.loc.gov/js/global/metrics/sc/s_code.js\"></script><!-- /DO
+        NOT REMOVE THIS COMMENT. IT WILL CAUSE IE8 PROBLEMS./ --></div></body>\n</html>"
+    http_version:
+  recorded_at: Thu, 09 Jun 2016 23:58:59 GMT
+recorded_with: VCR 3.0.3

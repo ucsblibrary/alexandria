@@ -33,14 +33,20 @@ describe Importer::Factory::AudioRecordingFactory do
       expect(Collection.count).to eq 0
       head, tail = Importer::CSV.split(collection)
       attrs = Importer::CSV.csv_attributes(head, tail.first)
-      Importer::CSV.import(attributes: attrs, files: [])
+
+      VCR.use_cassette('audio_recording_factory', record: :new_episodes) do
+        Importer::CSV.import(attributes: attrs, files: [])
+      end
       expect(Collection.count).to eq 1
 
       MARC::XMLReader.new(metadata).each do |record|
         indexer = Traject::Indexer.new
         indexer.load_config_file('lib/traject/audio_config.rb')
         indexer.settings(cylinders: data)
-        indexer.writer.put indexer.map_record(record)
+
+        VCR.use_cassette('audio_recording_factory', record: :new_episodes) do
+          indexer.writer.put indexer.map_record(record)
+        end
       end
 
       expect(AudioRecording.count).to eq 10
@@ -71,7 +77,10 @@ describe Importer::Factory::AudioRecordingFactory do
       indexer.settings(cylinders: [])
       hash = indexer.map_record(MARC::XMLReader.new(metadata).first)
                     .merge(issued_attributes: [{ start: [2222] }])
-      indexer.writer.put hash
+
+      VCR.use_cassette('audio_recording_factory', record: :new_episodes) do
+        indexer.writer.put hash
+      end
 
       expect(AudioRecording.count).to eq 1
       audio = AudioRecording.first
@@ -81,7 +90,10 @@ describe Importer::Factory::AudioRecordingFactory do
       indexer = Traject::Indexer.new
       indexer.load_config_file('lib/traject/audio_config.rb')
       indexer.settings(cylinders: data)
-      indexer.writer.put indexer.map_record(MARC::XMLReader.new(metadata).first)
+
+      VCR.use_cassette('audio_recording_factory', record: :new_episodes) do
+        indexer.writer.put indexer.map_record(MARC::XMLReader.new(metadata).first)
+      end
 
       expect(AudioRecording.count).to eq 1
       audio = AudioRecording.first

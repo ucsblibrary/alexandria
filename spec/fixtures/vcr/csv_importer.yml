@@ -1,0 +1,1794 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://ezid.cdlib.org/shoulder/ark:/99999/fk4
+    body:
+      encoding: UTF-8
+      string: |-
+        _profile: erc
+        erc.what: Dirge for violin and piano (violin part)
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - ezid.cdlib.org
+      Content-Type:
+      - text/plain; charset=UTF-8
+      Authorization:
+      - Basic YXBpdGVzdDphcGl0ZXN0
+  response:
+    status:
+      code: 201
+      message: CREATED
+    headers:
+      Date:
+      - Thu, 09 Jun 2016 23:43:54 GMT
+      Server:
+      - Apache/2.2.17 (Unix) mod_ssl/2.2.17 OpenSSL/1.0.1k-fips mod_wsgi/4.4.9 Python/2.7.6
+      Content-Length:
+      - '30'
+      Vary:
+      - Cookie
+      Content-Type:
+      - text/plain; charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: 'success: ark:/99999/fk44b3bh0v'
+    http_version:
+  recorded_at: Thu, 09 Jun 2016 23:43:55 GMT
+- request:
+    method: get
+    uri: http://id.loc.gov/authorities/names/no93011759
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
+        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
+        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, application/trig,
+        application/x-trig, application/trix
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 303
+      message: SEE OTHER
+    headers:
+      Location:
+      - http://id.loc.gov/authorities/names/no93011759.jsonld
+      Vary:
+      - Accept
+      X-Uri:
+      - http://id.loc.gov/authorities/names/no93011759
+      X-Preflabel:
+      - Couper, Mildred, 1887-1974
+      Server:
+      - Apache
+      Content-Length:
+      - '0'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Thu, 09 Jun 2016 23:43:56 GMT
+      X-Varnish:
+      - '1039157129'
+      Age:
+      - '0'
+      Via:
+      - 1.1 varnish
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version:
+  recorded_at: Thu, 09 Jun 2016 23:43:58 GMT
+- request:
+    method: get
+    uri: http://id.loc.gov/authorities/names/no93011759.jsonld
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
+        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
+        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, application/trig,
+        application/x-trig, application/trix
+      Accept-Encoding:
+      - gzip, deflate
+      Cookie:
+      - ''
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/ld+json
+      Cache-Control:
+      - public, max-age=1209600
+      Etag:
+      - f3f9dc1caa555b8550c9e7c40109dd6e
+      X-Uri:
+      - http://id.loc.gov/authorities/names/no93011759
+      Server:
+      - Apache
+      Content-Length:
+      - '7064'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Thu, 09 Jun 2016 23:43:56 GMT
+      X-Varnish:
+      - '1039157130'
+      Age:
+      - '0'
+      Via:
+      - 1.1 varnish
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: |-
+        [  { "@id": "_:b84authoritiesnamesno93011759", "@type": [ "http://purl.org/vocab/changeset/schema#ChangeSet" ], "http://purl.org/vocab/changeset/schema#subjectOfChange": [ { "@id": "http://id.loc.gov/authorities/names/no93011759" } ], "http://purl.org/vocab/changeset/schema#creatorName": [ { "@id": "http://id.loc.gov/vocabulary/organizations/inumu" } ], "http://purl.org/vocab/changeset/schema#createdDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2000-12-21T20:58:21" } ], "http://purl.org/vocab/changeset/schema#changeReason": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "revised" } ] },  { "@id": "_:b7authoritiesnamesno93011759", "http://www.w3.org/1999/02/22-rdf-syntax-ns#first": [ { "@id": "_:b8authoritiesnamesno93011759" } ] },  { "@id": "_:b57authoritiesnamesno93011759", "@type": [ "http://id.loc.gov/ontologies/RecordInfo#RecordInfo" ], "http://id.loc.gov/ontologies/RecordInfo#recordChangeDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "1993-04-26T00:00:00" } ], "http://id.loc.gov/ontologies/RecordInfo#recordStatus": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "new" } ], "http://id.loc.gov/ontologies/RecordInfo#recordContentSource": [ { "@id": "http://id.loc.gov/vocabulary/organizations/inumu" } ] },  { "@id": "_:b64authoritiesnamesno93011759", "@type": [ "http://id.loc.gov/ontologies/RecordInfo#RecordInfo" ], "http://id.loc.gov/ontologies/RecordInfo#recordChangeDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2000-12-21T20:58:21" } ], "http://id.loc.gov/ontologies/RecordInfo#recordStatus": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "revised" } ], "http://id.loc.gov/ontologies/RecordInfo#recordContentSource": [ { "@id": "http://id.loc.gov/vocabulary/organizations/inumu" } ] },  { "@id": "_:b41authoritiesnamesno93011759", "@type": [ "http://www.loc.gov/mads/rdf/v1#Source" ], "http://www.loc.gov/mads/rdf/v1#citation-source": [ { "@value": "Bio base, 1990" } ], "http://www.loc.gov/mads/rdf/v1#citation-note": [ { "@language": "en",
+        "@value": "(Couper, Mildred; b. 1887; d. 1974)" } ], "http://www.loc.gov/mads/rdf/v1#citation-status": [ { "@value": "found" } ] },  { "@id": "_:b76authoritiesnamesno93011759", "@type": [ "http://purl.org/vocab/changeset/schema#ChangeSet" ], "http://purl.org/vocab/changeset/schema#subjectOfChange": [ { "@id": "http://id.loc.gov/authorities/names/no93011759" } ], "http://purl.org/vocab/changeset/schema#creatorName": [ { "@id": "http://id.loc.gov/vocabulary/organizations/inumu" } ], "http://purl.org/vocab/changeset/schema#createdDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "1993-04-26T00:00:00" } ], "http://purl.org/vocab/changeset/schema#changeReason": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "new" } ] },  { "@id": "_:b8authoritiesnamesno93011759", "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest": [ { "@id": "_:b010" } ], "@type": [ "http://www.loc.gov/mads/rdf/v1#FullNameElement" ], "http://www.loc.gov/mads/rdf/v1#elementValue": [ { "@language": "en",
+        "@value": "Couper, Mildred," } ] },  { "@id": "http://id.loc.gov/authorities/names/no93011759", "@type": [ "http://www.loc.gov/mads/rdf/v1#PersonalName", "http://www.loc.gov/mads/rdf/v1#Authority", "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@language": "en",
+        "@value": "Couper, Mildred, 1887-1974" } ], "http://www.loc.gov/mads/rdf/v1#elementList": [ { "@id": "_:b7authoritiesnamesno93011759" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSCollection": [ { "@id": "http://id.loc.gov/authorities/names/collection_NamesAuthorizedHeadings" }, { "@id": "http://id.loc.gov/authorities/names/collection_LCNAF" } ], "http://www.loc.gov/mads/rdf/v1#hasExactExternalAuthority": [ { "@id": "http://viaf.org/viaf/sourceID/LC%7Cno+93011759#skos:Concept" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSScheme": [ { "@id": "http://id.loc.gov/authorities/names" } ], "http://www.loc.gov/mads/rdf/v1#identifiesRWO": [ { "@id": "" } ], "http://id.loc.gov/vocabulary/identifiers/lccn": [ { "@value": "no 93011759" } ], "http://www.loc.gov/mads/rdf/v1#hasSource": [ { "@id": "_:b25authoritiesnamesno93011759" }, { "@id": "_:b33authoritiesnamesno93011759" }, { "@id": "_:b41authoritiesnamesno93011759" }, { "@id": "_:b49authoritiesnamesno93011759" } ], "http://www.loc.gov/mads/rdf/v1#adminMetadata": [ { "@id": "_:b57authoritiesnamesno93011759" }, { "@id": "_:b64authoritiesnamesno93011759" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "en",
+        "@value": "Couper, Mildred, 1887-1974" } ], "http://www.w3.org/2004/02/skos/core#exactMatch": [ { "@id": "http://viaf.org/viaf/sourceID/LC%7Cno+93011759#skos:Concept" } ], "http://www.w3.org/2004/02/skos/core#inScheme": [ { "@id": "http://id.loc.gov/authorities/names" } ], "http://www.w3.org/2004/02/skos/core#changeNote": [ { "@id": "_:b76authoritiesnamesno93011759" }, { "@id": "_:b84authoritiesnamesno93011759" } ] },  { "@id": "_:b010", "http://www.w3.org/1999/02/22-rdf-syntax-ns#first": [ { "@id": "_:b11authoritiesnamesno93011759" } ], "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest": [ { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#nil" } ] },  { "@id": "_:b33authoritiesnamesno93011759", "@type": [ "http://www.loc.gov/mads/rdf/v1#Source" ], "http://www.loc.gov/mads/rdf/v1#citation-source": [ { "@value": "Cohen, A. Int. encyc. of women composers" } ], "http://www.loc.gov/mads/rdf/v1#citation-note": [ { "@language": "en",
+        "@value": "(Couper, Mildred; b. 12/10/1887, Buenos Aires; American pianist, teacher and composer)" } ], "http://www.loc.gov/mads/rdf/v1#citation-status": [ { "@value": "found" } ] },  { "@id": "_:b49authoritiesnamesno93011759", "@type": [ "http://www.loc.gov/mads/rdf/v1#Source" ], "http://www.loc.gov/mads/rdf/v1#citation-source": [ { "@value": "New Grove, 2nd ed. www site, Dec 21, 2000" } ], "http://www.loc.gov/mads/rdf/v1#citation-note": [ { "@language": "en",
+        "@value": "(Couper, Mildred; b. Dec. 10, 1887, Buenos Aires; d. Aug. 9, 1974, Santa Barbara, CA; American composer and pianist)" } ], "http://www.loc.gov/mads/rdf/v1#citation-status": [ { "@value": "found" } ] },  { "@id": "_:b25authoritiesnamesno93011759", "@type": [ "http://www.loc.gov/mads/rdf/v1#Source" ], "http://www.loc.gov/mads/rdf/v1#citation-source": [ { "@value": "Her Dirge, c1937:" } ], "http://www.loc.gov/mads/rdf/v1#citation-note": [ { "@language": "en",
+        "@value": "caption (Mildred Couper)" } ], "http://www.loc.gov/mads/rdf/v1#citation-status": [ { "@value": "found" } ] },  { "@id": "", "@type": [ "http://www.loc.gov/mads/rdf/v1#RWO", "http://xmlns.com/foaf/0.1/Person" ], "http://www.w3.org/2000/01/rdf-schema#label": [ { "@value": "Couper, Mildred, 1887-1974" } ] },  { "@id": "_:b11authoritiesnamesno93011759", "@type": [ "http://www.loc.gov/mads/rdf/v1#DateNameElement" ], "http://www.loc.gov/mads/rdf/v1#elementValue": [ { "@language": "en",
+        "@value": "1887-1974" } ] } ]
+    http_version:
+  recorded_at: Thu, 09 Jun 2016 23:43:59 GMT
+- request:
+    method: get
+    uri: http://id.loc.gov/vocabulary/iso639-2/eng
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
+        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
+        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, application/trig,
+        application/x-trig, application/trix
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 303
+      message: SEE OTHER
+    headers:
+      Location:
+      - http://id.loc.gov/vocabulary/iso639-2/eng.jsonld
+      Vary:
+      - Accept
+      X-Uri:
+      - http://id.loc.gov/vocabulary/iso639-2/eng
+      X-Preflabel:
+      - English
+      Server:
+      - Apache
+      Content-Length:
+      - '0'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Thu, 09 Jun 2016 23:43:56 GMT
+      X-Varnish:
+      - '1039157136'
+      Age:
+      - '0'
+      Via:
+      - 1.1 varnish
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version:
+  recorded_at: Thu, 09 Jun 2016 23:43:59 GMT
+- request:
+    method: get
+    uri: http://id.loc.gov/vocabulary/iso639-2/eng.jsonld
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
+        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
+        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, application/trig,
+        application/x-trig, application/trix
+      Accept-Encoding:
+      - gzip, deflate
+      Cookie:
+      - ''
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/ld+json
+      Cache-Control:
+      - public, max-age=1209600
+      Etag:
+      - 765fc79d94cb41444845c436c44f9003
+      X-Uri:
+      - http://id.loc.gov/vocabulary/iso639-2/eng
+      Server:
+      - Apache
+      Content-Length:
+      - '7963'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Thu, 09 Jun 2016 23:43:58 GMT
+      X-Varnish:
+      - '1039157137'
+      Age:
+      - '0'
+      Via:
+      - 1.1 varnish
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: |-
+        [  { "@id": "http://id.loc.gov/vocabulary/languages/eng", "@type": [ "http://www.loc.gov/mads/rdf/v1#Language", "http://www.loc.gov/mads/rdf/v1#Authority", "http://www.w3.org/1999/02/22-rdf-syntax-ns#Resource", "http://id.loc.gov/vocabulary/languages/MARC_Language", "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@language": "en",
+        "@value": "English" }, { "@language": "de",
+        "@value": "Englisch" } ], "http://www.w3.org/2000/01/rdf-schema#label": [ { "@language": "en",
+        "@value": "English" }, { "@language": "de",
+        "@value": "Englisch" }, { "@language": "en",
+        "@value": "English" }, { "@language": "de",
+        "@value": "Englisch" } ], "http://www.loc.gov/mads/rdf/v1#code": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "eng" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "en",
+        "@value": "English" }, { "@language": "de",
+        "@value": "Englisch" } ], "http://www.w3.org/2004/02/skos/core#notation": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "eng" } ] },  { "@id": "_:b78vocabularyiso639-2eng", "@type": [ "http://www.loc.gov/mads/rdf/v1#Language", "http://www.loc.gov/mads/rdf/v1#Variant" ], "http://www.loc.gov/mads/rdf/v1#variantLabel": [ { "@language": "de",
+        "@value": "Englisch" } ] },  { "@id": "_:b172vocabularyiso639-2eng", "@type": [ "http://purl.org/vocab/changeset/schema#ChangeSet" ], "http://purl.org/vocab/changeset/schema#subjectOfChange": [ { "@id": "http://id.loc.gov/vocabulary/iso639-2/eng" } ], "http://purl.org/vocab/changeset/schema#creatorName": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlc" } ], "http://purl.org/vocab/changeset/schema#createdDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "1970-01-01T00:00:00" } ], "http://purl.org/vocab/changeset/schema#changeReason": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "new" } ] },  { "@id": "_:b116vocabularyiso639-2eng", "@type": [ "http://www.w3.org/2008/05/skos-xl#Label" ], "http://www.w3.org/2008/05/skos-xl#literalForm": [ { "@language": "en",
+        "@value": "English" } ] },  { "@id": "_:b97vocabularyiso639-2eng", "@type": [ "http://id.loc.gov/ontologies/RecordInfo#RecordInfo" ], "http://id.loc.gov/ontologies/RecordInfo#recordChangeDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "1970-01-01T00:00:00" } ], "http://id.loc.gov/ontologies/RecordInfo#recordStatus": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "new" } ], "http://id.loc.gov/ontologies/RecordInfo#recordContentSource": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlc" } ] },  { "@id": "http://id.loc.gov/vocabulary/iso639-1/en", "@type": [ "http://www.loc.gov/mads/rdf/v1#Language", "http://www.loc.gov/mads/rdf/v1#Authority", "http://id.loc.gov/vocabulary/iso639-1/iso639-1_Language", "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@language": "en",
+        "@value": "English" }, { "@language": "fr",
+        "@value": "anglais" }, { "@language": "de",
+        "@value": "Englisch" } ], "http://www.w3.org/2000/01/rdf-schema#label": [ { "@language": "en",
+        "@value": "English" }, { "@language": "fr",
+        "@value": "anglais" }, { "@language": "de",
+        "@value": "Englisch" }, { "@language": "en",
+        "@value": "English" }, { "@language": "fr",
+        "@value": "anglais" }, { "@language": "de",
+        "@value": "Englisch" } ], "http://www.loc.gov/mads/rdf/v1#code": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "en" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "en",
+        "@value": "English" }, { "@language": "fr",
+        "@value": "anglais" }, { "@language": "de",
+        "@value": "Englisch" } ], "http://www.w3.org/2004/02/skos/core#notation": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "en" } ] },  { "@id": "_:b67vocabularyiso639-2eng", "@type": [ "http://www.loc.gov/mads/rdf/v1#Language", "http://www.loc.gov/mads/rdf/v1#Variant" ], "http://www.loc.gov/mads/rdf/v1#variantLabel": [ { "@language": "fr",
+        "@value": "anglais" } ] },  { "@id": "http://id.loc.gov/vocabulary/iso639-2/collection_iso639-2_Bibliographic_Codes", "@type": [ "http://www.loc.gov/mads/rdf/v1#MADSCollection" ], "http://www.w3.org/2000/01/rdf-schema#label": [ { "@language": "en",
+        "@value": "ISO 639-2 Collection of Bibliographic Codes" } ] },  { "@id": "_:b121vocabularyiso639-2eng", "@type": [ "http://www.w3.org/2008/05/skos-xl#Label" ], "http://www.w3.org/2008/05/skos-xl#literalForm": [ { "@language": "fr",
+        "@value": "anglais" } ] },  { "@id": "_:b126vocabularyiso639-2eng", "@type": [ "http://www.w3.org/2008/05/skos-xl#Label" ], "http://www.w3.org/2008/05/skos-xl#literalForm": [ { "@language": "de",
+        "@value": "Englisch" } ] },  { "@id": "http://id.loc.gov/vocabulary/iso639-2/collection_PastPresentISO639-2Entries", "@type": [ "http://www.loc.gov/mads/rdf/v1#MADSCollection" ], "http://www.w3.org/2000/01/rdf-schema#label": [ { "@language": "en",
+        "@value": "Collection of Past and Present ISO639-2 Entries" } ] },  { "@id": "http://id.loc.gov/vocabulary/iso639-2/eng", "@type": [ "http://www.loc.gov/mads/rdf/v1#Language", "http://www.loc.gov/mads/rdf/v1#Authority", "http://id.loc.gov/vocabulary/iso639-2/iso639-2_Language", "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@language": "en",
+        "@value": "English" }, { "@language": "fr",
+        "@value": "anglais" }, { "@language": "de",
+        "@value": "Englisch" } ], "http://www.loc.gov/mads/rdf/v1#hasExactExternalAuthority": [ { "@id": "http://id.loc.gov/vocabulary/languages/eng" }, { "@id": "http://id.loc.gov/vocabulary/iso639-1/en" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSCollection": [ { "@id": "http://id.loc.gov/vocabulary/iso639-2/collection_iso639-2_Bibliographic_Codes" }, { "@id": "http://id.loc.gov/vocabulary/iso639-2/collection_PastPresentISO639-2Entries" }, { "@id": "http://id.loc.gov/vocabulary/iso639-2/collection_iso639-2" } ], "http://www.loc.gov/mads/rdf/v1#hasVariant": [ { "@id": "_:b56vocabularyiso639-2eng" }, { "@id": "_:b67vocabularyiso639-2eng" }, { "@id": "_:b78vocabularyiso639-2eng" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSScheme": [ { "@id": "http://id.loc.gov/vocabulary/iso639-2" } ], "http://www.loc.gov/mads/rdf/v1#note": [ { "@language": "en",
+        "@value": "Bibliographic Code" } ], "http://www.loc.gov/mads/rdf/v1#code": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "eng" } ], "http://www.loc.gov/mads/rdf/v1#adminMetadata": [ { "@id": "_:b97vocabularyiso639-2eng" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "en",
+        "@value": "English" }, { "@language": "fr",
+        "@value": "anglais" }, { "@language": "de",
+        "@value": "Englisch" } ], "http://www.w3.org/2008/05/skos-xl#altLabel": [ { "@id": "_:b116vocabularyiso639-2eng" }, { "@id": "_:b121vocabularyiso639-2eng" }, { "@id": "_:b126vocabularyiso639-2eng" } ], "http://www.w3.org/2004/02/skos/core#exactMatch": [ { "@id": "http://id.loc.gov/vocabulary/languages/eng" }, { "@id": "http://id.loc.gov/vocabulary/iso639-1/en" } ], "http://www.w3.org/2004/02/skos/core#note": [ { "@language": "en",
+        "@value": "Bibliographic Code" } ], "http://www.w3.org/2004/02/skos/core#notation": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "eng" } ], "http://www.w3.org/2004/02/skos/core#inScheme": [ { "@id": "http://id.loc.gov/vocabulary/iso639-2" } ], "http://www.w3.org/2004/02/skos/core#altLabel": [ { "@language": "en",
+        "@value": "English" }, { "@language": "fr",
+        "@value": "anglais" }, { "@language": "de",
+        "@value": "Englisch" } ], "http://www.w3.org/2004/02/skos/core#changeNote": [ { "@id": "_:b172vocabularyiso639-2eng" } ] },  { "@id": "_:b56vocabularyiso639-2eng", "@type": [ "http://www.loc.gov/mads/rdf/v1#Language", "http://www.loc.gov/mads/rdf/v1#Variant" ], "http://www.loc.gov/mads/rdf/v1#variantLabel": [ { "@language": "en",
+        "@value": "English" } ] } ]
+    http_version:
+  recorded_at: Thu, 09 Jun 2016 23:44:00 GMT
+- request:
+    method: get
+    uri: http://id.loc.gov/authorities/subjects/sh85084939
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
+        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
+        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, application/trig,
+        application/x-trig, application/trix
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 303
+      message: SEE OTHER
+    headers:
+      Location:
+      - http://id.loc.gov/authorities/subjects/sh85084939.jsonld
+      Vary:
+      - Accept
+      X-Uri:
+      - http://id.loc.gov/authorities/subjects/sh85084939
+      X-Preflabel:
+      - Microtonal music
+      Server:
+      - Apache
+      Content-Length:
+      - '0'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Thu, 09 Jun 2016 23:43:58 GMT
+      X-Varnish:
+      - '1039157145'
+      Age:
+      - '0'
+      Via:
+      - 1.1 varnish
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version:
+  recorded_at: Thu, 09 Jun 2016 23:44:01 GMT
+- request:
+    method: get
+    uri: http://id.loc.gov/authorities/subjects/sh85084939.jsonld
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
+        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
+        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, application/trig,
+        application/x-trig, application/trix
+      Accept-Encoding:
+      - gzip, deflate
+      Cookie:
+      - ''
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/ld+json
+      Cache-Control:
+      - public, max-age=1209600
+      Etag:
+      - 466e13077ab41005825917da9f470c26
+      X-Uri:
+      - http://id.loc.gov/authorities/subjects/sh85084939
+      Server:
+      - Apache
+      Content-Length:
+      - '13053'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Thu, 09 Jun 2016 23:43:59 GMT
+      X-Varnish:
+      - '1039157147'
+      Age:
+      - '0'
+      Via:
+      - 1.1 varnish
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: |-
+        [  { "@id": "_:b74authoritiessubjectssh85084939", "@type": [ "http://www.loc.gov/mads/rdf/v1#Source" ], "http://www.loc.gov/mads/rdf/v1#citation-source": [ { "@value": "New Harvard dict. of mus., 1986:" } ], "http://www.loc.gov/mads/rdf/v1#citation-note": [ { "@language": "en",
+        "@value": "pp. 491-492, under Microtone (Microtonal music)" } ], "http://www.loc.gov/mads/rdf/v1#citation-status": [ { "@value": "found" } ] },  { "@id": "_:b66authoritiessubjectssh85084939", "@type": [ "http://www.loc.gov/mads/rdf/v1#Source" ], "http://www.loc.gov/mads/rdf/v1#citation-source": [ { "@value": "Vinton, J. Dict. of contemporary music, 1974:" } ], "http://www.loc.gov/mads/rdf/v1#citation-note": [ { "@language": "en",
+        "@value": "pp. 483-484 (Microtones)" } ], "http://www.loc.gov/mads/rdf/v1#citation-status": [ { "@value": "found" } ] },  { "@id": "http://id.loc.gov/authorities/subjects/sh85084939", "@type": [ "http://www.loc.gov/mads/rdf/v1#Topic", "http://www.loc.gov/mads/rdf/v1#Authority", "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@language": "en",
+        "@value": "Microtonal music" } ], "http://www.loc.gov/mads/rdf/v1#elementList": [ { "@id": "_:b7authoritiessubjectssh85084939" } ], "http://www.loc.gov/mads/rdf/v1#hasBroaderAuthority": [ { "@id": "http://id.loc.gov/authorities/subjects/sh85084938" }, { "@id": "http://id.loc.gov/authorities/subjects/sh85088762" } ], "http://www.loc.gov/mads/rdf/v1#hasEarlierEstablishedForm": [ { "@id": "_:b25authoritiessubjectssh85084939" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSCollection": [ { "@id": "http://id.loc.gov/authorities/subjects/collection_LCSHAuthorizedHeadings" }, { "@id": "http://id.loc.gov/authorities/subjects/collection_LCSH_General" }, { "@id": "http://id.loc.gov/authorities/subjects/collection_SubdivideGeographically" } ], "http://www.loc.gov/mads/rdf/v1#hasCloseExternalAuthority": [ { "@id": "http://data.bnf.fr/ark:/12148/cb14623126v" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSScheme": [ { "@id": "http://id.loc.gov/authorities/subjects" } ], "http://www.loc.gov/mads/rdf/v1#hasVariant": [ { "@id": "_:b42authoritiessubjectssh85084939" }, { "@id": "_:b51authoritiessubjectssh85084939" } ], "http://www.loc.gov/mads/rdf/v1#note": [ { "@value": "Here are entered compositions in the Western musical tradition that employ intervals smaller than a semitone in the chromatic scale. The heading is used as an additional heading for works whose medium of performance is specified, e.g. [1. Sonatas (Piano) 2. Microtonal music.]" } ], "http://id.loc.gov/vocabulary/identifiers/lccn": [ { "@value": "sh 85084939" } ], "http://www.w3.org/2002/07/owl#sameAs": [ { "@id": "info:lc/authorities/sh85084939" }, { "@id": "http://id.loc.gov/authorities/sh85084939#concept" } ], "http://www.loc.gov/mads/rdf/v1#hasSource": [ { "@id": "_:b66authoritiessubjectssh85084939" }, { "@id": "_:b74authoritiessubjectssh85084939" }, { "@id": "_:b82authoritiessubjectssh85084939" }, { "@id": "_:b88authoritiessubjectssh85084939" }, { "@id": "_:b94authoritiessubjectssh85084939" } ], "http://www.loc.gov/mads/rdf/v1#adminMetadata": [ { "@id": "_:b102authoritiessubjectssh85084939" }, { "@id": "_:b110authoritiessubjectssh85084939" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "en",
+        "@value": "Microtonal music" } ], "http://www.w3.org/2008/05/skos-xl#altLabel": [ { "@id": "_:b121authoritiessubjectssh85084939" }, { "@id": "_:b126authoritiessubjectssh85084939" } ], "http://www.w3.org/2004/02/skos/core#broader": [ { "@id": "http://id.loc.gov/authorities/subjects/sh85084938" }, { "@id": "http://id.loc.gov/authorities/subjects/sh85088762" } ], "http://www.w3.org/2004/02/skos/core#closeMatch": [ { "@id": "http://data.bnf.fr/ark:/12148/cb14623126v" } ], "http://www.w3.org/2004/02/skos/core#note": [ { "@value": "Here are entered compositions in the Western musical tradition that employ intervals smaller than a semitone in the chromatic scale. The heading is used as an additional heading for works whose medium of performance is specified, e.g. [1. Sonatas (Piano) 2. Microtonal music.]" } ], "http://www.w3.org/2004/02/skos/core#inScheme": [ { "@id": "http://id.loc.gov/authorities/subjects" } ], "http://www.w3.org/2004/02/skos/core#altLabel": [ { "@language": "en",
+        "@value": "Microtonic music" }, { "@language": "en",
+        "@value": "Quarter-tone music" } ], "http://www.w3.org/2004/02/skos/core#changeNote": [ { "@id": "_:b157authoritiessubjectssh85084939" }, { "@id": "_:b165authoritiessubjectssh85084939" } ] },  { "@id": "_:b88authoritiessubjectssh85084939", "@type": [ "http://www.loc.gov/mads/rdf/v1#Source" ], "http://www.loc.gov/mads/rdf/v1#citation-source": [ { "@value": "Blackwood, E. Twelve microtonal etudes, c1982." } ], "http://www.loc.gov/mads/rdf/v1#citation-status": [ { "@value": "found" } ] },  { "@id": "_:b51authoritiessubjectssh85084939", "@type": [ "http://www.loc.gov/mads/rdf/v1#Topic", "http://www.loc.gov/mads/rdf/v1#Variant" ], "http://www.loc.gov/mads/rdf/v1#variantLabel": [ { "@language": "en",
+        "@value": "Quarter-tone music" } ], "http://www.loc.gov/mads/rdf/v1#elementList": [ { "@id": "_:b56authoritiessubjectssh85084939" } ] },  { "@id": "_:b57authoritiessubjectssh85084939", "@type": [ "http://www.loc.gov/mads/rdf/v1#TopicElement" ], "http://www.loc.gov/mads/rdf/v1#elementValue": [ { "@language": "en",
+        "@value": "Quarter-tone music" } ] },  { "@id": "http://data.bnf.fr/ark:/12148/cb14623126v", "@type": [ "http://www.loc.gov/mads/rdf/v1#Authority", "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@language": "FR",
+        "@value": "Musique microtonale" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "FR",
+        "@value": "Musique microtonale" } ] },  { "@id": "_:b31authoritiessubjectssh85084939", "@type": [ "http://www.loc.gov/mads/rdf/v1#TopicElement" ], "http://www.loc.gov/mads/rdf/v1#elementValue": [ { "@language": "en",
+        "@value": "Microtonic music" } ] },  { "@id": "_:b110authoritiessubjectssh85084939", "@type": [ "http://id.loc.gov/ontologies/RecordInfo#RecordInfo" ], "http://id.loc.gov/ontologies/RecordInfo#recordChangeDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2001-04-16T12:21:38" } ], "http://id.loc.gov/ontologies/RecordInfo#recordStatus": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "revised" } ], "http://id.loc.gov/ontologies/RecordInfo#recordContentSource": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlc" } ], "http://id.loc.gov/ontologies/RecordInfo#languageOfCataloging": [ { "@id": "http://id.loc.gov/vocabulary/iso639-2/eng" } ] },  { "@id": "_:b30authoritiessubjectssh85084939", "http://www.w3.org/1999/02/22-rdf-syntax-ns#first": [ { "@id": "_:b31authoritiessubjectssh85084939" } ], "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest": [ { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#nil" } ] },  { "@id": "http://id.loc.gov/authorities/subjects/sh85088762", "@type": [ "http://www.loc.gov/mads/rdf/v1#Topic", "http://www.loc.gov/mads/rdf/v1#Authority", "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@language": "en",
+        "@value": "Music" } ], "http://www.w3.org/2000/01/rdf-schema#label": [ { "@language": "en",
+        "@value": "Music" }, { "@language": "en",
+        "@value": "Music" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "en",
+        "@value": "Music" } ] },  { "@id": "_:b42authoritiessubjectssh85084939", "@type": [ "http://www.loc.gov/mads/rdf/v1#Topic", "http://www.loc.gov/mads/rdf/v1#Variant" ], "http://www.loc.gov/mads/rdf/v1#variantLabel": [ { "@language": "en",
+        "@value": "Microtonic music" } ], "http://www.loc.gov/mads/rdf/v1#elementList": [ { "@id": "_:b47authoritiessubjectssh85084939" } ] },  { "@id": "_:b8authoritiessubjectssh85084939", "@type": [ "http://www.loc.gov/mads/rdf/v1#TopicElement" ], "http://www.loc.gov/mads/rdf/v1#elementValue": [ { "@language": "en",
+        "@value": "Microtonal music" } ] },  { "@id": "_:b121authoritiessubjectssh85084939", "@type": [ "http://www.w3.org/2008/05/skos-xl#Label" ], "http://www.w3.org/2008/05/skos-xl#literalForm": [ { "@language": "en",
+        "@value": "Microtonic music" } ] },  { "@id": "_:b157authoritiessubjectssh85084939", "@type": [ "http://purl.org/vocab/changeset/schema#ChangeSet" ], "http://purl.org/vocab/changeset/schema#subjectOfChange": [ { "@id": "http://id.loc.gov/authorities/subjects/sh85084939" } ], "http://purl.org/vocab/changeset/schema#creatorName": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlc" } ], "http://purl.org/vocab/changeset/schema#createdDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2001-03-01T00:00:00" } ], "http://purl.org/vocab/changeset/schema#changeReason": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "new" } ] },  { "@id": "_:b165authoritiessubjectssh85084939", "@type": [ "http://purl.org/vocab/changeset/schema#ChangeSet" ], "http://purl.org/vocab/changeset/schema#subjectOfChange": [ { "@id": "http://id.loc.gov/authorities/subjects/sh85084939" } ], "http://purl.org/vocab/changeset/schema#creatorName": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlc" } ], "http://purl.org/vocab/changeset/schema#createdDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2001-04-16T12:21:38" } ], "http://purl.org/vocab/changeset/schema#changeReason": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "revised" } ] },  { "@id": "_:b56authoritiessubjectssh85084939", "http://www.w3.org/1999/02/22-rdf-syntax-ns#first": [ { "@id": "_:b57authoritiessubjectssh85084939" } ], "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest": [ { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#nil" } ] },  { "@id": "_:b48authoritiessubjectssh85084939", "@type": [ "http://www.loc.gov/mads/rdf/v1#TopicElement" ], "http://www.loc.gov/mads/rdf/v1#elementValue": [ { "@language": "en",
+        "@value": "Microtonic music" } ] },  { "@id": "_:b47authoritiessubjectssh85084939", "http://www.w3.org/1999/02/22-rdf-syntax-ns#first": [ { "@id": "_:b48authoritiessubjectssh85084939" } ], "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest": [ { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#nil" } ] },  { "@id": "_:b102authoritiessubjectssh85084939", "@type": [ "http://id.loc.gov/ontologies/RecordInfo#RecordInfo" ], "http://id.loc.gov/ontologies/RecordInfo#recordChangeDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2001-03-01T00:00:00" } ], "http://id.loc.gov/ontologies/RecordInfo#recordStatus": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "new" } ], "http://id.loc.gov/ontologies/RecordInfo#recordContentSource": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlc" } ], "http://id.loc.gov/ontologies/RecordInfo#languageOfCataloging": [ { "@id": "http://id.loc.gov/vocabulary/iso639-2/eng" } ] },  { "@id": "_:b7authoritiessubjectssh85084939", "http://www.w3.org/1999/02/22-rdf-syntax-ns#first": [ { "@id": "_:b8authoritiessubjectssh85084939" } ], "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest": [ { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#nil" } ] },  { "@id": "_:b25authoritiessubjectssh85084939", "@type": [ "http://www.loc.gov/mads/rdf/v1#Topic", "http://www.loc.gov/mads/rdf/v1#Variant" ], "http://www.loc.gov/mads/rdf/v1#variantLabel": [ { "@language": "en",
+        "@value": "Microtonic music" } ], "http://www.loc.gov/mads/rdf/v1#elementList": [ { "@id": "_:b30authoritiessubjectssh85084939" } ] },  { "@id": "_:b82authoritiessubjectssh85084939", "@type": [ "http://www.loc.gov/mads/rdf/v1#Source" ], "http://www.loc.gov/mads/rdf/v1#citation-source": [ { "@value": "Whitman, G. Intro. of microtonal music, 1970." } ], "http://www.loc.gov/mads/rdf/v1#citation-status": [ { "@value": "found" } ] },  { "@id": "_:b126authoritiessubjectssh85084939", "@type": [ "http://www.w3.org/2008/05/skos-xl#Label" ], "http://www.w3.org/2008/05/skos-xl#literalForm": [ { "@language": "en",
+        "@value": "Quarter-tone music" } ] },  { "@id": "http://id.loc.gov/authorities/subjects/sh85084938", "@type": [ "http://www.loc.gov/mads/rdf/v1#Topic", "http://www.loc.gov/mads/rdf/v1#Authority", "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@language": "en",
+        "@value": "Microtones" } ], "http://www.w3.org/2000/01/rdf-schema#label": [ { "@language": "en",
+        "@value": "Microtones" }, { "@language": "en",
+        "@value": "Microtones" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "en",
+        "@value": "Microtones" } ] },  { "@id": "_:b94authoritiessubjectssh85084939", "@type": [ "http://www.loc.gov/mads/rdf/v1#Source" ], "http://www.loc.gov/mads/rdf/v1#citation-source": [ { "@value": "Am. heritage dict. Eng. lang., 3rd ed." } ], "http://www.loc.gov/mads/rdf/v1#citation-note": [ { "@language": "en",
+        "@value": "(microtonal)" } ], "http://www.loc.gov/mads/rdf/v1#citation-status": [ { "@value": "found" } ] } ]
+    http_version:
+  recorded_at: Thu, 09 Jun 2016 23:44:01 GMT
+- request:
+    method: get
+    uri: http://id.loc.gov/authorities/subjects/sh85147508
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
+        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
+        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, application/trig,
+        application/x-trig, application/trix
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 303
+      message: SEE OTHER
+    headers:
+      Location:
+      - http://id.loc.gov/authorities/subjects/sh85147508.jsonld
+      Vary:
+      - Accept
+      X-Uri:
+      - http://id.loc.gov/authorities/subjects/sh85147508
+      X-Preflabel:
+      - Women composers
+      Server:
+      - Apache
+      Content-Length:
+      - '0'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Thu, 09 Jun 2016 23:43:59 GMT
+      X-Varnish:
+      - '1039157155'
+      Age:
+      - '0'
+      Via:
+      - 1.1 varnish
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version:
+  recorded_at: Thu, 09 Jun 2016 23:44:02 GMT
+- request:
+    method: get
+    uri: http://id.loc.gov/authorities/subjects/sh85147508.jsonld
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
+        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
+        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, application/trig,
+        application/x-trig, application/trix
+      Accept-Encoding:
+      - gzip, deflate
+      Cookie:
+      - ''
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/ld+json
+      Cache-Control:
+      - public, max-age=1209600
+      Etag:
+      - a3cc8e6c46872b881905789801023e86
+      X-Uri:
+      - http://id.loc.gov/authorities/subjects/sh85147508
+      Server:
+      - Apache
+      Content-Length:
+      - '11356'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Thu, 09 Jun 2016 23:44:02 GMT
+      X-Varnish:
+      - '1039157157'
+      Age:
+      - '0'
+      Via:
+      - 1.1 varnish
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: |-
+        [  { "@id": "_:b7authoritiessubjectssh85147508", "http://www.w3.org/1999/02/22-rdf-syntax-ns#first": [ { "@id": "_:b8authoritiessubjectssh85147508" } ], "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest": [ { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#nil" } ] },  { "@id": "http://id.loc.gov/authorities/subjects/sh85147508", "@type": [ "http://www.loc.gov/mads/rdf/v1#Topic", "http://www.loc.gov/mads/rdf/v1#Authority", "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@language": "en",
+        "@value": "Women composers" } ], "http://www.loc.gov/mads/rdf/v1#elementList": [ { "@id": "_:b7authoritiessubjectssh85147508" } ], "http://www.loc.gov/mads/rdf/v1#hasBroaderAuthority": [ { "@id": "http://id.loc.gov/authorities/subjects/sh85029386" }, { "@id": "_:b18authoritiessubjectssh85147508" } ], "http://www.loc.gov/mads/rdf/v1#hasEarlierEstablishedForm": [ { "@id": "_:b27authoritiessubjectssh85147508" }, { "@id": "_:b36authoritiessubjectssh85147508" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSCollection": [ { "@id": "http://id.loc.gov/authorities/subjects/collection_LCSHAuthorizedHeadings" }, { "@id": "http://id.loc.gov/authorities/subjects/collection_LCSH_General" }, { "@id": "http://id.loc.gov/authorities/subjects/collection_SubdivideGeographically" } ], "http://www.loc.gov/mads/rdf/v1#hasNarrowerAuthority": [ { "@id": "http://id.loc.gov/authorities/subjects/sh2002006647" } ], "http://www.loc.gov/mads/rdf/v1#hasCloseExternalAuthority": [ { "@id": "http://data.bnf.fr/ark:/12148/cb11931764w" }, { "@id": "http://d-nb.info/gnd/4032010-8" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSScheme": [ { "@id": "http://id.loc.gov/authorities/subjects" } ], "http://www.loc.gov/mads/rdf/v1#hasVariant": [ { "@id": "_:b64authoritiessubjectssh85147508" }, { "@id": "_:b73authoritiessubjectssh85147508" } ], "http://id.loc.gov/vocabulary/identifiers/lccn": [ { "@value": "sh 85147508" } ], "http://www.w3.org/2002/07/owl#sameAs": [ { "@id": "info:lc/authorities/sh85147508" }, { "@id": "http://id.loc.gov/authorities/sh85147508#concept" } ], "http://www.loc.gov/mads/rdf/v1#adminMetadata": [ { "@id": "_:b86authoritiessubjectssh85147508" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "en",
+        "@value": "Women composers" } ], "http://www.w3.org/2008/05/skos-xl#altLabel": [ { "@id": "_:b96authoritiessubjectssh85147508" }, { "@id": "_:b101authoritiessubjectssh85147508" } ], "http://www.w3.org/2004/02/skos/core#broader": [ { "@id": "http://id.loc.gov/authorities/subjects/sh85029386" }, { "@id": "_:b113authoritiessubjectssh85147508" } ], "http://www.w3.org/2004/02/skos/core#narrower": [ { "@id": "http://id.loc.gov/authorities/subjects/sh2002006647" } ], "http://www.w3.org/2004/02/skos/core#closeMatch": [ { "@id": "http://data.bnf.fr/ark:/12148/cb11931764w" }, { "@id": "http://d-nb.info/gnd/4032010-8" } ], "http://www.w3.org/2004/02/skos/core#inScheme": [ { "@id": "http://id.loc.gov/authorities/subjects" } ], "http://www.w3.org/2004/02/skos/core#altLabel": [ { "@language": "en",
+        "@value": "Composers, Women" }, { "@language": "en",
+        "@value": "Women as composers" } ], "http://www.w3.org/2004/02/skos/core#changeNote": [ { "@id": "_:b140authoritiessubjectssh85147508" } ] },  { "@id": "_:b41authoritiessubjectssh85147508", "http://www.w3.org/1999/02/22-rdf-syntax-ns#first": [ { "@id": "_:b42authoritiessubjectssh85147508" } ], "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest": [ { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#nil" } ] },  { "@id": "_:b27authoritiessubjectssh85147508", "@type": [ "http://www.loc.gov/mads/rdf/v1#Topic", "http://www.loc.gov/mads/rdf/v1#Variant" ], "http://www.loc.gov/mads/rdf/v1#variantLabel": [ { "@language": "en",
+        "@value": "Composers, Women" } ], "http://www.loc.gov/mads/rdf/v1#elementList": [ { "@id": "_:b32authoritiessubjectssh85147508" } ] },  { "@id": "_:b113authoritiessubjectssh85147508", "@type": [ "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "en",
+        "@value": "Women musicians" } ] },  { "@id": "_:b86authoritiessubjectssh85147508", "@type": [ "http://id.loc.gov/ontologies/RecordInfo#RecordInfo" ], "http://id.loc.gov/ontologies/RecordInfo#recordChangeDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "1986-02-11T00:00:00" } ], "http://id.loc.gov/ontologies/RecordInfo#recordStatus": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "new" } ], "http://id.loc.gov/ontologies/RecordInfo#recordContentSource": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlc" } ] },  { "@id": "_:b36authoritiessubjectssh85147508", "@type": [ "http://www.loc.gov/mads/rdf/v1#Topic", "http://www.loc.gov/mads/rdf/v1#Variant" ], "http://www.loc.gov/mads/rdf/v1#variantLabel": [ { "@language": "en",
+        "@value": "Women as composers" } ], "http://www.loc.gov/mads/rdf/v1#elementList": [ { "@id": "_:b41authoritiessubjectssh85147508" } ] },  { "@id": "http://d-nb.info/gnd/4032010-8", "@type": [ "http://www.loc.gov/mads/rdf/v1#Authority", "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@language": "DE",
+        "@value": "Komponistin" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "DE",
+        "@value": "Komponistin" } ] },  { "@id": "_:b96authoritiessubjectssh85147508", "@type": [ "http://www.w3.org/2008/05/skos-xl#Label" ], "http://www.w3.org/2008/05/skos-xl#literalForm": [ { "@language": "en",
+        "@value": "Composers, Women" } ] },  { "@id": "http://id.loc.gov/authorities/subjects/sh85029386", "@type": [ "http://www.loc.gov/mads/rdf/v1#Topic", "http://www.loc.gov/mads/rdf/v1#Authority", "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@language": "en",
+        "@value": "Composers" } ], "http://www.w3.org/2000/01/rdf-schema#label": [ { "@language": "en",
+        "@value": "Composers" }, { "@language": "en",
+        "@value": "Composers" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "en",
+        "@value": "Composers" } ] },  { "@id": "_:b32authoritiessubjectssh85147508", "http://www.w3.org/1999/02/22-rdf-syntax-ns#first": [ { "@id": "_:b33authoritiessubjectssh85147508" } ], "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest": [ { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#nil" } ] },  { "@id": "_:b24authoritiessubjectssh85147508", "@type": [ "http://www.loc.gov/mads/rdf/v1#TopicElement" ], "http://www.loc.gov/mads/rdf/v1#elementValue": [ { "@language": "en",
+        "@value": "Women musicians" } ] },  { "@id": "_:b79authoritiessubjectssh85147508", "@type": [ "http://www.loc.gov/mads/rdf/v1#TopicElement" ], "http://www.loc.gov/mads/rdf/v1#elementValue": [ { "@language": "en",
+        "@value": "Women as composers" } ] },  { "@id": "_:b8authoritiessubjectssh85147508", "@type": [ "http://www.loc.gov/mads/rdf/v1#TopicElement" ], "http://www.loc.gov/mads/rdf/v1#elementValue": [ { "@language": "en",
+        "@value": "Women composers" } ] },  { "@id": "_:b73authoritiessubjectssh85147508", "@type": [ "http://www.loc.gov/mads/rdf/v1#Topic", "http://www.loc.gov/mads/rdf/v1#Variant" ], "http://www.loc.gov/mads/rdf/v1#variantLabel": [ { "@language": "en",
+        "@value": "Women as composers" } ], "http://www.loc.gov/mads/rdf/v1#elementList": [ { "@id": "_:b78authoritiessubjectssh85147508" } ] },  { "@id": "_:b23authoritiessubjectssh85147508", "http://www.w3.org/1999/02/22-rdf-syntax-ns#first": [ { "@id": "_:b24authoritiessubjectssh85147508" } ], "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest": [ { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#nil" } ] },  { "@id": "_:b78authoritiessubjectssh85147508", "http://www.w3.org/1999/02/22-rdf-syntax-ns#first": [ { "@id": "_:b79authoritiessubjectssh85147508" } ], "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest": [ { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#nil" } ] },  { "@id": "http://data.bnf.fr/ark:/12148/cb11931764w", "@type": [ "http://www.loc.gov/mads/rdf/v1#Authority", "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@language": "FR",
+        "@value": "Compositrices" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "FR",
+        "@value": "Compositrices" } ] },  { "@id": "_:b140authoritiessubjectssh85147508", "@type": [ "http://purl.org/vocab/changeset/schema#ChangeSet" ], "http://purl.org/vocab/changeset/schema#subjectOfChange": [ { "@id": "http://id.loc.gov/authorities/subjects/sh85147508" } ], "http://purl.org/vocab/changeset/schema#creatorName": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlc" } ], "http://purl.org/vocab/changeset/schema#createdDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "1986-02-11T00:00:00" } ], "http://purl.org/vocab/changeset/schema#changeReason": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "new" } ] },  { "@id": "_:b64authoritiessubjectssh85147508", "@type": [ "http://www.loc.gov/mads/rdf/v1#Topic", "http://www.loc.gov/mads/rdf/v1#Variant" ], "http://www.loc.gov/mads/rdf/v1#variantLabel": [ { "@language": "en",
+        "@value": "Composers, Women" } ], "http://www.loc.gov/mads/rdf/v1#elementList": [ { "@id": "_:b69authoritiessubjectssh85147508" } ] },  { "@id": "_:b33authoritiessubjectssh85147508", "@type": [ "http://www.loc.gov/mads/rdf/v1#TopicElement" ], "http://www.loc.gov/mads/rdf/v1#elementValue": [ { "@language": "en",
+        "@value": "Composers, Women" } ] },  { "@id": "_:b69authoritiessubjectssh85147508", "http://www.w3.org/1999/02/22-rdf-syntax-ns#first": [ { "@id": "_:b70authoritiessubjectssh85147508" } ], "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest": [ { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#nil" } ] },  { "@id": "http://id.loc.gov/authorities/subjects/sh2002006647", "@type": [ "http://www.loc.gov/mads/rdf/v1#Topic", "http://www.loc.gov/mads/rdf/v1#Authority", "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@language": "en",
+        "@value": "Lesbian composers" } ], "http://www.w3.org/2000/01/rdf-schema#label": [ { "@language": "en",
+        "@value": "Lesbian composers" }, { "@language": "en",
+        "@value": "Lesbian composers" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "en",
+        "@value": "Lesbian composers" } ] },  { "@id": "_:b70authoritiessubjectssh85147508", "@type": [ "http://www.loc.gov/mads/rdf/v1#TopicElement" ], "http://www.loc.gov/mads/rdf/v1#elementValue": [ { "@language": "en",
+        "@value": "Composers, Women" } ] },  { "@id": "_:b18authoritiessubjectssh85147508", "@type": [ "http://www.loc.gov/mads/rdf/v1#Topic", "http://www.loc.gov/mads/rdf/v1#Authority" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@language": "en",
+        "@value": "Women musicians" } ], "http://www.loc.gov/mads/rdf/v1#elementList": [ { "@id": "_:b23authoritiessubjectssh85147508" } ] },  { "@id": "_:b42authoritiessubjectssh85147508", "@type": [ "http://www.loc.gov/mads/rdf/v1#TopicElement" ], "http://www.loc.gov/mads/rdf/v1#elementValue": [ { "@language": "en",
+        "@value": "Women as composers" } ] },  { "@id": "_:b101authoritiessubjectssh85147508", "@type": [ "http://www.w3.org/2008/05/skos-xl#Label" ], "http://www.w3.org/2008/05/skos-xl#literalForm": [ { "@language": "en",
+        "@value": "Women as composers" } ] } ]
+    http_version:
+  recorded_at: Thu, 09 Jun 2016 23:44:05 GMT
+- request:
+    method: get
+    uri: http://id.loc.gov/vocabulary/organizations/cusb
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
+        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
+        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, application/trig,
+        application/x-trig, application/trix
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 303
+      message: SEE OTHER
+    headers:
+      Location:
+      - http://id.loc.gov/vocabulary/organizations/cusb.jsonld
+      Vary:
+      - Accept
+      X-Uri:
+      - http://id.loc.gov/vocabulary/organizations/cusb
+      X-Preflabel:
+      - University of California, Santa Barbara, Main Library
+      Server:
+      - Apache
+      Content-Length:
+      - '0'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Thu, 09 Jun 2016 23:44:02 GMT
+      X-Varnish:
+      - '1039157180'
+      Age:
+      - '0'
+      Via:
+      - 1.1 varnish
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version:
+  recorded_at: Thu, 09 Jun 2016 23:44:05 GMT
+- request:
+    method: get
+    uri: http://id.loc.gov/vocabulary/organizations/cusb.jsonld
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
+        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
+        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, application/trig,
+        application/x-trig, application/trix
+      Accept-Encoding:
+      - gzip, deflate
+      Cookie:
+      - ''
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/ld+json
+      Cache-Control:
+      - public, max-age=1209600
+      Etag:
+      - b28bfd0bca159849eadc7b268ff5af94
+      X-Uri:
+      - http://id.loc.gov/vocabulary/organizations/cusb
+      Server:
+      - Apache
+      Content-Length:
+      - '5970'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Thu, 09 Jun 2016 23:44:03 GMT
+      X-Varnish:
+      - '1039157181'
+      Age:
+      - '0'
+      Via:
+      - 1.1 varnish
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: |-
+        [  { "@id": "_:b20vocabularyorganizationscusb", "@type": [ "http://www.loc.gov/mads/rdf/v1#Variant" ], "http://www.loc.gov/mads/rdf/v1#variantLabel": [ { "@value": "State Teachers' College" } ] },  { "@id": "_:b45vocabularyorganizationscusb", "@type": [ "http://id.loc.gov/ontologies/RecordInfo#RecordInfo" ], "http://id.loc.gov/ontologies/RecordInfo#recordContentSource": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlcmrc" } ], "http://id.loc.gov/ontologies/RecordInfo#recordChangeDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "1975-09-12T00:00:00.000-04:00" } ], "http://id.loc.gov/ontologies/RecordInfo#recordStatus": [ { "@language": "en",
+        "@value": "new" } ] },  { "@id": "_:b58vocabularyorganizationscusb", "@type": [ "http://id.loc.gov/ontologies/RecordInfo#RecordInfo" ], "http://id.loc.gov/ontologies/RecordInfo#recordContentSource": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlcmrc" } ], "http://id.loc.gov/ontologies/RecordInfo#recordChangeDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2015-04-07T09:13:26.000-04:00" } ], "http://id.loc.gov/ontologies/RecordInfo#recordStatus": [ { "@language": "en",
+        "@value": "modified" } ] },  { "@id": "http://id.loc.gov/vocabulary/organizations/cu", "@type": [ "http://www.loc.gov/mads/rdf/v1#CorporateName", "http://www.loc.gov/mads/rdf/v1#Authority", "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@value": "University of California, Berkeley, Main Library" } ], "http://www.loc.gov/mads/rdf/v1#code": [ { "@type": "http://id.loc.gov/datatypes/orgs/code",
+        "@value": "CU" }, { "@type": "http://id.loc.gov/datatypes/orgs/normalized",
+        "@value": "cu" }, { "@type": "http://id.loc.gov/datatypes/orgs/iso15511",
+        "@value": "US-cu" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@value": "University of California, Berkeley, Main Library" } ], "http://www.w3.org/2004/02/skos/core#notation": [ { "@type": "http://id.loc.gov/datatypes/orgs/code",
+        "@value": "CU" }, { "@type": "http://id.loc.gov/datatypes/orgs/normalized",
+        "@value": "cu" }, { "@type": "http://id.loc.gov/datatypes/orgs/iso15511",
+        "@value": "US-cu" } ] },  { "@id": "http://id.loc.gov/vocabulary/organizations/cusb", "@type": [ "http://www.loc.gov/mads/rdf/v1#CorporateName", "http://www.loc.gov/mads/rdf/v1#Authority", "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@value": "University of California, Santa Barbara, Main Library" } ], "http://www.loc.gov/mads/rdf/v1#hasBroaderAuthority": [ { "@id": "http://id.loc.gov/vocabulary/organizations/cu" } ], "http://www.loc.gov/mads/rdf/v1#hasVariant": [ { "@id": "_:b20vocabularyorganizationscusb" } ], "http://www.loc.gov/mads/rdf/v1#code": [ { "@type": "http://id.loc.gov/datatypes/orgs/code",
+        "@value": "CU-SB" }, { "@type": "http://id.loc.gov/datatypes/orgs/normalized",
+        "@value": "cusb" }, { "@type": "http://id.loc.gov/datatypes/orgs/iso15511",
+        "@value": "US-cusb" } ], "http://www.loc.gov/mads/rdf/v1#identifiesRWO": [ { "@id": "" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSScheme": [ { "@id": "http://id.loc.gov/vocabulary/organizations" } ], "http://www.loc.gov/mads/rdf/v1#adminMetadata": [ { "@id": "_:b45vocabularyorganizationscusb" }, { "@id": "_:b58vocabularyorganizationscusb" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@value": "University of California, Santa Barbara, Main Library" } ], "http://www.w3.org/2008/05/skos-xl#altLabel": [ { "@id": "_:b73vocabularyorganizationscusb" } ], "http://www.w3.org/2004/02/skos/core#broader": [ { "@id": "http://id.loc.gov/vocabulary/organizations/cu" } ], "http://www.w3.org/2004/02/skos/core#notation": [ { "@type": "http://id.loc.gov/datatypes/orgs/code",
+        "@value": "CU-SB" }, { "@type": "http://id.loc.gov/datatypes/orgs/normalized",
+        "@value": "cusb" }, { "@type": "http://id.loc.gov/datatypes/orgs/iso15511",
+        "@value": "US-cusb" } ], "http://www.w3.org/2004/02/skos/core#inScheme": [ { "@id": "http://id.loc.gov/vocabulary/organizations" } ], "http://www.w3.org/2004/02/skos/core#altLabel": [ { "@value": "State Teachers' College" } ], "http://www.w3.org/2004/02/skos/core#changeNote": [ { "@id": "_:b98vocabularyorganizationscusb" }, { "@id": "_:b106vocabularyorganizationscusb" } ] },  { "@id": "_:b98vocabularyorganizationscusb", "@type": [ "http://purl.org/vocab/changeset/schema#ChangeSet" ], "http://purl.org/vocab/changeset/schema#subjectOfChange": [ { "@id": "http://id.loc.gov/vocabulary/organizations/cusb" } ], "http://purl.org/vocab/changeset/schema#creatorName": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlcmrc" } ], "http://purl.org/vocab/changeset/schema#createdDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "1975-09-12T00:00:00.000-04:00" } ], "http://purl.org/vocab/changeset/schema#changeReason": [ { "@language": "en",
+        "@value": "new" } ] },  { "@id": "_:b73vocabularyorganizationscusb", "@type": [ "http://www.w3.org/2008/05/skos-xl#Label" ], "http://www.w3.org/2008/05/skos-xl#literalForm": [ { "@value": "State Teachers' College" } ] },  { "@id": "", "@type": [ "http://www.loc.gov/mads/rdf/v1#RWO" ], "http://www.w3.org/2000/01/rdf-schema#label": [ { "@value": "University of California, Santa Barbara, Main Library" } ] },  { "@id": "_:b106vocabularyorganizationscusb", "@type": [ "http://purl.org/vocab/changeset/schema#ChangeSet" ], "http://purl.org/vocab/changeset/schema#subjectOfChange": [ { "@id": "http://id.loc.gov/vocabulary/organizations/cusb" } ], "http://purl.org/vocab/changeset/schema#creatorName": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlcmrc" } ], "http://purl.org/vocab/changeset/schema#createdDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2015-04-07T09:13:26.000-04:00" } ], "http://purl.org/vocab/changeset/schema#changeReason": [ { "@language": "en",
+        "@value": "modified" } ] } ]
+    http_version:
+  recorded_at: Thu, 09 Jun 2016 23:44:05 GMT
+- request:
+    method: get
+    uri: http://id.loc.gov/authorities/names/no93011759
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
+        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
+        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, application/trig,
+        application/x-trig, application/trix
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 303
+      message: SEE OTHER
+    headers:
+      Location:
+      - http://id.loc.gov/authorities/names/no93011759.jsonld
+      Vary:
+      - Accept
+      X-Uri:
+      - http://id.loc.gov/authorities/names/no93011759
+      X-Preflabel:
+      - Couper, Mildred, 1887-1974
+      Server:
+      - Apache
+      Content-Length:
+      - '0'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Thu, 09 Jun 2016 23:44:03 GMT
+      X-Varnish:
+      - 1039157186 1039157129
+      Age:
+      - '7'
+      Via:
+      - 1.1 varnish
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version:
+  recorded_at: Thu, 09 Jun 2016 23:44:06 GMT
+- request:
+    method: get
+    uri: http://id.loc.gov/authorities/names/no93011759.jsonld
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
+        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
+        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, application/trig,
+        application/x-trig, application/trix
+      Accept-Encoding:
+      - gzip, deflate
+      Cookie:
+      - ''
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/ld+json
+      Cache-Control:
+      - public, max-age=1209600
+      Etag:
+      - f3f9dc1caa555b8550c9e7c40109dd6e
+      X-Uri:
+      - http://id.loc.gov/authorities/names/no93011759
+      Server:
+      - Apache
+      Content-Length:
+      - '7064'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Thu, 09 Jun 2016 23:44:05 GMT
+      X-Varnish:
+      - '1039157187'
+      Age:
+      - '0'
+      Via:
+      - 1.1 varnish
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: |-
+        [  { "@id": "_:b84authoritiesnamesno93011759", "@type": [ "http://purl.org/vocab/changeset/schema#ChangeSet" ], "http://purl.org/vocab/changeset/schema#subjectOfChange": [ { "@id": "http://id.loc.gov/authorities/names/no93011759" } ], "http://purl.org/vocab/changeset/schema#creatorName": [ { "@id": "http://id.loc.gov/vocabulary/organizations/inumu" } ], "http://purl.org/vocab/changeset/schema#createdDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2000-12-21T20:58:21" } ], "http://purl.org/vocab/changeset/schema#changeReason": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "revised" } ] },  { "@id": "_:b7authoritiesnamesno93011759", "http://www.w3.org/1999/02/22-rdf-syntax-ns#first": [ { "@id": "_:b8authoritiesnamesno93011759" } ] },  { "@id": "_:b57authoritiesnamesno93011759", "@type": [ "http://id.loc.gov/ontologies/RecordInfo#RecordInfo" ], "http://id.loc.gov/ontologies/RecordInfo#recordChangeDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "1993-04-26T00:00:00" } ], "http://id.loc.gov/ontologies/RecordInfo#recordStatus": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "new" } ], "http://id.loc.gov/ontologies/RecordInfo#recordContentSource": [ { "@id": "http://id.loc.gov/vocabulary/organizations/inumu" } ] },  { "@id": "_:b64authoritiesnamesno93011759", "@type": [ "http://id.loc.gov/ontologies/RecordInfo#RecordInfo" ], "http://id.loc.gov/ontologies/RecordInfo#recordChangeDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2000-12-21T20:58:21" } ], "http://id.loc.gov/ontologies/RecordInfo#recordStatus": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "revised" } ], "http://id.loc.gov/ontologies/RecordInfo#recordContentSource": [ { "@id": "http://id.loc.gov/vocabulary/organizations/inumu" } ] },  { "@id": "_:b41authoritiesnamesno93011759", "@type": [ "http://www.loc.gov/mads/rdf/v1#Source" ], "http://www.loc.gov/mads/rdf/v1#citation-source": [ { "@value": "Bio base, 1990" } ], "http://www.loc.gov/mads/rdf/v1#citation-note": [ { "@language": "en",
+        "@value": "(Couper, Mildred; b. 1887; d. 1974)" } ], "http://www.loc.gov/mads/rdf/v1#citation-status": [ { "@value": "found" } ] },  { "@id": "_:b76authoritiesnamesno93011759", "@type": [ "http://purl.org/vocab/changeset/schema#ChangeSet" ], "http://purl.org/vocab/changeset/schema#subjectOfChange": [ { "@id": "http://id.loc.gov/authorities/names/no93011759" } ], "http://purl.org/vocab/changeset/schema#creatorName": [ { "@id": "http://id.loc.gov/vocabulary/organizations/inumu" } ], "http://purl.org/vocab/changeset/schema#createdDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "1993-04-26T00:00:00" } ], "http://purl.org/vocab/changeset/schema#changeReason": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "new" } ] },  { "@id": "_:b8authoritiesnamesno93011759", "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest": [ { "@id": "_:b010" } ], "@type": [ "http://www.loc.gov/mads/rdf/v1#FullNameElement" ], "http://www.loc.gov/mads/rdf/v1#elementValue": [ { "@language": "en",
+        "@value": "Couper, Mildred," } ] },  { "@id": "http://id.loc.gov/authorities/names/no93011759", "@type": [ "http://www.loc.gov/mads/rdf/v1#PersonalName", "http://www.loc.gov/mads/rdf/v1#Authority", "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@language": "en",
+        "@value": "Couper, Mildred, 1887-1974" } ], "http://www.loc.gov/mads/rdf/v1#elementList": [ { "@id": "_:b7authoritiesnamesno93011759" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSCollection": [ { "@id": "http://id.loc.gov/authorities/names/collection_NamesAuthorizedHeadings" }, { "@id": "http://id.loc.gov/authorities/names/collection_LCNAF" } ], "http://www.loc.gov/mads/rdf/v1#hasExactExternalAuthority": [ { "@id": "http://viaf.org/viaf/sourceID/LC%7Cno+93011759#skos:Concept" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSScheme": [ { "@id": "http://id.loc.gov/authorities/names" } ], "http://www.loc.gov/mads/rdf/v1#identifiesRWO": [ { "@id": "" } ], "http://id.loc.gov/vocabulary/identifiers/lccn": [ { "@value": "no 93011759" } ], "http://www.loc.gov/mads/rdf/v1#hasSource": [ { "@id": "_:b25authoritiesnamesno93011759" }, { "@id": "_:b33authoritiesnamesno93011759" }, { "@id": "_:b41authoritiesnamesno93011759" }, { "@id": "_:b49authoritiesnamesno93011759" } ], "http://www.loc.gov/mads/rdf/v1#adminMetadata": [ { "@id": "_:b57authoritiesnamesno93011759" }, { "@id": "_:b64authoritiesnamesno93011759" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "en",
+        "@value": "Couper, Mildred, 1887-1974" } ], "http://www.w3.org/2004/02/skos/core#exactMatch": [ { "@id": "http://viaf.org/viaf/sourceID/LC%7Cno+93011759#skos:Concept" } ], "http://www.w3.org/2004/02/skos/core#inScheme": [ { "@id": "http://id.loc.gov/authorities/names" } ], "http://www.w3.org/2004/02/skos/core#changeNote": [ { "@id": "_:b76authoritiesnamesno93011759" }, { "@id": "_:b84authoritiesnamesno93011759" } ] },  { "@id": "_:b010", "http://www.w3.org/1999/02/22-rdf-syntax-ns#first": [ { "@id": "_:b11authoritiesnamesno93011759" } ], "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest": [ { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#nil" } ] },  { "@id": "_:b33authoritiesnamesno93011759", "@type": [ "http://www.loc.gov/mads/rdf/v1#Source" ], "http://www.loc.gov/mads/rdf/v1#citation-source": [ { "@value": "Cohen, A. Int. encyc. of women composers" } ], "http://www.loc.gov/mads/rdf/v1#citation-note": [ { "@language": "en",
+        "@value": "(Couper, Mildred; b. 12/10/1887, Buenos Aires; American pianist, teacher and composer)" } ], "http://www.loc.gov/mads/rdf/v1#citation-status": [ { "@value": "found" } ] },  { "@id": "_:b49authoritiesnamesno93011759", "@type": [ "http://www.loc.gov/mads/rdf/v1#Source" ], "http://www.loc.gov/mads/rdf/v1#citation-source": [ { "@value": "New Grove, 2nd ed. www site, Dec 21, 2000" } ], "http://www.loc.gov/mads/rdf/v1#citation-note": [ { "@language": "en",
+        "@value": "(Couper, Mildred; b. Dec. 10, 1887, Buenos Aires; d. Aug. 9, 1974, Santa Barbara, CA; American composer and pianist)" } ], "http://www.loc.gov/mads/rdf/v1#citation-status": [ { "@value": "found" } ] },  { "@id": "_:b25authoritiesnamesno93011759", "@type": [ "http://www.loc.gov/mads/rdf/v1#Source" ], "http://www.loc.gov/mads/rdf/v1#citation-source": [ { "@value": "Her Dirge, c1937:" } ], "http://www.loc.gov/mads/rdf/v1#citation-note": [ { "@language": "en",
+        "@value": "caption (Mildred Couper)" } ], "http://www.loc.gov/mads/rdf/v1#citation-status": [ { "@value": "found" } ] },  { "@id": "", "@type": [ "http://www.loc.gov/mads/rdf/v1#RWO", "http://xmlns.com/foaf/0.1/Person" ], "http://www.w3.org/2000/01/rdf-schema#label": [ { "@value": "Couper, Mildred, 1887-1974" } ] },  { "@id": "_:b11authoritiesnamesno93011759", "@type": [ "http://www.loc.gov/mads/rdf/v1#DateNameElement" ], "http://www.loc.gov/mads/rdf/v1#elementValue": [ { "@language": "en",
+        "@value": "1887-1974" } ] } ]
+    http_version:
+  recorded_at: Thu, 09 Jun 2016 23:44:08 GMT
+- request:
+    method: get
+    uri: http://id.loc.gov/vocabulary/preservation/copyrightStatus/cpr
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
+        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
+        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, application/trig,
+        application/x-trig, application/trix
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 303
+      message: SEE OTHER
+    headers:
+      Location:
+      - http://id.loc.gov/vocabulary/preservation/copyrightStatus/cpr.jsonld
+      Vary:
+      - Accept
+      X-Uri:
+      - http://id.loc.gov/vocabulary/preservation/copyrightStatus/cpr
+      X-Preflabel:
+      - copyrighted
+      Server:
+      - Apache
+      Content-Length:
+      - '0'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Thu, 09 Jun 2016 23:44:06 GMT
+      X-Varnish:
+      - '1039157198'
+      Age:
+      - '0'
+      Via:
+      - 1.1 varnish
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version:
+  recorded_at: Thu, 09 Jun 2016 23:44:08 GMT
+- request:
+    method: get
+    uri: http://id.loc.gov/vocabulary/preservation/copyrightStatus/cpr.jsonld
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
+        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
+        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, application/trig,
+        application/x-trig, application/trix
+      Accept-Encoding:
+      - gzip, deflate
+      Cookie:
+      - ''
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/ld+json
+      Cache-Control:
+      - public, max-age=1209600
+      Etag:
+      - ac22e0ad20b9c1908910db955c588c2e
+      X-Uri:
+      - http://id.loc.gov/vocabulary/preservation/copyrightStatus/cpr
+      Server:
+      - Apache
+      Content-Length:
+      - '2912'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Thu, 09 Jun 2016 23:44:06 GMT
+      X-Varnish:
+      - '1039157202'
+      Age:
+      - '0'
+      Via:
+      - 1.1 varnish
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: |-
+        [  { "@id": "http://id.loc.gov/vocabulary/preservation/copyrightStatus/cpr", "@type": [ "http://www.loc.gov/mads/rdf/v1#Topic", "http://www.loc.gov/mads/rdf/v1#Authority", "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@language": "en",
+        "@value": "copyrighted" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSCollection": [ { "@id": "http://id.loc.gov/vocabulary/preservation/copyrightStatus/collection_PREMIS" } ], "http://www.loc.gov/mads/rdf/v1#definitionNote": [ { "@language": "en",
+        "@value": "Under copyright." } ], "http://www.loc.gov/mads/rdf/v1#code": [ { "@value": "cpr" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSScheme": [ { "@id": "http://id.loc.gov/vocabulary/preservation/copyrightStatus" }, { "@id": "http://id.loc.gov/vocabulary/preservation" } ], "http://www.loc.gov/mads/rdf/v1#adminMetadata": [ { "@id": "_:b23vocabularypreservationcopyrightStatuscpr" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "en",
+        "@value": "copyrighted" } ], "http://www.w3.org/2004/02/skos/core#definition": [ { "@language": "en",
+        "@value": "Under copyright." } ], "http://www.w3.org/2004/02/skos/core#notation": [ { "@value": "cpr" } ], "http://www.w3.org/2004/02/skos/core#inScheme": [ { "@id": "http://id.loc.gov/vocabulary/preservation/copyrightStatus" }, { "@id": "http://id.loc.gov/vocabulary/preservation" } ], "http://www.w3.org/2004/02/skos/core#changeNote": [ { "@id": "_:b44vocabularypreservationcopyrightStatuscpr" } ] },  { "@id": "http://id.loc.gov/vocabulary/preservation/copyrightStatus/collection_PREMIS", "@type": [ "http://www.loc.gov/mads/rdf/v1#MADSCollection" ], "http://www.w3.org/2000/01/rdf-schema#label": [ { "@language": "en",
+        "@value": "PREMIS    Copyright Status Collection" } ] },  { "@id": "_:b44vocabularypreservationcopyrightStatuscpr", "@type": [ "http://purl.org/vocab/changeset/schema#ChangeSet" ], "http://purl.org/vocab/changeset/schema#subjectOfChange": [ { "@id": "http://id.loc.gov/vocabulary/preservation/copyrightStatus/cpr" } ], "http://purl.org/vocab/changeset/schema#creatorName": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlcmrc" } ], "http://purl.org/vocab/changeset/schema#createdDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2012-08-01T00:00:00" } ], "http://purl.org/vocab/changeset/schema#changeReason": [ { "@value": "new" } ] },  { "@id": "_:b23vocabularypreservationcopyrightStatuscpr", "@type": [ "http://id.loc.gov/ontologies/RecordInfo#RecordInfo" ], "http://id.loc.gov/ontologies/RecordInfo#recordChangeDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2012-08-01T00:00:00" } ], "http://id.loc.gov/ontologies/RecordInfo#recordStatus": [ { "@value": "new" } ], "http://id.loc.gov/ontologies/RecordInfo#recordContentSource": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlcmrc" } ] } ]
+    http_version:
+  recorded_at: Thu, 09 Jun 2016 23:44:08 GMT
+- request:
+    method: get
+    uri: http://id.loc.gov/vocabulary/resourceTypes/not
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
+        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
+        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, application/trig,
+        application/x-trig, application/trix
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 303
+      message: SEE OTHER
+    headers:
+      Location:
+      - http://id.loc.gov/vocabulary/resourceTypes/not.jsonld
+      Vary:
+      - Accept
+      X-Uri:
+      - http://id.loc.gov/vocabulary/resourceTypes/not
+      X-Preflabel:
+      - Notated music
+      Server:
+      - Apache
+      Content-Length:
+      - '0'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Thu, 09 Jun 2016 23:44:07 GMT
+      X-Varnish:
+      - '1039157207'
+      Age:
+      - '0'
+      Via:
+      - 1.1 varnish
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version:
+  recorded_at: Thu, 09 Jun 2016 23:44:09 GMT
+- request:
+    method: get
+    uri: http://id.loc.gov/vocabulary/resourceTypes/not.jsonld
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
+        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
+        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, application/trig,
+        application/x-trig, application/trix
+      Accept-Encoding:
+      - gzip, deflate
+      Cookie:
+      - ''
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/ld+json
+      Cache-Control:
+      - public, max-age=1209600
+      Etag:
+      - 9793b021a5bebe2449609cc0f6a7e954
+      X-Uri:
+      - http://id.loc.gov/vocabulary/resourceTypes/not
+      Server:
+      - Apache
+      Content-Length:
+      - '10111'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Thu, 09 Jun 2016 23:44:07 GMT
+      X-Varnish:
+      - '1039157208'
+      Age:
+      - '0'
+      Via:
+      - 1.1 varnish
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: |-
+        [  { "@id": "_:b102vocabularyresourceTypesnot", "@type": [ "http://id.loc.gov/ontologies/RecordInfo#RecordInfo" ], "http://id.loc.gov/ontologies/RecordInfo#recordStatus": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "modified" } ], "http://id.loc.gov/ontologies/RecordInfo#recordChangeDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2015-10-23T09:31:55.058476-04:00" } ], "http://id.loc.gov/ontologies/RecordInfo#recordContentSource": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlcmrc" } ] },  { "@id": "_:b79vocabularyresourceTypesnot", "@type": [ "http://www.loc.gov/mads/rdf/v1#Variant" ], "http://www.loc.gov/mads/rdf/v1#variantLabel": [ { "@language": "en",
+        "@value": "Printed music" } ] },  { "@id": "http://id.loc.gov/authorities/genreForms/gf2014026956", "@type": [ "http://www.loc.gov/mads/rdf/v1#GenreForm", "http://www.loc.gov/mads/rdf/v1#Authority", "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@language": "en",
+        "@value": "Musical sketches" } ], "http://www.w3.org/2000/01/rdf-schema#label": [ { "@language": "en",
+        "@value": "Musical sketches" }, { "@language": "en",
+        "@value": "Musical sketches" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "en",
+        "@value": "Musical sketches" } ] },  { "@id": "http://id.loc.gov/authorities/genreForms/gf2014027150", "@type": [ "http://www.loc.gov/mads/rdf/v1#GenreForm", "http://www.loc.gov/mads/rdf/v1#Authority", "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@language": "en",
+        "@value": "Tune books" } ], "http://www.w3.org/2000/01/rdf-schema#label": [ { "@language": "en",
+        "@value": "Tune books" }, { "@language": "en",
+        "@value": "Tune books" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "en",
+        "@value": "Tune books" } ] },  { "@id": "http://id.loc.gov/authorities/genreForms/gf2014026986", "@type": [ "http://www.loc.gov/mads/rdf/v1#GenreForm", "http://www.loc.gov/mads/rdf/v1#Authority", "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@language": "en",
+        "@value": "Parts (Music)" } ], "http://www.w3.org/2000/01/rdf-schema#label": [ { "@language": "en",
+        "@value": "Parts (Music)" }, { "@language": "en",
+        "@value": "Parts (Music)" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "en",
+        "@value": "Parts (Music)" } ] },  { "@id": "http://id.loc.gov/vocabulary/resourceTypes/nmv", "@type": [ "http://www.w3.org/2002/07/owl#Class", "http://www.loc.gov/mads/rdf/v1#Authority", "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@language": "en",
+        "@value": "Notated movement" } ], "http://www.w3.org/2000/01/rdf-schema#label": [ { "@language": "en",
+        "@value": "Notated movement" }, { "@language": "en",
+        "@value": "Notated movement" } ], "http://www.loc.gov/mads/rdf/v1#code": [ { "@value": "nmv" } ], "http://www.w3.org/2000/01/rdf-schema#subClassOf": [ { "@id": "http://id.loc.gov/vocabulary/resourceTypes/not" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "en",
+        "@value": "Notated movement" } ], "http://www.w3.org/2004/02/skos/core#notation": [ { "@value": "nmv" } ] },  { "@id": "_:b88vocabularyresourceTypesnot", "@type": [ "http://www.loc.gov/mads/rdf/v1#Variant" ], "http://www.loc.gov/mads/rdf/v1#variantLabel": [ { "@language": "en",
+        "@value": "Music" } ] },  { "@id": "_:b117vocabularyresourceTypesnot", "@type": [ "http://www.w3.org/2008/05/skos-xl#Label" ], "http://www.w3.org/2008/05/skos-xl#literalForm": [ { "@language": "en",
+        "@value": "Sheetmusic" } ] },  { "@id": "_:b122vocabularyresourceTypesnot", "@type": [ "http://www.w3.org/2008/05/skos-xl#Label" ], "http://www.w3.org/2008/05/skos-xl#literalForm": [ { "@language": "en",
+        "@value": "Printed music" } ] },  { "@id": "_:b127vocabularyresourceTypesnot", "@type": [ "http://www.w3.org/2008/05/skos-xl#Label" ], "http://www.w3.org/2008/05/skos-xl#literalForm": [ { "@language": "en",
+        "@value": "Music" } ] },  { "@id": "_:b199vocabularyresourceTypesnot", "@type": [ "http://purl.org/vocab/changeset/schema#ChangeSet" ], "http://purl.org/vocab/changeset/schema#subjectOfChange": [ { "@id": "http://id.loc.gov/vocabulary/resourceTypes/not" } ], "http://purl.org/vocab/changeset/schema#creatorName": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlcmrc" } ], "http://purl.org/vocab/changeset/schema#createdDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2015-10-23T09:31:55.058476-04:00" } ], "http://purl.org/vocab/changeset/schema#changeReason": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "modified" } ] },  { "@id": "http://id.loc.gov/vocabulary/resourceTypes/not", "@type": [ "http://www.w3.org/2002/07/owl#Class", "http://www.loc.gov/mads/rdf/v1#Authority", "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@language": "en",
+        "@value": "Notated music" } ], "http://www.loc.gov/mads/rdf/v1#hasNarrowerAuthority": [ { "@id": "http://id.loc.gov/vocabulary/resourceTypes/nmv" }, { "@id": "http://id.loc.gov/authorities/genreForms/gf2014027150" }, { "@id": "http://id.loc.gov/authorities/genreForms/gf2014027085" }, { "@id": "http://id.loc.gov/authorities/genreForms/gf2014027077" }, { "@id": "http://id.loc.gov/authorities/genreForms/gf2014026986" }, { "@id": "http://id.loc.gov/authorities/genreForms/gf2014027102" }, { "@id": "http://id.loc.gov/authorities/genreForms/gf2014026956" }, { "@id": "http://id.loc.gov/authorities/genreForms/gf2014026983" } ], "http://www.w3.org/2000/01/rdf-schema#subClassOf": [ { "@id": "http://id.loc.gov/vocabulary/resourceTypes/Res" } ], "http://www.loc.gov/mads/rdf/v1#hasVariant": [ { "@id": "_:b70vocabularyresourceTypesnot" }, { "@id": "_:b79vocabularyresourceTypesnot" }, { "@id": "_:b88vocabularyresourceTypesnot" } ], "http://www.loc.gov/mads/rdf/v1#code": [ { "@value": "not" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSScheme": [ { "@id": "http://id.loc.gov/vocabulary/resourceTypes" } ], "http://www.loc.gov/mads/rdf/v1#adminMetadata": [ { "@id": "_:b102vocabularyresourceTypesnot" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "en",
+        "@value": "Notated music" } ], "http://www.w3.org/2008/05/skos-xl#altLabel": [ { "@id": "_:b117vocabularyresourceTypesnot" }, { "@id": "_:b122vocabularyresourceTypesnot" }, { "@id": "_:b127vocabularyresourceTypesnot" } ], "http://www.w3.org/2004/02/skos/core#narrower": [ { "@id": "http://id.loc.gov/vocabulary/resourceTypes/nmv" }, { "@id": "http://id.loc.gov/authorities/genreForms/gf2014027150" }, { "@id": "http://id.loc.gov/authorities/genreForms/gf2014027085" }, { "@id": "http://id.loc.gov/authorities/genreForms/gf2014027077" }, { "@id": "http://id.loc.gov/authorities/genreForms/gf2014026986" }, { "@id": "http://id.loc.gov/authorities/genreForms/gf2014027102" }, { "@id": "http://id.loc.gov/authorities/genreForms/gf2014026956" }, { "@id": "http://id.loc.gov/authorities/genreForms/gf2014026983" } ], "http://www.w3.org/2004/02/skos/core#notation": [ { "@value": "not" } ], "http://www.w3.org/2004/02/skos/core#inScheme": [ { "@id": "http://id.loc.gov/vocabulary/resourceTypes" } ], "http://www.w3.org/2004/02/skos/core#altLabel": [ { "@language": "en",
+        "@value": "Sheetmusic" }, { "@language": "en",
+        "@value": "Printed music" }, { "@language": "en",
+        "@value": "Music" } ], "http://www.w3.org/2004/02/skos/core#changeNote": [ { "@id": "_:b199vocabularyresourceTypesnot" } ] },  { "@id": "http://id.loc.gov/authorities/genreForms/gf2014027102", "@type": [ "http://www.loc.gov/mads/rdf/v1#GenreForm", "http://www.loc.gov/mads/rdf/v1#Authority", "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@language": "en",
+        "@value": "Songbooks" } ], "http://www.w3.org/2000/01/rdf-schema#label": [ { "@language": "en",
+        "@value": "Songbooks" }, { "@language": "en",
+        "@value": "Songbooks" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "en",
+        "@value": "Songbooks" } ] },  { "@id": "http://id.loc.gov/authorities/genreForms/gf2014027085", "@type": [ "http://www.loc.gov/mads/rdf/v1#GenreForm", "http://www.loc.gov/mads/rdf/v1#Authority", "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@language": "en",
+        "@value": "Service books (Music)" } ], "http://www.w3.org/2000/01/rdf-schema#label": [ { "@language": "en",
+        "@value": "Service books (Music)" }, { "@language": "en",
+        "@value": "Service books (Music)" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "en",
+        "@value": "Service books (Music)" } ] },  { "@id": "http://id.loc.gov/authorities/genreForms/gf2014026983", "@type": [ "http://www.loc.gov/mads/rdf/v1#GenreForm", "http://www.loc.gov/mads/rdf/v1#Authority", "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@language": "en",
+        "@value": "Part books" } ], "http://www.w3.org/2000/01/rdf-schema#label": [ { "@language": "en",
+        "@value": "Part books" }, { "@language": "en",
+        "@value": "Part books" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "en",
+        "@value": "Part books" } ] },  { "@id": "_:b70vocabularyresourceTypesnot", "@type": [ "http://www.loc.gov/mads/rdf/v1#Variant" ], "http://www.loc.gov/mads/rdf/v1#variantLabel": [ { "@language": "en",
+        "@value": "Sheetmusic" } ] },  { "@id": "http://id.loc.gov/authorities/genreForms/gf2014027077", "@type": [ "http://www.loc.gov/mads/rdf/v1#GenreForm", "http://www.loc.gov/mads/rdf/v1#Authority", "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@language": "en",
+        "@value": "Scores" } ], "http://www.w3.org/2000/01/rdf-schema#label": [ { "@language": "en",
+        "@value": "Scores" }, { "@language": "en",
+        "@value": "Scores" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "en",
+        "@value": "Scores" } ] } ]
+    http_version:
+  recorded_at: Thu, 09 Jun 2016 23:44:10 GMT
+- request:
+    method: get
+    uri: http://vocab.getty.edu/aat/300026430
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
+        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
+        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, application/trig,
+        application/x-trig, application/trix
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 303
+      message: See Other
+    headers:
+      Server:
+      - Apache-Coyote/1.1
+      Location:
+      - http://vocab.getty.edu/download/nt?uri=http://vocab.getty.edu/aat/300026430
+      Content-Length:
+      - '0'
+      Date:
+      - Thu, 09 Jun 2016 23:44:10 GMT
+      Set-Cookie:
+      - BIGipServerForest=587573440.45165.0000; path=/; Httponly
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version:
+  recorded_at: Thu, 09 Jun 2016 23:44:10 GMT
+- request:
+    method: get
+    uri: http://vocab.getty.edu/download/nt?uri=http://vocab.getty.edu/aat/300026430
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
+        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
+        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, application/trig,
+        application/x-trig, application/trix
+      Accept-Encoding:
+      - gzip, deflate
+      Cookie:
+      - BIGipServerForest=587573440.45165.0000
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Apache-Coyote/1.1
+      Content-Disposition:
+      - attachment; filename="aat_300026430.nt"
+      Content-Type:
+      - application/n-triples;charset=UTF-8
+      Content-Length:
+      - '63592'
+      Date:
+      - Thu, 09 Jun 2016 23:44:10 GMT
+    body:
+      encoding: UTF-8
+      string: |
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://vocab.getty.edu/ontology#Subject> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://vocab.getty.edu/ontology#Concept> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2000/01/rdf-schema#label> "sheet music"@en .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2000/01/rdf-schema#label> "music, sheet"@en .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2000/01/rdf-schema#label> "\u6563\u9801\u6A02\u8B5C"@zh-hant .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2000/01/rdf-schema#label> "\u6D3B\u9801\u6A02\u8B5C"@zh-hant .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2000/01/rdf-schema#label> "s\u01CEn y\u00E8 yu\u00E8 p\u01D4"@zh-latn-pinyin-x-hanyu .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2000/01/rdf-schema#label> "san ye yue pu"@zh-latn-pinyin-x-notone .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2000/01/rdf-schema#label> "papel pautado"@es .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2000/01/rdf-schema#label> "san yeh y\u00FCeh p'u"@zh-latn-wadegile .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2000/01/rdf-schema#label> "bladmuziek"@nl .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2000/01/rdf-schema#label> "partitions (sheet music)"@fr .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2000/01/rdf-schema#label> "papeles de m\u00FAsica"@es .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2000/01/rdf-schema#label> "papel de m\u00FAsica"@es .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://www.getty.edu/vow/AATFullDisplay?find=&logic=AND&note=&subjectid=300026430> .
+        <http://vocab.getty.edu/aat/300026430> <http://purl.org/dc/terms/created> "1988-01-01T00:00:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/300026430> <http://purl.org/dc/terms/modified> "1992-11-25T00:00:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/300026430> <http://purl.org/dc/terms/modified> "2001-07-26T22:04:23"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/300026430> <http://purl.org/dc/terms/modified> "2007-10-26T09:05:02"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/300026430> <http://purl.org/dc/terms/modified> "2010-04-23T01:14:06"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/300026430> <http://purl.org/dc/terms/modified> "2011-01-07T11:58:44"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/300026430> <http://purl.org/dc/terms/modified> "2013-03-29T09:55:12"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/300026430> <http://purl.org/dc/terms/modified> "2013-03-29T09:55:13"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/300026430> <http://purl.org/dc/terms/modified> "2012-04-13T12:07:44"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/300026430> <http://purl.org/dc/terms/modified> "2007-10-26T09:05:46"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/300026430> <http://purl.org/dc/terms/modified> "2007-12-06T10:43:30"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/300026430> <http://purl.org/dc/terms/modified> "2011-01-07T11:58:45"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5000063190> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5001161301> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5001161302> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5001681981> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5002276750> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5002276751> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5002276752> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5002627642> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5003410838> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5003410839> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5003410840> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5003410841> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5003410842> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5000063191> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5001685556> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5001695704> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5003236859> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5002276762> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5002627651> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5003410860> .
+        <http://vocab.getty.edu/aat/300026430> <http://vocab.getty.edu/ontology#broader> <http://vocab.getty.edu/aat/300026421> .
+        <http://vocab.getty.edu/aat/300026430> <http://vocab.getty.edu/ontology#broaderGenericExtended> <http://vocab.getty.edu/aat/300220751> .
+        <http://vocab.getty.edu/aat/300026430> <http://vocab.getty.edu/ontology#broaderGenericExtended> <http://vocab.getty.edu/aat/300026031> .
+        <http://vocab.getty.edu/aat/300026430> <http://vocab.getty.edu/ontology#broaderGenericExtended> <http://vocab.getty.edu/aat/300137954> .
+        <http://vocab.getty.edu/aat/300026430> <http://vocab.getty.edu/ontology#broaderGenericExtended> <http://vocab.getty.edu/aat/300026421> .
+        <http://vocab.getty.edu/aat/300026430> <http://vocab.getty.edu/ontology#broaderGenericExtended> <http://vocab.getty.edu/aat/300220428> .
+        <http://vocab.getty.edu/aat/300026430> <http://vocab.getty.edu/ontology#broaderGenericExtended> <http://vocab.getty.edu/aat/300264092> .
+        <http://vocab.getty.edu/aat/300026430> <http://vocab.getty.edu/ontology#broaderGenericExtended> <http://vocab.getty.edu/aat/300264552> .
+        <http://vocab.getty.edu/aat/300026430> <http://vocab.getty.edu/ontology#broaderGenericExtended> <http://vocab.getty.edu/aat/300026029> .
+        <http://vocab.getty.edu/aat/300026430> <http://vocab.getty.edu/ontology#broaderExtended> <http://vocab.getty.edu/aat/300220751> .
+        <http://vocab.getty.edu/aat/300026430> <http://vocab.getty.edu/ontology#broaderExtended> <http://vocab.getty.edu/aat/300026031> .
+        <http://vocab.getty.edu/aat/300026430> <http://vocab.getty.edu/ontology#broaderExtended> <http://vocab.getty.edu/aat/300137954> .
+        <http://vocab.getty.edu/aat/300026430> <http://vocab.getty.edu/ontology#broaderExtended> <http://vocab.getty.edu/aat/300026421> .
+        <http://vocab.getty.edu/aat/300026430> <http://vocab.getty.edu/ontology#broaderExtended> <http://vocab.getty.edu/aat/300220428> .
+        <http://vocab.getty.edu/aat/300026430> <http://vocab.getty.edu/ontology#broaderExtended> <http://vocab.getty.edu/aat/300264092> .
+        <http://vocab.getty.edu/aat/300026430> <http://vocab.getty.edu/ontology#broaderExtended> <http://vocab.getty.edu/aat/300264552> .
+        <http://vocab.getty.edu/aat/300026430> <http://vocab.getty.edu/ontology#broaderExtended> <http://vocab.getty.edu/aat/300026029> .
+        <http://vocab.getty.edu/aat/300026430> <http://vocab.getty.edu/ontology#broaderPreferredExtended> <http://vocab.getty.edu/aat/300220751> .
+        <http://vocab.getty.edu/aat/300026430> <http://vocab.getty.edu/ontology#broaderPreferredExtended> <http://vocab.getty.edu/aat/300026031> .
+        <http://vocab.getty.edu/aat/300026430> <http://vocab.getty.edu/ontology#broaderPreferredExtended> <http://vocab.getty.edu/aat/300137954> .
+        <http://vocab.getty.edu/aat/300026430> <http://vocab.getty.edu/ontology#broaderPreferredExtended> <http://vocab.getty.edu/aat/300026421> .
+        <http://vocab.getty.edu/aat/300026430> <http://vocab.getty.edu/ontology#broaderPreferredExtended> <http://vocab.getty.edu/aat/300220428> .
+        <http://vocab.getty.edu/aat/300026430> <http://vocab.getty.edu/ontology#broaderPreferredExtended> <http://vocab.getty.edu/aat/300264092> .
+        <http://vocab.getty.edu/aat/300026430> <http://vocab.getty.edu/ontology#broaderPreferredExtended> <http://vocab.getty.edu/aat/300264552> .
+        <http://vocab.getty.edu/aat/300026430> <http://vocab.getty.edu/ontology#broaderPreferredExtended> <http://vocab.getty.edu/aat/300026029> .
+        <http://vocab.getty.edu/aat/300026430> <http://vocab.getty.edu/ontology#parentString> "<document genres for music>, <documents for oral or performed works>, <documents by form>, document genres, information forms (objects), Information Forms (hierarchy name), Visual and Verbal Communication (hierarchy name), Objects Facet" .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/scopeNote/31539> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/scopeNote/63114> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/scopeNote/82744> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/scopeNote/111849> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5000063190> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5001161301> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5001161302> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5001681981> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5002276750> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5002276751> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5002276752> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5002627642> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5003410838> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5003410839> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5003410840> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5003410841> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5003410842> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5000063191> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5001685556> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5001695704> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5003236859> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5002276762> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5002627651> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5003410860> .
+        <http://vocab.getty.edu/aat/300026430> <http://vocab.getty.edu/ontology#parentStringAbbrev> "<document genres for music>, <documents for oral or performed works>, ... Objects Facet" .
+        <http://vocab.getty.edu/aat/300026430> <http://vocab.getty.edu/ontology#displayOrder> "7"^^<http://www.w3.org/2001/XMLSchema#positiveInteger> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2008/05/skos-xl#prefLabel> <http://vocab.getty.edu/aat/term/1000026430-en> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2008/05/skos-xl#prefLabel> <http://vocab.getty.edu/aat/term/1000551150-zh-Hant> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2008/05/skos-xl#prefLabel> <http://vocab.getty.edu/aat/term/1000551153-zh-Latn-pinyin-x-hanyu> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2008/05/skos-xl#prefLabel> <http://vocab.getty.edu/aat/term/1000551152-zh-Latn-pinyin-x-notone> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2008/05/skos-xl#prefLabel> <http://vocab.getty.edu/aat/term/1000551154-zh-Latn-wadegile> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2008/05/skos-xl#prefLabel> <http://vocab.getty.edu/aat/term/1000478835-nl> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2008/05/skos-xl#prefLabel> <http://vocab.getty.edu/aat/term/1000314274-fr> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2008/05/skos-xl#prefLabel> <http://vocab.getty.edu/aat/term/1000425544-es> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#prefLabel> "sheet music"@en .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#prefLabel> "\u6563\u9801\u6A02\u8B5C"@zh-hant .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#prefLabel> "s\u01CEn y\u00E8 yu\u00E8 p\u01D4"@zh-latn-pinyin-x-hanyu .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#prefLabel> "san ye yue pu"@zh-latn-pinyin-x-notone .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#prefLabel> "san yeh y\u00FCeh p'u"@zh-latn-wadegile .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#prefLabel> "bladmuziek"@nl .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#prefLabel> "partitions (sheet music)"@fr .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#prefLabel> "papeles de m\u00FAsica"@es .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2008/05/skos-xl#altLabel> <http://vocab.getty.edu/aat/term/1000143104-en> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2008/05/skos-xl#altLabel> <http://vocab.getty.edu/aat/term/1000551151-zh-Hant> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2008/05/skos-xl#altLabel> <http://vocab.getty.edu/aat/term/1000425545-es> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2008/05/skos-xl#altLabel> <http://vocab.getty.edu/aat/term/1000425546-es> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#altLabel> "music, sheet"@en .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#altLabel> "\u6D3B\u9801\u6A02\u8B5C"@zh-hant .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#altLabel> "papel pautado"@es .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#altLabel> "papel de m\u00FAsica"@es .
+        <http://vocab.getty.edu/aat/300026430> <http://vocab.getty.edu/ontology#broaderGeneric> <http://vocab.getty.edu/aat/300026421> .
+        <http://vocab.getty.edu/aat/300026430> <http://vocab.getty.edu/ontology#broaderPreferred> <http://vocab.getty.edu/aat/300026421> .
+        <http://vocab.getty.edu/aat/300026430> <http://vocab.getty.edu/ontology#broaderNonConcept> <http://vocab.getty.edu/aat/300137954> .
+        <http://vocab.getty.edu/aat/300026430> <http://vocab.getty.edu/ontology#broaderNonConcept> <http://vocab.getty.edu/aat/300026421> .
+        <http://vocab.getty.edu/aat/300026430> <http://vocab.getty.edu/ontology#broaderNonConcept> <http://vocab.getty.edu/aat/300220428> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#broader> <http://vocab.getty.edu/aat/300026031> .
+        <http://vocab.getty.edu/aat/300026430> <http://purl.org/iso25964/skos-thes#broaderGeneric> <http://vocab.getty.edu/aat/300026031> .
+        <http://vocab.getty.edu/aat/300026430> <http://vocab.getty.edu/ontology#prefLabelGVP> <http://vocab.getty.edu/aat/term/1000026430-en> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#inScheme> <http://vocab.getty.edu/aat/> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#scopeNote> <http://vocab.getty.edu/aat/scopeNote/31539> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#scopeNote> <http://vocab.getty.edu/aat/scopeNote/63114> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#scopeNote> <http://vocab.getty.edu/aat/scopeNote/82744> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#scopeNote> <http://vocab.getty.edu/aat/scopeNote/111849> .
+        <http://vocab.getty.edu/aat/300026430> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000000> .
+        <http://vocab.getty.edu/aat/300026430> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000131> .
+        <http://vocab.getty.edu/aat/300026430> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000159> .
+        <http://vocab.getty.edu/aat/300026430> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000205> .
+        <http://vocab.getty.edu/aat/300026430> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000088> .
+        <http://vocab.getty.edu/aat/300026430> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000178> .
+        <http://vocab.getty.edu/aat/300026430> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000048434> .
+        <http://vocab.getty.edu/aat/300026430> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000052373> .
+        <http://vocab.getty.edu/aat/300026430> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000051089-subject-300026430> .
+        <http://vocab.getty.edu/aat/300026430> <http://purl.org/dc/elements/1.1/identifier> "300026430" .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#broaderTransitive> <http://vocab.getty.edu/aat/300220751> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/2004/02/skos/core#broaderTransitive> <http://vocab.getty.edu/aat/300026031> .
+        <http://vocab.getty.edu/aat/300026430> <http://creativecommons.org/ns#license> <http://opendatacommons.org/licenses/by/1.0/> .
+        <http://vocab.getty.edu/aat/300026430> <http://rdfs.org/ns/void#inDataset> <http://vocab.getty.edu/dataset/aat> .
+        <http://vocab.getty.edu/aat/300026430> <http://purl.org/dc/terms/license> <http://opendatacommons.org/licenses/by/1.0/> .
+        <http://vocab.getty.edu/aat/300026430> <http://www.w3.org/ns/prov#wasGeneratedBy> <http://vocab.getty.edu/aat/rev/5000063190> .
+        <http://vocab.getty.edu/aat/rev/5000063190> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Activity> .
+        <http://vocab.getty.edu/aat/rev/5000063190> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Create> .
+        <http://vocab.getty.edu/aat/rev/5000063190> <http://purl.org/dc/elements/1.1/type> "created" .
+        <http://vocab.getty.edu/aat/rev/5000063190> <http://www.w3.org/ns/prov#startedAtTime> "1988-01-01T00:00:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/rev/5001161301> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Activity> .
+        <http://vocab.getty.edu/aat/rev/5001161301> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Modify> .
+        <http://vocab.getty.edu/aat/rev/5001161301> <http://purl.org/dc/elements/1.1/type> "term added" .
+        <http://vocab.getty.edu/aat/rev/5001161301> <http://www.w3.org/ns/prov#startedAtTime> "2001-07-26T22:04:23"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/rev/5001161301> <http://purl.org/dc/elements/1.1/description> "sheet music (1000026430);" .
+        <http://vocab.getty.edu/aat/rev/5001161301> <http://www.w3.org/ns/prov#used> <http://vocab.getty.edu/aat/300026430> .
+        <http://vocab.getty.edu/aat/rev/5001161302> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Activity> .
+        <http://vocab.getty.edu/aat/rev/5001161302> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Modify> .
+        <http://vocab.getty.edu/aat/rev/5001161302> <http://purl.org/dc/elements/1.1/type> "term added" .
+        <http://vocab.getty.edu/aat/rev/5001161302> <http://www.w3.org/ns/prov#startedAtTime> "2001-07-26T22:04:23"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/rev/5001161302> <http://purl.org/dc/elements/1.1/description> "music, sheet (1000143104);" .
+        <http://vocab.getty.edu/aat/rev/5001161302> <http://www.w3.org/ns/prov#used> <http://vocab.getty.edu/aat/300026430> .
+        <http://vocab.getty.edu/aat/rev/5001681981> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Activity> .
+        <http://vocab.getty.edu/aat/rev/5001681981> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Modify> .
+        <http://vocab.getty.edu/aat/rev/5001681981> <http://purl.org/dc/elements/1.1/type> "term added" .
+        <http://vocab.getty.edu/aat/rev/5001681981> <http://www.w3.org/ns/prov#startedAtTime> "2007-10-26T09:05:02"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/rev/5001681981> <http://purl.org/dc/elements/1.1/description> "partitions (1000314274);" .
+        <http://vocab.getty.edu/aat/rev/5001681981> <http://www.w3.org/ns/prov#used> <http://vocab.getty.edu/aat/300026430> .
+        <http://vocab.getty.edu/aat/rev/5002276750> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Activity> .
+        <http://vocab.getty.edu/aat/rev/5002276750> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Modify> .
+        <http://vocab.getty.edu/aat/rev/5002276750> <http://purl.org/dc/elements/1.1/type> "term added" .
+        <http://vocab.getty.edu/aat/rev/5002276750> <http://www.w3.org/ns/prov#startedAtTime> "2010-04-23T01:14:06"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/rev/5002276750> <http://purl.org/dc/elements/1.1/description> "papeles de m\u00FAsica (1000425544);" .
+        <http://vocab.getty.edu/aat/rev/5002276750> <http://www.w3.org/ns/prov#used> <http://vocab.getty.edu/aat/300026430> .
+        <http://vocab.getty.edu/aat/rev/5002276751> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Activity> .
+        <http://vocab.getty.edu/aat/rev/5002276751> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Modify> .
+        <http://vocab.getty.edu/aat/rev/5002276751> <http://purl.org/dc/elements/1.1/type> "term added" .
+        <http://vocab.getty.edu/aat/rev/5002276751> <http://www.w3.org/ns/prov#startedAtTime> "2010-04-23T01:14:06"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/rev/5002276751> <http://purl.org/dc/elements/1.1/description> "papel de m\u00FAsica (1000425545);" .
+        <http://vocab.getty.edu/aat/rev/5002276751> <http://www.w3.org/ns/prov#used> <http://vocab.getty.edu/aat/300026430> .
+        <http://vocab.getty.edu/aat/rev/5002276752> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Activity> .
+        <http://vocab.getty.edu/aat/rev/5002276752> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Modify> .
+        <http://vocab.getty.edu/aat/rev/5002276752> <http://purl.org/dc/elements/1.1/type> "term added" .
+        <http://vocab.getty.edu/aat/rev/5002276752> <http://www.w3.org/ns/prov#startedAtTime> "2010-04-23T01:14:06"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/rev/5002276752> <http://purl.org/dc/elements/1.1/description> "papel pautado (1000425546);" .
+        <http://vocab.getty.edu/aat/rev/5002276752> <http://www.w3.org/ns/prov#used> <http://vocab.getty.edu/aat/300026430> .
+        <http://vocab.getty.edu/aat/rev/5002627642> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Activity> .
+        <http://vocab.getty.edu/aat/rev/5002627642> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Modify> .
+        <http://vocab.getty.edu/aat/rev/5002627642> <http://purl.org/dc/elements/1.1/type> "term added" .
+        <http://vocab.getty.edu/aat/rev/5002627642> <http://www.w3.org/ns/prov#startedAtTime> "2011-01-07T11:58:44"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/rev/5002627642> <http://purl.org/dc/elements/1.1/description> "bladmuziek (1000478835);" .
+        <http://vocab.getty.edu/aat/rev/5002627642> <http://www.w3.org/ns/prov#used> <http://vocab.getty.edu/aat/300026430> .
+        <http://vocab.getty.edu/aat/rev/5003410838> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Activity> .
+        <http://vocab.getty.edu/aat/rev/5003410838> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Modify> .
+        <http://vocab.getty.edu/aat/rev/5003410838> <http://purl.org/dc/elements/1.1/type> "term added" .
+        <http://vocab.getty.edu/aat/rev/5003410838> <http://www.w3.org/ns/prov#startedAtTime> "2013-03-29T09:55:12"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/rev/5003410838> <http://purl.org/dc/elements/1.1/description> "\u6563\u9801\u6A02\u8B5C (1000551150);" .
+        <http://vocab.getty.edu/aat/rev/5003410838> <http://www.w3.org/ns/prov#used> <http://vocab.getty.edu/aat/300026430> .
+        <http://vocab.getty.edu/aat/rev/5003410839> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Activity> .
+        <http://vocab.getty.edu/aat/rev/5003410839> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Modify> .
+        <http://vocab.getty.edu/aat/rev/5003410839> <http://purl.org/dc/elements/1.1/type> "term added" .
+        <http://vocab.getty.edu/aat/rev/5003410839> <http://www.w3.org/ns/prov#startedAtTime> "2013-03-29T09:55:12"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/rev/5003410839> <http://purl.org/dc/elements/1.1/description> "san yeh y\u00FCeh p'u (1000551154);" .
+        <http://vocab.getty.edu/aat/rev/5003410839> <http://www.w3.org/ns/prov#used> <http://vocab.getty.edu/aat/300026430> .
+        <http://vocab.getty.edu/aat/rev/5003410840> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Activity> .
+        <http://vocab.getty.edu/aat/rev/5003410840> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Modify> .
+        <http://vocab.getty.edu/aat/rev/5003410840> <http://purl.org/dc/elements/1.1/type> "term added" .
+        <http://vocab.getty.edu/aat/rev/5003410840> <http://www.w3.org/ns/prov#startedAtTime> "2013-03-29T09:55:12"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/rev/5003410840> <http://purl.org/dc/elements/1.1/description> "san ye yue pu (1000551152);" .
+        <http://vocab.getty.edu/aat/rev/5003410840> <http://www.w3.org/ns/prov#used> <http://vocab.getty.edu/aat/300026430> .
+        <http://vocab.getty.edu/aat/rev/5003410841> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Activity> .
+        <http://vocab.getty.edu/aat/rev/5003410841> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Modify> .
+        <http://vocab.getty.edu/aat/rev/5003410841> <http://purl.org/dc/elements/1.1/type> "term added" .
+        <http://vocab.getty.edu/aat/rev/5003410841> <http://www.w3.org/ns/prov#startedAtTime> "2013-03-29T09:55:12"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/rev/5003410841> <http://purl.org/dc/elements/1.1/description> "s\u01CEn y\u00E8 yu\u00E8 p\u01D4 (1000551153);" .
+        <http://vocab.getty.edu/aat/rev/5003410841> <http://www.w3.org/ns/prov#used> <http://vocab.getty.edu/aat/300026430> .
+        <http://vocab.getty.edu/aat/rev/5003410842> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Activity> .
+        <http://vocab.getty.edu/aat/rev/5003410842> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Modify> .
+        <http://vocab.getty.edu/aat/rev/5003410842> <http://purl.org/dc/elements/1.1/type> "term added" .
+        <http://vocab.getty.edu/aat/rev/5003410842> <http://www.w3.org/ns/prov#startedAtTime> "2013-03-29T09:55:12"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/rev/5003410842> <http://purl.org/dc/elements/1.1/description> "\u6D3B\u9801\u6A02\u8B5C (1000551151);" .
+        <http://vocab.getty.edu/aat/rev/5003410842> <http://www.w3.org/ns/prov#used> <http://vocab.getty.edu/aat/300026430> .
+        <http://vocab.getty.edu/aat/rev/5000063191> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Activity> .
+        <http://vocab.getty.edu/aat/rev/5000063191> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Modify> .
+        <http://vocab.getty.edu/aat/rev/5000063191> <http://purl.org/dc/elements/1.1/type> "moved" .
+        <http://vocab.getty.edu/aat/rev/5000063191> <http://www.w3.org/ns/prov#startedAtTime> "1992-11-25T00:00:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/rev/5000063191> <http://www.w3.org/ns/prov#used> <http://vocab.getty.edu/aat/300026430> .
+        <http://vocab.getty.edu/aat/rev/5001685556> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Activity> .
+        <http://vocab.getty.edu/aat/rev/5001685556> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Modify> .
+        <http://vocab.getty.edu/aat/rev/5001685556> <http://purl.org/dc/elements/1.1/type> "updated" .
+        <http://vocab.getty.edu/aat/rev/5001685556> <http://www.w3.org/ns/prov#startedAtTime> "2007-10-26T09:05:46"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/rev/5001685556> <http://www.w3.org/ns/prov#used> <http://vocab.getty.edu/aat/300026430> .
+        <http://vocab.getty.edu/aat/rev/5001695704> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Activity> .
+        <http://vocab.getty.edu/aat/rev/5001695704> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Modify> .
+        <http://vocab.getty.edu/aat/rev/5001695704> <http://purl.org/dc/elements/1.1/type> "updated" .
+        <http://vocab.getty.edu/aat/rev/5001695704> <http://www.w3.org/ns/prov#startedAtTime> "2007-12-06T10:43:30"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/rev/5001695704> <http://www.w3.org/ns/prov#used> <http://vocab.getty.edu/aat/300026430> .
+        <http://vocab.getty.edu/aat/rev/5003236859> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Activity> .
+        <http://vocab.getty.edu/aat/rev/5003236859> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Modify> .
+        <http://vocab.getty.edu/aat/rev/5003236859> <http://purl.org/dc/elements/1.1/type> "updated" .
+        <http://vocab.getty.edu/aat/rev/5003236859> <http://www.w3.org/ns/prov#startedAtTime> "2012-04-13T12:07:44"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/rev/5003236859> <http://purl.org/dc/elements/1.1/description> "GCI Source and Contributor added" .
+        <http://vocab.getty.edu/aat/rev/5003236859> <http://www.w3.org/ns/prov#used> <http://vocab.getty.edu/aat/300026430> .
+        <http://vocab.getty.edu/aat/source/2000051089-subject-300026430> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/DocumentPart> .
+        <http://vocab.getty.edu/aat/source/2000051089-subject-300026430> <http://purl.org/dc/terms/isPartOf> <http://vocab.getty.edu/aat/source/2000051089> .
+        <http://vocab.getty.edu/aat/source/2000051089-subject-300026430> <http://purl.org/ontology/bibo/locator> "128734 checked 26 January 2012" .
+        <http://vocab.getty.edu/aat/scopeNote/31539> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://vocab.getty.edu/ontology#ScopeNote> .
+        <http://vocab.getty.edu/aat/scopeNote/31539> <http://www.w3.org/1999/02/22-rdf-syntax-ns#value> "Music printed on unbound sheets of paper."@en .
+        <http://vocab.getty.edu/aat/scopeNote/31539> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000000> .
+        <http://vocab.getty.edu/aat/scopeNote/31539> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000042591> .
+        <http://vocab.getty.edu/aat/scopeNote/31539> <http://purl.org/dc/elements/1.1/identifier> "31539" .
+        <http://vocab.getty.edu/aat/scopeNote/31539> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300388277> .
+        <http://vocab.getty.edu/aat/scopeNote/31539> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/en> .
+        <http://vocab.getty.edu/aat/scopeNote/63114> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://vocab.getty.edu/ontology#ScopeNote> .
+        <http://vocab.getty.edu/aat/scopeNote/63114> <http://www.w3.org/1999/02/22-rdf-syntax-ns#value> "M\u00FAsica impresa en hojas sueltas de papel."@es .
+        <http://vocab.getty.edu/aat/scopeNote/63114> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000131> .
+        <http://vocab.getty.edu/aat/scopeNote/63114> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000051034> .
+        <http://vocab.getty.edu/aat/scopeNote/63114> <http://purl.org/dc/elements/1.1/identifier> "63114" .
+        <http://vocab.getty.edu/aat/scopeNote/63114> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300389311> .
+        <http://vocab.getty.edu/aat/scopeNote/63114> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/es> .
+        <http://vocab.getty.edu/aat/scopeNote/82744> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://vocab.getty.edu/ontology#ScopeNote> .
+        <http://vocab.getty.edu/aat/scopeNote/82744> <http://www.w3.org/1999/02/22-rdf-syntax-ns#value> "Muziek die is gedrukt op losse vellen papier."@nl .
+        <http://vocab.getty.edu/aat/scopeNote/82744> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000205> .
+        <http://vocab.getty.edu/aat/scopeNote/82744> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000052373> .
+        <http://vocab.getty.edu/aat/scopeNote/82744> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000077523> .
+        <http://vocab.getty.edu/aat/scopeNote/82744> <http://purl.org/dc/elements/1.1/identifier> "82744" .
+        <http://vocab.getty.edu/aat/scopeNote/82744> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300388256> .
+        <http://vocab.getty.edu/aat/scopeNote/82744> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/nl> .
+        <http://vocab.getty.edu/aat/scopeNote/111849> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://vocab.getty.edu/ontology#ScopeNote> .
+        <http://vocab.getty.edu/aat/scopeNote/111849> <http://www.w3.org/1999/02/22-rdf-syntax-ns#value> "\u5370\u5728\u672A\u88DD\u8A02\u4E4B\u7D19\u9801\u4E0A\u7684\u6A02\u8B5C\u3002"@zh-hant .
+        <http://vocab.getty.edu/aat/scopeNote/111849> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000178> .
+        <http://vocab.getty.edu/aat/scopeNote/111849> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000052784> .
+        <http://vocab.getty.edu/aat/scopeNote/111849> <http://purl.org/dc/elements/1.1/identifier> "111849" .
+        <http://vocab.getty.edu/aat/scopeNote/111849> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300388116> .
+        <http://vocab.getty.edu/aat/scopeNote/111849> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/zh-Hant> .
+        <http://vocab.getty.edu/aat/term/1000026430-en> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2008/05/skos-xl#Label> .
+        <http://vocab.getty.edu/aat/term/1000026430-en> <http://vocab.getty.edu/ontology#term> "sheet music"@en .
+        <http://vocab.getty.edu/aat/term/1000026430-en> <http://vocab.getty.edu/ontology#displayOrder> "1"^^<http://www.w3.org/2001/XMLSchema#positiveInteger> .
+        <http://vocab.getty.edu/aat/term/1000026430-en> <http://www.w3.org/2008/05/skos-xl#literalForm> "sheet music"@en .
+        <http://vocab.getty.edu/aat/term/1000026430-en> <http://vocab.getty.edu/ontology#termType> <http://vocab.getty.edu/term/type/Descriptor> .
+        <http://vocab.getty.edu/aat/term/1000026430-en> <http://vocab.getty.edu/ontology#termPOS> <http://vocab.getty.edu/term/POS/PluralNoun> .
+        <http://vocab.getty.edu/aat/term/1000026430-en> <http://vocab.getty.edu/ontology#contributorPreferred> <http://vocab.getty.edu/aat/contrib/10000000> .
+        <http://vocab.getty.edu/aat/term/1000026430-en> <http://vocab.getty.edu/ontology#contributorPreferred> <http://vocab.getty.edu/aat/contrib/10000088> .
+        <http://vocab.getty.edu/aat/term/1000026430-en> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000000> .
+        <http://vocab.getty.edu/aat/term/1000026430-en> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000088> .
+        <http://vocab.getty.edu/aat/term/1000026430-en> <http://vocab.getty.edu/ontology#sourcePreferred> <http://vocab.getty.edu/aat/source/2000001761> .
+        <http://vocab.getty.edu/aat/term/1000026430-en> <http://vocab.getty.edu/ontology#sourcePreferred> <http://vocab.getty.edu/aat/source/2000025071> .
+        <http://vocab.getty.edu/aat/term/1000026430-en> <http://vocab.getty.edu/ontology#sourcePreferred> <http://vocab.getty.edu/aat/source/2000042061> .
+        <http://vocab.getty.edu/aat/term/1000026430-en> <http://vocab.getty.edu/ontology#sourcePreferred> <http://vocab.getty.edu/aat/source/2000001001-term-1000026430> .
+        <http://vocab.getty.edu/aat/term/1000026430-en> <http://vocab.getty.edu/ontology#sourcePreferred> <http://vocab.getty.edu/aat/source/2000051089-term-1000026430> .
+        <http://vocab.getty.edu/aat/term/1000026430-en> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000001761> .
+        <http://vocab.getty.edu/aat/term/1000026430-en> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000025071> .
+        <http://vocab.getty.edu/aat/term/1000026430-en> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000042061> .
+        <http://vocab.getty.edu/aat/term/1000026430-en> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000001001-term-1000026430> .
+        <http://vocab.getty.edu/aat/term/1000026430-en> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000051089-term-1000026430> .
+        <http://vocab.getty.edu/aat/term/1000026430-en> <http://purl.org/dc/elements/1.1/identifier> "1000026430" .
+        <http://vocab.getty.edu/aat/term/1000026430-en> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300388277> .
+        <http://vocab.getty.edu/aat/term/1000026430-en> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/en> .
+        <http://vocab.getty.edu/aat/term/1000551150-zh-Hant> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2008/05/skos-xl#Label> .
+        <http://vocab.getty.edu/aat/term/1000551150-zh-Hant> <http://vocab.getty.edu/ontology#term> "\u6563\u9801\u6A02\u8B5C"@zh-hant .
+        <http://vocab.getty.edu/aat/term/1000551150-zh-Hant> <http://vocab.getty.edu/ontology#displayOrder> "3"^^<http://www.w3.org/2001/XMLSchema#positiveInteger> .
+        <http://vocab.getty.edu/aat/term/1000551150-zh-Hant> <http://www.w3.org/2008/05/skos-xl#literalForm> "\u6563\u9801\u6A02\u8B5C"@zh-hant .
+        <http://vocab.getty.edu/aat/term/1000551150-zh-Hant> <http://vocab.getty.edu/ontology#termType> <http://vocab.getty.edu/term/type/Descriptor> .
+        <http://vocab.getty.edu/aat/term/1000551150-zh-Hant> <http://vocab.getty.edu/ontology#contributorPreferred> <http://vocab.getty.edu/aat/contrib/10000178> .
+        <http://vocab.getty.edu/aat/term/1000551150-zh-Hant> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000178> .
+        <http://vocab.getty.edu/aat/term/1000551150-zh-Hant> <http://vocab.getty.edu/ontology#sourcePreferred> <http://vocab.getty.edu/aat/source/2000070771-term-1000551150> .
+        <http://vocab.getty.edu/aat/term/1000551150-zh-Hant> <http://vocab.getty.edu/ontology#sourcePreferred> <http://vocab.getty.edu/aat/source/2000093506-term-1000551150> .
+        <http://vocab.getty.edu/aat/term/1000551150-zh-Hant> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000070771-term-1000551150> .
+        <http://vocab.getty.edu/aat/term/1000551150-zh-Hant> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000093506-term-1000551150> .
+        <http://vocab.getty.edu/aat/term/1000551150-zh-Hant> <http://purl.org/dc/elements/1.1/identifier> "1000551150" .
+        <http://vocab.getty.edu/aat/term/1000551150-zh-Hant> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300388116> .
+        <http://vocab.getty.edu/aat/term/1000551150-zh-Hant> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/zh-Hant> .
+        <http://vocab.getty.edu/aat/term/1000551153-zh-Latn-pinyin-x-hanyu> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2008/05/skos-xl#Label> .
+        <http://vocab.getty.edu/aat/term/1000551153-zh-Latn-pinyin-x-hanyu> <http://vocab.getty.edu/ontology#term> "s\u01CEn y\u00E8 yu\u00E8 p\u01D4"@zh-latn-pinyin-x-hanyu .
+        <http://vocab.getty.edu/aat/term/1000551153-zh-Latn-pinyin-x-hanyu> <http://vocab.getty.edu/ontology#displayOrder> "5"^^<http://www.w3.org/2001/XMLSchema#positiveInteger> .
+        <http://vocab.getty.edu/aat/term/1000551153-zh-Latn-pinyin-x-hanyu> <http://www.w3.org/2008/05/skos-xl#literalForm> "s\u01CEn y\u00E8 yu\u00E8 p\u01D4"@zh-latn-pinyin-x-hanyu .
+        <http://vocab.getty.edu/aat/term/1000551153-zh-Latn-pinyin-x-hanyu> <http://vocab.getty.edu/ontology#termType> <http://vocab.getty.edu/term/type/UsedForTerm> .
+        <http://vocab.getty.edu/aat/term/1000551153-zh-Latn-pinyin-x-hanyu> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000178> .
+        <http://vocab.getty.edu/aat/term/1000551153-zh-Latn-pinyin-x-hanyu> <http://vocab.getty.edu/ontology#contributorNonPreferred> <http://vocab.getty.edu/aat/contrib/10000178> .
+        <http://vocab.getty.edu/aat/term/1000551153-zh-Latn-pinyin-x-hanyu> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000052784> .
+        <http://vocab.getty.edu/aat/term/1000551153-zh-Latn-pinyin-x-hanyu> <http://vocab.getty.edu/ontology#sourceNonPreferred> <http://vocab.getty.edu/aat/source/2000052784> .
+        <http://vocab.getty.edu/aat/term/1000551153-zh-Latn-pinyin-x-hanyu> <http://purl.org/dc/elements/1.1/identifier> "1000551153" .
+        <http://vocab.getty.edu/aat/term/1000551153-zh-Latn-pinyin-x-hanyu> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300388117> .
+        <http://vocab.getty.edu/aat/term/1000551153-zh-Latn-pinyin-x-hanyu> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/zh-Latn-pinyin-x-hanyu> .
+        <http://vocab.getty.edu/aat/term/1000551152-zh-Latn-pinyin-x-notone> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2008/05/skos-xl#Label> .
+        <http://vocab.getty.edu/aat/term/1000551152-zh-Latn-pinyin-x-notone> <http://vocab.getty.edu/ontology#term> "san ye yue pu"@zh-latn-pinyin-x-notone .
+        <http://vocab.getty.edu/aat/term/1000551152-zh-Latn-pinyin-x-notone> <http://vocab.getty.edu/ontology#displayOrder> "6"^^<http://www.w3.org/2001/XMLSchema#positiveInteger> .
+        <http://vocab.getty.edu/aat/term/1000551152-zh-Latn-pinyin-x-notone> <http://www.w3.org/2008/05/skos-xl#literalForm> "san ye yue pu"@zh-latn-pinyin-x-notone .
+        <http://vocab.getty.edu/aat/term/1000551152-zh-Latn-pinyin-x-notone> <http://vocab.getty.edu/ontology#termType> <http://vocab.getty.edu/term/type/UsedForTerm> .
+        <http://vocab.getty.edu/aat/term/1000551152-zh-Latn-pinyin-x-notone> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000178> .
+        <http://vocab.getty.edu/aat/term/1000551152-zh-Latn-pinyin-x-notone> <http://vocab.getty.edu/ontology#contributorNonPreferred> <http://vocab.getty.edu/aat/contrib/10000178> .
+        <http://vocab.getty.edu/aat/term/1000551152-zh-Latn-pinyin-x-notone> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000052784> .
+        <http://vocab.getty.edu/aat/term/1000551152-zh-Latn-pinyin-x-notone> <http://vocab.getty.edu/ontology#sourceNonPreferred> <http://vocab.getty.edu/aat/source/2000052784> .
+        <http://vocab.getty.edu/aat/term/1000551152-zh-Latn-pinyin-x-notone> <http://purl.org/dc/elements/1.1/identifier> "1000551152" .
+        <http://vocab.getty.edu/aat/term/1000551152-zh-Latn-pinyin-x-notone> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300388118> .
+        <http://vocab.getty.edu/aat/term/1000551152-zh-Latn-pinyin-x-notone> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/zh-Latn-pinyin-x-notone> .
+        <http://vocab.getty.edu/aat/term/1000551154-zh-Latn-wadegile> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2008/05/skos-xl#Label> .
+        <http://vocab.getty.edu/aat/term/1000551154-zh-Latn-wadegile> <http://vocab.getty.edu/ontology#term> "san yeh y\u00FCeh p'u"@zh-latn-wadegile .
+        <http://vocab.getty.edu/aat/term/1000551154-zh-Latn-wadegile> <http://vocab.getty.edu/ontology#displayOrder> "7"^^<http://www.w3.org/2001/XMLSchema#positiveInteger> .
+        <http://vocab.getty.edu/aat/term/1000551154-zh-Latn-wadegile> <http://www.w3.org/2008/05/skos-xl#literalForm> "san yeh y\u00FCeh p'u"@zh-latn-wadegile .
+        <http://vocab.getty.edu/aat/term/1000551154-zh-Latn-wadegile> <http://vocab.getty.edu/ontology#termType> <http://vocab.getty.edu/term/type/UsedForTerm> .
+        <http://vocab.getty.edu/aat/term/1000551154-zh-Latn-wadegile> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000178> .
+        <http://vocab.getty.edu/aat/term/1000551154-zh-Latn-wadegile> <http://vocab.getty.edu/ontology#contributorNonPreferred> <http://vocab.getty.edu/aat/contrib/10000178> .
+        <http://vocab.getty.edu/aat/term/1000551154-zh-Latn-wadegile> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000052784> .
+        <http://vocab.getty.edu/aat/term/1000551154-zh-Latn-wadegile> <http://vocab.getty.edu/ontology#sourceNonPreferred> <http://vocab.getty.edu/aat/source/2000052784> .
+        <http://vocab.getty.edu/aat/term/1000551154-zh-Latn-wadegile> <http://purl.org/dc/elements/1.1/identifier> "1000551154" .
+        <http://vocab.getty.edu/aat/term/1000551154-zh-Latn-wadegile> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300388121> .
+        <http://vocab.getty.edu/aat/term/1000551154-zh-Latn-wadegile> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/zh-Latn-wadegile> .
+        <http://vocab.getty.edu/aat/term/1000478835-nl> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2008/05/skos-xl#Label> .
+        <http://vocab.getty.edu/aat/term/1000478835-nl> <http://vocab.getty.edu/ontology#term> "bladmuziek"@nl .
+        <http://vocab.getty.edu/aat/term/1000478835-nl> <http://vocab.getty.edu/ontology#displayOrder> "8"^^<http://www.w3.org/2001/XMLSchema#positiveInteger> .
+        <http://vocab.getty.edu/aat/term/1000478835-nl> <http://www.w3.org/2008/05/skos-xl#literalForm> "bladmuziek"@nl .
+        <http://vocab.getty.edu/aat/term/1000478835-nl> <http://vocab.getty.edu/ontology#termType> <http://vocab.getty.edu/term/type/Descriptor> .
+        <http://vocab.getty.edu/aat/term/1000478835-nl> <http://vocab.getty.edu/ontology#contributorPreferred> <http://vocab.getty.edu/aat/contrib/10000205> .
+        <http://vocab.getty.edu/aat/term/1000478835-nl> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000205> .
+        <http://vocab.getty.edu/aat/term/1000478835-nl> <http://vocab.getty.edu/ontology#sourcePreferred> <http://vocab.getty.edu/aat/source/2000077523> .
+        <http://vocab.getty.edu/aat/term/1000478835-nl> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000052373> .
+        <http://vocab.getty.edu/aat/term/1000478835-nl> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000077523> .
+        <http://vocab.getty.edu/aat/term/1000478835-nl> <http://purl.org/dc/elements/1.1/identifier> "1000478835" .
+        <http://vocab.getty.edu/aat/term/1000478835-nl> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300388256> .
+        <http://vocab.getty.edu/aat/term/1000478835-nl> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/nl> .
+        <http://vocab.getty.edu/aat/term/1000314274-fr> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2008/05/skos-xl#Label> .
+        <http://vocab.getty.edu/aat/term/1000314274-fr> <http://vocab.getty.edu/ontology#term> "partitions"@fr .
+        <http://vocab.getty.edu/aat/term/1000314274-fr> <http://vocab.getty.edu/ontology#qualifier> "sheet music"@fr .
+        <http://vocab.getty.edu/aat/term/1000314274-fr> <http://vocab.getty.edu/ontology#displayOrder> "9"^^<http://www.w3.org/2001/XMLSchema#positiveInteger> .
+        <http://vocab.getty.edu/aat/term/1000314274-fr> <http://www.w3.org/2008/05/skos-xl#literalForm> "partitions (sheet music)"@fr .
+        <http://vocab.getty.edu/aat/term/1000314274-fr> <http://vocab.getty.edu/ontology#termType> <http://vocab.getty.edu/term/type/Descriptor> .
+        <http://vocab.getty.edu/aat/term/1000314274-fr> <http://vocab.getty.edu/ontology#termPOS> <http://vocab.getty.edu/term/POS/PluralNoun> .
+        <http://vocab.getty.edu/aat/term/1000314274-fr> <http://vocab.getty.edu/ontology#contributorPreferred> <http://vocab.getty.edu/aat/contrib/10000159> .
+        <http://vocab.getty.edu/aat/term/1000314274-fr> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000000> .
+        <http://vocab.getty.edu/aat/term/1000314274-fr> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000159> .
+        <http://vocab.getty.edu/aat/term/1000314274-fr> <http://vocab.getty.edu/ontology#contributorNonPreferred> <http://vocab.getty.edu/aat/contrib/10000000> .
+        <http://vocab.getty.edu/aat/term/1000314274-fr> <http://vocab.getty.edu/ontology#sourcePreferred> <http://vocab.getty.edu/aat/source/2000048434> .
+        <http://vocab.getty.edu/aat/term/1000314274-fr> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000048434> .
+        <http://vocab.getty.edu/aat/term/1000314274-fr> <http://purl.org/dc/elements/1.1/identifier> "1000314274" .
+        <http://vocab.getty.edu/aat/term/1000314274-fr> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300388306> .
+        <http://vocab.getty.edu/aat/term/1000314274-fr> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/fr> .
+        <http://vocab.getty.edu/aat/term/1000425544-es> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2008/05/skos-xl#Label> .
+        <http://vocab.getty.edu/aat/term/1000425544-es> <http://vocab.getty.edu/ontology#term> "papeles de m\u00FAsica"@es .
+        <http://vocab.getty.edu/aat/term/1000425544-es> <http://vocab.getty.edu/ontology#displayOrder> "10"^^<http://www.w3.org/2001/XMLSchema#positiveInteger> .
+        <http://vocab.getty.edu/aat/term/1000425544-es> <http://www.w3.org/2008/05/skos-xl#literalForm> "papeles de m\u00FAsica"@es .
+        <http://vocab.getty.edu/aat/term/1000425544-es> <http://vocab.getty.edu/ontology#termType> <http://vocab.getty.edu/term/type/Descriptor> .
+        <http://vocab.getty.edu/aat/term/1000425544-es> <http://vocab.getty.edu/ontology#termPOS> <http://vocab.getty.edu/term/POS/PluralNoun> .
+        <http://vocab.getty.edu/aat/term/1000425544-es> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000131> .
+        <http://vocab.getty.edu/aat/term/1000425544-es> <http://vocab.getty.edu/ontology#contributorNonPreferred> <http://vocab.getty.edu/aat/contrib/10000131> .
+        <http://vocab.getty.edu/aat/term/1000425544-es> <http://vocab.getty.edu/ontology#sourcePreferred> <http://vocab.getty.edu/aat/source/2000051214> .
+        <http://vocab.getty.edu/aat/term/1000425544-es> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000051214> .
+        <http://vocab.getty.edu/aat/term/1000425544-es> <http://purl.org/dc/elements/1.1/identifier> "1000425544" .
+        <http://vocab.getty.edu/aat/term/1000425544-es> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300389311> .
+        <http://vocab.getty.edu/aat/term/1000425544-es> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/es> .
+        <http://vocab.getty.edu/aat/source/2000001001-term-1000026430> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/Document> .
+        <http://vocab.getty.edu/aat/source/2000001001-term-1000026430> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/DocumentPart> .
+        <http://vocab.getty.edu/aat/source/2000001001-term-1000026430> <http://purl.org/dc/terms/isPartOf> <http://vocab.getty.edu/aat/source/2000001001> .
+        <http://vocab.getty.edu/aat/source/2000001001-term-1000026430> <http://purl.org/ontology/bibo/locator> "24" .
+        <http://vocab.getty.edu/aat/source/2000051089-term-1000026430> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/Document> .
+        <http://vocab.getty.edu/aat/source/2000051089-term-1000026430> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/DocumentPart> .
+        <http://vocab.getty.edu/aat/source/2000051089-term-1000026430> <http://purl.org/dc/terms/isPartOf> <http://vocab.getty.edu/aat/source/2000051089> .
+        <http://vocab.getty.edu/aat/source/2000051089-term-1000026430> <http://purl.org/ontology/bibo/locator> "128734 checked 26 January 2012" .
+        <http://vocab.getty.edu/aat/source/2000070771-term-1000551150> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/Document> .
+        <http://vocab.getty.edu/aat/source/2000070771-term-1000551150> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/DocumentPart> .
+        <http://vocab.getty.edu/aat/source/2000070771-term-1000551150> <http://purl.org/dc/terms/isPartOf> <http://vocab.getty.edu/aat/source/2000070771> .
+        <http://vocab.getty.edu/aat/source/2000070771-term-1000551150> <http://purl.org/ontology/bibo/locator> "1609" .
+        <http://vocab.getty.edu/aat/source/2000093506-term-1000551150> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/Document> .
+        <http://vocab.getty.edu/aat/source/2000093506-term-1000551150> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/DocumentPart> .
+        <http://vocab.getty.edu/aat/source/2000093506-term-1000551150> <http://purl.org/dc/terms/isPartOf> <http://vocab.getty.edu/aat/source/2000093506> .
+        <http://vocab.getty.edu/aat/source/2000093506-term-1000551150> <http://purl.org/ontology/bibo/locator> "1704" .
+        <http://vocab.getty.edu/aat/term/1000143104-en> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2008/05/skos-xl#Label> .
+        <http://vocab.getty.edu/aat/term/1000143104-en> <http://vocab.getty.edu/ontology#term> "music, sheet"@en .
+        <http://vocab.getty.edu/aat/term/1000143104-en> <http://vocab.getty.edu/ontology#displayOrder> "2"^^<http://www.w3.org/2001/XMLSchema#positiveInteger> .
+        <http://vocab.getty.edu/aat/term/1000143104-en> <http://www.w3.org/2008/05/skos-xl#literalForm> "music, sheet"@en .
+        <http://vocab.getty.edu/aat/term/1000143104-en> <http://vocab.getty.edu/ontology#termType> <http://vocab.getty.edu/term/type/UsedForTerm> .
+        <http://vocab.getty.edu/aat/term/1000143104-en> <http://vocab.getty.edu/ontology#termPOS> <http://vocab.getty.edu/term/POS/Noun> .
+        <http://vocab.getty.edu/aat/term/1000143104-en> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000000> .
+        <http://vocab.getty.edu/aat/term/1000143104-en> <http://vocab.getty.edu/ontology#contributorNonPreferred> <http://vocab.getty.edu/aat/contrib/10000000> .
+        <http://vocab.getty.edu/aat/term/1000143104-en> <http://vocab.getty.edu/ontology#sourcePreferred> <http://vocab.getty.edu/aat/source/2000030301> .
+        <http://vocab.getty.edu/aat/term/1000143104-en> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000030301> .
+        <http://vocab.getty.edu/aat/term/1000143104-en> <http://purl.org/dc/elements/1.1/identifier> "1000143104" .
+        <http://vocab.getty.edu/aat/term/1000143104-en> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300388277> .
+        <http://vocab.getty.edu/aat/term/1000143104-en> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/en> .
+        <http://vocab.getty.edu/aat/term/1000551151-zh-Hant> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2008/05/skos-xl#Label> .
+        <http://vocab.getty.edu/aat/term/1000551151-zh-Hant> <http://vocab.getty.edu/ontology#term> "\u6D3B\u9801\u6A02\u8B5C"@zh-hant .
+        <http://vocab.getty.edu/aat/term/1000551151-zh-Hant> <http://vocab.getty.edu/ontology#displayOrder> "4"^^<http://www.w3.org/2001/XMLSchema#positiveInteger> .
+        <http://vocab.getty.edu/aat/term/1000551151-zh-Hant> <http://www.w3.org/2008/05/skos-xl#literalForm> "\u6D3B\u9801\u6A02\u8B5C"@zh-hant .
+        <http://vocab.getty.edu/aat/term/1000551151-zh-Hant> <http://vocab.getty.edu/ontology#termType> <http://vocab.getty.edu/term/type/UsedForTerm> .
+        <http://vocab.getty.edu/aat/term/1000551151-zh-Hant> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000178> .
+        <http://vocab.getty.edu/aat/term/1000551151-zh-Hant> <http://vocab.getty.edu/ontology#contributorNonPreferred> <http://vocab.getty.edu/aat/contrib/10000178> .
+        <http://vocab.getty.edu/aat/term/1000551151-zh-Hant> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000070773-term-1000551151> .
+        <http://vocab.getty.edu/aat/term/1000551151-zh-Hant> <http://vocab.getty.edu/ontology#sourceNonPreferred> <http://vocab.getty.edu/aat/source/2000070773-term-1000551151> .
+        <http://vocab.getty.edu/aat/term/1000551151-zh-Hant> <http://purl.org/dc/elements/1.1/identifier> "1000551151" .
+        <http://vocab.getty.edu/aat/term/1000551151-zh-Hant> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300388116> .
+        <http://vocab.getty.edu/aat/term/1000551151-zh-Hant> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/zh-Hant> .
+        <http://vocab.getty.edu/aat/term/1000425545-es> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2008/05/skos-xl#Label> .
+        <http://vocab.getty.edu/aat/term/1000425545-es> <http://vocab.getty.edu/ontology#term> "papel de m\u00FAsica"@es .
+        <http://vocab.getty.edu/aat/term/1000425545-es> <http://vocab.getty.edu/ontology#displayOrder> "11"^^<http://www.w3.org/2001/XMLSchema#positiveInteger> .
+        <http://vocab.getty.edu/aat/term/1000425545-es> <http://www.w3.org/2008/05/skos-xl#literalForm> "papel de m\u00FAsica"@es .
+        <http://vocab.getty.edu/aat/term/1000425545-es> <http://vocab.getty.edu/ontology#termType> <http://vocab.getty.edu/term/type/AlternateDescriptor> .
+        <http://vocab.getty.edu/aat/term/1000425545-es> <http://vocab.getty.edu/ontology#termPOS> <http://vocab.getty.edu/term/POS/SingularNoun> .
+        <http://vocab.getty.edu/aat/term/1000425545-es> <http://vocab.getty.edu/ontology#contributorPreferred> <http://vocab.getty.edu/aat/contrib/10000131> .
+        <http://vocab.getty.edu/aat/term/1000425545-es> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000131> .
+        <http://vocab.getty.edu/aat/term/1000425545-es> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000048810-term-1000425545> .
+        <http://vocab.getty.edu/aat/term/1000425545-es> <http://purl.org/dc/elements/1.1/identifier> "1000425545" .
+        <http://vocab.getty.edu/aat/term/1000425545-es> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300389311> .
+        <http://vocab.getty.edu/aat/term/1000425545-es> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/es> .
+        <http://vocab.getty.edu/aat/term/1000425546-es> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2008/05/skos-xl#Label> .
+        <http://vocab.getty.edu/aat/term/1000425546-es> <http://vocab.getty.edu/ontology#term> "papel pautado"@es .
+        <http://vocab.getty.edu/aat/term/1000425546-es> <http://vocab.getty.edu/ontology#displayOrder> "12"^^<http://www.w3.org/2001/XMLSchema#positiveInteger> .
+        <http://vocab.getty.edu/aat/term/1000425546-es> <http://www.w3.org/2008/05/skos-xl#literalForm> "papel pautado"@es .
+        <http://vocab.getty.edu/aat/term/1000425546-es> <http://vocab.getty.edu/ontology#termType> <http://vocab.getty.edu/term/type/UsedForTerm> .
+        <http://vocab.getty.edu/aat/term/1000425546-es> <http://vocab.getty.edu/ontology#termPOS> <http://vocab.getty.edu/term/POS/SingularNoun> .
+        <http://vocab.getty.edu/aat/term/1000425546-es> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000131> .
+        <http://vocab.getty.edu/aat/term/1000425546-es> <http://vocab.getty.edu/ontology#contributorNonPreferred> <http://vocab.getty.edu/aat/contrib/10000131> .
+        <http://vocab.getty.edu/aat/term/1000425546-es> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000048810-term-1000425546> .
+        <http://vocab.getty.edu/aat/term/1000425546-es> <http://purl.org/dc/elements/1.1/identifier> "1000425546" .
+        <http://vocab.getty.edu/aat/term/1000425546-es> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300389311> .
+        <http://vocab.getty.edu/aat/term/1000425546-es> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/es> .
+        <http://vocab.getty.edu/aat/source/2000070773-term-1000551151> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/Document> .
+        <http://vocab.getty.edu/aat/source/2000070773-term-1000551151> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/DocumentPart> .
+        <http://vocab.getty.edu/aat/source/2000070773-term-1000551151> <http://purl.org/dc/terms/isPartOf> <http://vocab.getty.edu/aat/source/2000070773> .
+        <http://vocab.getty.edu/aat/source/2000070773-term-1000551151> <http://purl.org/ontology/bibo/locator> "September 14, 2009" .
+        <http://vocab.getty.edu/aat/source/2000048810-term-1000425545> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/DocumentPart> .
+        <http://vocab.getty.edu/aat/source/2000048810-term-1000425545> <http://purl.org/dc/terms/isPartOf> <http://vocab.getty.edu/aat/source/2000048810> .
+        <http://vocab.getty.edu/aat/source/2000048810-term-1000425545> <http://purl.org/ontology/bibo/locator> "563" .
+        <http://vocab.getty.edu/aat/source/2000048810-term-1000425546> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/DocumentPart> .
+        <http://vocab.getty.edu/aat/source/2000048810-term-1000425546> <http://purl.org/dc/terms/isPartOf> <http://vocab.getty.edu/aat/source/2000048810> .
+        <http://vocab.getty.edu/aat/source/2000048810-term-1000425546> <http://purl.org/ontology/bibo/locator> "563" .
+    http_version:
+  recorded_at: Thu, 09 Jun 2016 23:44:10 GMT
+- request:
+    method: post
+    uri: https://ezid.cdlib.org/shoulder/ark:/99999/fk4
+    body:
+      encoding: UTF-8
+      string: |-
+        _profile: erc
+        erc.what: Mildred Couper papers
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - ezid.cdlib.org
+      Content-Type:
+      - text/plain; charset=UTF-8
+      Authorization:
+      - Basic YXBpdGVzdDphcGl0ZXN0
+  response:
+    status:
+      code: 201
+      message: CREATED
+    headers:
+      Date:
+      - Thu, 09 Jun 2016 23:44:13 GMT
+      Server:
+      - Apache/2.2.17 (Unix) mod_ssl/2.2.17 OpenSSL/1.0.1k-fips mod_wsgi/4.4.9 Python/2.7.6
+      Content-Length:
+      - '30'
+      Vary:
+      - Cookie
+      Content-Type:
+      - text/plain; charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: 'success: ark:/99999/fk40k2mp4s'
+    http_version:
+  recorded_at: Thu, 09 Jun 2016 23:44:13 GMT
+- request:
+    method: post
+    uri: https://ezid.cdlib.org/id/ark:/99999/fk40k2mp4s
+    body:
+      encoding: UTF-8
+      string: "_target: http://test.host/lib/ark:/99999/fk40k2mp4s\nerc.when: "
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - ezid.cdlib.org
+      Content-Type:
+      - text/plain; charset=UTF-8
+      Authorization:
+      - Basic YXBpdGVzdDphcGl0ZXN0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 09 Jun 2016 23:44:14 GMT
+      Server:
+      - Apache/2.2.17 (Unix) mod_ssl/2.2.17 OpenSSL/1.0.1k-fips mod_wsgi/4.4.9 Python/2.7.6
+      Content-Length:
+      - '30'
+      Vary:
+      - Cookie
+      Content-Type:
+      - text/plain; charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: 'success: ark:/99999/fk40k2mp4s'
+    http_version:
+  recorded_at: Thu, 09 Jun 2016 23:44:14 GMT
+- request:
+    method: post
+    uri: https://ezid.cdlib.org/id/ark:/99999/fk44b3bh0v
+    body:
+      encoding: UTF-8
+      string: |-
+        _target: http://test.host/lib/ark:/99999/fk44b3bh0v
+        erc.when: 1937
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - ezid.cdlib.org
+      Content-Type:
+      - text/plain; charset=UTF-8
+      Authorization:
+      - Basic YXBpdGVzdDphcGl0ZXN0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 09 Jun 2016 23:44:16 GMT
+      Server:
+      - Apache/2.2.17 (Unix) mod_ssl/2.2.17 OpenSSL/1.0.1k-fips mod_wsgi/4.4.9 Python/2.7.6
+      Content-Length:
+      - '30'
+      Vary:
+      - Cookie
+      Content-Type:
+      - text/plain; charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: 'success: ark:/99999/fk44b3bh0v'
+    http_version:
+  recorded_at: Thu, 09 Jun 2016 23:44:16 GMT
+recorded_with: VCR 3.0.3

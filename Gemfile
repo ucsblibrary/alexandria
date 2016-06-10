@@ -54,25 +54,25 @@ gem 'trollop'
 gem 'american_date', '~> 1.1.0'
 
 group :development, :test do
-  gem 'rspec-rails'
-  gem 'rspec-activemodel-mocks'
+  gem 'awesome_print'
+  gem 'byebug'
   gem 'factory_girl_rails', '~> 4.4'
   gem 'jettywrapper'
-  # gem 'http_logger'
-  gem 'capybara', '2.6.2'
   gem 'poltergeist'
-  gem 'byebug'
+  gem 'rspec-activemodel-mocks'
+  gem 'rspec-rails'
   gem 'rubocop', require: false
-  gem 'sqlite3'
   gem 'spring'
   gem 'spring-commands-rspec', group: :development
-  gem 'awesome_print'
+  gem 'sqlite3'
 end
 
 group :test do
-  gem 'timecop', '0.7.3'
-  gem 'webmock', require: false
+  gem 'capybara', '2.6.2'
   gem 'database_cleaner'
+  gem 'timecop', '0.7.3'
+  gem 'vcr'
+  gem 'webmock', require: false
 end
 
 group :development do
