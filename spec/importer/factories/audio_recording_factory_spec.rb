@@ -26,6 +26,9 @@ describe Importer::Factory::AudioRecordingFactory do
   before do
     ActiveFedora::Cleaner.clean!
     AdminPolicy.ensure_admin_policy_exists
+
+    # Don't run background jobs/derivatives during the specs
+    allow(CharacterizeJob).to receive_messages(perform_later: nil, perform_now: nil)
   end
 
   context 'when a collection already exists' do
