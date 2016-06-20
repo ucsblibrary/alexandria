@@ -18,8 +18,9 @@ describe Importer::Factory::ImageFactory do
   let(:factory) { described_class.new(attributes, files) }
 
   before do
-    ActiveFedora::Cleaner.clean!
-    AdminPolicy.ensure_admin_policy_exists
+    (Collection.all + Image.all).map(&:id).each do |id|
+      ActiveFedora::Base.find(id).destroy(eradicate: true) if ActiveFedora::Base.exists?(id)
+    end
   end
 
   context 'with files' do

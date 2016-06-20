@@ -4,10 +4,6 @@ require 'importer'
 describe Importer::Mods do
   let(:images) { Dir['spec/fixtures/images/cusbspcmss36*.tif'] }
 
-  before do
-    AdminPolicy.ensure_admin_policy_exists
-  end
-
   describe '#import an Image' do
     before do
       Collection.destroy_all

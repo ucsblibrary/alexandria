@@ -2,7 +2,9 @@ require 'rails_helper'
 
 describe ImageIndexer do
   before do
-    ActiveFedora::Cleaner.clean!
+    Image.all.map(&:id).each do |id|
+      ActiveFedora::Base.find(id).destroy(eradicate: true) if ActiveFedora::Base.exists?(id)
+    end
   end
   subject { described_class.new(image).generate_solr_document }
 

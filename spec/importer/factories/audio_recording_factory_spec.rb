@@ -24,8 +24,9 @@ describe Importer::Factory::AudioRecordingFactory do
   let(:factory) { described_class.new(attributes, data) }
 
   before do
-    ActiveFedora::Cleaner.clean!
-    AdminPolicy.ensure_admin_policy_exists
+    (Collection.all + AudioRecording.all).map(&:id).each do |id|
+      ActiveFedora::Base.find(id).destroy(eradicate: true) if ActiveFedora::Base.exists?(id)
+    end
 
     # Don't run background jobs/derivatives during the specs
     allow(CharacterizeJob).to receive_messages(perform_later: nil, perform_now: nil)
@@ -67,11 +68,6 @@ describe Importer::Factory::AudioRecordingFactory do
   end
 
   context 'updating existing records' do
-    before do
-      ActiveFedora::Cleaner.clean!
-      AdminPolicy.ensure_admin_policy_exists
-    end
-
     it 'attaches files and updates metadata' do
       expect(AudioRecording.count).to eq 0
 
