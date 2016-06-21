@@ -10,6 +10,7 @@ options = Trollop.options do
   opt :data, 'Data file(s)/directory', type: :strings
   opt :format, 'Metadata format (csv, mods, etd, cyl)', type: :string
   opt :metadata, 'Metadata file(s)/directory', type: :strings
+  opt :number, 'Only ingest N records', type: :integer
   opt :skip, 'Skip the first N records', default: 0
 end
 
@@ -90,6 +91,7 @@ begin
 
       tail.each_with_index do |row, count|
         next if options[:skip] > count
+        next if options[:number] && options[:number] <= ingests
 
         start_record = Time.now
 
@@ -127,6 +129,7 @@ begin
     # TODO: this currently assumes one record per metadata file
     meta.each_with_index do |m, count|
       next if options[:skip] > count
+      next if options[:number] && options[:number] <= ingests
 
       start_record = Time.now
 
@@ -168,9 +171,10 @@ begin
     end
 
     Dir.mktmpdir do |temp|
-      etds = data.map.with_index do |zip, i|
-        # Don't unzip ETDs we won't use
-        if i >= options[:skip]
+      # Don't unzip ETDs we won't use
+      etds = data.drop(options[:skip]).map.with_index do |zip, i|
+        # i starts at zero, so use greater-than instead of >=
+        if !options[:number] || options[:number] > i
           Proquest.extract(zip, "#{temp}/#{File.basename(zip)}")
         end
       end.compact
@@ -185,6 +189,8 @@ begin
       )
 
       marc.each_with_index do |record, count|
+        next if options[:number] && options[:number] <= ingests
+
         start_record = Time.now
 
         # https://github.com/traject/traject/blob/master/lib/traject/indexer.rb#L101
@@ -229,6 +235,7 @@ begin
 
     marcs.each_with_index do |record, count|
       next if options[:skip] > count
+      next if options[:number] && options[:number] <= ingests
 
       start_record = Time.now
 

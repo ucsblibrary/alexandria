@@ -25,6 +25,7 @@ Options:
   -d, --data=<s+>        Data file(s)/directory
   -f, --format=<s>       Metadata format (csv, mods, etd, cyl)
   -m, --metadata=<s+>    Metadata file(s)/directory
+  -n, --number=<i>       Only ingest N records
   -s, --skip=<i>         Skip the first N records (default: 0)
   -h, --help             Show this message
 ```
