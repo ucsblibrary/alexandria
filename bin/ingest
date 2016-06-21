@@ -12,6 +12,7 @@ options = Trollop.options do
   opt :metadata, 'Metadata file(s)/directory', type: :strings
   opt :number, 'Only ingest N records', type: :integer
   opt :skip, 'Skip the first N records', default: 0
+  opt :verbose, 'Provide additional output', default: false
 end
 
 require File.expand_path('../../lib/importer', __FILE__)
@@ -52,6 +53,7 @@ meta = if options[:metadata]
        else
          []
        end
+
 # For each argument passed to --data, if it's a file, add it to
 # the array, otherwise drill down and add each file within to the
 # array
@@ -72,6 +74,15 @@ data = if options[:data]
        else
          []
        end
+
+if options[:verbose]
+  puts
+  puts 'Metadata inputs:'
+  meta.each { |m| puts m }
+  puts
+  puts 'Data inputs:'
+  data.each { |d| puts d }
+end
 
 ######################
 # Begin ingest process
@@ -101,6 +112,16 @@ begin
                 else
                   data.select { |d| attrs[:files].include? File.basename(d) }
                 end
+
+        if options[:verbose]
+          puts
+          puts "Object attributes for item #{count + 1}:"
+          puts attrs.each { |k, v| puts "#{k}: #{v}" }
+          puts
+          puts "Associated files for item #{count + 1}:"
+          puts files.each { |f| puts f }
+        end
+
         begin
           Importer::CSV.import(
             attributes: attrs,
@@ -138,6 +159,15 @@ begin
         meta_base = File.basename(m, '.xml')
         data_base = File.basename(f, File.extname(f))
         data_base.include?(meta_base) || meta_base.include?(data_base)
+      end
+
+      if options[:verbose]
+        puts
+        puts "Object metadata for item #{count + 1}:"
+        puts m
+        puts
+        puts "Associated files for item #{count + 1}:"
+        puts d.each { |f| puts f }
       end
 
       begin
@@ -198,6 +228,15 @@ begin
         indexer.load_config_file('lib/traject/etd_config.rb')
         indexer.settings(etd: etds[count])
 
+        if options[:verbose]
+          puts
+          puts "Object attributes for item #{count + 1}:"
+          puts record
+          puts
+          puts "Associated data for item #{count + 1}:"
+          puts etds.each { |f| puts f }
+        end
+
         begin
           indexer.writer.put indexer.map_record(record)
           indexer.writer.close
@@ -243,6 +282,21 @@ begin
       indexer = Traject::Indexer.new
       indexer.load_config_file('lib/traject/audio_config.rb')
       indexer.settings(cylinders: data)
+
+      if options[:verbose]
+        puts
+        puts "Object attributes for item #{count + 1}:"
+        puts record
+        puts
+        puts "Associated files for item #{count + 1}:"
+        puts data.each_with_index do |f, i|
+          if i > 25
+            puts "...and #{data.length - 25} more..." if i == 26
+            next
+          end
+          puts f
+        end
+      end
 
       begin
         indexer.writer.put indexer.map_record(record)

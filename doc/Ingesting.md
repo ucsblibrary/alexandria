@@ -27,6 +27,7 @@ Options:
   -m, --metadata=<s+>    Metadata file(s)/directory
   -n, --number=<i>       Only ingest N records
   -s, --skip=<i>         Skip the first N records (default: 0)
+  -v, --verbose          Provide additional output
   -h, --help             Show this message
 ```
 
