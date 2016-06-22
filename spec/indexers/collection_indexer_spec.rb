@@ -13,6 +13,15 @@ describe CollectionIndexer do
       VCR.use_cassette('collection_indexer', record: :new_episodes) do
         expect(subject['collector_tesim']).to eq [url]
         expect(subject['collector_label_tesim']).to eq ['Verne, Jules, 1828-1905']
+
+        # Bytes field should be indexed long rather than int
+        #
+        # See:
+        # https://groups.google.com/forum/#!topic/hydra-tech/jKyXm7_GKbs
+        # and
+        # https://github.com/projecthydra/curation_concerns/commit/9b33fc3b22f98dbc99292c45e7fb4ba8715634f1
+        expect(subject['bytes_is']).to eq nil
+        expect(subject['bytes_lts']).to eq 0
       end
     end
   end
