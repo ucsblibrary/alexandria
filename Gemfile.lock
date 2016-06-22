@@ -348,7 +348,7 @@ GEM
     method_source (0.8.2)
     mime-types (2.99.1)
     mini_magick (4.5.1)
-    mini_portile2 (2.0.0)
+    mini_portile2 (2.1.0)
     minitest (5.8.4)
     mods (2.0.3)
       iso-639
@@ -364,8 +364,9 @@ GEM
     net-ssh (3.1.1)
     netrc (0.11.0)
     noid (0.8.0)
-    nokogiri (1.6.7.2)
-      mini_portile2 (~> 2.0.0.rc2)
+    nokogiri (1.6.8)
+      mini_portile2 (~> 2.1.0)
+      pkg-config (~> 1.1.7)
     nom-xml (0.5.4)
       activesupport (>= 3.2.18)
       i18n
@@ -383,6 +384,7 @@ GEM
     parslet (1.7.1)
       blankslate (>= 2.0, <= 4.0)
     pg (0.18.4)
+    pkg-config (1.1.7)
     poltergeist (1.9.0)
       capybara (~> 2.1)
       cliver (~> 0.3.1)
