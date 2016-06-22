@@ -22,7 +22,7 @@ describe Importer::CSV do
                 else
                   data.select { |d| attrs[:files].include? File.basename(d) }
                 end
-        VCR.use_cassette('csv_importer') do
+        VCR.use_cassette('csv_importer', record: :new_episodes) do
           Importer::CSV.import(
             attributes: attrs,
             files: files

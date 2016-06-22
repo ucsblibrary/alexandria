@@ -1712,4 +1712,52 @@ http_interactions:
       string: 'success: ark:/99999/fk4tt4w490'
     http_version:
   recorded_at: Thu, 09 Jun 2016 23:58:52 GMT
+- request:
+    method: get
+    uri: https://ezid.cdlib.org/id/ark:/99999/fk4tt4w490
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - ezid.cdlib.org
+      Content-Type:
+      - text/plain; charset=UTF-8
+      Authorization:
+      - Basic YXBpdGVzdDphcGl0ZXN0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 22 Jun 2016 16:51:24 GMT
+      Server:
+      - Apache/2.2.17 (Unix) mod_ssl/2.2.17 OpenSSL/1.0.1k-fips mod_wsgi/4.4.9 Python/2.7.6
+      Content-Length:
+      - '289'
+      Vary:
+      - Accept-Language,Cookie
+      Content-Language:
+      - en
+      Content-Type:
+      - text/plain; charset=UTF-8
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        c3VjY2VzczogYXJrOi85OTk5OS9mazR0dDR3NDkwCl91cGRhdGVkOiAxNDY1
+        NTE2NzMyCl90YXJnZXQ6IGh0dHA6Ly90ZXN0Lmhvc3QvbGliL2FyazovOTk5
+        OTkvZms0dHQ0dzQ5MApfcHJvZmlsZTogZXJjCl9vd25lcmdyb3VwOiBhcGl0
+        ZXN0Cl9vd25lcjogYXBpdGVzdApfZXhwb3J0OiB5ZXMKX2NyZWF0ZWQ6IDE0
+        NjU1MTY3MjYKX3N0YXR1czogcHVibGljCmVyYy53aGF0OiBKb2VsIENvbndh
+        eSAvIEZseWluZyBBIFN0dWRpbyBwaG90b2dyYXBoIGNvbGxlY3Rpb24KZXJj
+        LndoZW46IDE5MTDigJMxOTE5Cg==
+    http_version:
+  recorded_at: Wed, 22 Jun 2016 16:51:24 GMT
 recorded_with: VCR 3.0.3
