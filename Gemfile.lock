@@ -11,6 +11,34 @@ GIT
       rdf-vocab (~> 0.8)
       rest-client (~> 1.7)
 
+GIT
+  remote: https://github.com/dunn/curation_concerns
+  revision: 0e7717ce4de7def2adaeb11acd57a8cfc5131b6c
+  branch: bytes_lts
+  specs:
+    curation_concerns (0.10.0)
+      blacklight (~> 6.0)
+      blacklight_advanced_search (~> 6.0)
+      breadcrumbs_on_rails (~> 2.3)
+      curation_concerns-models (= 0.10.0)
+      hydra-editor (~> 1.1)
+      hydra-head (~> 9.6)
+      jquery-ui-rails
+      rails_autolink
+      simple_form (~> 3.1)
+      sprockets-es6
+    curation_concerns-models (0.10.0)
+      active_attr
+      active_fedora-noid (~> 1.0)
+      hydra-collections (~> 8.1)
+      hydra-head (~> 9.3)
+      hydra-works (~> 0.7)
+      qa (~> 0.5)
+      redlock (~> 0.1.2)
+      resque (~> 1.23)
+      resque-pool (~> 0.3)
+      solrizer (~> 3.4)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -155,27 +183,6 @@ GEM
     concurrent-ruby (1.0.2)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
-    curation_concerns (0.10.0)
-      blacklight (~> 6.0)
-      blacklight_advanced_search (~> 6.0)
-      breadcrumbs_on_rails (~> 2.3)
-      curation_concerns-models (= 0.10.0)
-      hydra-editor (~> 1.1)
-      hydra-head (~> 9.6)
-      jquery-ui-rails
-      rails_autolink
-      simple_form (~> 3.1)
-      sprockets-es6
-    curation_concerns-models (0.10.0)
-      active_attr
-      active_fedora-noid (~> 1.0)
-      hydra-collections (~> 8.1)
-      hydra-head (~> 9.3)
-      hydra-works (~> 0.7)
-      qa (~> 0.5)
-      redlock (~> 0.1.2)
-      resque (~> 1.23)
-      resque-pool (~> 0.3)
     curb (0.9.3)
     daemons (1.2.3)
     database_cleaner (1.5.3)
@@ -347,7 +354,6 @@ GEM
       marc (~> 1.0)
     method_source (0.8.2)
     mime-types (2.99.2)
-    mime-types-data (3.2016.0521)
     mini_magick (4.5.1)
     mini_portile2 (2.1.0)
     minitest (5.9.0)
@@ -672,13 +678,13 @@ DEPENDENCIES
   capistrano-passenger
   capistrano-rails (>= 1.1.3)
   capybara (= 2.6.2)
-  curation_concerns (~> 0.10.0)
+  curation_concerns!
   curb
   database_cleaner
   devise (~> 3.5.2)
   devise-guests (~> 0.5.0)
   devise_ldap_authenticatable
-  ezid-client (~> 1.2.0)
+  ezid-client (~> 1.2)
   factory_girl_rails (~> 4.4)
   hydra-collections (>= 8.1.1)
   hydra-head (~> 9.8.1)
