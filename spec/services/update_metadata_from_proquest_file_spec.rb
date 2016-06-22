@@ -295,7 +295,7 @@ describe UpdateMetadataFromProquestFile do
         expect(reloaded.visibility_during_embargo.id).to eq ActiveFedora::Base.id_to_uri(AdminPolicy::DISCOVERY_POLICY_ID)
         expect(reloaded.visibility_after_embargo.id).to eq ActiveFedora::Base.id_to_uri(AdminPolicy::PUBLIC_CAMPUS_POLICY_ID)
         expect(reloaded.admin_policy_id).to eq AdminPolicy::DISCOVERY_POLICY_ID
-        expect(reloaded.under_embargo?).to eq true
+        expect(reloaded.under_embargo?).to eq false
       end
     end
 
