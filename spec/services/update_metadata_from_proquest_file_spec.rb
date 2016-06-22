@@ -291,11 +291,11 @@ describe UpdateMetadataFromProquestFile do
       let(:file)  { "#{fixture_path}/proquest/Johnson_ucsb_0035N_12164_DATA.xml" }
 
       it 'imports metadata from proquest file' do
-        expect(reloaded.embargo_release_date).to eq(Date.parse('2014-06-11') + 2.years)
+        expect(reloaded.embargo_release_date).to eq(Date.parse('2020-06-11') + 2.years)
         expect(reloaded.visibility_during_embargo.id).to eq ActiveFedora::Base.id_to_uri(AdminPolicy::DISCOVERY_POLICY_ID)
         expect(reloaded.visibility_after_embargo.id).to eq ActiveFedora::Base.id_to_uri(AdminPolicy::PUBLIC_CAMPUS_POLICY_ID)
         expect(reloaded.admin_policy_id).to eq AdminPolicy::DISCOVERY_POLICY_ID
-        expect(reloaded.under_embargo?).to eq false
+        expect(reloaded.under_embargo?).to eq true
       end
     end
 

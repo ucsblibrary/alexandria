@@ -32,7 +32,7 @@ describe AttachFilesToETD do
 
       expect(etd.proquest.size).to eq 6005
 
-      expect(etd.embargo_release_date).to eq Date.parse('2016/06/11')
+      expect(etd.embargo_release_date).to eq Date.parse('2022/06/11')
       expect(etd.visibility_during_embargo.id).to eq ActiveFedora::Base.id_to_uri(AdminPolicy::DISCOVERY_POLICY_ID)
       expect(etd.file_sets[0].visibility_during_embargo.id).to eq ActiveFedora::Base.id_to_uri(AdminPolicy::DISCOVERY_POLICY_ID)
       expect(etd.visibility_after_embargo.id).to eq ActiveFedora::Base.id_to_uri(AdminPolicy::PUBLIC_CAMPUS_POLICY_ID)

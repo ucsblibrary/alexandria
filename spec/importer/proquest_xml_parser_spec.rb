@@ -12,7 +12,7 @@ describe Importer::ProquestXmlParser do
       it 'collects attributes for the ETD record' do
         expect(attributes[:embargo_code]).to eq '3'
         expect(attributes[:DISS_accept_date]).to eq '01/01/2014'
-        expect(attributes[:DISS_agreement_decision_date]).to eq '2014-06-11 23:12:18'
+        expect(attributes[:DISS_agreement_decision_date]).to eq '2020-06-11 23:12:18'
         expect(attributes[:DISS_delayed_release]).to eq '2 years'
         expect(attributes[:embargo_remove_date]).to eq nil
         expect(attributes[:DISS_access_option]).to eq 'Campus use only'
