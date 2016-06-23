@@ -1,0 +1,12 @@
+defaults: &defaults
+  ingest: 1
+  "characterize,derivatives": 2
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

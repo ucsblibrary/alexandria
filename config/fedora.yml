@@ -1,0 +1,17 @@
+defaults: &defaults
+  password: <%= Rails.application.secrets.fedora_pass %>
+  url: http://localhost:8080/fedora/rest
+  user: fedoraAdmin
+
+development:
+  <<: *defaults
+  base_path: /devel
+
+test:
+  <<: *defaults
+  base_path: /test
+  url: http://localhost:8983/fedora/rest
+
+production:
+  <<: *defaults
+  base_path: /prod

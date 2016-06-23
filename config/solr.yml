@@ -1,0 +1,11 @@
+defaults: &defaults
+  url: http://localhost:8080/hydra
+
+development:
+  <<: *defaults
+
+test:
+  url: http://localhost:8983/solr
+
+production:
+  <<: *defaults

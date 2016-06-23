@@ -1,0 +1,26 @@
+defaults: &defaults
+  derivatives_dir: "tmp/derivatives"
+  download_root: "tmp/download_root"
+  ezid_host: ezid.cdlib.org
+  ezid_port: 443
+  internal_local_vocab_root: http://<%= Rails.application.config.host_name %>
+  localhost_port: 3000
+  marmotta_host: localhost:8080
+  minter_state: "tmp/minter-state"
+  uploads_dir: "tmp/uploads"
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
+  derivatives_dir: /opt/alexandria/derivatives
+  download_root: /opt/download_root
+  internal_local_vocab_root: 'http://alexandria.ucsb.edu:8080/fedora/rest'
+  internal_local_vocab_root: http://<%= Rails.application.config.host_name %>
+  marmotta_host: <%= Rails.application.config.host_name %>:8080
+  minter_state: /opt/alexandria/shared/minter-state
+  uploads_dir: /opt/alexandria/uploads

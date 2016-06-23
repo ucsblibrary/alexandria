@@ -1,0 +1,14 @@
+defaults: &defaults
+  address: <%= Rails.application.secrets.smtp_host %>
+  port: 25
+  enable_starttls_auto: true
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+  user_name: adunn@ucsb.edu
+
+production:
+  <<: *defaults
