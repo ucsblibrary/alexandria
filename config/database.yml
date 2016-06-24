@@ -3,15 +3,15 @@ defaults: &defaults
   encoding: unicode
   password: <%= Rails.application.secrets.hydra_postgres_pass %>
   pool: 5
+  username: <%= Rails.application.secrets.hydra_postgres_user %>
 
 development:
   <<: *defaults
-  database: hydra
-  username: hydra
+  database: <%= Rails.application.secrets.hydra_postgres_db %>
 
 test:
   <<: *defaults
-  database: hydra_test
+  database: <%= Rails.application.secrets.hydra_postgres_db %>
   username: hydra
 
 production:

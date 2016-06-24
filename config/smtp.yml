@@ -8,7 +8,7 @@ development:
 
 test:
   <<: *defaults
-  user_name: adunn@ucsb.edu
+  user_name: <%= ENV['ADRL_EMAIL'] || `git config --get user.email`.strip %>
 
 production:
   <<: *defaults

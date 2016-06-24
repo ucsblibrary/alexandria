@@ -3,10 +3,10 @@ defaults: &defaults
   admin_password: <%= Rails.application.secrets.ldap_pass %>
   admin_user: <%= Rails.application.secrets.ldap_user %>
   attribute: uid
-  base:
-  group_base:
-  host: <%= Rails.application.secrets.ldap_campus_host %>
-  port: 389
+  base: <%= ENV['ADRL_LDAP_BASE'] || 'ou=people,dc=adrl,dc=ucsb,dc=edu' %>
+  group_base: <%= ENV['ADRL_LDAP_GROUP_BASE'] || 'ou=groups,dc=adrl,dc=ucsb,dc=edu' %>
+  host: <%= ENV['ADRL_LDAP_HOST'] || '<%= Rails.application.secrets.ldap_campus_host %>' %>
+  port: <%= ENV['ADRL_LDAP_PORT'] || 389 %>
   ssl: false
 
 development:
