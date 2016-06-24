@@ -1,12 +1,10 @@
 default: &default
-  user:             <%= Rails.application.secrets.ezid_user %>
-  password:         <%= Rails.application.secrets.ezid_pass %>
+  user: <%= Rails.application.secrets.ezid_user %>
+  password: <%= Rails.application.secrets.ezid_pass %>
 
 development:
   <<: *default
   default_shoulder: ark:/99999/fk4
 
 test:
-  user: apitest
-  password: <%= ENV['EZID_PASS'] %>
   default_shoulder: ark:/99999/fk4
