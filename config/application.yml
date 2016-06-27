@@ -19,8 +19,6 @@ production:
   <<: *defaults
   derivatives_dir: /opt/alexandria/derivatives
   download_root: /opt/download_root
-  internal_local_vocab_root: 'http://alexandria.ucsb.edu:8080/fedora/rest'
-  internal_local_vocab_root: http://<%= Rails.application.config.host_name %>
   marmotta_host: <%= Rails.application.config.host_name %>:8080
   minter_state: /opt/alexandria/shared/minter-state
   uploads_dir: /opt/alexandria/uploads
