@@ -25,36 +25,21 @@ set :linked_dirs, %w(
   config/environments
 )
 
-SSHKit.config.command_map[:rake] = 'bundle exec rake'
-
 # Default branch is :master
 set :branch, ENV['REVISION'] || ENV['BRANCH_NAME'] || 'master'
 
 # Default value for :pty is false
 # set :pty, true
 
-set :linked_files,
-    %w(
-      config/application.yml
-      config/blacklight.yml
-      config/database.yml
-      config/fedora.yml
-      config/ldap.yml
-      config/redis.yml
-      config/resque-pool.yml
-      config/secrets.yml
-      config/smtp.yml
-      config/solr.yml
-    )
-
-# Default value for linked_dirs is []
-# set :linked_dirs, fetch(:linked_dirs, []).push('bin', 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
+set :linked_files, %w(config/secrets.yml)
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
 
 # Default value for keep_releases is 5
 # set :keep_releases, 5
+
+SSHKit.config.command_map[:rake] = 'bundle exec rake'
 
 require 'resque'
 
