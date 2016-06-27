@@ -1,6 +1,6 @@
 defaults: &defaults
   password: <%= Rails.application.secrets.fedora_pass %>
-  url: http://127.0.0.1:<%= ENV['TEST_JETTY_PORT'] || 8080 %>/fedora/rest
+  url: http://localhost:<%= ENV['TEST_JETTY_PORT'] || 8080 %>/fedora/rest
   user: fedoraAdmin
 
 development:
@@ -10,7 +10,7 @@ development:
 test:
   <<: *defaults
   base_path: /test
-  url: http://127.0.0.1:<%= ENV['TEST_JETTY_PORT'] || 8983 %>/fedora/rest
+  url: http://localhost:<%= ENV['TEST_JETTY_PORT'] || 8983 %>/fedora/rest
 
 production:
   <<: *defaults

@@ -1,13 +1,13 @@
 defaults: &defaults
   adapter: solr
-  url: http://127.0.0.1:<%= ENV['TEST_JETTY_PORT'] || 8080 %>/hydra
+  url: http://localhost:<%= ENV['TEST_JETTY_PORT'] || 8080 %>/hydra
 
 development:
   <<: *defaults
 
 test:
   <<: *defaults
-  url: http://127.0.0.1:<%= ENV['TEST_JETTY_PORT'] || 8983 %>/hydra
+  url: http://localhost:<%= ENV['TEST_JETTY_PORT'] || 8983 %>/hydra
 
 production:
   <<: *defaults
