@@ -5,7 +5,7 @@ development:
   <<: *defaults
 
 test:
-  url: http://localhost:<%= ENV['TEST_JETTY_PORT'] || 8983 %>/hydra
+  url: http://localhost:<%= ENV['TEST_JETTY_PORT'] || 8983 %>/solr
 
 production:
   <<: *defaults
