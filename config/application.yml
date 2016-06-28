@@ -19,6 +19,5 @@ production:
   <<: *defaults
   derivatives_dir: /opt/alexandria/derivatives
   download_root: /opt/download_root
-  marmotta_host: <%= Rails.application.config.host_name %>:8080
   minter_state: /opt/alexandria/shared/minter-state
   uploads_dir: /opt/alexandria/uploads
