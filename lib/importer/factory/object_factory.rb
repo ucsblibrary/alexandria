@@ -1,4 +1,3 @@
-# coding: utf-8
 require 'importer/log_subscriber'
 
 module Importer::Factory
@@ -101,7 +100,7 @@ module Importer::Factory
                                   # elements, format it as a range
                                   # for Ezid
                                   if date_arr.length > 1
-                                    "#{date_arr.first}–#{date_arr.last}"
+                                    "#{date_arr.first}-#{date_arr.last}"
                                   else
                                     date_arr.first
                                   end
