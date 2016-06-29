@@ -2,8 +2,9 @@
 module ApplicationHelper
   include CurationConcerns::CatalogHelper
 
-  # Released under the MIT license by John Gruber: https://gist.github.com/gruber/507356
-  URL_REGEXP = %r{((?:[a-z][\w-]+:(?:\/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))}
+  # Original version released under the MIT license by John Gruber:
+  # https://gist.github.com/gruber/507356
+  URL_REGEXP = %r{((?:https?:(?:\/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))}
 
   def link_to_collection(stuff)
     collection_id = Array(stuff.fetch(:document)[ObjectIndexer::COLLECTION]).first
