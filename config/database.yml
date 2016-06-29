@@ -4,6 +4,7 @@ defaults: &defaults
   password: <%= Rails.application.secrets.hydra_postgres_pass %>
   pool: 5
   username: <%= Rails.application.secrets.hydra_postgres_user %>
+  host: localhost
 
 development:
   <<: *defaults
@@ -12,7 +13,6 @@ development:
 test:
   <<: *defaults
   database: <%= Rails.application.secrets.hydra_postgres_db %>
-  username: hydra
 
 production:
   <<: *defaults
