@@ -1,11 +1,14 @@
+<% solr_doc = JSON.parse(@presenter.solr_document.to_json) %>
+
 <dl class="dl-horizontal  dl-invert">
   <% document_show_fields(@presenter.solr_document).each do |solr_fname, field| %>
+
     <% if should_render_show_field? @presenter.solr_document, field %>
       <dt class="blacklight-<%= solr_fname.parameterize %>">
         <%= render_document_show_field_label @presenter.solr_document, field: solr_fname %>
       </dt>
       <dd class="blacklight-<%= solr_fname.parameterize %>">
-        <%= render_document_show_field_value @presenter.solr_document, field: solr_fname %>
+        <%= solr_doc[field.field].join(', ').gsub(ApplicationHelper::URL_REGEXP, '<a href=\'\1\'>\1</a>').html_safe %>
       </dd>
     <% end %>
   <% end %>
