@@ -1,5 +1,5 @@
 <div class="document <%= render_document_class collection %>" itemscope itemtype="<%= collection.itemtype %>">
   <%= render 'index_header_default', document_counter: collection_counter, document: collection %>
-  <%= render_description(collection) %>
+  <%= content_tag(:div, Array(solr_doc['description_tesim']).first) %>
   <%= render 'index_default', document: collection, document_counter: collection_counter %>
 </div>
