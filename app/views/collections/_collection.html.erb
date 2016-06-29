@@ -1,5 +1,5 @@
 <div class="document <%= render_document_class collection %>" itemscope itemtype="<%= collection.itemtype %>">
   <%= render 'index_header_default', document_counter: collection_counter, document: collection %>
-  <%= content_tag(:div, Array(solr_doc['description_tesim']).first) %>
+  <%= content_tag(:div, collection['description_tesim'].first.gsub(ApplicationHelper::URL_REGEXP, '<a href=\'\1\'>\1</a>').html_safe) %>
   <%= render 'index_default', document: collection, document_counter: collection_counter %>
 </div>
