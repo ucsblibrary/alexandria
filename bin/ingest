@@ -278,22 +278,18 @@ begin
 
       start_record = Time.now
 
-      files = data.select do |d|
-        d.include? "cusb-cyl#{record.to_s.match('\$j\ Cylinder\ (\d+)')[1]}"
-      end
-
       # https://github.com/traject/traject/blob/master/lib/traject/indexer.rb#L101
       indexer = Traject::Indexer.new
       indexer.load_config_file('lib/traject/audio_config.rb')
-      indexer.settings(cylinders: files)
+      indexer.settings(cylinders: data)
 
       if options[:verbose]
         puts
         puts "Object attributes for item #{count + 1}:"
         puts record
-        puts
-        puts "Associated files for item #{count + 1}:"
-        puts files.each { |f| puts f }
+        # puts
+        # puts "Associated files for item #{count + 1}:"
+        # puts data.each { |f| puts f }
       end
 
       begin
