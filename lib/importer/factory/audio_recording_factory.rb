@@ -5,22 +5,31 @@ module Importer::Factory
     self.klass = AudioRecording
     self.system_identifier_field = :system_number
 
+    # @param [AudioRecording] object
+    # @param [Array<Array>] cylinders
     def attach_files(object, cylinders)
       return if object.file_sets.count > 0
 
-      number = object['fulltext_link'].first.sub(/.*Cylinder/, '')
-      files = cylinders.select { |c| c.include? "cusb-cyl#{number}" }
+      # `cylinders' is an array of arrays:
+      #  [
+      #    ['/opt/ingest/special/cusb-cyl2118a.wav', '/opt/ingest/special/cusb-cyl2118b.wav'],
+      #    ['/opt/ingest/special/cusb-cyl2119a.wav', '/opt/ingest/special/cusb-cyl2119b.wav'],
+      # ]
+      cylinders.each do |filegroup|
+        next if filegroup.empty?
+        number = filegroup.first.match(/.*cusb-cyl(\d+).\.wav/)[1]
 
-      now = CurationConcerns::TimeService.time_in_utc
-      file_set = FileSet.create!(label: "Cylinder#{number}",
-                                 admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID,
-                                 date_uploaded: now,
-                                 date_modified: now)
-      actor = CurationConcerns::FileSetActor.new(file_set, User.batchuser)
-      # Set the representative if it doesn't already exist and a file was attached.
-      object.representative ||= file_set if attach_original(actor, number, files)
-      attach_restored(actor, number, files)
-      object.ordered_members << file_set
+        now = CurationConcerns::TimeService.time_in_utc
+        file_set = FileSet.create!(label: "Cylinder#{number}",
+                                   admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID,
+                                   date_uploaded: now,
+                                   date_modified: now)
+        actor = CurationConcerns::FileSetActor.new(file_set, User.batchuser)
+        # Set the representative if it doesn't already exist and a file was attached.
+        object.representative ||= file_set if attach_original(actor, number, filegroup)
+        attach_restored(actor, number, filegroup)
+        object.ordered_members << file_set
+      end
     end
 
     def attach_original(actor, number, cylinders)

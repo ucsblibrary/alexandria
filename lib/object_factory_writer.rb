@@ -53,7 +53,23 @@ class ObjectFactoryWriter
 
     attributes[:files] = attributes.delete('filename')
 
-    metadata = @etd || @cylinders
+    metadata = if @etd
+                 @etd
+               elsif @cylinders
+                 # For each filename in the MARC, create an array of
+                 # the corresponding files passed to the ingester.
+                 # For example,
+                 #
+                 # 'Cylinder 2118', Cylinder 2119' =>
+                 #  [
+                 #    ['/opt/ingest/special/cusb-cyl2118a.wav', '/opt/ingest/special/cusb-cyl2118b.wav'],
+                 #    ['/opt/ingest/special/cusb-cyl2119a.wav', '/opt/ingest/special/cusb-cyl2119b.wav'],
+                 # ]
+                 attributes[:files].map do |n|
+                   @cylinders.select { |filename| filename.include? n.sub(/.*Cylinder\ /, '') }.uniq
+                 end
+               end
+
     build_object(attributes, metadata)
   end
 
