@@ -1,13 +1,13 @@
 defaults: &defaults
-  derivatives_dir: <%= ENV['ADRL_DERIVATIVES'] || "tmp/derivatives" %>
-  download_root: <%= ENV['ADRL_DOWNLOAD_ROOT'] || "tmp/download_root" %>
+  derivatives_dir: <%= ENV['ADRL_DERIVATIVES'] || "#{Rails.root}/tmp/derivatives" %>
+  download_root: <%= ENV['ADRL_DOWNLOAD_ROOT'] || "#{Rails.root}/tmp/download_root" %>
   ezid_host: ezid.cdlib.org
   ezid_port: 443
   internal_local_vocab_root: http://<%= Rails.application.config.host_name %>
   localhost_port: 3000
   marmotta_host: localhost:8080
-  minter_state: <%= ENV['ADRL_MINTER_STATE'] || "tmp/minter-state" %>
-  uploads_dir: <%= ENV['ADRL_UPLOADS'] || "tmp/uploads" %>
+  minter_state: <%= ENV['ADRL_MINTER_STATE'] || "#{Rails.root}/tmp/minter-state" %>
+  uploads_dir: <%= ENV['ADRL_UPLOADS'] || "#{Rails.root}/tmp/uploads" %>
 
 development:
   <<: *defaults
