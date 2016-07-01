@@ -17,7 +17,13 @@ module Importer::Factory
       # ]
       cylinders.each do |filegroup|
         next if filegroup.empty?
-        number = filegroup.first.match(/.*cusb-cyl(\d+).\.wav/)[1]
+        matches = filegroup.first.match(/.*cusb-cyl(\d+).\.wav/)
+        if matches.nil?
+          Rails.logger.debug 'Could not extract cylinder number from:'
+          Rails.logger.debug filegroup.inspect
+          next
+        end
+        number = matches[1]
 
         now = CurationConcerns::TimeService.time_in_utc
         file_set = FileSet.create!(label: "Cylinder#{number}",
