@@ -69,6 +69,7 @@ end
 
 group :test do
   gem 'capybara', '2.6.2'
+  gem 'ci_reporter'
   gem 'database_cleaner'
   gem 'timecop', '0.7.3'
   gem 'vcr'
