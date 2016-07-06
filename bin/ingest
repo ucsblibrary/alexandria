@@ -317,4 +317,5 @@ rescue IngestError => e
   puts "Ingested #{ingests} records in #{(end_overall - start_overall) / 60} minutes"
   puts
   puts "To continue this ingest, re-run the command with `--skip #{e.reached}`"
+  exit 1
 end
