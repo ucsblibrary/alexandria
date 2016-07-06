@@ -57,7 +57,7 @@ describe ObjectFactoryWriter do
           degree_supervisor: %w(Paul Hector),
           created_attributes: [{ start: ['2013'] }],
           files: ['My_stuff.pdf']
-        }.with_indifferent_access, nil
+        }.with_indifferent_access, []
       )
 
       writer.put(traject_context.output_hash)

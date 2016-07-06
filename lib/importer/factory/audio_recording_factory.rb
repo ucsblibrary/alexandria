@@ -1,29 +1,25 @@
 module Importer::Factory
   class AudioRecordingFactory < ObjectFactory
-    include WithAssociatedCollection
 
     self.klass = AudioRecording
     self.system_identifier_field = :system_number
 
     # @param [AudioRecording] object
     # @param [Array<Array>] cylinders
+    #
+    # Each AudioRecording may have several cylinders attached.
+    # Each cylinder will have an original and restored copy.
+    # So `cylinders' is an array of arrays:
+    #  [
+    #    ['/opt/ingest/special/cusb-cyl2118a.wav', '/opt/ingest/special/cusb-cyl2118b.wav'],
+    #    ['/opt/ingest/special/cusb-cyl2119a.wav', '/opt/ingest/special/cusb-cyl2119b.wav'],
+    # ]
     def attach_files(object, cylinders)
       return if object.file_sets.count > 0
-
-      # `cylinders' is an array of arrays:
-      #  [
-      #    ['/opt/ingest/special/cusb-cyl2118a.wav', '/opt/ingest/special/cusb-cyl2118b.wav'],
-      #    ['/opt/ingest/special/cusb-cyl2119a.wav', '/opt/ingest/special/cusb-cyl2119b.wav'],
-      # ]
       cylinders.each do |filegroup|
         next if filegroup.empty?
-        matches = filegroup.first.match(/.*cusb-cyl(\d+).\.wav/)
-        if matches.nil?
-          Rails.logger.debug 'Could not extract cylinder number from:'
-          Rails.logger.debug filegroup.inspect
-          next
-        end
-        number = matches[1]
+        number = cylinder_number(filegroup.first)
+        next unless number
 
         now = CurationConcerns::TimeService.time_in_utc
         file_set = FileSet.create!(label: "Cylinder#{number}",
@@ -31,10 +27,21 @@ module Importer::Factory
                                    date_uploaded: now,
                                    date_modified: now)
         actor = CurationConcerns::FileSetActor.new(file_set, User.batchuser)
+
         # Set the representative if it doesn't already exist and a file was attached.
         object.representative ||= file_set if attach_original(actor, number, filegroup)
         attach_restored(actor, number, filegroup)
         object.ordered_members << file_set
+      end
+    end
+
+    def cylinder_number(file_name)
+      matches = file_name.match(/.*cusb-cyl(\d+).\.wav/)
+      if matches.nil?
+        puts "Could not extract cylinder number from: #{file_name}"
+        return nil
+      else
+        return matches[1]
       end
     end
 
