@@ -1,0 +1,20 @@
+defaults: &defaults
+  adapter: postgresql
+  encoding: unicode
+  password: <%= Rails.application.secrets.hydra_postgres_pass %>
+  pool: 5
+  username: <%= Rails.application.secrets.hydra_postgres_user %>
+  host: localhost
+
+development:
+  <<: *defaults
+  database: <%= Rails.application.secrets.hydra_postgres_db %>
+
+test:
+  <<: *defaults
+  database: <%= Rails.application.secrets.hydra_postgres_db %>
+
+production:
+  <<: *defaults
+  database: <%= Rails.application.secrets.hydra_postgres_db %>
+  username: <%= Rails.application.secrets.hydra_postgres_user %>

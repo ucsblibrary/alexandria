@@ -42,8 +42,8 @@ public/assets
 .rvmrc
 .byebug_history
 
-# Passwords etc
-/config/*.yml
+# Passwords
+/config/secrets.yml
 
 /tags
 /env

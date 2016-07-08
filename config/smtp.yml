@@ -1,0 +1,14 @@
+defaults: &defaults
+  address: <%= Rails.application.secrets.smtp_host %>
+  port: 25
+  enable_starttls_auto: true
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+  user_name: <%= ENV['ADRL_EMAIL'] || `git config --get user.email`.strip %>
+
+production:
+  <<: *defaults
