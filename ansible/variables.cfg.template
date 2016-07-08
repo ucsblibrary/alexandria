@@ -1,8 +1,0 @@
-#!/bin/bash
-export EMAIL=''
-export GH_USER=''
-export PRIVATE_IP=''
-export PUBLIC_IP=''
-export REMOTE_GROUP=''
-export REMOTE_USER=''
-export SECRET=''
