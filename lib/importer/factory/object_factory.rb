@@ -76,7 +76,7 @@ module Importer::Factory
           erc_what: attrs[:title].first
         )
         attrs[:identifier] = [identifier.id]
-        attrs[:id] = identifier.id.split(%r{\/}).last
+        attrs[:id] = identifier.id.split('/').last
       end
 
       # There's a bug in ActiveFedora when there are many
