@@ -160,18 +160,26 @@ module Importer::Mods
       property_name_for_uri = Metadata::MARCREL.invert
       name_nodes.each_with_object({}) do |node, relations|
         uri = node.attributes['valueURI']
-        property = if value_uri = node.role.roleTerm.valueURI.first
-                     property_name_for_uri[RDF::URI(value_uri)]
-                   else
-                     $stderr.puts "no role was specified for name #{node.namePart.text}"
-                     :contributor
-        end
-        unless property
-          property = :contributor
+        key = if value_uri = node.role.roleTerm.valueURI.first
+                property_name_for_uri[RDF::URI(value_uri)]
+              else
+                $stderr.puts "no role was specified for name #{node.namePart.text}"
+                :contributor
+              end
+        unless key
+          key = :contributor
           $stderr.puts "the specified role for name #{node.namePart.text} in not a valid marcrelator role"
         end
-        relations[property] ||= []
-        relations[property] << (uri.blank? ? { name: node.namePart.text, type: node.attributes['type'].value } : RDF::URI.new(uri))
+        relations[key] ||= []
+        val = if uri.blank?
+                {
+                  name: node.namePart.map { |o| o }.join(', '),
+                  type: node.attributes['type'].value,
+                }
+              else
+                RDF::URI.new(uri)
+              end
+        relations[key] << val
       end
     end
 

@@ -10,8 +10,12 @@ module ApplicationHelper
     end
   end
 
-  def display_notes(data)
-    safe_join(Array(data[:value]), '<br/>'.html_safe)
+  # Used in {CatalogController} to render notes and restrictions as
+  # separate paragraphs
+  def not_simple_format(data)
+    data[:value].map do |val|
+      val.split('\n\n').map { |para| "<p>#{para}</p>" }
+    end.flatten.join('').html_safe
   end
 
   def display_link(data)
