@@ -2,7 +2,8 @@ require 'rails_helper'
 require 'object_factory_writer'
 
 describe ObjectFactoryWriter do
-  let(:writer) { described_class.new({}) }
+  let(:settings) { {} }
+  let(:writer) { described_class.new(settings) }
 
   describe '#put' do
     let(:traject_context) { double(output_hash: traject_hash) }
@@ -63,4 +64,45 @@ describe ObjectFactoryWriter do
       writer.put(traject_context.output_hash)
     end
   end
+
+  describe '#find_files_to_attach' do
+    let(:settings) { { files_dirs: files_dirs } }
+    let(:attrs) { { filename: ['Cylinder 12783', 'Cylinder 0001'] } }
+
+    subject { writer.find_files_to_attach(attrs) }
+
+    context 'with a single directory' do
+      let(:files_dirs) { File.join(fixture_path, 'cylinders') }
+
+      it 'contains the correct files' do
+        expect(subject.count).to eq 1 # It's an array of arrays
+        expect(subject.first).to contain_exactly(
+          File.join(files_dirs, 'cusb-cyl0001a.wav'),
+          File.join(files_dirs, 'cusb-cyl0001b.wav')
+        )
+      end
+    end
+
+    context 'with more than one directory' do
+      let(:files_dirs) {
+        [File.join(fixture_path, 'cylinders'),
+         File.join(fixture_path, 'cylinders2')]
+      }
+
+      it 'contains the correct files, grouped by cylinder' do
+        expect(subject.count).to eq 2
+
+        expect(subject[0]).to contain_exactly(
+          File.join(files_dirs.last, 'audio_files', 'cusb-cyl12783a.wav'),
+          File.join(files_dirs.last, 'audio_files', 'cusb-cyl12783b.wav')
+        )
+
+        expect(subject[1]).to contain_exactly(
+          File.join(files_dirs.first, 'cusb-cyl0001a.wav'),
+          File.join(files_dirs.first, 'cusb-cyl0001b.wav')
+        )
+      end
+    end
+  end
+
 end

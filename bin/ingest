@@ -59,7 +59,7 @@ meta = if options[:metadata]
 # array
 data = if options[:data]
          if options[:format] == 'cyl'
-           []  # No need to expand files for cylinder import
+           options[:data] # Just pass the options through
          else
            options[:data].map do |arg|
              if File.file?(arg)
@@ -264,11 +264,8 @@ begin
       end
     end
   when 'cyl'
-    files_dir = Array(options[:data]).first
-    puts "Audio files directory: #{files_dir}" if options[:verbose]
-
     begin
-      importer = Importer::Cylinder.new(meta, files_dir, options)
+      importer = Importer::Cylinder.new(meta, data, options)
       importer.run
     rescue => e
       puts e

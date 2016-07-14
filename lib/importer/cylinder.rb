@@ -6,8 +6,8 @@ module Importer
     # Array of MARC record files to import.
     attr_reader :metadata_files
 
-    # The directory that contains the binary (audio) files to attach to the cylinder records.
-    attr_reader :files_dir
+    # The directories that contains the binary (audio) files to attach to the cylinder records.
+    attr_reader :files_dirs
 
     # The command line options that were passed in
     attr_reader :options
@@ -19,17 +19,20 @@ module Importer
     attr_reader :collection
 
     # Attributes for cylinders collection
+    # TODO: we should be able to #freeze this but it's being
+    # mutated in ObjectFactory
     COLLECTION_ATTRIBUTES = {
       id: 'cylinders',
       identifier: ['cylinders'],
       title: ['Wax Cylinders'],
       accession_number: ['Cylinders'],
-      admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID }
+      admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID
+    }
 
 
-    def initialize(metadata_files, files_dir, options={})
+    def initialize(metadata_files, files_dirs, options={})
       @metadata_files = metadata_files
-      @files_dir = files_dir
+      @files_dirs = files_dirs
       @options = options
       @imported_records = []
       @collection = Importer::Factory::CollectionFactory.new(COLLECTION_ATTRIBUTES).find_or_create
@@ -54,7 +57,8 @@ module Importer
       # https://github.com/traject/traject/blob/master/lib/traject/indexer.rb#L101
       indexer = Traject::Indexer.new
       indexer.load_config_file('lib/traject/audio_config.rb')
-      indexer.settings(files_dir: files_dir)
+      print_files_dirs
+      indexer.settings(files_dirs: files_dirs)
       indexer.settings(verbose: options[:verbose])
 
       marcs.each_with_index do |record, count|
@@ -110,6 +114,14 @@ module Importer
         puts "Object attributes for item #{item_number}:"
         puts record.class
         puts record
+        puts
+      end
+
+      def print_files_dirs
+        return unless options[:verbose]
+        puts
+        puts 'Audio files directories:'
+        files_dirs.each { |d| puts d }
         puts
       end
 

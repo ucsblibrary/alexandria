@@ -56,7 +56,6 @@ class ObjectFactoryWriter
     build_object(attributes, files)
   end
 
-  private
 
   # Extract the cylinder numbers from names like these:
   # ["Cylinder 12783", "Cylinder 0006"]
@@ -66,22 +65,32 @@ class ObjectFactoryWriter
   #   ['/path/cusb-cyl12783a.wav', /path/cusb-cyl12783b.wav'],
   #   ['/path/cusb-cyl0006a.wav',  /path/cusb-cyl0006b.wav'],
   # ]
-    def find_files_to_attach(attributes)
-      return [@etd] if @etd
-      return [] unless @settings[:files_dir]
+  def find_files_to_attach(attributes)
+    return Array(@etd) if @etd
+    return [] unless @settings[:files_dirs]
 
-      files = attributes[:filename].map do |name|
-        cylinder_number = name.match('Cylinder\ (\d+)')[1]
-        Dir.glob(File.join(@settings[:files_dir], "**", "cusb-cyl#{cylinder_number}*"))
+    dirs = Array(@settings[:files_dirs])
+    file_groups = []
+
+    attributes[:filename].each do |name|
+      cylinder_number = name.match('Cylinder\ (\d+)')[1]
+      files = []
+      dirs.each do |dir|  # Look in all the dirs
+        files += Dir.glob(File.join(dir, "**", "cusb-cyl#{cylinder_number}*"))
       end
-      print_file_names(files)
-      files
+      file_groups << files unless files.blank?
     end
 
-    def print_file_names(files)
+    print_file_names(file_groups)
+    file_groups
+  end
+
+  private
+
+    def print_file_names(file_groups)
       return unless verbose
       puts "Files to attach:"
-      puts files.flatten.each { |f| puts f.inspect }
+      puts file_groups.flatten.each { |f| puts f.inspect }
     end
 
     # Traject doesn't have a mechanism for supplying defaults to these fields

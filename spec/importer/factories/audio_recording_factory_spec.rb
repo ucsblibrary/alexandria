@@ -116,7 +116,7 @@ describe Importer::Factory::AudioRecordingFactory do
 
       indexer = Traject::Indexer.new
       indexer.load_config_file('lib/traject/audio_config.rb')
-      indexer.settings(files_dir: files_dir)
+      indexer.settings(files_dirs: files_dir)
 
       VCR.use_cassette('audio_recording_factory', record: :new_episodes) do
         indexer.writer.put indexer.map_record(MARC::XMLReader.new(metadata).first)
