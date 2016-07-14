@@ -73,7 +73,9 @@ class ObjectFactoryWriter
     file_groups = []
 
     attributes[:filename].each do |name|
-      cylinder_number = name.match('Cylinder\ (\d+)')[1]
+      match = name.match('Cylinder\ (\d+)')
+      next if match.blank?
+      cylinder_number = match[1]
       files = []
       dirs.each do |dir|  # Look in all the dirs
         files += Dir.glob(File.join(dir, "**", "cusb-cyl#{cylinder_number}*"))

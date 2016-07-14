@@ -103,6 +103,15 @@ describe ObjectFactoryWriter do
         )
       end
     end
+
+    context 'with a bad cylinder name' do
+      let(:attrs) { { filename: ['PA Mss 42'] } }
+      let(:files_dirs) { File.join(fixture_path, 'cylinders') }
+
+      it 'continues without an error' do
+        expect(subject.count).to eq 0
+      end
+    end
   end
 
 end
