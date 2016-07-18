@@ -67,13 +67,13 @@ group :development, :test do
   gem 'rubocop', require: false
   gem 'spring'
   gem 'spring-commands-rspec', group: :development
-  gem 'sqlite3'
 end
 
 group :test do
   gem 'capybara', '2.6.2'
   gem 'ci_reporter'
   gem 'database_cleaner'
+  gem 'sqlite3'
   gem 'timecop', '0.7.3'
   gem 'vcr'
   gem 'webmock', require: false
