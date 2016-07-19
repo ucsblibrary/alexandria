@@ -73,19 +73,20 @@ module Importer
         print_attributes(record, count + 1)
 
         start_record = Time.now
+
         rec = indexer.writer.put indexer.map_record(record)
+        @collection.members << rec
+        @imported_records << rec
+
         end_record = Time.now
 
         puts "Ingested record #{count + 1} of #{cylinders} "\
           "in #{end_record - start_record} seconds"
-
-        @collection.members << rec
-        @imported_records << rec
       end  # marcs.each_with_index
     ensure
       indexer.writer.close if indexer && indexer.writer
       save_collection!
-      puts "Reindexing records"
+      puts "Reindexing records (this may take some time) #{Time.now}"
       @imported_records.each do |rec|
         rec.update_index  # Index the collection label
       end
@@ -95,7 +96,7 @@ module Importer
     # end of the import, instead of once for each cylinder.
     def save_collection!
       start_time = Time.now
-      puts "#{start_time.strftime("%Y-%-m-%-d %H:%M:%S")} Saving cylinders collection (this may take some time)"
+      puts "#{start_time.strftime("%Y-%-m-%-d %H:%M:%S")} Saving cylinders collection"
       @collection.save!
       stop_time = Time.now
       minutes = (stop_time - start_time) / 60.0
