@@ -2,7 +2,6 @@ require 'rails_helper'
 require 'importer'
 
 describe Importer::Cylinder do
-  let(:collection_id) { Importer::Cylinder::COLLECTION_ATTRIBUTES[:id] }
   let(:files_dir) { File.join(fixture_path, 'cylinders2') }
   let(:meta_files) {  # Records are spread across 2 files
     [File.join(fixture_path, 'marcxml', 'cylinder_sample_marc.xml'),
@@ -33,7 +32,6 @@ describe Importer::Cylinder do
       AudioRecording.all.map(&:id).each do |id|
         ActiveFedora::Base.find(id).destroy(eradicate: true) if ActiveFedora::Base.exists?(id)
       end
-      ActiveFedora::Base.find(collection_id).destroy(eradicate: true) if ActiveFedora::Base.exists?(collection_id)
     end
 
     it 'imports the records' do
@@ -44,34 +42,14 @@ describe Importer::Cylinder do
       }
         .to change { AudioRecording.count }.by(3)
         .and(change { FileSet.count }.by(2))
-        .and(change { Collection.count }.by(1))
 
       # Make sure the importer reports the correct number
       expect(importer.imported_records_count).to eq 3
-
-      # Make sure the collection was created
-      collection = Collection.find(collection_id)
-      expect(collection.title).to eq Importer::Cylinder::COLLECTION_ATTRIBUTES[:title]
-      expect(collection.accession_number).to eq Importer::Cylinder::COLLECTION_ATTRIBUTES[:accession_number]
 
       # The new cylinder records
       record1 = AudioRecording.where(Solrizer.solr_name('system_number', :symbol) => '002556253').first
       record2 = AudioRecording.where(Solrizer.solr_name('system_number', :symbol) => '002145837').first
       record3 = AudioRecording.where(Solrizer.solr_name('system_number', :symbol) => '002145838').first
-
-      # Make sure the records belong to the collection
-      expect(record1.in_collection_ids).to eq [collection.id]
-      expect(record2.in_collection_ids).to eq [collection.id]
-      expect(record3.in_collection_ids).to eq [collection.id]
-
-      # Make sure the collection has the correct members
-      expect(collection.member_ids).to contain_exactly(record1.id, record2.id, record3.id)
-
-      # Make sure solr index is correct
-      solr = Blacklight.default_index.connection
-      res = solr.select(params: { id: record1.id, qt: 'document'})
-      doc = res['response']['docs'].first
-      expect(doc["collection_label_ssim"]).to eq Importer::Cylinder::COLLECTION_ATTRIBUTES[:title]
 
       # Check the attached files.
       # Both record1 and record3 have cylinder files listed in
@@ -126,23 +104,6 @@ describe Importer::Cylinder do
         contributor_id = contributor.first.rdf_label.first.gsub(Regexp.new('^.*\/'), '')
         expect(contributor_id).to eq person.id
       end
-    end
-  end
-
-  context 'when the collection already exists' do
-    before do
-      ActiveFedora::Base.find(collection_id).destroy(eradicate: true) if ActiveFedora::Base.exists?(collection_id)
-    end
-
-    let!(:collection) {
-      c = Collection.new(Importer::Cylinder::COLLECTION_ATTRIBUTES)
-      c.save!
-      c
-    }
-
-    it 'doesn\'t create a new collection' do
-      expect { importer }.to change { Collection.count }.by(0)
-      expect(importer.collection).to eq collection
     end
   end
 

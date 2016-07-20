@@ -1,5 +1,3 @@
-require File.expand_path('../factory/collection_factory', __FILE__)
-
 module Importer
   class Cylinder
 
@@ -13,29 +11,14 @@ module Importer
     attr_reader :options
 
     # Keep track of how many cylinder records we have imported.
-    attr_reader :imported_records
-
-    # The cylinders collection
-    attr_reader :collection
-
-    # Attributes for cylinders collection
-    # TODO: we should be able to #freeze this but it's being
-    # mutated in ObjectFactory
-    COLLECTION_ATTRIBUTES = {
-      id: 'cylinders',
-      identifier: ['cylinders'],
-      title: ['Wax Cylinders'],
-      accession_number: ['Cylinders'],
-      admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID
-    }
+    attr_reader :imported_records_count
 
 
     def initialize(metadata_files, files_dirs, options={})
       @metadata_files = metadata_files
       @files_dirs = files_dirs
       @options = options
-      @imported_records = []
-      @collection = Importer::Factory::CollectionFactory.new(COLLECTION_ATTRIBUTES).find_or_create
+      @imported_records_count = 0
 
       $stdout.sync = true  # flush output immediately
     end
@@ -63,7 +46,7 @@ module Importer
 
       marcs.each_with_index do |record, count|
         next if options[:skip] && options[:skip] > count
-        next if options[:number] && options[:number] <= imported_records_count
+        break if options[:number] && options[:number] <= imported_records_count
 
         if record['024'].blank? || record['024']['a'].blank?
           puts "Skipping record #{count + 1}: No ARK found"
@@ -75,8 +58,7 @@ module Importer
         start_record = Time.now
 
         rec = indexer.writer.put indexer.map_record(record)
-        @collection.members << rec
-        @imported_records << rec
+        @imported_records_count += 1
 
         end_record = Time.now
 
@@ -85,27 +67,8 @@ module Importer
       end  # marcs.each_with_index
     ensure
       indexer.writer.close if indexer && indexer.writer
-      save_collection!
-      puts "Reindexing records (this may take some time) #{Time.now}"
-      @imported_records.each do |rec|
-        rec.update_index  # Index the collection label
-      end
     end
 
-    # For performance reasons, we save the collection at the
-    # end of the import, instead of once for each cylinder.
-    def save_collection!
-      start_time = Time.now
-      puts "#{start_time.strftime("%Y-%-m-%-d %H:%M:%S")} Saving cylinders collection"
-      @collection.save!
-      stop_time = Time.now
-      minutes = (stop_time - start_time) / 60.0
-      printf "Collection saved in %0.1f minutes\n", minutes
-    end
-
-    def imported_records_count
-      @imported_records.count
-    end
 
     private
 
