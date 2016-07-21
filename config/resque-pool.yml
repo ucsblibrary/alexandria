@@ -24,3 +24,4 @@ test:
 
 production:
   <<: *defaults
+  'ingest,derivatives': 10
