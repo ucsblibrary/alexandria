@@ -7,9 +7,6 @@ class ObjectFactoryWriter
                  RDF::URI('http://id.loc.gov/vocabulary/resourceTypes/aun')].freeze
   ETD_TYPES   = [RDF::URI('http://id.loc.gov/vocabulary/resourceTypes/txt')].freeze
 
-  attr_reader :settings # The passed-in settings
-  attr_reader :verbose
-
   def initialize(arg_settings)
     @settings = Traject::Indexer::Settings.new(arg_settings)
     @etd = @settings['etd']
@@ -90,7 +87,7 @@ class ObjectFactoryWriter
   private
 
     def print_file_names(file_groups)
-      return unless verbose
+      return unless @verbose
       puts "Files to attach:"
       puts file_groups.flatten.each { |f| puts f.inspect }
     end
