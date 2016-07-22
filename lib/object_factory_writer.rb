@@ -105,16 +105,16 @@ class ObjectFactoryWriter
 
     def build_object(attributes, metadata)
       work_type = attributes.fetch('work_type').first
-      add_collection_attributes(work_type, attributes)
+      attributes[:collection] = collection_attributes(work_type)
       factory(work_type).new(attributes, metadata).run
     end
 
-    def add_collection_attributes(work_type, attributes)
+    def collection_attributes(work_type)
       case work_type
       when *ETD_TYPES
         attributes[:collection] = { id: 'etds', title: ['Electronic Theses and Dissertations'], accession_number: ['etds'] }
       when *AUDIO_TYPES
-        # Collection is handled by Importer::Cylinder class
+        {}
       else
         raise ArgumentError, "Unknown work type #{work_type}"
       end
