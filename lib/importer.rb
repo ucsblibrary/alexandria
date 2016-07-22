@@ -7,6 +7,7 @@ end
 module Importer
   extend ActiveSupport::Autoload
   autoload :CSV
+  autoload :Cylinder
   autoload :ETD
   autoload :Factory
   autoload :LocalAuthorityImporter

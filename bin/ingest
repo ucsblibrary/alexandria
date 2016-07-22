@@ -58,22 +58,25 @@ meta = if options[:metadata]
 # the array, otherwise drill down and add each file within to the
 # array
 data = if options[:data]
-         options[:data].map do |arg|
-           if File.file?(arg)
-             arg
-           else
-             next unless Dir.exist?(arg)
-             datas = []
-             Find.find(arg) do |path|
-               next if File.directory?(path)
-               datas << path
+         if options[:format] == 'cyl'
+           options[:data] # Just pass the options through
+         else
+           options[:data].map do |arg|
+             if File.file?(arg)
+               arg
+             else
+               next unless Dir.exist?(arg)
+               datas = []
+               Find.find(arg) do |path|
+                 next if File.directory?(path)
+                 datas << path
+               end
+               datas
              end
-             datas
-           end
-         end.flatten
-       else
-         []
+           end.flatten
+         end
        end
+data ||= []
 
 if options[:verbose]
   puts
@@ -89,6 +92,8 @@ end
 ######################
 start_overall = Time.now
 ingests = 0
+
+puts "Import start time: #{start_overall.strftime("%Y-%m-%d %H:%M:%S")}"
 
 begin
   case options[:format]
@@ -259,56 +264,18 @@ begin
       end
     end
   when 'cyl'
-    # XMLReader's Enumerable methods are destructive, so move the
-    # MARC::Records to an array so we can measure them:
-    # https://github.com/ruby-marc/ruby-marc/pull/47
-    marcs = meta.map do |m|
-      MARC::XMLReader.new(m).map { |o| o }
-    end.flatten
-
-    cylinders = marcs.length
-
-    if options[:skip] >= cylinders
-      raise ArgumentError, "Number of records skipped (#{options[:skip]}) greater than total records to ingest"
+    begin
+      importer = Importer::Cylinder.new(meta, data, options)
+      importer.run
+    rescue => e
+      puts e
+      puts e.backtrace
+      raise IngestError.new(reached: options[:skip] + importer.imported_records_count)
+    ensure
+      ingests = importer.imported_records_count
     end
+  end  # case/when
 
-    marcs.each_with_index do |record, count|
-      next if options[:skip] > count
-      next if options[:number] && options[:number] <= ingests
-
-      start_record = Time.now
-
-      # https://github.com/traject/traject/blob/master/lib/traject/indexer.rb#L101
-      indexer = Traject::Indexer.new
-      indexer.load_config_file('lib/traject/audio_config.rb')
-      indexer.settings(cylinders: data)
-
-      if options[:verbose]
-        puts
-        puts "Object attributes for item #{count + 1}:"
-        puts record
-        # puts
-        # puts "Associated files for item #{count + 1}:"
-        # puts data.each { |f| puts f }
-      end
-
-      begin
-        indexer.writer.put indexer.map_record(record)
-        indexer.writer.close
-        end_record = Time.now
-        puts "Ingested record #{count + 1} of #{cylinders} "\
-             "in #{end_record - start_record} seconds (#{end_record - start_overall} seconds elapsed)"
-        ingests += 1
-      rescue => e
-        puts e
-        puts e.backtrace
-        raise IngestError.new(reached: count)
-      rescue Interrupt
-        puts "\nIngest stopped, cleaning up..."
-        raise IngestError.new(reached: count)
-      end
-    end
-  end
   end_overall = Time.now
   puts "Ingested #{ingests} records in #{(end_overall - start_overall) / 60} minutes"
 rescue IngestError => e

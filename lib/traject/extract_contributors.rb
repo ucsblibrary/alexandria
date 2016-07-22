@@ -59,13 +59,13 @@ module ExtractContributors
   end
 
   def roles_for(field)
-    sub_4 = field.subfields.select { |s| s.code == '4'.freeze }.map(&:value)
+    sub_4 = field.subfields.select { |s| s.code == '4'.freeze }
+              .map { |role| Traject::Macros::Marc21.trim_punctuation(role.value) }
     sub_e = field.subfields.select { |s| s.code == 'e'.freeze }
               .map { |role| Traject::Macros::Marc21.trim_punctuation(role.value) }
     roles = sub_4 + sub_e
 
     if roles.blank?
-      print_blank_role_warning(field)
       [:performer]
     else
       roles.map { |r| ROLE_MAP.fetch(r.strip.downcase) }
@@ -93,9 +93,5 @@ module ExtractContributors
     else
       NAME_TYPE_MAP.fetch(field.indicator1, 'agent'.freeze)
     end
-  end
-
-  def print_blank_role_warning(field)
-    $stdout.puts "    WARNING: Unable to determine contributor role.  Expected to find subfield 'e' or '4', but subfield wasn't found.  MARC field: #{field.tag}"
   end
 end

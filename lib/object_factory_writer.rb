@@ -2,18 +2,15 @@ require 'importer'
 require 'traject'
 
 class ObjectFactoryWriter
-  attr_reader :settings
 
   AUDIO_TYPES = [RDF::URI('http://id.loc.gov/vocabulary/resourceTypes/aum'),
                  RDF::URI('http://id.loc.gov/vocabulary/resourceTypes/aun')].freeze
   ETD_TYPES   = [RDF::URI('http://id.loc.gov/vocabulary/resourceTypes/txt')].freeze
 
   def initialize(arg_settings)
-    # The passed-in settings
     @settings = Traject::Indexer::Settings.new(arg_settings)
-
-    @cylinders = @settings['cylinders']
     @etd = @settings['etd']
+    @verbose = @settings['verbose']
   end
 
   def serialize(context)
@@ -51,29 +48,49 @@ class ObjectFactoryWriter
     # id must be singular
     attributes[:id] = attributes[:id].first
 
+    files = find_files_to_attach(attributes)
     attributes[:files] = attributes.delete('filename')
+    build_object(attributes, files)
+  end
 
-    metadata = if @etd
-                 @etd
-               elsif @cylinders
-                 # For each filename in the MARC, create an array of
-                 # the corresponding files passed to the ingester.
-                 # For example,
-                 #
-                 # 'Cylinder 2118', Cylinder 2119' =>
-                 #  [
-                 #    ['/opt/ingest/special/cusb-cyl2118a.wav', '/opt/ingest/special/cusb-cyl2118b.wav'],
-                 #    ['/opt/ingest/special/cusb-cyl2119a.wav', '/opt/ingest/special/cusb-cyl2119b.wav'],
-                 # ]
-                 attributes[:files].map do |n|
-                   @cylinders.select { |filename| filename.include? n.sub(/.*Cylinder\ /, '') }.uniq
-                 end
-               end
 
-    build_object(attributes, metadata)
+  # Extract the cylinder numbers from names like these:
+  # ["Cylinder 12783", "Cylinder 0006"]
+  # and then find the files that match those numbers.
+  # We want to return an array of arrays, like this:
+  # [
+  #   ['/path/cusb-cyl12783a.wav', /path/cusb-cyl12783b.wav'],
+  #   ['/path/cusb-cyl0006a.wav',  /path/cusb-cyl0006b.wav'],
+  # ]
+  def find_files_to_attach(attributes)
+    return Array(@etd) if @etd
+    return [] unless @settings[:files_dirs]
+
+    dirs = Array(@settings[:files_dirs])
+    file_groups = []
+
+    attributes[:filename].each do |name|
+      match = name.match('Cylinder\ (\d+)')
+      next if match.blank?
+      cylinder_number = match[1]
+      files = []
+      dirs.each do |dir|  # Look in all the dirs
+        files += Dir.glob(File.join(dir, "**", "cusb-cyl#{cylinder_number}*"))
+      end
+      file_groups << files unless files.blank?
+    end
+
+    print_file_names(file_groups)
+    file_groups
   end
 
   private
+
+    def print_file_names(file_groups)
+      return unless @verbose
+      puts "Files to attach:"
+      puts file_groups.flatten.each { |f| puts f.inspect }
+    end
 
     # Traject doesn't have a mechanism for supplying defaults to these fields
     def overwrite_fields
@@ -95,12 +112,9 @@ class ObjectFactoryWriter
     def collection_attributes(work_type)
       case work_type
       when *ETD_TYPES
-        { id: 'etds', title: ['Electronic Theses and Dissertations'], accession_number: ['etds'] }
+        attributes[:collection] = { id: 'etds', title: ['Electronic Theses and Dissertations'], accession_number: ['etds'] }
       when *AUDIO_TYPES
-        { id: 'cylinders',
-          title: ['Wax Cylinders'],
-          accession_number: ['Cylinders'],
-          admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID }
+        {}
       else
         raise ArgumentError, "Unknown work type #{work_type}"
       end

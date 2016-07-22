@@ -1,6 +1,20 @@
+# Don't set the "characterize" queue any higher than 1 worker.
+#
+# When we ingest audio records, we attach both an original and
+# a restored master file to the FileSet, which queues 2
+# characterization jobs for the same FileSet.  Both jobs
+# attempt to set the fileset.filename, and occasionally you'll
+# end up with a FileSet object in fedora that has 2 filenames.
+# When you try to load that FileSet in the rails console, you
+# get this validation error from active-fedora:
+# Expected "filename" to have 0-1 statements, but there are 2
+#
+# See this issue for details:
+# https://help.library.ucsb.edu/browse/DIGREPO-547
+
 defaults: &defaults
-  ingest: 1
-  "characterize,derivatives": 2
+  'ingest,derivatives': 1
+  characterize: 1  # Don't set it higher than 1
 
 development:
   <<: *defaults
@@ -10,3 +24,4 @@ test:
 
 production:
   <<: *defaults
+  'ingest,derivatives': 10

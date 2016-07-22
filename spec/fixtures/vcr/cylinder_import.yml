@@ -1,0 +1,831 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://ezid.cdlib.org/id/ark:/99999/fk4hm5gx45
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - ezid.cdlib.org
+      Content-Type:
+      - text/plain; charset=UTF-8
+      Authorization:
+      - Basic YXBpdGVzdDphcGl0ZXN0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 12 Jul 2016 17:38:41 GMT
+      Server:
+      - Apache/2.2.17 (Unix) mod_ssl/2.2.17 OpenSSL/1.0.1k-fips mod_wsgi/4.4.9 Python/2.7.6
+      Content-Length:
+      - '209'
+      Vary:
+      - Accept-Language,Cookie
+      Content-Language:
+      - en
+      Content-Type:
+      - text/plain; charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: |
+        success: ark:/99999/fk4hm5gx45
+        _updated: 1468345120
+        _target: http://ezid.cdlib.org/id/ark:/99999/fk4hm5gx45
+        _profile: erc
+        _ownergroup: apitest
+        _owner: apitest
+        _export: yes
+        _created: 1468345120
+        _status: public
+    http_version: 
+  recorded_at: Tue, 12 Jul 2016 17:38:40 GMT
+- request:
+    method: post
+    uri: https://ezid.cdlib.org/id/ark:/99999/fk4hm5gx45
+    body:
+      encoding: UTF-8
+      string: |-
+        _target: http://test.host/lib/ark:/99999/fk4hm5gx45
+        _profile: erc
+        _export: yes
+        _status: public
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - ezid.cdlib.org
+      Content-Type:
+      - text/plain; charset=UTF-8
+      Authorization:
+      - Basic YXBpdGVzdDphcGl0ZXN0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 12 Jul 2016 17:38:42 GMT
+      Server:
+      - Apache/2.2.17 (Unix) mod_ssl/2.2.17 OpenSSL/1.0.1k-fips mod_wsgi/4.4.9 Python/2.7.6
+      Content-Length:
+      - '30'
+      Vary:
+      - Accept-Language,Cookie
+      Content-Language:
+      - en
+      Content-Type:
+      - text/plain; charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: 'success: ark:/99999/fk4hm5gx45'
+    http_version: 
+  recorded_at: Tue, 12 Jul 2016 17:38:41 GMT
+- request:
+    method: get
+    uri: https://ezid.cdlib.org/id/ark:/99999/fk4cv4s41d
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - ezid.cdlib.org
+      Content-Type:
+      - text/plain; charset=UTF-8
+      Authorization:
+      - Basic YXBpdGVzdDphcGl0ZXN0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 12 Jul 2016 17:40:02 GMT
+      Server:
+      - Apache/2.2.17 (Unix) mod_ssl/2.2.17 OpenSSL/1.0.1k-fips mod_wsgi/4.4.9 Python/2.7.6
+      Content-Length:
+      - '209'
+      Vary:
+      - Accept-Language,Cookie
+      Content-Language:
+      - en
+      Content-Type:
+      - text/plain; charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: |
+        success: ark:/99999/fk4cv4s41d
+        _updated: 1468345200
+        _target: http://ezid.cdlib.org/id/ark:/99999/fk4cv4s41d
+        _profile: erc
+        _ownergroup: apitest
+        _owner: apitest
+        _export: yes
+        _created: 1468345200
+        _status: public
+    http_version: 
+  recorded_at: Tue, 12 Jul 2016 17:40:01 GMT
+- request:
+    method: post
+    uri: https://ezid.cdlib.org/id/ark:/99999/fk4cv4s41d
+    body:
+      encoding: UTF-8
+      string: |-
+        _target: http://test.host/lib/ark:/99999/fk4cv4s41d
+        _profile: erc
+        _export: yes
+        _status: public
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - ezid.cdlib.org
+      Content-Type:
+      - text/plain; charset=UTF-8
+      Authorization:
+      - Basic YXBpdGVzdDphcGl0ZXN0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 12 Jul 2016 17:40:03 GMT
+      Server:
+      - Apache/2.2.17 (Unix) mod_ssl/2.2.17 OpenSSL/1.0.1k-fips mod_wsgi/4.4.9 Python/2.7.6
+      Content-Length:
+      - '30'
+      Vary:
+      - Accept-Language,Cookie
+      Content-Language:
+      - en
+      Content-Type:
+      - text/plain; charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: 'success: ark:/99999/fk4cv4s41d'
+    http_version: 
+  recorded_at: Tue, 12 Jul 2016 17:40:02 GMT
+- request:
+    method: get
+    uri: https://ezid.cdlib.org/id/ark:/99999/fk48342974
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - ezid.cdlib.org
+      Content-Type:
+      - text/plain; charset=UTF-8
+      Authorization:
+      - Basic YXBpdGVzdDphcGl0ZXN0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 12 Jul 2016 17:41:21 GMT
+      Server:
+      - Apache/2.2.17 (Unix) mod_ssl/2.2.17 OpenSSL/1.0.1k-fips mod_wsgi/4.4.9 Python/2.7.6
+      Content-Length:
+      - '209'
+      Vary:
+      - Accept-Language,Cookie
+      Content-Language:
+      - en
+      Content-Type:
+      - text/plain; charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: |
+        success: ark:/99999/fk48342974
+        _updated: 1468345280
+        _target: http://ezid.cdlib.org/id/ark:/99999/fk48342974
+        _profile: erc
+        _ownergroup: apitest
+        _owner: apitest
+        _export: yes
+        _created: 1468345280
+        _status: public
+    http_version: 
+  recorded_at: Tue, 12 Jul 2016 17:41:20 GMT
+- request:
+    method: post
+    uri: https://ezid.cdlib.org/id/ark:/99999/fk48342974
+    body:
+      encoding: UTF-8
+      string: |-
+        _target: http://test.host/lib/ark:/99999/fk48342974
+        _profile: erc
+        _export: yes
+        _status: public
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - ezid.cdlib.org
+      Content-Type:
+      - text/plain; charset=UTF-8
+      Authorization:
+      - Basic YXBpdGVzdDphcGl0ZXN0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 12 Jul 2016 17:41:22 GMT
+      Server:
+      - Apache/2.2.17 (Unix) mod_ssl/2.2.17 OpenSSL/1.0.1k-fips mod_wsgi/4.4.9 Python/2.7.6
+      Content-Length:
+      - '30'
+      Vary:
+      - Accept-Language,Cookie
+      Content-Language:
+      - en
+      Content-Type:
+      - text/plain; charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: 'success: ark:/99999/fk48342974'
+    http_version: 
+  recorded_at: Tue, 12 Jul 2016 17:41:21 GMT
+- request:
+    method: get
+    uri: https://ezid.cdlib.org/id/ark:/99999/fk44b3bh5f
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - ezid.cdlib.org
+      Content-Type:
+      - text/plain; charset=UTF-8
+      Authorization:
+      - Basic YXBpdGVzdDphcGl0ZXN0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 12 Jul 2016 17:44:05 GMT
+      Server:
+      - Apache/2.2.17 (Unix) mod_ssl/2.2.17 OpenSSL/1.0.1k-fips mod_wsgi/4.4.9 Python/2.7.6
+      Content-Length:
+      - '209'
+      Vary:
+      - Accept-Language,Cookie
+      Content-Language:
+      - en
+      Content-Type:
+      - text/plain; charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: |
+        success: ark:/99999/fk44b3bh5f
+        _updated: 1468345444
+        _target: http://ezid.cdlib.org/id/ark:/99999/fk44b3bh5f
+        _profile: erc
+        _ownergroup: apitest
+        _owner: apitest
+        _export: yes
+        _created: 1468345444
+        _status: public
+    http_version: 
+  recorded_at: Tue, 12 Jul 2016 17:44:04 GMT
+- request:
+    method: post
+    uri: https://ezid.cdlib.org/id/ark:/99999/fk44b3bh5f
+    body:
+      encoding: UTF-8
+      string: |-
+        _target: http://test.host/lib/ark:/99999/fk44b3bh5f
+        _profile: erc
+        _export: yes
+        _status: public
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - ezid.cdlib.org
+      Content-Type:
+      - text/plain; charset=UTF-8
+      Authorization:
+      - Basic YXBpdGVzdDphcGl0ZXN0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 12 Jul 2016 17:44:06 GMT
+      Server:
+      - Apache/2.2.17 (Unix) mod_ssl/2.2.17 OpenSSL/1.0.1k-fips mod_wsgi/4.4.9 Python/2.7.6
+      Content-Length:
+      - '30'
+      Vary:
+      - Accept-Language,Cookie
+      Content-Language:
+      - en
+      Content-Type:
+      - text/plain; charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: 'success: ark:/99999/fk44b3bh5f'
+    http_version: 
+  recorded_at: Tue, 12 Jul 2016 17:44:05 GMT
+- request:
+    method: get
+    uri: https://ezid.cdlib.org/id/ark:/99999/fk4vx0mf9k
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - ezid.cdlib.org
+      Content-Type:
+      - text/plain; charset=UTF-8
+      Authorization:
+      - Basic YXBpdGVzdDphcGl0ZXN0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 12 Jul 2016 17:49:27 GMT
+      Server:
+      - Apache/2.2.17 (Unix) mod_ssl/2.2.17 OpenSSL/1.0.1k-fips mod_wsgi/4.4.9 Python/2.7.6
+      Content-Length:
+      - '209'
+      Vary:
+      - Accept-Language,Cookie
+      Content-Language:
+      - en
+      Content-Type:
+      - text/plain; charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: |
+        success: ark:/99999/fk4vx0mf9k
+        _updated: 1468345765
+        _target: http://ezid.cdlib.org/id/ark:/99999/fk4vx0mf9k
+        _profile: erc
+        _ownergroup: apitest
+        _owner: apitest
+        _export: yes
+        _created: 1468345765
+        _status: public
+    http_version: 
+  recorded_at: Tue, 12 Jul 2016 17:49:26 GMT
+- request:
+    method: post
+    uri: https://ezid.cdlib.org/id/ark:/99999/fk4vx0mf9k
+    body:
+      encoding: UTF-8
+      string: |-
+        _target: http://test.host/lib/ark:/99999/fk4vx0mf9k
+        _profile: erc
+        _export: yes
+        _status: public
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - ezid.cdlib.org
+      Content-Type:
+      - text/plain; charset=UTF-8
+      Authorization:
+      - Basic YXBpdGVzdDphcGl0ZXN0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 12 Jul 2016 17:49:27 GMT
+      Server:
+      - Apache/2.2.17 (Unix) mod_ssl/2.2.17 OpenSSL/1.0.1k-fips mod_wsgi/4.4.9 Python/2.7.6
+      Content-Length:
+      - '30'
+      Vary:
+      - Accept-Language,Cookie
+      Content-Language:
+      - en
+      Content-Type:
+      - text/plain; charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: 'success: ark:/99999/fk4vx0mf9k'
+    http_version: 
+  recorded_at: Tue, 12 Jul 2016 17:49:26 GMT
+- request:
+    method: post
+    uri: https://ezid.cdlib.org/shoulder/ark:/99999/fk4
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - ezid.cdlib.org
+      Content-Type:
+      - text/plain; charset=UTF-8
+      Authorization:
+      - Basic YXBpdGVzdDphcGl0ZXN0
+  response:
+    status:
+      code: 201
+      message: CREATED
+    headers:
+      Date:
+      - Tue, 12 Jul 2016 17:57:30 GMT
+      Server:
+      - Apache/2.2.17 (Unix) mod_ssl/2.2.17 OpenSSL/1.0.1k-fips mod_wsgi/4.4.9 Python/2.7.6
+      Content-Length:
+      - '30'
+      Vary:
+      - Accept-Language,Cookie
+      Content-Language:
+      - en
+      Content-Type:
+      - text/plain; charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: 'success: ark:/99999/fk4r49wn3x'
+    http_version: 
+  recorded_at: Tue, 12 Jul 2016 17:57:30 GMT
+- request:
+    method: get
+    uri: https://ezid.cdlib.org/id/ark:/99999/fk4r49wn3x
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - ezid.cdlib.org
+      Content-Type:
+      - text/plain; charset=UTF-8
+      Authorization:
+      - Basic YXBpdGVzdDphcGl0ZXN0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 12 Jul 2016 17:57:32 GMT
+      Server:
+      - Apache/2.2.17 (Unix) mod_ssl/2.2.17 OpenSSL/1.0.1k-fips mod_wsgi/4.4.9 Python/2.7.6
+      Content-Length:
+      - '209'
+      Vary:
+      - Accept-Language,Cookie
+      Content-Language:
+      - en
+      Content-Type:
+      - text/plain; charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: |
+        success: ark:/99999/fk4r49wn3x
+        _updated: 1468346251
+        _target: http://ezid.cdlib.org/id/ark:/99999/fk4r49wn3x
+        _profile: erc
+        _ownergroup: apitest
+        _owner: apitest
+        _export: yes
+        _created: 1468346251
+        _status: public
+    http_version: 
+  recorded_at: Tue, 12 Jul 2016 17:57:31 GMT
+- request:
+    method: post
+    uri: https://ezid.cdlib.org/id/ark:/99999/fk4r49wn3x
+    body:
+      encoding: UTF-8
+      string: |-
+        _target: http://test.host/lib/ark:/99999/fk4r49wn3x
+        _profile: erc
+        _export: yes
+        _status: public
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - ezid.cdlib.org
+      Content-Type:
+      - text/plain; charset=UTF-8
+      Authorization:
+      - Basic YXBpdGVzdDphcGl0ZXN0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 12 Jul 2016 17:57:32 GMT
+      Server:
+      - Apache/2.2.17 (Unix) mod_ssl/2.2.17 OpenSSL/1.0.1k-fips mod_wsgi/4.4.9 Python/2.7.6
+      Content-Length:
+      - '30'
+      Vary:
+      - Accept-Language,Cookie
+      Content-Language:
+      - en
+      Content-Type:
+      - text/plain; charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: 'success: ark:/99999/fk4r49wn3x'
+    http_version: 
+  recorded_at: Tue, 12 Jul 2016 17:57:31 GMT
+- request:
+    method: get
+    uri: http://id.loc.gov/vocabulary/resourceTypes/aum
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
+        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
+        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, application/trig,
+        application/x-trig, application/trix
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/ld+json
+      Cache-Control:
+      - public, max-age=1209600
+      Etag:
+      - a41603f5a7d5982bbd7095b5465d025f
+      X-Uri:
+      - http://id.loc.gov/vocabulary/resourceTypes/aum
+      Server:
+      - Apache
+      Content-Length:
+      - '2409'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Tue, 12 Jul 2016 17:57:41 GMT
+      X-Varnish:
+      - 345659854 343627073
+      Age:
+      - '517201'
+      Via:
+      - 1.1 varnish
+      Connection:
+      - keep-alive
+      X-Cache:
+      - HIT
+      X-Cache-Hits:
+      - '81'
+    body:
+      encoding: UTF-8
+      string: |-
+        [  { "@id": "_:b24vocabularyresourceTypesaum", "@type": [ "http://www.loc.gov/mads/rdf/v1#Variant" ], "http://www.loc.gov/mads/rdf/v1#variantLabel": [ { "@language": "en",
+        "@value": "Sound recording - musical" } ] },  { "@id": "http://id.loc.gov/vocabulary/resourceTypes/aum", "@type": [ "http://www.w3.org/2002/07/owl#Class", "http://www.loc.gov/mads/rdf/v1#Authority", "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.w3.org/2000/01/rdf-schema#subClassOf": [ { "@id": "http://id.loc.gov/vocabulary/resourceTypes/aud" } ], "http://www.loc.gov/mads/rdf/v1#hasBroaderAuthority": [ { "@id": "http://id.loc.gov/vocabulary/resourceTypes/aud" } ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@language": "en",
+        "@value": "Audio musical" } ], "http://www.loc.gov/mads/rdf/v1#hasVariant": [ { "@id": "_:b15vocabularyresourceTypesaum" }, { "@id": "_:b24vocabularyresourceTypesaum" } ], "http://www.loc.gov/mads/rdf/v1#code": [ { "@value": "aum" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSScheme": [ { "@id": "http://id.loc.gov/vocabulary/resourceTypes" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "en",
+        "@value": "Audio musical" } ], "http://www.w3.org/2008/05/skos-xl#altLabel": [ { "@id": "_:b40vocabularyresourceTypesaum" }, { "@id": "_:b45vocabularyresourceTypesaum" } ], "http://www.w3.org/2004/02/skos/core#broader": [ { "@id": "http://id.loc.gov/vocabulary/resourceTypes/aud" } ], "http://www.w3.org/2004/02/skos/core#notation": [ { "@value": "aum" } ], "http://www.w3.org/2004/02/skos/core#inScheme": [ { "@id": "http://id.loc.gov/vocabulary/resourceTypes" } ], "http://www.w3.org/2004/02/skos/core#altLabel": [ { "@language": "en",
+        "@value": "Audio music" }, { "@language": "en",
+        "@value": "Sound recording - musical" } ] },  { "@id": "_:b45vocabularyresourceTypesaum", "@type": [ "http://www.w3.org/2008/05/skos-xl#Label" ], "http://www.w3.org/2008/05/skos-xl#literalForm": [ { "@language": "en",
+        "@value": "Sound recording - musical" } ] },  { "@id": "_:b40vocabularyresourceTypesaum", "@type": [ "http://www.w3.org/2008/05/skos-xl#Label" ], "http://www.w3.org/2008/05/skos-xl#literalForm": [ { "@language": "en",
+        "@value": "Audio music" } ] },  { "@id": "_:b15vocabularyresourceTypesaum", "@type": [ "http://www.loc.gov/mads/rdf/v1#Variant" ], "http://www.loc.gov/mads/rdf/v1#variantLabel": [ { "@language": "en",
+        "@value": "Audio music" } ] } ]
+    http_version: 
+  recorded_at: Tue, 12 Jul 2016 17:57:40 GMT
+- request:
+    method: get
+    uri: http://id.loc.gov/vocabulary/iso639-2/eng
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
+        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
+        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, application/trig,
+        application/x-trig, application/trix
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/ld+json
+      Cache-Control:
+      - public, max-age=1209600
+      Etag:
+      - 485e446f4f7f0debee5857a0da497598
+      X-Uri:
+      - http://id.loc.gov/vocabulary/iso639-2/eng
+      Server:
+      - Apache
+      Content-Length:
+      - '3779'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Tue, 12 Jul 2016 17:57:44 GMT
+      X-Varnish:
+      - 345659863 343627114
+      Age:
+      - '517197'
+      Via:
+      - 1.1 varnish
+      Connection:
+      - keep-alive
+      X-Cache:
+      - HIT
+      X-Cache-Hits:
+      - '30'
+    body:
+      encoding: UTF-8
+      string: |-
+        [  { "@id": "_:b81vocabularyiso639-2eng", "@type": [ "http://www.w3.org/2008/05/skos-xl#Label" ], "http://www.w3.org/2008/05/skos-xl#literalForm": [ { "@language": "fr",
+        "@value": "anglais" } ] },  { "@id": "_:b86vocabularyiso639-2eng", "@type": [ "http://www.w3.org/2008/05/skos-xl#Label" ], "http://www.w3.org/2008/05/skos-xl#literalForm": [ { "@language": "de",
+        "@value": "Englisch" } ] },  { "@id": "_:b76vocabularyiso639-2eng", "@type": [ "http://www.w3.org/2008/05/skos-xl#Label" ], "http://www.w3.org/2008/05/skos-xl#literalForm": [ { "@language": "en",
+        "@value": "English" } ] },  { "@id": "_:b30vocabularyiso639-2eng", "@type": [ "http://www.loc.gov/mads/rdf/v1#Language", "http://www.loc.gov/mads/rdf/v1#Variant" ], "http://www.loc.gov/mads/rdf/v1#variantLabel": [ { "@language": "fr",
+        "@value": "anglais" } ] },  { "@id": "http://id.loc.gov/vocabulary/iso639-2/eng", "@type": [ "http://www.loc.gov/mads/rdf/v1#Language", "http://www.loc.gov/mads/rdf/v1#Authority", "http://id.loc.gov/vocabulary/iso639-2/iso639-2_Language", "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@language": "en",
+        "@value": "English" }, { "@language": "fr",
+        "@value": "anglais" }, { "@language": "de",
+        "@value": "Englisch" } ], "http://www.loc.gov/mads/rdf/v1#hasVariant": [ { "@id": "_:b19vocabularyiso639-2eng" }, { "@id": "_:b30vocabularyiso639-2eng" }, { "@id": "_:b41vocabularyiso639-2eng" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSScheme": [ { "@id": "http://id.loc.gov/vocabulary/iso639-2" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSCollection": [ { "@id": "http://id.loc.gov/vocabulary/iso639-2/collection_iso639-2_Bibliographic_Codes" }, { "@id": "http://id.loc.gov/vocabulary/iso639-2/collection_PastPresentISO639-2Entries" }, { "@id": "http://id.loc.gov/vocabulary/iso639-2/collection_iso639-2" } ], "http://www.loc.gov/mads/rdf/v1#note": [ { "@language": "en",
+        "@value": "Bibliographic Code" } ], "http://www.loc.gov/mads/rdf/v1#hasExactExternalAuthority": [ { "@id": "http://id.loc.gov/vocabulary/languages/eng" }, { "@id": "http://id.loc.gov/vocabulary/iso639-1/en" } ], "http://www.loc.gov/mads/rdf/v1#code": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "eng" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "en",
+        "@value": "English" }, { "@language": "fr",
+        "@value": "anglais" }, { "@language": "de",
+        "@value": "Englisch" } ], "http://www.w3.org/2008/05/skos-xl#altLabel": [ { "@id": "_:b76vocabularyiso639-2eng" }, { "@id": "_:b81vocabularyiso639-2eng" }, { "@id": "_:b86vocabularyiso639-2eng" } ], "http://www.w3.org/2004/02/skos/core#exactMatch": [ { "@id": "http://id.loc.gov/vocabulary/languages/eng" }, { "@id": "http://id.loc.gov/vocabulary/iso639-1/en" } ], "http://www.w3.org/2004/02/skos/core#note": [ { "@language": "en",
+        "@value": "Bibliographic Code" } ], "http://www.w3.org/2004/02/skos/core#notation": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "eng" } ], "http://www.w3.org/2004/02/skos/core#inScheme": [ { "@id": "http://id.loc.gov/vocabulary/iso639-2" } ], "http://www.w3.org/2004/02/skos/core#altLabel": [ { "@language": "en",
+        "@value": "English" }, { "@language": "fr",
+        "@value": "anglais" }, { "@language": "de",
+        "@value": "Englisch" } ] },  { "@id": "_:b19vocabularyiso639-2eng", "@type": [ "http://www.loc.gov/mads/rdf/v1#Language", "http://www.loc.gov/mads/rdf/v1#Variant" ], "http://www.loc.gov/mads/rdf/v1#variantLabel": [ { "@language": "en",
+        "@value": "English" } ] },  { "@id": "_:b41vocabularyiso639-2eng", "@type": [ "http://www.loc.gov/mads/rdf/v1#Language", "http://www.loc.gov/mads/rdf/v1#Variant" ], "http://www.loc.gov/mads/rdf/v1#variantLabel": [ { "@language": "de",
+        "@value": "Englisch" } ] } ]
+    http_version: 
+  recorded_at: Tue, 12 Jul 2016 17:57:43 GMT
+- request:
+    method: get
+    uri: http://id.loc.gov/vocabulary/iso639-2/ita
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
+        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
+        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, application/trig,
+        application/x-trig, application/trix
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/ld+json
+      Cache-Control:
+      - public, max-age=1209600
+      Etag:
+      - 9dc0a93ba079616ff86f3563bbecac9e
+      X-Uri:
+      - http://id.loc.gov/vocabulary/iso639-2/ita
+      Server:
+      - Apache
+      Content-Length:
+      - '3794'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Tue, 12 Jul 2016 17:57:45 GMT
+      X-Varnish:
+      - 345659870 343627161
+      Age:
+      - '517196'
+      Via:
+      - 1.1 varnish
+      Connection:
+      - keep-alive
+      X-Cache:
+      - HIT
+      X-Cache-Hits:
+      - '21'
+    body:
+      encoding: UTF-8
+      string: |-
+        [  { "@id": "_:b76vocabularyiso639-2ita", "@type": [ "http://www.w3.org/2008/05/skos-xl#Label" ], "http://www.w3.org/2008/05/skos-xl#literalForm": [ { "@language": "en",
+        "@value": "Italian" } ] },  { "@id": "_:b19vocabularyiso639-2ita", "@type": [ "http://www.loc.gov/mads/rdf/v1#Language", "http://www.loc.gov/mads/rdf/v1#Variant" ], "http://www.loc.gov/mads/rdf/v1#variantLabel": [ { "@language": "en",
+        "@value": "Italian" } ] },  { "@id": "_:b81vocabularyiso639-2ita", "@type": [ "http://www.w3.org/2008/05/skos-xl#Label" ], "http://www.w3.org/2008/05/skos-xl#literalForm": [ { "@language": "fr",
+        "@value": "italien" } ] },  { "@id": "_:b41vocabularyiso639-2ita", "@type": [ "http://www.loc.gov/mads/rdf/v1#Language", "http://www.loc.gov/mads/rdf/v1#Variant" ], "http://www.loc.gov/mads/rdf/v1#variantLabel": [ { "@language": "de",
+        "@value": "Italienisch" } ] },  { "@id": "http://id.loc.gov/vocabulary/iso639-2/ita", "@type": [ "http://www.loc.gov/mads/rdf/v1#Language", "http://www.loc.gov/mads/rdf/v1#Authority", "http://id.loc.gov/vocabulary/iso639-2/iso639-2_Language", "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@language": "en",
+        "@value": "Italian" }, { "@language": "fr",
+        "@value": "italien" }, { "@language": "de",
+        "@value": "Italienisch" } ], "http://www.loc.gov/mads/rdf/v1#hasVariant": [ { "@id": "_:b19vocabularyiso639-2ita" }, { "@id": "_:b30vocabularyiso639-2ita" }, { "@id": "_:b41vocabularyiso639-2ita" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSScheme": [ { "@id": "http://id.loc.gov/vocabulary/iso639-2" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSCollection": [ { "@id": "http://id.loc.gov/vocabulary/iso639-2/collection_iso639-2_Bibliographic_Codes" }, { "@id": "http://id.loc.gov/vocabulary/iso639-2/collection_PastPresentISO639-2Entries" }, { "@id": "http://id.loc.gov/vocabulary/iso639-2/collection_iso639-2" } ], "http://www.loc.gov/mads/rdf/v1#note": [ { "@language": "en",
+        "@value": "Bibliographic Code" } ], "http://www.loc.gov/mads/rdf/v1#hasExactExternalAuthority": [ { "@id": "http://id.loc.gov/vocabulary/languages/ita" }, { "@id": "http://id.loc.gov/vocabulary/iso639-1/it" } ], "http://www.loc.gov/mads/rdf/v1#code": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "ita" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "en",
+        "@value": "Italian" }, { "@language": "fr",
+        "@value": "italien" }, { "@language": "de",
+        "@value": "Italienisch" } ], "http://www.w3.org/2008/05/skos-xl#altLabel": [ { "@id": "_:b76vocabularyiso639-2ita" }, { "@id": "_:b81vocabularyiso639-2ita" }, { "@id": "_:b86vocabularyiso639-2ita" } ], "http://www.w3.org/2004/02/skos/core#exactMatch": [ { "@id": "http://id.loc.gov/vocabulary/languages/ita" }, { "@id": "http://id.loc.gov/vocabulary/iso639-1/it" } ], "http://www.w3.org/2004/02/skos/core#note": [ { "@language": "en",
+        "@value": "Bibliographic Code" } ], "http://www.w3.org/2004/02/skos/core#notation": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "ita" } ], "http://www.w3.org/2004/02/skos/core#inScheme": [ { "@id": "http://id.loc.gov/vocabulary/iso639-2" } ], "http://www.w3.org/2004/02/skos/core#altLabel": [ { "@language": "en",
+        "@value": "Italian" }, { "@language": "fr",
+        "@value": "italien" }, { "@language": "de",
+        "@value": "Italienisch" } ] },  { "@id": "_:b86vocabularyiso639-2ita", "@type": [ "http://www.w3.org/2008/05/skos-xl#Label" ], "http://www.w3.org/2008/05/skos-xl#literalForm": [ { "@language": "de",
+        "@value": "Italienisch" } ] },  { "@id": "_:b30vocabularyiso639-2ita", "@type": [ "http://www.loc.gov/mads/rdf/v1#Language", "http://www.loc.gov/mads/rdf/v1#Variant" ], "http://www.loc.gov/mads/rdf/v1#variantLabel": [ { "@language": "fr",
+        "@value": "italien" } ] } ]
+    http_version: 
+  recorded_at: Tue, 12 Jul 2016 17:57:44 GMT
+recorded_with: VCR 3.0.3
