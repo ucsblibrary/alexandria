@@ -38,13 +38,26 @@ class ObjectIndexer < CurationConcerns::WorkIndexer
 
   private
 
-    # returns two arrays, a list of ids and a list of titles
+    # Find all the collections the object belongs to, whether
+    # it has normal hydra-style collection membership or it
+    # uses the "local_collection_id" work-around to associate
+    # the object with a collection.
+    # Returns two arrays, a list of ids and a list of titles.
     def collections
-      return [] unless object.id
-      query = ActiveFedora::SolrQueryBuilder.construct_query_for_rel(member_ids: object.id,
-                                                                     has_model: Collection.to_class_uri)
-      results = ActiveFedora::SolrService.query(query, fl: 'title_tesim id'.freeze)
+      results = (query_for_local_collections + query_for_hydra_collections).uniq
       results.map { |coll| [coll['id'], coll['title_tesim']] }.transpose.map(&:flatten)
+    end
+
+    def query_for_local_collections
+      return [] if object.local_collection_id.blank?
+      query = ActiveFedora::SolrQueryBuilder.construct_query_for_ids(object.local_collection_id)
+      ActiveFedora::SolrService.query(query, fl: 'title_tesim id'.freeze)
+    end
+
+    def query_for_hydra_collections
+      return [] unless object.id
+      query = ActiveFedora::SolrQueryBuilder.construct_query_for_rel(member_ids: object.id, has_model: Collection.to_class_uri)
+      ActiveFedora::SolrService.query(query, fl: 'title_tesim id'.freeze)
     end
 
     def index_contributors(solr_doc)

@@ -2,7 +2,7 @@ module ApplicationHelper
   include CurationConcerns::CatalogHelper
 
   def link_to_collection(stuff)
-    collection_id = Array(stuff.fetch(:document)[ImageIndexer::COLLECTION]).first
+    collection_id = Array(stuff.fetch(:document)[ObjectIndexer::COLLECTION]).first
     if collection_id
       link_to stuff.fetch(:value).first, collections.collection_path(collection_id)
     else
