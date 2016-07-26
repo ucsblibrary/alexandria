@@ -23,26 +23,26 @@ module Importer
       $stdout.sync = true  # flush output immediately
     end
 
-    def run
-      # XMLReader's Enumerable methods are destructive, so move the
-      # MARC::Records to an array so we can measure them:
-      # https://github.com/ruby-marc/ruby-marc/pull/47
-      marcs = metadata_files.map do |m|
-        MARC::XMLReader.new(m).map { |o| o }
-      end.flatten
+    def indexer
+      return @indexer if @indexer
 
+      # https://github.com/traject/traject/blob/master/lib/traject/indexer.rb#L101
+      @indexer = Traject::Indexer.new
+      @indexer.load_config_file('lib/traject/audio_config.rb')
+      @indexer.settings(files_dirs: files_dirs)
+      @indexer.settings(verbose: options[:verbose])
+      @indexer
+    end
+
+    def run
+      marcs = parse_marc_files(metadata_files)
       cylinders = marcs.length
 
       if options[:skip] && options[:skip] >= cylinders
         raise ArgumentError, "Number of records skipped (#{options[:skip]}) greater than total records to ingest"
       end
 
-      # https://github.com/traject/traject/blob/master/lib/traject/indexer.rb#L101
-      indexer = Traject::Indexer.new
-      indexer.load_config_file('lib/traject/audio_config.rb')
       print_files_dirs
-      indexer.settings(files_dirs: files_dirs)
-      indexer.settings(verbose: options[:verbose])
 
       marcs.each_with_index do |record, count|
         next if options[:skip] && options[:skip] > count
@@ -57,7 +57,7 @@ module Importer
 
         start_record = Time.now
 
-        rec = indexer.writer.put indexer.map_record(record)
+        rec = indexer.writer.put attributes(record, indexer)
         @imported_records_count += 1
 
         end_record = Time.now
@@ -67,6 +67,20 @@ module Importer
       end  # marcs.each_with_index
     ensure
       indexer.writer.close if indexer && indexer.writer
+    end
+
+    # XMLReader's Enumerable methods are destructive, so move the
+    # MARC::Records to an array so we can measure them:
+    # https://github.com/ruby-marc/ruby-marc/pull/47
+    def parse_marc_files(metadata_files)
+      metadata_files.map do |m|
+        MARC::XMLReader.new(m).map { |o| o }
+      end.flatten
+    end
+
+    # Attributes for 1 MARC record
+    def attributes(record, indexer)
+      indexer.map_record(record)
     end
 
 

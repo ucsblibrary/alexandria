@@ -21,7 +21,6 @@ describe Importer::Cylinder do
     allow_any_instance_of(RDF::DeepIndexingService).to receive(:fetch_external)
   end
 
-
   # The full import process, from start to finish
   describe 'import records from MARC files' do
     before do
@@ -143,4 +142,24 @@ describe Importer::Cylinder do
       expect(audio.language).to eq []
     end
   end
+
+  describe '#attributes' do
+    let(:meta_files) { [File.join(fixture_path, 'marcxml', 'cylinder_sample_marc.xml')] }
+
+    let(:marc_record) do
+      records = importer.parse_marc_files(meta_files)
+      records.first
+    end
+
+    let(:indexer) { importer.indexer }
+
+    subject { importer.attributes(marc_record, indexer) }
+
+    it 'parses the attributs from the MARC file' do
+      expect(subject['extent']).to eq ['1 cylinder (ca. 2 min.) :']
+      expect(subject['publisher']).to eq ['Edison Gold Moulded Record']
+      expect(subject['place_of_publication']).to eq ['Orange, N.J.']
+    end
+  end # attributes
+
 end
