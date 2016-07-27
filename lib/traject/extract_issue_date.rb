@@ -11,7 +11,7 @@ module ExtractIssueDate
                   finish: [finish_date], finish_qualifier: ['approximate'] }
               else
                 { start: date.to_i }
-      end
+              end
       accumulator << attrs
     end
   end
