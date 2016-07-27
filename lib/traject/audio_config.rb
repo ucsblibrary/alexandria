@@ -1,24 +1,26 @@
 require 'object_factory_writer'
 require 'traject/macros/marc_format_classifier'
 require 'traject/macros/marc21_semantics'
-require 'traject/extract_work_type'
+require 'traject/extract_and_join'
 require 'traject/extract_ark'
-require 'traject/extract_fulltext_link'
 require 'traject/extract_contributors'
-require 'traject/extract_language'
-require 'traject/extract_issue_number'
-require 'traject/extract_matrix_number'
+require 'traject/extract_fulltext_link'
 require 'traject/extract_issue_date'
+require 'traject/extract_issue_number'
+require 'traject/extract_language'
+require 'traject/extract_matrix_number'
+require 'traject/extract_work_type'
 extend Traject::Macros::Marc21Semantics
 extend Traject::Macros::MarcFormats
-extend ExtractWorkType
+extend ExtractAndJoin
 extend ExtractArk
-extend ExtractFulltextLink
 extend ExtractContributors
-extend ExtractLanguage
+extend ExtractFulltextLink
 extend ExtractIssueDate
 extend ExtractIssueNumber
+extend ExtractLanguage
 extend ExtractMatrixNumber
+extend ExtractWorkType
 
 settings do
   provide 'writer_class_name', 'ObjectFactoryWriter'
@@ -37,7 +39,7 @@ to_field 'alternative', extract_marc('130:240:246:740')
 to_field 'work_type', extract_work_type
 to_field 'issued_attributes', extract_issue_date
 to_field 'marc_subjects', extract_marc('650', trim_punctuation: true)
-to_field 'extent', extract_marc('300a')
+to_field 'extent', extract_and_join('300a:300b:300c:300e')
 to_field 'issue_number', extract_issue_number
 to_field 'matrix_number', extract_matrix_number
 to_field 'form_of_work', extract_marc('655a', trim_punctuation: true)

@@ -57,6 +57,8 @@
     <subfield code="a">1 cylinder (ca. 2 min.) :</subfield>
     <subfield code="b">160 rpm ;</subfield>
     <subfield code="c">2 1/4 x 4 in.</subfield>
+    <subfield code="d">fake field</subfield>
+    <subfield code="e">1 record slip.</subfield>
   </datafield>
   <datafield tag="561" ind1=" " ind2=" ">
     <subfield code="a">Todd collection.</subfield>
