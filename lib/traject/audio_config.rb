@@ -50,7 +50,7 @@ to_field 'note', extract_and_join('500ab3', separator: '\n\n')
 to_field 'place_of_publication', extract_marc('260a:264a', trim_punctuation: true)
 to_field 'publisher', extract_marc('260b:264b', trim_punctuation: true)
 to_field 'system_number', extract_marc('001')
-to_field 'table_of_contents', extract_marc('505tr')
+to_field 'table_of_contents', extract_marc('505agrtu68')
 to_field 'title', extract_marc('245ab', trim_punctuation: true)
 to_field 'work_type', extract_work_type
 
