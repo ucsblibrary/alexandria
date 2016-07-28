@@ -1,4 +1,14 @@
 class AudioRecordingPresenter < CurationConcerns::WorkShowPresenter
-  delegate :restrictions, :alternative, :issue_number, :matrix_number,
-           :issued, to: :solr_document
+  delegate(
+    :alternative,
+    :extent,
+    :issue_number,
+    :issued,
+    :matrix_number,
+    :notes,
+    :place_of_publication,
+    :restrictions,
+    :table_of_contents,
+    to: :solr_document
+  )
 end
