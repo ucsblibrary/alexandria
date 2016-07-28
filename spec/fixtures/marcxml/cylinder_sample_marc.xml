@@ -57,6 +57,8 @@
     <subfield code="a">1 cylinder (ca. 2 min.) :</subfield>
     <subfield code="b">160 rpm ;</subfield>
     <subfield code="c">2 1/4 x 4 in.</subfield>
+    <subfield code="d">fake field</subfield>
+    <subfield code="e">1 record slip.</subfield>
   </datafield>
   <datafield tag="561" ind1=" " ind2=" ">
     <subfield code="a">Todd collection.</subfield>
@@ -70,6 +72,15 @@
   </datafield>
   <datafield tag="500" ind1=" " ind2=" ">
     <subfield code="a">"Coon song."</subfield>
+  </datafield>
+  <datafield tag="505" ind1="0" ind2=" ">
+    <subfield code="t">The whistling coon</subfield>
+    <subfield code="r">Sam Devere, words /</subfield>
+    <subfield code="r">Sam Raeburn, music --</subfield>
+    <subfield code="t">sleep, baby, sleep --</subfield>
+    <subfield code="t">if it wasn't for the irish and the jews</subfield>
+    <subfield code="r">William Jerome, words /</subfield>
+    <subfield code="r">Jean Schwartz, music</subfield>
   </datafield>
   <datafield tag="511" ind1="0" ind2=" ">
     <subfield code="a">Arthur Collins.</subfield>

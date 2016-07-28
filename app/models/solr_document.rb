@@ -106,6 +106,22 @@ class SolrDocument
     fetch(ObjectIndexer::ISSUED, [])
   end
 
+  def place_of_publication
+    fetch('place_of_publication_tesim', [])
+  end
+
+  def extent
+    fetch('extent_ssm', [])
+  end
+
+  def notes
+    fetch('note_label_tesim', [])
+  end
+
+  def table_of_contents
+    fetch('table_of_contents_tesim', [])
+  end
+
   private
 
     def load_file_sets(ids)
