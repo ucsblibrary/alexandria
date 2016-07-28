@@ -38,7 +38,7 @@ to_field 'id', lambda { |_record, accumulator, context|
 to_field 'alternative', extract_marc('130:240:246:740')
 to_field 'contributors', extract_contributors
 to_field 'description', extract_marc('520a')
-to_field 'extent', extract_and_join('300a:300b:300c:300e')
+to_field 'extent', extract_and_join(field: '300abce', separator: ' ')
 to_field 'form_of_work', extract_marc('655a', trim_punctuation: true)
 to_field 'fulltext_link', extract_fulltext_link
 to_field 'issue_number', extract_issue_number
@@ -46,6 +46,7 @@ to_field 'issued_attributes', extract_issue_date
 to_field 'language', extract_language
 to_field 'marc_subjects', extract_marc('650', trim_punctuation: true)
 to_field 'matrix_number', extract_matrix_number
+to_field 'note', extract_and_join(field: '500ab3', separator: '\n\n')
 to_field 'place_of_publication', extract_marc('260a:264a', trim_punctuation: true)
 to_field 'publisher', extract_marc('260b:264b', trim_punctuation: true)
 to_field 'system_number', extract_marc('001')
