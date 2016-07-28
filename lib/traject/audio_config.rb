@@ -38,7 +38,7 @@ to_field 'id', lambda { |_record, accumulator, context|
 to_field 'alternative', extract_marc('130:240:246:740')
 to_field 'contributors', extract_contributors
 to_field 'description', extract_marc('520a')
-to_field 'extent', extract_and_join(field: '300abce', separator: ' ')
+to_field 'extent', extract_marc('300abce')
 to_field 'form_of_work', extract_marc('655a', trim_punctuation: true)
 to_field 'fulltext_link', extract_fulltext_link
 to_field 'issue_number', extract_issue_number
