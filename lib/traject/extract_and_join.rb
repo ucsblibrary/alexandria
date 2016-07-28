@@ -1,6 +1,5 @@
 module ExtractAndJoin
-  def extract_and_join(options = {})
-    fields = options.fetch(:field)
+  def extract_and_join(fields, options = {})
     separator = options.fetch(:separator, ' ')
 
     extractor = Traject::MarcExtractor.new(fields, separator: separator)
