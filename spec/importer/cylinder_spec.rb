@@ -162,6 +162,7 @@ describe Importer::Cylinder do
                                      '"Coon song."']
       expect(subject['publisher']).to eq ['Edison Gold Moulded Record']
       expect(subject['place_of_publication']).to eq ['Orange, N.J.']
+      expect(subject['table_of_contents']).to eq ["The whistling coon Sam Devere, words / Sam Raeburn, music -- sleep, baby, sleep -- if it wasn't for the irish and the jews William Jerome, words / Jean Schwartz, music"]
     end
   end # attributes
 end

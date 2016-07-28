@@ -101,6 +101,10 @@ module Metadata
       index.as :displayable
     end
 
+    property :table_of_contents, predicate: RDF::Vocab::DC.tableOfContents do |index|
+      index.as :stored_searchable
+    end
+
     # Dates
     property :created, predicate: RDF::Vocab::DC.created, class_name: 'TimeSpan'
     property :date_other, predicate: RDF::Vocab::DC.date, class_name: 'TimeSpan'
