@@ -9,6 +9,7 @@ require 'traject/extract_issue_date'
 require 'traject/extract_issue_number'
 require 'traject/extract_language'
 require 'traject/extract_matrix_number'
+require 'traject/extract_notes'
 require 'traject/extract_work_type'
 extend Traject::Macros::Marc21Semantics
 extend Traject::Macros::MarcFormats
@@ -20,6 +21,7 @@ extend ExtractIssueDate
 extend ExtractIssueNumber
 extend ExtractLanguage
 extend ExtractMatrixNumber
+extend ExtractNotes
 extend ExtractWorkType
 
 settings do
@@ -46,7 +48,7 @@ to_field 'issued_attributes', extract_issue_date
 to_field 'language', extract_language
 to_field 'marc_subjects', extract_marc('650', trim_punctuation: true)
 to_field 'matrix_number', extract_matrix_number
-to_field 'note', extract_and_join('500ab3', subfield: '\n\n')
+to_field 'note', extract_notes
 to_field 'place_of_publication', extract_marc('260a:264a', trim_punctuation: true)
 to_field 'publisher', extract_marc('260b:264b', trim_punctuation: true)
 to_field 'system_number', extract_marc('001')
