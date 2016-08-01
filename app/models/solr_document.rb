@@ -122,6 +122,10 @@ class SolrDocument
     fetch('table_of_contents_tesim', [])
   end
 
+  def form_of_work
+    fetch('form_of_work_label_tesim', [])
+  end
+
   private
 
     def load_file_sets(ids)

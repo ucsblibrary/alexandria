@@ -2,6 +2,7 @@ class AudioRecordingPresenter < CurationConcerns::WorkShowPresenter
   delegate(
     :alternative,
     :extent,
+    :form_of_work,
     :issue_number,
     :issued,
     :matrix_number,
