@@ -156,6 +156,7 @@ describe Importer::Cylinder do
     subject { importer.attributes(marc_record, indexer) }
 
     it 'parses the attributs from the MARC file' do
+      expect(subject['description']).to eq ['Baritone solo with orchestra accompaniment.\n\nIt\'s really good and you should all listen.']
       expect(subject['extent']).to eq ['1 cylinder (ca. 2 min.) : 160 rpm ; 2 1/4 x 4 in. 1 record slip.']
       expect(subject['note']).to eq ['Edison Gold Moulded Record: 8525.',
                                      'Year of release and descriptor from "The Edison Phonograph Monthly," v.1 (1903/1904).',

@@ -1,10 +1,12 @@
 module ExtractAndJoin
   def extract_and_join(fields, options = {})
-    separator = options.fetch(:separator, ' ')
+    fieldsep = options.fetch(:field, nil)
+    subfieldsep = options.fetch(:subfield, ' ')
 
-    extractor = Traject::MarcExtractor.new(fields, separator: separator)
+    extractor = Traject::MarcExtractor.new(fields, separator: subfieldsep)
     lambda do |record, accumulator|
-      accumulator << extractor.extract(record).compact
+      extracted = extractor.extract(record).compact
+      accumulator << (fieldsep ? extracted.join(fieldsep) : extracted)
       accumulator.flatten!
     end
   end
