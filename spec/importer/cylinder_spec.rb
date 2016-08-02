@@ -92,6 +92,20 @@ describe Importer::Cylinder do
       # Check the metadata for record1
       expect(record1.language.first.rdf_subject).to eq RDF::URI('http://id.loc.gov/vocabulary/iso639-2/eng')
       expect(record1.matrix_number).to eq []
+      expect(record1.description).to eq ['Baritone solo with orchestra accompaniment.\n\nIt\'s really good and you should all listen.']
+      expect(record1.extent).to eq ['1 cylinder (ca. 2 min.) : 160 rpm ; 2 1/4 x 4 in. 1 record slip.']
+      expect(record1.form_of_work).to eq ['Musical settings', 'Humorous monologues']
+      expect(record1.notes.map(&:value)).to(
+        contain_exactly(
+          ['Arthur Collins.'],
+          ['"Coon song."'],
+          ['Edison Gold Moulded Record: 8525.'],
+          ['Year of release and descriptor from "The Edison Phonograph Monthly," v.1 (1903/1904).']
+        )
+      )
+      expect(record1.publisher).to eq ['Edison Gold Moulded Record']
+      expect(record1.place_of_publication).to eq ['Orange, N.J.']
+      expect(record1.table_of_contents).to eq ["The whistling coon Sam Devere, words / Sam Raeburn, music -- sleep, baby, sleep -- if it wasn't for the irish and the jews William Jerome, words / Jean Schwartz, music"]
 
       # Check the contributors are correct
       [:performer, :instrumentalist, :lyricist, :arranger, :singer].each do |property_name|
