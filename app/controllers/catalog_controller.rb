@@ -106,7 +106,7 @@ class CatalogController < ApplicationController
 
     # solr fields to be displayed in the index (search results) view
     #   The ordering of the field names is the order of the display
-    config.add_index_field solr_name('form_of_work_label', :stored_searchable), label: 'Format'
+    config.add_index_field solr_name('work_type_label', :stored_searchable), label: 'Format'
     config.add_index_field solr_name('collection_label', :symbol), label: 'Collection'
     config.add_index_field ContributorIndexer::CONTRIBUTOR_LABEL, label: 'Contributors'
     config.add_index_field solr_name('created', :displayable), label: 'Creation Date'
