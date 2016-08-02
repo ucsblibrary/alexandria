@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 ruby '2.3.0'
 
 group :production, :development do
-  gem 'pg', '0.18.4'
+  gem 'pg', '~> 0.18.4'
 end
 
 gem 'rails', '4.2.5.2'

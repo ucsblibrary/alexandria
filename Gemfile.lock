@@ -702,7 +702,7 @@ DEPENDENCIES
   method_source
   mods (~> 2.0.3)
   oargun!
-  pg (= 0.18.4)
+  pg (~> 0.18.4)
   poltergeist
   pry
   pry-doc
