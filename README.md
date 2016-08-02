@@ -26,15 +26,3 @@ See {file:Ingesting.md} and DCE’s wiki:
   collections are indexed, and the second pass will index the
   collection name on all the objects. The object indexer looks up the
   collection name from solr for speed.
-
-# Troubleshooting
-
-- **Passenger fails to spawn process**
-
-    ```
-    [ 2015-11-26 01:56:19.7981 20652/7f16c6f19700 App/Implementation.cpp:303 ]: Could not spawn process for application /opt/alex2/current: An error occurred while starting up the preloader: it did not write a startup response in time.
-    ```
-
-    Try restarting Apache and deploying again.
-
-- **Timeout during assets precompile**:  Not sure yet!
