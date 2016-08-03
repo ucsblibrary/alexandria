@@ -85,6 +85,9 @@
   <datafield tag="511" ind1="0" ind2=" ">
     <subfield code="a">Arthur Collins.</subfield>
   </datafield>
+  <datafield tag="518" ind1=" " ind2=" ">
+    <subfield code="a">Issue number from "Edison Cylinder Records, 1889-1912" / Koenigsberg, c1969.</subfield>
+  </datafield>
   <datafield tag="520" ind1="8" ind2=" ">
     <subfield code="a">Baritone solo with orchestra accompaniment.</subfield>
   </datafield>
