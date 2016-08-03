@@ -41,7 +41,8 @@ describe Importer::Cylinder do
                                      'Year of release and descriptor from "The Edison Phonograph Monthly," v.1 (1903/1904).',
                                      '"Coon song."',
                                      { type: :performer, name: 'Arthur Collins.' },
-                                     { type: :venue, name: 'Issue number from "Edison Cylinder Records, 1889-1912" / Koenigsberg, c1969.' }]
+                                     { type: :venue, name: 'Issue number from "Edison Cylinder Records, 1889-1912" / Koenigsberg, c1969.' },
+                                     { type: :ownership, name: 'Todd collection.' }]
       expect(subject['publisher']).to eq ['Edison Gold Moulded Record']
       expect(subject['place_of_publication']).to eq ['Orange, N.J.']
       expect(subject['table_of_contents']).to eq ["The whistling coon Sam Devere, words / Sam Raeburn, music -- sleep, baby, sleep -- if it wasn't for the irish and the jews William Jerome, words / Jean Schwartz, music"]
@@ -102,6 +103,7 @@ describe Importer::Cylinder do
           ['"Coon song."'],
           ['Edison Gold Moulded Record: 8525.'],
           ['Issue number from "Edison Cylinder Records, 1889-1912" / Koenigsberg, c1969.'],
+          ['Todd collection.'],
           ['Year of release and descriptor from "The Edison Phonograph Monthly," v.1 (1903/1904).']
         )
       )
