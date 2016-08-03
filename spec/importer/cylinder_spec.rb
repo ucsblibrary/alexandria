@@ -3,10 +3,10 @@ require 'importer'
 
 describe Importer::Cylinder do
   let(:files_dir) { File.join(fixture_path, 'cylinders2') }
-  let(:meta_files) {  # Records are spread across 2 files
+  let(:meta_files) do # Records are spread across 2 files
     [File.join(fixture_path, 'marcxml', 'cylinder_sample_marc.xml'),
-     File.join(files_dir, "cylinders_2.xml")]
-  }
+     File.join(files_dir, 'cylinders_2.xml')]
+  end
   let(:options) { {} }
   let(:importer) { described_class.new(meta_files, files_dir, options) }
 
@@ -21,6 +21,32 @@ describe Importer::Cylinder do
     allow_any_instance_of(RDF::DeepIndexingService).to receive(:fetch_external)
   end
 
+  describe '#attributes' do
+    let(:meta_files) { [File.join(fixture_path, 'marcxml', 'cylinder_sample_marc.xml')] }
+
+    let(:marc_record) do
+      records = importer.parse_marc_files(meta_files)
+      records.first
+    end
+
+    let(:indexer) { importer.indexer }
+
+    subject { importer.attributes(marc_record, indexer) }
+
+    it 'parses the attributs from the MARC file' do
+      expect(subject['description']).to eq ['Baritone solo with orchestra accompaniment.\n\nIt\'s really good and you should all listen.']
+      expect(subject['extent']).to eq ['1 cylinder (ca. 2 min.) : 160 rpm ; 2 1/4 x 4 in. 1 record slip.']
+      expect(subject['form_of_work']).to eq ['Musical settings', 'Humorous monologues']
+      expect(subject['note']).to eq ['Edison Gold Moulded Record: 8525.',
+                                     'Year of release and descriptor from "The Edison Phonograph Monthly," v.1 (1903/1904).',
+                                     '"Coon song."',
+                                     { type: :performer, name: 'Arthur Collins.' }]
+      expect(subject['publisher']).to eq ['Edison Gold Moulded Record']
+      expect(subject['place_of_publication']).to eq ['Orange, N.J.']
+      expect(subject['table_of_contents']).to eq ["The whistling coon Sam Devere, words / Sam Raeburn, music -- sleep, baby, sleep -- if it wasn't for the irish and the jews William Jerome, words / Jean Schwartz, music"]
+    end
+  end # attributes
+
   # The full import process, from start to finish
   describe 'import records from MARC files' do
     before do
@@ -34,12 +60,11 @@ describe Importer::Cylinder do
     end
 
     it 'imports the records' do
-      expect {
+      expect do
         VCR.use_cassette('cylinder_import') do
           importer.run
         end
-      }
-        .to change { AudioRecording.count }.by(3)
+      end.to change { AudioRecording.count }.by(3)
         .and(change { FileSet.count }.by(2))
 
       # Make sure the importer reports the correct number
@@ -56,17 +81,31 @@ describe Importer::Cylinder do
       # in the files_dir, so no files will get attached for
       # thise spec.
       expect(record1.file_sets).to eq []
-      expect(record2.file_sets.map(&:title).flatten).to contain_exactly("Cylinder0006", "Cylinder12783")
+      expect(record2.file_sets.map(&:title).flatten).to contain_exactly('Cylinder0006', 'Cylinder12783')
       expect(record3.file_sets).to eq []
 
       # Check the titles
-      expect(record1.title).to eq ["Any rags"]
-      expect(record2.title).to eq ["In the shade of the old apple tree"]
-      expect(record3.title).to eq ["Pagliacci"]
+      expect(record1.title).to eq ['Any rags']
+      expect(record2.title).to eq ['In the shade of the old apple tree']
+      expect(record3.title).to eq ['Pagliacci']
 
       # Check the metadata for record1
       expect(record1.language.first.rdf_subject).to eq RDF::URI('http://id.loc.gov/vocabulary/iso639-2/eng')
       expect(record1.matrix_number).to eq []
+      expect(record1.description).to eq ['Baritone solo with orchestra accompaniment.\n\nIt\'s really good and you should all listen.']
+      expect(record1.extent).to eq ['1 cylinder (ca. 2 min.) : 160 rpm ; 2 1/4 x 4 in. 1 record slip.']
+      expect(record1.form_of_work).to eq ['Musical settings', 'Humorous monologues']
+      expect(record1.notes.map(&:value)).to(
+        contain_exactly(
+          ['Arthur Collins.'],
+          ['"Coon song."'],
+          ['Edison Gold Moulded Record: 8525.'],
+          ['Year of release and descriptor from "The Edison Phonograph Monthly," v.1 (1903/1904).']
+        )
+      )
+      expect(record1.publisher).to eq ['Edison Gold Moulded Record']
+      expect(record1.place_of_publication).to eq ['Orange, N.J.']
+      expect(record1.table_of_contents).to eq ["The whistling coon Sam Devere, words / Sam Raeburn, music -- sleep, baby, sleep -- if it wasn't for the irish and the jews William Jerome, words / Jean Schwartz, music"]
 
       # Check the contributors are correct
       [:performer, :instrumentalist, :lyricist, :arranger, :singer].each do |property_name|
@@ -108,7 +147,7 @@ describe Importer::Cylinder do
 
   context 'a record without an ARK' do
     let(:files_dir) { File.join(fixture_path, 'marcxml') }
-    let(:meta_files) { [File.join(files_dir, "cylinder_missing_ark.xml")] }
+    let(:meta_files) { [File.join(files_dir, 'cylinder_missing_ark.xml')] }
 
     before do
       AudioRecording.all.map(&:id).each do |id|
@@ -117,9 +156,9 @@ describe Importer::Cylinder do
     end
 
     it 'skips that record, but imports other records' do
-      expect {
+      expect do
         importer.run
-      }.to change { AudioRecording.count }.by(1)
+      end.to change { AudioRecording.count }.by(1)
       expect(importer.imported_records_count).to eq 1
     end
   end
@@ -134,38 +173,12 @@ describe Importer::Cylinder do
     end
 
     it 'creates the audio record' do
-      expect {
+      expect do
         importer.run
-      }.to change { AudioRecording.count }.by(1)
+      end.to change { AudioRecording.count }.by(1)
 
       audio = AudioRecording.find(id)
       expect(audio.language).to eq []
     end
   end
-
-  describe '#attributes' do
-    let(:meta_files) { [File.join(fixture_path, 'marcxml', 'cylinder_sample_marc.xml')] }
-
-    let(:marc_record) do
-      records = importer.parse_marc_files(meta_files)
-      records.first
-    end
-
-    let(:indexer) { importer.indexer }
-
-    subject { importer.attributes(marc_record, indexer) }
-
-    it 'parses the attributs from the MARC file' do
-      expect(subject['description']).to eq ['Baritone solo with orchestra accompaniment.\n\nIt\'s really good and you should all listen.']
-      expect(subject['extent']).to eq ['1 cylinder (ca. 2 min.) : 160 rpm ; 2 1/4 x 4 in. 1 record slip.']
-      expect(subject['form_of_work']).to eq ['Musical settings', 'Humorous monologues']
-      expect(subject['note']).to eq ['Edison Gold Moulded Record: 8525.',
-                                     'Year of release and descriptor from "The Edison Phonograph Monthly," v.1 (1903/1904).',
-                                     '"Coon song."',
-                                     { type: :performer, name: 'Arthur Collins.' }]
-      expect(subject['publisher']).to eq ['Edison Gold Moulded Record']
-      expect(subject['place_of_publication']).to eq ['Orange, N.J.']
-      expect(subject['table_of_contents']).to eq ["The whistling coon Sam Devere, words / Sam Raeburn, music -- sleep, baby, sleep -- if it wasn't for the irish and the jews William Jerome, words / Jean Schwartz, music"]
-    end
-  end # attributes
 end
