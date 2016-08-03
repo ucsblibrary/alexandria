@@ -60,10 +60,6 @@
     <subfield code="d">fake field</subfield>
     <subfield code="e">1 record slip.</subfield>
   </datafield>
-  <datafield tag="561" ind1=" " ind2=" ">
-    <subfield code="a">Todd collection.</subfield>
-    <subfield code="5">CU-SB</subfield>
-  </datafield>
   <datafield tag="500" ind1=" " ind2=" ">
     <subfield code="a">Edison Gold Moulded Record: 8525.</subfield>
   </datafield>
@@ -85,6 +81,9 @@
   <datafield tag="511" ind1="0" ind2=" ">
     <subfield code="a">Arthur Collins.</subfield>
   </datafield>
+  <datafield tag="518" ind1=" " ind2=" ">
+    <subfield code="a">Issue number from "Edison Cylinder Records, 1889-1912" / Koenigsberg, c1969.</subfield>
+  </datafield>
   <datafield tag="520" ind1="8" ind2=" ">
     <subfield code="a">Baritone solo with orchestra accompaniment.</subfield>
   </datafield>
@@ -96,6 +95,10 @@
   </datafield>
   <datafield tag="530" ind1=" " ind2=" ">
     <subfield code="a">Also available online via the Internet.</subfield>
+  </datafield>
+  <datafield tag="561" ind1=" " ind2=" ">
+    <subfield code="a">Todd collection.</subfield>
+    <subfield code="5">CU-SB</subfield>
   </datafield>
   <datafield tag="600" ind1="1" ind2="0">
     <subfield code="a">Burns, Robert,</subfield>
