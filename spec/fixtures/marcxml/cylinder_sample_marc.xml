@@ -90,15 +90,15 @@
   <datafield tag="520" ind1="8" ind2=" ">
     <subfield code="a">It's really good and you should all listen.</subfield>
   </datafield>
-  <datafield tag="590" ind1=" " ind2=" ">
-    <subfield code="a">Copies 2, 3 are possible alternate takes.</subfield>
-  </datafield>
   <datafield tag="530" ind1=" " ind2=" ">
     <subfield code="a">Also available online via the Internet.</subfield>
   </datafield>
   <datafield tag="561" ind1=" " ind2=" ">
     <subfield code="a">Todd collection.</subfield>
     <subfield code="5">CU-SB</subfield>
+  </datafield>
+  <datafield tag="590" ind1=" " ind2=" ">
+    <subfield code="a">Copies 2, 3 are possible alternate takes.</subfield>
   </datafield>
   <datafield tag="600" ind1="1" ind2="0">
     <subfield code="a">Burns, Robert,</subfield>

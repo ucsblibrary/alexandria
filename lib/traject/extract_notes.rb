@@ -1,6 +1,6 @@
 module ExtractNotes
   def extract_notes
-    basic_ext = Traject::MarcExtractor.new('500ab3', separator: '\n\n')
+    basic_ext = Traject::MarcExtractor.new('500a:590a', separator: '\n\n')
     performer_ext = Traject::MarcExtractor.new('511a')
     venue_ext = Traject::MarcExtractor.new('518abop3')
     owner_ext = Traject::MarcExtractor.new('561a')

@@ -40,6 +40,7 @@ describe Importer::Cylinder do
       expect(subject['note']).to eq ['Edison Gold Moulded Record: 8525.',
                                      'Year of release and descriptor from "The Edison Phonograph Monthly," v.1 (1903/1904).',
                                      '"Coon song."',
+                                     'Copies 2, 3 are possible alternate takes.',
                                      { type: :performer, name: 'Arthur Collins.' },
                                      { type: :venue, name: 'Issue number from "Edison Cylinder Records, 1889-1912" / Koenigsberg, c1969.' },
                                      { type: :ownership, name: 'Todd collection.' }]
@@ -101,6 +102,7 @@ describe Importer::Cylinder do
         contain_exactly(
           ['Arthur Collins.'],
           ['"Coon song."'],
+          ['Copies 2, 3 are possible alternate takes.'],
           ['Edison Gold Moulded Record: 8525.'],
           ['Issue number from "Edison Cylinder Records, 1889-1912" / Koenigsberg, c1969.'],
           ['Todd collection.'],
