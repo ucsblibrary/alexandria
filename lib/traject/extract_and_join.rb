@@ -3,7 +3,7 @@ module ExtractAndJoin
     fieldsep = options.fetch(:field, nil)
     subfieldsep = options.fetch(:subfield, ' ')
 
-    extractor = Traject::MarcExtractor.new(fields, separator: subfieldsep)
+    extractor = Traject::MarcExtractor.new(fields, separator: subfieldsep, trim_punctuation: true)
     lambda do |record, accumulator|
       extracted = extractor.extract(record).compact
       accumulator << (fieldsep ? extracted.join(fieldsep) : extracted)
