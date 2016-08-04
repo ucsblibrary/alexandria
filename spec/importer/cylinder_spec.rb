@@ -94,6 +94,7 @@ describe Importer::Cylinder do
 
       # Check the metadata for record1
       expect(record1.copyright_status.map(&:class)).to eq [Oargun::ControlledVocabularies::CopyrightStatus]
+      expect(record1.digital_origin).to eq ['reformatted digital']
       expect(record1.language.first.rdf_subject).to eq RDF::URI('http://id.loc.gov/vocabulary/iso639-2/eng')
       expect(record1.matrix_number).to eq []
       expect(record1.description).to eq ['Baritone solo with orchestra accompaniment.\n\nIt\'s really good and you should all listen.']
