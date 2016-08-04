@@ -111,6 +111,7 @@ describe Importer::Cylinder do
       )
       expect(record1.publisher).to eq ['Edison Gold Moulded Record']
       expect(record1.place_of_publication).to eq ['Orange, N.J.']
+      expect(record1.sub_location).to eq ['Department of Special Research Collections']
       expect(record1.table_of_contents).to eq ["The whistling coon Sam Devere, words / Sam Raeburn, music -- sleep, baby, sleep -- if it wasn't for the irish and the jews William Jerome, words / Jean Schwartz, music"]
 
       # Check the contributors are correct
