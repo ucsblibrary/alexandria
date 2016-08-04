@@ -1,6 +1,7 @@
 class AudioRecordingPresenter < CurationConcerns::WorkShowPresenter
   delegate(
     :alternative,
+    :copyright_status,
     :extent,
     :form_of_work,
     :issue_number,

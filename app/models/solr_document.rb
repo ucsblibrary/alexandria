@@ -130,6 +130,10 @@ class SolrDocument
     fetch('rights_holder_label_ssim', [])
   end
 
+  def copyright_status
+    fetch('copyright_status_label_tesim', [])
+  end
+
   private
 
     def load_file_sets(ids)
