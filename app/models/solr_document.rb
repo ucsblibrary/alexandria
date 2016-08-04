@@ -126,6 +126,10 @@ class SolrDocument
     fetch('form_of_work_label_tesim', [])
   end
 
+  def rights_holder
+    fetch('rights_holder_label_ssim', [])
+  end
+
   private
 
     def load_file_sets(ids)
