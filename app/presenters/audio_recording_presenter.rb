@@ -1,6 +1,7 @@
 class AudioRecordingPresenter < CurationConcerns::WorkShowPresenter
   delegate(
     :alternative,
+    :copyright_status,
     :extent,
     :form_of_work,
     :issue_number,
@@ -9,6 +10,8 @@ class AudioRecordingPresenter < CurationConcerns::WorkShowPresenter
     :notes,
     :place_of_publication,
     :restrictions,
+    :rights_holder,
+    :sub_location,
     :table_of_contents,
     to: :solr_document
   )
