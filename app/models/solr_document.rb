@@ -134,6 +134,10 @@ class SolrDocument
     fetch('copyright_status_label_tesim', [])
   end
 
+  def sub_location
+    fetch('sub_location_ssm', [])
+  end
+
   private
 
     def load_file_sets(ids)

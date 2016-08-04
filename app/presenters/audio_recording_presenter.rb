@@ -11,6 +11,7 @@ class AudioRecordingPresenter < CurationConcerns::WorkShowPresenter
     :place_of_publication,
     :restrictions,
     :rights_holder,
+    :sub_location,
     :table_of_contents,
     to: :solr_document
   )
