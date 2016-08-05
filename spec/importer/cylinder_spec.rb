@@ -34,6 +34,7 @@ describe Importer::Cylinder do
     subject { importer.attributes(marc_record, indexer) }
 
     it 'parses the attributs from the MARC file' do
+      expect(subject['accession_number']).to eq ['Cylinder 4373', 'Cylinder 4374', 'Cylinder 4377']
       expect(subject['description']).to eq ['Baritone solo with orchestra accompaniment.\n\nIt\'s really good and you should all listen.']
       expect(subject['extent']).to eq ['1 cylinder (ca. 2 min.) : 160 rpm ; 2 1/4 x 4 in. 1 record slip']
       expect(subject['form_of_work']).to eq ['Musical settings', 'Humorous monologues']
@@ -93,6 +94,7 @@ describe Importer::Cylinder do
       expect(record3.title).to eq ['Pagliacci']
 
       # Check the metadata for record1
+      expect(record1.accession_number).to contain_exactly('Cylinder 4373', 'Cylinder 4374', 'Cylinder 4377')
       expect(record1.copyright_status.map(&:class)).to eq [Oargun::ControlledVocabularies::CopyrightStatus]
       expect(record1.digital_origin).to eq ['reformatted digital']
       expect(record1.language.first.rdf_subject).to eq RDF::URI('http://id.loc.gov/vocabulary/iso639-2/eng')
