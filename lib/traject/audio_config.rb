@@ -50,6 +50,7 @@ to_field 'fulltext_link', extract_fulltext_link
 to_field 'issue_number', extract_issue_number
 to_field 'issued_attributes', extract_issue_date
 to_field 'language', extract_language
+to_field 'location', extract_marc('650z:651az', trim_punctuation: true)
 to_field 'marc_subjects', extract_complex_subject
 to_field 'matrix_number', extract_matrix_number
 to_field 'note', extract_notes
