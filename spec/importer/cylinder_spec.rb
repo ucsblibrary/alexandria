@@ -101,6 +101,7 @@ describe Importer::Cylinder do
 
       # Check the titles
       expect(record1.title).to eq ['Any rags']
+      expect(record1.alternative).to eq ['Le réve.']
       expect(record2.title).to eq ['In the shade of the old apple tree']
       expect(record3.title).to eq ['Pagliacci. Vesti la giubba']
 

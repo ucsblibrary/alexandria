@@ -1,4 +1,4 @@
-  <%= presenter.attribute_to_html(:alternative) %>
+  <%= presenter.attribute_to_html(:alternative, label: 'Variant Title') %>
   <%= presenter.attribute_to_html(:description).gsub('\n', '<br />').html_safe %>
   <%= presenter.attribute_to_html(:creator, catalog_search_link: true ) %>
   <%= presenter.attribute_to_html(:contributor, label: 'Contributors', catalog_search_link: true) %>

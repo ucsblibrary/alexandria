@@ -40,7 +40,7 @@ to_field 'id', lambda { |_record, accumulator, context|
 }
 
 to_field 'accession_number', extract_marc('852j')
-to_field 'alternative', extract_marc('130:240:246:740', trim_punctuation: true)
+to_field 'alternative', extract_marc('130:240:246:740a', trim_punctuation: true)
 to_field 'contributors', extract_contributors
 to_field 'description', extract_and_join('520a', field: '\n')
 to_field 'edition', extract_marc('250a')
