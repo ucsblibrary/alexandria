@@ -41,7 +41,7 @@ to_field 'alternative', extract_marc('130:240:246:740', trim_punctuation: true)
 to_field 'contributors', extract_contributors
 to_field 'description', extract_and_join('520a', field: '\n\n')
 to_field 'extent', extract_marc('300abce', trim_punctuation: true)
-to_field 'form_of_work', extract_marc('600v:655a', trim_punctuation: true)
+to_field 'form_of_work', extract_marc('600v:610v:650v:651v:655a', trim_punctuation: true)
 to_field 'fulltext_link', extract_fulltext_link
 to_field 'issue_number', extract_issue_number
 to_field 'issued_attributes', extract_issue_date
