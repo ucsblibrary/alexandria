@@ -53,7 +53,7 @@ to_field 'place_of_publication', extract_marc('260a:264a', trim_punctuation: tru
 to_field 'publisher', extract_marc('260b:264b', trim_punctuation: true)
 to_field 'system_number', extract_marc('001')
 to_field 'table_of_contents', extract_marc('505agrtu68')
-to_field 'title', extract_marc('245ab', trim_punctuation: true)
+to_field 'title', extract_marc('245abnp', trim_punctuation: true)
 to_field 'work_type', extract_work_type
 
 # This is the cylinder name

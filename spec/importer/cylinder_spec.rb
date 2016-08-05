@@ -90,7 +90,7 @@ describe Importer::Cylinder do
       # Check the titles
       expect(record1.title).to eq ['Any rags']
       expect(record2.title).to eq ['In the shade of the old apple tree']
-      expect(record3.title).to eq ['Pagliacci']
+      expect(record3.title).to eq ['Pagliacci. Vesti la giubba']
 
       # Check the metadata for record1
       expect(record1.copyright_status.map(&:class)).to eq [Oargun::ControlledVocabularies::CopyrightStatus]
