@@ -138,6 +138,10 @@ class SolrDocument
     fetch('sub_location_ssm', [])
   end
 
+  def accession_number
+    fetch('accession_number_tesim', [])
+  end
+
   private
 
     def load_file_sets(ids)
