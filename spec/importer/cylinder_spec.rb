@@ -35,7 +35,7 @@ describe Importer::Cylinder do
 
     it 'parses the attributs from the MARC file' do
       expect(subject['accession_number']).to eq ['Cylinder 4373', 'Cylinder 4374', 'Cylinder 4377']
-      expect(subject['description']).to eq ['Baritone solo with orchestra accompaniment.\n\nIt\'s really good and you should all listen.']
+      expect(subject['description']).to eq ['Baritone solo with orchestra accompaniment.\nIt\'s really good and you should all listen.']
       expect(subject['extent']).to eq ['1 cylinder (ca. 2 min.) : 160 rpm ; 2 1/4 x 4 in. 1 record slip']
       expect(subject['form_of_work']).to eq ['Musical settings', 'Humorous monologues']
       expect(subject['note']).to eq ['Edison Gold Moulded Record: 8525.',
@@ -102,7 +102,7 @@ describe Importer::Cylinder do
       expect(record1.institution.map(&:class)).to eq [Oargun::ControlledVocabularies::Organization]
       expect(record1.language.first.rdf_subject).to eq RDF::URI('http://id.loc.gov/vocabulary/iso639-2/eng')
       expect(record1.matrix_number).to eq []
-      expect(record1.description).to eq ['Baritone solo with orchestra accompaniment.\n\nIt\'s really good and you should all listen.']
+      expect(record1.description).to eq ['Baritone solo with orchestra accompaniment.\nIt\'s really good and you should all listen.']
       expect(record1.extent).to eq ['1 cylinder (ca. 2 min.) : 160 rpm ; 2 1/4 x 4 in. 1 record slip']
       expect(record1.form_of_work).to contain_exactly('Musical settings', 'Humorous monologues')
       expect(record1.notes.map(&:value)).to(
