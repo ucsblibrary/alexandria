@@ -106,8 +106,34 @@
     <subfield code="v">Musical settings.</subfield>
   </datafield>
   <datafield tag="650" ind1=" " ind2="0">
-    <subfield code="a">Popular music</subfield>
-    <subfield code="y">1901-1910.</subfield>
+    <subfield code="a">Music</subfield>
+    <subfield code="z">French Polynesia</subfield>
+    <subfield code="z">Tahiti (Island)</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Presidents</subfield>
+    <subfield code="z">United States</subfield>
+    <subfield code="x">Election</subfield>
+    <subfield code="y">1908.</subfield>
+  </datafield>
+  <datafield tag="650" ind1="" ind2="0">
+    <subfield code="a">Spanish language</subfield>
+    <subfield code="x">Study and teaching</subfield>
+    <subfield code="v">Sound recordings.</subfield>
+  </datafield>
+  <datafield tag="650" ind1="0" ind2="">
+    <subfield code="a">Decoy field with wrong value for "ind2"</subfield>
+  </datafield>
+  <datafield tag="651" ind1=" " ind2="0">
+    <subfield code="a">United States</subfield>
+    <subfield code="x">History</subfield>
+    <subfield code="y">Civil War, 1861-1865</subfield>
+    <subfield code="v">Songs and music.</subfield>
+  </datafield>
+  <datafield tag="651" ind1=" " ind2="0">
+    <subfield code="a">United States</subfield>
+    <subfield code="x">Boundaries</subfield>
+    <subfield code="z">Canada.</subfield>
   </datafield>
   <datafield tag="655" ind1=" " ind2="7">
     <subfield code="a">Humorous monologues.</subfield>

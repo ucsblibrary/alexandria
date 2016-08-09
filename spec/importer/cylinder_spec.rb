@@ -34,10 +34,17 @@ describe Importer::Cylinder do
     subject { importer.attributes(marc_record, indexer) }
 
     it 'parses the attributs from the MARC file' do
+      expect(subject['marc_subjects']).to contain_exactly(
+        "Music -- French Polynesia -- Tahiti (Island)",
+        "Presidents -- United States -- Election -- 1908",
+        "Spanish language -- Study and teaching -- Sound recordings",
+        "United States -- History -- Civil War, 1861-1865 -- Songs and music",
+        "United States -- Boundaries -- Canada"
+      )
       expect(subject['accession_number']).to eq ['Cylinder 4373', 'Cylinder 4374', 'Cylinder 4377']
       expect(subject['description']).to eq ['Baritone solo with orchestra accompaniment.\nIt\'s really good and you should all listen.']
       expect(subject['extent']).to eq ['1 cylinder (ca. 2 min.) : 160 rpm ; 2 1/4 x 4 in. 1 record slip']
-      expect(subject['form_of_work']).to eq ['Musical settings', 'Humorous monologues']
+      expect(subject['form_of_work']).to eq ['Musical settings', 'Sound recordings', 'Songs and music', 'Humorous monologues']
       expect(subject['note']).to eq ['Edison Gold Moulded Record: 8525.',
                                      'Year of release and descriptor from "The Edison Phonograph Monthly," v.1 (1903/1904).',
                                      '"Coon song."',
@@ -104,7 +111,7 @@ describe Importer::Cylinder do
       expect(record1.matrix_number).to eq []
       expect(record1.description).to eq ['Baritone solo with orchestra accompaniment.\nIt\'s really good and you should all listen.']
       expect(record1.extent).to eq ['1 cylinder (ca. 2 min.) : 160 rpm ; 2 1/4 x 4 in. 1 record slip']
-      expect(record1.form_of_work).to contain_exactly('Musical settings', 'Humorous monologues')
+      expect(record1.form_of_work).to contain_exactly("Humorous monologues", "Musical settings", "Songs and music", "Sound recordings")
       expect(record1.notes.map(&:value)).to(
         contain_exactly(
           ['Arthur Collins.'],

@@ -3,6 +3,7 @@ require 'traject/macros/marc_format_classifier'
 require 'traject/macros/marc21_semantics'
 require 'traject/extract_and_join'
 require 'traject/extract_ark'
+require 'traject/extract_complex_subject'
 require 'traject/extract_contributors'
 require 'traject/extract_fulltext_link'
 require 'traject/extract_issue_date'
@@ -15,6 +16,7 @@ extend Traject::Macros::Marc21Semantics
 extend Traject::Macros::MarcFormats
 extend ExtractAndJoin
 extend ExtractArk
+extend ExtractComplexSubject
 extend ExtractContributors
 extend ExtractFulltextLink
 extend ExtractIssueDate
@@ -47,7 +49,7 @@ to_field 'fulltext_link', extract_fulltext_link
 to_field 'issue_number', extract_issue_number
 to_field 'issued_attributes', extract_issue_date
 to_field 'language', extract_language
-to_field 'marc_subjects', extract_marc('650', trim_punctuation: true)
+to_field 'marc_subjects', extract_complex_subject
 to_field 'matrix_number', extract_matrix_number
 to_field 'note', extract_notes
 to_field 'place_of_publication', extract_marc('260a:264a', trim_punctuation: true)
