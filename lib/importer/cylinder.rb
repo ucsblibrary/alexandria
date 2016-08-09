@@ -13,12 +13,22 @@ module Importer
     # Keep track of how many cylinder records we have imported.
     attr_reader :imported_records_count
 
+    # Attributes for the cylinders collection
+    COLLECTION_ATTRIBUTES = {
+      id: 'cylinders',
+      identifier: ['cylinders'],
+      title: ['Wax Cylinders'],
+      accession_number: ['Cylinders'],
+      admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID
+    }
+
 
     def initialize(metadata_files, files_dirs, options={})
       @metadata_files = metadata_files
       @files_dirs = files_dirs
       @options = options
       @imported_records_count = 0
+      @collection = Importer::Factory::CollectionFactory.new(COLLECTION_ATTRIBUTES).find_or_create
 
       $stdout.sync = true  # flush output immediately
     end
@@ -67,6 +77,8 @@ module Importer
       end  # marcs.each_with_index
     ensure
       indexer.writer.close if indexer && indexer.writer
+      puts "Updating collection index"
+      @collection.update_index
     end
 
     # XMLReader's Enumerable methods are destructive, so move the

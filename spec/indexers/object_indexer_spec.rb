@@ -221,6 +221,64 @@ describe ObjectIndexer do
     end
   end
 
+  context 'with "local membership" in a collection' do
+    let!(:image) { create(:image) }
+    let(:red) { Collection.create!(title: ['Red Collection']) }
+    let(:blue) { Collection.create!(title: ['Blue Collection']) }
+
+    before do
+      # The image is a member of the Red collection with the
+      # usual hydra style of collection membership.
+      red.members << image
+      red.save!
+
+      # The image is a member of the Blue collection using the
+      # 'Local Membership' work-around.
+      image.local_collection_id += [blue.id]
+      image.save!
+    end
+
+    it 'indexes both types of collection membership in collection_* fields' do
+      # Make sure this test is set up correctly
+      expect(image.in_collection_ids).to eq [red.id]
+      expect(image.local_collection_id).to eq [blue.id]
+
+      # Both collections should appear in the index
+      expect(subject['collection_ssim']).to eq [blue.id, red.id]
+
+      # Since blue.id was first for the collection_id_*
+      # fields, I expect the blue.title to be first for the
+      # collection_titles_* field.
+      expect(subject['collection_label_ssim']).to eq [blue.title, red.title].flatten
+    end
+  end
+
+  context 'when image belongs to the same collection twice' do
+    let!(:image) { create(:image) }
+    let(:red) { Collection.create!(title: ['Red Collection']) }
+
+    before do
+      # The image is a member of the Red collection with the
+      # usual hydra style of collection membership.
+      red.members << image
+      red.save!
+
+      # And the image is a member of the same collection using
+      # the 'Local Membership' work-around.
+      image.local_collection_id += [red.id]
+      image.save!
+    end
+
+    it 'doesn\'t list the collection twice' do
+      # Make sure this test is set up correctly
+      expect(image.in_collection_ids).to eq [red.id]
+      expect(image.local_collection_id).to eq [red.id]
+
+      expect(subject['collection_ssim']).to eq [red.id]
+      expect(subject['collection_label_ssim']).to eq [red.title.first]
+    end
+  end
+
   context 'with notes' do
     let!(:acq_note) { { note_type: 'acquisition', value: 'Acq Note' } }
     let!(:cit_note) { { note_type: 'preferred citation', value: 'Citation Note' } }

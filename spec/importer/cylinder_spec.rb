@@ -61,6 +61,7 @@ describe Importer::Cylinder do
       AudioRecording.all.map(&:id).each do |id|
         ActiveFedora::Base.find(id).destroy(eradicate: true) if ActiveFedora::Base.exists?(id)
       end
+      Collection.find('cylinders').destroy(eradicate: true) if Collection.exists?('cylinders')
     end
 
     it 'imports the records' do
@@ -70,6 +71,7 @@ describe Importer::Cylinder do
         end
       end.to change { AudioRecording.count }.by(3)
         .and(change { FileSet.count }.by(2))
+        .and(change { Collection.count }.by(1))
 
       # Make sure the importer reports the correct number
       expect(importer.imported_records_count).to eq 3
@@ -159,6 +161,16 @@ describe Importer::Cylinder do
         contributor_id = contributor.first.rdf_label.first.gsub(Regexp.new('^.*\/'), '')
         expect(contributor_id).to eq person.id
       end
+
+      # Check the collection membership
+      coll = Collection.find('cylinders')
+      expect(record1.local_collection_id).to eq [coll.id]
+
+      # Check collection membership is properly indexed in solr
+      solr = Blacklight.default_index.connection
+      res = solr.select(params: { id: coll.id, qt: 'document'})
+      doc = res['response']['docs'].first
+      expect(doc['member_ids_ssim']).to contain_exactly(record1.id, record2.id, record3.id)
     end
   end
 

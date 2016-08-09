@@ -8,6 +8,13 @@ module Metadata
   }.merge(MARCREL)
 
   included do
+
+    # For info about how local_collection_id is used, see:
+    # doc/local_collections.md
+    property :local_collection_id, predicate: RDF::URI('http://opaquenamespace.org/ns/localCollectionID') do |index|
+      index.as :symbol
+    end
+
     # For ARKs
     property :identifier, predicate: RDF::Vocab::DC.identifier do |index|
       index.as :displayable
