@@ -37,6 +37,7 @@ to_field 'id', lambda { |_record, accumulator, context|
   accumulator << Identifier.ark_to_id(context.output_hash['identifier'].first)
 }
 
+to_field 'accession_number', extract_marc('852j')
 to_field 'alternative', extract_marc('130:240:246:740', trim_punctuation: true)
 to_field 'contributors', extract_contributors
 to_field 'description', extract_and_join('520a', field: '\n\n')
