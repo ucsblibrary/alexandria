@@ -118,12 +118,7 @@ describe Importer::Cylinder do
       expect(record1.edition).to eq ['[Pathé Stentor (Concert) ed.]']
       expect(record1.institution.map(&:class)).to eq [Oargun::ControlledVocabularies::Organization]
       expect(record1.language.first.rdf_subject).to eq RDF::URI('http://id.loc.gov/vocabulary/iso639-2/eng')
-      expect(record1.location).to(
-        contain_exactly('United States',
-                        'French Polynesia',
-                        'Tahiti (Island)',
-                        'United States Canada')
-      )
+      expect(record1.location.first.class).to eq Oargun::ControlledVocabularies::Geographic
       expect(record1.matrix_number).to eq []
       expect(record1.description).to eq ['Baritone solo with orchestra accompaniment.\nIt\'s really good and you should all listen.']
       expect(record1.extent).to eq ['1 cylinder (ca. 2 min.) : 160 rpm ; 2 1/4 x 4 in. 1 record slip']

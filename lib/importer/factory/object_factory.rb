@@ -106,6 +106,7 @@ module Importer::Factory
       Ezid::Identifier.create
     end
 
+    # TODO: refactor into `find_or_create_rdf_attribute'
     def find_or_create_contributors(fields, attrs)
       {}.tap do |contributors|
         fields.each do |field|
@@ -115,27 +116,25 @@ module Importer::Factory
       end
     end
 
-    def find_or_create_rights_holders(attrs)
-      rights_holders = attrs.fetch(:rights_holder, []).map do |value|
+    # @param [Symbol] thing :rights_holder, :lc_subject
+    # @param [Hash] attrs
+    # @return [Hash]
+    def find_or_create_rdf_attribute(thing, attrs)
+      values = attrs.fetch(thing, []).map do |value|
         if value.is_a?(RDF::URI)
           value
         else
-          find_or_create_local_rights_holder(value)
+          case thing
+          when :lc_subject
+            find_or_create_local_lc_subject(value)
+          when :location
+            find_or_create_local_location(value)
+          when :rights_holder
+            find_or_create_local_rights_holder(value)
+          end
         end
       end
-
-      rights_holders.blank? ? {} : { rights_holder: rights_holders }
-    end
-
-    def find_or_create_subjects(attrs)
-      subs = attrs.fetch(:lc_subject, []).map do |value|
-        if value.is_a?(RDF::URI)
-          value
-        else
-          find_or_create_local_subject(value)
-        end
-      end
-      subs.blank? ? {} : { lc_subject: subs }
+      values.empty? ? {} : { thing => values }
     end
 
     private
@@ -223,29 +222,40 @@ module Importer::Factory
         RDF::URI(contributor.public_uri)
       end
 
-      def find_or_create_local_rights_holder(name)
-        if name.is_a?(Hash)
-          klass = contributor_classes[name.fetch(:type).downcase]
-          name = name.fetch(:name)
+      # @param [Hash, String] value
+      # @return [RDF::URI]
+      def find_or_create_local_rights_holder(value)
+        if value.is_a?(Hash)
+          klass = contributor_classes[value.fetch(:type).downcase]
+          value = value.fetch(:name)
         end
         klass ||= Agent
 
-        rights_holder = klass.exact_model.where(foaf_name_ssim: name).first
-        rights_holder ||= klass.create(foaf_name: name)
+        rights_holder = klass.exact_model.where(foaf_name_ssim: value).first
+        rights_holder ||= klass.create(foaf_name: value)
         RDF::URI.new(rights_holder.public_uri)
       end
 
-      def find_or_create_local_subject(subj_hash)
-        type = subj_hash.fetch(:type).downcase
+      # @param [Hash] value
+      # @return [RDF::URI]
+      def find_or_create_local_lc_subject(value)
+        type = value.fetch(:type).downcase
 
         if contributor_classes.keys.include?(type)
-          find_or_create_local_contributor(subj_hash)
+          find_or_create_local_contributor(value)
         else
           klass = topic_classes[type]
-          name = subj_hash.fetch(:name)
+          name = value.fetch(:name)
           subj = klass.where(label_ssim: name).first || klass.create(label: Array(name))
           RDF::URI.new(subj.public_uri)
         end
+      end
+
+      # @param [String] value
+      # @return [RDF::URI]
+      def find_or_create_local_location(value)
+        subj = Topic.where(label: value).first || Topic.create(label: [value])
+        RDF::URI.new(subj.public_uri)
       end
 
       # Since arrays of RDF elements are not saved in order in Fedora,
@@ -285,19 +295,21 @@ module Importer::Factory
 
       def transform_attributes
         contributors = find_or_create_contributors(klass.contributor_fields, attributes)
-        rights_holders = find_or_create_rights_holders(attributes)
-        subjects = find_or_create_subjects(attributes)
         notes = extract_notes(attributes)
+        rights_holders = find_or_create_rdf_attribute(:rights_holder, attributes)
+        subjects = find_or_create_rdf_attribute(:lc_subjects, attributes)
+        locations = find_or_create_rdf_attribute(:location, attributes)
 
         description = { description: [join_paragraphs(attributes[:description])] }
         restrictions = { restrictions: [join_paragraphs(attributes[:restrictions])] }
 
         attributes.merge(contributors)
+                  .merge(description)
+                  .merge(locations)
+                  .merge(notes)
+                  .merge(restrictions)
                   .merge(rights_holders)
                   .merge(subjects)
-                  .merge(notes)
-                  .merge(description)
-                  .merge(restrictions)
       end
 
       def extract_notes(attributes)

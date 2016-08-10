@@ -46,77 +46,147 @@ describe Importer::Factory::ObjectFactory do
     end
   end
 
-  describe '#find_or_create_rights_holders' do
-    before { Agent.destroy_all }
-    let(:regents_uri) { 'http://id.loc.gov/authorities/names/n85088322' }
-    let(:regents_string) { 'Regents of the Univ.' }
-    let(:attributes) { { rights_holder: [RDF::URI.new(regents_uri), regents_string] } }
+  describe '#find_or_create_rdf_attribute' do
+    context 'rights_holder' do
+      before { Agent.destroy_all }
+      let(:regents_uri) { 'http://id.loc.gov/authorities/names/n85088322' }
+      let(:regents_string) { 'Regents of the Univ.' }
+      let(:attributes) { { rights_holder: [RDF::URI.new(regents_uri), regents_string] } }
 
-    context "when local rights holder doesn't exist" do
-      it 'creates a rights holder' do
-        expect(Agent.count).to eq 0
-        rh = nil
-        expect do
-          rh = subject.find_or_create_rights_holders(attributes)
-        end.to change { Agent.count }.by(1)
-        expect(rh.fetch(:rights_holder).map(&:class).uniq).to eq [RDF::URI]
-        local_rights_holder = Agent.first
-        expect(local_rights_holder.foaf_name).to eq regents_string
-        expect(rh.fetch(:rights_holder)).to eq [regents_uri, local_rights_holder.public_uri]
+      context "when local rights holder doesn't exist" do
+        it 'creates a rights holder' do
+          expect(Agent.count).to eq 0
+          rh = nil
+          expect do
+            rh = subject.find_or_create_rdf_attribute(:rights_holder, attributes)
+          end.to change { Agent.count }.by(1)
+          expect(rh.fetch(:rights_holder).map(&:class).uniq).to eq [RDF::URI]
+          local_rights_holder = Agent.first
+          expect(local_rights_holder.foaf_name).to eq regents_string
+          expect(rh.fetch(:rights_holder)).to eq [regents_uri, local_rights_holder.public_uri]
+        end
+      end
+
+      context 'when existing local rights holder' do
+        let!(:existing_rh) { Agent.create(foaf_name: regents_string) }
+
+        it 'finds the existing rights holder' do
+          rh = nil
+          expect do
+            rh = subject.find_or_create_rdf_attribute(:rights_holder, attributes)
+          end.to change { Agent.exact_model.count }.by(0)
+
+          expect(rh.fetch(:rights_holder).map(&:to_s)).to eq [regents_uri, existing_rh.public_uri]
+        end
+      end
+
+      context 'when similar name' do
+        let!(:frodo) { Agent.create(foaf_name: 'Frodo Baggins') }
+        let(:attributes) { { rights_holder: ['Bilbo Baggins'] } }
+
+        it 'only finds exact name matches' do
+          expect do
+            subject.find_or_create_rdf_attribute(:rights_holder, attributes)
+          end.to change { Agent.count }.by(1)
+          expect(Agent.all.map(&:foaf_name).sort).to eq ['Bilbo Baggins', 'Frodo Baggins']
+        end
+      end
+
+      context 'when name matches, but model is wrong' do
+        let!(:frodo) { Person.create(foaf_name: 'Frodo Baggins') }
+        let(:attributes) { { rights_holder: ['Frodo Baggins'] } }
+
+        it 'only matches exact model' do
+          expect do
+            subject.find_or_create_rdf_attribute(:rights_holder, attributes)
+          end.to change { Agent.count }.by(1)
+        end
+      end
+
+      context 'when the type is specified' do
+        let(:attributes) do
+          { rights_holder: [{ name: 'Bilbo Baggins',
+                              type: 'Person' }] }
+        end
+
+        it 'creates the local rights holder' do
+          rh = nil
+          expect do
+            rh = subject.find_or_create_rdf_attribute(:rights_holder, attributes)
+          end.to change { Person.count }.by(1)
+          expect(rh.fetch(:rights_holder).map(&:class)).to eq [RDF::URI]
+        end
       end
     end
 
-    context 'when existing local rights holder' do
-      let!(:existing_rh) { Agent.create(foaf_name: regents_string) }
-
-      it 'finds the existing rights holder' do
-        rh = nil
-        expect do
-          rh = subject.find_or_create_rights_holders(attributes)
-        end.to change { Agent.exact_model.count }.by(0)
-
-        expect(rh.fetch(:rights_holder).map(&:to_s)).to eq [regents_uri, existing_rh.public_uri]
-      end
-    end
-
-    context 'when similar name' do
-      let!(:frodo) { Agent.create(foaf_name: 'Frodo Baggins') }
-      let(:attributes) { { rights_holder: ['Bilbo Baggins'] } }
-
-      it 'only finds exact name matches' do
-        expect do
-          subject.find_or_create_rights_holders(attributes)
-        end.to change { Agent.count }.by(1)
-        expect(Agent.all.map(&:foaf_name).sort).to eq ['Bilbo Baggins', 'Frodo Baggins']
-      end
-    end
-
-    context 'when name matches, but model is wrong' do
-      let!(:frodo) { Person.create(foaf_name: 'Frodo Baggins') }
-      let(:attributes) { { rights_holder: ['Frodo Baggins'] } }
-
-      it 'only matches exact model' do
-        expect do
-          subject.find_or_create_rights_holders(attributes)
-        end.to change { Agent.count }.by(1)
-      end
-    end
-
-    context 'when the type is specified' do
+    context 'lc_subject' do
       let(:attributes) do
-        { rights_holder: [{ name: 'Bilbo Baggins',
-                            type: 'Person' }] }
+        { lc_subject: [{ name: 'Bilbo Baggins', type: 'Person' },
+                       afmc_uri,
+                       { name: 'A Local Subj', type: 'Topic' }] }
       end
 
-      it 'creates the local rights holder' do
-        rh = nil
-        expect do
-          rh = subject.find_or_create_rights_holders(attributes)
-        end.to change { Person.count }.by(1)
-        expect(rh.fetch(:rights_holder).map(&:class)).to eq [RDF::URI]
+      context "local authorities don't exist yet" do
+        before do
+          Person.delete_all
+          Topic.delete_all
+        end
+
+        it 'creates the missing local subjects' do
+          attrs = nil
+          expect do
+            attrs = subject.find_or_create_rdf_attribute(:lc_subject, attributes)
+          end.to(
+            change { Person.count }.by(1).and(
+              change { Topic.count }.by(1)
+            )
+          )
+
+          bilbo = Person.first
+          expect(bilbo.foaf_name).to eq 'Bilbo Baggins'
+
+          subj = Topic.first
+          expect(subj.label).to eq ['A Local Subj']
+
+          expect(attrs[:lc_subject]).to eq [bilbo.public_uri, afmc, subj.public_uri]
+        end
       end
     end
-  end
+
+    context 'location' do
+      before { Topic.delete_all }
+
+      let(:attributes) do
+        { location: ['Missouri'] }
+      end
+
+      context "locations don't exist yet" do
+        it 'creates a new topic' do
+          attrs = nil
+          expect do
+            attrs = subject.find_or_create_rdf_attribute(:location, attributes)
+          end.to change { Topic.count }.by 1
+
+          top = Topic.first
+          expect(top.label).to eq ['Missouri']
+          expect(attrs[:location]).to eq [top.public_uri]
+        end
+      end
+
+      context 'locations already exist' do
+        let!(:topic) { Topic.create(label: ['Missouri']) }
+
+        it 'finds the existing topic' do
+          attrs = nil
+          expect do
+            attrs = subject.find_or_create_rdf_attribute(:location, attributes)
+          end.to change { Topic.count }.by 0
+
+          expect(attrs[:location].map(&:to_s)).to eq [topic.public_uri]
+        end
+      end
+    end
+  end # find_or_create_rdf_attribute
 
   describe '#find_or_create_contributors' do
     let(:fields) { [:creator, :collector, :contributor] }
@@ -197,37 +267,6 @@ describe Importer::Factory::ObjectFactory do
       end
     end
   end  # '#find_or_create_contributors'
-
-  describe '#find_or_create_subjects' do
-    let(:attributes) do
-      { lc_subject: [{ name: 'Bilbo Baggins', type: 'Person' },
-                     afmc_uri,
-                     { name: 'A Local Subj', type: 'Topic' }] }
-    end
-
-    context "local authorities don't exist yet" do
-      before do
-        Person.delete_all
-        Topic.delete_all
-      end
-
-      it 'creates the missing local subjects' do
-        attrs = nil
-        expect do
-          attrs = subject.find_or_create_subjects(attributes)
-        end.to change { Person.count }.by(1)
-          .and change { Topic.count }.by(1)
-
-        bilbo = Person.first
-        expect(bilbo.foaf_name).to eq 'Bilbo Baggins'
-
-        subj = Topic.first
-        expect(subj.label).to eq ['A Local Subj']
-
-        expect(attrs[:lc_subject]).to eq [bilbo.public_uri, afmc, subj.public_uri]
-      end
-    end
-  end  # find_or_create_subjects
 
   describe 'update existing image' do
     let(:importer) { Importer::Factory::ImageFactory.new(attributes, []) }
