@@ -1,3 +1,4 @@
+# coding: utf-8
 require 'rails_helper'
 require 'importer'
 
@@ -42,6 +43,7 @@ describe Importer::Cylinder do
         "United States -- Boundaries -- Canada"
       )
       expect(subject['accession_number']).to eq ['Cylinder 4373', 'Cylinder 4374', 'Cylinder 4377']
+      expect(subject['edition']).to eq ['[Pathé Stentor (Concert) ed.]']
       expect(subject['description']).to eq ['Baritone solo with orchestra accompaniment.\nIt\'s really good and you should all listen.']
       expect(subject['extent']).to eq ['1 cylinder (ca. 2 min.) : 160 rpm ; 2 1/4 x 4 in. 1 record slip']
       expect(subject['form_of_work']).to eq ['Musical settings', 'Sound recordings', 'Songs and music', 'Humorous monologues']
@@ -106,6 +108,7 @@ describe Importer::Cylinder do
       expect(record1.accession_number).to contain_exactly('Cylinder 4373', 'Cylinder 4374', 'Cylinder 4377')
       expect(record1.copyright_status.map(&:class)).to eq [Oargun::ControlledVocabularies::CopyrightStatus]
       expect(record1.digital_origin).to eq ['reformatted digital']
+      expect(record1.edition).to eq ['[Pathé Stentor (Concert) ed.]']
       expect(record1.institution.map(&:class)).to eq [Oargun::ControlledVocabularies::Organization]
       expect(record1.language.first.rdf_subject).to eq RDF::URI('http://id.loc.gov/vocabulary/iso639-2/eng')
       expect(record1.matrix_number).to eq []
