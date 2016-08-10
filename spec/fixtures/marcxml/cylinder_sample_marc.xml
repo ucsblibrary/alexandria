@@ -48,6 +48,9 @@
     <subfield code="h">[sound recording] /</subfield>
     <subfield code="c">[Allen].</subfield>
   </datafield>
+  <datafield tag="250" ind1=" " ind2=" ">
+    <subfield code="a">[Pathé Stentor (Concert) ed.]</subfield>
+  </datafield>
   <datafield tag="260" ind1=" " ind2=" ">
     <subfield code="a">Orange, N.J. :</subfield>
     <subfield code="b">Edison Gold Moulded Record,</subfield>

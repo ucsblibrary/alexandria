@@ -112,6 +112,10 @@ module Metadata
       index.as :stored_searchable
     end
 
+    property :edition, predicate: RDF::Vocab::MODS.edition do |index|
+      index.as :stored_searchable
+    end
+
     # Dates
     property :created, predicate: RDF::Vocab::DC.created, class_name: 'TimeSpan'
     property :date_other, predicate: RDF::Vocab::DC.date, class_name: 'TimeSpan'
