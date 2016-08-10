@@ -2,7 +2,7 @@ development:
   url: <%= ENV['DEV_SOLR_URL'] || 'http://localhost:8080/hydra' %>
 
 test:
-  url: <%= ENV['TEST_SOLR_URL'] || 'http://localhost:8983/solr' %>
+  url: <%= ENV['TEST_SOLR_URL'] || 'http://localhost:8985/solr/test' %>
 
 production:
   url: http://localhost:<%= ENV['TEST_JETTY_PORT'] || 8080 %>/hydra

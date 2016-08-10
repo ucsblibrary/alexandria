@@ -1,8 +1,6 @@
 require 'rails_helper'
 
 describe CollectionsController do
-  routes { Hydra::Collections::Engine.routes }
-
   describe '#index' do
     before do
       Collection.destroy_all
@@ -39,7 +37,7 @@ describe CollectionsController do
     let(:private_image) { create :image }
     let(:image) { create :public_image }
 
-    it 'shows nothing' do
+    it 'shows only public image' do
       get :show, id: collection
       expect(response).to be_successful
       expect(assigns[:member_docs].map(&:id)).to eq [image.id]

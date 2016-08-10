@@ -7,9 +7,14 @@ require 'resque/tasks'
 require 'resque/pool/tasks'
 
 Rails.application.load_tasks
-Jettywrapper.hydra_jetty_version = 'v8.7.0' if defined? Jettywrapper
+
+#unless Rails.env.production?
+#  require 'fcrepo_wrapper'
+#  require 'solr_wrapper'
+#end
 
 # Get rid of the default task (was spec)
 task default: []; Rake::Task[:default].clear
 
 task default: :ci
+

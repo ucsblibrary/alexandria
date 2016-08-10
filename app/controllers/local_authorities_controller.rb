@@ -4,6 +4,7 @@ class LocalAuthoritiesController < ApplicationController
   include Hydra::Controller::ControllerBehavior
 
   before_filter :auth, only: :index
+  before_filter :add_view_path
 
   add_show_tools_partial(:edit, partial: 'catalog/edit', if: :editor?)
   add_show_tools_partial(:merge, partial: 'catalog/merge_link', if: :show_merge_link?)
@@ -44,7 +45,9 @@ class LocalAuthoritiesController < ApplicationController
       }
     end
 
-    config.add_facet_field 'active_fedora_model_ssi', label: 'Type', sort: 'index', collapse: false
+    config.add_facet_field 'has_model_ssim', label: 'Type', sort: 'index', collapse: false
+    config.add_facet_fields_to_solr_request!
+
     config.add_index_field 'public_uri_ssim', label: 'URI'
 
     config.index.title_field = %w(foaf_name_tesim label_tesim)
@@ -76,5 +79,9 @@ class LocalAuthoritiesController < ApplicationController
 
     def show_merge_link?(_config, options)
       can?(:merge, options.fetch(:document))
+    end
+
+    def add_view_path
+      prepend_view_path "#{Rails.root}/app/views/local_authorities"
     end
 end

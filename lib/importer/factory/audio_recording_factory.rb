@@ -26,7 +26,7 @@ module Importer::Factory
                                    admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID,
                                    date_uploaded: now,
                                    date_modified: now)
-        actor = CurationConcerns::FileSetActor.new(file_set, User.batchuser)
+        actor = CurationConcerns::Actors::FileSetActor.new(file_set, User.batchuser)
 
         # Set the representative if it doesn't already exist and a file was attached.
         object.representative ||= file_set if attach_original(actor, number, filegroup)

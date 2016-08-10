@@ -1,3 +1,2 @@
-class CollectionsSearchBuilder < Hydra::Collections::SearchBuilder
-  include Hydra::PolicyAwareAccessControlsEnforcement
+class CollectionsSearchBuilder < CurationConcerns::CollectionSearchBuilder
 end

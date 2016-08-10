@@ -23,6 +23,13 @@ class Ability
     discover_permissions
   end
 
+  # This method is required to exist by curation_concerns gem,
+  # but we want to rely on our AdminPolicy behavior instead, so
+  # just return false.
+  def admin?
+    false
+  end
+
   def metadata_admin_permissions
     return unless user_groups.include?(AdminPolicy::META_ADMIN_GROUP)
 

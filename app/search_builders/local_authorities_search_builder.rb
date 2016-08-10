@@ -1,4 +1,5 @@
-class LocalAuthoritiesSearchBuilder < Hydra::SearchBuilder
+class LocalAuthoritiesSearchBuilder < Blacklight::SearchBuilder
+  include Blacklight::Solr::SearchBuilderBehavior
   include Hydra::PolicyAwareAccessControlsEnforcement
 
   self.default_processor_chain += [:only_models_for_local_authorities]
