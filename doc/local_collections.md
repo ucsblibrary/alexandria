@@ -20,6 +20,11 @@ See these email threads on the hydra-tech mailing list for more info about the p
 
 **Important Note:** Our goal is to keep using the old hydra-style membership for existing records, and only use the new "Local Membership" style for wax cylinder records or other collections that are large enough to have performance problems.
 
+For more info about solutions and work-arounds, see:
+
+* [Reversing Collection Membership (Duraspace wiki)](https://wiki.duraspace.org/display/hydra/Reversing+Collection+Membership)
+* [Reversing Collection Membership (hydra-tech mailing list)](https://groups.google.com/forum/#!topic/hydra-tech/7_2jSVL8CNk)
+
 ## How is the UI different?
 
 You shouldn&apos;t notice any difference in the UI.  All the collection members should behave the same way in the UI, whether they are members of a collection using the old hydra-style membership or whether they use the new local membership.  If you see 2 different members of a collection in the UI, their behavior for faceting, searching, sorting and browsing should be identical.  From the point-of-view of the end user, there is no way to tell which type of membership binds a record to a collection.
