@@ -219,7 +219,7 @@ module Importer::Factory
         name = attrs.fetch(:name)
         klass = contributor_classes[type]
         contributor = klass.where(foaf_name_ssim: name).first || klass.create(foaf_name: name)
-        RDF::URI(contributor.public_uri)
+        RDF::URI.new(contributor.public_uri)
       end
 
       # @param [Hash, String] value
