@@ -112,7 +112,7 @@ class ObjectFactoryWriter
     def collection_attributes(work_type)
       case work_type
       when *ETD_TYPES
-        attributes[:collection] = { id: 'etds', title: ['Electronic Theses and Dissertations'], accession_number: ['etds'] }
+        { id: 'etds', title: ['Electronic Theses and Dissertations'], accession_number: ['etds'] }
       when *AUDIO_TYPES
         {}
       else
