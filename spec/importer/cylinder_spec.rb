@@ -117,6 +117,8 @@ describe Importer::Cylinder do
       expect(record1.digital_origin).to eq ['reformatted digital']
       expect(record1.edition).to eq ['[Pathé Stentor (Concert) ed.]']
       expect(record1.institution.map(&:class)).to eq [Oargun::ControlledVocabularies::Organization]
+      expect(record1.issued.first.label).to eq ['[1903]']
+      expect(record1.issued.first.to_a).to eq 1903
       expect(record1.language.first.rdf_subject).to eq RDF::URI('http://id.loc.gov/vocabulary/iso639-2/eng')
       expect(record1.location.first.class).to eq Oargun::ControlledVocabularies::Geographic
       expect(record1.matrix_number).to eq []
