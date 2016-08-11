@@ -71,6 +71,22 @@ describe ObjectFactoryWriter do
 
     subject { writer.find_files_to_attach(attrs) }
 
+    context 'with ETDs' do
+      let(:settings) do
+        { 'etd' => { xml: '/var/folders/81/3r2q3gb16x710qjpdsdhc3c40000gn/T/d20160811-32702-18ce4a4/etdadmin_upload_114151.zip/Scholl_ucsb_0035D_10935_DATA.xml',
+                     pdf: '/var/folders/81/3r2q3gb16x710qjpdsdhc3c40000gn/T/d20160811-32702-18ce4a4/etdadmin_upload_114151.zip/Scholl_ucsb_0035D_10935.pdf',
+                     supplements: [] } }
+      end
+
+      it 'returns the correct hash' do
+        expect(subject).to(
+          eq('xml' => '/var/folders/81/3r2q3gb16x710qjpdsdhc3c40000gn/T/d20160811-32702-18ce4a4/etdadmin_upload_114151.zip/Scholl_ucsb_0035D_10935_DATA.xml',
+             'pdf' => '/var/folders/81/3r2q3gb16x710qjpdsdhc3c40000gn/T/d20160811-32702-18ce4a4/etdadmin_upload_114151.zip/Scholl_ucsb_0035D_10935.pdf',
+             'supplements' => [])
+        )
+      end
+    end
+
     context 'with a single directory' do
       let(:files_dirs) { File.join(fixture_path, 'cylinders') }
 
@@ -113,5 +129,4 @@ describe ObjectFactoryWriter do
       end
     end
   end
-
 end
