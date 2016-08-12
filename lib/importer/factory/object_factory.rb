@@ -297,7 +297,7 @@ module Importer::Factory
         contributors = find_or_create_contributors(klass.contributor_fields, attributes)
         notes = extract_notes(attributes)
         rights_holders = find_or_create_rdf_attribute(:rights_holder, attributes)
-        subjects = find_or_create_rdf_attribute(:lc_subjects, attributes)
+        subjects = find_or_create_rdf_attribute(:lc_subject, attributes)
         locations = find_or_create_rdf_attribute(:location, attributes)
 
         description = { description: [join_paragraphs(attributes[:description])] }
