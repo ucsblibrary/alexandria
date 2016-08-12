@@ -108,6 +108,12 @@
     <subfield code="d">1759-1796</subfield>
     <subfield code="v">Musical settings.</subfield>
   </datafield>
+  <datafield tag="610" ind1="2" ind2="0">
+    <subfield code="a">Loyal Order of Moose</subfield>
+  </datafield>
+  <datafield tag="630" ind1="0" ind2="0">
+    <subfield code="a">Humoresques.</subfield>
+  </datafield>
   <datafield tag="650" ind1=" " ind2="0">
     <subfield code="a">Music</subfield>
     <subfield code="z">French Polynesia</subfield>

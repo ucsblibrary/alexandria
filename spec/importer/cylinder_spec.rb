@@ -54,6 +54,20 @@ describe Importer::Cylinder do
       expect(subject['description']).to eq ['Baritone solo with orchestra accompaniment.\nIt\'s really good and you should all listen.']
       expect(subject['extent']).to eq ['1 cylinder (ca. 2 min.) : 160 rpm ; 2 1/4 x 4 in. 1 record slip']
       expect(subject['form_of_work']).to eq ['Musical settings', 'Sound recordings', 'Songs and music', 'Humorous monologues']
+      expect(subject['lc_subject']).to(
+        contain_exactly({ type: 'person', name: 'Burns, Robert, 1759-1796' },
+                        { type: 'organization', name: 'Loyal Order of Moose' },
+                        { type: 'topic', name: 'Humoresques' },
+                        { type: 'topic', name: 'Music' },
+                        { type: 'topic', name: 'Presidents' },
+                        { type: 'topic', name: 'Election' },
+                        { type: 'topic', name: '1908' },
+                        { type: 'topic', name: 'Spanish language' },
+                        { type: 'topic', name: 'Study and teaching' },
+                        { type: 'topic', name: 'History' },
+                        { type: 'topic', name: 'Civil War, 1861-1865' },
+                        { type: 'topic', name: 'Boundaries' })
+      )
       expect(subject['location']).to(
         contain_exactly('United States',
                         'French Polynesia',
@@ -135,6 +149,13 @@ describe Importer::Cylinder do
       expect(record1.issued.first.label).to eq ['[1903]']
       expect(record1.issued.first.to_a).to eq 1903
       expect(record1.language.first.rdf_subject).to eq RDF::URI('http://id.loc.gov/vocabulary/iso639-2/eng')
+      expect(record1.lc_subject.count).to eq 12
+      expect(record1.lc_subject.first.class).to eq Oargun::ControlledVocabularies::Subject
+      record1.lc_subject.map(&:solrize).flatten.each do |uri|
+        expect(uri).to(
+          match(%r{(http://test.host/authorities/topics/.{8}-.{4}-.{4}-.{4}-.{12})|(http://test.host/authorities/people/.{8}-.{4}-.{4}-.{4}-.{12})|(http://test.host/authorities/organizations/.{8}-.{4}-.{4}-.{4}-.{12})})
+        )
+      end
       expect(record1.location.first.class).to eq Oargun::ControlledVocabularies::Geographic
       expect(record1.matrix_number).to eq []
       expect(record1.description).to eq ['Baritone solo with orchestra accompaniment.\nIt\'s really good and you should all listen.']

@@ -19,7 +19,7 @@ describe Importer::Factory::ObjectFactory do
       let!(:image) { create(:image, image_attrs) }
 
       context 'with an id' do
-        let(:attributes) {{ id: image.id }}
+        let(:attributes) { { id: image.id } }
 
         it 'finds the exisiting object' do
           expect(subject.class).to eq Image
@@ -28,7 +28,7 @@ describe Importer::Factory::ObjectFactory do
       end
 
       context 'with accession_number' do
-        let(:attributes) {{ accession_number: [image.accession_number.first] }}
+        let(:attributes) { { accession_number: [image.accession_number.first] } }
 
         it 'finds the exisiting object' do
           expect(subject.class).to eq Image
@@ -37,7 +37,7 @@ describe Importer::Factory::ObjectFactory do
       end
 
       context 'with neither id nor accession_number' do
-        let(:attributes) {{ accession_number: [] }}
+        let(:attributes) { { accession_number: [] } }
 
         it 'raises an error' do
           expect { subject }.to raise_error 'Missing identifier: Unable to search for existing object without either fedora ID or accession_number'
@@ -123,13 +123,15 @@ describe Importer::Factory::ObjectFactory do
       let(:attributes) do
         { lc_subject: [{ name: 'Bilbo Baggins', type: 'Person' },
                        afmc_uri,
-                       { name: 'A Local Subj', type: 'Topic' }] }
+                       { name: 'A Local Subj', type: 'Topic' },
+                       { name: 'Loyal Order of Moose', type: 'organization' }] }
       end
 
       context "local authorities don't exist yet" do
         before do
           Person.delete_all
           Topic.delete_all
+          Organization.delete_all
         end
 
         it 'creates the missing local subjects' do
@@ -138,7 +140,9 @@ describe Importer::Factory::ObjectFactory do
             attrs = subject.find_or_create_rdf_attribute(:lc_subject, attributes)
           end.to(
             change { Person.count }.by(1).and(
-              change { Topic.count }.by(1)
+              change { Topic.count }.by(1).and(
+                change { Organization.count }.by(1)
+              )
             )
           )
 
@@ -148,7 +152,15 @@ describe Importer::Factory::ObjectFactory do
           subj = Topic.first
           expect(subj.label).to eq ['A Local Subj']
 
-          expect(attrs[:lc_subject]).to eq [bilbo.public_uri, afmc, subj.public_uri]
+          org = Organization.first
+          expect(org.label).to eq ['Loyal Order of Moose']
+
+          expect(attrs[:lc_subject]).to(
+            contain_exactly(bilbo.public_uri,
+                            afmc,
+                            subj.public_uri,
+                            org.public_uri)
+          )
         end
       end
     end
@@ -266,15 +278,15 @@ describe Importer::Factory::ObjectFactory do
           .and change { Group.count }.by(1)
       end
     end
-  end  # '#find_or_create_contributors'
+  end # '#find_or_create_contributors'
 
   describe 'update existing image' do
     let(:importer) { Importer::Factory::ImageFactory.new(attributes, []) }
-    let(:old_note) {{ note_type: 'old type', value: 'old value' }}
+    let(:old_note) { { note_type: 'old type', value: 'old value' } }
     let(:image) { create(:image, notes_attributes: [old_note]) }
 
     context 'when there are no new notes (but old notes exist)' do
-      let(:attributes) {{ id: image.id, title: ['new title'] }}
+      let(:attributes) { { id: image.id, title: ['new title'] } }
 
       it 'clears out the old notes' do
         expect(image.notes.count).to eq 1
@@ -291,12 +303,12 @@ describe Importer::Factory::ObjectFactory do
     end
 
     context 'with new notes' do
-      let(:attributes) {
+      let(:attributes) do
         { id: image.id,
-          note:  [ 'an untyped note',
-                  { type: "type 1", name: "note 1" },
-                  { type: "type 2", name: "note 2" }] }
-      }
+          note:  ['an untyped note',
+                  { type: 'type 1', name: 'note 1' },
+                  { type: 'type 2', name: 'note 2' }] }
+      end
 
       it 'updates the notes' do
         expect(image.notes.count).to eq 1
@@ -322,19 +334,18 @@ describe Importer::Factory::ObjectFactory do
     subject { importer.send(:transform_attributes) }
 
     context 'with notes' do
-      let(:attributes) {
-        { note:  [ 'an untyped note',
-                  { type: "type 1", name: "note 1" },
-                  { type: "type 2", name: "note 2" }] }
-      }
+      let(:attributes) do
+        { note:  ['an untyped note',
+                  { type: 'type 1', name: 'note 1' },
+                  { type: 'type 2', name: 'note 2' }] }
+      end
 
       it 'parses the notes attributes' do
         expect(subject[:note]).to be_nil
-        expect(subject[:notes_attributes][0]).to eq({ note_type: nil, value: 'an untyped note' })
-        expect(subject[:notes_attributes][1]).to eq({ note_type: 'type 1', value: 'note 1' })
-        expect(subject[:notes_attributes][2]).to eq({ note_type: 'type 2', value: 'note 2' })
+        expect(subject[:notes_attributes][0]).to eq(note_type: nil, value: 'an untyped note')
+        expect(subject[:notes_attributes][1]).to eq(note_type: 'type 1', value: 'note 1')
+        expect(subject[:notes_attributes][2]).to eq(note_type: 'type 2', value: 'note 2')
       end
     end
   end
-
 end
