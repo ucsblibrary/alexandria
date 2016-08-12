@@ -1,0 +1,2 @@
+class CollectionNotFound < StandardError
+end

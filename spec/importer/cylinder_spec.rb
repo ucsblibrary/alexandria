@@ -11,6 +11,11 @@ describe Importer::Cylinder do
   let(:options) { {} }
   let(:importer) { described_class.new(meta_files, files_dir, options) }
 
+  # Give it an identifier so it doesn't try to mint a new ark
+  # during the specs.  Also needs a title to be a valid record.
+  let(:collection_attrs) {{ identifier: ['some_ark'], title: ['Cylinders Collection'] }}
+  let(:collection) { Importer::Factory::CollectionFactory.new(Importer::Cylinder::COLLECTION_ATTRIBUTES.merge(collection_attrs)).find_or_create }
+
   before do
     # Don't run background jobs/derivatives during the specs
     allow(CharacterizeJob).to receive_messages(perform_later: nil, perform_now: nil)
@@ -23,6 +28,8 @@ describe Importer::Cylinder do
   end
 
   describe '#attributes' do
+    before { collection } # Make sure collection exists
+
     let(:meta_files) { [File.join(fixture_path, 'marcxml', 'cylinder_sample_marc.xml')] }
 
     let(:marc_record) do
@@ -66,6 +73,15 @@ describe Importer::Cylinder do
     end
   end # attributes
 
+  describe 'when the collection doesn\'t exist' do
+    before { Collection.destroy_all }
+
+    it 'raises an exception' do
+      expect { importer.run }.to raise_error(CollectionNotFound, 'Not Found: Collection with accession number ["Cylinders"]')
+      expect(importer.imported_records_count).to eq 0
+    end
+  end
+
   # The full import process, from start to finish
   describe 'import records from MARC files' do
     before do
@@ -76,7 +92,7 @@ describe Importer::Cylinder do
       AudioRecording.all.map(&:id).each do |id|
         ActiveFedora::Base.find(id).destroy(eradicate: true) if ActiveFedora::Base.exists?(id)
       end
-      Collection.find('cylinders').destroy(eradicate: true) if Collection.exists?('cylinders')
+      collection # Make sure collection exists
     end
 
     it 'imports the records' do
@@ -86,7 +102,6 @@ describe Importer::Cylinder do
         end
       end.to change { AudioRecording.count }.by(3)
         .and(change { FileSet.count }.by(2))
-        .and(change { Collection.count }.by(1))
 
       # Make sure the importer reports the correct number
       expect(importer.imported_records_count).to eq 3
@@ -183,12 +198,11 @@ describe Importer::Cylinder do
       end
 
       # Check the collection membership
-      coll = Collection.find('cylinders')
-      expect(record1.local_collection_id).to eq [coll.id]
+      expect(record1.local_collection_id).to eq [collection.id]
 
       # Check collection membership is properly indexed in solr
       solr = Blacklight.default_index.connection
-      res = solr.select(params: { id: coll.id, qt: 'document' })
+      res = solr.select(params: { id: collection.id, qt: 'document' })
       doc = res['response']['docs'].first
       expect(doc['member_ids_ssim']).to contain_exactly(record1.id, record2.id, record3.id)
     end

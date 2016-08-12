@@ -14,23 +14,16 @@ module Importer
     attr_reader :imported_records_count
 
     # Attributes for the cylinders collection
-    COLLECTION_ATTRIBUTES = {
-      id: 'cylinders',
-      identifier: ['cylinders'],
-      title: ['Wax Cylinders'],
-      accession_number: ['Cylinders'],
-      admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID
-    }
+    COLLECTION_ATTRIBUTES = { accession_number: ['Cylinders'] }
 
 
     def initialize(metadata_files, files_dirs, options={})
+      $stdout.sync = true  # flush output immediately
       @metadata_files = metadata_files
       @files_dirs = files_dirs
       @options = options
       @imported_records_count = 0
-      @collection = Importer::Factory::CollectionFactory.new(COLLECTION_ATTRIBUTES).find_or_create
-
-      $stdout.sync = true  # flush output immediately
+      @collection = Importer::Factory::CollectionFactory.new(COLLECTION_ATTRIBUTES).find
     end
 
     def indexer
@@ -41,10 +34,13 @@ module Importer
       @indexer.load_config_file('lib/traject/audio_config.rb')
       @indexer.settings(files_dirs: files_dirs)
       @indexer.settings(verbose: options[:verbose])
+      @indexer.settings(local_collection_id: @collection.id) if @collection
       @indexer
     end
 
     def run
+      abort_import unless @collection
+
       marcs = parse_marc_files(metadata_files)
       cylinders = marcs.length
 
@@ -77,8 +73,10 @@ module Importer
       end  # marcs.each_with_index
     ensure
       indexer.writer.close if indexer && indexer.writer
-      puts "Updating collection index"
-      @collection.update_index
+      if @collection
+        puts "Updating collection index"
+        @collection.update_index
+      end
     end
 
     # XMLReader's Enumerable methods are destructive, so move the
@@ -97,6 +95,14 @@ module Importer
 
 
     private
+
+      def abort_import
+        puts
+        puts "ABORTING IMPORT:  Before you can import cylinder records, the cylinders collection must exist.  Please import the cylinders collection record first, then re-try this import."
+        puts
+
+        raise CollectionNotFound.new("Not Found: Collection with accession number #{COLLECTION_ATTRIBUTES[:accession_number]}")
+      end
 
       def print_attributes(record, item_number)
         return unless options[:verbose]
