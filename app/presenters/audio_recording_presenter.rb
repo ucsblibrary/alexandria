@@ -7,6 +7,7 @@ class AudioRecordingPresenter < CurationConcerns::WorkShowPresenter
     :form_of_work,
     :issue_number,
     :issued,
+    :location,
     :matrix_number,
     :notes,
     :place_of_publication,

@@ -142,6 +142,10 @@ class SolrDocument
     fetch('accession_number_tesim', [])
   end
 
+  def location
+    fetch('location_label_tesim', [])
+  end
+
   private
 
     def load_file_sets(ids)
