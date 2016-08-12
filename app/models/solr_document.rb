@@ -146,6 +146,10 @@ class SolrDocument
     fetch('location_label_tesim', [])
   end
 
+  def fulltext_link
+    fetch('fulltext_link_ssm', [])
+  end
+
   private
 
     def load_file_sets(ids)

@@ -5,6 +5,7 @@ class AudioRecordingPresenter < CurationConcerns::WorkShowPresenter
     :copyright_status,
     :extent,
     :form_of_work,
+    :fulltext_link,
     :issue_number,
     :issued,
     :location,

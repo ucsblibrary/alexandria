@@ -54,6 +54,11 @@ describe Importer::Cylinder do
       expect(subject['description']).to eq ['Baritone solo with orchestra accompaniment.\nIt\'s really good and you should all listen.']
       expect(subject['extent']).to eq ['1 cylinder (ca. 2 min.) : 160 rpm ; 2 1/4 x 4 in. 1 record slip']
       expect(subject['form_of_work']).to eq ['Musical settings', 'Sound recordings', 'Songs and music', 'Humorous monologues']
+      expect(subject['fulltext_link']).to(
+        contain_exactly('http://www.library.ucsb.edu/OBJID/Cylinder4373',
+                        'http://www.library.ucsb.edu/OBJID/Cylinder4374',
+                        'http://www.library.ucsb.edu/OBJID/Cylinder4377')
+      )
       expect(subject['lc_subject']).to(
         contain_exactly({ type: 'person', name: 'Burns, Robert, 1759-1796' },
                         { type: 'organization', name: 'Loyal Order of Moose' },
@@ -161,6 +166,11 @@ describe Importer::Cylinder do
       expect(record1.description).to eq ['Baritone solo with orchestra accompaniment.\nIt\'s really good and you should all listen.']
       expect(record1.extent).to eq ['1 cylinder (ca. 2 min.) : 160 rpm ; 2 1/4 x 4 in. 1 record slip']
       expect(record1.form_of_work).to contain_exactly('Humorous monologues', 'Musical settings', 'Songs and music', 'Sound recordings')
+      expect(record1.fulltext_link).to(
+        contain_exactly('http://www.library.ucsb.edu/OBJID/Cylinder4373',
+                        'http://www.library.ucsb.edu/OBJID/Cylinder4374',
+                        'http://www.library.ucsb.edu/OBJID/Cylinder4377')
+      )
       expect(record1.notes.map(&:value)).to(
         contain_exactly(
           ['Arthur Collins.'],
