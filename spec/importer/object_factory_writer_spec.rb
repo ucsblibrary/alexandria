@@ -6,6 +6,8 @@ describe ObjectFactoryWriter do
   let(:writer) { described_class.new(settings) }
 
   describe '#put' do
+    before { ETD.destroy_all }
+
     let(:traject_context) { double(output_hash: traject_hash) }
 
     let(:traject_hash) do
@@ -20,8 +22,7 @@ describe ObjectFactoryWriter do
         'extent' => ['1 online resource (147 pages)'],
         'filename' => ['My_stuff.pdf'],
         'fulltext_link' => [],
-        'id' => ['fk/4z/p4/6p/fk4zp46p1g'],
-        'identifier' => ['ark:/99999/fk4zp46p1g'],
+        'id' => ['bork'],
         'isbn' => ['1234'],
         'issued' => ['2013'],
         'names' => ['Paul', 'Frodo Baggins', 'Hector'],
@@ -35,33 +36,24 @@ describe ObjectFactoryWriter do
     end
 
     it 'calls the etd factory' do
-      expect(writer).to receive(:build_object).with(
-        {
-          language: [],
-          fulltext_link: [],
-          author: ['Valerie'],
-          degree_grantor: ['University of California, Santa Barbara Mathematics'],
-          description: ['Marine mussels use a mixture of proteins...\n\nThe performance of strong adhesion...'],
-          dissertation_degree: [],
-          dissertation_institution: [],
-          dissertation_year: [],
-          extent: ['1 online resource (147 pages)'],
-          id: 'fk/4z/p4/6p/fk4zp46p1g',
-          identifier: ['ark:/99999/fk4zp46p1g'],
-          isbn: ['1234'],
-          issued: ['2013'],
-          place_of_publication: ['[Santa Barbara, Calif.]'],
-          publisher: ['University of California, Santa Barbara'],
-          system_number: [],
-          title: ['How to be awesome'],
-          work_type: [RDF::URI('http://id.loc.gov/vocabulary/resourceTypes/txt')],
-          degree_supervisor: %w(Paul Hector),
-          created_attributes: [{ start: ['2013'] }],
-          files: ['My_stuff.pdf']
-        }.with_indifferent_access, []
-      )
+      VCR.use_cassette('etd_importer', record: :new_episodes) do
+        writer.put(traject_context.output_hash)
+      end
 
-      writer.put(traject_context.output_hash)
+      etd = ETD.first
+      expect(etd.author).to eq ['Valerie']
+      expect(etd.degree_grantor).to eq ['University of California, Santa Barbara Mathematics']
+      expect(etd.degree_supervisor).to contain_exactly('Paul', 'Hector')
+      expect(etd.description).to eq ['Marine mussels use a mixture of proteins...\n\nThe performance of strong adhesion...']
+      expect(etd.extent).to eq ['1 online resource (147 pages)']
+      expect(etd.fulltext_link).to eq []
+      expect(etd.isbn).to eq ['1234']
+      expect(etd.issued).to eq ['2013']
+      expect(etd.language).to eq []
+      expect(etd.place_of_publication).to eq ['[Santa Barbara, Calif.]']
+      expect(etd.publisher).to eq ['University of California, Santa Barbara']
+      expect(etd.title).to eq ['How to be awesome']
+      expect(etd.work_type.first.class).to eq Oargun::ControlledVocabularies::ResourceType
     end
   end
 
@@ -70,6 +62,22 @@ describe ObjectFactoryWriter do
     let(:attrs) { { filename: ['Cylinder 12783', 'Cylinder 0001'] } }
 
     subject { writer.find_files_to_attach(attrs) }
+
+    context 'with ETDs' do
+      let(:settings) do
+        { 'etd' => { xml: '/var/folders/81/3r2q3gb16x710qjpdsdhc3c40000gn/T/d20160811-32702-18ce4a4/etdadmin_upload_114151.zip/Scholl_ucsb_0035D_10935_DATA.xml',
+                     pdf: '/var/folders/81/3r2q3gb16x710qjpdsdhc3c40000gn/T/d20160811-32702-18ce4a4/etdadmin_upload_114151.zip/Scholl_ucsb_0035D_10935.pdf',
+                     supplements: [] } }
+      end
+
+      it 'returns the correct hash' do
+        expect(subject).to(
+          eq('xml' => '/var/folders/81/3r2q3gb16x710qjpdsdhc3c40000gn/T/d20160811-32702-18ce4a4/etdadmin_upload_114151.zip/Scholl_ucsb_0035D_10935_DATA.xml',
+             'pdf' => '/var/folders/81/3r2q3gb16x710qjpdsdhc3c40000gn/T/d20160811-32702-18ce4a4/etdadmin_upload_114151.zip/Scholl_ucsb_0035D_10935.pdf',
+             'supplements' => [])
+        )
+      end
+    end
 
     context 'with a single directory' do
       let(:files_dirs) { File.join(fixture_path, 'cylinders') }
@@ -113,5 +121,4 @@ describe ObjectFactoryWriter do
       end
     end
   end
-
 end

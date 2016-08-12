@@ -63,7 +63,7 @@ class ObjectFactoryWriter
   #   ['/path/cusb-cyl0006a.wav',  /path/cusb-cyl0006b.wav'],
   # ]
   def find_files_to_attach(attributes)
-    return Array(@etd) if @etd
+    return @etd if @etd
     return [] unless @settings[:files_dirs]
 
     dirs = Array(@settings[:files_dirs])
@@ -112,7 +112,7 @@ class ObjectFactoryWriter
     def collection_attributes(work_type)
       case work_type
       when *ETD_TYPES
-        attributes[:collection] = { id: 'etds', title: ['Electronic Theses and Dissertations'], accession_number: ['etds'] }
+        { id: 'etds', title: ['Electronic Theses and Dissertations'], accession_number: ['etds'] }
       when *AUDIO_TYPES
         {}
       else
