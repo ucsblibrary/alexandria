@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<DISS_submission publishing_option="0" embargo_code="4" third_party_search="Y">
+  <DISS_authorship>
+    <DISS_author type="primary">
+      <DISS_name>
+        <DISS_surname>Costa</DISS_surname>
+        <DISS_fname>Billy</DISS_fname>
+        <DISS_middle>Club</DISS_middle>
+        <DISS_suffix/>
+        <DISS_affiliation>University of California, Santa Barbara</DISS_affiliation>
+      </DISS_name>
+      <DISS_contact type="current">
+        <DISS_contact_effdt>07/31/2013</DISS_contact_effdt>
+        <DISS_phone_fax type="P">
+          <DISS_cntry_cd>0</DISS_cntry_cd>
+          <DISS_area_code>666</DISS_area_code>
+          <DISS_phone_num>4201999</DISS_phone_num>
+          <DISS_phone_ext/>
+        </DISS_phone_fax>
+        <DISS_address>
+          <DISS_addrline>1 Fake Road</DISS_addrline>
+          <DISS_city>Unreal City</DISS_city>
+          <DISS_st>State of Denial</DISS_st>
+          <DISS_pcode>00000</DISS_pcode>
+          <DISS_country>Earth</DISS_country>
+        </DISS_address>
+        <DISS_email>fake@hotmail.con</DISS_email>
+      </DISS_contact>
+      <DISS_contact type="future">
+        <DISS_contact_effdt>07/31/2013</DISS_contact_effdt>
+        <DISS_phone_fax type="P">
+          <DISS_cntry_cd>0</DISS_cntry_cd>
+          <DISS_area_code>666</DISS_area_code>
+          <DISS_phone_num>4201999</DISS_phone_num>
+          <DISS_phone_ext/>
+        </DISS_phone_fax>
+        <DISS_address>
+          <DISS_addrline>1 Fake Road</DISS_addrline>
+          <DISS_city>Unreal City</DISS_city>
+          <DISS_st>State of Denial</DISS_st>
+          <DISS_pcode>00000</DISS_pcode>
+          <DISS_country>Earth</DISS_country>
+        </DISS_address>
+        <DISS_email>fake@hotmail.con</DISS_email>
+      </DISS_contact>
+      <DISS_citizenship>N/A</DISS_citizenship>
+    </DISS_author>
+  </DISS_authorship>
+  <DISS_description page_count="420" type="doctoral" external_id="http://dissertations.umi.com/ucsb:11752" apply_for_copyright="yes">
+    <DISS_title>The Republic of Heaven: Liberation Theology in the Fens</DISS_title>
+    <DISS_dates>
+      <DISS_comp_date>2013</DISS_comp_date>
+      <DISS_accept_date>01/01/2013</DISS_accept_date>
+    </DISS_dates>
+    <DISS_degree>Ph.D.</DISS_degree>
+    <DISS_institution>
+      <DISS_inst_code>0035</DISS_inst_code>
+      <DISS_inst_name>University of California, Santa Barbara</DISS_inst_name>
+      <DISS_inst_contact>Religious Studies</DISS_inst_contact>
+      <DISS_processing_code>D</DISS_processing_code>
+    </DISS_institution>
+    <DISS_advisor>
+      <DISS_name>
+        <DISS_surname>Skeeter</DISS_surname>
+        <DISS_fname>Rita</DISS_fname>
+        <DISS_middle/>
+      </DISS_name>
+    </DISS_advisor>
+    <DISS_cmte_member>
+      <DISS_name>
+        <DISS_surname>Hammerfist</DISS_surname>
+        <DISS_fname>Garb</DISS_fname>
+        <DISS_middle/>
+        <DISS_suffix/>
+        <DISS_affiliation/>
+      </DISS_name>
+    </DISS_cmte_member>
+    <DISS_cmte_member>
+      <DISS_name>
+        <DISS_surname>Friend</DISS_surname>
+        <DISS_fname>Sandwitch</DISS_fname>
+        <DISS_middle/>
+        <DISS_suffix/>
+        <DISS_affiliation/>
+      </DISS_name>
+    </DISS_cmte_member>
+    <DISS_categorization>
+      <DISS_category>
+        <DISS_cat_code>0318</DISS_cat_code>
+        <DISS_cat_desc>Religion</DISS_cat_desc>
+      </DISS_category>
+      <DISS_category>
+        <DISS_cat_code>0398</DISS_cat_code>
+        <DISS_cat_desc>Law</DISS_cat_desc>
+      </DISS_category>
+      <DISS_keyword>Fens, Swampy</DISS_keyword>
+      <DISS_language>en</DISS_language>
+    </DISS_categorization>
+  </DISS_description>
+  <DISS_content>
+    <DISS_abstract>
+      <DISS_para>Everything was now in a regular train: theatre, actors, actresses, and dresses, were all getting forward; but though no other great impediments arose, Fanny found, before many days were past, that it was not all uninterrupted enjoyment to the party themselves, and that she had not to witness the continuance of such unanimity and delight as had been almost too much for her at first. Everybody began to have their vexation. Edmund had many. Entirely against his judgment, a scene-painter arrived from town, and was at work, much to the increase of the expenses, and, what was worse, of the eclat of their proceedings; and his brother, instead of being really guided by him as to the privacy of the representation, was giving an invitation to every family who came in his way. Tom himself began to fret over the scene-painter's slow progress, and to feel the miseries of waiting. He had learned his part -- all his parts, for he took every trifling one that could be united with the Butler, and began to be impatient to be acting; and every day thus unemployed was tending to increase his sense of the insignificance of all his parts together, and make him more ready to regret that some other play had not been chosen.</DISS_para>
+    </DISS_abstract>
+    <DISS_binary type="PDF">Costa_ucsb_0035D_11752.pdf</DISS_binary>
+  </DISS_content>
+  <DISS_restriction>
+    <DISS_sales_restriction code="1" remove=""/>
+  </DISS_restriction>
+  <DISS_repository>
+    <DISS_version/>
+    <DISS_agreement_decision_date/>
+    <DISS_acceptance/>
+    <DISS_delayed_release/>
+    <DISS_access_option/>
+  </DISS_repository>
+</DISS_submission>

@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<zs:searchRetrieveResponse xmlns:zs="http://www.loc.gov/zing/srw/"><zs:version>1.1</zs:version><zs:numberOfRecords>1</zs:numberOfRecords><zs:records>
+<zs:record><zs:recordSchema>info:srw/schema/1/marcxml-v1.1</zs:recordSchema><zs:recordPacking>xml</zs:recordPacking><zs:recordData><record xmlns="http://www.loc.gov/MARC21/slim">
+  <leader>06321nam a22005413i 4500</leader>
+  <controlfield tag="001">004511621</controlfield>
+  <controlfield tag="005">20150518112830.0</controlfield>
+  <controlfield tag="006">m     o  d        </controlfield>
+  <controlfield tag="007">cr unu---|||||</controlfield>
+  <controlfield tag="008">141210s2014    cau|||||om||||||||||eng d</controlfield>
+  <datafield tag="020" ind1=" " ind2=" ">
+    <subfield code="a">9781234567890</subfield>
+  </datafield>
+  <datafield tag="024" ind1="7" ind2=" ">
+    <subfield code="a">ark:/48907/f3039mvr</subfield>
+    <subfield code="2">local</subfield>
+  </datafield>
+  <datafield tag="040" ind1=" " ind2=" ">
+    <subfield code="a">CUT</subfield>
+    <subfield code="b">eng</subfield>
+    <subfield code="c">CUT</subfield>
+    <subfield code="e">rda</subfield>
+  </datafield>
+  <datafield tag="100" ind1="1" ind2=" ">
+    <subfield code="a">Mugword, Old Mr,</subfield>
+    <subfield code="e">author.</subfield>
+  </datafield>
+  <datafield tag="245" ind1="1" ind2="0">
+    <subfield code="a">How to Disappear Completely /</subfield>
+    <subfield code="c">Mugwort, Old Mr.</subfield>
+  </datafield>
+  <datafield tag="264" ind1=" " ind2="1">
+    <subfield code="a">[Santa Barbara, Calif.] :</subfield>
+    <subfield code="b">University of California, Santa Barbara,</subfield>
+    <subfield code="c">2014.</subfield>
+  </datafield>
+  <datafield tag="300" ind1=" " ind2=" ">
+    <subfield code="a">1 online resource (100 pages)</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">text</subfield>
+    <subfield code="b">txt</subfield>
+    <subfield code="2">rdacontent</subfield>
+  </datafield>
+  <datafield tag="337" ind1=" " ind2=" ">
+    <subfield code="a">computer</subfield>
+    <subfield code="b">c</subfield>
+    <subfield code="2">rdamedia</subfield>
+  </datafield>
+  <datafield tag="338" ind1=" " ind2=" ">
+    <subfield code="a">online resource</subfield>
+    <subfield code="b">cr</subfield>
+    <subfield code="2">rdacarrier</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Source: Dissertation Abstracts International, Volume: 76-02(E), Section: B.</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Includes supplementary digital materials.</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Advisors: The Gaffer Committee members: Ty Brockhouse; Ted Tunnelly.</subfield>
+  </datafield>
+  <datafield tag="502" ind1=" " ind2=" ">
+    <subfield code="b">Ph.D.</subfield>
+    <subfield code="c">University of California, Santa Barbara</subfield>
+    <subfield code="d">2014.</subfield>
+  </datafield>
+  <datafield tag="520" ind1=" " ind2=" ">
+    <subfield code="a">Such was the state of affairs in the month of July; and Fanny had just reached her eighteenth year, when the society of the village received an addition in the brother and sister of Mrs. Grant, a Mr. and Miss Crawford, the children of her mother by a second marriage. They were young people of fortune. The son had a good estate in Norfolk, the daughter twenty thousand pounds. As children, their sister had been always very fond of them; but, as her own marriage had been soon followed by the death of their common parent, which left them to the care of a brother of their father, of whom Mrs. Grant knew nothing, she had scarcely seen them since. In their uncle's house they had found a kind home. Admiral and Mrs. Crawford, though agreeing in nothing else, were united in affection for these children, or, at least, were no farther adverse in their feelings than that each had their favourite, to whom they showed the greatest fondness of the two. The Admiral delighted in the boy, Mrs. Crawford doted on the girl; and it was the lady's death which now obliged her protegee, after some months' further trial at her uncle's house, to find another home. Admiral Crawford was a man of vicious conduct, who chose, instead of retaining his niece, to bring his mistress under his own roof; and to this Mrs. Grant was indebted for her sister's proposal of coming to her, a measure quite as welcome on one side as it could be expedient on the other; for Mrs. Grant, having by this time run through the usual resources of ladies residing in the country without a family of children -- having more than filled her favourite sitting-room with pretty furniture, and made a choice collection of plants and poultry -- was very much in want of some variety at home. The arrival, therefore, of a sister whom she had always loved, and now hoped to retain with her as long as she remained single, was highly agreeable; and her chief anxiety was lest Mansfield should not satisfy the habits of a young woman who had been mostly used to London.</subfield>
+  </datafield>
+  <datafield tag="546" ind1=" " ind2=" ">
+    <subfield code="a">English</subfield>
+  </datafield>
+  <datafield tag="653" ind1=" " ind2=" ">
+    <subfield code="a">Magic.</subfield>
+  </datafield>
+  <datafield tag="653" ind1=" " ind2=" ">
+    <subfield code="a">Rings.</subfield>
+  </datafield>
+  <datafield tag="653" ind1=" " ind2=" ">
+    <subfield code="a">Mystery.</subfield>
+  </datafield>
+  <datafield tag="653" ind1=" " ind2=" ">
+    <subfield code="a">Radiohead.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="4">
+    <subfield code="a">Geology.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="4">
+    <subfield code="a">Geophysics.</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="7">
+    <subfield code="a">Online resources.</subfield>
+    <subfield code="2">local</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="7">
+    <subfield code="a">Dissertations, Academic</subfield>
+    <subfield code="z">UCSB</subfield>
+    <subfield code="x">Geological Sciences</subfield>
+    <subfield code="2">local</subfield>
+  </datafield>
+  <datafield tag="710" ind1="2" ind2=" ">
+    <subfield code="a">University of California, Santa Barbara.</subfield>
+    <subfield code="b">Geological Sciences.</subfield>
+    <subfield code="e">degree granting institution.</subfield>
+  </datafield>
+  <datafield tag="720" ind1="1" ind2=" ">
+    <subfield code="a">The Gaffer</subfield>
+    <subfield code="e">degree supervisor.</subfield>
+  </datafield>
+  <datafield tag="791" ind1=" " ind2=" ">
+    <subfield code="a">Ph.D.</subfield>
+  </datafield>
+  <datafield tag="792" ind1=" " ind2=" ">
+    <subfield code="a">2014</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="0">
+    <subfield code="z">ProQuest full text or citation. Full text restricted to UC campuses.</subfield>
+    <subfield code="u">http://gateway.proquest.com/openurl?url_ver=Z39.88-2004&amp;rft_val_fmt=info:ofi/fmt:kev:mtx:dissertation&amp;res_dat=xri:pqm&amp;rft_dat=xri:pqdiss:3637464</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="a">CU-SB</subfield>
+    <subfield code="b">MAIN</subfield>
+    <subfield code="c">EDIS</subfield>
+    <subfield code="4">Main Library</subfield>
+    <subfield code="5">Electronic Dissertations</subfield>
+  </datafield>
+  <datafield tag="946" ind1=" " ind2=" ">
+    <subfield code="a">Spring 2014</subfield>
+  </datafield>
+  <datafield tag="947" ind1=" " ind2=" ">
+    <subfield code="a">PQD</subfield>
+    <subfield code="b">ProQuest Dissertations &amp; Theses Database</subfield>
+    <subfield code="l">do not send to LTI</subfield>
+    <subfield code="o">do not send to OCLC</subfield>
+  </datafield>
+  <datafield tag="956" ind1=" " ind2="0">
+    <subfield code="f">Mugwort_ucsb_0035D_12159.pdf</subfield>
+  </datafield>
+</record></zs:recordData><zs:recordPosition>1</zs:recordPosition></zs:record>
+
+</zs:records></zs:searchRetrieveResponse>

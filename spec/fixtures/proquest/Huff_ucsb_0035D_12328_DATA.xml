@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<DISS_submission publishing_option="0" embargo_code="3" third_party_search="Y">
+  <DISS_authorship>
+    <DISS_author type="primary">
+      <DISS_name>
+        <DISS_surname>Huff</DISS_surname>
+        <DISS_fname>Huff</DISS_fname>
+        <DISS_middle>Puff</DISS_middle>
+        <DISS_suffix/>
+        <DISS_affiliation>University of California, Santa Barbara</DISS_affiliation>
+      </DISS_name>
+      <DISS_contact type="current">
+        <DISS_contact_effdt>09/12/2014</DISS_contact_effdt>
+        <DISS_phone_fax type="P">
+          <DISS_cntry_cd>0</DISS_cntry_cd>
+          <DISS_area_code>666</DISS_area_code>
+          <DISS_phone_num>4201999</DISS_phone_num>
+          <DISS_phone_ext/>
+        </DISS_phone_fax>
+        <DISS_address>
+          <DISS_addrline>1 Fake Road</DISS_addrline>
+          <DISS_city>Unreal City</DISS_city>
+          <DISS_st>State of Denial</DISS_st>
+          <DISS_pcode>00000</DISS_pcode>
+          <DISS_country>Earth</DISS_country>
+        </DISS_address>
+        <DISS_email>fake@hotmail.con</DISS_email>
+      </DISS_contact>
+      <DISS_contact type="future">
+        <DISS_contact_effdt>09/12/2014</DISS_contact_effdt>
+        <DISS_phone_fax type="P">
+          <DISS_cntry_cd>0</DISS_cntry_cd>
+          <DISS_area_code>666</DISS_area_code>
+          <DISS_phone_num>4201999</DISS_phone_num>
+          <DISS_phone_ext/>
+        </DISS_phone_fax>
+        <DISS_address>
+          <DISS_addrline>1 Fake Road</DISS_addrline>
+          <DISS_city>Unreal City</DISS_city>
+          <DISS_st>State of Denial</DISS_st>
+          <DISS_pcode>00000</DISS_pcode>
+          <DISS_country>Earth</DISS_country>
+        </DISS_address>
+        <DISS_email>fake@hotmail.con</DISS_email>
+      </DISS_contact>
+      <DISS_citizenship>N/A</DISS_citizenship>
+    </DISS_author>
+  </DISS_authorship>
+  <DISS_description page_count="313" type="doctoral" external_id="http://dissertations.umi.com/ucsb:12328" apply_for_copyright="no">
+    <DISS_title>Longitudinal Analysis of the Three Little Pigs</DISS_title>
+    <DISS_dates>
+      <DISS_comp_date>2014</DISS_comp_date>
+      <DISS_accept_date>01/01/2014</DISS_accept_date>
+    </DISS_dates>
+    <DISS_degree>Ph.D.</DISS_degree>
+    <DISS_institution>
+      <DISS_inst_code>0035</DISS_inst_code>
+      <DISS_inst_name>University of California, Santa Barbara</DISS_inst_name>
+      <DISS_inst_contact>History</DISS_inst_contact>
+      <DISS_processing_code>D</DISS_processing_code>
+    </DISS_institution>
+    <DISS_advisor>
+      <DISS_name>
+        <DISS_surname>Shrimp</DISS_surname>
+        <DISS_fname>Tyler</DISS_fname>
+        <DISS_middle>R.</DISS_middle>
+      </DISS_name>
+    </DISS_advisor>
+    <DISS_cmte_member>
+      <DISS_name>
+        <DISS_surname>Man</DISS_surname>
+        <DISS_fname>Yes</DISS_fname>
+        <DISS_middle/>
+        <DISS_suffix/>
+        <DISS_affiliation/>
+      </DISS_name>
+    </DISS_cmte_member>
+    <DISS_cmte_member>
+      <DISS_name>
+        <DISS_surname>Gar</DISS_surname>
+        <DISS_fname>Mary</DISS_fname>
+        <DISS_middle/>
+        <DISS_suffix/>
+        <DISS_affiliation/>
+      </DISS_name>
+    </DISS_cmte_member>
+    <DISS_cmte_member>
+      <DISS_name>
+        <DISS_surname>Pupy</DISS_surname>
+        <DISS_fname>Vera</DISS_fname>
+        <DISS_middle/>
+        <DISS_suffix/>
+        <DISS_affiliation/>
+      </DISS_name>
+    </DISS_cmte_member>
+    <DISS_cmte_member>
+      <DISS_name>
+        <DISS_surname>Kid</DISS_surname>
+        <DISS_fname>Fresh</DISS_fname>
+        <DISS_middle/>
+        <DISS_suffix/>
+        <DISS_affiliation/>
+      </DISS_name>
+    </DISS_cmte_member>
+    <DISS_categorization>
+      <DISS_category>
+        <DISS_cat_code>0578</DISS_cat_code>
+        <DISS_cat_desc>History</DISS_cat_desc>
+      </DISS_category>
+      <DISS_category>
+        <DISS_cat_code>0337</DISS_cat_code>
+        <DISS_cat_desc>American history</DISS_cat_desc>
+      </DISS_category>
+      <DISS_category>
+        <DISS_cat_code>0582</DISS_cat_code>
+        <DISS_cat_desc>Modern history</DISS_cat_desc>
+      </DISS_category>
+      <DISS_keyword>Pigs, History, America</DISS_keyword>
+      <DISS_language>en</DISS_language>
+    </DISS_categorization>
+  </DISS_description>
+  <DISS_content>
+    <DISS_abstract>
+      <DISS_para>A quarter of an hour, twenty minutes, passed away, and Fanny was still thinking of Edmund, Miss Crawford, and herself, without interruption from any one. She began to be surprised at being left so long, and to listen with an anxious desire of hearing their steps and their voices again. She listened, and at length she heard; she heard voices and feet approaching; but she had just satisfied herself that it was not those she wanted, when Miss Bertram, Mr. Rushworth, and Mr. Crawford issued from the same path which she had trod herself, and were before her.</DISS_para>
+      <DISS_para>"Miss Price all alone" and "My dear Fanny, how comes this?" were the first salutations. She told her story. "Poor dear Fanny," cried her cousin, "how ill you have been used by them! You had better have staid with us."</DISS_para>
+    </DISS_abstract>
+    <DISS_binary type="PDF">Huff_ucsb_0035D_12328.pdf</DISS_binary>
+  </DISS_content>
+  <DISS_restriction/>
+  <DISS_repository>
+    <DISS_version>2014-06-04 18:56:24</DISS_version>
+    <DISS_agreement_decision_date>2014-09-12 22:20:10</DISS_agreement_decision_date>
+    <DISS_acceptance>1</DISS_acceptance>
+    <DISS_delayed_release/>
+    <DISS_access_option>Campus use only</DISS_access_option>
+  </DISS_repository>
+</DISS_submission>
