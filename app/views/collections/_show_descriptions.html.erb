@@ -8,7 +8,7 @@
         <%= render_document_show_field_label @presenter.solr_document, field: solr_fname %>
       </dt>
       <dd class="blacklight-<%= solr_fname.parameterize %>">
-        <%= solr_doc[field.field].join(', ').gsub(ApplicationHelper::URL_REGEXP, '<a href=\'\1\'>\1</a>').html_safe %>
+        <%= linkify(solr_doc[field.field].join(', ')).html_safe %>
       </dd>
     <% end %>
   <% end %>
