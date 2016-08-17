@@ -1,0 +1,147 @@
+<?xml version="1.0"?>
+<zs:searchRetrieveResponse xmlns:zs="http://www.loc.gov/zing/srw/"><zs:version>1.1</zs:version><zs:numberOfRecords>1</zs:numberOfRecords><zs:records>
+<zs:record><zs:recordSchema>info:srw/schema/1/marcxml-v1.1</zs:recordSchema><zs:recordPacking>xml</zs:recordPacking><zs:recordData><record xmlns="http://www.loc.gov/MARC21/slim">
+  <leader>04744nam a22005053i 4500</leader>
+  <controlfield tag="001">004511961</controlfield>
+  <controlfield tag="005">20160106114848.0</controlfield>
+  <controlfield tag="006">m     o  d        </controlfield>
+  <controlfield tag="007">cr unu---|||||</controlfield>
+  <controlfield tag="008">150617s2015    cau|||||om||||||||||eng d</controlfield>
+  <datafield tag="020" ind1=" " ind2=" ">
+    <subfield code="a">9781234567890</subfield>
+  </datafield>
+  <datafield tag="024" ind1="7" ind2=" ">
+    <subfield code="a">ark:/48907/f3062dnk</subfield>
+    <subfield code="2">local</subfield>
+  </datafield>
+  <datafield tag="040" ind1=" " ind2=" ">
+    <subfield code="a">CUT</subfield>
+    <subfield code="b">eng</subfield>
+    <subfield code="c">CUT</subfield>
+    <subfield code="e">rda</subfield>
+  </datafield>
+  <datafield tag="100" ind1="1" ind2=" ">
+    <subfield code="a">Potter, Harry James,</subfield>
+    <subfield code="e">author.</subfield>
+  </datafield>
+  <datafield tag="245" ind1="1" ind2="0">
+    <subfield code="a">How to Generate Fake ProQuest Metadata Programatically /</subfield>
+    <subfield code="c">by Harry James Potter.</subfield>
+  </datafield>
+  <datafield tag="264" ind1=" " ind2="1">
+    <subfield code="a">[Santa Barbara, Calif.] :</subfield>
+    <subfield code="b">University of California, Santa Barbara,</subfield>
+    <subfield code="c">2015.</subfield>
+  </datafield>
+  <datafield tag="300" ind1=" " ind2=" ">
+    <subfield code="a">1 online resource (666 pages)</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">text</subfield>
+    <subfield code="b">txt</subfield>
+    <subfield code="2">rdacontent</subfield>
+  </datafield>
+  <datafield tag="337" ind1=" " ind2=" ">
+    <subfield code="a">computer</subfield>
+    <subfield code="b">c</subfield>
+    <subfield code="2">rdamedia</subfield>
+  </datafield>
+  <datafield tag="338" ind1=" " ind2=" ">
+    <subfield code="a">online resource</subfield>
+    <subfield code="b">cr</subfield>
+    <subfield code="2">rdacarrier</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Source: Dissertation Abstracts International, Volume: 76-09(E), Section: B.</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Advisors: Charles B. Latrom Committee members: William C. Williams; Marcus G. Belcy; Pansy P. Parkinson.</subfield>
+  </datafield>
+  <datafield tag="502" ind1=" " ind2=" ">
+    <subfield code="b">Ph.D.</subfield>
+    <subfield code="c">University of California, Santa Barbara</subfield>
+    <subfield code="d">2015.</subfield>
+  </datafield>
+  <datafield tag="520" ind1=" " ind2=" ">
+    <subfield code="a">Fanny, with all her faults of ignorance and timidity, was fixed at Mansfield Park, and learning to transfer in its favour much of her attachment to her former home, grew up there not unhappily among her cousins. There was no positive ill-nature in Maria or Julia; and though Fanny was often mortified by their treatment of her, she thought too lowly of her own claims to feel injured by it.</subfield>
+  </datafield>
+  <datafield tag="520" ind1=" " ind2=" ">
+    <subfield code="a">From about the time of her entering the family, Lady Bertram, in consequence of a little ill-health, and a great deal of indolence, gave up the house in town, which she had been used to occupy every spring, and remained wholly in the country, leaving Sir Thomas to attend his duty in Parliament, with whatever increase or diminution of comfort might arise from her absence. In the country, therefore, the Miss Bertrams continued to exercise their memories, practise their duets, and grow tall and womanly: and their father saw them becoming in person, manner, and accomplishments, everything that could satisfy his anxiety. His eldest son was careless and extravagant, and had already given him much uneasiness; but his other children promised him nothing but good. His daughters, he felt, while they retained the name of Bertram, must be giving it new grace, and in quitting it, he trusted, would extend its respectable alliances; and the character of Edmund, his strong good sense and uprightness of mind, bid most fairly for utility, honour, and happiness to himself and all his connexions. He was to be a clergyman.</subfield>
+  </datafield>
+  <datafield tag="520" ind1=" " ind2=" ">
+    <subfield code="a">Amid the cares and the complacency which his own children suggested, Sir Thomas did not forget to do what he could for the children of Mrs. Price: he assisted her liberally in the education and disposal of her sons as they became old enough for a determinate pursuit; and Fanny, though almost totally separated from her family, was sensible of the truest satisfaction in hearing of any kindness towards them, or of anything at all promising in their situation or conduct. Once, and once only, in the course of many years, had she the happiness of being with William. Of the rest she saw nothing: nobody seemed to think of her ever going amongst them again, even for a visit, nobody at home seemed to want her; but William determining, soon after her removal, to be a sailor, was invited to spend a week with his sister in Northamptonshire before he went to sea. Their eager affection in meeting, their exquisite delight in being together, their hours of happy mirth, and moments of serious conference, may be imagined; as well as the sanguine views and spirits of the boy even to the last, and the misery of the girl when he left her. Luckily the visit happened in the Christmas holidays, when she could directly look for comfort to her cousin Edmund; and he told her such charming things of what William was to do, and be hereafter, in consequence of his profession, as made her gradually admit that the separation might have some use. Edmund's friendship never failed her: his leaving Eton for Oxford made no change in his kind dispositions, and only afforded more frequent opportunities of proving them. Without any display of doing more than the rest, or any fear of doing too much, he was always true to her interests, and considerate of her feelings, trying to make her good qualities understood, and to conquer the diffidence which prevented their being more apparent; giving her advice, consolation, and encouragement.</subfield>
+  </datafield>
+  <datafield tag="520" ind1=" " ind2=" ">
+    <subfield code="a">Kept back as she was by everybody else, his single support could not bring her forward; but his attentions were otherwise of the highest importance in assisting the improvement of her mind, and extending its pleasures. He knew her to be clever, to have a quick apprehension as well as good sense, and a fondness for reading, which, properly directed, must be an education in itself. Miss Lee taught her French, and heard her read the daily portion of history; but he recommended the books which charmed her leisure hours, he encouraged her taste, and corrected her judgment: he made reading useful by talking to her of what she read, and heightened its attraction by judicious praise. In return for such services she loved him better than anybody in the world except William: her heart was divided between the two.</subfield>
+  </datafield>
+  <datafield tag="546" ind1=" " ind2=" ">
+    <subfield code="a">English</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="4">
+    <subfield code="a">Engineering, Metadata Science.</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="7">
+    <subfield code="a">Online resources.</subfield>
+    <subfield code="2">local</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="7">
+    <subfield code="a">Dissertations, Academic</subfield>
+    <subfield code="z">UCSB</subfield>
+    <subfield code="x">Metadata</subfield>
+    <subfield code="2">local</subfield>
+  </datafield>
+  <datafield tag="653" ind1=" " ind2=" ">
+    <subfield code="a">Language.</subfield>
+  </datafield>
+  <datafield tag="653" ind1=" " ind2=" ">
+    <subfield code="a">Metadata.</subfield>
+  </datafield>
+  <datafield tag="653" ind1=" " ind2=" ">
+    <subfield code="a">ProQuest.</subfield>
+  </datafield>
+  <datafield tag="653" ind1=" " ind2=" ">
+    <subfield code="a">Computers.</subfield>
+  </datafield>
+  <datafield tag="710" ind1="2" ind2=" ">
+    <subfield code="a">University of California, Santa Barbara.</subfield>
+    <subfield code="b">Metadata.</subfield>
+    <subfield code="e">degree granting institution.</subfield>
+  </datafield>
+  <datafield tag="720" ind1="1" ind2=" ">
+    <subfield code="a">Charles B. Latrom</subfield>
+    <subfield code="e">degree supervisor.</subfield>
+  </datafield>
+  <datafield tag="791" ind1=" " ind2=" ">
+    <subfield code="a">Ph.D.</subfield>
+  </datafield>
+  <datafield tag="792" ind1=" " ind2=" ">
+    <subfield code="a">2015</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="0">
+    <subfield code="z">ProQuest full text or citation. Full text restricted to UC campuses.</subfield>
+    <subfield code="u">http://gateway.proquest.com/openurl?url_ver=Z39.88-2004&amp;rft_val_fmt=info:ofi/fmt:kev:mtx:dissertation&amp;res_dat=xri:pqm&amp;rft_dat=xri:pqdiss:3689986</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="a">CU-SB</subfield>
+    <subfield code="b">MAIN</subfield>
+    <subfield code="c">EDIS</subfield>
+    <subfield code="n">us</subfield>
+    <subfield code="x">scaral 01/06/16 cat</subfield>
+    <subfield code="4">Main Library</subfield>
+    <subfield code="5">Electronic Dissertations</subfield>
+  </datafield>
+  <datafield tag="946" ind1=" " ind2=" ">
+    <subfield code="a">Winter 2015</subfield>
+  </datafield>
+  <datafield tag="947" ind1=" " ind2=" ">
+    <subfield code="a">PQD</subfield>
+    <subfield code="b">ProQuest Dissertations &amp; Theses Database</subfield>
+    <subfield code="l">do not send to LTI</subfield>
+    <subfield code="o">do not send to OCLC</subfield>
+  </datafield>
+  <datafield tag="956" ind1=" " ind2="0">
+    <subfield code="f">Potter_ucsb_0035D_12531.pdf</subfield>
+  </datafield>
+</record></zs:recordData><zs:recordPosition>1</zs:recordPosition></zs:record>
+
+</zs:records></zs:searchRetrieveResponse>

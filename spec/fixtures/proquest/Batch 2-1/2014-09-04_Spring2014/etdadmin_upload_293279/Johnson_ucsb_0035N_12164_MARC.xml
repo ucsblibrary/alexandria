@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<zs:searchRetrieveResponse xmlns:zs="http://www.loc.gov/zing/srw/"><zs:version>1.1</zs:version><zs:numberOfRecords>1</zs:numberOfRecords><zs:records>
+<zs:record><zs:recordSchema>info:srw/schema/1/marcxml-v1.1</zs:recordSchema><zs:recordPacking>xml</zs:recordPacking><zs:recordData><record xmlns="http://www.loc.gov/MARC21/slim">
+  <leader>03701nam a22004573i 4500</leader>
+  <controlfield tag="001">004511592</controlfield>
+  <controlfield tag="005">20150518112829.0</controlfield>
+  <controlfield tag="006">m     o  d        </controlfield>
+  <controlfield tag="007">cr unu---|||||</controlfield>
+  <controlfield tag="008">141210s2014    cau|||||om||||||||||eng d</controlfield>
+  <datafield tag="020" ind1=" " ind2=" ">
+    <subfield code="a">9781234567890</subfield>
+  </datafield>
+  <datafield tag="024" ind1="7" ind2=" ">
+    <subfield code="a">ark:/48907/f3xz732v</subfield>
+    <subfield code="2">local</subfield>
+  </datafield>
+  <datafield tag="040" ind1=" " ind2=" ">
+    <subfield code="a">CUT</subfield>
+    <subfield code="b">eng</subfield>
+    <subfield code="c">CUT</subfield>
+    <subfield code="e">rda</subfield>
+  </datafield>
+  <datafield tag="100" ind1="1" ind2=" ">
+    <subfield code="a">Johnson, Angelina,</subfield>
+    <subfield code="e">author.</subfield>
+  </datafield>
+  <datafield tag="245" ind1="1" ind2="0">
+    <subfield code="a">Fear of Heights /</subfield>
+    <subfield code="c">Johnson, Angelina.</subfield>
+  </datafield>
+  <datafield tag="264" ind1=" " ind2="1">
+    <subfield code="a">[Santa Barbara, Calif.] :</subfield>
+    <subfield code="b">University of California, Santa Barbara,</subfield>
+    <subfield code="c">2014.</subfield>
+  </datafield>
+  <datafield tag="300" ind1=" " ind2=" ">
+    <subfield code="a">1 online resource (420 pages)</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">text</subfield>
+    <subfield code="b">txt</subfield>
+    <subfield code="2">rdacontent</subfield>
+  </datafield>
+  <datafield tag="337" ind1=" " ind2=" ">
+    <subfield code="a">computer</subfield>
+    <subfield code="b">c</subfield>
+    <subfield code="2">rdamedia</subfield>
+  </datafield>
+  <datafield tag="338" ind1=" " ind2=" ">
+    <subfield code="a">online resource</subfield>
+    <subfield code="b">cr</subfield>
+    <subfield code="2">rdacarrier</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Source: Masters Abstracts International, Volume: 53-06M(E).</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Advisors: Catface Meowmers Committee members: Catface Meowmers; Sue Grafton; Newt Scamander.</subfield>
+  </datafield>
+  <datafield tag="502" ind1=" " ind2=" ">
+    <subfield code="b">M.A.</subfield>
+    <subfield code="c">University of California, Santa Barbara</subfield>
+    <subfield code="d">2014.</subfield>
+  </datafield>
+  <datafield tag="520" ind1=" " ind2=" ">
+    <subfield code="a">Mr. Bertram set off for ____, and Miss Crawford was prepared to find a great chasm in their society, and to miss him decidedly in the meetings which were now becoming almost daily between the families; and on their all dining together at the Park soon after his going, she retook her chosen place near the bottom of the table, fully expecting to feel a most melancholy difference in the change of masters. It would be a very flat business, she was sure. In comparison with his brother, Edmund would have nothing to say. The soup would be sent round in a most spiritless manner, wine drank without any smiles or agreeable trifling, and the venison cut up without supplying one pleasant anecdote of any former haunch, or a single entertaining story, about "my friend such a one." She must try to find amusement in what was passing at the upper end of the table, and in observing Mr. Rushworth, who was now making his appearance at Mansfield for the first time since the Crawfords' arrival. He had been visiting a friend in the neighbouring county, and that friend having recently had his grounds laid out by an improver, Mr. Rushworth was returned with his head full of the subject, and very eager to be improving his own place in the same way; and though not saying much to the purpose, could talk of nothing else. The subject had been already handled in the drawing-room; it was revived in the dining-parlour. Miss Bertram's attention and opinion was evidently his chief aim; and though her deportment showed rather conscious superiority than any solicitude to oblige him, the mention of Sotherton Court, and the ideas attached to it, gave her a feeling of complacency, which prevented her from being very ungracious.</subfield>
+  </datafield>
+  <datafield tag="546" ind1=" " ind2=" ">
+    <subfield code="a">English</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="4">
+    <subfield code="a">Psychology, Clinical.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="4">
+    <subfield code="a">Psychology, Experimental.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="4">
+    <subfield code="a">Psychology, Physiological.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="4">
+    <subfield code="a">Psychology, Cognitive.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="4">
+    <subfield code="a">Health Sciences, Mental Health.</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="7">
+    <subfield code="a">Online resources.</subfield>
+    <subfield code="2">local</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="7">
+    <subfield code="a">Dissertations, Academic</subfield>
+    <subfield code="z">UCSB</subfield>
+    <subfield code="x">Psychology</subfield>
+    <subfield code="2">local</subfield>
+  </datafield>
+  <datafield tag="710" ind1="2" ind2=" ">
+    <subfield code="a">University of California, Santa Barbara.</subfield>
+    <subfield code="b">Psychology.</subfield>
+    <subfield code="e">degree granting institution.</subfield>
+  </datafield>
+  <datafield tag="720" ind1="1" ind2=" ">
+    <subfield code="a">Catface Meowmers</subfield>
+    <subfield code="e">degree supervisor.</subfield>
+  </datafield>
+  <datafield tag="791" ind1=" " ind2=" ">
+    <subfield code="a">M.A.</subfield>
+  </datafield>
+  <datafield tag="792" ind1=" " ind2=" ">
+    <subfield code="a">2014</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="0">
+    <subfield code="z">ProQuest full text or citation. Full text restricted to UC campuses.</subfield>
+    <subfield code="u">http://gateway.proquest.com/openurl?url_ver=Z39.88-2004&amp;rft_val_fmt=info:ofi/fmt:kev:mtx:dissertation&amp;res_dat=xri:pqm&amp;rft_dat=xri:pqdiss:1565419</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="a">CU-SB</subfield>
+    <subfield code="b">MAIN</subfield>
+    <subfield code="c">EDIS</subfield>
+    <subfield code="4">Main Library</subfield>
+    <subfield code="5">Electronic Dissertations</subfield>
+  </datafield>
+  <datafield tag="946" ind1=" " ind2=" ">
+    <subfield code="a">Spring 2014</subfield>
+  </datafield>
+  <datafield tag="947" ind1=" " ind2=" ">
+    <subfield code="a">PQD</subfield>
+    <subfield code="b">ProQuest Dissertations &amp; Theses Database</subfield>
+    <subfield code="l">do not send to LTI</subfield>
+    <subfield code="o">do not send to OCLC</subfield>
+  </datafield>
+  <datafield tag="956" ind1=" " ind2="0">
+    <subfield code="f">Johnson_ucsb_0035N_12164.pdf</subfield>
+  </datafield>
+</record></zs:recordData><zs:recordPosition>1</zs:recordPosition></zs:record>
+
+</zs:records></zs:searchRetrieveResponse>

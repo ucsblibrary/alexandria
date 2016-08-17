@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<zs:searchRetrieveResponse xmlns:zs="http://www.loc.gov/zing/srw/"><zs:version>1.1</zs:version><zs:numberOfRecords>1</zs:numberOfRecords><zs:records>
+<zs:record><zs:recordSchema>info:srw/schema/1/marcxml-v1.1</zs:recordSchema><zs:recordPacking>xml</zs:recordPacking><zs:recordData><record xmlns="http://www.loc.gov/MARC21/slim">
+  <leader>04056nam a22004573i 4500</leader>
+  <controlfield tag="001">004092515</controlfield>
+  <controlfield tag="005">20150501132445.0</controlfield>
+  <controlfield tag="006">m     o  d        </controlfield>
+  <controlfield tag="007">cr unu---|||||</controlfield>
+  <controlfield tag="008">141015s2013    cau|||||om||||||||||eng d</controlfield>
+  <datafield tag="020" ind1=" " ind2=" ">
+    <subfield code="a">9781234567890</subfield>
+  </datafield>
+  <datafield tag="024" ind1="7" ind2=" ">
+    <subfield code="a">ark:/48907/f3oi5k61</subfield>
+    <subfield code="2">local</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(OCoLC)123456789</subfield>
+  </datafield>
+  <datafield tag="040" ind1=" " ind2=" ">
+    <subfield code="a">CUT</subfield>
+    <subfield code="b">eng</subfield>
+    <subfield code="c">CUT</subfield>
+    <subfield code="e">rda</subfield>
+  </datafield>
+  <datafield tag="100" ind1="1" ind2=" ">
+    <subfield code="a">Plume, Fishy,</subfield>
+    <subfield code="e">author.</subfield>
+  </datafield>
+  <datafield tag="245" ind1="1" ind2="0">
+    <subfield code="a">Owl Wingspan and Tootsie Pop Lifespan /</subfield>
+    <subfield code="c">Plume, Fishy.</subfield>
+  </datafield>
+  <datafield tag="264" ind1=" " ind2="1">
+    <subfield code="a">[Santa Barbara, Calif.] :</subfield>
+    <subfield code="b">University of California, Santa Barbara,</subfield>
+    <subfield code="c">2013.</subfield>
+  </datafield>
+  <datafield tag="300" ind1=" " ind2=" ">
+    <subfield code="a">1 online resource (101 pages)</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">text</subfield>
+    <subfield code="b">txt</subfield>
+    <subfield code="2">rdacontent</subfield>
+  </datafield>
+  <datafield tag="337" ind1=" " ind2=" ">
+    <subfield code="a">computer</subfield>
+    <subfield code="b">c</subfield>
+    <subfield code="2">rdamedia</subfield>
+  </datafield>
+  <datafield tag="338" ind1=" " ind2=" ">
+    <subfield code="a">online resource</subfield>
+    <subfield code="b">cr</subfield>
+    <subfield code="2">rdacarrier</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Source: Dissertation Abstracts International, Volume: 75-03(E), Section: B.</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Includes supplementary digital materials.</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Advisors: Cool J. Adz Committee members: Hello Kitty; Fitz Master.</subfield>
+  </datafield>
+  <datafield tag="502" ind1=" " ind2=" ">
+    <subfield code="b">Ph.D.</subfield>
+    <subfield code="c">University of California, Santa Barbara</subfield>
+    <subfield code="d">2013.</subfield>
+  </datafield>
+  <datafield tag="520" ind1=" " ind2=" ">
+    <subfield code="a">Sir Thomas was indeed the life of the party, who at his suggestion now seated themselves round the fire. He had the best right to be the talker; and the delight of his sensations in being again in his own house, in the centre of his family, after such a separation, made him communicative and chatty in a very unusual degree; and he was ready to give every information as to his voyage, and answer every question of his two sons almost before it was put. His business in Antigua had latterly been prosperously rapid, and he came directly from Liverpool, having had an opportunity of making his passage thither in a private vessel, instead of waiting for the packet; and all the little particulars of his proceedings and events, his arrivals and departures, were most promptly delivered, as he sat by Lady Bertram and looked with heartfelt satisfaction on the faces around him -- interrupting himself more than once, however, to remark on his good fortune in finding them all at home -- coming unexpectedly as he did -- all collected together exactly as he could have wished, but dared not depend on. Mr. Rushworth was not forgotten: a most friendly reception and warmth of hand-shaking had already met him, and with pointed attention he was now included in the objects most intimately connected with Mansfield. There was nothing disagreeable in Mr. Rushworth's appearance, and Sir Thomas was liking him already.</subfield>
+  </datafield>
+  <datafield tag="520" ind1=" " ind2=" ">
+    <subfield code="a">By not one of the circle was he listened to with such unbroken, unalloyed enjoyment as by his wife, who was really extremely happy to see him, and whose feelings were so warmed by his sudden arrival as to place her nearer agitation than she had been for the last twenty years. She had been almost fluttered for a few minutes, and still remained so sensibly animated as to put away her work, move Pug from her side, and give all her attention and all the rest of her sofa to her husband. She had no anxieties for anybody to cloud her pleasure: her own time had been irreproachably spent during his absence: she had done a great deal of carpet-work, and made many yards of fringe; and she would have answered as freely for the good conduct and useful pursuits of all the young people as for her own. It was so agreeable to her to see him again, and hear him talk, to have her ear amused and her whole comprehension filled by his narratives, that she began particularly to feel how dreadfully she must have missed him, and how impossible it would have been for her to bear a lengthened absence.</subfield>
+  </datafield>
+  <datafield tag="546" ind1=" " ind2=" ">
+    <subfield code="a">English</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="4">
+    <subfield code="a">Applied Mathematics.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="4">
+    <subfield code="a">Biophysics, General.</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="7">
+    <subfield code="a">Online resources.</subfield>
+    <subfield code="2">local</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="7">
+    <subfield code="a">Dissertations, Academic</subfield>
+    <subfield code="z">UCSB</subfield>
+    <subfield code="x">Mathematics</subfield>
+    <subfield code="2">local</subfield>
+  </datafield>
+  <datafield tag="710" ind1="2" ind2=" ">
+    <subfield code="a">University of California, Santa Barbara.</subfield>
+    <subfield code="b">Mathematics.</subfield>
+    <subfield code="e">degree granting institution.</subfield>
+  </datafield>
+  <datafield tag="720" ind1="1" ind2=" ">
+    <subfield code="a">Cool J. Adz</subfield>
+    <subfield code="e">degree supervisor.</subfield>
+  </datafield>
+  <datafield tag="791" ind1=" " ind2=" ">
+    <subfield code="a">Ph.D.</subfield>
+  </datafield>
+  <datafield tag="792" ind1=" " ind2=" ">
+    <subfield code="a">2013</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="0">
+    <subfield code="z">Alexandria Digital Research Library full text or citation. Full text may be restricted to UCSB.</subfield>
+    <subfield code="u">http://alexcatria.ucsb.edu/lib/ark:/99999/f3g88861</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="0">
+    <subfield code="z">ProQuest full text or citation. Full text restricted to UC campuses.</subfield>
+    <subfield code="u">http://gateway.proquest.com/openurl?url_ver=Z39.88-2004&amp;rft_val_fmt=info:ofi/fmt:kev:mtx:dissertation&amp;res_dat=xri:pqm&amp;rft_dat=xri:pqdiss:3602190</subfield>
+  </datafield>
+  <datafield tag="852" ind1="0" ind2="0">
+    <subfield code="a">CU-SB</subfield>
+    <subfield code="b">MAIN</subfield>
+    <subfield code="c">EDIS</subfield>
+    <subfield code="h">QA13.5.C2</subfield>
+    <subfield code="n">us</subfield>
+    <subfield code="x">new 20140218 catspro/bfb</subfield>
+    <subfield code="4">Main Library</subfield>
+    <subfield code="5">Electronic Dissertations</subfield>
+  </datafield>
+  <datafield tag="946" ind1=" " ind2=" ">
+    <subfield code="a">Summer 2013</subfield>
+  </datafield>
+  <datafield tag="947" ind1=" " ind2=" ">
+    <subfield code="a">PQD</subfield>
+    <subfield code="b">ProQuest Dissertations &amp; Theses Database</subfield>
+    <subfield code="l">do not send to LTI</subfield>
+    <subfield code="o">do not send to OCLC</subfield>
+  </datafield>
+  <datafield tag="956" ind1=" " ind2="0">
+    <subfield code="f">Plume_ucsb_0035D_11862.pdf</subfield>
+  </datafield>
+</record></zs:recordData><zs:recordPosition>1</zs:recordPosition></zs:record>
+</zs:records></zs:searchRetrieveResponse>
