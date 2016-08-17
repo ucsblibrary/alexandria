@@ -73,7 +73,7 @@ data = if options[:data]
                end
                datas
              end
-           end.flatten
+           end.flatten.compact
          end
        end
 data ||= []
