@@ -11,7 +11,7 @@ module ApplicationHelper
   # @param [String] string
   # @return [String]
   def linkify(string)
-    string.gsub(URL_REGEXP, '<a href=\'\1\'>\1</a>')
+    string.gsub(URL_REGEXP, '<a href="\1">\1</a>')
   end
 
   def link_to_collection(stuff)
