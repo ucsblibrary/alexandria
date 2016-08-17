@@ -300,7 +300,7 @@ describe Proquest::Metadata do
     end
 
     context 'with embargo code 4 and an end date' do
-      let(:file)  { "#{fixture_path}/proquest/Shockey_ucsb_0035D_11990_DATA.xml" }
+      let(:file)  { "#{fixture_path}/proquest/Button_ucsb_0035D_11990_DATA.xml" }
 
       it 'imports metadata from proquest file' do
         expect(reloaded.embargo_release_date).to eq(Date.parse('2017-04-24'))
@@ -312,24 +312,24 @@ describe Proquest::Metadata do
     end
 
     context 'when the embargo is in the past and descripive metadata are present' do
-      let(:file)  { "#{fixture_path}/proquest/MartinezRodriguez_ucsb_0035D_12446_DATA.xml" }
+      let(:file)  { "#{fixture_path}/proquest/Miggs_ucsb_0035D_12446_DATA.xml" }
 
       it 'imports metadata from proquest file' do
         # Even though the embargo is expired, we still apply
         # the embargo so that an admin user will have a chance
         # to review it before lifting the embargo.
-        expect(reloaded.embargo_release_date).to eq Date.parse('2014-12-15')
+        expect(reloaded.embargo_release_date).to eq Date.parse('2015-12-15')
         expect(reloaded.visibility_during_embargo.id).to eq ActiveFedora::Base.id_to_uri(AdminPolicy::DISCOVERY_POLICY_ID)
         expect(reloaded.visibility_after_embargo.id).to eq ActiveFedora::Base.id_to_uri(AdminPolicy::PUBLIC_CAMPUS_POLICY_ID)
         expect(reloaded.admin_policy_id).to eq AdminPolicy::DISCOVERY_POLICY_ID
         expect(reloaded.date_copyrighted).to eq [2014]
-        expect(reloaded.rights_holder).to eq ['Nadine Martinez Rodriguez']
+        expect(reloaded.rights_holder).to eq ['Martin Miggs']
       end
     end
 
     context 'when there is no embargo release date' do
       context 'with embargo_code = 4' do
-        let(:file)  { "#{fixture_path}/proquest/French_ucsb_0035D_11752_DATA.xml" }
+        let(:file)  { "#{fixture_path}/proquest/Costa_ucsb_0035D_11752_DATA.xml" }
 
         it 'sets an "infinite embargo"' do
           # It's not really an embargo; it's a permanent state
@@ -345,7 +345,7 @@ describe Proquest::Metadata do
       end
 
       context 'with <DISS_delayed_release> empty: no embargo' do
-        let(:file)  { "#{fixture_path}/proquest/Flowers_ucsb_0035D_12540_DATA.xml" }
+        let(:file)  { "#{fixture_path}/proquest/Bones_ucsb_0035D_12540_DATA.xml" }
 
         it 'sets the access policy, no embargo' do
           expect(reloaded.admin_policy_id).to eq AdminPolicy::PUBLIC_POLICY_ID
@@ -357,7 +357,7 @@ describe Proquest::Metadata do
       end
 
       context 'with ProQuest embargo but without ADRL embargo' do
-        let(:file)  { "#{fixture_path}/proquest/Hough_ucsb_0035D_12328_DATA.xml" }
+        let(:file)  { "#{fixture_path}/proquest/Huff_ucsb_0035D_12328_DATA.xml" }
 
         it 'sets the access policy, no embargo' do
           expect(reloaded.admin_policy_id).to eq AdminPolicy::PUBLIC_CAMPUS_POLICY_ID

@@ -59,7 +59,7 @@ describe Importer::Factory::ETDFactory do
 
     let(:files) do
       {
-        xml: 'spec/fixtures/proquest/Shockey_ucsb_0035D_11990_DATA.xml',
+        xml: 'spec/fixtures/proquest/Button_ucsb_0035D_11990_DATA.xml',
         pdf: 'spec/fixtures/pdf/sample.pdf',
         supplements: [],
       }
