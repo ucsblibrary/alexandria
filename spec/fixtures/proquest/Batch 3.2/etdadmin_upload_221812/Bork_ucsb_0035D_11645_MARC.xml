@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<zs:searchRetrieveResponse xmlns:zs="http://www.loc.gov/zing/srw/"><zs:version>1.1</zs:version><zs:numberOfRecords>1</zs:numberOfRecords><zs:records>
+<zs:record><zs:recordSchema>info:srw/schema/1/marcxml-v1.1</zs:recordSchema><zs:recordPacking>xml</zs:recordPacking><zs:recordData><record xmlns="http://www.loc.gov/MARC21/slim">
+  <leader>04771nam a22005293i 4500</leader>
+  <controlfield tag="001">004077029</controlfield>
+  <controlfield tag="005">20150501132442.0</controlfield>
+  <controlfield tag="006">m     o  d        </controlfield>
+  <controlfield tag="007">cr unu---|||||</controlfield>
+  <controlfield tag="008">141015s2013    cau|||||om||||||||||eng d</controlfield>
+  <datafield tag="020" ind1=" " ind2=" ">
+    <subfield code="a">9781234567890</subfield>
+  </datafield>
+  <datafield tag="024" ind1="7" ind2=" ">
+    <subfield code="a">ark:/48907/f3lkjl5n</subfield>
+    <subfield code="2">local</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(OCoLC)123456789</subfield>
+  </datafield>
+  <datafield tag="040" ind1=" " ind2=" ">
+    <subfield code="a">CUT</subfield>
+    <subfield code="b">eng</subfield>
+    <subfield code="c">CUT</subfield>
+    <subfield code="e">rda</subfield>
+  </datafield>
+  <datafield tag="100" ind1="1" ind2=" ">
+    <subfield code="a">Bork, Bork,</subfield>
+    <subfield code="e">author.</subfield>
+  </datafield>
+  <datafield tag="245" ind1="1" ind2="4">
+    <subfield code="a">How To Read Bad Fan Fiction /</subfield>
+    <subfield code="c">Bork, Bork.</subfield>
+  </datafield>
+  <datafield tag="264" ind1=" " ind2="1">
+    <subfield code="a">[Santa Barbara, Calif.] :</subfield>
+    <subfield code="b">University of California, Santa Barbara,</subfield>
+    <subfield code="c">2013.</subfield>
+  </datafield>
+  <datafield tag="300" ind1=" " ind2=" ">
+    <subfield code="a">1 online resource (666 pages)</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">text</subfield>
+    <subfield code="b">txt</subfield>
+    <subfield code="2">rdacontent</subfield>
+  </datafield>
+  <datafield tag="337" ind1=" " ind2=" ">
+    <subfield code="a">computer</subfield>
+    <subfield code="b">c</subfield>
+    <subfield code="2">rdamedia</subfield>
+  </datafield>
+  <datafield tag="338" ind1=" " ind2=" ">
+    <subfield code="a">online resource</subfield>
+    <subfield code="b">cr</subfield>
+    <subfield code="2">rdacarrier</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Source: Dissertation Abstracts International, Volume: 75-01(E), Section: A.</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Advisors: Mustard Last Committee members: Bing Curly; Cheri Frog; Pointy Brother.</subfield>
+  </datafield>
+  <datafield tag="502" ind1=" " ind2=" ">
+    <subfield code="b">Ph.D.</subfield>
+    <subfield code="c">University of California, Santa Barbara</subfield>
+    <subfield code="d">2013.</subfield>
+  </datafield>
+  <datafield tag="520" ind1=" " ind2=" ">
+    <subfield code="a">It was but the day before that Crawford had made himself thoroughly master of the subject, or had in fact become at all aware of her having such a brother, or his being in such a ship, but the interest then excited had been very properly lively, determining him on his return to town to apply for information as to the probable period of the Antwerp's return from the Mediterranean, etc.; and the good luck which attended his early examination of ship news the next morning seemed the reward of his ingenuity in finding out such a method of pleasing her, as well as of his dutiful attention to the Admiral, in having for many years taken in the paper esteemed to have the earliest naval intelligence. He proved, however, to be too late. All those fine first feelings, of which he had hoped to be the exciter, were already given. But his intention, the kindness of his intention, was thankfully acknowledged: quite thankfully and warmly, for she was elevated beyond the common timidity of her mind by the flow of her love for William.</subfield>
+  </datafield>
+  <datafield tag="546" ind1=" " ind2=" ">
+    <subfield code="a">English</subfield>
+  </datafield>
+  <datafield tag="653" ind1=" " ind2=" ">
+    <subfield code="a">My Immortal.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="4">
+    <subfield code="a">Literature, English.</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="7">
+    <subfield code="a">Online resources.</subfield>
+    <subfield code="2">local</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="7">
+    <subfield code="a">Dissertations, Academic</subfield>
+    <subfield code="z">UCSB</subfield>
+    <subfield code="x">English</subfield>
+    <subfield code="2">local</subfield>
+  </datafield>
+  <datafield tag="710" ind1="2" ind2=" ">
+    <subfield code="a">University of California, Santa Barbara.</subfield>
+    <subfield code="b">English.</subfield>
+    <subfield code="e">degree granting institution.</subfield>
+  </datafield>
+  <datafield tag="720" ind1="1" ind2=" ">
+    <subfield code="a">Mustard Last</subfield>
+    <subfield code="e">degree supervisor.</subfield>
+  </datafield>
+  <datafield tag="791" ind1=" " ind2=" ">
+    <subfield code="a">Ph.D.</subfield>
+  </datafield>
+  <datafield tag="792" ind1=" " ind2=" ">
+    <subfield code="a">2013</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="0">
+    <subfield code="z">Alexandria Digital Research Library full text or citation. Full text may be restricted to UCSB.</subfield>
+    <subfield code="u">http://alexandria.ucsb.edu/lib/ark:/48907/898n145n</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="0">
+    <subfield code="z">ProQuest full text or citation. Full text restricted to UC campuses.</subfield>
+    <subfield code="u">http://gateway.proquest.com/openurl?url_ver=Z39.88-2004&amp;rft_val_fmt=info:ofi/fmt:kev:mtx:dissertation&amp;res_dat=xri:pqm&amp;rft_dat=xri:pqdiss:3596125</subfield>
+  </datafield>
+  <datafield tag="852" ind1="0" ind2="0">
+    <subfield code="a">CU-SB</subfield>
+    <subfield code="b">MAIN</subfield>
+    <subfield code="c">EDIS</subfield>
+    <subfield code="h">PE69.C2</subfield>
+    <subfield code="n">us</subfield>
+    <subfield code="x">new 20131205 catspro/leh</subfield>
+    <subfield code="4">Main Library</subfield>
+    <subfield code="5">Electronic Dissertations</subfield>
+  </datafield>
+  <datafield tag="946" ind1=" " ind2=" ">
+    <subfield code="a">Spring 2013</subfield>
+  </datafield>
+  <datafield tag="947" ind1=" " ind2=" ">
+    <subfield code="a">PQD</subfield>
+    <subfield code="b">ProQuest Dissertations &amp; Theses Database</subfield>
+    <subfield code="l">do not send to LTI</subfield>
+    <subfield code="o">do not send to OCLC</subfield>
+  </datafield>
+  <datafield tag="956" ind1=" " ind2="0">
+    <subfield code="f">Bork_ucsb_0035D_11645.pdf</subfield>
+  </datafield>
+</record></zs:recordData><zs:recordPosition>1</zs:recordPosition></zs:record>
+</zs:records></zs:searchRetrieveResponse>

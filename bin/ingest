@@ -73,10 +73,16 @@ data = if options[:data]
                end
                datas
              end
-           end.flatten
+           end.flatten.compact
          end
        end
 data ||= []
+
+if data.empty?
+  puts
+  puts "\033[1;39mWarning: no data sources specified.\033[0m"
+  puts
+end
 
 if options[:verbose]
   puts

@@ -1,0 +1,147 @@
+<?xml version="1.0"?>
+<zs:searchRetrieveResponse xmlns:zs="http://www.loc.gov/zing/srw/"><zs:version>1.1</zs:version><zs:numberOfRecords>1</zs:numberOfRecords><zs:records>
+<zs:record><zs:recordSchema>info:srw/schema/1/marcxml-v1.1</zs:recordSchema><zs:recordPacking>xml</zs:recordPacking><zs:recordData><record xmlns="http://www.loc.gov/MARC21/slim">
+  <leader>04893nam a22005293i 4500</leader>
+  <controlfield tag="001">004511830</controlfield>
+  <controlfield tag="005">20150704003007.0</controlfield>
+  <controlfield tag="006">m     o  d        </controlfield>
+  <controlfield tag="007">cr unu---|||||</controlfield>
+  <controlfield tag="008">150417s2014    cau|||||om||||||| ||eng d</controlfield>
+  <datafield tag="020" ind1=" " ind2=" ">
+    <subfield code="a">9781234567890</subfield>
+  </datafield>
+  <datafield tag="024" ind1="7" ind2=" ">
+    <subfield code="a">ark:/48907/f3910xhw</subfield>
+    <subfield code="2">local</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(OCoLC)123456789</subfield>
+  </datafield>
+  <datafield tag="040" ind1=" " ind2=" ">
+    <subfield code="a">CUT</subfield>
+    <subfield code="b">eng</subfield>
+    <subfield code="c">CUT</subfield>
+    <subfield code="e">rda</subfield>
+  </datafield>
+  <datafield tag="100" ind1="1" ind2=" ">
+    <subfield code="a">Ravenclaw, Helena,</subfield>
+    <subfield code="e">author.</subfield>
+  </datafield>
+  <datafield tag="245" ind1="1" ind2="0">
+    <subfield code="a">The Generational Symbolism of Artifacts /</subfield>
+    <subfield code="c">by Summer Marie Gray.</subfield>
+  </datafield>
+  <datafield tag="264" ind1=" " ind2="1">
+    <subfield code="a">[Santa Barbara, Calif.] :</subfield>
+    <subfield code="b">University of California, Santa Barbara,</subfield>
+    <subfield code="c">2014.</subfield>
+  </datafield>
+  <datafield tag="300" ind1=" " ind2=" ">
+    <subfield code="a">1 online resource (999 pages)</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">text</subfield>
+    <subfield code="b">txt</subfield>
+    <subfield code="2">rdacontent</subfield>
+  </datafield>
+  <datafield tag="337" ind1=" " ind2=" ">
+    <subfield code="a">computer</subfield>
+    <subfield code="b">c</subfield>
+    <subfield code="2">rdamedia</subfield>
+  </datafield>
+  <datafield tag="338" ind1=" " ind2=" ">
+    <subfield code="a">online resource</subfield>
+    <subfield code="b">cr</subfield>
+    <subfield code="2">rdacarrier</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Source: Dissertation Abstracts International, Volume: 76-07(E), Section: A.</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Advisors: Terry Boot Committee: Randall Applezin; Victoire Weasley.</subfield>
+  </datafield>
+  <datafield tag="502" ind1=" " ind2=" ">
+    <subfield code="b">Ph.D.</subfield>
+    <subfield code="c">University of California, Santa Barbara</subfield>
+    <subfield code="d">2014.</subfield>
+  </datafield>
+  <datafield tag="520" ind1=" " ind2=" ">
+    <subfield code="a">It was, indeed, a triumphant day to Mr. Bertram and Maria. Such a victory over Edmund's discretion had been beyond their hopes, and was most delightful. There was no longer anything to disturb them in their darling project, and they congratulated each other in private on the jealous weakness to which they attributed the change, with all the glee of feelings gratified in every way. Edmund might still look grave, and say he did not like the scheme in general, and must disapprove the play in particular; their point was gained: he was to act, and he was driven to it by the force of selfish inclinations only. Edmund had descended from that moral elevation which he had maintained before, and they were both as much the better as the happier for the descent.</subfield>
+  </datafield>
+  <datafield tag="520" ind1=" " ind2=" ">
+    <subfield code="a">They behaved very well, however, to him on the occasion, betraying no exultation beyond the lines about the corners of the mouth, and seemed to think it as great an escape to be quit of the intrusion of Charles Maddox, as if they had been forced into admitting him against their inclination. "To have it quite in their own family circle was what they had particularly wished. A stranger among them would have been the destruction of all their comfort"; and when Edmund, pursuing that idea, gave a hint of his hope as to the limitation of the audience, they were ready, in the complaisance of the moment, to promise anything. It was all good-humour and encouragement. Mrs. Norris offered to contrive his dress, Mr. Yates assured him that Anhalt's last scene with the Baron admitted a good deal of action and emphasis, and Mr. Rushworth undertook to count his speeches.</subfield>
+  </datafield>
+  <datafield tag="546" ind1=" " ind2=" ">
+    <subfield code="a">English</subfield>
+  </datafield>
+  <datafield tag="653" ind1=" " ind2=" ">
+    <subfield code="a">Forestry.</subfield>
+  </datafield>
+  <datafield tag="653" ind1=" " ind2=" ">
+    <subfield code="a">Diadems.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="4">
+    <subfield code="a">Sociology, Social Structure and Development.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="4">
+    <subfield code="a">Climate Change.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="4">
+    <subfield code="a">History of Science.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="4">
+    <subfield code="a">Sociology, Organizational.</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="7">
+    <subfield code="a">Online resources.</subfield>
+    <subfield code="2">local</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="7">
+    <subfield code="a">Dissertations, Academic</subfield>
+    <subfield code="z">UCSB</subfield>
+    <subfield code="x">Sociology</subfield>
+    <subfield code="2">local</subfield>
+  </datafield>
+  <datafield tag="710" ind1="2" ind2=" ">
+    <subfield code="a">University of California, Santa Barbara.</subfield>
+    <subfield code="b">Sociology,</subfield>
+    <subfield code="e">degree granting institution.</subfield>
+  </datafield>
+  <datafield tag="720" ind1="1" ind2=" ">
+    <subfield code="a">Terry Boot</subfield>
+    <subfield code="e">degree supervisor.</subfield>
+  </datafield>
+  <datafield tag="791" ind1=" " ind2=" ">
+    <subfield code="a">Ph.D.</subfield>
+  </datafield>
+  <datafield tag="792" ind1=" " ind2=" ">
+    <subfield code="a">2014</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="0">
+    <subfield code="z">ProQuest full text or citation. Full text restricted to UC campuses.</subfield>
+    <subfield code="u">http://gateway.proquest.com/openurl?url_ver=Z39.88-2004&amp;rft_val_fmt=info:ofi/fmt:kev:mtx:dissertation&amp;res_dat=xri:pqm&amp;rft_dat=xri:pqdiss:3682909</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="a">CU-SB</subfield>
+    <subfield code="b">MAIN</subfield>
+    <subfield code="c">EDIS</subfield>
+    <subfield code="n">us</subfield>
+    <subfield code="x">new 20150603 cbusselen</subfield>
+    <subfield code="4">Main Library</subfield>
+    <subfield code="5">Electronic Dissertations</subfield>
+  </datafield>
+  <datafield tag="946" ind1=" " ind2=" ">
+    <subfield code="a">Fall 2014</subfield>
+  </datafield>
+  <datafield tag="947" ind1=" " ind2=" ">
+    <subfield code="a">PQD</subfield>
+    <subfield code="b">ProQuest Dissertations &amp; Theses Database</subfield>
+  </datafield>
+  <datafield tag="948" ind1=" " ind2=" ">
+    <subfield code="a">LTI 07/02/2015</subfield>
+  </datafield>
+  <datafield tag="956" ind1=" " ind2="0">
+    <subfield code="f">Ravenclaw_ucsb_0035D_12480.pdf</subfield>
+  </datafield>
+</record></zs:recordData><zs:recordPosition>1</zs:recordPosition></zs:record>
+</zs:records></zs:searchRetrieveResponse>

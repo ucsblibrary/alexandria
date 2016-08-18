@@ -4,19 +4,13 @@
     <DISS_author type="primary">
       <DISS_name>
         <DISS_surname>Johnson</DISS_surname>
-        <DISS_fname>Arianne</DISS_fname>
+        <DISS_fname>Angelina</DISS_fname>
         <DISS_middle/>
         <DISS_suffix/>
         <DISS_affiliation>University of California, Santa Barbara</DISS_affiliation>
       </DISS_name>
       <DISS_contact type="current">
-        <DISS_contact_effdt>09/12/2014</DISS_contact_effdt>
-        <DISS_phone_fax type="P">
-          <DISS_cntry_cd>0</DISS_cntry_cd>
-          <DISS_area_code>666</DISS_area_code>
-          <DISS_phone_num>4201999</DISS_phone_num>
-          <DISS_phone_ext/>
-        </DISS_phone_fax>
+        <DISS_contact_effdt>06/06/2014</DISS_contact_effdt>
         <DISS_address>
           <DISS_addrline>1 Fake Road</DISS_addrline>
           <DISS_city>Unreal City</DISS_city>
@@ -28,12 +22,6 @@
       </DISS_contact>
       <DISS_contact type="future">
         <DISS_contact_effdt>09/12/2014</DISS_contact_effdt>
-        <DISS_phone_fax type="P">
-          <DISS_cntry_cd>0</DISS_cntry_cd>
-          <DISS_area_code>666</DISS_area_code>
-          <DISS_phone_num>4201999</DISS_phone_num>
-          <DISS_phone_ext/>
-        </DISS_phone_fax>
         <DISS_address>
           <DISS_addrline>1 Fake Road</DISS_addrline>
           <DISS_city>Unreal City</DISS_city>
@@ -46,8 +34,8 @@
       <DISS_citizenship>N/A</DISS_citizenship>
     </DISS_author>
   </DISS_authorship>
-  <DISS_description page_count="20" type="masters" external_id="http://dissertations.umi.com/ucsb:12164" apply_for_copyright="no">
-    <DISS_title>Association between a dopamine transporter polymorphism and fractional anisotropy in the substantia nigra: a diffusion tensor imaging study</DISS_title>
+  <DISS_description page_count="420" type="masters" external_id="http://dissertations.umi.com/ucsb:12164" apply_for_copyright="no">
+    <DISS_title>Fear of Heights</DISS_title>
     <DISS_dates>
       <DISS_comp_date>2014</DISS_comp_date>
       <DISS_accept_date>01/01/2014</DISS_accept_date>
@@ -61,15 +49,15 @@
     </DISS_institution>
     <DISS_advisor>
       <DISS_name>
-        <DISS_surname>Grafton</DISS_surname>
-        <DISS_fname>Scott</DISS_fname>
+        <DISS_surname>Meowmers</DISS_surname>
+        <DISS_fname>Catface</DISS_fname>
         <DISS_middle/>
       </DISS_name>
     </DISS_advisor>
     <DISS_cmte_member>
       <DISS_name>
         <DISS_surname>Grafton</DISS_surname>
-        <DISS_fname>Scott</DISS_fname>
+        <DISS_fname>Sue</DISS_fname>
         <DISS_middle/>
         <DISS_suffix/>
         <DISS_affiliation/>
@@ -77,8 +65,8 @@
     </DISS_cmte_member>
     <DISS_cmte_member>
       <DISS_name>
-        <DISS_surname>Gazzaniga</DISS_surname>
-        <DISS_fname>Michael</DISS_fname>
+        <DISS_surname>Meowmers</DISS_surname>
+        <DISS_fname>Catface</DISS_fname>
         <DISS_middle/>
         <DISS_suffix/>
         <DISS_affiliation/>
@@ -86,8 +74,8 @@
     </DISS_cmte_member>
     <DISS_cmte_member>
       <DISS_name>
-        <DISS_surname>Janusonis</DISS_surname>
-        <DISS_fname>Skirmantas</DISS_fname>
+        <DISS_surname>Scamander</DISS_surname>
+        <DISS_fname>Newt</DISS_fname>
         <DISS_middle/>
         <DISS_suffix/>
         <DISS_affiliation/>
@@ -104,7 +92,7 @@
   </DISS_description>
   <DISS_content>
     <DISS_abstract>
-      <DISS_para>Previous research has shown that fractional anisotropy (FA) is significantly less in the substantia nigra (SN) of patients with Parkinson's disease (PD) relative to controls.  This is likely indicative of dopamine (DA) cell loss, which in turn likely reflects a co-occuring loss of dopamine transporter (DAT). In the present diffusion tensor imaging (DTI) study, it was hypothesized that differences in DAT genotype in a healthy population would also be associated with differences in FA within the SN.  Specifically, it was hypothesized that the 9/9 genotype would be associated with increased FA values relative to the 9/10 or 10/10 genotype within the mid-dorsal caudal (MDC) SN.  In 82 subjects (5 9/9 genotype, 36 9/10 genotype, and 41 10/10 genotype), a significant difference was found between the 9/9 and 9/10 groups within the MDC SN ROI (p = .027).  No significant FA differences were found between the 9/9 and 10/10 groups (p = .306).  As expected, no FA differences were found in the control region of the cerebral peduncle in the 9/9 versus the 9/10 or 10/10 group (p = .382 and p = .344, respectively).  Additionally, no differences were found in MDC SN FA for control genotype, serotonin transporter (SERT) (p = .836), which was hypothesized not to be associated with microstructural MDC SN differences.  These results demonstrate that normal genetic variation can influence brainstem FA values, which might reflect dopamine transporter (DAT) site-specific changes in cell structure, showing that SN FA values may be used as a potential DAT density marker and biomarker for DAT related cognitive performance and disease states.</DISS_para>
+      <DISS_para>Mr. Bertram set off for ____, and Miss Crawford was prepared to find a great chasm in their society, and to miss him decidedly in the meetings which were now becoming almost daily between the families; and on their all dining together at the Park soon after his going, she retook her chosen place near the bottom of the table, fully expecting to feel a most melancholy difference in the change of masters. It would be a very flat business, she was sure. In comparison with his brother, Edmund would have nothing to say. The soup would be sent round in a most spiritless manner, wine drank without any smiles or agreeable trifling, and the venison cut up without supplying one pleasant anecdote of any former haunch, or a single entertaining story, about "my friend such a one." She must try to find amusement in what was passing at the upper end of the table, and in observing Mr. Rushworth, who was now making his appearance at Mansfield for the first time since the Crawfords' arrival. He had been visiting a friend in the neighbouring county, and that friend having recently had his grounds laid out by an improver, Mr. Rushworth was returned with his head full of the subject, and very eager to be improving his own place in the same way; and though not saying much to the purpose, could talk of nothing else. The subject had been already handled in the drawing-room; it was revived in the dining-parlour. Miss Bertram's attention and opinion was evidently his chief aim; and though her deportment showed rather conscious superiority than any solicitude to oblige him, the mention of Sotherton Court, and the ideas attached to it, gave her a feeling of complacency, which prevented her from being very ungracious.</DISS_para>
     </DISS_abstract>
     <DISS_binary type="PDF">Johnson_ucsb_0035N_12164.pdf</DISS_binary>
   </DISS_content>
