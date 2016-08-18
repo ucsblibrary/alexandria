@@ -79,6 +79,26 @@ describe Importer::Factory::ETDFactory do
         expect(ETD.find('f3gt5k61').file_sets.first.files.first.file_name).to eq(['sample.pdf'])
       end
     end
+
+    context 'when the file is already attached' do
+      let!(:etd) { factory.run }
+
+      before do
+        # The code that checks if the file already exists
+        # depends on the file_name, but the file_name gets set
+        # by the ingest background job.  For the spec, we'll
+        # set the file_name manually.
+        fs = etd.file_sets.first
+        fs.files.first.file_name = ['sample.pdf']
+        fs.save!
+      end
+
+      it 'doesn\'t attach the same file again' do
+        expect(etd.file_sets.count).to eq 1
+        factory.attach_files(etd, files)
+        expect(etd.file_sets.count).to eq 1
+      end
+    end
   end
 
   describe 'update an existing record' do

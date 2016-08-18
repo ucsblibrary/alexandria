@@ -1,3 +1,5 @@
+require 'proquest'
+
 module Importer::Factory
   class ETDFactory < ObjectFactory
     include WithAssociatedCollection
