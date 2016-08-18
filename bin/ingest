@@ -225,9 +225,17 @@ begin
       end
 
       xml = etds.map { |e| e[:xml] }
-      marc = MARC::XMLReader.new(
-        StringIO.new(Importer::ETD.fetch_marc(xml))
-      )
+
+      marc = if options[:metadata]
+               options[:metadata].map do |m|
+                 MARC::XMLReader.new(m).map { |o| o }
+               end.flatten
+             else
+               puts 'No metadata provided; fetching from Pegasus'
+               MARC::XMLReader.new(
+                 StringIO.new(Importer::ETD.fetch_marc(xml))
+               )
+             end
 
       marc.each_with_index do |record, count|
         next if options[:number] && options[:number] <= ingests
