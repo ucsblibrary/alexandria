@@ -5,13 +5,6 @@ class CatalogController < ApplicationController
 
   self.theme = 'alexandria'
 
-  rescue_from Blacklight::Exceptions::RecordNotFound do |e|
-    logger.error "(Blacklight::Exceptions::RecordNotFound): #{e.inspect}"
-    @unknown_type = 'Document'
-    @unknown_id = params[:id]
-    render 'errors/not_found', status: 404
-  end
-
   # enforce_show_permissions is from hydra-access-controls gem
   before_filter :enforce_show_permissions, only: :show
 

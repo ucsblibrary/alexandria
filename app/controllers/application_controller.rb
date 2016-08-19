@@ -1,8 +1,4 @@
 class ApplicationController < ActionController::Base
-  rescue_from DeviseLdapAuthenticatable::LdapException do |exception|
-    render text: exception, status: 500
-  end
-
   # Adds a few additional behaviors into the application controller
   include Blacklight::Controller
   include Hydra::Controller::ControllerBehavior
@@ -13,14 +9,32 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  rescue_from DeviseLdapAuthenticatable::LdapException do |exception|
+    render text: exception, status: 500
+  end
+
   # https://github.library.ucsb.edu/ADRL/alexandria/issues/22
   rescue_from ActionController::InvalidAuthenticityToken do |e|
-    logger.error "(ActionController::InvalidAuthenticityToken): #{e}"
+    logger.error e
     if params[:redirect]
       redirect_to params[:redirect]
     else
       redirect_to :back
     end
+  end
+
+  rescue_from Blacklight::Exceptions::RecordNotFound do |e|
+    logger.error "(Blacklight::Exceptions::RecordNotFound): #{e.inspect}"
+    @unknown_type = 'Document'
+    @unknown_id = params[:id]
+    render 'errors/not_found', status: 404
+  end
+
+  rescue_from Blacklight::Exceptions::InvalidSolrID do |e|
+    logger.error e
+    @unknown_type = 'Document'
+    @unknown_id = params[:id]
+    render 'errors/not_found', status: 404
   end
 
   def on_campus?
