@@ -1,19 +1,16 @@
-<%=
+<%
 missing = @unknown_type || "Page"
-
 @page_title = "#{missing} not found: #{application_name}"
-
-r = '<div id="content" class="col-md-9 col-sm-8">'
-r << '<div class="col-sm-10"><header>'
-r << "<h1>#{missing} not found</h1>"
-r << "<p>No #{missing.downcase} was found "
-
-r << if @unknown_id
-       "with ID (<code>#{@unknown_id}</code>)."
-     else
-       "at this location."
-     end
-r << "Try another search, or #{link_to 'contact us', contact_us_form_path} if you think this is an error."
-r << '</p></header></div></div>'
-r.html_safe
 %>
+
+<div id="content" class="col-md-9 col-sm-8">'
+  <div class="col-sm-10"><header>
+    <h1><%= missing %> not found</h1>
+    <p>No <%= missing.downcase %> was found
+      <% if @unknown_id %>
+        with ID <code><%= @unknown_id %></code>.
+      <% else %>
+        at this location.
+      <% end %>
+      Try another search, or <%= link_to 'contact us', contact_us_form_path %> if you think this is an error.
+</p></header></div></div>
