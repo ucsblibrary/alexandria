@@ -86,6 +86,13 @@ describe CatalogController do
         end
       end
     end
+
+    context 'bad URL' do
+      it 'returns a 404' do
+        get :show, id: 'fk4cn8cc3d'
+        expect(response.response_code).to eq 404
+      end
+    end
   end # show page
 
   describe '#editor?' do
