@@ -5,9 +5,9 @@ module ExtractIssueNumber
     a_extractor = Traject::MarcExtractor.new('028|0*|a')
     b_extractor = Traject::MarcExtractor.new('028|0*|b')
     lambda do |record, accumulator|
-      a_field = a_extractor.extract(record).compact.first
-      b_field = b_extractor.extract(record).compact.first
-      accumulator << "#{b_field} : #{a_field}"
+      fields = [a_extractor.extract(record).compact.first, b_extractor.extract(record).compact.first].compact
+      next if fields.empty?
+      accumulator << fields.join(' : ')
     end
   end
 end

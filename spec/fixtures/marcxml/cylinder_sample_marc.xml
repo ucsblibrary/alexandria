@@ -7,10 +7,6 @@
   <controlfield tag="007">se imsznnmwhna</controlfield>
   <controlfield tag="007">cr|nn||||a|ump</controlfield>
   <controlfield tag="008">990514s1903    njusgn g            eng d</controlfield>
-  <datafield tag="028" ind1="0" ind2="0">
-    <subfield code="a">8525</subfield>
-    <subfield code="b">Edison Gold Moulded Record</subfield>
-  </datafield>
   <datafield tag="035" ind1=" " ind2=" ">
     <subfield code="a">(OCoLC)41363324</subfield>
   </datafield>
