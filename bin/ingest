@@ -18,9 +18,6 @@ end
 require File.expand_path('../../lib/importer', __FILE__)
 AdminPolicy.ensure_admin_policy_exists
 
-# lib/exceptions.rb
-require 'exceptions'
-
 require 'fileutils'
 require 'find'
 require 'json'
