@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'exceptions'
 require 'importer'
 
 describe Importer::CSV do

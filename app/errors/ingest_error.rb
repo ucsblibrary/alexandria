@@ -8,9 +8,3 @@ class IngestError < RuntimeError
     @reached = options.fetch(:reached, 0)
   end
 end
-
-class NoModelError < RuntimeError
-  def initialize
-    super 'No model was specified'
-  end
-end
