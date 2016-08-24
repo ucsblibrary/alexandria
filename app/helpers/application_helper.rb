@@ -25,15 +25,6 @@ module ApplicationHelper
     string.gsub(URL_REGEXP, '<a href="\1">\1</a>')
   end
 
-  def link_to_facet(data)
-    data.fetch(:value).map do |value|
-      link_to(
-        value,
-        path_for_facet(data.fetch(:field).sub(/_[a-z]+$/, '_sim'), value)
-      )
-    end.join(', ').html_safe
-  end
-
   def link_to_collection(stuff)
     collection_id = Array(stuff.fetch(:document)[ObjectIndexer::COLLECTION]).first
     if collection_id

@@ -121,17 +121,21 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('language', :stored_searchable), label: 'Language'
     config.add_show_field solr_name('lc_subject_label', :stored_searchable),
                           label: 'Topics',
-                          helper_method: :link_to_facet
+                          link_to_search: 'lc_subject_label_sim'
+
     config.add_show_field solr_name('marc_subjects', :stored_searchable),
                           label: 'Topics',
-                          helper_method: :link_to_facet
-    config.add_show_field solr_name('location_label', :stored_searchable),
-                          label: 'Places',
-                          helper_method: :link_to_facet
-    config.add_show_field solr_name('keywords', :stored_searchable), label: 'Keywords'
+                          link_to_search: 'marc_subjects_sim'
+
+    config.add_show_field solr_name('location_label', :stored_searchable), label: 'Places'
+    config.add_show_field solr_name('keywords', :stored_searchable),
+                          label: 'Keywords',
+                          link_to_search: 'keywords_sim'
+
     config.add_show_field solr_name('form_of_work_label', :stored_searchable),
                           label: 'Genres',
-                          helper_method: :link_to_facet
+                          link_to_search: 'form_of_work_label_sim'
+
     config.add_show_field solr_name('degree_grantor', :symbol), label: 'Degree Grantor'
     config.add_show_field solr_name('dissertation', :displayable), label: 'Dissertation'
     config.add_show_field solr_name('note_label', :stored_searchable),
@@ -144,18 +148,18 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('extent', :displayable), label: 'Physical Description'
     config.add_show_field solr_name('work_type_label', :stored_searchable),
                           label: 'Format',
-                          helper_method: :link_to_facet
+                          link_to_search: 'work_type_label_sim'
     config.add_show_field solr_name('collection_label', :symbol), label: 'Collection', helper_method: :link_to_collection
     config.add_show_field solr_name('series_name', :displayable),
                           label: 'Series',
-                          helper_method: :link_to_facet
+                          link_to_search: 'series_name_sim'
     config.add_show_field solr_name('folder_name', :stored_searchable),
                           label: 'Folder',
-                          helper_method: :link_to_facet
+                          link_to_search: 'folder_name_sim'
     config.add_show_field solr_name('finding_aid', :stored_searchable), label: 'Finding Aid'
     config.add_show_field solr_name('sub_location', :displayable, type: :string),
                           label: 'Library Location',
-                          helper_method: :link_to_facet
+                          link_to_search: 'sub_location_sim'
     config.add_show_field solr_name('identifier', :displayable), label: 'ARK'
     config.add_show_field solr_name('accession_number', :symbol), label: 'Local Identifier'
     config.add_show_field 'isbn_ssim', label: 'ISBN'
@@ -165,7 +169,7 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('copyright_status_label', :stored_searchable), label: 'Copyright Status'
     config.add_show_field solr_name('license_label', :stored_searchable),
                           label: 'License',
-                          helper_method: :link_to_facet
+                          link_to_search: 'license_label_sim'
     config.add_show_field solr_name('rights_holder_label', :stored_searchable), label: 'Copyright Holder'
     config.add_show_field solr_name('date_copyrighted', :displayable), label: 'Copyright Date'
     config.add_show_field solr_name('restrictions', :stored_searchable),

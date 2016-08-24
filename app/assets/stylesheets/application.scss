@@ -614,7 +614,6 @@ label.remove_time_span {
     float: right;
     margin-top: $top_margin + 5px;
   }
-
 }
 
 .collection-icon {
@@ -635,6 +634,7 @@ label.remove_time_span {
 .documentHeader {
   clear: both;
 }
+
 // Ridiculous specificity to override Blacklight
 #documents .documentHeader h3.document-title-heading {
   width: 75%;
