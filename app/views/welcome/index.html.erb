@@ -1,28 +1,29 @@
-<div id="main_header">
-  <h2> Providing access for research, teaching and discovery to unique digital research materials from UC Santa Barbara Library. </h2>
-</div>
+<!DOCTYPE html>
+<html class="welcome" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title><%= render_page_title %></title>
+    <%= favicon_link_tag 'favicon.ico' %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
 
-<div class="welcome_inner">
-	<div id="left_column">
-    <h4>About This Site</h4>
-    <p>
-      The Alexandria Digital Research Library (ADRL) is <a href="http://www.library.ucsb.edu">UC Santa Barbara Library’s</a> home
-      for collections of digital research materials, including images,
-      text, streamed media, and numeric and spatial data. This
-      comprehensive digital library, when complete, will provide
-      access to millions of hidden digital research assets in UCSB
-      Library’s possession, and serve as a single search access point.
-    </p>
-    <%= link_to 'Read more…', about_path %>
-  </div>
+    <script>
+     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+       (i[r].q=i[r].q||[]).push(arguments)
+     },i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];
+       a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-  <div id="right_column">
-    <h4> How to Use This Site </h4>
-    <p>
-      Enter one or more words into the box above to search the
-      bibliographic records of all items in the Alexandria Digital
-      Research Library, or select “Collection,” “Contributor,”
-      “Format,” or “Topic” to narrow your search.
-    </p>
-  </div>
-</div>
+     ga('create', 'UA-2234594-4', 'auto');
+     ga('send', 'pageview');
+    </script>
+
+  </head>
+  <body>
+    <%= render '/flash_msg', layout: 'shared/flash_messages' %>
+    <%= render 'welcome/header_splash' %>
+    <%= render 'shared/footer' %>
+  </body>
+</html>

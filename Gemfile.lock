@@ -712,7 +712,7 @@ DEPENDENCIES
   rdf-vocab (~> 0.8.4)
   resque-pool
   resque-status
-  riiif (~> 0.2.0)
+  riiif (~> 0.4.0)!
   rsolr (~> 1.0.12)
   rspec-activemodel-mocks
   rspec-rails
@@ -730,6 +730,9 @@ DEPENDENCIES
   uglifier (~> 2.7.2)
   vcr
   webmock
+
+RUBY VERSION
+   ruby 2.3.0p0
 
 BUNDLED WITH
    1.11.2
