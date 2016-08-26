@@ -52,5 +52,8 @@ public/assets
 # Passwords
 /config/secrets.yml
 
+# Variable ARKs etc
+/config/homepage.yml
+
 /tags
 /env

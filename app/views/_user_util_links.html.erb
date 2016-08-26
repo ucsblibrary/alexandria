@@ -1,7 +1,22 @@
-<%= render 'shared/login_link' %>
+<div class="user-util-links">
 
-<ul class="catalog-nav">
-  <%= render_nav_actions do |config, action|%>
-    <li class="<%= config['class'] %>"><%= action %></li>
-  <% end %>
-</ul>
+  <ul class="catalog-nav">
+    <%= render_nav_actions do |config, action|%>
+      <li class="<%= config['class'] %>"><%= action %></li>
+    <% end %>
+
+    <% if has_user_authentication_provider? %>
+      <li class="login-link">
+        <% if current_user %>
+          <%= link_to t('blacklight.header_links.logout'), main_app.destroy_user_session_path %>
+          <% unless current_user.to_s.blank? %>
+            <%= ": #{current_user}" %>
+          <% end %>
+        <% else %>
+          <%= link_to 'Login', main_app.new_user_session_path %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+
+</div>

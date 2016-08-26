@@ -8,11 +8,6 @@ RSpec.describe WelcomeController, type: :controller do
       expect(response).to have_http_status(:success)
       expect(response).to render_template(:index)
     end
-
-    it 'uses the special welcome layout' do
-      expect(response).to render_template(:welcome)
-      expect(response).to_not render_template(:blacklight)
-    end
   end
 
   describe 'about' do

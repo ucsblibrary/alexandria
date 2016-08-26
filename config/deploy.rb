@@ -31,7 +31,10 @@ set :branch, ENV['REVISION'] || ENV['BRANCH_NAME'] || 'master'
 # Default value for :pty is false
 # set :pty, true
 
-set :linked_files, %w(config/secrets.yml)
+set :linked_files, %w(
+  config/homepage.yml
+  config/secrets.yml
+)
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
