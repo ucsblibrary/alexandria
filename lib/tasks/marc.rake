@@ -14,12 +14,17 @@ namespace :marc do
     get_marc_records(:etd)
   end
 
-  # desc 'Download the MARC record for an ARK'
-  # task :ark, [:ark] do |_, args|
-  #   File.open(File.join(Settings.marc_directory, "#{args[:ark]}.xml"), 'w') do |f|
-  #     f.write Pegasus.by_ark(args[:ark])
-  #   end
-  # end
+  desc 'Download the MARC record for a PID'
+  task :ark, [:pid] do |_, args|
+    marc = Pegasus.by_ark(args[:pid])
+    if marc
+      File.open(File.join(Settings.marc_directory, "#{args[:pid]}.xml"), 'w') do |f|
+        f.write marc
+      end
+    else
+      $stderr.puts "ERROR: nothing found for #{args[:pid]}"
+    end
+  end
 
   def get_marc_records(record_type)
     doc = Nokogiri::XML(Pegasus.batch(type: record_type, max: 1))
