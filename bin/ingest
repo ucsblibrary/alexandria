@@ -230,7 +230,7 @@ begin
              else
                puts 'No metadata provided; fetching from Pegasus'
                MARC::XMLReader.new(
-                 StringIO.new(Importer::ETD.fetch_marc(xml))
+                 StringIO.new(Importer::ETD.get_metadata(xml))
                )
              end
 
