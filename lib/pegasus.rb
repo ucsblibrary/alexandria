@@ -4,7 +4,7 @@ module Pegasus
   PAYLOAD_HEADER = "<?xml version=\"1.0\"?>\n<zs:searchRetrieveResponse xmlns:zs=\"http://www.loc.gov/zing/srw/\"><zs:version>1.1</zs:version><zs:numberOfRecords>1</zs:numberOfRecords><zs:records>".freeze
   PAYLOAD_FOOTER = '</zs:records></zs:searchRetrieveResponse>'.freeze
 
-  # @param [String]
+  # @param [String] binary
   def self.by_binary(binary)
     fetch(query: "(marc.956.f=#{binary})")
   end
@@ -14,7 +14,12 @@ module Pegasus
     fetch(query: "(marc.024.a=#{ARK_SHOULDER}.#{ark})")
   end
 
-  # @param [Symbol] type
+  # @param [Hash] options
+  # @option options [Symbol] :type
+  # @option options [Int] :max
+  # @option options [Int] start
+  #
+  # @return [String]
   def self.batch(options)
     query = case options.fetch(:type)
             when :cylinder
@@ -29,7 +34,11 @@ module Pegasus
     )
   end
 
-  # @param [String] binary_filename The basename of the PDF for an ETD from ProQuest
+  # @param [Hash] options
+  # @option options [String] :query
+  # @option options [Int] :max
+  # @option options [Int] start
+  #
   # @return [String]
   def self.fetch(options)
     query = [
@@ -55,6 +64,7 @@ module Pegasus
     payload.sub(PAYLOAD_HEADER, '').sub(PAYLOAD_FOOTER, '')
   end
 
+  # @param [Array] records
   def self.wrap(records)
     <<-EOS
 <?xml version="1.0"?>
