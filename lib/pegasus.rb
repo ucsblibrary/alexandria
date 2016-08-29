@@ -11,7 +11,7 @@ module Pegasus
 
   # @param [String] ark
   def self.by_ark(ark)
-    Pegasus.fetch(query: "(marc.024.a=#{ARK_SHOULDER}.#{ark})")
+    fetch(query: "(marc.024.a=#{ARK_SHOULDER}.#{ark})")
   end
 
   # @param [Symbol] type
@@ -32,7 +32,6 @@ module Pegasus
   # @param [String] binary_filename The basename of the PDF for an ETD from ProQuest
   # @return [String]
   def self.fetch(options)
-    client = HTTPClient.new
     query = [
       SRU,
       "&maximumRecords=#{options.fetch(:max, 1)}",
@@ -42,6 +41,7 @@ module Pegasus
 
     # $stderr.puts query
 
+    client = HTTPClient.new
     search = client.get(query)
 
     result = search.body
