@@ -20,7 +20,7 @@ class ImageIndexer < ObjectIndexer
       file_set_images('1000,'.freeze)
     end
 
-    def file_set_images(size = '600,'.freeze)
+    def file_set_images(size = '400,'.freeze)
       object.file_sets.map do |file_set|
         file = file_set.files.first
         next unless file
