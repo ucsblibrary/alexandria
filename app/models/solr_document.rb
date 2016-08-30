@@ -154,6 +154,10 @@ class SolrDocument
     fetch('citation_ssm', [])
   end
 
+  def license
+    fetch('license_label_tesim', [])
+  end
+
   private
 
     def load_file_sets(ids)

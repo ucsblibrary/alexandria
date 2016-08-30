@@ -7,16 +7,6 @@ module Importer::Factory
     self.klass = ETD
     self.system_identifier_field = :system_number
 
-    def create_attributes
-      # When we first create an ETD, we might not yet have the
-      # metadata from ProQuest that contains the access and
-      # embargo data.  Since we don't know whether or not this
-      # ETD is under embargo, we'll assume the most strict
-      # access level.  This policy might change later when the
-      # ProQuest metadata gets imported.
-      super.merge(admin_policy_id: AdminPolicy::RESTRICTED_POLICY_ID)
-    end
-
     def attach_files(object, files)
       return unless files[:xml]
       object.proquest.mime_type = 'application/xml'
@@ -48,6 +38,20 @@ module Importer::Factory
         EmbargoService.copy_embargo(object, file_set) if object.under_embargo?
         object.ordered_members << file_set
       end
+    end
+
+    def create_attributes
+      # When we first create an ETD, we might not yet have the
+      # metadata from ProQuest that contains the access and
+      # embargo data.  Since we don't know whether or not this
+      # ETD is under embargo, we'll assume the most strict
+      # access level.  This policy might change later when the
+      # ProQuest metadata gets imported.
+      super.merge(
+        admin_policy_id: AdminPolicy::RESTRICTED_POLICY_ID,
+        copyright_status: [RDF::URI('http://id.loc.gov/vocabulary/preservation/copyrightStatus/cpr')],
+        license: [RDF::URI('http://rightsstatements.org/vocab/InC/1.0/')]
+      )
     end
   end
 end

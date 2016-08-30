@@ -17,6 +17,9 @@ terms:
   - term: CC-BY-NC
     id:   http://creativecommons.org/licenses/by-nc/4.0/
     active: true
+  - term: CC-BY-NC/2.5
+    id:   http://creativecommons.org/licenses/by-nc/2.5/
+    active: true
   - term: CC-BY-NC-SA
     id:   http://creativecommons.org/licenses/by-nc-sa/4.0/
     active: true
@@ -31,6 +34,9 @@ terms:
     active: true
   - term: Free Access - No Re-Use
     id:   http://www.europeana.eu/rights/rr-f/
+    active: true
+  - term: In Copyright
+    id:   http://rightsstatements.org/vocab/InC/1.0/
     active: true
   - term: Rights Reserved - Restricted Access
     id:   http://www.europeana.eu/rights/rr-r/

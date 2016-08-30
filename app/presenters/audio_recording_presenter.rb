@@ -9,6 +9,7 @@ class AudioRecordingPresenter < CurationConcerns::WorkShowPresenter
     :fulltext_link,
     :issue_number,
     :issued,
+    :license,
     :location,
     :matrix_number,
     :notes,

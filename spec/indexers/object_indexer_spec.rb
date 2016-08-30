@@ -138,7 +138,11 @@ describe ObjectIndexer do
     it 'indexes with a label' do
       VCR.use_cassette('object_indexer', record: :new_episodes) do
         expect(subject['license_tesim']).to eq [pd_uri.to_s, by_uri.to_s, edu_uri.to_s]
-        expect(subject['license_label_tesim']).to eq ['Public Domain Mark 1.0', 'Attribution 4.0 International', 'Educational Use Permitted']
+        expect(subject['license_label_tesim']).to(
+          contain_exactly('Public Domain Mark 1.0',
+                          'Attribution 4.0 International',
+                          'Educational Use Permitted')
+        )
       end
     end
   end

@@ -161,6 +161,7 @@ describe Importer::Cylinder do
           match(%r{(http://test.host/authorities/topics/.{8}-.{4}-.{4}-.{4}-.{12})|(http://test.host/authorities/people/.{8}-.{4}-.{4}-.{4}-.{12})|(http://test.host/authorities/organizations/.{8}-.{4}-.{4}-.{4}-.{12})})
         )
       end
+      expect(record1.license.map(&:class)).to eq [Oargun::ControlledVocabularies::RightsStatement]
       expect(record1.location.first.class).to eq Oargun::ControlledVocabularies::Geographic
       expect(record1.matrix_number).to eq []
       expect(record1.description).to eq ['Baritone solo with orchestra accompaniment.\nIt\'s really good and you should all listen.']

@@ -82,11 +82,11 @@ module Importer::Factory
         copyright_status: [RDF::URI('http://id.loc.gov/vocabulary/preservation/copyrightStatus/cpr')],
         digital_origin: ['reformatted digital'],
         institution: [RDF::URI('http://id.loc.gov/vocabulary/organizations/cusb')],
+        license: [RDF::URI('http://creativecommons.org/licenses/by-nc/2.5/')],
+        restrictions: RESTRICTIONS,
         rights_holder: [RDF::URI('http://id.loc.gov/authorities/names/n85088322')],
-        sub_location: ['Department of Special Research Collections'],
-        restrictions: RESTRICTIONS
+        sub_location: ['Department of Special Research Collections']
       )
     end
-
   end
 end

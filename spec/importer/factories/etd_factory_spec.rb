@@ -34,9 +34,11 @@ describe Importer::Factory::ETDFactory do
     it 'should not create a new collection' do
       expect(coll.members.size).to eq 0
       obj = nil
-      expect do
-        obj = factory.run
-      end.to change { Collection.count }.by(0)
+      VCR.use_cassette('etd_importer', record: :new_episodes) do
+        expect do
+          obj = factory.run
+        end.to change { Collection.count }.by(0)
+      end
       expect(coll.reload.members.size).to eq 1
       expect(coll.members.first).to be_instance_of ETD
       expect(obj.id).to eq 'f3gt5k61'
@@ -49,8 +51,10 @@ describe Importer::Factory::ETDFactory do
   describe '#create_attributes' do
     subject { factory.create_attributes }
 
-    it "adds the default access policy to the ETD's attributes" do
+    it 'adds the default attributes' do
       expect(subject[:admin_policy_id]).to eq AdminPolicy::RESTRICTED_POLICY_ID
+      expect(subject[:copyright_status]).to eq [RDF::URI('http://id.loc.gov/vocabulary/preservation/copyrightStatus/cpr')]
+      expect(subject[:license]).to eq [RDF::URI('http://rightsstatements.org/vocab/InC/1.0/')]
     end
   end
 
@@ -75,13 +79,19 @@ describe Importer::Factory::ETDFactory do
 
     context 'when a PDF is provided' do
       it 'attaches files' do
-        factory.run
+        VCR.use_cassette('etd_importer', record: :new_episodes) do
+          factory.run
+        end
         expect(ETD.find('f3gt5k61').file_sets.first.files.first.file_name).to eq(['sample.pdf'])
       end
     end
 
     context 'when the file is already attached' do
-      let!(:etd) { factory.run }
+      let!(:etd) do
+        VCR.use_cassette('etd_importer', record: :new_episodes) do
+          factory.run
+        end
+      end
 
       before do
         # The code that checks if the file already exists
