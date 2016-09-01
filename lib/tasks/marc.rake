@@ -15,7 +15,7 @@ namespace :marc do
   end
 
   desc 'Download the MARC record for a PID'
-  task :ark, [:pid] do |_, args|
+  task :ark, [:pid] => :environment do |_, args|
     marc = Pegasus.by_ark(args[:pid])
     if marc
       File.open(File.join(Settings.marc_directory, "#{args[:pid]}.xml"), 'w') do |f|
