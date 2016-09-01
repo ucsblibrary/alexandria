@@ -25,7 +25,9 @@
   </div>
 
   <div class="background-metadata">
-    <p>Background: <a href="/lib/<%= "#{Rails.application.secrets.ezid_default_shoulder}/#{@background['ark']}" %>" title="Record page"><%= @background['title'] %></a><br>
-      Part of <a href="/collections/<%= @background['collection_id'] %>" title="Collection page"><%= @background['collection_title'] %></a></p>
+    <% if @background.keys.count >= 7 %>
+      <p>Background: <a href="/lib/<%= "#{Rails.application.secrets.ezid_default_shoulder}/#{@background['ark']}" %>" title="Record page"><%= @background['title'] %></a><br>
+        Part of <a href="/collections/<%= @background['collection_id'] %>" title="Collection page"><%= @background['collection_title'] %></a></p>
+    <% end %>
   </div>
 </header>

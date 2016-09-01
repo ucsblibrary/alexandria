@@ -17,5 +17,7 @@ class WelcomeController < ApplicationController
 
   def images
     @images ||= YAML.load(File.read(Rails.root.join('config', 'homepage.yml')))
+  rescue Errno::ENOENT
+    [{}]
   end
 end
