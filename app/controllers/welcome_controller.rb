@@ -7,7 +7,7 @@ class WelcomeController < ApplicationController
 
     port = ':3000' unless Rails.env.production?
     size = 2000
-    @background['url'] = "http://#{Rails.application.config.host_name}#{port}"\
+    @background['url'] = "//#{Rails.application.config.host_name}#{port}"\
                          "/images/#{@background['image_path']}"\
                          "/#{@background['region']}/#{size},/0/default.jpg"
   end
