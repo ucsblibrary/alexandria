@@ -10,7 +10,6 @@ RSpec.describe WelcomeController, type: :controller do
     end
 
     it 'uses the special welcome layout' do
-      expect(response).to render_template(:welcome)
       expect(response).to_not render_template(:blacklight)
     end
   end
