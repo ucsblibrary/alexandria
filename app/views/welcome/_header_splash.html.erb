@@ -1,4 +1,4 @@
-<header class="splash" style="background-image: url('<%= @background['url'] %>');">
+<header class="splash" style="background-image: url('<%= @background_url %>');">
   <%= render partial: '/user_util_links' %>
 
   <div class="flex-outer">
@@ -25,8 +25,8 @@
   </div>
 
   <div class="background-metadata">
-    <% if @background.keys.count >= 7 %>
-      <p>Background: <a href="/lib/<%= "#{Rails.application.secrets.ezid_default_shoulder}/#{@background['ark']}" %>" title="Record page"><%= @background['title'] %></a><br>
+    <% unless @background.empty? %>
+      <p>Background: <a href="/lib/<%= "#{@object_url}" %>" title="Record page"><%= @background['title'] %></a><br>
         Part of <a href="/collections/<%= @background['collection_id'] %>" title="Collection page"><%= @background['collection_title'] %></a></p>
     <% end %>
   </div>
