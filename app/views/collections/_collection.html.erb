@@ -1,5 +1,7 @@
+<% desc = collection['description_tesim'] %>
+
 <div class="document <%= render_document_class collection %>" itemscope itemtype="<%= collection.itemtype %>">
   <%= render 'index_header_default', document_counter: collection_counter, document: collection %>
-  <%= content_tag(:div, linkify(collection['description_tesim'].first).html_safe) if collection['description_tesim'] %>
+  <%= content_tag(:div, linkify(desc.first).html_safe) if desc %>
   <%= render 'index_default', document: collection, document_counter: collection_counter %>
 </div>
