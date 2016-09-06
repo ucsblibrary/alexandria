@@ -54,7 +54,10 @@ module Pegasus
     search = client.get(query)
 
     result = search.body
-    return nil if result.include?('zs:numberOfRecords>0<')
+    if result.include?('zs:numberOfRecords>0<')
+      $stderr.puts "Nothing found for #{query}"
+      return ''
+    end
     result
   end
 
