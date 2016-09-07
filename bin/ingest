@@ -249,6 +249,15 @@ begin
       marc.each_with_index do |record, count|
         next if options[:number] && options[:number] <= ingests
 
+        # The 956$f MARC field holds the name of the PDF from
+        # ProQuest; we need this field to match data with metadata
+        if record['956'].nil?
+          $stderr.puts record
+          $stderr.puts
+          $stderr.puts 'MARC is missing 956$f field; cannot process this record'
+          next
+        end
+
         start_record = Time.now
 
         indexer = Traject::Indexer.new
