@@ -20,15 +20,6 @@ module ApplicationHelper
     string.gsub(URL_REGEXP, '<a href="\1">\1</a>')
   end
 
-  def link_to_collection(stuff)
-    collection_id = Array(stuff.fetch(:document)[ObjectIndexer::COLLECTION]).first
-    if collection_id
-      link_to stuff.fetch(:value).first, collection_path(collection_id)
-    else
-      stuff.fetch(:value).first
-    end
-  end
-
   # Used in {CatalogController} to render notes and restrictions as
   # separate paragraphs
   def not_simple_format(data)

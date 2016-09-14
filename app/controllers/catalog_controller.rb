@@ -149,7 +149,9 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('work_type_label', :stored_searchable),
                           label: 'Format',
                           link_to_search: 'work_type_label_sim'
-    config.add_show_field solr_name('collection_label', :symbol), label: 'Collection', helper_method: :link_to_collection
+    config.add_show_field solr_name('collection_label', :symbol),
+                          label: 'Collection(s)',
+                          link_to_search: 'collection_label_ssim'
     config.add_show_field solr_name('series_name', :displayable),
                           label: 'Series',
                           link_to_search: 'series_name_sim'
