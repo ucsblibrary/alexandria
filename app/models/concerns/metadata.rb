@@ -111,6 +111,14 @@ module Metadata
       index.as :stored_searchable, :facetable
     end
 
+    property :issue_number, predicate: RDF::URI('http://id.loc.gov/vocabulary/identifiers/issue-number') do |index|
+      index.as :stored_searchable
+    end
+
+    property :matrix_number, predicate: RDF::URI('http://id.loc.gov/vocabulary/identifiers/matrix-number') do |index|
+      index.as :stored_searchable
+    end
+
     # Dates
     property :created, predicate: RDF::Vocab::DC.created, class_name: 'TimeSpan'
     property :date_other, predicate: RDF::Vocab::DC.date, class_name: 'TimeSpan'
