@@ -116,17 +116,19 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('issued', :displayable), label: 'Issued Date'
     config.add_show_field solr_name('date_other', :displayable), label: 'Other Date'
     config.add_show_field solr_name('language', :stored_searchable), label: 'Language'
-    config.add_show_field solr_name('lc_subject_label', :stored_searchable), label: 'Topics'
-    config.add_show_field solr_name('marc_subjects', :stored_searchable), label: 'Topics'
-    config.add_show_field solr_name('location_label', :stored_searchable), label: 'Places'
+    config.add_show_field solr_name('lc_subject_label', :stored_searchable),
+                          label: 'Topics',
+                          helper_method: :link_to_facet
+    config.add_show_field solr_name('marc_subjects', :stored_searchable),
+                          label: 'Topics',
+                          helper_method: :link_to_facet
+    config.add_show_field solr_name('location_label', :stored_searchable),
+                          label: 'Places',
+                          helper_method: :link_to_facet
     config.add_show_field solr_name('keywords', :stored_searchable), label: 'Keywords'
     config.add_show_field solr_name('form_of_work_label', :stored_searchable),
                           label: 'Genres',
-                          separator_options: {
-                            words_connector: '; ',
-                            two_words_connector: '; ',
-                            last_word_connector: '; ',
-                          }
+                          helper_method: :link_to_facet
     config.add_show_field solr_name('degree_grantor', :symbol), label: 'Degree Grantor'
     config.add_show_field solr_name('dissertation', :displayable), label: 'Dissertation'
     config.add_show_field solr_name('note_label', :stored_searchable),
@@ -136,7 +138,9 @@ class CatalogController < ApplicationController
                           label: 'Summary',
                           helper_method: 'not_simple_format'
     config.add_show_field solr_name('extent', :displayable), label: 'Physical Description'
-    config.add_show_field solr_name('work_type_label', :stored_searchable), label: 'Format'
+    config.add_show_field solr_name('work_type_label', :stored_searchable),
+                          label: 'Format',
+                          helper_method: :link_to_facet
     config.add_show_field solr_name('collection_label', :symbol), label: 'Collection', helper_method: :link_to_collection
     config.add_show_field solr_name('series_name', :displayable), label: 'Series'
     # Folder name goes here
