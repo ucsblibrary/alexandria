@@ -105,7 +105,7 @@ module Metadata
     validates_vocabulary_of :work_type
 
     property :series_name, predicate: RDF::URI('http://opaquenamespace.org/ns/seriesName') do |index|
-      index.as :displayable
+      index.as :displayable, :facetable
     end
 
     property :table_of_contents, predicate: RDF::Vocab::DC.tableOfContents do |index|

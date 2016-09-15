@@ -142,7 +142,9 @@ class CatalogController < ApplicationController
                           label: 'Format',
                           helper_method: :link_to_facet
     config.add_show_field solr_name('collection_label', :symbol), label: 'Collection', helper_method: :link_to_collection
-    config.add_show_field solr_name('series_name', :displayable), label: 'Series'
+    config.add_show_field solr_name('series_name', :displayable),
+                          label: 'Series',
+                          helper_method: :link_to_facet
     # Folder name goes here
     config.add_show_field solr_name('finding_aid', :stored_searchable), label: 'Finding Aid'
     config.add_show_field solr_name('sub_location', :displayable, type: :string), label: 'Library Location'
