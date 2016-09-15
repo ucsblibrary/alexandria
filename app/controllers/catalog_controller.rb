@@ -157,7 +157,9 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('system_number', :symbol), label: 'Catalog System Number'
     config.add_show_field solr_name('copyright', :displayable), label: 'Copyright'
     config.add_show_field solr_name('copyright_status_label', :stored_searchable), label: 'Copyright Status'
-    config.add_show_field solr_name('license_label', :stored_searchable), label: 'License'
+    config.add_show_field solr_name('license_label', :stored_searchable),
+                          label: 'License',
+                          helper_method: :link_to_facet
     config.add_show_field solr_name('rights_holder_label', :stored_searchable), label: 'Copyright Holder'
     config.add_show_field solr_name('date_copyrighted', :displayable), label: 'Copyright Date'
     config.add_show_field solr_name('restrictions', :stored_searchable),

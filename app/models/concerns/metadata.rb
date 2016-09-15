@@ -94,7 +94,7 @@ module Metadata
     validates_vocabulary_of :copyright_status
 
     property :license, predicate: RDF::Vocab::DC.rights, class_name: Oargun::ControlledVocabularies::RightsStatement do |index|
-      index.as :stored_searchable
+      index.as :stored_searchable, :facetable
     end
 
     validates_vocabulary_of :license
