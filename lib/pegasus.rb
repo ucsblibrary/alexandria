@@ -26,6 +26,9 @@ module Pegasus
               '(dc.format=wd)'
             when :etd
               '(marc.947.a=pqd)'
+            else
+              raise ArgumentError,
+                    "Bad :type #{options.fetch(:type)} for Pegasus.batch (should be :cylinder or :etd)"
             end
     fetch(
       query: query,
