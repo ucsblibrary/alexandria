@@ -141,7 +141,7 @@ module Metadata
     end
 
     property :sub_location, predicate: RDF::Vocab::MODS.locationCopySublocation do |index|
-      index.as :displayable
+      index.as :displayable, :facetable
     end
 
     property :record_origin, predicate: RDF::Vocab::MODS.recordOrigin

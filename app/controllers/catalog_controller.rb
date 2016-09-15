@@ -147,7 +147,9 @@ class CatalogController < ApplicationController
                           helper_method: :link_to_facet
     # Folder name goes here
     config.add_show_field solr_name('finding_aid', :stored_searchable), label: 'Finding Aid'
-    config.add_show_field solr_name('sub_location', :displayable, type: :string), label: 'Library Location'
+    config.add_show_field solr_name('sub_location', :displayable, type: :string),
+                          label: 'Library Location',
+                          helper_method: :link_to_facet
     config.add_show_field solr_name('identifier', :displayable), label: 'ARK'
     config.add_show_field solr_name('accession_number', :symbol), label: 'Local Identifier'
     config.add_show_field 'isbn_ssim', label: 'ISBN'
