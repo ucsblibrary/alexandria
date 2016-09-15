@@ -350,4 +350,134 @@ http_interactions:
       string: 'success: ark:/99999/fk4902cv0n'
     http_version:
   recorded_at: Thu, 11 Aug 2016 22:29:14 GMT
+- request:
+    method: get
+    uri: http://rightsstatements.org/vocab/InC/1.0/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
+        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
+        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, application/trig,
+        application/x-trig, application/trix
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 303
+      message: See Other
+    headers:
+      Date:
+      - Thu, 15 Sep 2016 17:17:27 GMT
+      Server:
+      - Apache
+      Location:
+      - http://rightsstatements.org/page/InC/1.0/?language=en
+      Content-Length:
+      - '0'
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version:
+  recorded_at: Thu, 15 Sep 2016 17:17:27 GMT
+- request:
+    method: get
+    uri: http://rightsstatements.org/page/InC/1.0/?language=en
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
+        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
+        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, application/trig,
+        application/x-trig, application/trix
+      Accept-Encoding:
+      - gzip, deflate
+      Cookie:
+      - ''
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 15 Sep 2016 17:17:27 GMT
+      Server:
+      - Apache
+      Link:
+      - "<http://localhost:9000/page/InC/1.0/>; rel=derivedfrom"
+      Content-Type:
+      - text/html
+      Content-Language:
+      - en
+      Vary:
+      - Accept-Encoding
+      Content-Encoding:
+      - gzip
+      Content-Length:
+      - '2139'
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        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
+        /rp/05hSfGkW3p7R+GL1N9k1q+NpHQAA
+    http_version:
+  recorded_at: Thu, 15 Sep 2016 17:17:27 GMT
 recorded_with: VCR 3.0.3

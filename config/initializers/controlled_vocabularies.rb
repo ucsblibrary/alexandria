@@ -16,16 +16,10 @@ LinkedVocabs.add_vocabulary('rights', 'http://opaquenamespace.org/ns/rights/')
 LinkedVocabs.add_vocabulary('rs', 'http://rightsstatements.org/vocab/')
 LinkedVocabs.add_vocabulary('tgm', 'http://id.loc.gov/vocabulary/graphicMaterials')
 
-module Oargun::Vocabularies
-  class RS < ::RDF::StrictVocabulary('http://rightsstatements.org/vocab/')
-
-    property :"InC/1.0/"
-  end
+class RightsStatements < RDF::StrictVocabulary('http://rightsstatements.org/vocab/')
+  property :"InC/1.0/"
 end
-
-Oargun::ControlledVocabularies::RightsStatement.use_vocabulary(
-  :rs, class: Oargun::Vocabularies::RS
-)
+Oargun::ControlledVocabularies::RightsStatement.use_vocabulary :rs, class: RightsStatements
 
 Oargun::ControlledVocabularies::Creator.use_vocabulary(
   :lcnames, class: Oargun::Vocabularies::LCNAMES
