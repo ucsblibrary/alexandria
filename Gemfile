@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-ruby '2.3.0'
 
 group :production, :development do
   gem 'pg', '~> 0.18.4'
