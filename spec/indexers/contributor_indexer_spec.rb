@@ -33,7 +33,7 @@ describe ContributorIndexer do
     end
 
     it 'creates contributors' do
-      expect(subject['contributor_label_tesim']).to eq ['American Film Manufacturing Company', 'Valerie', 'Haggard, Merle']
+      expect(subject['contrib_label_tesim']).to eq ['American Film Manufacturing Company', 'Valerie', 'Haggard, Merle']
     end
   end
 end
