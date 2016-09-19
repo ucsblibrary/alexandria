@@ -3,4 +3,4 @@
 app/**/*.rb
 lib/**/*.rb
 -
-doc/Ingesting.md
+doc/*.md
