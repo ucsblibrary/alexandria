@@ -1,4 +1,4 @@
-module Importer::Mods
+module Importer::MODS
   # @param [String] meta
   # @param [Array<String>] data
   # @param [Hash] options See the options specified with Trollop in {bin/ingest}

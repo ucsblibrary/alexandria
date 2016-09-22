@@ -11,5 +11,5 @@ module Importer
   autoload :ETD
   autoload :Factory
   autoload :LocalAuthorityImporter
-  autoload :Mods
+  autoload :MODS
 end

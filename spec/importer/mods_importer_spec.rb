@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'importer'
 
-describe Importer::Mods do
+describe Importer::MODS do
   let(:images) { Dir['spec/fixtures/images/cusbspcmss36*.tif'] }
 
   before do
@@ -25,8 +25,8 @@ describe Importer::Mods do
       image = nil
 
       expect do
-        VCR.use_cassette('mods_importer') do
-          image = Importer::Mods.import(file, images)
+        VCR.use_cassette('mods_importer', record: :new_episodes) do
+          image = Importer::MODS.import(file, images)
         end
       end.to change { Image.count }.by(1)
         .and change { FileSet.count }.by(2)
@@ -67,8 +67,8 @@ describe Importer::Mods do
         expect(coll.members.size).to eq 0
 
         expect do
-          VCR.use_cassette('mods_importer') do
-            Importer::Mods.import(file, images)
+          VCR.use_cassette('mods_importer', record: :new_episodes) do
+            Importer::MODS.import(file, images)
           end
         end.to change { Collection.count }.by(0)
 
@@ -88,8 +88,8 @@ describe Importer::Mods do
       expect do
         # New cassette to avoid ActiveFedora::IllegalOperation:
         #                         Attempting to recreate existing ldp_source
-        VCR.use_cassette('mods_importer-1') do
-          coll = Importer::Mods.import(file, [])
+        VCR.use_cassette('mods_importer-1', record: :new_episodes) do
+          coll = Importer::MODS.import(file, [])
         end
       end.to change { Collection.count }.by(1).and change {
         Person.count
@@ -112,8 +112,8 @@ describe Importer::Mods do
       it 'it adds metadata to existing collection' do
         coll = nil
         expect do
-          VCR.use_cassette('mods_importer') do
-            coll = Importer::Mods.import(file, [])
+          VCR.use_cassette('mods_importer', record: :new_episodes) do
+            coll = Importer::MODS.import(file, [])
           end
         end.to change { Collection.count }.by(0)
 
@@ -132,8 +132,8 @@ describe Importer::Mods do
       it "doesn't create another person" do
         coll = nil
         expect do
-          VCR.use_cassette('mods_importer-2') do
-            coll = Importer::Mods.import(file, [])
+          VCR.use_cassette('mods_importer-2', record: :new_episodes) do
+            coll = Importer::MODS.import(file, [])
           end
         end.to change { Collection.count }.by(1).and change {
           Person.count
@@ -158,13 +158,13 @@ describe Importer::Mods do
       before do
         Agent.delete_all
         Agent.create(foaf_name: frodo) # existing rights holder
-        allow_any_instance_of(Importer::Mods::Parser).to receive(:rights_holder) { [frodo, bilbo, pippin] }
+        allow_any_instance_of(Importer::MODS::Parser).to receive(:rights_holder) { [frodo, bilbo, pippin] }
       end
 
       it 'finds or creates the rights holders' do
         expect do
-          VCR.use_cassette('mods_importer-3') do
-            Importer::Mods.import(file, images)
+          VCR.use_cassette('mods_importer-3', record: :new_episodes) do
+            Importer::MODS.import(file, images)
           end
         end.to change { Agent.exact_model.count }.by(1)
 

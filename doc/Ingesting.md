@@ -358,7 +358,7 @@ bin/ingest -f mods -m /path/to/metadata -d /path/to/data
 **NB:** Currently the MODS ingest process assumes that the metadata
 will be available as one XML file per record.  This can easily be
 remedied when necessary by parsing the XML in `bin/ingest` before
-passing it to {Importer::Mods.import}.
+passing it to {Importer::MODS.import}.
 
 When the above command is run, the following occurs:
 
@@ -368,8 +368,8 @@ When the above command is run, the following occurs:
    files will each share a substring.
 
 2. Each set of metadata and data paths is passed to
-   {Importer::Mods.import}.  That method calls an instance of
-   {Importer::Mods::Parser} on the metadata path, determining the
+   {Importer::MODS.import}.  That method calls an instance of
+   {Importer::MODS::Parser} on the metadata path, determining the
    object model and preparing the metadata for Fedora.  Then, as in
    the CSV ingest, an instance of the appropriate {Importer::Factory}
    is created and `#run` to create the record in Fedora.
