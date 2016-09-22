@@ -14,7 +14,7 @@ class FileSetIndexer < CurationConcerns::FileSetIndexer
   private
 
     def original_download_url
-      Rails.application.routes.url_helpers.download_url(object.id, host: host)
+      Rails.application.routes.url_helpers.download_url(object.id, host: ApplicationHelper.hostp)
     end
 
     def original_filename
@@ -23,16 +23,5 @@ class FileSetIndexer < CurationConcerns::FileSetIndexer
 
     def original_file_size
       object.original_file.size
-    end
-
-    def host
-      hostname = Rails.application.config.host_name
-      if hostname == 'localhost' || hostname == '127.0.0.1'
-        "#{hostname}:#{Rails.application.secrets.localhost_port}"
-      else
-        hostname
-      end
-    rescue NoMethodError
-      raise 'host_name is not configured'
     end
 end
