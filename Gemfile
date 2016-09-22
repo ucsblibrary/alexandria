@@ -48,7 +48,6 @@ gem 'resque-status'
 gem 'resque-pool'
 
 # for bin/ingest
-gem 'curb'
 gem 'trollop'
 
 # When parsing the ETD metadata file from ProQuest,

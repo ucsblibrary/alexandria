@@ -187,17 +187,12 @@ What happens when you run `bin/ingest -f etd /path/to/etds/etdadmin_upload*`, th
 
 
 2. Next, `bin/ingest` passes the path to the XML file of each ETD to
-   {Importer::ETD.fetch_marc}, which parses each XML file and queries
-   Aleph, returning a single string of MARC containing the metadata
-   for all the ETDs matched by `/path/to/etds/etdadmin_upload*`.
+   {Importer::ETD.parse_file}, which parses the XML and queries Aleph,
+   returning a single string of MARC containing the metadata for all
+   the ETDs matched by `/path/to/etds/etdadmin_upload*`.
 
-3. The MARC string is passed (via `StringIO`) to `MARC::XMLReader`,
-   which lets us iterate through each MARC record.
-
-    (The ability to iterate one by one through records is very
-    important, because it allows us to keep track of how many records
-    have been ingested in case the ingest fails and we have to restart
-    it.)
+3. The MARC strings are passed (via `StringIO`) to `MARC::XMLReader`,
+   then collected in an array.
 
 4. Finally, for each MARC record, `bin/ingest`
 
