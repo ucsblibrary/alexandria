@@ -1,19 +1,58 @@
 module Importer::Mods
   # @param [String] meta
   # @param [Array<String>] data
+  # @param [Hash] options See the options specified with Trollop in {bin/ingest}
   # @return [Image, Collection]
-  def self.import(meta, data)
-    Rails.logger.debug "Importing: #{meta}"
-    parser = Parser.new(meta)
-    begin
-      ::Importer::Factory.for(parser.model.to_s).new(
-        parser.attributes.merge(admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID), data
-      ).run
-    rescue => e
-      $stderr.puts e
-      $stderr.puts e.backtrace
-      raise IngestError
+  def self.import(meta, data, options)
+    if options[:skip] >= meta.length
+      raise ArgumentError,
+            "Number of records skipped (#{options[:skip]}) greater than total records to ingest"
     end
+    ingests = 0
+
+    # TODO: this currently assumes one record per metadata file
+    meta.each do |metadatum|
+      next if options[:skip] > ingests
+      next if options[:number] && options[:number] <= ingests
+
+      start_record = Time.now
+
+      selected_data = data.select do |f|
+        # FIXME: find a more reliable test
+        meta_base = File.basename(metadatum, '.xml')
+        data_base = File.basename(f, File.extname(f))
+        data_base.include?(meta_base) || meta_base.include?(data_base)
+      end
+
+      if options[:verbose]
+        puts
+        puts "Object metadata for item #{ingests + 1}:"
+        puts metadatum
+        puts
+        puts "Associated files for item #{ingests + 1}:"
+        puts selected_data.each { |f| puts f }
+      end
+
+      Rails.logger.debug "Importing: #{meta}"
+      parser = Parser.new(metadatum)
+
+      ::Importer::Factory.for(parser.model.to_s).new(
+        parser.attributes.merge(admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID),
+        selected_data
+      ).run
+
+      end_record = Time.now
+      puts "Ingested record #{ingests + 1} of #{meta.length} in #{end_record - start_record} seconds"
+      ingests += 1
+    end
+    ingests
+  rescue => e
+    puts e
+    puts e.backtrace
+    raise IngestError.new(reached: ingests)
+  rescue Interrupt
+    puts "\nIngest stopped, cleaning up..."
+    raise IngestError.new(reached: ingests)
   end
 
   class Parser

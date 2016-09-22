@@ -103,48 +103,7 @@ begin
   when 'csv'
     ingests = Importer::CSV.import(meta, data, options)
   when 'mods'
-    if options[:skip] >= meta.length
-      raise ArgumentError, "Number of records skipped (#{options[:skip]}) greater than total records to ingest"
-    end
-
-    # TODO: this currently assumes one record per metadata file
-    meta.each_with_index do |m, count|
-      next if options[:skip] > count
-      next if options[:number] && options[:number] <= ingests
-
-      start_record = Time.now
-
-      d = data.select do |f|
-        # FIXME: find a more reliable test
-        meta_base = File.basename(m, '.xml')
-        data_base = File.basename(f, File.extname(f))
-        data_base.include?(meta_base) || meta_base.include?(data_base)
-      end
-
-      if options[:verbose]
-        puts
-        puts "Object metadata for item #{count + 1}:"
-        puts m
-        puts
-        puts "Associated files for item #{count + 1}:"
-        puts d.each { |f| puts f }
-      end
-
-      begin
-        Importer::Mods.import(m, d)
-        end_record = Time.now
-        puts "Ingested record #{count + 1} of #{meta.length} "\
-             "in #{end_record - start_record} seconds (#{end_record - start_overall} seconds elapsed)"
-        ingests += 1
-      rescue => e
-        puts e
-        puts e.backtrace
-        raise IngestError.new(reached: count)
-      rescue Interrupt
-        puts "\nIngest stopped, cleaning up..."
-        raise IngestError.new(reached: count)
-      end
-    end
+    ingests = Importer::MODS.import(meta, data, options)
   when 'etd'
     # lib/proquest
     require 'proquest'
