@@ -101,55 +101,7 @@ puts "Import start time: #{start_overall.strftime("%Y-%m-%d %H:%M:%S")}"
 begin
   case options[:format]
   when 'csv'
-    meta.each do |m|
-      head, tail = Importer::CSV.split(m)
-
-      if options[:skip] >= tail.length
-        raise ArgumentError, "Number of records skipped (#{options[:skip]}) greater than total records to ingest"
-      end
-
-      tail.each_with_index do |row, count|
-        next if options[:skip] > count
-        next if options[:number] && options[:number] <= ingests
-
-        start_record = Time.now
-
-        attrs = Importer::CSV.csv_attributes(head, row)
-        files = if attrs[:files].nil?
-                  []
-                else
-                  data.select { |d| attrs[:files].include? File.basename(d) }
-                end
-
-        if options[:verbose]
-          puts
-          puts "Object attributes for item #{count + 1}:"
-          puts attrs.each { |k, v| puts "#{k}: #{v}" }
-          puts
-          puts "Associated files for item #{count + 1}:"
-          puts files.each { |f| puts f }
-        end
-
-        begin
-          Importer::CSV.import(
-            attributes: attrs,
-            files: files
-          )
-          end_record = Time.now
-          puts "Ingested record #{count + 1} of #{tail.length} "\
-                "in #{end_record - start_record} seconds (#{end_record - start_overall} seconds elapsed)"
-          ingests += 1
-        # Other exceptions are already handled in CSV.import
-        rescue => e
-          puts e
-          puts e.backtrace
-          raise IngestError.new(reached: count)
-        rescue Interrupt
-          puts "\nIngest stopped, cleaning up..."
-          raise IngestError.new(reached: count)
-        end
-      end
-    end
+    ingests = Importer::CSV.import(meta, data, options)
   when 'mods'
     if options[:skip] >= meta.length
       raise ArgumentError, "Number of records skipped (#{options[:skip]}) greater than total records to ingest"
@@ -316,7 +268,7 @@ begin
 rescue IngestError => e
   puts
   end_overall = Time.now
-  puts "Ingested #{ingests} records in #{(end_overall - start_overall) / 60} minutes"
+  puts "Ingested #{e.reached} records in #{(end_overall - start_overall) / 60} minutes"
   puts
   puts "To continue this ingest, re-run the command with `--skip #{e.reached}`"
   exit 1

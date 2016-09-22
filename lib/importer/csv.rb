@@ -5,6 +5,67 @@ module Importer::CSV
   # Match headers like "lc_subject_type"
   TYPE_HEADER_PATTERN = /\A.*_type\Z/
 
+  # @param [Array] meta
+  # @param [Array] data
+  # @param [Hash] options See the options specified with Trollop in {bin/ingest}
+  #
+  # @return [Int] The number of records ingested
+  def self.import(meta, data, options)
+    ingests = 0
+
+    meta.each do |m|
+      head, tail = split(m)
+
+      if options[:skip] >= tail.length
+        raise ArgumentError,
+              "Number of records skipped (#{options[:skip]}) greater than total records to ingest"
+      end
+
+      tail.each do |row|
+        next if options[:skip] > ingests
+        next if options[:number] && options[:number] <= ingests
+
+        start_record = Time.now
+
+        attrs = csv_attributes(head, row)
+        files = if attrs[:files].nil?
+                  []
+                else
+                  data.select { |d| attrs[:files].include? File.basename(d) }
+                end
+
+        if options[:verbose]
+          puts
+          puts "Object attributes for item #{ingests + 1}:"
+          puts attrs.each { |k, v| puts "#{k}: #{v}" }
+          puts
+          puts "Associated files for item #{ingests + 1}:"
+          puts files.each { |f| puts f }
+        end
+
+        model = attrs.delete(:type)
+        raise NoModelError if model.nil? || model.empty?
+
+        ::Importer::Factory.for(model).new(
+          attrs.merge(admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID),
+          files
+        ).run
+
+        end_record = Time.now
+        puts "Ingested record #{ingests + 1} of #{tail.length} in #{end_record - start_record} seconds"
+        ingests += 1
+      end
+    end
+    ingests
+  rescue => e
+    puts e
+    puts e.backtrace
+    raise IngestError.new(reached: ingests)
+  rescue Interrupt
+    puts "\nIngest stopped, cleaning up..."
+    raise IngestError.new(reached: ingests)
+  end
+
   # @param [String, Pathname] metadata
   # @return [Array]
   def self.split(metadata)
@@ -12,29 +73,6 @@ module Importer::CSV
     [csv.first, csv.slice(1, csv.length)]
   end
 
-  # @param [Hash] options
-  # @option options [Array] :files
-  # @option options [Hash] :attributes The attributes hash generated
-  #   by {Importer::CSV.csv_attributes}
-  #
-  # @return [Void]
-  def self.import(options = {})
-    files = options.fetch(:files, [])
-    attributes = options.fetch(:attributes, {})
-
-    begin
-      model = attributes.delete(:type)
-      raise NoModelError if model.nil? || model.empty?
-      ::Importer::Factory.for(model).new(
-        attributes.merge(admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID),
-        files
-      ).run
-    rescue => e
-      $stderr.puts e
-      $stderr.puts e.backtrace
-      raise IngestError
-    end
-  end
 
   # @param [Array] row
   # @return [Array]
