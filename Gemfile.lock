@@ -270,8 +270,6 @@ GEM
       signet (~> 0.7)
     haml (4.0.7)
       tilt
-    hamster (3.0.0)
-      concurrent-ruby (~> 1.0)
     hashdiff (0.3.0)
     hashie (3.4.6)
     htmlentities (4.3.4)
@@ -402,7 +400,6 @@ GEM
     memoist (0.15.0)
     method_source (0.8.2)
     mime-types (2.99.3)
-    mime-types-data (3.2016.0521)
     mimemagic (0.3.2)
     mini_magick (4.5.1)
     mini_portile2 (2.1.0)
