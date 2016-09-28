@@ -8,11 +8,6 @@ require 'resque/pool/tasks'
 
 Rails.application.load_tasks
 
-#unless Rails.env.production?
-#  require 'fcrepo_wrapper'
-#  require 'solr_wrapper'
-#end
-
 # Get rid of the default task (was spec)
 task default: []; Rake::Task[:default].clear
 
