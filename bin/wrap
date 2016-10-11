@@ -1,0 +1,19 @@
+#!/bin/bash
+
+set -e
+
+cd "$(dirname "${BASH_SOURCE[0]}")/../"
+
+for service in solr fcrepo; do
+  if [[ -f "$service".pid ]]; then
+    pid=$(cat "$service".pid)
+    echo "ERROR: ${service}_wrapper is already running (Process ID $pid)" >&2
+    exit 1
+  fi
+
+  "${service}_wrapper" >> "log/${service}.log" 2>&1 &
+  pid="$!"
+  echo "Running ${service}_wrapper with Process ID $pid"
+  echo "Logging to log/${service}.log"
+  echo "$pid" > "$service".pid
+done
