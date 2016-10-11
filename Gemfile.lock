@@ -106,7 +106,7 @@ GEM
       rails (>= 4.2, < 6)
       rsolr (~> 1.0, >= 1.0.6)
       twitter-typeahead-rails (= 0.11.1.pre.corejavascript)
-    blacklight-access_controls (0.6.0)
+    blacklight-access_controls (0.6.1)
       blacklight (~> 6.0)
       cancancan (~> 1.8)
       deprecation (~> 1.0)
@@ -176,7 +176,7 @@ GEM
     concurrent-ruby (1.0.2)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
-    curation_concerns (1.6.1)
+    curation_concerns (1.6.2)
       active-fedora (>= 10.3.0.rc1)
       active_attr
       active_fedora-noid (~> 2.0.0.beta1)
@@ -754,7 +754,7 @@ DEPENDENCIES
   capybara (= 2.6.2)
   ci_reporter
   coffee-rails
-  curation_concerns (= 1.6.1)
+  curation_concerns (= 1.6.2)
   database_cleaner
   devise (~> 3.5.2)
   devise-guests (~> 0.5.0)
