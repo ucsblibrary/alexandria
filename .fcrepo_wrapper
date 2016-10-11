@@ -1,0 +1,6 @@
+fcrepo_home_dir: tmp/fedora/dev
+managed: true
+no_jms: true
+port: 8984
+verbose: true
+version: 4.5.1

@@ -1,5 +1,5 @@
 development:
-  url: <%= ENV['DEV_SOLR_URL'] || 'http://localhost:8080/hydra' %>
+  url: <%= ENV['DEV_SOLR_URL'] || 'http://localhost:8985/solr/development' %>
 
 test:
   url: <%= ENV['TEST_SOLR_URL'] || 'http://localhost:8985/solr/test' %>
