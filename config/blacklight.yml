@@ -3,7 +3,7 @@ defaults: &defaults
 
 development:
   <<: *defaults
-  url: <%= ENV['DEV_SOLR_URL'] || 'http://localhost:8080/hydra' %>
+  url: <%= ENV['DEV_SOLR_URL'] || 'http://localhost:8985/solr/development' %>
 
 test:
   <<: *defaults
