@@ -68,7 +68,7 @@ $.fn.manage_contributor_fields = function(option) {
     return this.each(function() {
         var $this = $(this);
         var data  = $this.data('manage_fields');
-        var options = $.extend({}, HydraEditor.FieldManager.DEFAULTS, $this.data(), typeof option == 'object' && option);
+        var options = $.extend({}, AlexandriaEditor.FieldManager.DEFAULTS, $this.data(), typeof option == 'object' && option);
 
         if (!data) $this.data('manage_fields', (data = new ContributorManager(this, options)));
     })
