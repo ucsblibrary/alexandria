@@ -526,6 +526,22 @@ nav.navbar {
   }
 }
 
+// Override multi_value from hydra-editor:
+.multi_value {
+  .btn.remove {
+    color: #fff;
+  }
+
+  .btn.remove, .btn.add {
+    text-decoration: none;
+  }
+
+  .btn.add {
+    padding: 6px 12px;
+  }
+
+}
+
 select, input {
   &.form-control {
     max-width: 40em;
