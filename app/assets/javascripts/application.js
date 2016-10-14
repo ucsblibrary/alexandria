@@ -27,6 +27,7 @@
 //= require contributor_editor
 //= require subject_editor
 //= require merge_target_editor
+//= require editMetadata.js
 
 // For blacklight_range_limit built-in JS, if you don't want it you don't need
 // this:
