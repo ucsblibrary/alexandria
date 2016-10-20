@@ -8,6 +8,7 @@ defaults: &defaults
   marmotta_host: localhost:8080
   minter_state: <%= ENV['ADRL_MINTER_STATE'] || "#{Rails.root}/tmp/minter-state" %>
   uploads_dir: <%= ENV['ADRL_UPLOADS'] || "#{Rails.root}/tmp/uploads" %>
+  ffmpeg_path: <%= ENV['FFMPEG_PATH'] || "ffmpeg" %>
 
 development:
   <<: *defaults
@@ -21,3 +22,4 @@ production:
   download_root: /opt/download_root
   minter_state: /opt/alexandria/shared/minter-state
   uploads_dir: /opt/alexandria/uploads
+  ffmpeg_path: /opt/ffmpeg/bin/ffmpeg

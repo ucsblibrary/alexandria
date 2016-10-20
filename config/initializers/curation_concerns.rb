@@ -33,6 +33,7 @@ CurationConcerns.configure do |config|
 
   # If you have ffmpeg installed and want to transcode audio and video uncomment this line
   config.enable_ffmpeg = true
+  config.ffmpeg_path = Settings.ffmpeg_path
 
   # CurationConcerns uses NOIDs for files and collections instead of Fedora UUIDs
   # where NOID = 10-character string and UUID = 32-character string w/ hyphens
