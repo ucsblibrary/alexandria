@@ -25,7 +25,7 @@ CurationConcerns.configure do |config|
 
   # Location on local file system where derivatives will be stored.
   config.derivatives_path = Settings.derivatives_dir
-  
+
   # Location on local file system where uploaded files will be staged
   # prior to being ingested into the repository or having derivatives generated.
   # If you use a multi-server architecture, this MUST be a shared volume.
@@ -48,7 +48,7 @@ CurationConcerns.configure do |config|
   # config.redis_namespace = "curation_concerns"
 
   # Specify the path to the file characterization tool:
-  # config.fits_path = "fits.sh"
+  config.fits_path = 'fits'
 
   # Specify a date you wish to start collecting Google Analytic statistics for.
   # Leaving it blank will set the start date to when ever the file was uploaded by
