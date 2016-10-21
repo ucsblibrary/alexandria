@@ -11,35 +11,6 @@ GIT
       rdf-vocab (~> 0.8)
       rest-client (~> 1.7)
 
-GIT
-  remote: https://github.com/projecthydra/curation_concerns
-  revision: 355efd793d71d4663b24352aa6143cb246c44cee
-  ref: 355efd79
-  specs:
-    curation_concerns (1.6.2)
-      active-fedora (>= 10.3.0.rc1)
-      active_attr
-      active_fedora-noid (~> 2.0.0.beta1)
-      awesome_nested_set (~> 3.0)
-      blacklight (~> 6.3)
-      blacklight_advanced_search (~> 6.0)
-      breadcrumbs_on_rails (>= 3.0.1, < 4)
-      browse-everything (~> 0.10)
-      clipboard-rails (~> 1.5)
-      hydra-editor (>= 2, < 4)
-      hydra-head (>= 10.0.0, < 11)
-      hydra-works (>= 0.14.0)
-      jquery-ui-rails
-      kaminari_route_prefix (~> 0.0.1)
-      qa (~> 0.5)
-      rails_autolink
-      rdf (>= 1.99)
-      rdf-vocab (>= 0.8)
-      redlock (~> 0.1.2)
-      simple_form (~> 3.1)
-      solrizer (~> 3.4)
-      sprockets-es6
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -205,6 +176,29 @@ GEM
     concurrent-ruby (1.0.2)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
+    curation_concerns (1.6.3)
+      active-fedora (>= 10.3.0.rc1)
+      active_attr
+      active_fedora-noid (~> 2.0.0.beta1)
+      awesome_nested_set (~> 3.0)
+      blacklight (~> 6.3)
+      blacklight_advanced_search (~> 6.0)
+      breadcrumbs_on_rails (>= 3.0.1, < 4)
+      browse-everything (~> 0.10)
+      clipboard-rails (~> 1.5)
+      hydra-editor (>= 2, < 4)
+      hydra-head (>= 10.0.0, < 11)
+      hydra-works (>= 0.14.0)
+      jquery-ui-rails
+      kaminari_route_prefix (~> 0.0.1)
+      qa (~> 0.5)
+      rails_autolink
+      rdf (>= 1.99)
+      rdf-vocab (>= 0.8)
+      redlock (~> 0.1.2)
+      simple_form (~> 3.1)
+      solrizer (~> 3.4)
+      sprockets-es6
     daemons (1.2.4)
     database_cleaner (1.5.3)
     deprecation (1.0.0)
@@ -761,7 +755,7 @@ DEPENDENCIES
   capybara (= 2.6.2)
   ci_reporter
   coffee-rails
-  curation_concerns!
+  curation_concerns (= 1.6.3)
   database_cleaner
   devise (~> 3.5.2)
   devise-guests (~> 0.5.0)

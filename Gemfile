@@ -17,9 +17,7 @@ gem 'therubyracer', platforms: :ruby
 
 gem 'blacklight-gallery', '~> 0.5.0'
 gem 'blacklight_range_limit', '~> 6.0.0'
-
-# TODO: Upgrade to CC version 1.6.3, waiting for release
-gem 'curation_concerns', git: 'https://github.com/projecthydra/curation_concerns', ref: '355efd79'
+gem 'curation_concerns', '1.6.3'
 gem 'ezid-client', '~> 1.2'
 gem 'hydra-role-management'
 gem 'linked_vocabs', '~> 0.3.1'
