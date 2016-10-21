@@ -41,7 +41,9 @@ module ApplicationHelper
   end
 
   def random_thumbnail_from_collection(member_docs = [])
-    member_docs.select {|doc| doc.has_key?("thumbnail_url_ssm") }.sample["thumbnail_url_ssm"]
+    thumb = member_docs.select {|doc| doc.has_key?("thumbnail_url_ssm") }.sample
+    return nil unless thumb
+    thumb["thumbnail_url_ssm"]
   end
 
 end
