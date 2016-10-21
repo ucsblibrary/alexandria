@@ -39,4 +39,9 @@ module ApplicationHelper
   def policy_title(document)
     AdminPolicy.find(document.admin_policy_id)
   end
+
+  def random_thumbnail_from_collection(member_docs = [])
+    member_docs.select {|doc| doc.has_key?("thumbnail_url_ssm") }.sample["thumbnail_url_ssm"]
+  end
+
 end
