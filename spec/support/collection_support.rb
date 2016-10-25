@@ -4,8 +4,8 @@ module CollectionSupport
     collection = Collection.create!(coll_defaults.merge(collection_attrs))
 
     attrs_for_images.each do |attrs|
-      image = FactoryGirl.create(:public_image, attrs)
-      collection.ordered_members << image
+      image = FactoryGirl.create(:image, attrs)
+      collection.members << image
     end
     collection.save!
     collection

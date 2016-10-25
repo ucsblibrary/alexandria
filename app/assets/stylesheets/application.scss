@@ -58,7 +58,7 @@ $bg_image: 'ADRL_BG_1280x160.png';
 @import 'blacklight_gallery/default';
 @import 'hydra-editor/multi_value_fields';
 @import 'curation_concerns/modules/forms';
-@import 'curation_concerns/modules/attributes';
+@import 'curation_concerns/modules/collections';
 
 // -------------------
 // Bootstrap overrides
@@ -524,6 +524,23 @@ nav.navbar {
   .listing > li {
     list-style-type: none;
   }
+}
+
+// Override multi_value from hydra-editor:
+.multi_value {
+  .btn.remove {
+    color: #fff;
+  }
+
+  .btn.remove, .btn.add {
+    text-decoration: none;
+    width: 6em;
+  }
+
+  .btn.add {
+    padding: 6px 12px;
+  }
+
 }
 
 select, input {

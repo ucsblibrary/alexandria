@@ -17,7 +17,7 @@ module ApplicationHelper
   def link_to_collection(stuff)
     collection_id = Array(stuff.fetch(:document)[ObjectIndexer::COLLECTION]).first
     if collection_id
-      link_to stuff.fetch(:value).first, collections.collection_path(collection_id)
+      link_to stuff.fetch(:value).first, collection_path(collection_id)
     else
       stuff.fetch(:value).first
     end
@@ -39,4 +39,11 @@ module ApplicationHelper
   def policy_title(document)
     AdminPolicy.find(document.admin_policy_id)
   end
+
+  def random_thumbnail_from_collection(member_docs = [])
+    thumb = member_docs.select {|doc| doc.has_key?("thumbnail_url_ssm") }.sample
+    return nil unless thumb
+    thumb["thumbnail_url_ssm"]
+  end
+
 end

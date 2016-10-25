@@ -1,4 +1,3 @@
-//= require hydra-editor/hydra-editor
 //= require handlebars-v3.0.0.js
 
 var source = "<li class=\"field-wrapper input-group input-append\">" +
@@ -9,10 +8,10 @@ var source = "<li class=\"field-wrapper input-group input-append\">" +
 var template = Handlebars.compile(source);
 
 function ControlledVocabFieldManager(element, options) {
-    HydraEditor.FieldManager.call(this, element, options); // call super constructor.
+    AlexandriaEditor.FieldManager.call(this, element, options); // call super constructor.
 }
 
-ControlledVocabFieldManager.prototype = Object.create(HydraEditor.FieldManager.prototype,
+ControlledVocabFieldManager.prototype = Object.create(AlexandriaEditor.FieldManager.prototype,
     {
         createNewField: { value: function($activeField) {
             var fieldName = $activeField.find('input').data('attribute');
@@ -64,7 +63,7 @@ $.fn.manage_controlled_vocab_fields = function(option) {
     return this.each(function() {
         var $this = $(this);
         var data  = $this.data('manage_fields');
-        var options = $.extend({}, HydraEditor.FieldManager.DEFAULTS, $this.data(), typeof option == 'object' && option);
+        var options = $.extend({}, AlexandriaEditor.FieldManager.DEFAULTS, $this.data(), typeof option == 'object' && option);
 
         if (!data) $this.data('manage_fields', (data = new ControlledVocabFieldManager(this, options)));
     })

@@ -3,12 +3,12 @@ defaults: &defaults
 
 development:
   <<: *defaults
-  url: <%= ENV['DEV_SOLR_URL'] || 'http://localhost:8080/hydra' %>
+  url: <%= ENV['DEV_SOLR_URL'] || 'http://localhost:8985/solr/development' %>
 
 test:
   <<: *defaults
-  url: <%= ENV['TEST_SOLR_URL'] || 'http://localhost:8983/solr' %>
+  url: <%= ENV['TEST_SOLR_URL'] || 'http://localhost:8985/solr/test' %>
 
 production:
   <<: *defaults
-  url: http://localhost:<%= ENV['TEST_JETTY_PORT'] || 8080 %>/hydra
+  url: 'http://localhost:8983/solr/collection1'

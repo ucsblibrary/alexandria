@@ -33,6 +33,7 @@ CurationConcerns.configure do |config|
 
   # If you have ffmpeg installed and want to transcode audio and video uncomment this line
   config.enable_ffmpeg = true
+  config.ffmpeg_path = Settings.ffmpeg_path
 
   # CurationConcerns uses NOIDs for files and collections instead of Fedora UUIDs
   # where NOID = 10-character string and UUID = 32-character string w/ hyphens
@@ -54,6 +55,8 @@ CurationConcerns.configure do |config|
   # Leaving it blank will set the start date to when ever the file was uploaded by
   # NOTE: if you have always sent analytics to GA for downloads and page views leave this commented out
   # config.analytic_start_date = DateTime.new(2014,9,10)
+
+  config.ingest_queue_name = :ingest
 end
 
 Date::DATE_FORMATS[:standard] = '%m/%d/%Y'

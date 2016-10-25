@@ -4,7 +4,15 @@ feature 'Local Authorities' do
   let(:admin) { create :admin }
 
   before do
-    ActiveFedora::Cleaner.clean!
+    # Delete existing records to make sure that search and facet
+    # results will contain the results the spec is looking for
+    # on the first page of results.
+    [Agent, Person, Group, Organization, Topic].each do |model|
+      model.all.each do |record|
+        record.destroy(eradicate: true)
+      end
+    end
+
     AdminPolicy.ensure_admin_policy_exists
     login_as admin
   end
@@ -12,6 +20,8 @@ feature 'Local Authorities' do
   context 'with some records' do
     let!(:frodo) { create :person, foaf_name: 'Frodo Baggins' }
     let!(:fellows) { create :group, foaf_name: 'The Fellowship' }
+    let!(:uruk) { create :organization, foaf_name: 'uruk' }
+    let!(:ring) { create :topic, label: ['the ring'] }
 
     scenario 'browse using facets' do
       visit local_authorities_path
@@ -19,6 +29,8 @@ feature 'Local Authorities' do
 
       expect(page).to have_link(frodo.foaf_name)
       expect(page).to have_link(fellows.foaf_name)
+      expect(page).to have_link(uruk.foaf_name)
+      expect(page).to have_link(ring.label.first)
 
       within '#facets' do
         click_link 'Person'

@@ -18,8 +18,16 @@
 //= require bootstrap/tab
 //= require embargo
 //
-//= require_tree .
-
+//= require jquery.jcarousel
+//= require search_typeahead
+//= require blacklight_gallery
+//= require jcarousel
+//= require manage_repeating_fields
+//= require editor
+//= require contributor_editor
+//= require subject_editor
+//= require merge_target_editor
+//= require editMetadata.js
 
 // For blacklight_range_limit built-in JS, if you don't want it you don't need
 // this:

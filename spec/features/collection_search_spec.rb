@@ -22,7 +22,7 @@ feature 'Collection search page' do
     end
 
     scenario 'Search for a collection' do
-      visit collections.collections_path
+      visit collections_path
 
       fill_in 'q', with: 'Pink'
       click_button 'Search'
@@ -36,9 +36,9 @@ feature 'Collection search page' do
   end
 
   context 'collections with images' do
-    let(:pink)   { { title: ['Pink'],   identifier: ['pink']   } }
-    let(:orange) { { title: ['Orange'], identifier: ['orange'] } }
-    let(:banana) { { title: ['Banana'], identifier: ['banana'] } }
+    let(:pink)   { { title: ['Pink'], identifier: ['pink'], admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID } }
+    let(:orange) { { title: ['Orange'], identifier: ['orange'], admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID } }
+    let(:banana) { { title: ['Banana'], identifier: ['banana'], admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID } }
 
     let(:colors_attrs) { { title: ['Colors'] } }
     let(:fruits_attrs) { { title: ['Fruits'] } }
@@ -47,7 +47,7 @@ feature 'Collection search page' do
     let!(:fruits) { create_collection_with_images(fruits_attrs, [orange, banana]) }
 
     scenario 'Search within a collection' do
-      visit collections.collection_path(colors)
+      visit collection_path(colors)
 
       expect(page).to have_link('Pink', href: '/lib/pink')
       expect(page).to have_link('Orange', href: '/lib/orange')
@@ -69,7 +69,7 @@ feature 'Collection search page' do
     end
 
     scenario 'Search with the main search bar instead of within the collection' do
-      visit collections.collection_path(colors)
+      visit collection_path(colors)
 
       expect(page).to have_link('Pink', href: '/lib/pink')
       expect(page).to have_link('Orange', href: '/lib/orange')

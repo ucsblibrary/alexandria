@@ -57,7 +57,6 @@ Rails.application.routes.draw do
   mount Riiif::Engine => '/images'
   mount Qa::Engine => '/qa'
   mount HydraEditor::Engine => '/'
-  mount Hydra::Collections::Engine => '/'
 
   mount CurationConcerns::Engine, at: '/'
   curation_concerns_collections

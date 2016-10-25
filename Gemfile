@@ -15,22 +15,17 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'therubyracer', platforms: :ruby
 
-gem 'active-triples', '~> 0.7.5'
-gem 'blacklight', '~> 6.2.0'
 gem 'blacklight-gallery', '~> 0.5.0'
 gem 'blacklight_range_limit', '~> 6.0.0'
-gem 'curation_concerns', git: 'https://github.com/dunn/curation_concerns', branch: 'bytes_lts'
+gem 'curation_concerns', '1.6.3'
 gem 'ezid-client', '~> 1.2'
-gem 'hydra-collections', '>= 8.1.1'
-gem 'hydra-head', '~> 9.8.1'
 gem 'hydra-role-management'
 gem 'linked_vocabs', '~> 0.3.1'
 gem 'marc'
 gem 'mods', '~> 2.0.3'
-gem 'oargun', git: 'https://github.com/curationexperts/oargun.git', ref: '8d4b556'
+gem 'oargun', git: 'https://github.com/curationexperts/oargun.git', ref: 'd4fc42cfe3c4898bb1b590d9e71ffdec87854909'
 gem 'qa', '~> 0.5.0'
 gem 'rdf-marmotta', '~> 0.0.8'
-gem 'rdf-vocab', '~> 0.8.4'
 gem 'riiif', '~> 0.2.0'
 gem 'rsolr', '~> 1.0.12'
 gem 'traject', '~> 2.3.0'
@@ -54,11 +49,21 @@ gem 'trollop'
 # some of the dates are American-style.
 gem 'american_date', '~> 1.1.0'
 
+group :assets do
+  gem 'coffee-rails'
+end
+
 group :development, :test do
   gem 'awesome_print'
   gem 'byebug'
   gem 'factory_girl_rails', '~> 4.4'
-  gem 'jettywrapper'
+
+  # Used exact gem versions for solr_wrapper and fcrepo_wrapper
+  # because they aren't careful about making breaking changes on
+  # minor releases, so we'll need to be mindful about upgrading.
+  gem 'fcrepo_wrapper', '0.5.2'
+  gem 'solr_wrapper', '~> 0.18.0'
+
   gem 'poltergeist'
   gem 'rspec-activemodel-mocks'
   gem 'rspec-rails'
@@ -82,6 +87,7 @@ group :development do
   gem 'capistrano-rails', '>= 1.1.3'
   gem 'capistrano-bundler'
   gem 'capistrano-passenger'
+  gem 'highline'
 
   gem 'method_source'
   gem 'pry'

@@ -1,6 +1,6 @@
 class CurationConcerns::AudioRecordingsController < ApplicationController
   include CurationConcerns::CurationConcernController
-  set_curation_concern_type AudioRecording
+  self.curation_concern_type = AudioRecording
 
   self.theme = 'alexandria'
 

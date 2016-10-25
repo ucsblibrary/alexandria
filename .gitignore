@@ -25,10 +25,12 @@ public/assets
 /derivatives
 /download_root
 /fedora-data
+/fcrepo4-test-data
+/solr/collection1
+/solr/lib
 /ingest
 /install
 /marmotta
-/solr
 /tomcat
 /uploads
 
@@ -37,7 +39,8 @@ public/assets
 /logs
 /log/*
 !/log/.keep
-/tmp
+/tmp/*
+!/tmp/.keep
 /jetty
 .rvmrc
 .byebug_history

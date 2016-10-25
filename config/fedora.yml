@@ -5,12 +5,13 @@ defaults: &defaults
 
 development:
   <<: *defaults
+  url: <%= ENV['DEV_FEDORA_URL'] || 'http://localhost:8984/rest' %>
   base_path: <%= ENV['DEV_FEDORA_BASE'] || "/devel" %>
 
 test:
   <<: *defaults
+  url: <%= ENV['TEST_FEDORA_URL'] || 'http://localhost:8986/rest' %>
   base_path: /test
-  url: http://localhost:<%= ENV['TEST_JETTY_PORT'] || 8983 %>/fedora/rest
 
 production:
   <<: *defaults

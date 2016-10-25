@@ -29,7 +29,7 @@ feature 'Collection show page:' do
   let(:user) { create :user }
 
   scenario 'Use facets to browse collection members' do
-    visit collections.collection_path(colors)
+    visit collection_path(colors)
     expect(page).to have_content red_attrs[:title].first
     expect(page).to have_content pink_attrs[:title].first
 

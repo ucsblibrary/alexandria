@@ -1,0 +1,9 @@
+collection:
+    persist: true
+    dir: solr/config/
+    name: development
+managed: true
+port: 8985
+solr_xml: solr/config/solrconfig.xml
+verbose: true
+version: 6.2.0

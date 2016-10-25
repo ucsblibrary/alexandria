@@ -1,16 +1,36 @@
 unless Rails.env.production?
-  require 'jettywrapper'
+  APP_ROOT = File.dirname(__FILE__)
+  require 'solr_wrapper'
+  require 'fcrepo_wrapper'
 
-  desc 'Run the ci build'
-  task ci: ['jetty:clean', 'jetty:config'] do
-    ENV['RAILS_ENV'] = 'test'
-    jetty_params = Jettywrapper.load_config
-    jetty_params[:startup_wait] = 90
-
-    Jettywrapper.wrap(jetty_params) do
-      # run the tests
-      Rake::Task['db:schema:load'].invoke
-      Rake::Task['spec'].invoke
+  desc 'Run Continuous Integration'
+  task :ci do
+    ENV['environment'] = 'test'
+    solr_params = {
+      version: '6.2.0',
+      port: 8985,
+      verbose: true,
+      managed: true,
+      solr_xml: Rails.root.join('solr', 'config', 'solrconfig.xml'),
+    }
+    fcrepo_params = {
+      version: '4.5.1',
+      port: 8986,
+      verbose: true,
+      managed: true,
+      no_jms: true,
+      fcrepo_home_dir: 'fcrepo4-test-data',
+    }
+    SolrWrapper.wrap(solr_params) do |solr|
+      solr.with_collection(
+        name: 'test',
+        dir: Rails.root.join('solr', 'config')
+      ) do
+        FcrepoWrapper.wrap(fcrepo_params) do
+          Rake::Task['spec'].invoke
+        end
+      end
     end
+    Rake::Task['doc'].invoke
   end
 end
