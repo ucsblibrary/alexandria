@@ -106,6 +106,31 @@ The cylinders importer will automatically add all newly-imported cylinder record
 
 So far only the cylinders importer uses the new style of collection membership.  The other importers use the standard hydra-style membership.  If some collections have performance problems in the future, we can change the other importers at that time.
 
+## Deleting collections
+
+In the rails console:
+
+```ruby
+# Use a solr query to find all the members of this collection
+# that have 'local membership' in the collection:
+query = ActiveFedora::SolrQueryBuilder.construct_query(local_collection_id_ssim: collection.id)
+rows = ActiveFedora::Base.count.to_s
+results = ActiveFedora::SolrService.query(query, fl: 'id', rows: rows)
+ids = results.map {|x| x['id']}
+
+# For each member of the collection, remove it from the collection:
+ids.each do |id|
+  member = ActiveFedora::Base.find(id)
+  member.local_collection_id -= [collection.id]
+  member.save!
+#  member.reload # Refresh the model in memory
+end
+
+# Then you can delete the collection itself:
+collection.destroy(eradicate: true)
+
+```
+
 ## Caveats
 
 * This "Local Membership" work-around only works for unordered members of a collection.  You cannot store ordered collection members this way.
