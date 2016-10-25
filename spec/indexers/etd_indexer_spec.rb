@@ -47,6 +47,21 @@ describe ETDIndexer do
     it { is_expected.to eq 'Ph.D.--University of California, Santa Barbara, 2014' }
   end
 
+  describe 'missing dissertation information' do
+    let(:dissertation_degree) { ['Ph.D.'] }
+    let(:dissertation_institution) { [''] }
+    let(:dissertation_year) { [''] }
+
+    let(:etd) do
+      ETD.new(dissertation_degree: dissertation_degree,
+              dissertation_institution: dissertation_institution,
+              dissertation_year: dissertation_year)
+    end
+    let(:subject) { document['dissertation_ssm'] }
+
+    it { is_expected.to eq nil }
+  end
+
   describe 'indexing department as a facet' do
     let(:etd) do
       ETD.new(degree_grantor: ['University of California, Santa Barbara. Mechanical Engineering'])

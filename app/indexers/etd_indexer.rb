@@ -5,11 +5,18 @@ class ETDIndexer < ObjectIndexer
       solr_doc[Solrizer.solr_name('copyright', :displayable)] = "#{object.rights_holder.first}, #{object.date_copyrighted.first}"
 
       solr_doc[Solrizer.solr_name('department', :facetable)] = department(solr_doc)
-      solr_doc[Solrizer.solr_name('dissertation', :displayable)] = "#{object.dissertation_degree.first}--#{object.dissertation_institution.first}, #{object.dissertation_year.first}"
+      solr_doc[Solrizer.solr_name('dissertation', :displayable)] = dissertation
     end
   end
 
   private
+
+    def dissertation
+      return if [object.dissertation_degree,
+                 object.dissertation_institution,
+                 object.dissertation_year].any? { |f| f.first.blank? }
+      "#{object.dissertation_degree.first}--#{object.dissertation_institution.first}, #{object.dissertation_year.first}"
+    end
 
     # Derive department by stripping "UC, SB" from the degree grantor field
     def department(solr_doc)
