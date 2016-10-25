@@ -89,6 +89,8 @@ class CatalogController < ApplicationController
     config.add_facet_field ObjectIndexer::FACETABLE_YEAR, label: 'Date', range: true
     config.add_facet_field solr_name('language', :facetable), label: 'Language', limit: true
     config.add_facet_field solr_name('department', :facetable), label: 'Academic Department', limit: true
+    config.add_facet_field solr_name('sub_location', :facetable), label: 'Library Location', limit: true
+    config.add_facet_field solr_name('license', :facetable), label: 'License', limit: true
 
     # Have BL send all facet field names to Solr, which has been the default
     # previously. Simply remove these lines if you'd rather use Solr request
@@ -116,17 +118,19 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('issued', :displayable), label: 'Issued Date'
     config.add_show_field solr_name('date_other', :displayable), label: 'Other Date'
     config.add_show_field solr_name('language', :stored_searchable), label: 'Language'
-    config.add_show_field solr_name('lc_subject_label', :stored_searchable), label: 'Topics'
-    config.add_show_field solr_name('marc_subjects', :stored_searchable), label: 'Topics'
-    config.add_show_field solr_name('location_label', :stored_searchable), label: 'Places'
+    config.add_show_field solr_name('lc_subject_label', :stored_searchable),
+                          label: 'Topics',
+                          helper_method: :link_to_facet
+    config.add_show_field solr_name('marc_subjects', :stored_searchable),
+                          label: 'Topics',
+                          helper_method: :link_to_facet
+    config.add_show_field solr_name('location_label', :stored_searchable),
+                          label: 'Places',
+                          helper_method: :link_to_facet
     config.add_show_field solr_name('keywords', :stored_searchable), label: 'Keywords'
     config.add_show_field solr_name('form_of_work_label', :stored_searchable),
                           label: 'Genres',
-                          separator_options: {
-                            words_connector: '; ',
-                            two_words_connector: '; ',
-                            last_word_connector: '; ',
-                          }
+                          helper_method: :link_to_facet
     config.add_show_field solr_name('degree_grantor', :symbol), label: 'Degree Grantor'
     config.add_show_field solr_name('dissertation', :displayable), label: 'Dissertation'
     config.add_show_field solr_name('note_label', :stored_searchable),
@@ -136,12 +140,20 @@ class CatalogController < ApplicationController
                           label: 'Summary',
                           helper_method: 'not_simple_format'
     config.add_show_field solr_name('extent', :displayable), label: 'Physical Description'
-    config.add_show_field solr_name('work_type_label', :stored_searchable), label: 'Format'
+    config.add_show_field solr_name('work_type_label', :stored_searchable),
+                          label: 'Format',
+                          helper_method: :link_to_facet
     config.add_show_field solr_name('collection_label', :symbol), label: 'Collection', helper_method: :link_to_collection
-    config.add_show_field solr_name('series_name', :displayable), label: 'Series'
-    # Folder name goes here
+    config.add_show_field solr_name('series_name', :displayable),
+                          label: 'Series',
+                          helper_method: :link_to_facet
+    config.add_show_field solr_name('folder_name', :stored_searchable),
+                          label: 'Folder',
+                          helper_method: :link_to_facet
     config.add_show_field solr_name('finding_aid', :stored_searchable), label: 'Finding Aid'
-    config.add_show_field solr_name('sub_location', :displayable, type: :string), label: 'Library Location'
+    config.add_show_field solr_name('sub_location', :displayable, type: :string),
+                          label: 'Library Location',
+                          helper_method: :link_to_facet
     config.add_show_field solr_name('identifier', :displayable), label: 'ARK'
     config.add_show_field solr_name('accession_number', :symbol), label: 'Local Identifier'
     config.add_show_field 'isbn_ssim', label: 'ISBN'
@@ -149,7 +161,9 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('system_number', :symbol), label: 'Catalog System Number'
     config.add_show_field solr_name('copyright', :displayable), label: 'Copyright'
     config.add_show_field solr_name('copyright_status_label', :stored_searchable), label: 'Copyright Status'
-    config.add_show_field solr_name('license_label', :stored_searchable), label: 'License'
+    config.add_show_field solr_name('license_label', :stored_searchable),
+                          label: 'License',
+                          helper_method: :link_to_facet
     config.add_show_field solr_name('rights_holder_label', :stored_searchable), label: 'Copyright Holder'
     config.add_show_field solr_name('date_copyrighted', :displayable), label: 'Copyright Date'
     config.add_show_field solr_name('restrictions', :stored_searchable),

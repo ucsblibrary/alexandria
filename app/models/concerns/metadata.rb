@@ -94,7 +94,7 @@ module Metadata
     validates_vocabulary_of :copyright_status
 
     property :license, predicate: RDF::Vocab::DC.rights, class_name: Oargun::ControlledVocabularies::RightsStatement do |index|
-      index.as :stored_searchable
+      index.as :stored_searchable, :facetable
     end
 
     validates_vocabulary_of :license
@@ -105,7 +105,7 @@ module Metadata
     validates_vocabulary_of :work_type
 
     property :series_name, predicate: RDF::URI('http://opaquenamespace.org/ns/seriesName') do |index|
-      index.as :displayable
+      index.as :displayable, :facetable
     end
 
     property :table_of_contents, predicate: RDF::Vocab::DC.tableOfContents do |index|
@@ -114,6 +114,10 @@ module Metadata
 
     property :edition, predicate: RDF::Vocab::MODS.edition do |index|
       index.as :stored_searchable
+    end
+
+    property :folder_name, predicate: RDF::URI('http://opaquenamespace.org/ns/folderName') do |index|
+      index.as :stored_searchable, :facetable
     end
 
     # Dates
@@ -141,7 +145,7 @@ module Metadata
     end
 
     property :sub_location, predicate: RDF::Vocab::MODS.locationCopySublocation do |index|
-      index.as :displayable
+      index.as :displayable, :facetable
     end
 
     property :record_origin, predicate: RDF::Vocab::MODS.recordOrigin
