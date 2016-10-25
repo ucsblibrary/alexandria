@@ -131,7 +131,9 @@ module Metadata
       index.as :stored_searchable, :facetable
     end
 
-    property :citation, predicate: RDF::URI('http://www.rdaregistry.info/Elements/u/#preferredCitation.en')
+    property :citation, predicate: RDF::URI('http://www.rdaregistry.info/Elements/u/#preferredCitation.en') do |index|
+      index.as :displayable
+    end
 
     # MODS
     property :digital_origin, predicate: RDF::Vocab::MODS.digitalOrigin do |index|

@@ -136,6 +136,7 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('note_label', :stored_searchable),
                           label: 'Notes',
                           helper_method: 'not_simple_format'
+    config.add_show_field solr_name('citation', :displayable), label: 'Citation'
     config.add_show_field solr_name('description', :stored_searchable),
                           label: 'Summary',
                           helper_method: 'not_simple_format'

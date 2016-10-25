@@ -150,6 +150,10 @@ class SolrDocument
     fetch('fulltext_link_ssm', [])
   end
 
+  def citation
+    fetch('citation_ssm', [])
+  end
+
   private
 
     def load_file_sets(ids)
