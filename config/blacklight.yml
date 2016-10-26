@@ -11,4 +11,4 @@ test:
 
 production:
   <<: *defaults
-  url: 'http://localhost:8983/solr/collection1'
+  url: <%= "http://#{Rails.application.secrets.solr_host}:8983/solr/collection1" %>
