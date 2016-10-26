@@ -18,9 +18,9 @@ describe ImageIndexer do
 
     it 'has images' do
       VCR.use_cassette('image_indexer', record: :new_episodes) do
-        expect(subject['thumbnail_url_ssm']).to eq ['http://test.host/images/s1%2F78%2F4k%2F72%2Fs1784k724%2Ffiles%2F6185235a-79b2-4c29-8c24-4d6ad9b11470/full/300,/0/default.jpg']
-        expect(subject['image_url_ssm']).to eq ['http://test.host/images/s1%2F78%2F4k%2F72%2Fs1784k724%2Ffiles%2F6185235a-79b2-4c29-8c24-4d6ad9b11470/full/600,/0/default.jpg']
-        expect(subject['large_image_url_ssm']).to eq ['http://test.host/images/s1%2F78%2F4k%2F72%2Fs1784k724%2Ffiles%2F6185235a-79b2-4c29-8c24-4d6ad9b11470/full/1000,/0/default.jpg']
+        expect(subject['thumbnail_url_ssm']).to eq ['http://test.host:3000/images/s1%2F78%2F4k%2F72%2Fs1784k724%2Ffiles%2F6185235a-79b2-4c29-8c24-4d6ad9b11470/full/300,/0/default.jpg']
+        expect(subject['image_url_ssm']).to eq ['http://test.host:3000/images/s1%2F78%2F4k%2F72%2Fs1784k724%2Ffiles%2F6185235a-79b2-4c29-8c24-4d6ad9b11470/full/600,/0/default.jpg']
+        expect(subject['large_image_url_ssm']).to eq ['http://test.host:3000/images/s1%2F78%2F4k%2F72%2Fs1784k724%2Ffiles%2F6185235a-79b2-4c29-8c24-4d6ad9b11470/full/1000,/0/default.jpg']
       end
     end
   end
