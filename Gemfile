@@ -11,7 +11,6 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '~> 2.7.2'
 gem 'jquery-rails', '~> 4.0.5'
 
-gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'therubyracer', platforms: :ruby
 
@@ -48,10 +47,6 @@ gem 'trollop'
 # When parsing the ETD metadata file from ProQuest,
 # some of the dates are American-style.
 gem 'american_date', '~> 1.1.0'
-
-group :assets do
-  gem 'coffee-rails'
-end
 
 group :development, :test do
   gem 'awesome_print'
