@@ -7,6 +7,9 @@ public/assets
 # Ignore bundler config.
 /.bundle
 
+# Ignore rbenv
+.ruby-version
+
 # Ignore generated docs
 /html
 .yardoc
@@ -35,6 +38,7 @@ public/assets
 /uploads
 
 # Ignore all logfiles and tempfiles.
+*.pid
 *.log
 /logs
 /log/*
