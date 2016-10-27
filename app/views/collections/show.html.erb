@@ -1,5 +1,13 @@
 <% provide :page_title, "#{@presenter.title.join(', ')} - #{application_name}" %>
 
+<% desc = @presenter.description %>
+
+<% if desc %>
+  <% content_for :head do %>
+    <meta name="description" content="<%= desc %>">
+  <% end %>
+<% end %>
+
 <div id="sidebar" class="col-md-3 col-sm-4">
   <%= render 'search_sidebar' %>
 </div>
@@ -12,7 +20,7 @@
           <h1 class="lower"><%= title %></h1>
         <% end %>
 
-        <% @presenter.description.each do |description| %>
+        <% desc.each do |description| %>
           <p class="collection_description">
             <%= linkify(description).html_safe %>
           </p>
