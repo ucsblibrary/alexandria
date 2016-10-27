@@ -20,6 +20,7 @@ production:
   <<: *defaults
   derivatives_dir: /opt/alexandria/derivatives
   download_root: /opt/download_root
+  localhost_port: 80
   minter_state: /opt/alexandria/shared/minter-state
   uploads_dir: /opt/alexandria/uploads
   ffmpeg_path: /usr/local/bin

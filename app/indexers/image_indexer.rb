@@ -27,20 +27,9 @@ class ImageIndexer < ObjectIndexer
         Riiif::Engine.routes.url_helpers.image_url(
           file.id,
           size: size,
-          host: host
+          host: ApplicationHelper.hostp
         )
       end
-    end
-
-    def host
-      hostname = Rails.application.config.host_name
-      if hostname == 'localhost'.freeze || hostname == '127.0.0.1'.freeze
-        "#{hostname}:#{Settings.localhost_port}"
-      else
-        hostname
-      end
-    rescue NoMethodError
-      raise 'host_name is not configured'
     end
 
     def issued

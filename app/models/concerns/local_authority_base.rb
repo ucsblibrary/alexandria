@@ -32,7 +32,7 @@ module LocalAuthorityBase
     return nil if new_record?
     routes = Rails.application.routes.url_helpers
     builder = ActionDispatch::Routing::PolymorphicRoutes::HelperMethodBuilder
-    builder.polymorphic_method routes, self, nil, :url, host: Rails.application.config.host_name
+    builder.polymorphic_method routes, self, nil, :url, host: ApplicationHelper.hostp
   end
 
   def initialize(attributes_or_id = nil, &block)

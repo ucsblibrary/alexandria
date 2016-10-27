@@ -8,6 +8,17 @@ module ApplicationHelper
   # Modified to only match http/https URLs
   URL_REGEXP = %r{((?:https?:(?:\/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))}
 
+  def self.hostp
+    hostname = Rails.application.config.host_name
+    if Settings.localhost_port != 80
+      "#{hostname}:#{Settings.localhost_port}"
+    else
+      hostname
+    end
+  rescue NoMethodError
+    raise 'host_name is not configured'
+  end
+
   # @param [String] string
   # @return [String]
   def linkify(string)
