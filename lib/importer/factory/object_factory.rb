@@ -110,10 +110,13 @@ module Importer::Factory
                                 else
                                   date_arr
                                 end
-        if object.contrib.first
-          # Use the combination of all authorial roles
-          identifier[:erc_who] = object.to_solr[Solrizer.solr_name('contrib_label', :stored_searchable)].join('; ')
+
+        # Use the combination of all authorial roles
+        contributors = object.to_solr[ContributorIndexer::ALL_CONTRIBUTORS_LABEL]
+        unless contributors.blank?
+          identifier[:erc_who] = contributors.join('; ')
         end
+
         identifier.save
       end
       log_created(object)

@@ -12,7 +12,7 @@
   <section id="browse-by">
     Or browse by
     <%= link_to 'Collection', collections_path %>,
-    <%= link_to 'Contributor', facet_catalog_path(ContributorIndexer::FACETABLE_CONTRIB) %>,
+    <%= link_to 'Contributor', facet_catalog_path(ContributorIndexer::ALL_CONTRIBUTORS_FACET) %>,
     <%= link_to 'Format', facet_catalog_path(Solrizer.solr_name('work_type_label', :facetable)) %>,
     or
     <%= link_to 'Topic', facet_catalog_path(Solrizer.solr_name('lc_subject_label', :facetable)) %>
