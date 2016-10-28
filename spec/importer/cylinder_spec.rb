@@ -59,6 +59,7 @@ describe Importer::Cylinder do
                         'http://www.library.ucsb.edu/OBJID/Cylinder4374',
                         'http://www.library.ucsb.edu/OBJID/Cylinder4377')
       )
+      expect(subject['issue_number']).to eq []
       expect(subject['lc_subject']).to(
         contain_exactly({ type: 'person', name: 'Burns, Robert, 1759-1796' },
                         { type: 'organization', name: 'Loyal Order of Moose' },
