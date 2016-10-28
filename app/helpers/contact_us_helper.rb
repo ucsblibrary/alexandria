@@ -1,6 +1,11 @@
 module ContactUsHelper
   def contact_us_categories
-    ['General Inquiry or Request', 'Feedback', 'Report Problem']
+    [
+      'General Inquiry or Request',
+      'Copyright Information',
+      'Feedback',
+      'Report Problem',
+    ]
   end
 
   def contact_us_fields_class
