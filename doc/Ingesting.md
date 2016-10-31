@@ -21,7 +21,7 @@ TODO
 ## From the command-line
 
 Ingests should be done on the remote ADRL server in the “current”
-directory: `/opt/alexandria-v2/current`.
+directory: `/opt/alexandria/current`.
 
 Most ingests can be performed with the `bin/ingest` script:
 
@@ -47,12 +47,12 @@ you’d ingest the sample ETDs on the test server:
 
 ```shell
 ssh adrl@hostname
-cd /opt/alexandria-v2/current
+cd /opt/alexandria/current
 RAILS_ENV=production nohup bin/ingest -f etd -d /opt/download_root/proquest/etdadmin_upload_* >> log/ingest-$(date "+%Y.%m.%d").log 2>&1 &
 ```
 
 That will allow you to log out of the machine, and write the output of
-the ingest script to a file in `/opt/alexandria-v2/current/log/` with
+the ingest script to a file in `/opt/alexandria/current/log/` with
 the date of the ingest.
 
 If you start an ingest with `bin/ingest` that fails or is stopped, it
