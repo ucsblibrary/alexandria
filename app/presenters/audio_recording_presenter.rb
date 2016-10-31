@@ -4,6 +4,7 @@ class AudioRecordingPresenter < CurationConcerns::WorkShowPresenter
     :alternative,
     :ark,
     :citation,
+    :collection,
     :copyright_status,
     :extent,
     :form_of_work,

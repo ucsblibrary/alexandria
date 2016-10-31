@@ -162,6 +162,10 @@ class SolrDocument
     fetch('license_label_tesim', [])
   end
 
+  def collection
+    fetch('collection_label_ssim', [])
+  end
+
   private
 
     def load_file_sets(ids)
