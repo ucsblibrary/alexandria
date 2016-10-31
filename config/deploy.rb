@@ -10,7 +10,7 @@ set :stages, %w(production vagrant)
 set :default_stage, 'vagrant'
 
 set :log_level, :debug
-set :bundle_flags, '--deployment'
+set :bundle_flags, '--without=development test'
 set :bundle_env_variables, nokogiri_use_system_libraries: 1
 
 set :keep_releases, 5
