@@ -55,4 +55,13 @@ class ApplicationController < ActionController::Base
   def admin_menu?
     can?(:discover, Hydra::AccessControls::Embargo) || can?(:destroy, :local_authorities)
   end
+
+  def show_contributors?(_config, document)
+    !document.etd?
+  end
+
+  def show_author?(_config, document)
+    document.etd?
+  end
+
 end

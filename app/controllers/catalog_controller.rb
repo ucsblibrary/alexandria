@@ -103,7 +103,8 @@ class CatalogController < ApplicationController
     #   The ordering of the field names is the order of the display
     config.add_index_field solr_name('work_type_label', :stored_searchable), label: 'Format'
     config.add_index_field solr_name('collection_label', :symbol), label: 'Collection'
-    config.add_index_field ContributorIndexer::ALL_CONTRIBUTORS_LABEL, label: 'Contributors'
+    config.add_index_field ContributorIndexer::ALL_CONTRIBUTORS_LABEL, label: 'Contributors', if: :show_contributors?
+    config.add_index_field solr_name('author', :stored_searchable), label: 'Author', if: :show_author?
     config.add_index_field solr_name('created', :displayable), label: 'Creation Date'
     config.add_index_field solr_name('issued', :displayable), label: 'Issued Date'
 
