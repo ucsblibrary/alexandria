@@ -3,14 +3,12 @@ module Metadata
   extend ActiveSupport::Concern
 
   RELATIONS = {
-    contributor:         RDF::Vocab::DC.contributor,
-    creator:             RDF::Vocab::DC.creator,
+    contributor: RDF::Vocab::DC.contributor,
+    creator:     RDF::Vocab::DC.creator,
   }.merge(MARCREL)
 
   included do
-
-    # For info about how local_collection_id is used, see:
-    # doc/local_collections.md
+    # For info about how local_collection_id is used, @see {doc/local_collections.md}
     property :local_collection_id, predicate: RDF::URI('http://opaquenamespace.org/ns/localCollectionID') do |index|
       index.as :symbol
     end
@@ -33,13 +31,6 @@ module Metadata
         index.as :stored_searchable, :facetable
       end
     end
-
-    # property :creator, predicate: ::RDF::Vocab::DC.creator, class_name: Oargun::ControlledVocabularies::Creator do |index|
-    #   index.as :stored_searchable, :facetable
-    # end
-    # property :contributor, predicate: ::RDF::Vocab::DC.contributor do |index|
-    #   index.as :stored_searchable
-    # end
 
     property :description, predicate: RDF::Vocab::DC.description do |index|
       index.as :stored_searchable

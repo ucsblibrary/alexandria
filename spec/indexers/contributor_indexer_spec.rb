@@ -32,8 +32,9 @@ describe ContributorIndexer do
       expect(subject['creator_label_si']).to eq 'American Film Manufacturing Company'
     end
 
-    it 'creates contributors' do
-      expect(subject['contributor_label_tesim']).to eq ['American Film Manufacturing Company', 'Valerie', 'Haggard, Merle']
+    it 'makes a combined index of all types of contributors' do
+      expect(subject['all_contributors_label_tesim']).to eq ['American Film Manufacturing Company', 'Valerie', 'Haggard, Merle']
+      expect(subject['all_contributors_label_sim']).to eq ['American Film Manufacturing Company', 'Valerie', 'Haggard, Merle']
     end
   end
 end

@@ -89,6 +89,9 @@ module Importer::Factory
           object.save!
         end
       end
+      # The fields used for erc_when and erc_who are set during the
+      # object creation, so we have to update the ARK metadata
+      # afterwards
       if identifier
         identifier[:target] = path_for(object)
         # Arrays of TimeSpans
@@ -107,6 +110,13 @@ module Importer::Factory
                                 else
                                   date_arr
                                 end
+
+        # Use the combination of all authorial roles
+        contributors = object.to_solr[ContributorIndexer::ALL_CONTRIBUTORS_LABEL]
+        unless contributors.blank?
+          identifier[:erc_who] = contributors.join('; ')
+        end
+
         identifier.save
       end
       log_created(object)

@@ -27,6 +27,8 @@ describe 'collections/show.html.erb' do
     allow(view).to receive(:search_session).and_return({})
     allow(view).to receive(:current_search_session).and_return nil
     allow(view).to receive(:render_index_doc_actions).and_return nil
+    allow(controller). to receive(:show_contributors?).and_return false
+    allow(controller). to receive(:show_author?).and_return false
     # allow(controller).to receive(:show_type?).and_return(false)
     view.lookup_context.prefixes += ['catalog']
     assign(:response, response)

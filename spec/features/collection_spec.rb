@@ -33,13 +33,13 @@ feature 'Collection show page:' do
     expect(page).to have_content red_attrs[:title].first
     expect(page).to have_content pink_attrs[:title].first
 
-    within('#facets #facet-contributor_label_sim') do
+    within('#facets #facet-all_contributors_label_sim') do
       click_link 'Coloring book'
     end
     expect(page).to have_content red_attrs[:title].first
     expect(page).to have_content pink_attrs[:title].first
 
-    within('#facets #facet-contributor_label_sim') do
+    within('#facets #facet-all_contributors_label_sim') do
       click_link 'Pinko'
     end
     expect(page).to_not have_content red_attrs[:title].first
