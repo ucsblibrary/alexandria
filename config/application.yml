@@ -23,4 +23,4 @@ production:
   localhost_port: 80
   minter_state: /opt/alexandria/shared/minter-state
   uploads_dir: /opt/alexandria/uploads
-  ffmpeg_path: /usr/local/bin
+  ffmpeg_path: /usr/local/bin/ffmpeg
