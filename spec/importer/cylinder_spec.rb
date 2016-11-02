@@ -159,7 +159,7 @@ describe Importer::Cylinder do
       expect(record1.lc_subject.first.class).to eq Oargun::ControlledVocabularies::Subject
       record1.lc_subject.map(&:solrize).flatten.each do |uri|
         expect(uri).to(
-          match(%r{(http://test.host:3000/authorities/topics/.{8}-.{4}-.{4}-.{4}-.{12})|(http://test.host:3000/authorities/people/.{8}-.{4}-.{4}-.{4}-.{12})|(http://test.host:3000/authorities/organizations/.{8}-.{4}-.{4}-.{4}-.{12})})
+          match(%r{(http://test.host/authorities/topics/.{8}-.{4}-.{4}-.{4}-.{12})|(http://test.host/authorities/people/.{8}-.{4}-.{4}-.{4}-.{12})|(http://test.host/authorities/organizations/.{8}-.{4}-.{4}-.{4}-.{12})})
         )
       end
       expect(record1.license.map(&:class)).to eq [Oargun::ControlledVocabularies::RightsStatement]
