@@ -4,7 +4,6 @@ defaults: &defaults
   ezid_host: ezid.cdlib.org
   ezid_port: 443
   internal_local_vocab_root: http://<%= Rails.application.config.host_name %>
-  localhost_port: 3000
   marmotta_host: localhost:8080
   minter_state: <%= ENV['ADRL_MINTER_STATE'] || "#{Rails.root}/tmp/minter-state" %>
   uploads_dir: <%= ENV['ADRL_UPLOADS'] || "#{Rails.root}/tmp/uploads" %>
@@ -20,7 +19,6 @@ production:
   <<: *defaults
   derivatives_dir: /opt/alexandria/derivatives
   download_root: /opt/download_root
-  localhost_port: 80
   minter_state: /opt/alexandria/shared/minter-state
   uploads_dir: /opt/alexandria/uploads
   ffmpeg_path: /usr/local/bin/ffmpeg
