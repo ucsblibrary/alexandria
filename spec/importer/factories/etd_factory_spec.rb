@@ -26,6 +26,9 @@ describe Importer::Factory::ETDFactory do
 
     allow($stdout).to receive(:puts) # squelch output
     AdminPolicy.ensure_admin_policy_exists
+
+    # Don't fetch external records during specs
+    allow_any_instance_of(RDF::DeepIndexingService).to receive(:fetch_external)
   end
 
   context 'when a collection already exists' do
@@ -34,7 +37,7 @@ describe Importer::Factory::ETDFactory do
     it 'should not create a new collection' do
       expect(coll.members.size).to eq 0
       obj = nil
-      VCR.use_cassette('etd_importer', record: :new_episodes) do
+      VCR.use_cassette('etd_importer') do
         expect do
           obj = factory.run
         end.to change { Collection.count }.by(0)
@@ -79,7 +82,7 @@ describe Importer::Factory::ETDFactory do
 
     context 'when a PDF is provided' do
       it 'attaches files' do
-        VCR.use_cassette('etd_importer', record: :new_episodes) do
+        VCR.use_cassette('etd_importer') do
           factory.run
         end
         expect(ETD.find('f3gt5k61').file_sets.first.files.first.file_name).to eq(['sample.pdf'])
@@ -88,7 +91,7 @@ describe Importer::Factory::ETDFactory do
 
     context 'when the file is already attached' do
       let!(:etd) do
-        VCR.use_cassette('etd_importer', record: :new_episodes) do
+        VCR.use_cassette('etd_importer') do
           factory.run
         end
       end

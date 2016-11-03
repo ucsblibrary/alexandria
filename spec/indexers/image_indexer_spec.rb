@@ -17,7 +17,7 @@ describe ImageIndexer do
     let(:image) { Image.new }
 
     it 'has images' do
-      VCR.use_cassette('image_indexer', record: :new_episodes) do
+      VCR.use_cassette('image_indexer') do
         expect(subject['thumbnail_url_ssm']).to eq ['http://test.host/images/s1%2F78%2F4k%2F72%2Fs1784k724%2Ffiles%2F6185235a-79b2-4c29-8c24-4d6ad9b11470/full/300,/0/default.jpg']
         expect(subject['image_url_ssm']).to eq ['http://test.host/images/s1%2F78%2F4k%2F72%2Fs1784k724%2Ffiles%2F6185235a-79b2-4c29-8c24-4d6ad9b11470/full/600,/0/default.jpg']
         expect(subject['large_image_url_ssm']).to eq ['http://test.host/images/s1%2F78%2F4k%2F72%2Fs1784k724%2Ffiles%2F6185235a-79b2-4c29-8c24-4d6ad9b11470/full/1000,/0/default.jpg']
@@ -58,7 +58,7 @@ describe ImageIndexer do
     let(:work_type) { RDF::URI('http://id.loc.gov/vocabulary/resourceTypes/img') }
     let(:image) { Image.new(work_type: [work_type]) }
     it 'indexes a label' do
-      VCR.use_cassette('image_indexer', record: :new_episodes) do
+      VCR.use_cassette('resource_type') do
         expect(subject['work_type_sim']).to eq [work_type]
         expect(subject['work_type_label_sim']).to eq ['Still Image']
         expect(subject['work_type_label_tesim']).to eq ['Still Image']
@@ -70,7 +70,7 @@ describe ImageIndexer do
     let(:location) { RDF::URI('http://id.loc.gov/authorities/subjects/sh85072779') }
     let(:image) { Image.new(location: [location]) }
     it 'indexes a label' do
-      VCR.use_cassette('image_indexer', record: :new_episodes) do
+      VCR.use_cassette('image_indexer') do
         expect(subject['location_sim']).to eq [location]
         expect(subject['location_label_sim']).to eq ['Kodiak Island (Alaska)']
         expect(subject['location_label_tesim']).to eq ['Kodiak Island (Alaska)']
@@ -90,7 +90,7 @@ describe ImageIndexer do
     end
 
     it 'indexes with a label' do
-      VCR.use_cassette('image_indexer', record: :new_episodes) do
+      VCR.use_cassette('image_indexer') do
         expect(subject['rights_holder_ssim']).to eq [valerie_uri, regents_uri]
         expect(subject['rights_holder_label_tesim']).to eq ['Valerie', 'University of California (System). Regents']
       end

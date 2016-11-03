@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'importer'
 
 describe Importer::Factory::ImageFactory do
   let(:files) { Dir['spec/fixtures/images/dirge*'] }
@@ -25,7 +26,7 @@ describe Importer::Factory::ImageFactory do
 
   context 'with files' do
     before do
-      VCR.use_cassette('image_factory', record: :new_episodes) do
+      VCR.use_cassette('image_factory') do
         Importer::Factory::CollectionFactory.new(collection_attrs).run
       end
     end
@@ -35,7 +36,7 @@ describe Importer::Factory::ImageFactory do
         obj = nil
         # New cassette to avoid ActiveFedora::IllegalOperation:
         #                         Attempting to recreate existing ldp_source
-        VCR.use_cassette('image_factory-1', record: :new_episodes) do
+        VCR.use_cassette('image_factory-1') do
           obj = factory.run
         end
         expect(obj.file_sets.first.admin_policy_id).to eq AdminPolicy::PUBLIC_POLICY_ID
@@ -49,7 +50,7 @@ describe Importer::Factory::ImageFactory do
       it 'creates file sets with admin policies' do
         expect do
           obj = nil
-          VCR.use_cassette('image_factory-2', record: :new_episodes) do
+          VCR.use_cassette('image_factory-2') do
             obj = factory.run
           end
           expect(obj.file_sets.first.admin_policy_id).to eq AdminPolicy::PUBLIC_POLICY_ID
@@ -65,7 +66,7 @@ describe Importer::Factory::ImageFactory do
       expect(coll.members.size).to eq 0
       expect_any_instance_of(Collection).to receive(:save!).once
       expect do
-        VCR.use_cassette('image_factory-3', record: :new_episodes) do
+        VCR.use_cassette('image_factory-3') do
           factory.run
         end
       end.to change { Collection.count }.by(0)

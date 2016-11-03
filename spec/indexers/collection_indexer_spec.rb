@@ -10,7 +10,7 @@ describe CollectionIndexer do
     let(:attributes) { { collector: [RDF::URI.new(url)] } }
 
     it 'has fields for collector' do
-      VCR.use_cassette('collection_indexer', record: :new_episodes) do
+      VCR.use_cassette('collection_indexer') do
         expect(subject['collector_tesim']).to eq [url]
         expect(subject['collector_label_tesim']).to eq ['Verne, Jules, 1828-1905']
 
@@ -42,7 +42,7 @@ describe CollectionIndexer do
     let(:attributes) { { lc_subject: lc_subject } }
 
     it 'has human-readable labels for subject' do
-      VCR.use_cassette('collection_indexer', record: :new_episodes) do
+      VCR.use_cassette('motion_picture_industry') do
         expect(subject['lc_subject_tesim']).to eq [url]
         expect(subject['lc_subject_sim']).to eq [url]
         expect(subject['lc_subject_label_tesim']).to eq [label]
@@ -58,7 +58,7 @@ describe CollectionIndexer do
     let(:attributes) { { form_of_work: type } }
 
     it 'has human-readable labels for form_of_work' do
-      VCR.use_cassette('collection_indexer', record: :new_episodes) do
+      VCR.use_cassette('black_and_white_negatives') do
         expect(subject['form_of_work_sim']).to eq [url]
         expect(subject['form_of_work_tesim']).to eq [url]
         expect(subject['form_of_work_label_sim']).to eq [label]
