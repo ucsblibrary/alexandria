@@ -5,6 +5,11 @@ describe ObjectFactoryWriter do
   let(:settings) { {} }
   let(:writer) { described_class.new(settings) }
 
+  before do
+    # Don't fetch external records during specs
+    allow_any_instance_of(RDF::DeepIndexingService).to receive(:fetch_external)
+  end
+
   describe '#put' do
     before { ETD.destroy_all }
 
@@ -36,7 +41,7 @@ describe ObjectFactoryWriter do
     end
 
     it 'calls the etd factory' do
-      VCR.use_cassette('etd_importer', record: :new_episodes) do
+      VCR.use_cassette('etd_importer') do
         writer.put(traject_context.output_hash)
       end
 

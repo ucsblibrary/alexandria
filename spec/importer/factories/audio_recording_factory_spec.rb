@@ -24,10 +24,13 @@ describe Importer::Factory::AudioRecordingFactory do
   before do
     (Collection.all + AudioRecording.all).map(&:id).each do |id|
       ActiveFedora::Base.find(id).destroy(eradicate: true) if ActiveFedora::Base.exists?(id)
-
-      # Don't print output messages during specs
-      allow($stdout).to receive(:puts)
     end
+
+    # Don't print output messages during specs
+    allow($stdout).to receive(:puts)
+
+    # Don't fetch external records during specs
+    allow_any_instance_of(RDF::DeepIndexingService).to receive(:fetch_external)
 
     # Don't run background jobs/derivatives during the specs
     allow(CharacterizeJob).to receive_messages(perform_later: nil, perform_now: nil)
@@ -105,7 +108,7 @@ describe Importer::Factory::AudioRecordingFactory do
       hash = indexer.map_record(MARC::XMLReader.new(metadata).first)
                     .merge(issued_attributes: [{ start: [2222] }])
 
-      VCR.use_cassette('audio_recording_factory', record: :new_episodes) do
+      VCR.use_cassette('audio_recording_factory') do
         indexer.writer.put hash
       end
 
@@ -118,7 +121,7 @@ describe Importer::Factory::AudioRecordingFactory do
       indexer.load_config_file('lib/traject/audio_config.rb')
       indexer.settings(files_dirs: files_dir)
 
-      VCR.use_cassette('audio_recording_factory', record: :new_episodes) do
+      VCR.use_cassette('audio_recording_factory') do
         indexer.writer.put indexer.map_record(MARC::XMLReader.new(metadata).first)
       end
 

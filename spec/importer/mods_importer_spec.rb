@@ -4,6 +4,11 @@ require 'importer'
 describe Importer::Mods do
   let(:images) { Dir['spec/fixtures/images/cusbspcmss36*.tif'] }
 
+  before do
+    # Don't fetch external records during specs
+    allow_any_instance_of(RDF::DeepIndexingService).to receive(:fetch_external)
+  end
+
   describe '#import an Image' do
     before do
       Collection.destroy_all
@@ -20,7 +25,7 @@ describe Importer::Mods do
       image = nil
 
       expect do
-        VCR.use_cassette('mods_importer', record: :new_episodes) do
+        VCR.use_cassette('mods_importer') do
           image = Importer::Mods.import(file, images)
         end
       end.to change { Image.count }.by(1)
@@ -62,7 +67,7 @@ describe Importer::Mods do
         expect(coll.members.size).to eq 0
 
         expect do
-          VCR.use_cassette('mods_importer', record: :new_episodes) do
+          VCR.use_cassette('mods_importer') do
             Importer::Mods.import(file, images)
           end
         end.to change { Collection.count }.by(0)
@@ -83,7 +88,7 @@ describe Importer::Mods do
       expect do
         # New cassette to avoid ActiveFedora::IllegalOperation:
         #                         Attempting to recreate existing ldp_source
-        VCR.use_cassette('mods_importer-1', record: :new_episodes) do
+        VCR.use_cassette('mods_importer-1') do
           coll = Importer::Mods.import(file, [])
         end
       end.to change { Collection.count }.by(1).and change {
@@ -107,7 +112,7 @@ describe Importer::Mods do
       it 'it adds metadata to existing collection' do
         coll = nil
         expect do
-          VCR.use_cassette('mods_importer', record: :new_episodes) do
+          VCR.use_cassette('mods_importer') do
             coll = Importer::Mods.import(file, [])
           end
         end.to change { Collection.count }.by(0)
@@ -127,7 +132,7 @@ describe Importer::Mods do
       it "doesn't create another person" do
         coll = nil
         expect do
-          VCR.use_cassette('mods_importer-2', record: :new_episodes) do
+          VCR.use_cassette('mods_importer-2') do
             coll = Importer::Mods.import(file, [])
           end
         end.to change { Collection.count }.by(1).and change {
@@ -158,7 +163,7 @@ describe Importer::Mods do
 
       it 'finds or creates the rights holders' do
         expect do
-          VCR.use_cassette('mods_importer-3', record: :new_episodes) do
+          VCR.use_cassette('mods_importer-3') do
             Importer::Mods.import(file, images)
           end
         end.to change { Agent.exact_model.count }.by(1)
