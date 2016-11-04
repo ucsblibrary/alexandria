@@ -57,7 +57,7 @@ to_field 'location', extract_marc('650z:651az', trim_punctuation: true)
 to_field 'marc_subjects', extract_complex_subject
 to_field 'matrix_number', extract_matrix_number
 to_field 'note', extract_notes
-to_field 'place_of_publication', extract_marc('260a:264a', trim_punctuation: true)
+to_field 'place_of_publication', extract_marc('260a:264a')
 to_field 'publisher', extract_marc('260b:264b', trim_punctuation: true)
 to_field 'system_number', extract_marc('001')
 to_field 'table_of_contents', extract_marc('505agrtu68')

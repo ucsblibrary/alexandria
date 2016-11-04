@@ -28,7 +28,7 @@ gem 'qa', '~> 0.5.0'
 gem 'rdf-marmotta', '~> 0.0.8'
 gem 'riiif', '~> 0.2.0'
 gem 'rsolr', '~> 1.0.12'
-gem 'traject', '~> 2.3.0'
+gem 'traject', '~> 2.3.2'
 
 gem 'kaminari', '~> 0.16.3'
 # https://github.com/amatsuda/kaminari/pull/636
