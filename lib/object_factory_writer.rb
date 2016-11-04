@@ -106,23 +106,8 @@ class ObjectFactoryWriter
 
     def build_object(attributes, metadata)
       work_type = attributes.fetch('work_type').first
-      attributes[:collection] = collection_attributes(work_type)
       attributes[:local_collection_id] = Array(@local_collection_id) unless @local_collection_id.blank?
       factory(work_type).new(attributes, metadata).run
-    end
-
-    def collection_attributes(work_type)
-      case work_type
-      when *ETD_TYPES
-        { id: 'etds', title: ['Electronic Theses and Dissertations'], accession_number: ['etds'] }
-      when *AUDIO_TYPES
-        # Cylinder records use the local_collection_id style of
-        # collection membership instead of standard hydra style,
-        # so just set the collection attributes to empty hash.
-        {}
-      else
-        raise ArgumentError, "Unknown work type #{work_type}"
-      end
     end
 
     def factory(work_type)

@@ -3,14 +3,12 @@ require 'importer'
 
 describe Importer::Factory::ETDFactory do
   let(:factory) { described_class.new(attributes, files) }
-  let(:collection_attrs) { { accession_number: ['etds'], title: ['test collection'] } }
   let(:files) { {} }
 
   let(:attributes) do
     {
       id: 'f3gt5k61',
       title: ['Test Thesis'],
-      collection: collection_attrs.slice(:accession_number), files: files,
       created_attributes: [{ start: [2014] }],
       system_number: ['123'],
       author: ['Valerie'],
@@ -21,34 +19,11 @@ describe Importer::Factory::ETDFactory do
   before do
     ETD.find('f3gt5k61').destroy(eradicate: true) if ETD.exists? 'f3gt5k61'
 
-    # The destroy ^up there^ is not removing the ETD from the collection.
-    Collection.destroy_all
-
     allow($stdout).to receive(:puts) # squelch output
     AdminPolicy.ensure_admin_policy_exists
 
     # Don't fetch external records during specs
     allow_any_instance_of(RDF::DeepIndexingService).to receive(:fetch_external)
-  end
-
-  context 'when a collection already exists' do
-    let!(:coll) { Collection.create!(collection_attrs) }
-
-    it 'should not create a new collection' do
-      expect(coll.members.size).to eq 0
-      obj = nil
-      VCR.use_cassette('etd_importer') do
-        expect do
-          obj = factory.run
-        end.to change { Collection.count }.by(0)
-      end
-      expect(coll.reload.members.size).to eq 1
-      expect(coll.members.first).to be_instance_of ETD
-      expect(obj.id).to eq 'f3gt5k61'
-      expect(obj.system_number).to eq ['123']
-      expect(obj.identifier).to eq ['ark:/48907/f3gt5k61']
-      expect(obj.author).to eq ['Valerie']
-    end
   end
 
   describe '#create_attributes' do
@@ -115,12 +90,11 @@ describe Importer::Factory::ETDFactory do
   end
 
   describe 'update an existing record' do
-    let!(:coll) { Collection.create!(collection_attrs) }
     let(:old_date) { 2222 }
     let(:old_date_attrs) { { created_attributes: [{ start: [old_date] }] }.with_indifferent_access }
 
     context "when the created date hasn't changed" do
-      let!(:etd) { create(:etd, attributes.except(:collection, :files)) }
+      let!(:etd) { create(:etd, attributes.except(:files)) }
 
       it "doesn't add a new duplicate date" do
         etd.reload
@@ -133,7 +107,7 @@ describe Importer::Factory::ETDFactory do
     end
 
     context 'when the created date has changed' do
-      let!(:etd) { create(:etd, attributes.except(:collection, :files).merge(old_date_attrs)) }
+      let!(:etd) { create(:etd, attributes.except(:files).merge(old_date_attrs)) }
 
       it 'updates the existing date instead of adding a new one' do
         etd.reload
@@ -146,7 +120,7 @@ describe Importer::Factory::ETDFactory do
     end
 
     context "when the ETD doesn't have existing created date" do
-      let!(:etd) { create(:etd, attributes.except(:collection, :files, :created_attributes)) }
+      let!(:etd) { create(:etd, attributes.except(:files, :created_attributes)) }
 
       it 'adds the new date' do
         etd.reload
@@ -163,11 +137,10 @@ describe Importer::Factory::ETDFactory do
         { id: 'f3gt5k61',
           system_number: ['123'],
           identifier: ['ark:/48907/f3gt5k61'],
-          collection: collection_attrs.slice(:accession_number),
         }.with_indifferent_access
       end
 
-      let!(:etd) { create(:etd, attributes.except(:collection).merge(old_date_attrs)) }
+      let!(:etd) { create(:etd, attributes.merge(old_date_attrs)) }
 
       it "doesn't change the existing date" do
         etd.reload

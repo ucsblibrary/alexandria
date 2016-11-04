@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+$stdout.sync = true  # flush output immediately
+
 puts 'Loading environment...'
 require File.expand_path('../../config/environment', __FILE__)
 puts "Running in #{Rails.env} mode..."
@@ -119,6 +121,15 @@ begin
       exit 1
     end
 
+    # TODO: Right now the only thing this importer does is find
+    # the right collection for ETDs, but in the future, we
+    # should move all the code from this case/when statement
+    # into the importer class so that it can be tested.
+    importer = Importer::ETD.new
+    importer.run
+
+    raise_error = false
+
     Dir.mktmpdir do |temp|
       # Don't unzip ETDs we won't use
       etds = data.drop(options[:skip]).map.with_index do |zip, i|
@@ -151,7 +162,7 @@ begin
                  end
                  MARC::XMLReader.new(
                    StringIO.new(
-                     Importer::ETD.parse_file(x)
+                     Importer::ETDParser.parse_file(x)
                    )
                  ).map { |o| o }
                end
@@ -177,7 +188,7 @@ begin
         proquest_data = etds.select do |etd|
           etd[:pdf].include? record['956']['f']
         end.first
-        indexer.settings(etd: proquest_data)
+        indexer.settings(etd: proquest_data, local_collection_id: importer.collection.id)
 
         if options[:verbose]
           puts
@@ -202,13 +213,21 @@ begin
         rescue => e
           puts e
           puts e.backtrace
-          raise IngestError.new(reached: count)
+          raise_error = true
         rescue Interrupt
           puts "\nIngest stopped, cleaning up..."
-          raise IngestError.new(reached: count)
+          raise_error = true
         end
       end
     end
+
+    if ingests > 0
+      puts "Updating collection index"
+      importer.collection.update_index
+    end
+
+    raise IngestError.new(reached: ingests - 1) if raise_error
+
   when 'cyl'
     begin
       importer = Importer::Cylinder.new(meta, data, options)
