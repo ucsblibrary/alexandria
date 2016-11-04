@@ -12,6 +12,7 @@ require 'traject/extract_language'
 require 'traject/extract_lc_subject'
 require 'traject/extract_matrix_number'
 require 'traject/extract_notes'
+require 'traject/extract_place_of_publication'
 require 'traject/extract_work_type'
 extend Traject::Macros::Marc21Semantics
 extend Traject::Macros::MarcFormats
@@ -22,10 +23,11 @@ extend ExtractContributors
 extend ExtractFulltextLink
 extend ExtractIssueDate
 extend ExtractIssueNumber
-extend ExtractLanguage
 extend ExtractLCSubject
+extend ExtractLanguage
 extend ExtractMatrixNumber
 extend ExtractNotes
+extend ExtractPlaceOfPublication
 extend ExtractWorkType
 
 settings do
@@ -57,7 +59,7 @@ to_field 'location', extract_marc('650z:651az', trim_punctuation: true)
 to_field 'marc_subjects', extract_complex_subject
 to_field 'matrix_number', extract_matrix_number
 to_field 'note', extract_notes
-to_field 'place_of_publication', extract_marc('260a:264a')
+to_field 'place_of_publication', extract_place_of_publication
 to_field 'publisher', extract_marc('260b:264b', trim_punctuation: true)
 to_field 'system_number', extract_marc('001')
 to_field 'table_of_contents', extract_marc('505agrtu68')
