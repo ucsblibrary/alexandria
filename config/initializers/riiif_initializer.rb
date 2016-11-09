@@ -1,9 +1,4 @@
 Riiif::Image.file_resolver = Riiif::HTTPFileResolver.new
-Riiif::Image.info_service = lambda do |_id, _file|
-  # resp = get_solr_response_for_doc_id id
-  # doc = resp.first['response']['docs'].first
-  { height: '', width: '' } # doc['height_isi'], width: doc['width_isi'] }
-end
 
 ### ActiveSupport::Benchmarkable (used in Blacklight::SolrHelper) depends on a logger method
 
