@@ -196,6 +196,24 @@ html.welcome,
   }
 }
 
+.flex-inner {
+  text-align: center;
+  // font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.5);
+
+  a {
+    text-decoration: underline;
+    transition: all 100ms ease-in-out 0s;
+  }
+  a:hover {
+    color: $primary_link_color;
+  }
+
+  section {
+    font-size: 150%;
+  }
+}
+
 .background-metadata {
   font-style: italic;
   a {
@@ -341,20 +359,6 @@ html.welcome,
 @media screen and (min-width: $breakpoint3) {
   #search_field {
     margin-right: 1em;
-  }
-}
-
-// FIXME: less specificity
-#browse-by {
-  text-align: center;
-	font: 1.5em 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.5);
-  a {
-    text-decoration: underline;
-    transition: all 100ms ease-in-out 0s;
-  }
-  a:hover {
-    color: $primary_link_color;
   }
 }
 
