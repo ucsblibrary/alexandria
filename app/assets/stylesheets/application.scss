@@ -259,10 +259,10 @@ html.welcome,
     width: 100%;
   }
   .large-logo {
-    margin-top: -12em;
+    margin-top: -5em;
     text-align: center;
     img {
-      width: 70%; // TODO: scale the image so we don't deliver something unnecessarily large
+      width: 100%; // TODO: scale the image so we don't deliver something unnecessarily large
     }
   }
 }
