@@ -27,8 +27,8 @@
 
   <div class="background-metadata">
     <% unless @background.empty? %>
-      <p>Background: <a href="/lib/<%= "#{@object_url}" %>" title="Record page"><%= @background['title'] %></a><br>
-        Part of <a href="/collections/<%= @background['collection_id'] %>" title="Collection page"><%= @background['collection_title'] %></a></p>
+      <p class="background-metadata-title">Background: <a href="/lib/<%= "#{@object_url}" %>" title="Record page"><%= @background['title'] %></a></p>
+      <p class="background-metadata-collection">Part of <a href="/collections/<%= @background['collection_id'] %>" title="Collection page"><%= @background['collection_title'] %></a></p>
     <% end %>
   </div>
 </header>
