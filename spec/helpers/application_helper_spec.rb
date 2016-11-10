@@ -24,10 +24,4 @@ describe ApplicationHelper do
       it { is_expected.to eq 'ark:/99999/fk4gx4hm1c' }
     end
   end
-
-  describe '#link_to_collection' do
-    let(:document) { SolrDocument.new(collection_ssim: ['fk4gx4hm1c']) }
-    subject { helper.link_to_collection(value: ['collection title'], document: document) }
-    it { is_expected.to eq '<a href="/collections/fk4gx4hm1c">collection title</a>' }
-  end
 end
