@@ -163,7 +163,8 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('identifier', :displayable), label: 'ARK'
     config.add_show_field solr_name('accession_number', :symbol), label: 'Local Identifier'
     config.add_show_field 'isbn_ssim', label: 'ISBN'
-    # Matrix and issue numbers go here
+    config.add_show_field solr_name('matrix_number', :displayable), label: 'Matrix Number'
+    config.add_show_field solr_name('issue_number', :displayable), label: 'Issue Number'
     config.add_show_field solr_name('system_number', :symbol), label: 'Catalog System Number'
     config.add_show_field solr_name('copyright', :displayable), label: 'Copyright'
     config.add_show_field solr_name('copyright_status_label', :stored_searchable), label: 'Copyright Status'
