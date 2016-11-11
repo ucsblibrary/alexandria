@@ -73,4 +73,5 @@ RSpec.configure do |config|
   config.include Devise::TestHelpers, type: :controller
   config.include CollectionSupport, type: :feature
   config.include FixtureFileUpload
+  config.include EzidHelper
 end

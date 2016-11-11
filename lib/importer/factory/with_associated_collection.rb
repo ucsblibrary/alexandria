@@ -4,36 +4,38 @@ module Importer
       extend ActiveSupport::Concern
 
       included do
-        after_save :maybe_add_to_collection
+        after_save :reindex_collection
       end
 
       def create_attributes
-        super.except(:collection)
+        attrs = super.except(:collection)
+        attrs.merge!(local_collection_id: [collection.id]) if has_collection?
+        attrs
       end
 
       def update_attributes
-        super.except(:collection)
+        attrs = super.except(:collection)
+        attrs.merge!(local_collection_id: [collection.id]) if has_collection?
+        attrs
       end
 
-      def maybe_add_to_collection
-        return unless attributes.key?(:collection)
-        add_to_collection(object, collection)
-
-        # Reindex the object with the collection label.
-        object.update_index
+      def reindex_collection
+        return unless has_collection?
+        collection.update_index
       end
 
-      def add_to_collection(obj, collection)
-        collection.ordered_members << obj
-        collection.save!
-      end
 
       private
+
+        def has_collection?
+          attributes.key?(:collection)
+        end
 
         def collection
           collection_attrs = attributes.fetch(:collection).merge(admin_policy_id: attributes[:admin_policy_id])
           CollectionFactory.new(collection_attrs).find_or_create
         end
+
     end
   end
 end

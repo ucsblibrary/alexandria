@@ -8,6 +8,9 @@ describe Importer::MODS do
   before do
     # Don't fetch external records during specs
     allow_any_instance_of(RDF::DeepIndexingService).to receive(:fetch_external)
+
+    # Don't print output messages during specs
+    allow($stdout).to receive(:puts)
   end
 
   describe '#import an Image' do
@@ -52,7 +55,6 @@ describe Importer::MODS do
         coll = reloaded.in_collections.first
         expect(coll.accession_number).to eq ['SBHC Mss 36']
         expect(coll.title).to eq ['Santa Barbara picture postcards collection']
-        expect(coll.members).to eq [reloaded]
         expect(coll.admin_policy_id).to eq AdminPolicy::PUBLIC_POLICY_ID
 
         solr_doc = ActiveFedora::SolrService.query("id:#{image.id}").first
@@ -62,30 +64,25 @@ describe Importer::MODS do
 
     context 'when the collection already exists' do
       before do
-        if ActiveFedora::Base.exists? 'fk41234567'
-          ActiveFedora::Base.find('fk41234567').destroy(eradicate: true)
-        end
-        if ActiveFedora::Base.exists? 'fk49876543'
-          ActiveFedora::Base.find('fk49876543').destroy(eradicate: true)
-        end
-
+        Image.all.each { |i| i.destroy(eradicate: true) }
         Collection.all.each { |c| c.destroy(eradicate: true) }
 
         # skip creating files
         allow_any_instance_of(Importer::Factory::ImageFactory).to receive(:after_create)
       end
+
       let!(:coll) { Collection.create!(accession_number: ['SBHC Mss 36'], title: ['Test Collection']) }
 
       it 'it adds image to existing collection' do
-        expect(coll.members.size).to eq 0
-
         expect do
           VCR.use_cassette('mods_importer') do
             Importer::MODS.import(metadata, data, skip: 0, verbose: false)
           end
         end.to change { Collection.count }.by(0)
 
-        expect(coll.reload.members.size).to eq 1
+        expect(Image.count).to eq 1
+        image = Image.first
+        expect(image.local_collection_id).to eq [coll.id]
       end
     end
   end
