@@ -22,7 +22,10 @@ module Importer::CSV
       end
 
       tail.each do |row|
-        next if options[:skip] > ingests
+        if options[:skip] > ingests
+          ingests += 1
+          next
+        end
         next if options[:number] && options[:number] <= ingests
 
         start_record = Time.now
