@@ -31,8 +31,8 @@
 
   <div class="background-metadata">
     <% unless @background.empty? %>
-      <p class="background-metadata-title">Background: <a href="/lib/<%= "#{@background['ark']}" %>" title="Record page"><%= @background['title'] %></a></p>
-      <p class="background-metadata-collection">Part of <a href="/collections/<%= @background['collection_id'] %>" title="Collection page"><%= @background['collection_title'] %></a></p>
+      <p class="background-metadata-title"><a href="/lib/<%= "#{@background['ark']}" %>" title="Record page"><%= @background['title'] %></a></p>
+      <p class="background-metadata-collection">From the <a href="/collections/<%= @background['collection_id'] %>" title="Collection page"><%= @background['collection_title'] %></a></p>
     <% end %>
   </div>
 </header>
