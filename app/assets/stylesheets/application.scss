@@ -250,7 +250,6 @@ html.welcome,
     bottom: 0;
     left: 1em;
   }
-
   .flex-outer {
     align-items: center;
     display: flex;
@@ -261,8 +260,11 @@ html.welcome,
     width: 100%;
   }
   .large-logo {
-    margin-top: -5em;
+    margin-bottom: 4em;
     text-align: center;
+  }
+  #browse-by {
+    margin-bottom: 1.5em;
   }
 }
 @media screen and (max-width: $breakpoint3) {
