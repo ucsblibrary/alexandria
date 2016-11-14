@@ -232,6 +232,13 @@ html.welcome,
   }
 }
 
+@media screen and (min-width: $breakpoint2) {
+  .blurb {
+    padding-left: 30%;
+    padding-right: 30%;
+  }
+}
+
 @media screen and (min-width: $breakpoint3) {
   .splash {
     position: relative;
