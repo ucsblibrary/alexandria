@@ -246,11 +246,6 @@ html.welcome,
     padding-right: 1em;
     padding-top: 0;
   }
-  .background-metadata {
-    position: absolute;
-    bottom: 0;
-    left: 1em;
-  }
   .flex-outer {
     align-items: center;
     display: flex;
@@ -267,6 +262,15 @@ html.welcome,
   }
   #browse-by {
     margin-bottom: 1.5em;
+  }
+  .blurb {
+    // to keep from covering the background-metadata
+    padding-bottom: 2em;
+  }
+  .background-metadata {
+    position: absolute;
+    bottom: 0;
+    left: 1em;
   }
 }
 @media screen and (max-width: $breakpoint3) {
