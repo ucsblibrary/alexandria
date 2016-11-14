@@ -51,7 +51,7 @@ $top_margin: 20px;
 $inner_width: 70%;
 $footer_left_margin: 1.5%;
 
-$logo_image: 'ADRL_Logo_363x84.png';
+$logo_image: 'ADRL_small.png';
 $bg_image: 'ADRL_BG_1280x160.png';
 
 @import 'bootstrap-sprockets';
@@ -193,12 +193,20 @@ html.welcome,
 
   .flex-inner {
     text-align: center;
+    width: 100%;
   }
 
   section {
     font-size: 150%;
   }
 }
+
+@media screen and (max-width: $breakpoint1) {
+  .large-logo img {
+    width: 100%;
+  }
+}
+
 .background-metadata-title {
   font-size: 114.3%;
   margin-bottom: 0;
@@ -221,12 +229,6 @@ html.welcome,
   a {
     text-decoration: underline;
     font-style: normal;
-  }
-}
-
-.large-logo {
-  img {
-    width: 100%;
   }
 }
 
@@ -261,9 +263,6 @@ html.welcome,
   .large-logo {
     margin-top: -5em;
     text-align: center;
-    img {
-      width: 100%; // TODO: scale the image so we don't deliver something unnecessarily large
-    }
   }
 }
 @media screen and (max-width: $breakpoint3) {
