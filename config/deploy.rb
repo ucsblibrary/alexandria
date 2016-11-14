@@ -32,7 +32,6 @@ set :branch, ENV['REVISION'] || ENV['BRANCH_NAME'] || 'master'
 # set :pty, true
 
 set :linked_files, %w(
-  config/homepage.yml
   config/secrets.yml
 )
 

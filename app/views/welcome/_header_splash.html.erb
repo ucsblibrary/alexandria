@@ -1,4 +1,4 @@
-<header class="splash" style="background-image: url('<%= @background_url %>');">
+<header class="splash" style="background-image: url('<%= image_path(@background['image_path']) %>');">
   <%= render partial: '/user_util_links' %>
 
   <div class="flex-outer">
@@ -31,7 +31,7 @@
 
   <div class="background-metadata">
     <% unless @background.empty? %>
-      <p class="background-metadata-title">Background: <a href="/lib/<%= "#{@object_url}" %>" title="Record page"><%= @background['title'] %></a></p>
+      <p class="background-metadata-title">Background: <a href="/lib/<%= "#{@background['ark']}" %>" title="Record page"><%= @background['title'] %></a></p>
       <p class="background-metadata-collection">Part of <a href="/collections/<%= @background['collection_id'] %>" title="Collection page"><%= @background['collection_title'] %></a></p>
     <% end %>
   </div>
