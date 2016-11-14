@@ -171,14 +171,9 @@ html.welcome,
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-
   color: #fff;
-
-  height: 100%;
   min-height: 100%;
   padding: 1em;
-
-  // font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.5);
 
   a {
@@ -266,6 +261,7 @@ html.welcome,
     width: 100%;
   }
   .large-logo {
+    margin-top: 5em;
     margin-bottom: 4em;
     text-align: center;
   }
