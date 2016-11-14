@@ -4,7 +4,11 @@
   <div class="flex-outer">
     <div class="flex-inner">
       <div class="large-logo">
-        <%= link_to image_tag("ADRL_Large_Logo_805x186.png", { alt: "ADRL Logo" }), root_path, { title: "ADRL Home" } %>
+        <a href="/" title="ADRL Homepage">
+          <img src="<%= image_path("ADRL@1x.png") %>"
+            srcset="<%= image_path("ADRL@2x.png") %> 2x"
+            alt="Alexandria Digital Research Library">
+        </a>
       </div>
 
       <div id="splash-search-bar">
