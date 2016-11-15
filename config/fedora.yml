@@ -16,3 +16,4 @@ test:
 production:
   <<: *defaults
   base_path: /prod
+  url: <%= "http://#{Rails.application.secrets.fedora_host}:8080/fedora/rest" %>
