@@ -2,8 +2,6 @@ require 'proquest'
 
 module Importer::Factory
   class ETDFactory < ObjectFactory
-    include WithAssociatedCollection
-
     self.klass = ETD
     self.system_identifier_field = :system_number
 

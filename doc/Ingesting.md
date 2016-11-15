@@ -193,7 +193,7 @@ What happens when you run `bin/ingest -f etd /path/to/etds/etdadmin_upload*`, th
 
 
 2. Next, `bin/ingest` passes the path to the XML file of each ETD to
-   {Importer::ETD.parse_file}, which parses the XML and queries Aleph,
+   {Importer::ETDParser.parse_file}, which parses the XML and queries Aleph,
    returning a single string of MARC containing the metadata for all
    the ETDs matched by `/path/to/etds/etdadmin_upload*`.
 
