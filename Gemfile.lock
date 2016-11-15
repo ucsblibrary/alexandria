@@ -526,7 +526,6 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
-    retriable (1.4.1)
     riiif (0.4.1)
       rails (> 3.2.0)
     rsolr (1.0.13)
@@ -710,7 +709,6 @@ DEPENDENCIES
   qa (~> 0.5.0)
   rails (= 4.2.7.1)
   rdf-marmotta (~> 0.0.8)
-  rdf-vocab (~> 0.8.4)
   resque-pool
   resque-status
   riiif (~> 0.4.0)
@@ -732,5 +730,8 @@ DEPENDENCIES
   vcr
   webmock
 
+RUBY VERSION
+   ruby 2.3.0p0
+
 BUNDLED WITH
-   1.11.2
+   1.13.6
