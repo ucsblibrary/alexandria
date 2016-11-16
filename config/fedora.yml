@@ -5,7 +5,7 @@ defaults: &defaults
 
 development:
   <<: *defaults
-  url: <%= ENV['DEV_FEDORA_URL'] || 'http://localhost:8984/rest' %>
+  url: <%= ENV['DEV_FEDORA_URL'] || 'http://localhost:8986/rest' %>
   base_path: <%= ENV['DEV_FEDORA_BASE'] || "/devel" %>
 
 test:
