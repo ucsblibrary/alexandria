@@ -126,6 +126,10 @@ class SolrDocument
     fetch('form_of_work_label_tesim', [])
   end
 
+  def work_type
+    fetch('work_type_label_tesim', [])
+  end
+
   def rights_holder
     fetch('rights_holder_label_ssim', [])
   end
@@ -156,6 +160,10 @@ class SolrDocument
 
   def license
     fetch('license_label_tesim', [])
+  end
+
+  def collection
+    fetch('collection_label_ssim', [])
   end
 
   private

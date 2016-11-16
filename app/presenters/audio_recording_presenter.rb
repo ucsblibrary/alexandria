@@ -2,7 +2,9 @@ class AudioRecordingPresenter < CurationConcerns::WorkShowPresenter
   delegate(
     :accession_number,
     :alternative,
+    :ark,
     :citation,
+    :collection,
     :copyright_status,
     :extent,
     :form_of_work,
@@ -18,6 +20,7 @@ class AudioRecordingPresenter < CurationConcerns::WorkShowPresenter
     :rights_holder,
     :sub_location,
     :table_of_contents,
+    :work_type,
     to: :solr_document
   )
 end

@@ -13,10 +13,10 @@
   <%= presenter.attribute_to_html(:description, label: 'Summary').gsub('\n', '<br />').html_safe %>
   <%= presenter.attribute_to_html(:table_of_contents, label: 'Table of Contents') %>
   <%= presenter.attribute_to_html(:extent, label: 'Physical Description') %>
-  <% # Format goes here %>
-  <% # Collection goes here %>
+  <%= presenter.attribute_to_html(:work_type, label: 'Format') %>
+  <%= presenter.attribute_to_html(:collection) %>
   <%= presenter.attribute_to_html(:sub_location, label: 'Library Location') %>
-  <% # ARK goes here %>
+  <%= presenter.attribute_to_html(:ark, label: 'ARK') %>
   <%= presenter.attribute_to_html(:accession_number, label: 'Local Identifier') %>
   <%= presenter.attribute_to_html(:matrix_number, label: 'Matrix Number') %>
   <%= presenter.attribute_to_html(:issue_number, label: 'Issue Number') %>
