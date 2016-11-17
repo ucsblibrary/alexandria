@@ -374,6 +374,34 @@ html.welcome,
   }
 }
 
+// -----
+// Login
+// -----
+
+.help {
+  color: #696969;
+}
+
+form p {
+  label {
+    padding-right: 1em;
+  }
+  input {
+    float: right;
+    width: 70%;
+  }
+}
+
+@media screen and (min-width: $breakpoint2) {
+  .option {
+    float: left;
+    width: 35%;
+  }
+  .option + .option {
+    margin-left: 15%;
+  }
+}
+
 // ------
 // Footer
 // ------
@@ -456,6 +484,7 @@ table#downloads {
   }
 }
 
+// TODO: use .static instead (see below)
 #contact-us-page {
   width: 80%;
   margin-left: 10%;

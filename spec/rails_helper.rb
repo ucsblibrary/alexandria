@@ -72,8 +72,11 @@ RSpec.configure do |config|
   config.include Capybara::RSpecMatchers, type: :input
   config.include InputSupport, type: :input
   config.include FactoryGirl::Syntax::Methods
-  config.include Devise::TestHelpers, type: :controller
   config.include CollectionSupport, type: :feature
   config.include FixtureFileUpload
   config.include EzidHelper
+end
+
+def user_with_groups(groups)
+  User.create(group_list: groups)
 end

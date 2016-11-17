@@ -28,16 +28,17 @@ feature "Accessing records:" do
   end
 
   before do
+    allow_any_instance_of(User).to receive(:groups).and_return(groups)
+
     %w[111 222 333].each do |id|
       ActiveFedora::Base.find(id).destroy(eradicate: true) if ActiveFedora::Base.exists?(id)
     end
 
     AdminPolicy.ensure_admin_policy_exists
-    login_as(user) if user
   end
 
   context "a metadata admin" do
-    let(:user) { create :metadata_admin }
+    let(:groups) { [AdminPolicy::META_ADMIN] }
 
     scenario "views a collection and members" do
       visit collection_path(collection)
@@ -60,7 +61,7 @@ feature "Accessing records:" do
   end
 
   context "a not logged in user" do
-    let(:user) { nil }
+    let(:groups) { [AdminPolicy::PUBLIC_GROUP] }
 
     scenario "views a collection and members" do
       visit collection_path(collection)

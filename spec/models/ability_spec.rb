@@ -62,7 +62,7 @@ describe Ability do
   end
 
   context "for a logged-in UCSB user" do
-    let(:user) { create(:ucsb_user) }
+    let(:user) { user_with_groups [AdminPolicy::UCSB_GROUP] }
 
     it do
       is_expected.not_to be_able_to(:create, Image)
@@ -84,7 +84,7 @@ describe Ability do
   end
 
   context "for an metadata admin user" do
-    let(:user) { create(:metadata_admin) }
+    let(:user) { user_with_groups [AdminPolicy::META_ADMIN] }
 
     it do
       is_expected.to be_able_to(:create, Image)
@@ -111,7 +111,7 @@ describe Ability do
   end
 
   context "for a rights admin user" do
-    let(:user) { create(:rights_admin) }
+    let(:user) { user_with_groups [AdminPolicy::RIGHTS_ADMIN] }
 
     it do
       is_expected.not_to be_able_to(:create, Image)

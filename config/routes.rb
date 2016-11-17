@@ -26,6 +26,11 @@ Rails.application.routes.draw do
   post "contact_us" => "contact_us#create", as: :contact_us
   get "contact_us" => "contact_us#new", as: :contact_us_form
 
+  # new_user_session_path is hardcoded everywhere in Blacklight
+  get "sign_in", to: "sessions#new", as: :new_user_session
+  post "login", to: "sessions#create"
+  get "logout", to: "sessions#destroy"
+
   mount Blacklight::Engine => "/"
 
   concern :searchable, Blacklight::Routes::Searchable.new
@@ -60,7 +65,6 @@ Rails.application.routes.draw do
   get "authorities/organizations/:id", to: "local_authorities#show", as: "organization"
   get "authorities/topics/:id",        to: "local_authorities#show", as: "topic"
 
-  devise_for :users
   mount Hydra::RoleManagement::Engine => "/"
   mount Riiif::Engine => "/image-service", as: "riiif"
   mount Qa::Engine => "/qa"

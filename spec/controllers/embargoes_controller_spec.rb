@@ -3,21 +3,24 @@
 require "rails_helper"
 
 describe EmbargoesController do
-  let(:user) { create(:rights_admin) }
-  let(:work) { create(:etd) }
+  before do
+    allow(controller).to receive(:current_user).and_return(user)
+  end
 
-  before { sign_in user }
+  let(:user) { user_with_groups [AdminPolicy::PUBLIC_GROUP] }
+  let(:work) { create(:etd) }
 
   describe "#index" do
     context "when I am NOT a rights admin" do
-      let(:user) { create(:user) }
       it "redirects" do
         get :index
-        expect(response).to redirect_to root_path
+        expect(response).to redirect_to root_url
       end
     end
 
     context "when I am a rights admin" do
+      let(:user) { user_with_groups [AdminPolicy::RIGHTS_ADMIN] }
+
       it "shows me the page" do
         get :index
         expect(response).to be_success
@@ -27,14 +30,15 @@ describe EmbargoesController do
 
   describe "#destroy" do
     context "when I do not have edit permissions for the object" do
-      let(:user) { create(:user) }
       it "denies access" do
         get :destroy, id: work
-        expect(response).to redirect_to root_path
+        expect(response).to redirect_to root_url
       end
     end
 
     context "when I have permission to edit the object" do
+      let(:user) { user_with_groups [AdminPolicy::RIGHTS_ADMIN] }
+
       before do
         AdminPolicy.ensure_admin_policy_exists
         work.admin_policy_id = AdminPolicy::UCSB_CAMPUS_POLICY_ID
@@ -68,7 +72,9 @@ describe EmbargoesController do
 
   describe "#update" do
     context "when I have permission to edit the object" do
+      let(:user) { user_with_groups [AdminPolicy::RIGHTS_ADMIN] }
       let(:release_date) { Date.today + 2 }
+
       before do
         AdminPolicy.ensure_admin_policy_exists
         work.admin_policy_id = AdminPolicy::UCSB_CAMPUS_POLICY_ID

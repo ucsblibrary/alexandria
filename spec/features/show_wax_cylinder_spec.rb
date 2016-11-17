@@ -8,11 +8,6 @@ feature "Collection show page:" do
                           description: ["Baritone solo with orchestra accompaniment."],
                           admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID)
   end
-  let(:user) { create :user }
-
-  before do
-    login_as user
-  end
 
   scenario "show the page" do
     visit catalog_ark_path("ark:", "99999", recording.id)

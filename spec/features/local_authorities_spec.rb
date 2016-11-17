@@ -3,8 +3,6 @@
 require "rails_helper"
 
 feature "Local Authorities", js: true do
-  let(:admin) { create :admin }
-
   before do
     # Delete existing records to make sure that search and facet
     # results will contain the results the spec is looking for
@@ -16,7 +14,7 @@ feature "Local Authorities", js: true do
     end
 
     AdminPolicy.ensure_admin_policy_exists
-    login_as admin
+    allow_any_instance_of(User).to receive(:groups).and_return([AdminPolicy::META_ADMIN])
   end
 
   context "with some records" do

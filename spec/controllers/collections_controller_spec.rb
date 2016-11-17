@@ -3,6 +3,12 @@
 require "rails_helper"
 
 describe CollectionsController do
+  before do
+    allow(controller).to receive(:current_user).and_return(user)
+  end
+
+  let(:user) { user_with_groups [AdminPolicy::PUBLIC_GROUP] }
+
   describe "#index" do
     before do
       Collection.destroy_all
@@ -21,10 +27,7 @@ describe CollectionsController do
     end
 
     context "when the user is signed in" do
-      let(:user) { create :user }
-      before do
-        sign_in user
-      end
+      let(:user) { user_with_groups [AdminPolicy::UCSB_GROUP] }
 
       it "shows a list of collections accessible to me" do
         get :index

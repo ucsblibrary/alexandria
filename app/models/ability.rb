@@ -33,7 +33,7 @@ class Ability
   end
 
   def metadata_admin_permissions
-    return unless user_groups.include?(AdminPolicy::META_ADMIN_GROUP)
+    return unless user_groups.include?(AdminPolicy::META_ADMIN)
 
     can [:create, :update], ActiveFedora::Base
     can :update, SolrDocument
@@ -45,7 +45,7 @@ class Ability
   end
 
   def rights_admin_permissions
-    return unless user_groups.include?(AdminPolicy::RIGHTS_ADMIN_GROUP)
+    return unless user_groups.include?(AdminPolicy::RIGHTS_ADMIN)
 
     can :discover, Hydra::AccessControls::Embargo
     can :update_rights, [ActiveFedora::Base, SolrDocument, String]

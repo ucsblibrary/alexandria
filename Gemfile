@@ -35,9 +35,7 @@ gem "kaminari", "~> 0.16.3"
 # https://github.com/amatsuda/kaminari/pull/636
 gem "kaminari_route_prefix"
 
-gem "devise", "~> 3.5.2"
-gem "devise-guests", "~> 0.5.0"
-gem "devise_ldap_authenticatable"
+gem "net-ldap", "~> 0.14"
 gem "settingslogic"
 
 gem "resque-pool"

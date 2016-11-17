@@ -11,10 +11,6 @@ class RecordsController < ApplicationController
 
   include RecordsControllerBehavior
 
-  def deny_access(exception)
-    redirect_to({ controller: :catalog, action: "show" }, alert: exception.message)
-  end
-
   def destroy
     # Assume for now that the only type of records we can
     # delete using the UI are local authorities.

@@ -11,8 +11,8 @@
 
   <% if Rails.env.development? %>
     <li class="login-link">
-      <% if current_user %>
-        <%= link_to t('blacklight.header_links.logout'), main_app.destroy_user_session_path %>
+      <% if logged_in? %>
+        <%= link_to t('blacklight.header_links.logout'), main_app.logout_path %>
         <% unless current_user.to_s.blank? %>
           <%= "(#{current_user})" %>
         <% end %>

@@ -3,10 +3,17 @@
 require "rails_helper"
 
 describe DownloadsController do
+  before do
+    allow(controller).to receive(:current_user).and_return(user)
+  end
+
+  let(:user) { user_with_groups [AdminPolicy::PUBLIC_GROUP] }
+
   describe "#asset" do
     before do
       allow(controller).to receive(:params).and_return(id: "ca%2Fc0%2Ff3%2Ff4%2Fcac0f3f4-ea8f-414d-a7a5-3253ef003b1a")
     end
+
     it "decodes the id" do
       expect(ActiveFedora::Base).to receive(:find).with("ca/c0/f3/f4/cac0f3f4-ea8f-414d-a7a5-3253ef003b1a")
       controller.send(:asset)
@@ -25,10 +32,7 @@ describe DownloadsController do
     end
 
     context "a metadata admin user" do
-      let(:user) { create(:metadata_admin) }
-      before do
-        sign_in user
-      end
+      let(:user) { user_with_groups [AdminPolicy::META_ADMIN] }
 
       context "downloads a restricted object" do
         it "is successful" do
@@ -65,7 +69,7 @@ describe DownloadsController do
 
       context "downloads a restricted object" do
         it "denies access" do
-          expect(response).to redirect_to new_user_session_path
+          expect(response).to redirect_to root_url
           expect(flash[:alert]).to match(/You are not authorized/)
         end
       end

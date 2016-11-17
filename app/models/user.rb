@@ -9,9 +9,6 @@ class User < ActiveRecord::Base
   # Connects this user object to Blacklights Bookmarks.
   include Blacklight::User
   include CurationConcerns::User
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :ldap_authenticatable, :rememberable, :trackable
 
   serialize :group_list, Array
 
@@ -22,49 +19,31 @@ class User < ActiveRecord::Base
     username
   end
 
-  # Groups that user is a member of. Cached locally for 1 day
-  def groups
-    return [] if new_record?
-    cached_groups do
-      fetch_groups!
-    end
+  # Override so hydra-access-controls doesn't smuggle in its
+  # undeclared Devise dependency:
+  # https://github.com/projecthydra/hydra-head/blob/429d173df66c33d12859d9c0d7c6c1993f790b0e/hydra-access-controls/lib/hydra/user.rb#L17-L19
+  def self.find_by_user_key(key)
+    find_by(username: key)
   end
 
-  # get the groups from LDAP and update the local cache
-  def fetch_groups!
-    new_groups = ldap_groups.map do |dn|
-      /^cn=([^,]+),/.match(dn)[1]
-    end
+  # Overriding blacklight-access_controls
+  # https://github.com/projectblacklight/blacklight-access_controls/blob/c027f0cc0ee6f6cc30f9dd84076d36cbcee238fe/lib/blacklight/access_controls/user.rb#L18-L20
+  def user_key
+    username
+  end
 
-    # TODO:  In the future when we switch to Shibboleth for
-    # login, we will need to code some way to distinguish
-    # between a UCSB user and a UC user from a different campus.
-    # For now, we will assume that anyone who logs in with LDAP
-    # is a UCSB user.
-    new_groups += [AdminPolicy::UCSB_GROUP] if ucsb_user?
-    new_groups
+  # Groups that user is a member of.
+  def groups
+    group_list
   end
 
   def ucsb_user?
-    !new_record?
+    groups.include? AdminPolicy::UCSB_GROUP
   end
 
+  # CC FileSetActors need to be associated with a Rails user for some
+  # reason
   def self.batchuser
-    User.find_by_user_key(batchuser_key) || User.create!(Devise.authentication_keys.first => batchuser_key)
+    User.find_or_create_by(username: "batchuser")
   end
-
-  def self.batchuser_key
-    "batchuser"
-  end
-
-  private
-
-    def cached_groups(&_block)
-      update(group_list: yield, groups_list_expires_at: 1.day.from_now) if groups_need_update?
-      group_list
-    end
-
-    def groups_need_update?
-      groups_list_expires_at.blank? || groups_list_expires_at < Time.now
-    end
 end

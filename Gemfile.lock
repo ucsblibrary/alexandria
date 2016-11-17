@@ -88,7 +88,6 @@ GEM
       execjs (~> 2.0)
     bcp47 (0.3.3)
       i18n
-    bcrypt (3.1.11)
     blacklight (6.7.1)
       bootstrap-sass (~> 3.2)
       deprecation
@@ -196,18 +195,6 @@ GEM
     declarative-option (0.1.0)
     deprecation (1.0.0)
       activesupport
-    devise (3.5.10)
-      bcrypt (~> 3.0)
-      orm_adapter (~> 0.1)
-      railties (>= 3.2.6, < 5)
-      responders
-      thread_safe (~> 0.1)
-      warden (~> 1.2.3)
-    devise-guests (0.5.0)
-      devise
-    devise_ldap_authenticatable (0.8.5)
-      devise (>= 3.4.1)
-      net-ldap (>= 0.6.0, <= 0.11)
     diff-lcs (1.2.5)
     domain_name (0.5.20160826)
       unf (>= 0.0.5, < 1.0.0)
@@ -443,7 +430,7 @@ GEM
     multi_xml (0.6.0)
     multipart-post (2.0.0)
     net-http-persistent (2.9.4)
-    net-ldap (0.11)
+    net-ldap (0.15.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (4.0.1)
@@ -468,7 +455,6 @@ GEM
       solrizer (~> 3.3)
     openseadragon (0.3.0)
       rails (> 3.2.0)
-    orm_adapter (0.5.0)
     os (0.9.6)
     parser (2.4.0.0)
       ast (~> 2.2)
@@ -592,8 +578,6 @@ GEM
       declarative (< 0.1.0)
       declarative-option (< 0.2.0)
       uber (< 0.2.0)
-    responders (2.3.0)
-      railties (>= 4.2.0, < 5.1)
     resque (1.26.0)
       mono_logger (~> 1.0)
       multi_json (~> 1.0)
@@ -750,8 +734,6 @@ GEM
     vcr (3.0.3)
     vegas (0.1.11)
       rack (>= 1.0.0)
-    warden (1.2.6)
-      rack (>= 1.0)
     webmock (2.3.2)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
@@ -782,9 +764,6 @@ DEPENDENCIES
   ci_reporter
   curation_concerns (~> 1.7.6)
   database_cleaner
-  devise (~> 3.5.2)
-  devise-guests (~> 0.5.0)
-  devise_ldap_authenticatable
   ezid-client (~> 1.2)
   factory_girl_rails (~> 4.8)
   fcrepo_wrapper (= 0.7.0)
@@ -799,6 +778,7 @@ DEPENDENCIES
   marc
   method_source
   mods (~> 2.0.3)
+  net-ldap (~> 0.14)
   openseadragon
   pg (~> 0.18.4)
   poltergeist

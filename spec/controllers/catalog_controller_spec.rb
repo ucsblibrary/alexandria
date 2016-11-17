@@ -5,7 +5,10 @@ require "rails_helper"
 describe CatalogController do
   before do
     AdminPolicy.ensure_admin_policy_exists
+    allow(controller).to receive(:current_user).and_return(user)
   end
+
+  let(:user) { nil }
 
   describe "the search results" do
     let!(:file_set) { FileSet.create! }
@@ -65,13 +68,12 @@ describe CatalogController do
     context "view a restricted file" do
       let(:restricted_image) { create(:image, :restricted) }
 
-      before do
-        sign_in user
-        get :show, id: restricted_image
-      end
-
       context "logged in as an admin user" do
-        let(:user) { create(:metadata_admin) }
+        let(:user) { user_with_groups [AdminPolicy::META_ADMIN] }
+
+        before do
+          get :show, id: restricted_image
+        end
 
         it "is successful" do
           expect(response).to be_successful
@@ -80,10 +82,14 @@ describe CatalogController do
       end
 
       context "logged in as a UCSB user" do
-        let(:user) { create(:ucsb_user) }
+        let(:user) { user_with_groups [AdminPolicy::UCSB_GROUP] }
+
+        before do
+          get :show, id: restricted_image
+        end
 
         it "access is denied" do
-          expect(response).to redirect_to root_path
+          expect(response).to redirect_to root_url
           expect(flash[:alert]).to match(/You do not have sufficient access privileges/)
         end
       end
@@ -98,16 +104,14 @@ describe CatalogController do
   end # show page
 
   describe "#editor?" do
-    before { allow(controller).to receive(:current_user).and_return(user) }
     subject { controller.editor?(nil, document: SolrDocument.new) }
 
     context "for an admin" do
-      let(:user) { create :admin }
+      let(:user) { user_with_groups [AdminPolicy::META_ADMIN] }
       it { is_expected.to be true }
     end
 
     context "for a non-admin user" do
-      let(:user) { create :user }
       it { is_expected.to be false }
     end
   end

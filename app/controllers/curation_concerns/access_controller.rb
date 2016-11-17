@@ -53,12 +53,4 @@ class CurationConcerns::AccessController < ApplicationController
       # TODO: update
       @etd_params ||= params.require(:etd).permit(:embargo, :admin_policy_id, :visibility_after_embargo_id, :embargo_release_date)
     end
-
-    def deny_access(exception)
-      if params[:action] == "edit"
-        redirect_to main_app.solr_document_path(curation_concern), alert: exception.message
-      else
-        super
-      end
-    end
 end

@@ -2,13 +2,11 @@
 
 require "rails_helper"
 
-feature "Record Creation:" do
-  context "an admin user" do
-    let(:admin) { create :admin }
-
+feature "Group creation" do
+  context "a metadata admin" do
     before do
       AdminPolicy.ensure_admin_policy_exists
-      login_as admin
+      allow_any_instance_of(User).to receive(:groups).and_return([AdminPolicy::META_ADMIN])
     end
 
     scenario "creates a new record" do

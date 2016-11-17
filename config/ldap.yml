@@ -1,23 +1,51 @@
-## Environment
-defaults: &defaults
-  admin_password: <%= Rails.application.secrets.ldap_pass %>
-  admin_user: <%= Rails.application.secrets.ldap_user %>
-  attribute: uid
-  base: <%= ENV['ADRL_LDAP_BASE'] || 'ou=people,dc=adrl,dc=ucsb,dc=edu' %>
-  group_base: <%= ENV['ADRL_LDAP_GROUP_BASE'] || 'ou=groups,dc=adrl,dc=ucsb,dc=edu' %>
-  host: <%= ENV['ADRL_LDAP_HOST'] || '<%= Rails.application.secrets.ldap_campus_host %>' %>
-  port: <%= ENV['ADRL_LDAP_PORT'] || 389 %>
-  ssl: false
+ucsb:
+  defaults: &defaults
+    admin_pass: <%= Rails.application.secrets.ldap_campus_admin_pass %>
+    admin_user: <%= Rails.application.secrets.ldap_campus_admin_user %>
+    attribute: uid
+    filter: uid
+    group_base: <%= Rails.application.secrets.ldap_campus_group_base %>
+    host: <%= Rails.application.secrets.ldap_campus_host %>
+    port: 636
+    ssl: true
 
-development:
-  <<: *defaults
+  development:
+    <<: *defaults
 
-test:
-  <<: *defaults
-  admin_password:
-  admin_user:
-  host:
-  ssl: false
+  production:
+    <<: *defaults
 
-production:
-  <<: *defaults
+  test:
+    <<: *defaults
+    admin_password:
+    admin_user:
+    base:
+    group_base:
+    host:
+    port: 389
+    ssl: false
+
+staff:
+  defaults: &defaults
+    admin_pass: <%= Rails.application.secrets.ldap_ad_admin_pass %>
+    admin_user: <%= Rails.application.secrets.ldap_ad_admin_user %>
+    group_base: <%= Rails.application.secrets.ldap_ad_group_base %>
+    filter: userprincipalname
+    host: <%= Rails.application.secrets.ldap_ad_host %>
+    port: 636
+    ssl: true
+
+  development:
+    <<: *defaults
+
+  production:
+    <<: *defaults
+
+  test:
+    <<: *defaults
+    admin_password:
+    admin_user:
+    attribute: uid
+    base:
+    group_base:
+    host:

@@ -24,7 +24,6 @@ describe "collections/show.html.erb" do
     allow(view).to receive(:blacklight_config).and_return(blacklight_config)
     allow(view).to receive(:blacklight_configuration_context).and_return(blacklight_configuration_context)
     allow(view).to receive(:search_state).and_return(search_state)
-    allow(view).to receive(:current_user).and_return(build(:user))
     allow(view).to receive(:search_session).and_return({})
     allow(view).to receive(:current_search_session).and_return nil
     allow(view).to receive(:render_index_doc_actions).and_return nil

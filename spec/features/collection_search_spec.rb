@@ -3,15 +3,12 @@
 require "rails_helper"
 
 feature "Collection search page", js: true do
-  let(:user) { create :user }
-
   before do
     # Since we're testing the search results, we need to ensure the
     # images we're interested in don't spill over to the second page
     # of results
     Collection.destroy_all
     Image.destroy_all
-    login_as user
   end
 
   context "with collections" do

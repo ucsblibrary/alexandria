@@ -40,8 +40,9 @@ feature "Embargo management:" do
   let(:file) { File.new(fixture_file_path("pdf/sample.pdf")) }
 
   context "a rights-admin user" do
-    let(:rights_admin) { create(:rights_admin) }
-    before { login_as(rights_admin) }
+    before do
+      allow_any_instance_of(User).to receive(:groups).and_return([AdminPolicy::RIGHTS_ADMIN])
+    end
 
     context "for an active embargo:" do
       scenario "edits the embargo" do

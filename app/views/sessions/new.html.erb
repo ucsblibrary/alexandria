@@ -1,0 +1,16 @@
+<div class='static'>
+<div class='option'>
+  <%= render partial: 'sessions/login',
+             locals: {
+               title: 'Log In',
+               howto: 'Use your UCSB NetID',
+               type: 'ucsb' } %>
+</div>
+<div class='option'>
+  <%= render partial: 'sessions/login',
+             locals: {
+               title: 'Staff',
+               howto: 'Log in with your Active Directory credentials',
+               type: 'staff' } %>
+</div>
+</div>

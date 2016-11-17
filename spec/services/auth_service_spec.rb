@@ -29,12 +29,12 @@ describe AuthService do
         let(:params) { { "size" => "400" } }
 
         context "accessed by ucsb user" do
-          let(:user) { create :ucsb_user }
+          let(:user) { user_with_groups [AdminPolicy::UCSB_GROUP] }
           it { is_expected.to be true }
         end
 
         context "accessed by admin" do
-          let(:user) { create :metadata_admin }
+          let(:user) { user_with_groups [AdminPolicy::META_ADMIN] }
           it { is_expected.to be true }
         end
       end
@@ -43,12 +43,12 @@ describe AuthService do
         let(:params) { { "size" => "900" } }
 
         context "accessed by ucsb user" do
-          let(:user) { create :ucsb_user }
+          let(:user) { user_with_groups [AdminPolicy::UCSB_GROUP] }
           it { is_expected.to be true }
         end
 
         context "accessed by admin" do
-          let(:user) { create :metadata_admin }
+          let(:user) { user_with_groups [AdminPolicy::META_ADMIN] }
           it { is_expected.to be true }
         end
       end
@@ -67,12 +67,12 @@ describe AuthService do
         let(:params) { { "size" => "400" } }
 
         context "accessed by ucsb user" do
-          let(:user) { create :ucsb_user }
+          let(:user) { user_with_groups [AdminPolicy::UCSB_GROUP] }
           it { is_expected.to be true }
         end
 
         context "accessed by admin" do
-          let(:user) { create :metadata_admin }
+          let(:user) { user_with_groups [AdminPolicy::META_ADMIN] }
           it { is_expected.to be true }
         end
       end
@@ -81,12 +81,12 @@ describe AuthService do
         let(:params) { { "size" => "900" } }
 
         context "accessed by ucsb user" do
-          let(:user) { create :ucsb_user }
+          let(:user) { user_with_groups [AdminPolicy::UCSB_GROUP] }
           it { is_expected.to be false }
         end
 
         context "accessed by admin" do
-          let(:user) { create :metadata_admin }
+          let(:user) { user_with_groups [AdminPolicy::META_ADMIN] }
           it { is_expected.to be true }
         end
       end

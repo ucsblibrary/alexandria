@@ -3,6 +3,12 @@
 require "rails_helper"
 
 describe LocalAuthoritiesController do
+  before do
+    allow(controller).to receive(:current_user).and_return(user)
+  end
+
+  let(:user) { user_with_groups [AdminPolicy::PUBLIC_GROUP] }
+
   describe "#show" do
     let(:topic) { Topic.create!(label: ["A Local Subject"]) }
     it "shows public urls" do
@@ -12,18 +18,16 @@ describe LocalAuthoritiesController do
   end
 
   describe "#index" do
-    before { sign_in user }
     describe "a regular user" do
-      let(:user) { create :user }
       it "access is denied" do
         get :index
         expect(flash[:alert]).to match(/You are not authorized/)
-        expect(response).to redirect_to root_path
+        expect(response).to redirect_to root_url
       end
     end
 
     describe "logged in as admin user" do
-      let(:user) { create :admin }
+      let(:user) { user_with_groups [AdminPolicy::META_ADMIN] }
 
       before do
         ActiveFedora::Cleaner.clean!
@@ -54,17 +58,12 @@ describe LocalAuthoritiesController do
     let(:doc) { SolrDocument.new("has_model_ssim" => "Person") }
     subject { controller.send(:show_delete_link?, nil, document: doc) }
 
-    before do
-      allow(controller).to receive(:current_user).and_return(user)
-    end
-
-    context "for an admin user" do
-      let(:user) { create :admin }
+    context "for a metadata admin" do
+      let(:user) { user_with_groups [AdminPolicy::META_ADMIN] }
       it { is_expected.to be true }
     end
 
     context "for a non-admin user" do
-      let(:user) { create :user }
       it { is_expected.to be false }
     end
   end
@@ -73,17 +72,12 @@ describe LocalAuthoritiesController do
     let(:doc) { SolrDocument.new("has_model_ssim" => "Person") }
     subject { controller.send(:show_merge_link?, nil, document: doc) }
 
-    before do
-      allow(controller).to receive(:current_user).and_return(user)
-    end
-
     context "for a non-admin user" do
-      let(:user) { create :user }
       it { is_expected.to be false }
     end
 
-    context "for an admin user" do
-      let(:user) { create :admin }
+    context "for a metadata admin" do
+      let(:user) { user_with_groups [AdminPolicy::META_ADMIN] }
       it { is_expected.to be true }
     end
   end

@@ -7,11 +7,9 @@ feature "Editing Records", js: true do
   let(:new_label) { "New label" }
 
   context "an admin user" do
-    let(:admin) { create :admin }
-
     before do
       AdminPolicy.ensure_admin_policy_exists
-      login_as admin
+      allow_any_instance_of(User).to receive(:groups).and_return([AdminPolicy::META_ADMIN])
     end
 
     scenario "edits a record" do

@@ -7,12 +7,13 @@ feature "Merge Record: " do
   let!(:new) { Topic.create(label: ["new record"]) }
 
   context "an admin user" do
-    let(:admin) { create :admin }
-
     before do
       AdminPolicy.ensure_admin_policy_exists
-      login_as admin
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+      allow_any_instance_of(User).to receive(:user_key).and_return("testkey")
     end
+
+    let(:user) { user_with_groups [AdminPolicy::META_ADMIN] }
 
     # Test that the javascript is wired up correctly
     scenario "fill in and submit the form", js: true do
@@ -35,7 +36,7 @@ feature "Merge Record: " do
       end
 
       # A merge job should get queued when we submit the form
-      expect(MergeRecordsJob).to receive(:perform_later).with(old.id, new.id, admin.user_key)
+      expect(MergeRecordsJob).to receive(:perform_later).with(old.id, new.id, "testkey")
 
       click_button "Merge"
       expect(page).to have_content "A background job has been queued to merge the records."

@@ -1,7 +1,8 @@
 APP := $(wildcard app/**/*.rb)
 LIB := $(wildcard lib/**/*.rb)
+DOC := $(wildcard doc/*.md)
 
-html/index.html: doc/Ingesting.md README.md $(APP) $(LIB)
+html/index.html: README.md $(DOC) $(APP) $(LIB)
 	bundle exec yardoc
 
 html: html/index.html

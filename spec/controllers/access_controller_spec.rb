@@ -3,25 +3,27 @@
 require "rails_helper"
 
 describe CurationConcerns::AccessController do
-  let(:user) { create(:rights_admin) }
   let(:mock_etd) { double "The ETD", attributes: [] }
   let(:main_app) { Rails.application.routes.url_helpers }
 
   before do
-    sign_in user
     allow(ActiveFedora::Base).to receive(:find).with("123").and_return(mock_etd)
+    allow(controller).to receive(:current_user).and_return(user)
   end
 
+  let(:user) { nil }
+
   describe "#edit" do
-    context "when I do not have edit permissions for the object" do
-      let(:user) { create(:user) }
+    context "when I am not logged in" do
       it "redirects" do
         get :edit, etd_id: "123"
-        expect(response).to redirect_to main_app.solr_document_path(mock_etd)
+        expect(response).to redirect_to main_app.new_user_session_path
       end
     end
 
     context "when I have permission to edit the object" do
+      let(:user) { user_with_groups [AdminPolicy::META_ADMIN] }
+
       context "with an etd" do
         it "shows me the page" do
           expect(controller).to receive(:authorize!).with(:update_rights, mock_etd)
@@ -44,7 +46,8 @@ describe CurationConcerns::AccessController do
 
   describe "#update" do
     context "as a metadata admin" do
-      before { sign_in create(:metadata_admin) }
+      let(:user) { user_with_groups [AdminPolicy::META_ADMIN] }
+
       it "is unauthorized" do
         patch :update, etd_id: "123"
         expect(response).to redirect_to main_app.root_path
@@ -53,9 +56,10 @@ describe CurationConcerns::AccessController do
 
     context "as a rights admin" do
       before do
-        sign_in create(:rights_admin)
         AdminPolicy.ensure_admin_policy_exists
       end
+
+      let(:user) { user_with_groups [AdminPolicy::RIGHTS_ADMIN] }
 
       context "when there is no embargo" do
         it "creates embargo" do
@@ -114,12 +118,13 @@ describe CurationConcerns::AccessController do
   describe "destroy" do
     context "as a rights admin" do
       before do
-        sign_in create(:rights_admin)
         AdminPolicy.ensure_admin_policy_exists
         allow(mock_etd).to receive(:embargo).and_return(double("the embargo", destroy: true))
         allow(mock_etd).to receive(:embargo=).with(nil)
         allow(mock_etd).to receive(:save!)
       end
+
+      let(:user) { user_with_groups [AdminPolicy::RIGHTS_ADMIN] }
 
       context "when the etd is already under embargo" do
         it "removes embargo" do

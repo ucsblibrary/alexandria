@@ -256,10 +256,6 @@ class CatalogController < ApplicationController
     config.spell_max = 5
   end
 
-  def current_ability
-    @current_ability ||= Ability.new(current_user, on_campus?)
-  end
-
   def show_embargos_link?(_config, options)
     doc = options.fetch(:document)
     doc.curation_concern? && can?(:update_rights, doc)

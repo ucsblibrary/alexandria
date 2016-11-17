@@ -3,9 +3,12 @@
 require "rails_helper"
 
 feature "Navigation menu:" do
+  before do
+    allow_any_instance_of(User).to receive(:groups).and_return(groups)
+  end
+
   context "a metadata-admin user" do
-    let(:meta_admin) { create(:metadata_admin) }
-    before { login_as(meta_admin) }
+    let(:groups) { [AdminPolicy::META_ADMIN] }
 
     scenario "using the navigation" do
       visit search_catalog_path
@@ -25,8 +28,7 @@ feature "Navigation menu:" do
   end
 
   context "a rights-admin user" do
-    let(:rights_admin) { create(:rights_admin) }
-    before { login_as(rights_admin) }
+    let(:groups) { [AdminPolicy::RIGHTS_ADMIN] }
 
     scenario "using the navigation" do
       visit search_catalog_path
@@ -43,8 +45,7 @@ feature "Navigation menu:" do
   end
 
   context "a UCSB student (non-privileged user, logged in)" do
-    let(:user) { create(:ucsb_user) }
-    before { login_as(user) }
+    let(:groups) { [AdminPolicy::UCSB_GROUP] }
 
     scenario "using the navigation" do
       visit search_catalog_path
@@ -57,6 +58,8 @@ feature "Navigation menu:" do
   end
 
   context "user is not logged in" do
+    let(:groups) { [AdminPolicy::PUBLIC_GROUP] }
+
     scenario "using the navigation" do
       visit search_catalog_path
 

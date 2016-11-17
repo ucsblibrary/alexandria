@@ -4,14 +4,14 @@ require "rails_helper"
 
 describe RecordsController do
   routes { HydraEditor::Engine.routes }
-  let(:user) { create :admin }
   before do
     AdminPolicy.ensure_admin_policy_exists
-    sign_in user
+    # Don't fetch external records (speed up)
+    allow_any_instance_of(RDF::DeepIndexingService).to receive(:fetch_external)
+    allow(controller).to receive(:current_user).and_return(user)
   end
 
-  # Don't fetch external records (speed up)
-  before { allow_any_instance_of(RDF::DeepIndexingService).to receive(:fetch_external) }
+  let(:user) { user_with_groups [AdminPolicy::META_ADMIN] }
 
   describe "#create" do
     context "of a local authority" do
@@ -29,13 +29,15 @@ describe RecordsController do
     context "Adding new creators" do
       let(:initial_creators) { [{ id: "http://id.loc.gov/authorities/names/n87914041" }] }
       let(:contributor_attributes) do
-        { "0" => { "id" => "http://id.loc.gov/authorities/names/n87914041",
+        {
+          "0" => { "id" => "http://id.loc.gov/authorities/names/n87914041",
                    "hidden_label" => "http://id.loc.gov/authorities/names/n87914041", },
           "1" => { "id" => "http://id.loc.gov/authorities/names/n87141298",
                    "predicate" => "creator",
                    "hidden_label" => "http://dummynamespace.org/creator/", },
           "2" => { "id" => "",
-                   "hidden_label" => "http://dummynamespace.org/creator/", }, }
+                   "hidden_label" => "http://dummynamespace.org/creator/", },
+        }
       end
 
       it "adds creators" do
@@ -174,12 +176,12 @@ describe RecordsController do
       end
 
       context "a non-admin user" do
-        let(:user) { create :user }
+        let(:user) { user_with_groups [AdminPolicy::PUBLIC_GROUP] }
 
         it "access is denied" do
           delete :destroy, id: person
           expect(flash[:alert]).to match(/You are not authorized/)
-          expect(response).to redirect_to controller: :catalog, action: "show"
+          expect(response).to redirect_to root_url
         end
       end
     end
@@ -210,18 +212,23 @@ describe RecordsController do
     end
 
     context "a non-admin user" do
-      let(:user) { create :user }
+      let(:user) { user_with_groups [AdminPolicy::PUBLIC_GROUP] }
+
       let!(:person) { create(:person) }
 
       it "access is denied" do
         get :new_merge, id: person
         expect(flash[:alert]).to match(/You are not authorized/)
-        expect(response).to redirect_to controller: :catalog, action: "show"
+        expect(response).to redirect_to root_url
       end
     end
   end  # describe #new_merge
 
   describe "#merge" do
+    before do
+      allow_any_instance_of(User).to receive(:user_key).and_return("testkey")
+    end
+
     routes { Rails.application.routes }
 
     let!(:person) { create(:person) }
@@ -235,7 +242,7 @@ describe RecordsController do
     end
 
     it "queues a job to merge the records" do
-      expect(MergeRecordsJob).to receive(:perform_later).with(person.id, target_id, user.user_key)
+      expect(MergeRecordsJob).to receive(:perform_later).with(person.id, target_id, "testkey")
       post :merge, { id: person }.merge(form_params)
       expect(response).to redirect_to local_authorities_path
     end
@@ -254,12 +261,12 @@ describe RecordsController do
     end
 
     context "a non-admin user" do
-      let(:user) { create :user }
+      let(:user) { user_with_groups [AdminPolicy::PUBLIC_GROUP] }
 
       it "access is denied" do
         post :merge, { id: person }.merge(form_params)
         expect(flash[:alert]).to match(/You are not authorized/)
-        expect(response).to redirect_to controller: :catalog, action: "show"
+        expect(response).to redirect_to root_url
       end
     end
   end # describe #merge

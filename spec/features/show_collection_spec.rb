@@ -4,13 +4,10 @@ require "rails_helper"
 
 feature "Collection:" do
   let!(:collection) { create(:public_collection, description: ["with a description!", "", "description 3"]) }
-  let(:user) { create :user }
   let!(:audio1) { create(:public_audio, title: ["Audio 111"]) }
   let!(:audio2) { create(:public_audio, title: ["Audio 222"]) }
 
   before do
-    login_as user
-
     # Audio 1 is a member of the collection with the usual
     # hydra style of collection membership.
     collection.members << audio1

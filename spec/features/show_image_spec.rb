@@ -19,11 +19,6 @@ feature "Image show page:" do
       scale: scale
     )
   end
-  let(:user) { create :user }
-
-  before do
-    login_as user
-  end
 
   # See config/routes.rb: routing for images is a little weird
   scenario "show the page" do
