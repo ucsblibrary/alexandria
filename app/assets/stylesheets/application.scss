@@ -211,15 +211,10 @@ html.welcome,
   margin-bottom: 0;
 }
 
-.catalog-nav {
+.menu ul {
   @include inline("• ", 4px);
-  li a {
+  a {
     color: #fff;
-  }
-}
-.dropdown-menu {
-  li a {
-    color: #000;
   }
 }
 
@@ -242,7 +237,7 @@ html.welcome,
     position: relative;
   }
 
-  .user-util-links {
+  nav.menu {
     position: absolute;
     top: 0;
     right: 0;

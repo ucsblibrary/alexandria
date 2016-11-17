@@ -42,5 +42,4 @@ module ApplicationHelper
     return nil unless thumb
     thumb["thumbnail_url_ssm"]
   end
-
 end
