@@ -14,7 +14,7 @@ unless Rails.env.production?
       solr_xml: Rails.root.join('solr', 'config', 'solrconfig.xml'),
     }
     fcrepo_params = {
-      version: '4.5.1',
+      version: '4.6.0',
       port: 8986,
       verbose: true,
       managed: true,
