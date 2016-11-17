@@ -117,6 +117,7 @@ module Importer::MODS
         .merge(rights)
         .merge(identifiers)
         .merge(relations)
+        .merge(finding_aid)
     end
 
     def description
@@ -168,6 +169,15 @@ module Importer::MODS
 
     def identifiers
       { accession_number: mods.identifier.map(&:text) }
+    end
+
+    def finding_aid
+      {
+        finding_aid: mods.xpath(
+          "//mods:url[@note='Finding aid']",
+          NAMESPACES
+        ).map { |url| RDF::URI.new(url.text) },
+      }
     end
 
     def record_origin
