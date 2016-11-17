@@ -285,6 +285,21 @@ describe Importer::Factory::ObjectFactory do
     let(:old_note) { { note_type: 'old type', value: 'old value' } }
     let(:image) { create(:image, notes_attributes: [old_note]) }
 
+    context 'with collection attributes' do
+      let(:collection_attrs) { { accession_number: ['123'],
+                                 title: ['Test Collection'],
+                                 identifier: ['123'] } }
+      let!(:coll) { create(:collection, collection_attrs) }
+      let(:attributes) { { id: image.id,
+                           collection: collection_attrs } }
+
+      it 'adds the image to the collection' do
+        expect(image.local_collection_id).to eq []
+        importer.run
+        expect(image.reload.local_collection_id).to eq [coll.id]
+      end
+    end
+
     context 'when there are no new notes (but old notes exist)' do
       let(:attributes) { { id: image.id, title: ['new title'] } }
 
