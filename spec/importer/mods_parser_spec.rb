@@ -192,17 +192,18 @@ describe Importer::MODS::Parser do
 
     it 'finds the metadata' do
       expect(attributes[:accession_number]).to eq ['SBHC Mss 78']
-      expect(attributes[:title]).to eq ['Joel Conway / Flying A Studio photograph collection']
-      expect(attributes[:creator]).to be_nil
       expect(attributes[:collector]).to eq [{ name: 'Conway, Joel', type: 'personal' }]
-      expect(attributes[:description]).to eq ['Black and white photographs relating to the Flying A Studios (aka American Film Manufacturing Company), a film company that operated in Santa Barbara (1912-1920).']
       expect(attributes[:created_attributes]).to eq [{ start: ['1910'], finish: ['1919'], label: ['circa 1910s'], start_qualifier: ['approximate'], finish_qualifier: ['approximate'] }]
+      expect(attributes[:creator]).to be_nil
+      expect(attributes[:description]).to eq ['Black and white photographs relating to the Flying A Studios (aka American Film Manufacturing Company), a film company that operated in Santa Barbara (1912-1920).']
       expect(attributes[:extent]).to eq ['702 digital objects']
-      expect(attributes[:lc_subject]).to eq ['http://id.loc.gov/authorities/names/n87914041', 'http://id.loc.gov/authorities/subjects/sh85088047', 'http://id.loc.gov/authorities/subjects/sh99005024']
+      expect(attributes[:finding_aid]).to eq ['http://www.oac.cdlib.org/findaid/ark:/13030/kt1j49r67t']
       expect(attributes[:form_of_work]).to eq ['http://vocab.getty.edu/aat/300046300', 'http://vocab.getty.edu/aat/300128343']
       expect(attributes[:language]).to eq ['http://id.loc.gov/vocabulary/iso639-2/zxx']
-      expect(attributes[:work_type]).to eq ['http://id.loc.gov/vocabulary/resourceTypes/img']
+      expect(attributes[:lc_subject]).to eq ['http://id.loc.gov/authorities/names/n87914041', 'http://id.loc.gov/authorities/subjects/sh85088047', 'http://id.loc.gov/authorities/subjects/sh99005024']
       expect(attributes[:sub_location]).to eq ['Department of Special Collections']
+      expect(attributes[:title]).to eq ['Joel Conway / Flying A Studio photograph collection']
+      expect(attributes[:work_type]).to eq ['http://id.loc.gov/vocabulary/resourceTypes/img']
 
       # TODO: There is another location in the fixture file
       # that doesn't have a valueURI.  How should that be
