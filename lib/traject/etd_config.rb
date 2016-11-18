@@ -1,15 +1,17 @@
 require 'object_factory_writer'
-require 'traject/macros/marc_format_classifier'
-require 'traject/macros/marc21_semantics'
-require 'traject/extract_work_type'
+require 'solrizer'
 require 'traject/extract_ark'
 require 'traject/extract_fulltext_link'
-require 'solrizer'
-extend Traject::Macros::Marc21Semantics
-extend Traject::Macros::MarcFormats
-extend ExtractWorkType
+require 'traject/extract_place_of_publication'
+require 'traject/extract_work_type'
+require 'traject/macros/marc21_semantics'
+require 'traject/macros/marc_format_classifier'
 extend ExtractArk
 extend ExtractFulltextLink
+extend ExtractPlaceOfPublication
+extend ExtractWorkType
+extend Traject::Macros::Marc21Semantics
+extend Traject::Macros::MarcFormats
 
 settings do
   provide 'writer_class_name', 'ObjectFactoryWriter'
@@ -37,7 +39,7 @@ to_field 'isbn', extract_marc('020a')
 to_field 'issued', extract_marc('264c', trim_punctuation: true)
 to_field 'keywords', extract_marc('653', trim_punctuation: true)
 to_field 'language', marc_languages
-to_field 'place_of_publication', extract_marc('264a', trim_punctuation: true)
+to_field 'place_of_publication', extract_place_of_publication
 to_field 'publisher', extract_marc('264b', trim_punctuation: true)
 to_field 'system_number', extract_marc('001')
 to_field 'title', extract_marc('245ab', trim_punctuation: true)
