@@ -35,7 +35,11 @@ class CatalogController < ApplicationController
     config.search_builder_class = SearchBuilder
     config.view.gallery.partials = [:index_header, :index]
     config.view.slideshow.partials = [:index]
-    config.add_nav_action(:admin_menu, partial: 'shared/admin_menu', if: :admin_menu?, class: 'dropdown')
+
+    config.add_nav_action(:local_authorities, partial: 'shared/local_authorities', if: :can_read_authorities?)
+    config.add_nav_action(:new_record, partial: 'shared/new_record', if: :can_destroy_authorities?)
+
+    config.add_nav_action(:embargos, partial: 'shared/embargos', if: :embargo_manager?)
 
     # config.show.tile_source_field = :content_metadata_image_iiif_info_ssm
     # config.show.partials.insert(1, :openseadragon)

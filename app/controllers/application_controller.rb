@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  include Menubar
+
   # Adds a few additional behaviors into the application controller
   include Blacklight::Controller
   include Hydra::Controller::ControllerBehavior
@@ -49,11 +51,6 @@ class ApplicationController < ActionController::Base
 
   def current_ability
     @current_ability ||= Ability.new(current_user, on_campus?)
-  end
-
-  # Should we display the admin menu?
-  def admin_menu?
-    can?(:discover, Hydra::AccessControls::Embargo) || can?(:destroy, :local_authorities)
   end
 
   def show_contributors?(_config, document)
