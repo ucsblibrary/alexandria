@@ -76,19 +76,24 @@ module Importer::MODS
       @mods ||= Mods::Record.new.from_file(@file)
     end
 
+    def type_of_resource
+      # MODS_RESOURCE_MAP defined in initializers/mods_resource_map.rb
+      @type_of_resource ||= if collection?
+                              MODS_RESOURCE_MAP['collection']
+                            else
+                              # return an empty hash in the case of XML fragments
+                              MODS_RESOURCE_MAP[mods.typeOfResource.content.first] || {}
+                            end
+    end
+
     def collection?
       type_keys = mods.typeOfResource.attributes.map(&:keys).flatten
       return false unless type_keys.include?('collection')
       mods.typeOfResource.attributes.any? { |hash| hash.fetch('collection').value == 'yes' }
     end
 
-    # For now the only things we import are collections and
-    # images, so if it's not a collection, assume it's an image.
-    #
-    # TODO: Identify images or other record types based on the data in
-    # <mods:typeOfResource>.
     def image?
-      !collection?
+      type_of_resource[:label] == 'Still image'
     end
 
     def attributes
