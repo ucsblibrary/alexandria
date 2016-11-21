@@ -1,11 +1,11 @@
 <div class="user-util-links">
 
   <ul class="catalog-nav">
-    <%= render_nav_actions do |config, action|%>
-      <li class="<%= config['class'] %>"><%= action %></li>
-    <% end %>
+    <li><%= link_to 'About ADRL', main_app.about_path %></li>
+    <li><%= link_to 'Help', main_app.help_path %></li>
+    <li><%= link_to 'Contact Us', main_app.contact_us_form_path %></li>
 
-    <% if has_user_authentication_provider? %>
+    <% if Rails.env.development? %>
       <li class="login-link">
         <% if current_user %>
           <%= link_to t('blacklight.header_links.logout'), main_app.destroy_user_session_path %>
@@ -18,5 +18,4 @@
       </li>
     <% end %>
   </ul>
-
 </div>

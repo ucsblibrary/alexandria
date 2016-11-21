@@ -20,9 +20,6 @@ class LocalAuthoritiesController < ApplicationController
 
     config.add_results_collection_tool(:add_another)
 
-    # Display the admin menu in the nav header if the user is an admin
-    config.add_nav_action(:admin_menu, partial: 'shared/admin_menu', if: :admin_menu?, class: 'dropdown')
-
     # solr fields to be displayed in the show (single result) view
     # The ordering of the field names is the order of the display
     config.add_show_field 'foaf_name_tesim', label: 'Name'
