@@ -471,27 +471,18 @@ table#downloads {
   }
 }
 
-// -----------------------------
-//   About Page
-// -----------------------------
-
-#about_main_body {
-  padding-bottom: 2em;
-
-  h2 {
-    font: 'Helvetica Neue', Helvetica,Arial,sans-serif;
-  }
+// ----------------
+//   Static Pages
+// ----------------
+.static {
+  padding: 0 2%;
 }
 
-// FIXME: less specificity
-#about_body {
-  max-width: 600px;
-
-  p, a {
-    font: 'Helvetica Neue', Helvetica,Arial,sans-serif;
-  }
-
-  a { color: $welcome_blue; }
+// -------------
+//   Help Page
+// -------------
+.question {
+  font-size: 114.3%;
 }
 
 // ----------
