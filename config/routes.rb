@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   get 'welcome/about', as: 'about'
+  get 'welcome/help', as: 'help'
 
   post 'contact_us' => 'contact_us#create', as: :contact_us
   get 'contact_us' => 'contact_us#new', as: :contact_us_form
