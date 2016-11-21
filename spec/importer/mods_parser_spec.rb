@@ -203,7 +203,7 @@ describe Importer::MODS::Parser do
       expect(attributes[:lc_subject]).to eq ['http://id.loc.gov/authorities/names/n87914041', 'http://id.loc.gov/authorities/subjects/sh85088047', 'http://id.loc.gov/authorities/subjects/sh99005024']
       expect(attributes[:sub_location]).to eq ['Department of Special Collections']
       expect(attributes[:title]).to eq ['Joel Conway / Flying A Studio photograph collection']
-      expect(attributes[:work_type]).to eq ['http://id.loc.gov/vocabulary/resourceTypes/img']
+      expect(attributes[:work_type].value).to eq ['http://id.loc.gov/vocabulary/resourceTypes/col']
 
       # TODO: There is another location in the fixture file
       # that doesn't have a valueURI.  How should that be

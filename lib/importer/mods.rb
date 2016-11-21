@@ -136,7 +136,7 @@ module Importer::MODS
         digital_origin: mods.physical_description.digitalOrigin.map(&:text),
         publisher: mods.origin_info.publisher.map(&:text),
         form_of_work: mods.genre.valueURI.map { |uri| RDF::URI.new(uri) },
-        work_type: mods.xpath('//mods:mods/mods:typeOfResource/@valueURI', NAMESPACES).map { |uri| RDF::URI.new(uri.value) },
+        work_type: [type_of_resource[:uri]],
         citation: citation,
         notes_attributes: notes,
         record_origin: record_origin,
