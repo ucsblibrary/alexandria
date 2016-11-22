@@ -9,7 +9,7 @@ class WelcomeController < ApplicationController
   def about
   end
 
-  def help
+  def using
   end
 
   def images
