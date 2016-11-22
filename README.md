@@ -1,3 +1,5 @@
+[![Build Status](http://jenkins.library.ucsb.edu:8080/buildStatus/icon?job=ADRL_pull-requests)](http://jenkins.library.ucsb.edu:8080/job/ADRL_pull-requests/)
+
 # Developing
 
 After running `bundle install`, you can run tests with `make spec`.
