@@ -2,10 +2,30 @@
 
 # Developing
 
-After running `bundle install`, you can run tests with `make spec`.
+If you’re developing in a Vagrant VM, see the
+[provisioning](#provisioning) section below.  Otherwise:
 
-HTML documentation can be generated locally by installing `yardoc`
-with `gem install yardoc` then running `make html`.
+1. Copy `config/secrets.yml.template` to `config/secrets.yml` and add
+   the LDAP and Ezid passwords from
+   [Secret Server](https://epm.ets.ucsb.edu/SS/login.aspx).
+
+2. Start PostgreSQL and create a database called `my_hydra_db` and a
+   role called `my_hydra_pg_user` that has login privileges.
+
+3. Ensure Java is installed (`brew cask install java`), and start Solr
+   and Fedora with `bin/wrap` (stop them with `bin/unwrap`).
+
+4. Run `bundle install` and `CI=1 bin/rake db:migrate`. (The `CI`
+   environment variable disables Marmotta, which we don’t need to run
+   locally.)
+
+5. Start redis, then a Resque worker with `CI=1 VERBOSE=1 QUEUE='*' INTERVAL=5 bin/rake resque:work`.
+
+6. Start the Rails server with `CI=1 bin/rails s`.
+
+You can run tests with `make spec`, and HTML documentation by
+installing `yardoc` with `gem install yardoc` then running `make
+html`.
 
 # Provisioning
 
