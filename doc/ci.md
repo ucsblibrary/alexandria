@@ -101,6 +101,16 @@ Ruby 2.3.0 and 2.3.1.
 
     ```shell
     {
+    # Make sure rbenv and ruby-build are up do date,
+    # since somehow the Jenkins plugin can’t do this itself
+    pushd ~/.rbenv
+    git fetch origin && git reset --hard origin/master
+    popd
+
+    pushd ~/.rbenv/plugins/ruby-build
+    git fetch origin && git reset --hard origin/master
+    popd
+
     if ! rbenv versions | grep "$RBENV_VERSION" >/dev/null 2>&1; then
       rbenv install $RBENV_VERSION
     fi
