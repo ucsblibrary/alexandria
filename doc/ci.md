@@ -101,6 +101,9 @@ Ruby 2.3.0 and 2.3.1.
 
     ```shell
     {
+    # Remove the temporary Solr core from any previous tests
+    rm -rf /tmp/solr-*
+
     # Make sure rbenv and ruby-build are up do date,
     # since somehow the Jenkins plugin can’t do this itself
     pushd ~/.rbenv
