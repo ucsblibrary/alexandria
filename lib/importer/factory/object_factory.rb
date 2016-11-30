@@ -1,5 +1,3 @@
-require 'importer/log_subscriber'
-
 module Importer::Factory
   class ObjectFactory
     extend ActiveModel::Callbacks
@@ -15,15 +13,9 @@ module Importer::Factory
 
     def run
       if @object = find
-        ActiveSupport::Notifications.instrument('import.importer',
-                                                id: attributes[:id], name: 'UPDATE', klass: klass) do
-          update
-        end
+        update
       else
-        ActiveSupport::Notifications.instrument('import.importer',
-                                                id: attributes[:id], name: 'CREATE', klass: klass) do
-          create
-        end
+        create
       end
       yield(object) if block_given?
       object
