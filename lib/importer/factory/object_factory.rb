@@ -82,6 +82,9 @@ module Importer::Factory
       # There's a bug in ActiveFedora when there are many
       # habtm <-> has_many associations, where they won't all get saved.
       # https://github.com/projecthydra/active_fedora/issues/874
+      #
+      # TODO: what does the above comment mean, and how does it relate to this code
+
       @object = klass.new(attrs)
       attach_files(@object, @files) unless @files.empty?
       run_callbacks :save do

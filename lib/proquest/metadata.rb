@@ -101,7 +101,7 @@ module Proquest
     end
 
     def no_embargo?
-      attributes[:embargo_code] == '0' || embargo_release_date.blank?
+      embargo_release_date.blank?
     end
 
     def infinite_embargo?
@@ -164,9 +164,7 @@ module Proquest
       when '3'
         two_year_embargo
       when '4'
-        if attributes[:embargo_remove_date].blank?
-          nil
-        else
+        if attributes[:embargo_remove_date]
           Date.parse(attributes[:embargo_remove_date])
         end
       end

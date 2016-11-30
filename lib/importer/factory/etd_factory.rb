@@ -5,13 +5,17 @@ module Importer::Factory
     self.klass = ETD
     self.system_identifier_field = :system_number
 
+    before_save :update_from_proquest
+
+    def update_from_proquest
+      Proquest::Metadata.new(object).run
+    end
+
     def attach_files(object, files)
       return unless files[:xml]
       object.proquest.mime_type = 'application/xml'
       object.proquest.original_name = File.basename(files[:xml])
       object.proquest.content = File.new(files[:xml])
-
-      Proquest::Metadata.new(object).run
 
       object.proquest.content.rewind
 
