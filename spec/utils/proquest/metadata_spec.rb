@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'proquest'
 
 describe Proquest::Metadata do
   describe '#embargo_start_date' do
@@ -344,7 +345,7 @@ describe Proquest::Metadata do
         end
       end
 
-      context 'with <DISS_delayed_release> empty: no embargo' do
+      context 'without ProQuest or ADRL embargo' do
         let(:file)  { "#{fixture_path}/proquest/Bones_ucsb_0035D_12540_DATA.xml" }
 
         it 'sets the access policy, no embargo' do
@@ -365,6 +366,18 @@ describe Proquest::Metadata do
           expect(reloaded.embargo_release_date).to be_nil
           expect(reloaded.visibility_during_embargo).to be_nil
           expect(reloaded.visibility_after_embargo).to be_nil
+        end
+      end
+
+      context 'without ProQuest embargo but with ADRL embargo' do
+        let(:file) { "#{fixture_path}/proquest/Rude_ucsb_0035D_12690_DATA.xml" }
+
+        it 'sets the access policy, no embargo' do
+          expect(reloaded.admin_policy_id).to eq AdminPolicy::DISCOVERY_POLICY_ID
+          expect(reloaded.under_embargo?).to eq true
+          expect(reloaded.embargo_release_date).to eq Date.parse('2021-02-09')
+          expect(reloaded.visibility_during_embargo.id).to eq ActiveFedora::Base.id_to_uri(AdminPolicy::DISCOVERY_POLICY_ID)
+          expect(reloaded.visibility_after_embargo.id).to eq ActiveFedora::Base.id_to_uri(AdminPolicy::PUBLIC_POLICY_ID)
         end
       end
     end
