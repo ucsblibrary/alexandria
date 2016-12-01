@@ -5,46 +5,46 @@
 MODS_RESOURCE_MAP = {
   'text' => {
     label: 'Text',
-    uri: RDF::URI.new('http://id.loc.gov/vocabulary/resourceTypes/txt'),
+    uri: [RDF::URI.new('http://id.loc.gov/vocabulary/resourceTypes/txt')],
   },
   'cartographic' => {
     label: 'Cartographic',
-    uri: RDF::URI.new('http://id.loc.gov/vocabulary/resourceTypes/car'),
+    uri: [RDF::URI.new('http://id.loc.gov/vocabulary/resourceTypes/car')],
   },
   'notated music' => {
     label: 'Notated music',
-    uri: RDF::URI.new('http://id.loc.gov/vocabulary/resourceTypes/not'),
+    uri: [RDF::URI.new('http://id.loc.gov/vocabulary/resourceTypes/not')],
   },
   'sound recording-nonmusical' => {
     label: 'Audio non-musical',
-    uri: RDF::URI.new('http://id.loc.gov/vocabulary/resourceTypes/aun'),
+    uri: [RDF::URI.new('http://id.loc.gov/vocabulary/resourceTypes/aun')],
   },
   'sound recording-musical' => {
     label: 'Audio musical',
-    uri: RDF::URI.new('http://id.loc.gov/vocabulary/resourceTypes/aum'),
+    uri: [RDF::URI.new('http://id.loc.gov/vocabulary/resourceTypes/aum')],
   },
   'still image' => {
     label: 'Still image',
-    uri: RDF::URI.new('http://id.loc.gov/vocabulary/resourceTypes/img'),
+    uri: [RDF::URI.new('http://id.loc.gov/vocabulary/resourceTypes/img')],
   },
   'moving image' => {
     label: 'Moving image',
-    uri: RDF::URI.new('http://id.loc.gov/vocabulary/resourceTypes/mov'),
+    uri: [RDF::URI.new('http://id.loc.gov/vocabulary/resourceTypes/mov')],
   },
   'three dimensional object' => {
     label: 'Artifact',
-    uri: RDF::URI.new('http://id.loc.gov/vocabulary/resourceTypes/art'),
+    uri: [RDF::URI.new('http://id.loc.gov/vocabulary/resourceTypes/art')],
   },
   'software, multimedia' => {
     label: 'Multimedia',
-    uri: RDF::URI.new('http://id.loc.gov/vocabulary/resourceTypes/mul'),
+    uri: [RDF::URI.new('http://id.loc.gov/vocabulary/resourceTypes/mul')],
   },
   'mixed material' => {
     label: 'Mixed material',
-    uri: RDF::URI.new('http://id.loc.gov/vocabulary/resourceTypes/mix'),
+    uri: [RDF::URI.new('http://id.loc.gov/vocabulary/resourceTypes/mix')],
   },
   'collection' => {
     label: 'Collection',
-    uri: RDF::URI.new('http://id.loc.gov/vocabulary/resourceTypes/col'),
+    uri: [RDF::URI.new('http://id.loc.gov/vocabulary/resourceTypes/col')],
   },
 }.freeze

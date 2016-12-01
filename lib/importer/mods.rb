@@ -79,7 +79,17 @@ module Importer::MODS
     def type_of_resource
       # MODS_RESOURCE_MAP defined in initializers/mods_resource_map.rb
       @type_of_resource ||= if collection?
-                              MODS_RESOURCE_MAP['collection']
+                              # this is a very silly bit of code, but
+                              # what it does is ensure that MODS
+                              # Collections have their work_type be
+                              # Collection /and/ all the formats of
+                              # the items they contain
+                              MODS_RESOURCE_MAP['collection'].merge(
+                                uri: [
+                                  MODS_RESOURCE_MAP['collection'][:uri],
+                                  *mods.typeOfResource.content.map { |t| MODS_RESOURCE_MAP[t][:uri] },
+                                ].flatten
+                              )
                             else
                               # return an empty hash in the case of XML fragments
                               MODS_RESOURCE_MAP[mods.typeOfResource.content.first] || {}
@@ -136,7 +146,7 @@ module Importer::MODS
         digital_origin: mods.physical_description.digitalOrigin.map(&:text),
         publisher: mods.origin_info.publisher.map(&:text),
         form_of_work: mods.genre.valueURI.map { |uri| RDF::URI.new(uri) },
-        work_type: [type_of_resource[:uri]],
+        work_type: type_of_resource[:uri],
         citation: citation,
         notes_attributes: notes,
         record_origin: record_origin,
