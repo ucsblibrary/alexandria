@@ -33,6 +33,8 @@ Jenkins server.  Instead, it has worker VMs that it delegates jobs to.
 
 ### PR configuration (<http://jenkins:8080/job/ADRL_pull-requests/configure>)
 
+(See also <https://github.com/jenkinsci/ghprb-plugin/blob/master/README.md#creating-a-job>.)
+
 This is a multi-configuration project, meaning we run the same job(s)
 against a matrix of configuration.  For now we’re just testing against
 Ruby 2.3.0 and 2.3.1.
@@ -41,13 +43,6 @@ Ruby 2.3.0 and 2.3.1.
   `.git`).  Also check “Rebuild Without Asking For Parameters”; this
   will allow us to re-run jobs without manually entering the commit to
   test.
-
-    Check “This project is parameterized”.  Add a String Parameter and
-    name it `sha1`.  The webhook that GitHub uses to notify Jenkins of
-    changes involves a
-    [request via curl](https://wiki.jenkins-ci.org/display/JENKINS/Git+plugin#GitPlugin-Pushnotificationfromrepository)
-    containing a number of parameters; the one we’re interested in is
-    the `sha1`.
 
 - Under “Advanced Project Options”, check “Restrict where this project
     can be run” and restrict it to running on `master` (i.e., the
