@@ -56,8 +56,7 @@ Ruby 2.3.0 and 2.3.1.
     [refspec](https://git-scm.com/book/en/v2/Git-Internals-The-Refspec)
     so that PR commits are
     [made available](https://caffinc.github.io/2015/11/github-pr-revision/);
-    we’re using `+refs/heads/master:refs/remotes/origin/master
-    +refs/pull/*:refs/remotes/origin/pr/*`.
+    we’re using `+refs/pull/*:refs/remotes/origin/pr/*`.
 
     Under “branches to build” put `${sha1}` instead, so we build the
     PR instead of a real branch.
@@ -65,16 +64,11 @@ Ruby 2.3.0 and 2.3.1.
     Under “Additional behaviors”, I added “Wipe out repository and
     force clone” just to make sure of a clean environment each time.
 
-- Under “Build Triggers”, check “Build GitHub pull requests” and
-  select “Hooks with Persisted Data” as the trigger mode.  For trigger
-  events add “Pull request opened” and “Commit changed” (to detect
-  force pushes to PRs).  The other settings are optional.
-
-  Check “GitHub Pull Request Builder”, and add the credentials. Check
-  “Use GitHub hooks for build triggering” and under “Advanced” check
-  “Build every pull request automatically without asking
-  (Dangerous!).”  Otherwise you’ll have to manually trigger builds
-  from people who aren’t admins or whitelisted.
+- Under “Build Triggers”, check “GitHub Pull Request Builder”, and add
+  the credentials. Check “Use GitHub hooks for build triggering” and
+  under “Advanced” check “Build every pull request automatically
+  without asking (Dangerous!).”  Otherwise you’ll have to manually
+  trigger builds from people who aren’t admins or whitelisted.
 
 - Under “Configuration Matrix” we set the `RBENV_VERSION` environment
   variable by adding  a “User-defined Axis”.  The _Name_ is the env
