@@ -113,7 +113,9 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name('issued', :displayable), label: 'Issued Date'
 
     Metadata::RELATIONS.keys.each do |key|
-      config.add_show_field solr_name("#{key}_label", :stored_searchable), label: key.to_s.titleize
+      config.add_show_field solr_name("#{key}_label", :stored_searchable),
+                            label: key.to_s.titleize,
+                            link_to_search: 'all_contributors_label_sim'
     end
 
     config.add_show_field solr_name('alternative', :stored_searchable), label: 'Variant Title'
