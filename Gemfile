@@ -56,7 +56,7 @@ group :development, :test do
   # Used exact gem versions for solr_wrapper and fcrepo_wrapper
   # because they aren't careful about making breaking changes on
   # minor releases, so we'll need to be mindful about upgrading.
-  gem 'fcrepo_wrapper', '0.5.2'
+  gem 'fcrepo_wrapper', '0.7.0'
   gem 'solr_wrapper', '~> 0.19.0'
 
   gem 'poltergeist'
