@@ -20,6 +20,7 @@ module Proquest
       update_embargo_metadata!
       update_access_metadata
       update_descriptive_metadata
+      etd.save!
     end
   end
 
