@@ -5,7 +5,7 @@ module Importer::Factory
     self.klass = ETD
     self.system_identifier_field = :system_number
 
-    before_save :update_from_proquest
+    after_create :update_from_proquest
 
     def update_from_proquest
       Proquest::Metadata.new(object).run
