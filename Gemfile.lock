@@ -1,16 +1,3 @@
-GIT
-  remote: https://github.com/curationexperts/oargun.git
-  revision: 6249c628dc83a1e1af0dcf00bd1449dce4440ef1
-  ref: 6249c628
-  specs:
-    oargun (0.0.1)
-      active-fedora (>= 9.0)
-      active-triples (>= 0.7.5)
-      activesupport (~> 4.0)
-      linked_vocabs (~> 0.2)
-      rdf-vocab (~> 0.8)
-      rest-client (~> 1.7)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -760,7 +747,6 @@ DEPENDENCIES
   marc
   method_source
   mods (~> 2.0.3)
-  oargun!
   pg (~> 0.18.4)
   poltergeist
   pry
