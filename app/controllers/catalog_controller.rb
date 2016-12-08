@@ -136,7 +136,12 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('location_label', :stored_searchable), label: 'Places'
     config.add_show_field solr_name('keywords', :stored_searchable),
                           label: 'Keywords',
-                          link_to_search: 'keywords_sim'
+                          link_to_search: 'keywords_sim',
+                          separator_options: {
+                            words_connector: '<span class="invisible">,</span> <br />',
+                            two_words_connector: '<span class="invisible">,</span> <br />',
+                            last_word_connector: '<span class="invisible">, and</span> <br />',
+                          }
 
     config.add_show_field solr_name('form_of_work_label', :stored_searchable),
                           label: 'Genres',
