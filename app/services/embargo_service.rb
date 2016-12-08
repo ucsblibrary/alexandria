@@ -28,4 +28,16 @@ module EmbargoService
   def self.resource_for(id)
     RDF::URI(ActiveFedora::Base.id_to_uri(id))
   end
+
+  def self.title_for(uri)
+    id = ActiveFedora::Base.uri_to_id(uri)
+    Hydra::AdminPolicy.find(id).title
+  end
+
+  def self.deactivate_embargo(work)
+    work.embargo_visibility! # If the embargo has lapsed, update the current visibility.
+    work.deactivate_embargo!
+    work.embargo.save!
+    work.save
+  end
 end

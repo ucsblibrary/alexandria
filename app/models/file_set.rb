@@ -2,6 +2,7 @@
 class FileSet < ActiveFedora::Base
   include ::CurationConcerns::FileSetBehavior
   include WithAdminPolicy
+  include EmbargoBehavior
 
   directly_contains_one :restored, through: :files, type: ::RDF::URI("http://pcdm.org/use#IntermediateFile"), class_name: "Hydra::PCDM::File"
 

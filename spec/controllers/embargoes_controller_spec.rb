@@ -36,13 +36,13 @@ describe EmbargoesController do
     context "when I have permission to edit the object" do
       before do
         AdminPolicy.ensure_admin_policy_exists
-        expect(ActiveFedora::Base).to receive(:find).with(work.id).and_return(work)
         work.admin_policy_id = AdminPolicy::UCSB_CAMPUS_POLICY_ID
         work.visibility_during_embargo = RDF::URI(ActiveFedora::Base.id_to_uri(AdminPolicy::UCSB_CAMPUS_POLICY_ID))
         work.visibility_after_embargo = RDF::URI(ActiveFedora::Base.id_to_uri(AdminPolicy::PUBLIC_POLICY_ID))
         work.embargo_release_date = release_date.to_s
         work.save(validate: false)
         get :destroy, id: work
+        work.reload
       end
 
       context "with an active embargo" do

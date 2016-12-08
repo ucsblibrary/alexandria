@@ -2,7 +2,19 @@
 module EmbargoHelper
   # Because we're storing admin policies in the embargos, we need to lookup the object.
   def after_visibility(curation_concern)
-    id = ActiveFedora::Base.uri_to_id(curation_concern.visibility_after_embargo.id)
-    Hydra::AdminPolicy.find(id).title
+    uri = curation_concern.visibility_after_embargo.id
+    ::EmbargoService.title_for(uri)
+  end
+
+  def works_with_expired_embargoes
+    @works_with_expired_embargoes ||= EmbargoQueryService.works_with_expired_embargoes
+  end
+
+  def works_under_embargo
+    @works_under_embargo ||= EmbargoQueryService.works_under_embargo
+  end
+
+  def assets_with_deactivated_embargoes
+    @assets_with_deactivated_embargoes ||= EmbargoQueryService.assets_with_deactivated_embargoes
   end
 end
