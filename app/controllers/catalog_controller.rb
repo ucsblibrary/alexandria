@@ -180,7 +180,6 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('issue_number', :displayable), label: 'Issue Number'
     config.add_show_field solr_name('system_number', :symbol), label: 'Catalog System Number'
     config.add_show_field solr_name('copyright', :displayable), label: 'Copyright'
-    config.add_show_field solr_name('copyright_status_label', :stored_searchable), label: 'Copyright Status'
     config.add_show_field solr_name('license_label', :stored_searchable),
                           label: 'License',
                           link_to_search: 'license_label_sim'
