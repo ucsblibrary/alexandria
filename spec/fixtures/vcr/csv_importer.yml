@@ -39,7 +39,7 @@ http_interactions:
     body:
       encoding: UTF-8
       string: 'success: ark:/99999/fk44b3bh0v'
-    http_version:
+    http_version: 
   recorded_at: Thu, 09 Jun 2016 23:43:55 GMT
 - request:
     method: get
@@ -91,7 +91,7 @@ http_interactions:
     body:
       encoding: UTF-8
       string: ''
-    http_version:
+    http_version: 
   recorded_at: Thu, 09 Jun 2016 23:43:58 GMT
 - request:
     method: get
@@ -162,7 +162,7 @@ http_interactions:
         "@value": "(Couper, Mildred; b. Dec. 10, 1887, Buenos Aires; d. Aug. 9, 1974, Santa Barbara, CA; American composer and pianist)" } ], "http://www.loc.gov/mads/rdf/v1#citation-status": [ { "@value": "found" } ] },  { "@id": "_:b25authoritiesnamesno93011759", "@type": [ "http://www.loc.gov/mads/rdf/v1#Source" ], "http://www.loc.gov/mads/rdf/v1#citation-source": [ { "@value": "Her Dirge, c1937:" } ], "http://www.loc.gov/mads/rdf/v1#citation-note": [ { "@language": "en",
         "@value": "caption (Mildred Couper)" } ], "http://www.loc.gov/mads/rdf/v1#citation-status": [ { "@value": "found" } ] },  { "@id": "", "@type": [ "http://www.loc.gov/mads/rdf/v1#RWO", "http://xmlns.com/foaf/0.1/Person" ], "http://www.w3.org/2000/01/rdf-schema#label": [ { "@value": "Couper, Mildred, 1887-1974" } ] },  { "@id": "_:b11authoritiesnamesno93011759", "@type": [ "http://www.loc.gov/mads/rdf/v1#DateNameElement" ], "http://www.loc.gov/mads/rdf/v1#elementValue": [ { "@language": "en",
         "@value": "1887-1974" } ] } ]
-    http_version:
+    http_version: 
   recorded_at: Thu, 09 Jun 2016 23:43:59 GMT
 - request:
     method: get
@@ -214,7 +214,7 @@ http_interactions:
     body:
       encoding: UTF-8
       string: ''
-    http_version:
+    http_version: 
   recorded_at: Thu, 09 Jun 2016 23:43:59 GMT
 - request:
     method: get
@@ -318,7 +318,7 @@ http_interactions:
         "@value": "anglais" }, { "@language": "de",
         "@value": "Englisch" } ], "http://www.w3.org/2004/02/skos/core#changeNote": [ { "@id": "_:b172vocabularyiso639-2eng" } ] },  { "@id": "_:b56vocabularyiso639-2eng", "@type": [ "http://www.loc.gov/mads/rdf/v1#Language", "http://www.loc.gov/mads/rdf/v1#Variant" ], "http://www.loc.gov/mads/rdf/v1#variantLabel": [ { "@language": "en",
         "@value": "English" } ] } ]
-    http_version:
+    http_version: 
   recorded_at: Thu, 09 Jun 2016 23:44:00 GMT
 - request:
     method: get
@@ -370,7 +370,7 @@ http_interactions:
     body:
       encoding: UTF-8
       string: ''
-    http_version:
+    http_version: 
   recorded_at: Thu, 09 Jun 2016 23:44:01 GMT
 - request:
     method: get
@@ -459,7 +459,7 @@ http_interactions:
         "@value": "Microtones" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "en",
         "@value": "Microtones" } ] },  { "@id": "_:b94authoritiessubjectssh85084939", "@type": [ "http://www.loc.gov/mads/rdf/v1#Source" ], "http://www.loc.gov/mads/rdf/v1#citation-source": [ { "@value": "Am. heritage dict. Eng. lang., 3rd ed." } ], "http://www.loc.gov/mads/rdf/v1#citation-note": [ { "@language": "en",
         "@value": "(microtonal)" } ], "http://www.loc.gov/mads/rdf/v1#citation-status": [ { "@value": "found" } ] } ]
-    http_version:
+    http_version: 
   recorded_at: Thu, 09 Jun 2016 23:44:01 GMT
 - request:
     method: get
@@ -511,7 +511,7 @@ http_interactions:
     body:
       encoding: UTF-8
       string: ''
-    http_version:
+    http_version: 
   recorded_at: Thu, 09 Jun 2016 23:44:02 GMT
 - request:
     method: get
@@ -600,7 +600,7 @@ http_interactions:
         "@value": "Women musicians" } ], "http://www.loc.gov/mads/rdf/v1#elementList": [ { "@id": "_:b23authoritiessubjectssh85147508" } ] },  { "@id": "_:b42authoritiessubjectssh85147508", "@type": [ "http://www.loc.gov/mads/rdf/v1#TopicElement" ], "http://www.loc.gov/mads/rdf/v1#elementValue": [ { "@language": "en",
         "@value": "Women as composers" } ] },  { "@id": "_:b101authoritiessubjectssh85147508", "@type": [ "http://www.w3.org/2008/05/skos-xl#Label" ], "http://www.w3.org/2008/05/skos-xl#literalForm": [ { "@language": "en",
         "@value": "Women as composers" } ] } ]
-    http_version:
+    http_version: 
   recorded_at: Thu, 09 Jun 2016 23:44:05 GMT
 - request:
     method: get
@@ -652,7 +652,7 @@ http_interactions:
     body:
       encoding: UTF-8
       string: ''
-    http_version:
+    http_version: 
   recorded_at: Thu, 09 Jun 2016 23:44:05 GMT
 - request:
     method: get
@@ -727,7 +727,7 @@ http_interactions:
         "@value": "new" } ] },  { "@id": "_:b73vocabularyorganizationscusb", "@type": [ "http://www.w3.org/2008/05/skos-xl#Label" ], "http://www.w3.org/2008/05/skos-xl#literalForm": [ { "@value": "State Teachers' College" } ] },  { "@id": "", "@type": [ "http://www.loc.gov/mads/rdf/v1#RWO" ], "http://www.w3.org/2000/01/rdf-schema#label": [ { "@value": "University of California, Santa Barbara, Main Library" } ] },  { "@id": "_:b106vocabularyorganizationscusb", "@type": [ "http://purl.org/vocab/changeset/schema#ChangeSet" ], "http://purl.org/vocab/changeset/schema#subjectOfChange": [ { "@id": "http://id.loc.gov/vocabulary/organizations/cusb" } ], "http://purl.org/vocab/changeset/schema#creatorName": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlcmrc" } ], "http://purl.org/vocab/changeset/schema#createdDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
         "@value": "2015-04-07T09:13:26.000-04:00" } ], "http://purl.org/vocab/changeset/schema#changeReason": [ { "@language": "en",
         "@value": "modified" } ] } ]
-    http_version:
+    http_version: 
   recorded_at: Thu, 09 Jun 2016 23:44:05 GMT
 - request:
     method: get
@@ -779,7 +779,7 @@ http_interactions:
     body:
       encoding: UTF-8
       string: ''
-    http_version:
+    http_version: 
   recorded_at: Thu, 09 Jun 2016 23:44:06 GMT
 - request:
     method: get
@@ -850,7 +850,7 @@ http_interactions:
         "@value": "(Couper, Mildred; b. Dec. 10, 1887, Buenos Aires; d. Aug. 9, 1974, Santa Barbara, CA; American composer and pianist)" } ], "http://www.loc.gov/mads/rdf/v1#citation-status": [ { "@value": "found" } ] },  { "@id": "_:b25authoritiesnamesno93011759", "@type": [ "http://www.loc.gov/mads/rdf/v1#Source" ], "http://www.loc.gov/mads/rdf/v1#citation-source": [ { "@value": "Her Dirge, c1937:" } ], "http://www.loc.gov/mads/rdf/v1#citation-note": [ { "@language": "en",
         "@value": "caption (Mildred Couper)" } ], "http://www.loc.gov/mads/rdf/v1#citation-status": [ { "@value": "found" } ] },  { "@id": "", "@type": [ "http://www.loc.gov/mads/rdf/v1#RWO", "http://xmlns.com/foaf/0.1/Person" ], "http://www.w3.org/2000/01/rdf-schema#label": [ { "@value": "Couper, Mildred, 1887-1974" } ] },  { "@id": "_:b11authoritiesnamesno93011759", "@type": [ "http://www.loc.gov/mads/rdf/v1#DateNameElement" ], "http://www.loc.gov/mads/rdf/v1#elementValue": [ { "@language": "en",
         "@value": "1887-1974" } ] } ]
-    http_version:
+    http_version: 
   recorded_at: Thu, 09 Jun 2016 23:44:08 GMT
 - request:
     method: get
@@ -902,7 +902,7 @@ http_interactions:
     body:
       encoding: UTF-8
       string: ''
-    http_version:
+    http_version: 
   recorded_at: Thu, 09 Jun 2016 23:44:08 GMT
 - request:
     method: get
@@ -964,7 +964,7 @@ http_interactions:
         "@value": "PREMIS    Copyright Status Collection" } ] },  { "@id": "_:b44vocabularypreservationcopyrightStatuscpr", "@type": [ "http://purl.org/vocab/changeset/schema#ChangeSet" ], "http://purl.org/vocab/changeset/schema#subjectOfChange": [ { "@id": "http://id.loc.gov/vocabulary/preservation/copyrightStatus/cpr" } ], "http://purl.org/vocab/changeset/schema#creatorName": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlcmrc" } ], "http://purl.org/vocab/changeset/schema#createdDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
         "@value": "2012-08-01T00:00:00" } ], "http://purl.org/vocab/changeset/schema#changeReason": [ { "@value": "new" } ] },  { "@id": "_:b23vocabularypreservationcopyrightStatuscpr", "@type": [ "http://id.loc.gov/ontologies/RecordInfo#RecordInfo" ], "http://id.loc.gov/ontologies/RecordInfo#recordChangeDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
         "@value": "2012-08-01T00:00:00" } ], "http://id.loc.gov/ontologies/RecordInfo#recordStatus": [ { "@value": "new" } ], "http://id.loc.gov/ontologies/RecordInfo#recordContentSource": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlcmrc" } ] } ]
-    http_version:
+    http_version: 
   recorded_at: Thu, 09 Jun 2016 23:44:08 GMT
 - request:
     method: get
@@ -1016,7 +1016,7 @@ http_interactions:
     body:
       encoding: UTF-8
       string: ''
-    http_version:
+    http_version: 
   recorded_at: Thu, 09 Jun 2016 23:44:09 GMT
 - request:
     method: get
@@ -1118,7 +1118,7 @@ http_interactions:
         "@value": "Scores" }, { "@language": "en",
         "@value": "Scores" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "en",
         "@value": "Scores" } ] } ]
-    http_version:
+    http_version: 
   recorded_at: Thu, 09 Jun 2016 23:44:10 GMT
 - request:
     method: get
@@ -1156,7 +1156,7 @@ http_interactions:
     body:
       encoding: UTF-8
       string: ''
-    http_version:
+    http_version: 
   recorded_at: Thu, 09 Jun 2016 23:44:10 GMT
 - request:
     method: get
@@ -1668,7 +1668,7 @@ http_interactions:
         <http://vocab.getty.edu/aat/source/2000048810-term-1000425546> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/DocumentPart> .
         <http://vocab.getty.edu/aat/source/2000048810-term-1000425546> <http://purl.org/dc/terms/isPartOf> <http://vocab.getty.edu/aat/source/2000048810> .
         <http://vocab.getty.edu/aat/source/2000048810-term-1000425546> <http://purl.org/ontology/bibo/locator> "563" .
-    http_version:
+    http_version: 
   recorded_at: Thu, 09 Jun 2016 23:44:10 GMT
 - request:
     method: post
@@ -1709,7 +1709,7 @@ http_interactions:
     body:
       encoding: UTF-8
       string: 'success: ark:/99999/fk40k2mp4s'
-    http_version:
+    http_version: 
   recorded_at: Thu, 09 Jun 2016 23:44:13 GMT
 - request:
     method: post
@@ -1748,7 +1748,7 @@ http_interactions:
     body:
       encoding: UTF-8
       string: 'success: ark:/99999/fk40k2mp4s'
-    http_version:
+    http_version: 
   recorded_at: Thu, 09 Jun 2016 23:44:14 GMT
 - request:
     method: post
@@ -1789,7 +1789,7 @@ http_interactions:
     body:
       encoding: UTF-8
       string: 'success: ark:/99999/fk44b3bh0v'
-    http_version:
+    http_version: 
   recorded_at: Thu, 09 Jun 2016 23:44:16 GMT
 - request:
     method: get
@@ -1840,7 +1840,7 @@ http_interactions:
         _created: 1465515853
         _status: public
         erc.what: Mildred Couper papers
-    http_version:
+    http_version: 
   recorded_at: Wed, 22 Jun 2016 17:00:21 GMT
 - request:
     method: get
@@ -1892,6 +1892,931 @@ http_interactions:
         _status: public
         erc.what: Dirge for violin and piano (violin part)
         erc.when: 1937
-    http_version:
+    http_version: 
   recorded_at: Wed, 22 Jun 2016 17:00:23 GMT
+- request:
+    method: get
+    uri: http://id.loc.gov/vocabulary/resourceTypes/col
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
+        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
+        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, application/trig,
+        application/x-trig, application/trix
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 303
+      message: SEE OTHER
+    headers:
+      Location:
+      - http://id.loc.gov/vocabulary/resourceTypes/col.jsonld
+      Vary:
+      - Accept
+      X-Uri:
+      - http://id.loc.gov/vocabulary/resourceTypes/col
+      X-Preflabel:
+      - Collection
+      Server:
+      - Apache
+      Content-Length:
+      - '0'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Fri, 09 Dec 2016 21:07:05 GMT
+      X-Varnish:
+      - 651694536 632992215
+      Age:
+      - '1996881'
+      Via:
+      - 1.1 varnish
+      Connection:
+      - keep-alive
+      X-Cache:
+      - HIT
+      X-Cache-Hits:
+      - '15'
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Fri, 09 Dec 2016 21:07:05 GMT
+- request:
+    method: get
+    uri: http://id.loc.gov/vocabulary/resourceTypes/col.jsonld
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
+        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
+        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, application/trig,
+        application/x-trig, application/trix
+      Accept-Encoding:
+      - gzip, deflate
+      Cookie:
+      - ''
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/ld+json
+      Cache-Control:
+      - public, max-age=1209600
+      Etag:
+      - 3e3b662c5dd91e1b75023cf27b950297
+      X-Uri:
+      - http://id.loc.gov/vocabulary/resourceTypes/col
+      Server:
+      - Apache
+      Content-Length:
+      - '2294'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Fri, 09 Dec 2016 21:07:06 GMT
+      X-Varnish:
+      - '651694538'
+      Age:
+      - '0'
+      Via:
+      - 1.1 varnish
+      Connection:
+      - keep-alive
+      X-Cache:
+      - MISS
+      X-Cache-Hits:
+      - '0'
+    body:
+      encoding: UTF-8
+      string: |-
+        [  { "@id": "_:b18vocabularyresourceTypescol", "@type": [ "http://id.loc.gov/ontologies/RecordInfo#RecordInfo" ], "http://id.loc.gov/ontologies/RecordInfo#recordStatus": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "modified" } ], "http://id.loc.gov/ontologies/RecordInfo#recordChangeDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2015-10-23T09:31:55.058476-04:00" } ], "http://id.loc.gov/ontologies/RecordInfo#recordContentSource": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlcmrc" } ] },  { "@id": "http://id.loc.gov/vocabulary/resourceTypes/col", "@type": [ "http://www.w3.org/2002/07/owl#Class", "http://www.loc.gov/mads/rdf/v1#Authority", "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.w3.org/2000/01/rdf-schema#subClassOf": [ { "@id": "http://id.loc.gov/vocabulary/resourceTypes/Res" } ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@language": "en",
+        "@value": "Collection" } ], "http://www.loc.gov/mads/rdf/v1#code": [ { "@value": "col" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSScheme": [ { "@id": "http://id.loc.gov/vocabulary/resourceTypes" } ], "http://www.loc.gov/mads/rdf/v1#adminMetadata": [ { "@id": "_:b18vocabularyresourceTypescol" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "en",
+        "@value": "Collection" } ], "http://www.w3.org/2004/02/skos/core#notation": [ { "@value": "col" } ], "http://www.w3.org/2004/02/skos/core#inScheme": [ { "@id": "http://id.loc.gov/vocabulary/resourceTypes" } ], "http://www.w3.org/2004/02/skos/core#changeNote": [ { "@id": "_:b36vocabularyresourceTypescol" } ] },  { "@id": "_:b36vocabularyresourceTypescol", "@type": [ "http://purl.org/vocab/changeset/schema#ChangeSet" ], "http://purl.org/vocab/changeset/schema#subjectOfChange": [ { "@id": "http://id.loc.gov/vocabulary/resourceTypes/col" } ], "http://purl.org/vocab/changeset/schema#creatorName": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlcmrc" } ], "http://purl.org/vocab/changeset/schema#createdDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2015-10-23T09:31:55.058476-04:00" } ], "http://purl.org/vocab/changeset/schema#changeReason": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "modified" } ] } ]
+    http_version: 
+  recorded_at: Fri, 09 Dec 2016 21:07:06 GMT
+- request:
+    method: get
+    uri: http://vocab.getty.edu/aat/300026427
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
+        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
+        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, application/trig,
+        application/x-trig, application/trix
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 303
+      message: See Other
+    headers:
+      Server:
+      - Apache-Coyote/1.1
+      Location:
+      - http://vocab.getty.edu/download/nt?uri=http://vocab.getty.edu/aat/300026427
+      Content-Length:
+      - '0'
+      Date:
+      - Fri, 09 Dec 2016 21:07:07 GMT
+      Set-Cookie:
+      - BIGipServerForest=587573440.45165.0000; path=/; Httponly
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Fri, 09 Dec 2016 21:07:07 GMT
+- request:
+    method: get
+    uri: http://vocab.getty.edu/download/nt?uri=http://vocab.getty.edu/aat/300026427
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
+        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
+        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, application/trig,
+        application/x-trig, application/trix
+      Accept-Encoding:
+      - gzip, deflate
+      Cookie:
+      - BIGipServerForest=587573440.45165.0000
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Apache-Coyote/1.1
+      Content-Disposition:
+      - attachment; filename="aat_300026427.nt"
+      Content-Type:
+      - application/n-triples;charset=UTF-8
+      Content-Length:
+      - '80129'
+      Date:
+      - Fri, 09 Dec 2016 21:07:07 GMT
+    body:
+      encoding: UTF-8
+      string: |
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://vocab.getty.edu/ontology#Subject> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://vocab.getty.edu/ontology#Concept> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2000/01/rdf-schema#label> "scores"@en .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2000/01/rdf-schema#label> "score"@en .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2000/01/rdf-schema#label> "music scores"@en .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2000/01/rdf-schema#label> "scores, music"@en .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2000/01/rdf-schema#label> "\u7E3D\u8B5C"@zh-hant .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2000/01/rdf-schema#label> "z\u01D2ng p\u01D4"@zh-latn-pinyin-x-hanyu .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2000/01/rdf-schema#label> "zong pu"@zh-latn-pinyin-x-notone .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2000/01/rdf-schema#label> "tsung p'u"@zh-latn-wadegile .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2000/01/rdf-schema#label> "partituren"@nl .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2000/01/rdf-schema#label> "partituur"@nl .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2000/01/rdf-schema#label> "Partituren"@de .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2000/01/rdf-schema#label> "Scores (Partituren)"@de .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2000/01/rdf-schema#label> "Partitur"@de .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2000/01/rdf-schema#label> "Score (Partitur)"@de .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2000/01/rdf-schema#label> "partituras"@es .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2000/01/rdf-schema#label> "partitura"@es .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://www.getty.edu/vow/AATFullDisplay?find=&logic=AND&note=&subjectid=300026427> .
+        <http://vocab.getty.edu/aat/300026427> <http://purl.org/dc/terms/created> "1988-01-01T00:00:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/300026427> <http://purl.org/dc/terms/modified> "1990-10-01T00:00:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/300026427> <http://purl.org/dc/terms/modified> "1992-11-25T00:00:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/300026427> <http://purl.org/dc/terms/modified> "2001-07-26T22:04:23"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/300026427> <http://purl.org/dc/terms/modified> "2013-03-29T09:55:11"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/300026427> <http://purl.org/dc/terms/modified> "2010-04-23T01:14:05"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/300026427> <http://purl.org/dc/terms/modified> "2011-01-07T11:58:43"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/300026427> <http://purl.org/dc/terms/modified> "2016-09-23T08:48:44"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/300026427> <http://purl.org/dc/terms/modified> "2011-01-07T11:58:44"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/300026427> <http://purl.org/dc/terms/modified> "2013-03-29T09:55:12"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/300026427> <http://purl.org/dc/terms/modified> "2016-09-23T08:48:45"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/300026427> <http://purl.org/dc/terms/modified> "2012-03-16T14:07:32"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5000063187> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5000063189> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5001161297> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5001161298> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5001161299> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5001161300> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5002276735> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5002276736> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5002627627> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5002627628> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5003410808> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5003410809> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5003410810> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5003410811> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5004166711> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5004166712> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5004166713> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5004166714> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5000063188> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5003176722> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5002276745> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5002627639> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5003410828> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#changeNote> <http://vocab.getty.edu/aat/rev/5004166735> .
+        <http://vocab.getty.edu/aat/300026427> <http://vocab.getty.edu/ontology#broader> <http://vocab.getty.edu/aat/300026421> .
+        <http://vocab.getty.edu/aat/300026427> <http://vocab.getty.edu/ontology#broaderGenericExtended> <http://vocab.getty.edu/aat/300026031> .
+        <http://vocab.getty.edu/aat/300026427> <http://vocab.getty.edu/ontology#broaderGenericExtended> <http://vocab.getty.edu/aat/300069727> .
+        <http://vocab.getty.edu/aat/300026427> <http://vocab.getty.edu/ontology#broaderGenericExtended> <http://vocab.getty.edu/aat/300138088> .
+        <http://vocab.getty.edu/aat/300026427> <http://vocab.getty.edu/ontology#broaderGenericExtended> <http://vocab.getty.edu/aat/300220751> .
+        <http://vocab.getty.edu/aat/300026427> <http://vocab.getty.edu/ontology#broaderGenericExtended> <http://vocab.getty.edu/aat/300026421> .
+        <http://vocab.getty.edu/aat/300026427> <http://vocab.getty.edu/ontology#broaderGenericExtended> <http://vocab.getty.edu/aat/300132471> .
+        <http://vocab.getty.edu/aat/300026427> <http://vocab.getty.edu/ontology#broaderGenericExtended> <http://vocab.getty.edu/aat/300137954> .
+        <http://vocab.getty.edu/aat/300026427> <http://vocab.getty.edu/ontology#broaderGenericExtended> <http://vocab.getty.edu/aat/300220428> .
+        <http://vocab.getty.edu/aat/300026427> <http://vocab.getty.edu/ontology#broaderGenericExtended> <http://vocab.getty.edu/aat/300264090> .
+        <http://vocab.getty.edu/aat/300026427> <http://vocab.getty.edu/ontology#broaderGenericExtended> <http://vocab.getty.edu/aat/300264092> .
+        <http://vocab.getty.edu/aat/300026427> <http://vocab.getty.edu/ontology#broaderGenericExtended> <http://vocab.getty.edu/aat/300054593> .
+        <http://vocab.getty.edu/aat/300026427> <http://vocab.getty.edu/ontology#broaderGenericExtended> <http://vocab.getty.edu/aat/300264552> .
+        <http://vocab.getty.edu/aat/300026427> <http://vocab.getty.edu/ontology#broaderGenericExtended> <http://vocab.getty.edu/aat/300026029> .
+        <http://vocab.getty.edu/aat/300026427> <http://vocab.getty.edu/ontology#broaderExtended> <http://vocab.getty.edu/aat/300026031> .
+        <http://vocab.getty.edu/aat/300026427> <http://vocab.getty.edu/ontology#broaderExtended> <http://vocab.getty.edu/aat/300069727> .
+        <http://vocab.getty.edu/aat/300026427> <http://vocab.getty.edu/ontology#broaderExtended> <http://vocab.getty.edu/aat/300138088> .
+        <http://vocab.getty.edu/aat/300026427> <http://vocab.getty.edu/ontology#broaderExtended> <http://vocab.getty.edu/aat/300220751> .
+        <http://vocab.getty.edu/aat/300026427> <http://vocab.getty.edu/ontology#broaderExtended> <http://vocab.getty.edu/aat/300026421> .
+        <http://vocab.getty.edu/aat/300026427> <http://vocab.getty.edu/ontology#broaderExtended> <http://vocab.getty.edu/aat/300132471> .
+        <http://vocab.getty.edu/aat/300026427> <http://vocab.getty.edu/ontology#broaderExtended> <http://vocab.getty.edu/aat/300137954> .
+        <http://vocab.getty.edu/aat/300026427> <http://vocab.getty.edu/ontology#broaderExtended> <http://vocab.getty.edu/aat/300220428> .
+        <http://vocab.getty.edu/aat/300026427> <http://vocab.getty.edu/ontology#broaderExtended> <http://vocab.getty.edu/aat/300264090> .
+        <http://vocab.getty.edu/aat/300026427> <http://vocab.getty.edu/ontology#broaderExtended> <http://vocab.getty.edu/aat/300264092> .
+        <http://vocab.getty.edu/aat/300026427> <http://vocab.getty.edu/ontology#broaderExtended> <http://vocab.getty.edu/aat/300054593> .
+        <http://vocab.getty.edu/aat/300026427> <http://vocab.getty.edu/ontology#broaderExtended> <http://vocab.getty.edu/aat/300264552> .
+        <http://vocab.getty.edu/aat/300026427> <http://vocab.getty.edu/ontology#broaderExtended> <http://vocab.getty.edu/aat/300026029> .
+        <http://vocab.getty.edu/aat/300026427> <http://vocab.getty.edu/ontology#broaderPreferredExtended> <http://vocab.getty.edu/aat/300026031> .
+        <http://vocab.getty.edu/aat/300026427> <http://vocab.getty.edu/ontology#broaderPreferredExtended> <http://vocab.getty.edu/aat/300220751> .
+        <http://vocab.getty.edu/aat/300026427> <http://vocab.getty.edu/ontology#broaderPreferredExtended> <http://vocab.getty.edu/aat/300026421> .
+        <http://vocab.getty.edu/aat/300026427> <http://vocab.getty.edu/ontology#broaderPreferredExtended> <http://vocab.getty.edu/aat/300137954> .
+        <http://vocab.getty.edu/aat/300026427> <http://vocab.getty.edu/ontology#broaderPreferredExtended> <http://vocab.getty.edu/aat/300220428> .
+        <http://vocab.getty.edu/aat/300026427> <http://vocab.getty.edu/ontology#broaderPreferredExtended> <http://vocab.getty.edu/aat/300264092> .
+        <http://vocab.getty.edu/aat/300026427> <http://vocab.getty.edu/ontology#broaderPreferredExtended> <http://vocab.getty.edu/aat/300264552> .
+        <http://vocab.getty.edu/aat/300026427> <http://vocab.getty.edu/ontology#broaderPreferredExtended> <http://vocab.getty.edu/aat/300026029> .
+        <http://vocab.getty.edu/aat/300026427> <http://vocab.getty.edu/ontology#parentString> "<document genres for music>, <documents for oral or performed works>, <documents by form>, document genres, information forms (objects), Information Forms (hierarchy name), Visual and Verbal Communication (hierarchy name), Objects Facet" .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/scopeNote/31538> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/scopeNote/63113> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/scopeNote/82743> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/scopeNote/134861> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/scopeNote/111848> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5000063187> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5000063189> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5001161297> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5001161298> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5001161299> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5001161300> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5002276735> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5002276736> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5002627627> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5002627628> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5003410808> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5003410809> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5003410810> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5003410811> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5004166711> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5004166712> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5004166713> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5004166714> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5000063188> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5003176722> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5002276745> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5002627639> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5003410828> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5004166735> .
+        <http://vocab.getty.edu/aat/300026427> <http://vocab.getty.edu/ontology#parentStringAbbrev> "<document genres for music>, <documents for oral or performed works>, ... Objects Facet" .
+        <http://vocab.getty.edu/aat/300026427> <http://vocab.getty.edu/ontology#displayOrder> "6"^^<http://www.w3.org/2001/XMLSchema#positiveInteger> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2008/05/skos-xl#prefLabel> <http://vocab.getty.edu/aat/term/1000026427-en> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2008/05/skos-xl#prefLabel> <http://vocab.getty.edu/aat/term/1000551146-zh-Hant> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2008/05/skos-xl#prefLabel> <http://vocab.getty.edu/aat/term/1000551148-zh-Latn-pinyin-x-hanyu> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2008/05/skos-xl#prefLabel> <http://vocab.getty.edu/aat/term/1000551147-zh-Latn-pinyin-x-notone> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2008/05/skos-xl#prefLabel> <http://vocab.getty.edu/aat/term/1000551149-zh-Latn-wadegile> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2008/05/skos-xl#prefLabel> <http://vocab.getty.edu/aat/term/1000478833-nl> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2008/05/skos-xl#prefLabel> <http://vocab.getty.edu/aat/term/1000654076-de> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2008/05/skos-xl#prefLabel> <http://vocab.getty.edu/aat/term/1000425542-es> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#prefLabel> "scores"@en .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#prefLabel> "\u7E3D\u8B5C"@zh-hant .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#prefLabel> "z\u01D2ng p\u01D4"@zh-latn-pinyin-x-hanyu .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#prefLabel> "zong pu"@zh-latn-pinyin-x-notone .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#prefLabel> "tsung p'u"@zh-latn-wadegile .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#prefLabel> "partituren"@nl .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#prefLabel> "Partitur"@de .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#prefLabel> "partituras"@es .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2008/05/skos-xl#altLabel> <http://vocab.getty.edu/aat/term/1000300112-en> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2008/05/skos-xl#altLabel> <http://vocab.getty.edu/aat/term/1000026428-en> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2008/05/skos-xl#altLabel> <http://vocab.getty.edu/aat/term/1000185506-en> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2008/05/skos-xl#altLabel> <http://vocab.getty.edu/aat/term/1000478834-nl> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2008/05/skos-xl#altLabel> <http://vocab.getty.edu/aat/term/1000654073-de> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2008/05/skos-xl#altLabel> <http://vocab.getty.edu/aat/term/1000654075-de> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2008/05/skos-xl#altLabel> <http://vocab.getty.edu/aat/term/1000654074-de> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2008/05/skos-xl#altLabel> <http://vocab.getty.edu/aat/term/1000425543-es> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#altLabel> "score"@en .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#altLabel> "music scores"@en .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#altLabel> "scores, music"@en .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#altLabel> "partituur"@nl .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#altLabel> "Partituren"@de .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#altLabel> "Scores (Partituren)"@de .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#altLabel> "Score (Partitur)"@de .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#altLabel> "partitura"@es .
+        <http://vocab.getty.edu/aat/300026427> <http://vocab.getty.edu/ontology#broaderGeneric> <http://vocab.getty.edu/aat/300026421> .
+        <http://vocab.getty.edu/aat/300026427> <http://vocab.getty.edu/ontology#broaderPreferred> <http://vocab.getty.edu/aat/300026421> .
+        <http://vocab.getty.edu/aat/300026427> <http://vocab.getty.edu/ontology#broaderNonConcept> <http://vocab.getty.edu/aat/300026421> .
+        <http://vocab.getty.edu/aat/300026427> <http://vocab.getty.edu/ontology#broaderNonConcept> <http://vocab.getty.edu/aat/300137954> .
+        <http://vocab.getty.edu/aat/300026427> <http://vocab.getty.edu/ontology#broaderNonConcept> <http://vocab.getty.edu/aat/300220428> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#broader> <http://vocab.getty.edu/aat/300026031> .
+        <http://vocab.getty.edu/aat/300026427> <http://purl.org/iso25964/skos-thes#broaderGeneric> <http://vocab.getty.edu/aat/300026031> .
+        <http://vocab.getty.edu/aat/300026427> <http://vocab.getty.edu/ontology#prefLabelGVP> <http://vocab.getty.edu/aat/term/1000026427-en> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#inScheme> <http://vocab.getty.edu/aat/> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#scopeNote> <http://vocab.getty.edu/aat/scopeNote/31538> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#scopeNote> <http://vocab.getty.edu/aat/scopeNote/63113> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#scopeNote> <http://vocab.getty.edu/aat/scopeNote/82743> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#scopeNote> <http://vocab.getty.edu/aat/scopeNote/134861> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#scopeNote> <http://vocab.getty.edu/aat/scopeNote/111848> .
+        <http://vocab.getty.edu/aat/300026427> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000000> .
+        <http://vocab.getty.edu/aat/300026427> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000131> .
+        <http://vocab.getty.edu/aat/300026427> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000205> .
+        <http://vocab.getty.edu/aat/300026427> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000088> .
+        <http://vocab.getty.edu/aat/300026427> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000178> .
+        <http://vocab.getty.edu/aat/300026427> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000232> .
+        <http://vocab.getty.edu/aat/300026427> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000052373> .
+        <http://vocab.getty.edu/aat/300026427> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000051089-subject-300026427> .
+        <http://vocab.getty.edu/aat/300026427> <http://purl.org/dc/elements/1.1/identifier> "300026427" .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#broaderTransitive> <http://vocab.getty.edu/aat/300026031> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#broaderTransitive> <http://vocab.getty.edu/aat/300138088> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#broaderTransitive> <http://vocab.getty.edu/aat/300220751> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/2004/02/skos/core#broaderTransitive> <http://vocab.getty.edu/aat/300132471> .
+        <http://vocab.getty.edu/aat/300026427> <http://rdfs.org/ns/void#inDataset> <http://vocab.getty.edu/dataset/aat> .
+        <http://vocab.getty.edu/aat/300026427> <http://purl.org/dc/terms/license> <http://opendatacommons.org/licenses/by/1.0/> .
+        <http://vocab.getty.edu/aat/300026427> <http://creativecommons.org/ns#license> <http://opendatacommons.org/licenses/by/1.0/> .
+        <http://vocab.getty.edu/aat/300026427> <http://www.w3.org/ns/prov#wasGeneratedBy> <http://vocab.getty.edu/aat/rev/5000063187> .
+        <http://vocab.getty.edu/aat/rev/5000063187> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Activity> .
+        <http://vocab.getty.edu/aat/rev/5000063187> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Create> .
+        <http://vocab.getty.edu/aat/rev/5000063187> <http://purl.org/dc/elements/1.1/type> "created" .
+        <http://vocab.getty.edu/aat/rev/5000063187> <http://www.w3.org/ns/prov#startedAtTime> "1988-01-01T00:00:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/rev/5000063189> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Activity> .
+        <http://vocab.getty.edu/aat/rev/5000063189> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Modify> .
+        <http://vocab.getty.edu/aat/rev/5000063189> <http://purl.org/dc/elements/1.1/type> "term added" .
+        <http://vocab.getty.edu/aat/rev/5000063189> <http://www.w3.org/ns/prov#startedAtTime> "1990-10-01T00:00:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/rev/5000063189> <http://www.w3.org/ns/prov#used> <http://vocab.getty.edu/aat/300026427> .
+        <http://vocab.getty.edu/aat/rev/5001161297> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Activity> .
+        <http://vocab.getty.edu/aat/rev/5001161297> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Modify> .
+        <http://vocab.getty.edu/aat/rev/5001161297> <http://purl.org/dc/elements/1.1/type> "term added" .
+        <http://vocab.getty.edu/aat/rev/5001161297> <http://www.w3.org/ns/prov#startedAtTime> "2001-07-26T22:04:23"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/rev/5001161297> <http://purl.org/dc/elements/1.1/description> "scores (1000026427);" .
+        <http://vocab.getty.edu/aat/rev/5001161297> <http://www.w3.org/ns/prov#used> <http://vocab.getty.edu/aat/300026427> .
+        <http://vocab.getty.edu/aat/rev/5001161298> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Activity> .
+        <http://vocab.getty.edu/aat/rev/5001161298> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Modify> .
+        <http://vocab.getty.edu/aat/rev/5001161298> <http://purl.org/dc/elements/1.1/type> "term added" .
+        <http://vocab.getty.edu/aat/rev/5001161298> <http://www.w3.org/ns/prov#startedAtTime> "2001-07-26T22:04:23"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/rev/5001161298> <http://purl.org/dc/elements/1.1/description> "score (1000300112);" .
+        <http://vocab.getty.edu/aat/rev/5001161298> <http://www.w3.org/ns/prov#used> <http://vocab.getty.edu/aat/300026427> .
+        <http://vocab.getty.edu/aat/rev/5001161299> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Activity> .
+        <http://vocab.getty.edu/aat/rev/5001161299> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Modify> .
+        <http://vocab.getty.edu/aat/rev/5001161299> <http://purl.org/dc/elements/1.1/type> "term added" .
+        <http://vocab.getty.edu/aat/rev/5001161299> <http://www.w3.org/ns/prov#startedAtTime> "2001-07-26T22:04:23"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/rev/5001161299> <http://purl.org/dc/elements/1.1/description> "music scores (1000026428);" .
+        <http://vocab.getty.edu/aat/rev/5001161299> <http://www.w3.org/ns/prov#used> <http://vocab.getty.edu/aat/300026427> .
+        <http://vocab.getty.edu/aat/rev/5001161300> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Activity> .
+        <http://vocab.getty.edu/aat/rev/5001161300> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Modify> .
+        <http://vocab.getty.edu/aat/rev/5001161300> <http://purl.org/dc/elements/1.1/type> "term added" .
+        <http://vocab.getty.edu/aat/rev/5001161300> <http://www.w3.org/ns/prov#startedAtTime> "2001-07-26T22:04:23"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/rev/5001161300> <http://purl.org/dc/elements/1.1/description> "scores, music (1000185506);" .
+        <http://vocab.getty.edu/aat/rev/5001161300> <http://www.w3.org/ns/prov#used> <http://vocab.getty.edu/aat/300026427> .
+        <http://vocab.getty.edu/aat/rev/5002276735> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Activity> .
+        <http://vocab.getty.edu/aat/rev/5002276735> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Modify> .
+        <http://vocab.getty.edu/aat/rev/5002276735> <http://purl.org/dc/elements/1.1/type> "term added" .
+        <http://vocab.getty.edu/aat/rev/5002276735> <http://www.w3.org/ns/prov#startedAtTime> "2010-04-23T01:14:05"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/rev/5002276735> <http://purl.org/dc/elements/1.1/description> "partituras (1000425542);" .
+        <http://vocab.getty.edu/aat/rev/5002276735> <http://www.w3.org/ns/prov#used> <http://vocab.getty.edu/aat/300026427> .
+        <http://vocab.getty.edu/aat/rev/5002276736> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Activity> .
+        <http://vocab.getty.edu/aat/rev/5002276736> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Modify> .
+        <http://vocab.getty.edu/aat/rev/5002276736> <http://purl.org/dc/elements/1.1/type> "term added" .
+        <http://vocab.getty.edu/aat/rev/5002276736> <http://www.w3.org/ns/prov#startedAtTime> "2010-04-23T01:14:05"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/rev/5002276736> <http://purl.org/dc/elements/1.1/description> "partitura (1000425543);" .
+        <http://vocab.getty.edu/aat/rev/5002276736> <http://www.w3.org/ns/prov#used> <http://vocab.getty.edu/aat/300026427> .
+        <http://vocab.getty.edu/aat/rev/5002627627> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Activity> .
+        <http://vocab.getty.edu/aat/rev/5002627627> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Modify> .
+        <http://vocab.getty.edu/aat/rev/5002627627> <http://purl.org/dc/elements/1.1/type> "term added" .
+        <http://vocab.getty.edu/aat/rev/5002627627> <http://www.w3.org/ns/prov#startedAtTime> "2011-01-07T11:58:43"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/rev/5002627627> <http://purl.org/dc/elements/1.1/description> "partituren (1000478833);" .
+        <http://vocab.getty.edu/aat/rev/5002627627> <http://www.w3.org/ns/prov#used> <http://vocab.getty.edu/aat/300026427> .
+        <http://vocab.getty.edu/aat/rev/5002627628> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Activity> .
+        <http://vocab.getty.edu/aat/rev/5002627628> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Modify> .
+        <http://vocab.getty.edu/aat/rev/5002627628> <http://purl.org/dc/elements/1.1/type> "term added" .
+        <http://vocab.getty.edu/aat/rev/5002627628> <http://www.w3.org/ns/prov#startedAtTime> "2011-01-07T11:58:43"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/rev/5002627628> <http://purl.org/dc/elements/1.1/description> "partituur (1000478834);" .
+        <http://vocab.getty.edu/aat/rev/5002627628> <http://www.w3.org/ns/prov#used> <http://vocab.getty.edu/aat/300026427> .
+        <http://vocab.getty.edu/aat/rev/5003410808> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Activity> .
+        <http://vocab.getty.edu/aat/rev/5003410808> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Modify> .
+        <http://vocab.getty.edu/aat/rev/5003410808> <http://purl.org/dc/elements/1.1/type> "term added" .
+        <http://vocab.getty.edu/aat/rev/5003410808> <http://www.w3.org/ns/prov#startedAtTime> "2013-03-29T09:55:11"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/rev/5003410808> <http://purl.org/dc/elements/1.1/description> "\u7E3D\u8B5C (1000551146);" .
+        <http://vocab.getty.edu/aat/rev/5003410808> <http://www.w3.org/ns/prov#used> <http://vocab.getty.edu/aat/300026427> .
+        <http://vocab.getty.edu/aat/rev/5003410809> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Activity> .
+        <http://vocab.getty.edu/aat/rev/5003410809> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Modify> .
+        <http://vocab.getty.edu/aat/rev/5003410809> <http://purl.org/dc/elements/1.1/type> "term added" .
+        <http://vocab.getty.edu/aat/rev/5003410809> <http://www.w3.org/ns/prov#startedAtTime> "2013-03-29T09:55:11"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/rev/5003410809> <http://purl.org/dc/elements/1.1/description> "tsung p'u (1000551149);" .
+        <http://vocab.getty.edu/aat/rev/5003410809> <http://www.w3.org/ns/prov#used> <http://vocab.getty.edu/aat/300026427> .
+        <http://vocab.getty.edu/aat/rev/5003410810> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Activity> .
+        <http://vocab.getty.edu/aat/rev/5003410810> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Modify> .
+        <http://vocab.getty.edu/aat/rev/5003410810> <http://purl.org/dc/elements/1.1/type> "term added" .
+        <http://vocab.getty.edu/aat/rev/5003410810> <http://www.w3.org/ns/prov#startedAtTime> "2013-03-29T09:55:11"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/rev/5003410810> <http://purl.org/dc/elements/1.1/description> "z\u01D2ng p\u01D4 (1000551148);" .
+        <http://vocab.getty.edu/aat/rev/5003410810> <http://www.w3.org/ns/prov#used> <http://vocab.getty.edu/aat/300026427> .
+        <http://vocab.getty.edu/aat/rev/5003410811> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Activity> .
+        <http://vocab.getty.edu/aat/rev/5003410811> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Modify> .
+        <http://vocab.getty.edu/aat/rev/5003410811> <http://purl.org/dc/elements/1.1/type> "term added" .
+        <http://vocab.getty.edu/aat/rev/5003410811> <http://www.w3.org/ns/prov#startedAtTime> "2013-03-29T09:55:11"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/rev/5003410811> <http://purl.org/dc/elements/1.1/description> "zong pu (1000551147);" .
+        <http://vocab.getty.edu/aat/rev/5003410811> <http://www.w3.org/ns/prov#used> <http://vocab.getty.edu/aat/300026427> .
+        <http://vocab.getty.edu/aat/rev/5004166711> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Activity> .
+        <http://vocab.getty.edu/aat/rev/5004166711> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Modify> .
+        <http://vocab.getty.edu/aat/rev/5004166711> <http://purl.org/dc/elements/1.1/type> "term added" .
+        <http://vocab.getty.edu/aat/rev/5004166711> <http://www.w3.org/ns/prov#startedAtTime> "2016-09-23T08:48:44"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/rev/5004166711> <http://purl.org/dc/elements/1.1/description> "Scores (1000654073);" .
+        <http://vocab.getty.edu/aat/rev/5004166711> <http://www.w3.org/ns/prov#used> <http://vocab.getty.edu/aat/300026427> .
+        <http://vocab.getty.edu/aat/rev/5004166712> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Activity> .
+        <http://vocab.getty.edu/aat/rev/5004166712> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Modify> .
+        <http://vocab.getty.edu/aat/rev/5004166712> <http://purl.org/dc/elements/1.1/type> "term added" .
+        <http://vocab.getty.edu/aat/rev/5004166712> <http://www.w3.org/ns/prov#startedAtTime> "2016-09-23T08:48:44"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/rev/5004166712> <http://purl.org/dc/elements/1.1/description> "Partitur (1000654076);" .
+        <http://vocab.getty.edu/aat/rev/5004166712> <http://www.w3.org/ns/prov#used> <http://vocab.getty.edu/aat/300026427> .
+        <http://vocab.getty.edu/aat/rev/5004166713> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Activity> .
+        <http://vocab.getty.edu/aat/rev/5004166713> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Modify> .
+        <http://vocab.getty.edu/aat/rev/5004166713> <http://purl.org/dc/elements/1.1/type> "term added" .
+        <http://vocab.getty.edu/aat/rev/5004166713> <http://www.w3.org/ns/prov#startedAtTime> "2016-09-23T08:48:44"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/rev/5004166713> <http://purl.org/dc/elements/1.1/description> "Partituren (1000654075);" .
+        <http://vocab.getty.edu/aat/rev/5004166713> <http://www.w3.org/ns/prov#used> <http://vocab.getty.edu/aat/300026427> .
+        <http://vocab.getty.edu/aat/rev/5004166714> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Activity> .
+        <http://vocab.getty.edu/aat/rev/5004166714> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Modify> .
+        <http://vocab.getty.edu/aat/rev/5004166714> <http://purl.org/dc/elements/1.1/type> "term added" .
+        <http://vocab.getty.edu/aat/rev/5004166714> <http://www.w3.org/ns/prov#startedAtTime> "2016-09-23T08:48:44"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/rev/5004166714> <http://purl.org/dc/elements/1.1/description> "Score (1000654074);" .
+        <http://vocab.getty.edu/aat/rev/5004166714> <http://www.w3.org/ns/prov#used> <http://vocab.getty.edu/aat/300026427> .
+        <http://vocab.getty.edu/aat/rev/5000063188> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Activity> .
+        <http://vocab.getty.edu/aat/rev/5000063188> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Modify> .
+        <http://vocab.getty.edu/aat/rev/5000063188> <http://purl.org/dc/elements/1.1/type> "moved" .
+        <http://vocab.getty.edu/aat/rev/5000063188> <http://www.w3.org/ns/prov#startedAtTime> "1992-11-25T00:00:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/rev/5000063188> <http://www.w3.org/ns/prov#used> <http://vocab.getty.edu/aat/300026427> .
+        <http://vocab.getty.edu/aat/rev/5003176722> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Activity> .
+        <http://vocab.getty.edu/aat/rev/5003176722> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Modify> .
+        <http://vocab.getty.edu/aat/rev/5003176722> <http://purl.org/dc/elements/1.1/type> "updated" .
+        <http://vocab.getty.edu/aat/rev/5003176722> <http://www.w3.org/ns/prov#startedAtTime> "2012-03-16T14:07:32"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+        <http://vocab.getty.edu/aat/rev/5003176722> <http://purl.org/dc/elements/1.1/description> "GCI Source and Contributor added" .
+        <http://vocab.getty.edu/aat/rev/5003176722> <http://www.w3.org/ns/prov#used> <http://vocab.getty.edu/aat/300026427> .
+        <http://vocab.getty.edu/aat/source/2000051089-subject-300026427> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/DocumentPart> .
+        <http://vocab.getty.edu/aat/source/2000051089-subject-300026427> <http://purl.org/dc/terms/isPartOf> <http://vocab.getty.edu/aat/source/2000051089> .
+        <http://vocab.getty.edu/aat/source/2000051089-subject-300026427> <http://purl.org/ontology/bibo/locator> "128570 checked 26 January 2012" .
+        <http://vocab.getty.edu/aat/scopeNote/31538> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://vocab.getty.edu/ontology#ScopeNote> .
+        <http://vocab.getty.edu/aat/scopeNote/31538> <http://www.w3.org/1999/02/22-rdf-syntax-ns#value> "Original and entire drafts or transcripts of musical compositions or arrangements, with the parts of all the different instruments or voices written on staffs one above another, so that they can be read at a glance."@en .
+        <http://vocab.getty.edu/aat/scopeNote/31538> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000000> .
+        <http://vocab.getty.edu/aat/scopeNote/31538> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000015951> .
+        <http://vocab.getty.edu/aat/scopeNote/31538> <http://purl.org/dc/elements/1.1/identifier> "31538" .
+        <http://vocab.getty.edu/aat/scopeNote/31538> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300388277> .
+        <http://vocab.getty.edu/aat/scopeNote/31538> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/en> .
+        <http://vocab.getty.edu/aat/scopeNote/63113> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://vocab.getty.edu/ontology#ScopeNote> .
+        <http://vocab.getty.edu/aat/scopeNote/63113> <http://www.w3.org/1999/02/22-rdf-syntax-ns#value> "Versiones originales y completas o transcripciones de composiciones musicales o arreglos, con las partes de todos los diferentes instrumentos o voces escritas en pentagramas sobrepuestas, para poder ser le\u00EDdas a primera vista."@es .
+        <http://vocab.getty.edu/aat/scopeNote/63113> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000131> .
+        <http://vocab.getty.edu/aat/scopeNote/63113> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000051034> .
+        <http://vocab.getty.edu/aat/scopeNote/63113> <http://purl.org/dc/elements/1.1/identifier> "63113" .
+        <http://vocab.getty.edu/aat/scopeNote/63113> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300389311> .
+        <http://vocab.getty.edu/aat/scopeNote/63113> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/es> .
+        <http://vocab.getty.edu/aat/scopeNote/82743> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://vocab.getty.edu/ontology#ScopeNote> .
+        <http://vocab.getty.edu/aat/scopeNote/82743> <http://www.w3.org/1999/02/22-rdf-syntax-ns#value> "Volledige noteringen van muziekstukken of arrangementen of een eerdere versie daarvan, waarbij de partijen van alle verschillende instrumenten of stemmen op notenbalken onder elkaar staan, zodat ze in \u00E9\u00E9n oogopslag kunnen worden gelezen."@nl .
+        <http://vocab.getty.edu/aat/scopeNote/82743> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000205> .
+        <http://vocab.getty.edu/aat/scopeNote/82743> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000052373> .
+        <http://vocab.getty.edu/aat/scopeNote/82743> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000077523> .
+        <http://vocab.getty.edu/aat/scopeNote/82743> <http://purl.org/dc/elements/1.1/identifier> "82743" .
+        <http://vocab.getty.edu/aat/scopeNote/82743> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300388256> .
+        <http://vocab.getty.edu/aat/scopeNote/82743> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/nl> .
+        <http://vocab.getty.edu/aat/scopeNote/134861> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://vocab.getty.edu/ontology#ScopeNote> .
+        <http://vocab.getty.edu/aat/scopeNote/134861> <http://www.w3.org/1999/02/22-rdf-syntax-ns#value> "Originales und vollst\u00E4ndiges Manuskript oder Abschrift einer musikalischen Komposition oder eines Arrangements, mit den Stimmen aller Instrumente und aller S\u00E4nger und S\u00E4ngerinnen auf \u00FCbereinanderliegenden Notenlinien, damit sie auf einen Blick erfasst werden k\u00F6nnen."@de .
+        <http://vocab.getty.edu/aat/scopeNote/134861> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000232> .
+        <http://vocab.getty.edu/aat/scopeNote/134861> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000084808> .
+        <http://vocab.getty.edu/aat/scopeNote/134861> <http://purl.org/dc/elements/1.1/identifier> "134861" .
+        <http://vocab.getty.edu/aat/scopeNote/134861> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300388344> .
+        <http://vocab.getty.edu/aat/scopeNote/134861> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/de> .
+        <http://vocab.getty.edu/aat/scopeNote/111848> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://vocab.getty.edu/ontology#ScopeNote> .
+        <http://vocab.getty.edu/aat/scopeNote/111848> <http://www.w3.org/1999/02/22-rdf-syntax-ns#value> "\u97F3\u6A02\u5275\u4F5C\u6216\u6539\u7DE8\u66F2\u7684\u539F\u59CB\u3001\u5B8C\u6574\u8349\u7A3F\u6216\u8B04\u672C\uFF0C\u6240\u6709\u6A02\u5668\u6216\u5404\u8072\u90E8\u5747\u4E00\u500B\u758A\u4E00\u500B\u5BEB\u5728\u4E94\u7DDA\u8B5C\u4E0A\uFF0C\u4FFE\u80FD\u4E00\u76EE\u77AD\u7136\u3002"@zh-hant .
+        <http://vocab.getty.edu/aat/scopeNote/111848> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000178> .
+        <http://vocab.getty.edu/aat/scopeNote/111848> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000052784> .
+        <http://vocab.getty.edu/aat/scopeNote/111848> <http://purl.org/dc/elements/1.1/identifier> "111848" .
+        <http://vocab.getty.edu/aat/scopeNote/111848> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300388116> .
+        <http://vocab.getty.edu/aat/scopeNote/111848> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/zh-Hant> .
+        <http://vocab.getty.edu/aat/term/1000026427-en> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2008/05/skos-xl#Label> .
+        <http://vocab.getty.edu/aat/term/1000026427-en> <http://vocab.getty.edu/ontology#term> "scores"@en .
+        <http://vocab.getty.edu/aat/term/1000026427-en> <http://vocab.getty.edu/ontology#displayOrder> "1"^^<http://www.w3.org/2001/XMLSchema#positiveInteger> .
+        <http://vocab.getty.edu/aat/term/1000026427-en> <http://www.w3.org/2008/05/skos-xl#literalForm> "scores"@en .
+        <http://vocab.getty.edu/aat/term/1000026427-en> <http://vocab.getty.edu/ontology#termType> <http://vocab.getty.edu/term/type/Descriptor> .
+        <http://vocab.getty.edu/aat/term/1000026427-en> <http://vocab.getty.edu/ontology#termPOS> <http://vocab.getty.edu/term/POS/PluralNoun> .
+        <http://vocab.getty.edu/aat/term/1000026427-en> <http://vocab.getty.edu/ontology#contributorPreferred> <http://vocab.getty.edu/aat/contrib/10000000> .
+        <http://vocab.getty.edu/aat/term/1000026427-en> <http://vocab.getty.edu/ontology#contributorPreferred> <http://vocab.getty.edu/aat/contrib/10000088> .
+        <http://vocab.getty.edu/aat/term/1000026427-en> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000000> .
+        <http://vocab.getty.edu/aat/term/1000026427-en> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000088> .
+        <http://vocab.getty.edu/aat/term/1000026427-en> <http://vocab.getty.edu/ontology#sourcePreferred> <http://vocab.getty.edu/aat/source/2000001181> .
+        <http://vocab.getty.edu/aat/term/1000026427-en> <http://vocab.getty.edu/ontology#sourcePreferred> <http://vocab.getty.edu/aat/source/2000015951> .
+        <http://vocab.getty.edu/aat/term/1000026427-en> <http://vocab.getty.edu/ontology#sourcePreferred> <http://vocab.getty.edu/aat/source/2000034361> .
+        <http://vocab.getty.edu/aat/term/1000026427-en> <http://vocab.getty.edu/ontology#sourcePreferred> <http://vocab.getty.edu/aat/source/2000051089-term-1000026427> .
+        <http://vocab.getty.edu/aat/term/1000026427-en> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000001181> .
+        <http://vocab.getty.edu/aat/term/1000026427-en> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000015951> .
+        <http://vocab.getty.edu/aat/term/1000026427-en> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000034361> .
+        <http://vocab.getty.edu/aat/term/1000026427-en> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000051089-term-1000026427> .
+        <http://vocab.getty.edu/aat/term/1000026427-en> <http://purl.org/dc/elements/1.1/identifier> "1000026427" .
+        <http://vocab.getty.edu/aat/term/1000026427-en> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300388277> .
+        <http://vocab.getty.edu/aat/term/1000026427-en> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/en> .
+        <http://vocab.getty.edu/aat/term/1000551146-zh-Hant> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2008/05/skos-xl#Label> .
+        <http://vocab.getty.edu/aat/term/1000551146-zh-Hant> <http://vocab.getty.edu/ontology#term> "\u7E3D\u8B5C"@zh-hant .
+        <http://vocab.getty.edu/aat/term/1000551146-zh-Hant> <http://vocab.getty.edu/ontology#displayOrder> "5"^^<http://www.w3.org/2001/XMLSchema#positiveInteger> .
+        <http://vocab.getty.edu/aat/term/1000551146-zh-Hant> <http://www.w3.org/2008/05/skos-xl#literalForm> "\u7E3D\u8B5C"@zh-hant .
+        <http://vocab.getty.edu/aat/term/1000551146-zh-Hant> <http://vocab.getty.edu/ontology#termType> <http://vocab.getty.edu/term/type/Descriptor> .
+        <http://vocab.getty.edu/aat/term/1000551146-zh-Hant> <http://vocab.getty.edu/ontology#contributorPreferred> <http://vocab.getty.edu/aat/contrib/10000178> .
+        <http://vocab.getty.edu/aat/term/1000551146-zh-Hant> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000178> .
+        <http://vocab.getty.edu/aat/term/1000551146-zh-Hant> <http://vocab.getty.edu/ontology#sourcePreferred> <http://vocab.getty.edu/aat/source/2000070768-term-1000551146> .
+        <http://vocab.getty.edu/aat/term/1000551146-zh-Hant> <http://vocab.getty.edu/ontology#sourcePreferred> <http://vocab.getty.edu/aat/source/2000070769-term-1000551146> .
+        <http://vocab.getty.edu/aat/term/1000551146-zh-Hant> <http://vocab.getty.edu/ontology#sourcePreferred> <http://vocab.getty.edu/aat/source/2000093506-term-1000551146> .
+        <http://vocab.getty.edu/aat/term/1000551146-zh-Hant> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000070768-term-1000551146> .
+        <http://vocab.getty.edu/aat/term/1000551146-zh-Hant> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000070769-term-1000551146> .
+        <http://vocab.getty.edu/aat/term/1000551146-zh-Hant> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000093506-term-1000551146> .
+        <http://vocab.getty.edu/aat/term/1000551146-zh-Hant> <http://purl.org/dc/elements/1.1/identifier> "1000551146" .
+        <http://vocab.getty.edu/aat/term/1000551146-zh-Hant> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300388116> .
+        <http://vocab.getty.edu/aat/term/1000551146-zh-Hant> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/zh-Hant> .
+        <http://vocab.getty.edu/aat/term/1000551148-zh-Latn-pinyin-x-hanyu> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2008/05/skos-xl#Label> .
+        <http://vocab.getty.edu/aat/term/1000551148-zh-Latn-pinyin-x-hanyu> <http://vocab.getty.edu/ontology#term> "z\u01D2ng p\u01D4"@zh-latn-pinyin-x-hanyu .
+        <http://vocab.getty.edu/aat/term/1000551148-zh-Latn-pinyin-x-hanyu> <http://vocab.getty.edu/ontology#displayOrder> "6"^^<http://www.w3.org/2001/XMLSchema#positiveInteger> .
+        <http://vocab.getty.edu/aat/term/1000551148-zh-Latn-pinyin-x-hanyu> <http://www.w3.org/2008/05/skos-xl#literalForm> "z\u01D2ng p\u01D4"@zh-latn-pinyin-x-hanyu .
+        <http://vocab.getty.edu/aat/term/1000551148-zh-Latn-pinyin-x-hanyu> <http://vocab.getty.edu/ontology#termType> <http://vocab.getty.edu/term/type/UsedForTerm> .
+        <http://vocab.getty.edu/aat/term/1000551148-zh-Latn-pinyin-x-hanyu> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000178> .
+        <http://vocab.getty.edu/aat/term/1000551148-zh-Latn-pinyin-x-hanyu> <http://vocab.getty.edu/ontology#contributorNonPreferred> <http://vocab.getty.edu/aat/contrib/10000178> .
+        <http://vocab.getty.edu/aat/term/1000551148-zh-Latn-pinyin-x-hanyu> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000052784> .
+        <http://vocab.getty.edu/aat/term/1000551148-zh-Latn-pinyin-x-hanyu> <http://vocab.getty.edu/ontology#sourceNonPreferred> <http://vocab.getty.edu/aat/source/2000052784> .
+        <http://vocab.getty.edu/aat/term/1000551148-zh-Latn-pinyin-x-hanyu> <http://purl.org/dc/elements/1.1/identifier> "1000551148" .
+        <http://vocab.getty.edu/aat/term/1000551148-zh-Latn-pinyin-x-hanyu> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300388117> .
+        <http://vocab.getty.edu/aat/term/1000551148-zh-Latn-pinyin-x-hanyu> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/zh-Latn-pinyin-x-hanyu> .
+        <http://vocab.getty.edu/aat/term/1000551147-zh-Latn-pinyin-x-notone> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2008/05/skos-xl#Label> .
+        <http://vocab.getty.edu/aat/term/1000551147-zh-Latn-pinyin-x-notone> <http://vocab.getty.edu/ontology#term> "zong pu"@zh-latn-pinyin-x-notone .
+        <http://vocab.getty.edu/aat/term/1000551147-zh-Latn-pinyin-x-notone> <http://vocab.getty.edu/ontology#displayOrder> "7"^^<http://www.w3.org/2001/XMLSchema#positiveInteger> .
+        <http://vocab.getty.edu/aat/term/1000551147-zh-Latn-pinyin-x-notone> <http://www.w3.org/2008/05/skos-xl#literalForm> "zong pu"@zh-latn-pinyin-x-notone .
+        <http://vocab.getty.edu/aat/term/1000551147-zh-Latn-pinyin-x-notone> <http://vocab.getty.edu/ontology#termType> <http://vocab.getty.edu/term/type/UsedForTerm> .
+        <http://vocab.getty.edu/aat/term/1000551147-zh-Latn-pinyin-x-notone> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000178> .
+        <http://vocab.getty.edu/aat/term/1000551147-zh-Latn-pinyin-x-notone> <http://vocab.getty.edu/ontology#contributorNonPreferred> <http://vocab.getty.edu/aat/contrib/10000178> .
+        <http://vocab.getty.edu/aat/term/1000551147-zh-Latn-pinyin-x-notone> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000052784> .
+        <http://vocab.getty.edu/aat/term/1000551147-zh-Latn-pinyin-x-notone> <http://vocab.getty.edu/ontology#sourceNonPreferred> <http://vocab.getty.edu/aat/source/2000052784> .
+        <http://vocab.getty.edu/aat/term/1000551147-zh-Latn-pinyin-x-notone> <http://purl.org/dc/elements/1.1/identifier> "1000551147" .
+        <http://vocab.getty.edu/aat/term/1000551147-zh-Latn-pinyin-x-notone> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300388118> .
+        <http://vocab.getty.edu/aat/term/1000551147-zh-Latn-pinyin-x-notone> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/zh-Latn-pinyin-x-notone> .
+        <http://vocab.getty.edu/aat/term/1000551149-zh-Latn-wadegile> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2008/05/skos-xl#Label> .
+        <http://vocab.getty.edu/aat/term/1000551149-zh-Latn-wadegile> <http://vocab.getty.edu/ontology#term> "tsung p'u"@zh-latn-wadegile .
+        <http://vocab.getty.edu/aat/term/1000551149-zh-Latn-wadegile> <http://vocab.getty.edu/ontology#displayOrder> "8"^^<http://www.w3.org/2001/XMLSchema#positiveInteger> .
+        <http://vocab.getty.edu/aat/term/1000551149-zh-Latn-wadegile> <http://www.w3.org/2008/05/skos-xl#literalForm> "tsung p'u"@zh-latn-wadegile .
+        <http://vocab.getty.edu/aat/term/1000551149-zh-Latn-wadegile> <http://vocab.getty.edu/ontology#termType> <http://vocab.getty.edu/term/type/UsedForTerm> .
+        <http://vocab.getty.edu/aat/term/1000551149-zh-Latn-wadegile> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000178> .
+        <http://vocab.getty.edu/aat/term/1000551149-zh-Latn-wadegile> <http://vocab.getty.edu/ontology#contributorNonPreferred> <http://vocab.getty.edu/aat/contrib/10000178> .
+        <http://vocab.getty.edu/aat/term/1000551149-zh-Latn-wadegile> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000052784> .
+        <http://vocab.getty.edu/aat/term/1000551149-zh-Latn-wadegile> <http://vocab.getty.edu/ontology#sourceNonPreferred> <http://vocab.getty.edu/aat/source/2000052784> .
+        <http://vocab.getty.edu/aat/term/1000551149-zh-Latn-wadegile> <http://purl.org/dc/elements/1.1/identifier> "1000551149" .
+        <http://vocab.getty.edu/aat/term/1000551149-zh-Latn-wadegile> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300388121> .
+        <http://vocab.getty.edu/aat/term/1000551149-zh-Latn-wadegile> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/zh-Latn-wadegile> .
+        <http://vocab.getty.edu/aat/term/1000478833-nl> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2008/05/skos-xl#Label> .
+        <http://vocab.getty.edu/aat/term/1000478833-nl> <http://vocab.getty.edu/ontology#term> "partituren"@nl .
+        <http://vocab.getty.edu/aat/term/1000478833-nl> <http://vocab.getty.edu/ontology#displayOrder> "9"^^<http://www.w3.org/2001/XMLSchema#positiveInteger> .
+        <http://vocab.getty.edu/aat/term/1000478833-nl> <http://www.w3.org/2008/05/skos-xl#literalForm> "partituren"@nl .
+        <http://vocab.getty.edu/aat/term/1000478833-nl> <http://vocab.getty.edu/ontology#termType> <http://vocab.getty.edu/term/type/Descriptor> .
+        <http://vocab.getty.edu/aat/term/1000478833-nl> <http://vocab.getty.edu/ontology#contributorPreferred> <http://vocab.getty.edu/aat/contrib/10000205> .
+        <http://vocab.getty.edu/aat/term/1000478833-nl> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000205> .
+        <http://vocab.getty.edu/aat/term/1000478833-nl> <http://vocab.getty.edu/ontology#sourcePreferred> <http://vocab.getty.edu/aat/source/2000077523> .
+        <http://vocab.getty.edu/aat/term/1000478833-nl> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000052373> .
+        <http://vocab.getty.edu/aat/term/1000478833-nl> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000077523> .
+        <http://vocab.getty.edu/aat/term/1000478833-nl> <http://purl.org/dc/elements/1.1/identifier> "1000478833" .
+        <http://vocab.getty.edu/aat/term/1000478833-nl> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300388256> .
+        <http://vocab.getty.edu/aat/term/1000478833-nl> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/nl> .
+        <http://vocab.getty.edu/aat/term/1000654076-de> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2008/05/skos-xl#Label> .
+        <http://vocab.getty.edu/aat/term/1000654076-de> <http://vocab.getty.edu/ontology#term> "Partitur"@de .
+        <http://vocab.getty.edu/aat/term/1000654076-de> <http://vocab.getty.edu/ontology#displayOrder> "12"^^<http://www.w3.org/2001/XMLSchema#positiveInteger> .
+        <http://vocab.getty.edu/aat/term/1000654076-de> <http://www.w3.org/2008/05/skos-xl#literalForm> "Partitur"@de .
+        <http://vocab.getty.edu/aat/term/1000654076-de> <http://vocab.getty.edu/ontology#termType> <http://vocab.getty.edu/term/type/AlternateDescriptor> .
+        <http://vocab.getty.edu/aat/term/1000654076-de> <http://vocab.getty.edu/ontology#termPOS> <http://vocab.getty.edu/term/POS/SingularNoun> .
+        <http://vocab.getty.edu/aat/term/1000654076-de> <http://vocab.getty.edu/ontology#contributorPreferred> <http://vocab.getty.edu/aat/contrib/10000232> .
+        <http://vocab.getty.edu/aat/term/1000654076-de> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000232> .
+        <http://vocab.getty.edu/aat/term/1000654076-de> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000083634-term-1000654076> .
+        <http://vocab.getty.edu/aat/term/1000654076-de> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000083679-term-1000654076> .
+        <http://vocab.getty.edu/aat/term/1000654076-de> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000083630-term-1000654076> .
+        <http://vocab.getty.edu/aat/term/1000654076-de> <http://purl.org/dc/elements/1.1/identifier> "1000654076" .
+        <http://vocab.getty.edu/aat/term/1000654076-de> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300388344> .
+        <http://vocab.getty.edu/aat/term/1000654076-de> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/de> .
+        <http://vocab.getty.edu/aat/term/1000425542-es> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2008/05/skos-xl#Label> .
+        <http://vocab.getty.edu/aat/term/1000425542-es> <http://vocab.getty.edu/ontology#term> "partituras"@es .
+        <http://vocab.getty.edu/aat/term/1000425542-es> <http://vocab.getty.edu/ontology#displayOrder> "15"^^<http://www.w3.org/2001/XMLSchema#positiveInteger> .
+        <http://vocab.getty.edu/aat/term/1000425542-es> <http://www.w3.org/2008/05/skos-xl#literalForm> "partituras"@es .
+        <http://vocab.getty.edu/aat/term/1000425542-es> <http://vocab.getty.edu/ontology#termType> <http://vocab.getty.edu/term/type/Descriptor> .
+        <http://vocab.getty.edu/aat/term/1000425542-es> <http://vocab.getty.edu/ontology#termPOS> <http://vocab.getty.edu/term/POS/PluralNoun> .
+        <http://vocab.getty.edu/aat/term/1000425542-es> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000131> .
+        <http://vocab.getty.edu/aat/term/1000425542-es> <http://vocab.getty.edu/ontology#contributorNonPreferred> <http://vocab.getty.edu/aat/contrib/10000131> .
+        <http://vocab.getty.edu/aat/term/1000425542-es> <http://vocab.getty.edu/ontology#sourcePreferred> <http://vocab.getty.edu/aat/source/2000051214> .
+        <http://vocab.getty.edu/aat/term/1000425542-es> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000051214> .
+        <http://vocab.getty.edu/aat/term/1000425542-es> <http://purl.org/dc/elements/1.1/identifier> "1000425542" .
+        <http://vocab.getty.edu/aat/term/1000425542-es> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300389311> .
+        <http://vocab.getty.edu/aat/term/1000425542-es> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/es> .
+        <http://vocab.getty.edu/aat/source/2000051089-term-1000026427> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/Document> .
+        <http://vocab.getty.edu/aat/source/2000051089-term-1000026427> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/DocumentPart> .
+        <http://vocab.getty.edu/aat/source/2000051089-term-1000026427> <http://purl.org/dc/terms/isPartOf> <http://vocab.getty.edu/aat/source/2000051089> .
+        <http://vocab.getty.edu/aat/source/2000051089-term-1000026427> <http://purl.org/ontology/bibo/locator> "128570 checked 26 January 2012" .
+        <http://vocab.getty.edu/aat/source/2000070768-term-1000551146> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/Document> .
+        <http://vocab.getty.edu/aat/source/2000070768-term-1000551146> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/DocumentPart> .
+        <http://vocab.getty.edu/aat/source/2000070768-term-1000551146> <http://purl.org/dc/terms/isPartOf> <http://vocab.getty.edu/aat/source/2000070768> .
+        <http://vocab.getty.edu/aat/source/2000070768-term-1000551146> <http://purl.org/ontology/bibo/locator> "1564" .
+        <http://vocab.getty.edu/aat/source/2000070769-term-1000551146> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/Document> .
+        <http://vocab.getty.edu/aat/source/2000070769-term-1000551146> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/DocumentPart> .
+        <http://vocab.getty.edu/aat/source/2000070769-term-1000551146> <http://purl.org/dc/terms/isPartOf> <http://vocab.getty.edu/aat/source/2000070769> .
+        <http://vocab.getty.edu/aat/source/2000070769-term-1000551146> <http://purl.org/ontology/bibo/locator> "September 14, 2009" .
+        <http://vocab.getty.edu/aat/source/2000093506-term-1000551146> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/Document> .
+        <http://vocab.getty.edu/aat/source/2000093506-term-1000551146> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/DocumentPart> .
+        <http://vocab.getty.edu/aat/source/2000093506-term-1000551146> <http://purl.org/dc/terms/isPartOf> <http://vocab.getty.edu/aat/source/2000093506> .
+        <http://vocab.getty.edu/aat/source/2000093506-term-1000551146> <http://purl.org/ontology/bibo/locator> "1666" .
+        <http://vocab.getty.edu/aat/source/2000083634-term-1000654076> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/DocumentPart> .
+        <http://vocab.getty.edu/aat/source/2000083634-term-1000654076> <http://purl.org/dc/terms/isPartOf> <http://vocab.getty.edu/aat/source/2000083634> .
+        <http://vocab.getty.edu/aat/source/2000083634-term-1000654076> <http://purl.org/ontology/bibo/locator> "http://www.duden.de/node/702869/revisions/1341861/view" .
+        <http://vocab.getty.edu/aat/source/2000083679-term-1000654076> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/DocumentPart> .
+        <http://vocab.getty.edu/aat/source/2000083679-term-1000654076> <http://purl.org/dc/terms/isPartOf> <http://vocab.getty.edu/aat/source/2000083679> .
+        <http://vocab.getty.edu/aat/source/2000083679-term-1000654076> <http://purl.org/ontology/bibo/locator> "http://www.dwds.de/?view=1&qu=Partitur" .
+        <http://vocab.getty.edu/aat/source/2000083630-term-1000654076> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/DocumentPart> .
+        <http://vocab.getty.edu/aat/source/2000083630-term-1000654076> <http://purl.org/dc/terms/isPartOf> <http://vocab.getty.edu/aat/source/2000083630> .
+        <http://vocab.getty.edu/aat/source/2000083630-term-1000654076> <http://purl.org/ontology/bibo/locator> "http://d-nb.info/gnd/4173447-6" .
+        <http://vocab.getty.edu/aat/term/1000300112-en> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2008/05/skos-xl#Label> .
+        <http://vocab.getty.edu/aat/term/1000300112-en> <http://vocab.getty.edu/ontology#term> "score"@en .
+        <http://vocab.getty.edu/aat/term/1000300112-en> <http://vocab.getty.edu/ontology#displayOrder> "2"^^<http://www.w3.org/2001/XMLSchema#positiveInteger> .
+        <http://vocab.getty.edu/aat/term/1000300112-en> <http://www.w3.org/2008/05/skos-xl#literalForm> "score"@en .
+        <http://vocab.getty.edu/aat/term/1000300112-en> <http://vocab.getty.edu/ontology#termType> <http://vocab.getty.edu/term/type/AlternateDescriptor> .
+        <http://vocab.getty.edu/aat/term/1000300112-en> <http://vocab.getty.edu/ontology#termPOS> <http://vocab.getty.edu/term/POS/SingularNoun> .
+        <http://vocab.getty.edu/aat/term/1000300112-en> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000000> .
+        <http://vocab.getty.edu/aat/term/1000300112-en> <http://vocab.getty.edu/ontology#contributorNonPreferred> <http://vocab.getty.edu/aat/contrib/10000000> .
+        <http://vocab.getty.edu/aat/term/1000300112-en> <http://vocab.getty.edu/ontology#sourcePreferred> <http://vocab.getty.edu/aat/source/2000094828> .
+        <http://vocab.getty.edu/aat/term/1000300112-en> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000094828> .
+        <http://vocab.getty.edu/aat/term/1000300112-en> <http://purl.org/dc/elements/1.1/identifier> "1000300112" .
+        <http://vocab.getty.edu/aat/term/1000300112-en> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300388277> .
+        <http://vocab.getty.edu/aat/term/1000300112-en> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/en> .
+        <http://vocab.getty.edu/aat/term/1000026428-en> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2008/05/skos-xl#Label> .
+        <http://vocab.getty.edu/aat/term/1000026428-en> <http://vocab.getty.edu/ontology#term> "music scores"@en .
+        <http://vocab.getty.edu/aat/term/1000026428-en> <http://vocab.getty.edu/ontology#displayOrder> "3"^^<http://www.w3.org/2001/XMLSchema#positiveInteger> .
+        <http://vocab.getty.edu/aat/term/1000026428-en> <http://www.w3.org/2008/05/skos-xl#literalForm> "music scores"@en .
+        <http://vocab.getty.edu/aat/term/1000026428-en> <http://vocab.getty.edu/ontology#termType> <http://vocab.getty.edu/term/type/UsedForTerm> .
+        <http://vocab.getty.edu/aat/term/1000026428-en> <http://vocab.getty.edu/ontology#termPOS> <http://vocab.getty.edu/term/POS/Noun> .
+        <http://vocab.getty.edu/aat/term/1000026428-en> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000000> .
+        <http://vocab.getty.edu/aat/term/1000026428-en> <http://vocab.getty.edu/ontology#contributorNonPreferred> <http://vocab.getty.edu/aat/contrib/10000000> .
+        <http://vocab.getty.edu/aat/term/1000026428-en> <http://vocab.getty.edu/ontology#sourcePreferred> <http://vocab.getty.edu/aat/source/2000025071> .
+        <http://vocab.getty.edu/aat/term/1000026428-en> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000025071> .
+        <http://vocab.getty.edu/aat/term/1000026428-en> <http://purl.org/dc/elements/1.1/identifier> "1000026428" .
+        <http://vocab.getty.edu/aat/term/1000026428-en> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300388277> .
+        <http://vocab.getty.edu/aat/term/1000026428-en> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/en> .
+        <http://vocab.getty.edu/aat/term/1000185506-en> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2008/05/skos-xl#Label> .
+        <http://vocab.getty.edu/aat/term/1000185506-en> <http://vocab.getty.edu/ontology#term> "scores, music"@en .
+        <http://vocab.getty.edu/aat/term/1000185506-en> <http://vocab.getty.edu/ontology#displayOrder> "4"^^<http://www.w3.org/2001/XMLSchema#positiveInteger> .
+        <http://vocab.getty.edu/aat/term/1000185506-en> <http://www.w3.org/2008/05/skos-xl#literalForm> "scores, music"@en .
+        <http://vocab.getty.edu/aat/term/1000185506-en> <http://vocab.getty.edu/ontology#termType> <http://vocab.getty.edu/term/type/UsedForTerm> .
+        <http://vocab.getty.edu/aat/term/1000185506-en> <http://vocab.getty.edu/ontology#termPOS> <http://vocab.getty.edu/term/POS/Noun> .
+        <http://vocab.getty.edu/aat/term/1000185506-en> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000000> .
+        <http://vocab.getty.edu/aat/term/1000185506-en> <http://vocab.getty.edu/ontology#contributorNonPreferred> <http://vocab.getty.edu/aat/contrib/10000000> .
+        <http://vocab.getty.edu/aat/term/1000185506-en> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000094828> .
+        <http://vocab.getty.edu/aat/term/1000185506-en> <http://vocab.getty.edu/ontology#sourceNonPreferred> <http://vocab.getty.edu/aat/source/2000094828> .
+        <http://vocab.getty.edu/aat/term/1000185506-en> <http://purl.org/dc/elements/1.1/identifier> "1000185506" .
+        <http://vocab.getty.edu/aat/term/1000185506-en> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300388277> .
+        <http://vocab.getty.edu/aat/term/1000185506-en> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/en> .
+        <http://vocab.getty.edu/aat/term/1000478834-nl> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2008/05/skos-xl#Label> .
+        <http://vocab.getty.edu/aat/term/1000478834-nl> <http://vocab.getty.edu/ontology#term> "partituur"@nl .
+        <http://vocab.getty.edu/aat/term/1000478834-nl> <http://vocab.getty.edu/ontology#displayOrder> "10"^^<http://www.w3.org/2001/XMLSchema#positiveInteger> .
+        <http://vocab.getty.edu/aat/term/1000478834-nl> <http://www.w3.org/2008/05/skos-xl#literalForm> "partituur"@nl .
+        <http://vocab.getty.edu/aat/term/1000478834-nl> <http://vocab.getty.edu/ontology#termType> <http://vocab.getty.edu/term/type/AlternateDescriptor> .
+        <http://vocab.getty.edu/aat/term/1000478834-nl> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000205> .
+        <http://vocab.getty.edu/aat/term/1000478834-nl> <http://vocab.getty.edu/ontology#contributorNonPreferred> <http://vocab.getty.edu/aat/contrib/10000205> .
+        <http://vocab.getty.edu/aat/term/1000478834-nl> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000052373> .
+        <http://vocab.getty.edu/aat/term/1000478834-nl> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000077523> .
+        <http://vocab.getty.edu/aat/term/1000478834-nl> <http://purl.org/dc/elements/1.1/identifier> "1000478834" .
+        <http://vocab.getty.edu/aat/term/1000478834-nl> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300388256> .
+        <http://vocab.getty.edu/aat/term/1000478834-nl> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/nl> .
+        <http://vocab.getty.edu/aat/term/1000654073-de> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2008/05/skos-xl#Label> .
+        <http://vocab.getty.edu/aat/term/1000654073-de> <http://vocab.getty.edu/ontology#term> "Scores"@de .
+        <http://vocab.getty.edu/aat/term/1000654073-de> <http://vocab.getty.edu/ontology#qualifier> "Partituren"@de .
+        <http://vocab.getty.edu/aat/term/1000654073-de> <http://vocab.getty.edu/ontology#displayOrder> "11"^^<http://www.w3.org/2001/XMLSchema#positiveInteger> .
+        <http://vocab.getty.edu/aat/term/1000654073-de> <http://www.w3.org/2008/05/skos-xl#literalForm> "Scores (Partituren)"@de .
+        <http://vocab.getty.edu/aat/term/1000654073-de> <http://vocab.getty.edu/ontology#termType> <http://vocab.getty.edu/term/type/Descriptor> .
+        <http://vocab.getty.edu/aat/term/1000654073-de> <http://vocab.getty.edu/ontology#termPOS> <http://vocab.getty.edu/term/POS/PluralNoun> .
+        <http://vocab.getty.edu/aat/term/1000654073-de> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000232> .
+        <http://vocab.getty.edu/aat/term/1000654073-de> <http://vocab.getty.edu/ontology#contributorNonPreferred> <http://vocab.getty.edu/aat/contrib/10000232> .
+        <http://vocab.getty.edu/aat/term/1000654073-de> <http://vocab.getty.edu/ontology#sourcePreferred> <http://vocab.getty.edu/aat/source/2000083682> .
+        <http://vocab.getty.edu/aat/term/1000654073-de> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000083682> .
+        <http://vocab.getty.edu/aat/term/1000654073-de> <http://purl.org/dc/elements/1.1/identifier> "1000654073" .
+        <http://vocab.getty.edu/aat/term/1000654073-de> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300388344> .
+        <http://vocab.getty.edu/aat/term/1000654073-de> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/de> .
+        <http://vocab.getty.edu/aat/term/1000654075-de> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2008/05/skos-xl#Label> .
+        <http://vocab.getty.edu/aat/term/1000654075-de> <http://vocab.getty.edu/ontology#term> "Partituren"@de .
+        <http://vocab.getty.edu/aat/term/1000654075-de> <http://vocab.getty.edu/ontology#displayOrder> "13"^^<http://www.w3.org/2001/XMLSchema#positiveInteger> .
+        <http://vocab.getty.edu/aat/term/1000654075-de> <http://www.w3.org/2008/05/skos-xl#literalForm> "Partituren"@de .
+        <http://vocab.getty.edu/aat/term/1000654075-de> <http://vocab.getty.edu/ontology#termType> <http://vocab.getty.edu/term/type/UsedForTerm> .
+        <http://vocab.getty.edu/aat/term/1000654075-de> <http://vocab.getty.edu/ontology#termPOS> <http://vocab.getty.edu/term/POS/PluralNoun> .
+        <http://vocab.getty.edu/aat/term/1000654075-de> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000232> .
+        <http://vocab.getty.edu/aat/term/1000654075-de> <http://vocab.getty.edu/ontology#contributorNonPreferred> <http://vocab.getty.edu/aat/contrib/10000232> .
+        <http://vocab.getty.edu/aat/term/1000654075-de> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000083634-term-1000654075> .
+        <http://vocab.getty.edu/aat/term/1000654075-de> <http://purl.org/dc/elements/1.1/identifier> "1000654075" .
+        <http://vocab.getty.edu/aat/term/1000654075-de> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300388344> .
+        <http://vocab.getty.edu/aat/term/1000654075-de> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/de> .
+        <http://vocab.getty.edu/aat/term/1000654074-de> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2008/05/skos-xl#Label> .
+        <http://vocab.getty.edu/aat/term/1000654074-de> <http://vocab.getty.edu/ontology#term> "Score"@de .
+        <http://vocab.getty.edu/aat/term/1000654074-de> <http://vocab.getty.edu/ontology#qualifier> "Partitur"@de .
+        <http://vocab.getty.edu/aat/term/1000654074-de> <http://vocab.getty.edu/ontology#displayOrder> "14"^^<http://www.w3.org/2001/XMLSchema#positiveInteger> .
+        <http://vocab.getty.edu/aat/term/1000654074-de> <http://www.w3.org/2008/05/skos-xl#literalForm> "Score (Partitur)"@de .
+        <http://vocab.getty.edu/aat/term/1000654074-de> <http://vocab.getty.edu/ontology#termType> <http://vocab.getty.edu/term/type/UsedForTerm> .
+        <http://vocab.getty.edu/aat/term/1000654074-de> <http://vocab.getty.edu/ontology#termPOS> <http://vocab.getty.edu/term/POS/SingularNoun> .
+        <http://vocab.getty.edu/aat/term/1000654074-de> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000232> .
+        <http://vocab.getty.edu/aat/term/1000654074-de> <http://vocab.getty.edu/ontology#contributorNonPreferred> <http://vocab.getty.edu/aat/contrib/10000232> .
+        <http://vocab.getty.edu/aat/term/1000654074-de> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000083682> .
+        <http://vocab.getty.edu/aat/term/1000654074-de> <http://purl.org/dc/elements/1.1/identifier> "1000654074" .
+        <http://vocab.getty.edu/aat/term/1000654074-de> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300388344> .
+        <http://vocab.getty.edu/aat/term/1000654074-de> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/de> .
+        <http://vocab.getty.edu/aat/term/1000425543-es> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2008/05/skos-xl#Label> .
+        <http://vocab.getty.edu/aat/term/1000425543-es> <http://vocab.getty.edu/ontology#term> "partitura"@es .
+        <http://vocab.getty.edu/aat/term/1000425543-es> <http://vocab.getty.edu/ontology#displayOrder> "16"^^<http://www.w3.org/2001/XMLSchema#positiveInteger> .
+        <http://vocab.getty.edu/aat/term/1000425543-es> <http://www.w3.org/2008/05/skos-xl#literalForm> "partitura"@es .
+        <http://vocab.getty.edu/aat/term/1000425543-es> <http://vocab.getty.edu/ontology#termType> <http://vocab.getty.edu/term/type/AlternateDescriptor> .
+        <http://vocab.getty.edu/aat/term/1000425543-es> <http://vocab.getty.edu/ontology#termPOS> <http://vocab.getty.edu/term/POS/SingularNoun> .
+        <http://vocab.getty.edu/aat/term/1000425543-es> <http://vocab.getty.edu/ontology#contributorPreferred> <http://vocab.getty.edu/aat/contrib/10000131> .
+        <http://vocab.getty.edu/aat/term/1000425543-es> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000131> .
+        <http://vocab.getty.edu/aat/term/1000425543-es> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000049662-term-1000425543> .
+        <http://vocab.getty.edu/aat/term/1000425543-es> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000048873-term-1000425543> .
+        <http://vocab.getty.edu/aat/term/1000425543-es> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000048810-term-1000425543> .
+        <http://vocab.getty.edu/aat/term/1000425543-es> <http://purl.org/dc/elements/1.1/identifier> "1000425543" .
+        <http://vocab.getty.edu/aat/term/1000425543-es> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300389311> .
+        <http://vocab.getty.edu/aat/term/1000425543-es> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/es> .
+        <http://vocab.getty.edu/aat/source/2000083634-term-1000654075> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/DocumentPart> .
+        <http://vocab.getty.edu/aat/source/2000083634-term-1000654075> <http://purl.org/dc/terms/isPartOf> <http://vocab.getty.edu/aat/source/2000083634> .
+        <http://vocab.getty.edu/aat/source/2000083634-term-1000654075> <http://purl.org/ontology/bibo/locator> "http://www.duden.de/node/702869/revisions/1341861/view" .
+        <http://vocab.getty.edu/aat/source/2000049662-term-1000425543> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/DocumentPart> .
+        <http://vocab.getty.edu/aat/source/2000049662-term-1000425543> <http://purl.org/dc/terms/isPartOf> <http://vocab.getty.edu/aat/source/2000049662> .
+        <http://vocab.getty.edu/aat/source/2000049662-term-1000425543> <http://purl.org/ontology/bibo/locator> "4:3184" .
+        <http://vocab.getty.edu/aat/source/2000048873-term-1000425543> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/DocumentPart> .
+        <http://vocab.getty.edu/aat/source/2000048873-term-1000425543> <http://purl.org/dc/terms/isPartOf> <http://vocab.getty.edu/aat/source/2000048873> .
+        <http://vocab.getty.edu/aat/source/2000048873-term-1000425543> <http://purl.org/ontology/bibo/locator> "569" .
+        <http://vocab.getty.edu/aat/source/2000048810-term-1000425543> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/DocumentPart> .
+        <http://vocab.getty.edu/aat/source/2000048810-term-1000425543> <http://purl.org/dc/terms/isPartOf> <http://vocab.getty.edu/aat/source/2000048810> .
+        <http://vocab.getty.edu/aat/source/2000048810-term-1000425543> <http://purl.org/ontology/bibo/locator> "587" .
+    http_version: 
+  recorded_at: Fri, 09 Dec 2016 21:07:07 GMT
+- request:
+    method: get
+    uri: http://rightsstatements.org/vocab/InC/1.0/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
+        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
+        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, application/trig,
+        application/x-trig, application/trix
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 303
+      message: See Other
+    headers:
+      Date:
+      - Fri, 09 Dec 2016 21:07:13 GMT
+      Server:
+      - Apache
+      Location:
+      - http://rightsstatements.org/page/InC/1.0/?language=en
+      Content-Length:
+      - '0'
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Fri, 09 Dec 2016 21:07:13 GMT
+- request:
+    method: get
+    uri: http://rightsstatements.org/page/InC/1.0/?language=en
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
+        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
+        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, application/trig,
+        application/x-trig, application/trix
+      Accept-Encoding:
+      - gzip, deflate
+      Cookie:
+      - ''
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 09 Dec 2016 21:07:14 GMT
+      Server:
+      - Apache
+      Link:
+      - "<http://localhost:9000/page/InC/1.0/>; rel=derivedfrom"
+      Content-Type:
+      - text/html
+      Content-Language:
+      - en
+      Vary:
+      - Accept-Encoding
+      Content-Encoding:
+      - gzip
+      Content-Length:
+      - '2170'
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAA91ZW48btxV+31/Bjgt4F5WGkuz4spWEFE4DLGDnwRekRdMH
+        akhpuOaQE5IjrVLkv+cccm7SSlqtnQJp98GWhuccfufKj5rpn7jJ/LYUJPeF
+        ml9cTPF/kinm3CzRZnjrEqKYXs2SJKwKxucXBP6mhfCMZDmzTvhZUvnl8FVC
+        aH8x974cip8ruZ4ld8OKDTNTlMzLhRIJyYz2QoOmFDPBVyLpa2pWiFmylmJT
+        Gut7whvJfT7jYi0zMQxfBkRq6SVTQ5cxJWbjdNTB8NIrMX8vV7l35INnXhRg
+        xk1pXIhCSurPxAo1S5zfKuFyIWDL3IrlLEEX3DWlGdfpreNCybVNtfB0aSrN
+        wRej6Yt0ko56D9JC6jRzroMRdggGn1JqAxrXgkmNXVEQrxeGzhce1Z8GTE87
+        TE9P4sUkzhIv7jwNe0f8gFyZiqewalaWlfk2hSTQl6Pxq9fj5/TFi5cvn30z
+        CdsvDYJpcE9pTDXkfGH4lhTMfuZmo2fJCAshAHGZlaWvd2ZlqWQWI6L4X26d
+        0XVK8e8/8CmRHPyVSylsck2SG/0mGeBjbbyAB/+6aATxL/kWq65iK1xKhA6i
+        cWHNVBWe/tNUgGtLllJzwjiXuDlTUBBLY4sAhbCFqQBiLqCGym0IMcHYV46Y
+        ZXh+A3kgIImfN2LhpBfNEmSGaflLtORz5knOHGzJRafJ1kwqBiWdJgHhr4NH
+        +/FJQxYdEXelhf/VNgAUnBjYxG6kE4OH0Ui3BwcWPgtHtCEbZi2DwMO3LhpR
+        GOKWMQ0JIAARhUT0jGVZZVm2jYEA2/stlBIMPrMCCtGVRjtsagJhJ1tTWQKF
+        Qir3FSFpUqsFxMEbYhaeSR0jQkphC+kchMF1W0qcEBykcV/yPTwWd6woFQQv
+        asX2Iq7KcgJxK6sF1Kv02wEprVwHZy0pjIUCqkURgJKFhECbDe4SnoD9ECMo
+        MGFh7jROwr//DvWcWcG8CTWO4+P6SMuvTcYWVFq3WcU+kPpDloPAeYow52jU
+        +xYbsG2ghGeAq3DXMWVtxuooJ+6zcddvjM5E6ZMWM1Te8i1bCAV2Yp6OZKmX
+        oxtN3jQ9hZZCmpO1sJiZG+hBFMJxHFGGGX7nuw3qvm983Ww26eZZ8HAyGj2n
+        owlFrDQzVjwJsjWCLr5dRUnes1RWVgU7PKMhFrRR6SqtjlnQ7BdpAoMVm+8d
+        81l+fIuTYHdMnLGlg9EkfnhENDqF2kI/fWdZ6BRqC1wswzkKU/tMEz2N2sbu
+        fD+QDKFiGUPxjmlPutHvGuBLwt6qnxFyOBWd+Joc9wycsV1hOHrKH1Ozrc59
+        +wcBjuk/3r0NEWBPgIiIXQR7bXnQwoSOXlKzUU/6wk3Asp5aaCe5FkAlChjC
+        QV+7J+2ICSB68vFBEOtVLMxwPJN7cpKnymTpyqzjkKsUs1uKp6Kw60gt2lP8
+        QzjEW3sA+2G/GuE7dzzP/TC2zZHBIbAb+36+mmXan7HnFlKjY/nyuM6IAi6Q
+        GLpdYOWz8pTXYwoCoLYetxqCF3saorIwTZhm8KnOlKMgRjvvQ0GeLNY2Ddze
+        z0MWKS4USwUDY0tRiPqNqU+yCQyDRn9p2LKnf1coKC9krLhARz1Jnp0zZLpz
+        aafjj/ofD1xq7XBZn65750GvcK+zMo6ufnsnk9H4xXD0zXD0Oq7tDNZzj9aP
+        LZ+D/0sLkz5DQrjY9lgskDcKjKXGV3OW9Cf9kyYtOVtaJHSm5iytTaDFegu8
+        cBtpJO6BlMrXe+yyZSSJu5sQJVbSqR4RDeQf+CVsFcgYcrCIBIlY5F/wzAUS
+        tcfpOjYHcE0Rdq+vQrlRXNhLd5V2edwdmycIEtwveiSpf8Y+Kgv7zBcJM1kI
+        dIcH9glfQ1SbUIJLbfBS8slJvYqxb1ESWdThQpV71B6Ie6uzx+mR8HOBLSc1
+        BrHRb0qlv3dInJAh9tLdD+sgWItJAFvnpAGzhteKsPijsZ87aIPAnsOV4/4i
+        gauxCJESd8g7cRMQD9y6riLTA34pdaYqjkH4nkkLMRRX0VdkDHBxB0f9CSyx
+        Wi5+jbdUGq+pzaWVy3Xz84YFVp8ZVRW6l5wh8lQMie1dX/taneQGLtTljtyh
+        HTr5AszuCe8rwIG3EsPnDawD0sfhSEAe9Y6oBVVZrIizGf40cLB5lhLiSxeV
+        93CyYxOlmxyuxKlbrxISoj/bZf7Nrxz3dqKA8oC3Rx7fC8KrLwoCXjEeDkI+
+        nvd9mFJ4cFy6nH/5PMaq+yNMY8TxO83iKS2PB+vi+MrxbEzmMJllJhwkYnIi
+        EZU6vnhyi9aCkvOpK5me///+5gIDDx2cUvD194rWH+yXtv+mi/8Lvzh9vf9T
+        eqqXpmUzWDlQXcVkgafcdzcf3rz92827v78nHwENcO4SKHVbrj16E0ZPLlQZ
+        YEe/IwcAIaggdK5rH3SxJlQp+TEXoUCgymGdkUtt9DBoMcuvyFuYEho3teGd
+        APSLj+UCd0ZhITtWDCvXlhX4YDIZGhu3GuwjNRo7vyoKZuUvNXURyyVM91C0
+        zhTBlISv4Z6TghnEhd3LGjCD0NMuN5XiYaVhhxAEVeMNBYMsJSUf955i3+LK
+        IOSZdS4CDgtWwLkp672OOHL/TuYnFqeUzU+ObTjjPr2/CbW9G6Lr6cIeOeBb
+        3T1053Dy+fmyJ7GfTzLqRyep2tLAyb7P5/YFIzt5/QA7+XivJYA2rCWPZ/o5
+        IUvmh55iNL6cUz17iFOdxw5lAbcmR5VZmcgLD1TI8RQc+Nr/WL9VCija12+G
+        i/T250rY+P4qfhzCDX+SjsL7tltwqaP6jzVUyJUFP8HgJB0/yt7+e8ENDKOh
+        1GXlKUIb9x58ld2H3jcetdvF+8+X3GQV5vIq7bQvr/66f0+aUnzlF9790fha
+        +DeBR2aQJx4AAA==
+    http_version: 
+  recorded_at: Fri, 09 Dec 2016 21:07:14 GMT
 recorded_with: VCR 3.0.3

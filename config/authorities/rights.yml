@@ -35,12 +35,45 @@ terms:
   - term: Free Access - No Re-Use
     id:   http://www.europeana.eu/rights/rr-f/
     active: true
-  - term: In Copyright
-    id:   http://rightsstatements.org/vocab/InC/1.0/
-    active: true
   - term: Rights Reserved - Restricted Access
     id:   http://www.europeana.eu/rights/rr-r/
     active: true
   - term: Unknown
     id:   http://www.europeana.eu/rights/unknown/
+    active: true
+  - term: In Copyright
+    id:   http://rightsstatements.org/vocab/InC/1.0/
+    active: true
+  - term: In Copyright - EU Orphan Work
+    id:   http://rightsstatements.org/vocab/InC-OW-EU/1.0/
+    active: true
+  - term: In Copyright - Educational Use Permitted
+    id:   http://rightsstatements.org/vocab/InC-EDU/1.0/
+    active: true
+  - term: In Copyright - Non-Commercial Use Permitted
+    id:   http://rightsstatements.org/vocab/InC-NC/1.0/
+    active: true
+  - term: In Copyright - Rights-Holder(s) Unlocatable or Unidentifiable
+    id:   http://rightsstatements.org/vocab/InC-RUU/1.0/
+    active: true
+  - term: No Copyright - Contractual Restrictions
+    id:   http://rightsstatements.org/vocab/NoC-CR/1.0/
+    active: true
+  - term: No Copyright - Non-Commercial Use Only
+    id:   http://rightsstatements.org/vocab/NoC-NC/1.0/
+    active: true
+  - term: No Copyright - Other Known Legal Restrictions
+    id:   http://rightsstatements.org/vocab/NoC-OKLR/1.0/
+    active: true
+  - term: No Copyright - United States
+    id:   http://rightsstatements.org/vocab/NoC-US/1.0/
+    active: true
+  - term: Copyright Not Evaluated
+    id:   http://rightsstatements.org/vocab/CNE/1.0/
+    active: true
+  - term: Copyright Undetermined
+    id:   http://rightsstatements.org/vocab/UND/1.0/
+    active: true
+  - term: No Known Copyright
+    id:   http://rightsstatements.org/vocab/NKC/1.0/
     active: true
