@@ -10,7 +10,8 @@ feature 'Record Creation:' do
     end
 
     scenario 'creates a new record' do
-      visit '/records/new'
+      visit search_catalog_path
+      click_link 'Add Record'
       select 'Group', from: 'type'
       click_button 'Next'
       title = 'My New Group'
