@@ -89,7 +89,7 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name('language', :facetable), label: 'Language', limit: true
     config.add_facet_field solr_name('department', :facetable), label: 'Academic Department', limit: true
     config.add_facet_field solr_name('sub_location', :facetable), label: 'Library Location', limit: true
-    config.add_facet_field solr_name('license_label', :facetable), label: 'License', limit: true
+    config.add_facet_field solr_name('license_label', :facetable), label: 'Rights', limit: true
 
     # Have BL send all facet field names to Solr, which has been the default
     # previously. Simply remove these lines if you'd rather use Solr request
