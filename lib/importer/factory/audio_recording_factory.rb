@@ -36,13 +36,11 @@ module Importer::Factory
     end
 
     def cylinder_number(file_name)
-      matches = file_name.match(/.*cusb-cyl(\d+).\.wav/)
-      if matches.nil?
-        puts "Could not extract cylinder number from: #{file_name}"
-        return nil
-      else
-        return matches[1]
-      end
+      matches = file_name.match(/.*cusb-cyl(\d+).\.wav$/)
+
+      return matches[1] unless matches.nil?
+      puts "Could not extract cylinder number from: #{file_name}"
+      nil
     end
 
     # @param [CurationConcerns::FileSetActor] actor
