@@ -76,19 +76,34 @@ module Importer::MODS
       @mods ||= Mods::Record.new.from_file(@file)
     end
 
+    def type_of_resource
+      # MODS_RESOURCE_MAP defined in initializers/mods_resource_map.rb
+      @type_of_resource ||= if collection?
+                              # this is a very silly bit of code, but
+                              # what it does is ensure that MODS
+                              # Collections have their work_type be
+                              # Collection /and/ all the formats of
+                              # the items they contain
+                              MODS_RESOURCE_MAP['collection'].merge(
+                                uri: [
+                                  MODS_RESOURCE_MAP['collection'][:uri],
+                                  *mods.typeOfResource.content.map { |t| MODS_RESOURCE_MAP[t][:uri] },
+                                ].flatten
+                              )
+                            else
+                              # return an empty hash in the case of XML fragments
+                              MODS_RESOURCE_MAP[mods.typeOfResource.content.first] || {}
+                            end
+    end
+
     def collection?
       type_keys = mods.typeOfResource.attributes.map(&:keys).flatten
       return false unless type_keys.include?('collection')
       mods.typeOfResource.attributes.any? { |hash| hash.fetch('collection').value == 'yes' }
     end
 
-    # For now the only things we import are collections and
-    # images, so if it's not a collection, assume it's an image.
-    #
-    # TODO: Identify images or other record types based on the data in
-    # <mods:typeOfResource>.
     def image?
-      !collection?
+      type_of_resource[:label] == 'Still image'
     end
 
     def attributes
@@ -131,7 +146,7 @@ module Importer::MODS
         digital_origin: mods.physical_description.digitalOrigin.map(&:text),
         publisher: mods.origin_info.publisher.map(&:text),
         form_of_work: mods.genre.valueURI.map { |uri| RDF::URI.new(uri) },
-        work_type: mods.xpath('//mods:mods/mods:typeOfResource/@valueURI', NAMESPACES).map { |uri| RDF::URI.new(uri.value) },
+        work_type: type_of_resource[:uri],
         citation: citation,
         notes_attributes: notes,
         record_origin: record_origin,
