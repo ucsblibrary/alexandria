@@ -1,4 +1,4 @@
-<% unless document['description_tesim'].empty? %>
+<% unless document['description_tesim'].blank? %>
   <%= content_for :head do %>
     <meta name="description" content="<%= document['description_tesim'].first.split('\n\n').first %>">
   <% end %>
