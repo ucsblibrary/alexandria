@@ -44,6 +44,11 @@ describe Importer::Factory::AudioRecordingFactory do
       it { is_expected.to eq '0001' }
     end
 
+    context 'with the md5 for a correct file name' do
+      let(:file) { File.join(files_dir, 'cusb-cyl0001a.wav.md5') }
+      it { is_expected.to be_nil }
+    end
+
     context 'with a bad file name' do
       let(:file) { 'some_bad_name' }
       it { is_expected.to be_nil }
