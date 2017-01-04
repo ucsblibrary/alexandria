@@ -37,20 +37,20 @@ describe Importer::Factory::AudioRecordingFactory do
   end
 
   describe '#cylinder_number' do
-    subject { factory.cylinder_number(file) }
+    subject { factory.cylinder_number(filegroup) }
 
     context 'with a correct file name' do
-      let(:file) { File.join(files_dir, 'cusb-cyl0001a.wav') }
+      let(:filegroup) { Dir['spec/fixtures/cylinders/cusb-cyl0001*'] }
       it { is_expected.to eq '0001' }
     end
 
-    context 'with the md5 for a correct file name' do
-      let(:file) { File.join(files_dir, 'cusb-cyl0001a.wav.md5') }
+    context 'with only the md5 for a correct file name' do
+      let(:filegroup) { [File.join(files_dir, 'cusb-cyl0001a.wav.md5')] }
       it { is_expected.to be_nil }
     end
 
-    context 'with a bad file name' do
-      let(:file) { 'some_bad_name' }
+    context 'with only a bad file name' do
+      let(:filegroup) { ['some_bad_name'] }
       it { is_expected.to be_nil }
     end
   end
