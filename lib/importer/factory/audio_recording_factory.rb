@@ -1,6 +1,5 @@
 module Importer::Factory
   class AudioRecordingFactory < ObjectFactory
-
     self.klass = AudioRecording
     self.system_identifier_field = :system_number
 
@@ -18,7 +17,7 @@ module Importer::Factory
       return if object.file_sets.count > 0
       cylinders.each do |filegroup|
         next if filegroup.empty?
-        number = cylinder_number(filegroup.first)
+        number = cylinder_number(filegroup)
         next unless number
 
         now = CurationConcerns::TimeService.time_in_utc
@@ -35,14 +34,12 @@ module Importer::Factory
       end
     end
 
-    def cylinder_number(file_name)
-      matches = file_name.match(/.*cusb-cyl(\d+).\.wav/)
-      if matches.nil?
-        puts "Could not extract cylinder number from: #{file_name}"
-        return nil
-      else
-        return matches[1]
-      end
+    def cylinder_number(filegroup)
+      wav = filegroup.detect { |f| f.match(/.*cusb-cyl(\d+).\.wav$/) }
+
+      return wav.match(/.*cusb-cyl(\d+).\.wav$/)[1] unless wav.nil?
+      puts "Could not extract cylinder number from: #{filegroup.join(', ')}"
+      nil
     end
 
     # @param [CurationConcerns::FileSetActor] actor
