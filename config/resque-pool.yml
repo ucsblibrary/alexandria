@@ -1,4 +1,4 @@
-# Don't set the "characterize" queue any higher than 1 worker.
+# Don't set the queue any higher than 1 worker.
 #
 # When we ingest audio records, we attach both an original and
 # a restored master file to the FileSet, which queues 2
@@ -13,8 +13,7 @@
 # https://help.library.ucsb.edu/browse/DIGREPO-547
 
 defaults: &defaults
-  'ingest,derivatives': 1
-  characterize: 1  # Don't set it higher than 1
+  'ingest': 1
 
 development:
   <<: *defaults
@@ -24,5 +23,3 @@ test:
 
 production:
   <<: *defaults
-  ingest: 3
-  derivatives: 3
