@@ -3,7 +3,7 @@ require 'importer'
 require 'active_fedora/cleaner'
 
 describe Importer::Factory::AudioRecordingFactory do
-  let(:data) { Dir['spec/fixtures/cylinders/*.wav'] }
+  let(:data) { Dir['spec/fixtures/cylinders/*'] }
   let(:files_dir) { File.join(fixture_path, 'cylinders') }
   let(:metadata) { 'spec/fixtures/cylinders/cylinders-objects.xml' }
 
@@ -52,7 +52,16 @@ describe Importer::Factory::AudioRecordingFactory do
 
   describe 'attaching files' do
     let(:audio) { AudioRecording.new(title: ['Audio 1']) }
-    let(:files) { [[File.join(files_dir, 'cusb-cyl0001a.wav')]] }
+
+    let(:files) do
+      [
+        # include an empty filegroup
+        [],
+        # include non-WAV files
+        Dir['spec/fixtures/cylinders/cusb-cyl0001*'],
+        Dir['spec/fixtures/cylinders/cusb-cyl0002*'],
+      ]
+    end
 
     context 'when there are already files attached' do
       before do
@@ -61,34 +70,24 @@ describe Importer::Factory::AudioRecordingFactory do
 
       it "doesn't create any new filesets" do
         expect(FileSet).not_to receive(:create!)
-        expect {
+        expect do
           factory.attach_files(audio, files)
-        }.to change { FileSet.count }.by(0)
+        end.to change { FileSet.count }.by(0)
       end
     end
 
     context 'when no files are attached yet' do
-      let(:files) {
-        [
-          [], # Test if a filegroup is empty
-          [File.join(files_dir, 'cusb-cyl0001a.wav'),
-           File.join(files_dir, 'cusb-cyl0001b.wav')],
-          [File.join(files_dir, 'cusb-cyl0002a.wav'),
-           File.join(files_dir, 'cusb-cyl0002b.wav')]
-        ]
-      }
-
       it 'attaches the files' do
-        expect {
+        expect do
           factory.attach_files(audio, files)
-        }.to change { FileSet.count }.by(2)
+        end.to change { FileSet.count }.by(2)
 
-        expect(audio.file_sets.map(&:title)).to contain_exactly(["Cylinder0001"], ["Cylinder0002"])
-        first_file = audio.file_sets.find {|fs| fs.title == ["Cylinder0001"] }
+        expect(audio.file_sets.map(&:title)).to contain_exactly(['Cylinder0001'], ['Cylinder0002'])
+        first_file = audio.file_sets.find { |fs| fs.title == ['Cylinder0001'] }
         expect(audio.representative).to eq first_file
       end
     end
-  end  # attaching files
+  end # attaching files
 
   describe '#create_attributes' do
     subject { factory.create_attributes }
