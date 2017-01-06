@@ -35,11 +35,14 @@ module Importer::Factory
     end
 
     def cylinder_number(filegroup)
-      wav = filegroup.detect { |f| f.match(/.*cusb-cyl(\d+).\.wav$/) }
+      original = filegroup.map { |f| f.match(/.*cusb-cyl(\d+)a.wav$/) }.compact.first
 
-      return wav.match(/.*cusb-cyl(\d+).\.wav$/)[1] unless wav.nil?
-      puts "Could not extract cylinder number from: #{filegroup.join(', ')}"
-      nil
+      unless original && filegroup.detect { |f| f.match(/.*cusb-cyl#{original[1]}b.wav$/) }
+        $stderr.puts "Could not extract cylinder number from: #{filegroup.join(', ')}"
+        return nil
+      end
+
+      original[1]
     end
 
     # @param [CurationConcerns::FileSetActor] actor
