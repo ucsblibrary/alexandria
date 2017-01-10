@@ -286,12 +286,16 @@ describe Importer::Factory::ObjectFactory do
     let(:image) { create(:image, notes_attributes: [old_note]) }
 
     context 'with collection attributes' do
-      let(:collection_attrs) { { accession_number: ['123'],
-                                 title: ['Test Collection'],
-                                 identifier: ['123'] } }
+      let(:collection_attrs) do
+        { accession_number: ['123'],
+          title: ['Test Collection'],
+          identifier: ['123'] }
+      end
       let!(:coll) { create(:collection, collection_attrs) }
-      let(:attributes) { { id: image.id,
-                           collection: collection_attrs } }
+      let(:attributes) do
+        { id: image.id,
+          collection: collection_attrs }
+      end
 
       it 'adds the image to the collection' do
         expect(image.local_collection_id).to eq []
@@ -311,9 +315,7 @@ describe Importer::Factory::ObjectFactory do
         importer.run
         reloaded = image.reload
 
-        expect(reloaded.notes.count).to eq 1
-        expect(reloaded.notes[0].note_type).to eq ['']
-        expect(reloaded.notes[0].value).to eq ['']
+        expect(reloaded.notes.count).to eq 0
       end
     end
 
@@ -333,7 +335,7 @@ describe Importer::Factory::ObjectFactory do
         importer.run
         reloaded = image.reload
 
-        expect(reloaded.notes[0].note_type).to eq ['']
+        expect(reloaded.notes[0].note_type).to eq []
         expect(reloaded.notes[0].value).to eq ['an untyped note']
         expect(reloaded.notes[1].note_type).to eq ['type 1']
         expect(reloaded.notes[1].value).to eq ['note 1']

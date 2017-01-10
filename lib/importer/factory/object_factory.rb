@@ -26,6 +26,7 @@ module Importer::Factory
       update_created_date(object)
       update_issued_date(object)
       update_notes(object)
+
       object.attributes = update_attributes
       attach_files(object, @files) unless @files.empty?
       run_callbacks(:save) do
@@ -198,26 +199,7 @@ module Importer::Factory
       end
 
       def update_notes(obj)
-        new_notes = Array(attributes.delete(:note))
-        count = [new_notes.count, obj.notes.count].max
-
-        for i in 0..(count - 1) do
-          new_attrs = if new_notes[i].is_a?(Hash)
-                        { note_type: new_notes[i][:type],
-                          value: new_notes[i][:name] }
-                      else
-                        { note_type: [''],
-                          value: new_notes[i] || [''] }
-                      end
-
-          existing_note = obj.notes[i]
-          if existing_note
-            existing_note.attributes = new_attrs
-          else
-            obj.notes.build(new_attrs)
-          end
-        end
-
+        obj.notes = []
         obj.notes_will_change!
       end
 
@@ -331,15 +313,21 @@ module Importer::Factory
       end
 
       def extract_notes(attributes)
-        notes = Array(attributes.delete(:note))
-        notes = notes.map do |n|
-          if n.is_a? Hash
-            { note_type: n[:type], value: n[:name] }
-          else
-            { note_type: nil, value: n }
-          end
-        end
-        { notes_attributes: notes }
+        values = if attributes[:notes_attributes]
+                   attributes.delete(:notes_attributes)
+                 else
+                   # :note will be an array if it exists, but if it doesn't it
+                   # will return nil, which is why we need to wrap the thing in
+                   # another array then flatten and compact
+                   [attributes.delete(:note)].flatten.compact.map do |n|
+                     if n.is_a? Hash
+                       { note_type: n[:type], value: n[:name] }
+                     else
+                       { note_type: nil, value: n }
+                     end
+                   end
+                 end
+        { notes_attributes: values }
       end
 
       def host
@@ -347,6 +335,7 @@ module Importer::Factory
       end
 
       def path_for(obj)
+        # FIXME: will change with TLS
         "http://#{host}/lib/#{obj.ark}"
       end
   end

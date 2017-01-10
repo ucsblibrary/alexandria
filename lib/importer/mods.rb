@@ -115,10 +115,11 @@ module Importer::MODS
     end
 
     def record_attributes
-      # TODO: why a destructive merge?
-      common_attributes.merge!(files: mods.extension.xpath('./fileName').map(&:text),
-                               collection: collection,
-                               series_name: mods.xpath("//mods:relatedItem[@type='series']", NAMESPACES).titleInfo.title.map(&:text))
+      common_attributes.merge(
+        files: mods.extension.xpath('./fileName').map(&:text),
+        collection: collection,
+        series_name: mods.xpath("//mods:relatedItem[@type='series']", NAMESPACES).titleInfo.title.map(&:text)
+      )
     end
 
     def collection_attributes
@@ -280,13 +281,14 @@ module Importer::MODS
 
     def notes
       preferred_citation = 'preferred citation'.freeze
-      mods.note.each_with_object([]) do |node, list|
-        next if node.attributes.key?('type') && node.attributes['type'].value == preferred_citation
-        hash = { value: node.text.gsub(/\n\s+/, "\n") }
-        type_attr = node.attributes['type'.freeze].try(:text)
+
+      mods.note.map do |note|
+        next if note.attributes.key?('type') && note.attributes['type'].value == preferred_citation
+        hash = { value: note.text.gsub(/\n\s+/, "\n") }
+        type_attr = note.attributes['type'.freeze].try(:text)
         hash[:note_type] = type_attr if type_attr
-        list << hash
-      end
+        hash
+      end.compact
     end
 
     private
@@ -294,9 +296,12 @@ module Importer::MODS
       def build_date(node)
         finish = finish_point(node)
         start = start_point(node)
-        dates = [{ start: start.map(&:text), finish: finish.map(&:text), label: date_label(node),
-                   start_qualifier: qualifier(start), finish_qualifier: qualifier(finish)
-        }]
+        dates = [
+          {
+            start: start.map(&:text), finish: finish.map(&:text), label: date_label(node),
+            start_qualifier: qualifier(start), finish_qualifier: qualifier(finish)
+          },
+        ]
         dates.delete_if { |date| date.values.all?(&:blank?) }
         dates
       end
