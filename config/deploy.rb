@@ -1,8 +1,7 @@
 # config valid only for current version of Capistrano
-lock '3.4.0'
+lock '3.7.0'
 
 set :application, 'alexandria'
-set :scm, :git
 set :repo_url, ENV.fetch('REPO', 'ssh://jenkins@github.library.ucsb.edu/ADRL/alexandria.git')
 set :deploy_to, ENV.fetch('TARGET', '/opt/alexandria')
 
