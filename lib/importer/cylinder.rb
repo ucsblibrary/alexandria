@@ -62,19 +62,18 @@ module Importer
         print_attributes(record, count + 1)
 
         start_record = Time.now
-
-        rec = indexer.writer.put attributes(record, indexer)
-        @imported_records_count += 1
-
+        indexer.writer.put attributes(record, indexer)
         end_record = Time.now
 
+        @imported_records_count += 1
+
         puts "Ingested record #{count + 1} of #{cylinders} "\
-          "in #{end_record - start_record} seconds"
-      end  # marcs.each_with_index
+             "in #{end_record - start_record} seconds"
+      end # marcs.each_with_index
     ensure
       indexer.writer.close if indexer && indexer.writer
       if @collection
-        puts "Updating collection index"
+        puts 'Updating collection index'
         @collection.update_index
       end
     end
@@ -92,7 +91,6 @@ module Importer
     def attributes(record, indexer)
       indexer.map_record(record)
     end
-
 
     private
 
@@ -120,6 +118,5 @@ module Importer
         files_dirs.each { |d| puts d }
         puts
       end
-
   end
 end
