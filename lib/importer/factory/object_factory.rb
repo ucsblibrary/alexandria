@@ -23,9 +23,10 @@ module Importer::Factory
 
     def update
       raise "Object doesn't exist" unless object
-      update_created_date(object)
-      update_issued_date(object)
-      update_notes(object)
+
+      %w(created issued notes).each do |prop|
+        clear_attribute!(object, prop)
+      end
 
       object.attributes = update_attributes
       attach_files(object, @files) unless @files.empty?
@@ -158,49 +159,9 @@ module Importer::Factory
 
     private
 
-      def update_created_date(obj)
-        created_attributes = attributes.delete(:created_attributes)
-        return if created_attributes.blank?
-
-        new_date = created_attributes.first.fetch(:start, nil)
-        return unless new_date
-
-        existing_date = obj.created.flat_map(&:start)
-
-        if existing_date != new_date
-          # Create or update the existing date.
-          if time_span = obj.created.to_a.first
-            time_span.attributes = created_attributes.first
-          else
-            obj.created.build(created_attributes.first)
-          end
-          obj.created_will_change!
-        end
-      end
-
-      def update_issued_date(obj)
-        issued_attributes = attributes.delete(:issued_attributes)
-        return if issued_attributes.blank?
-
-        new_date = issued_attributes.first.fetch(:start, nil)
-        return unless new_date
-
-        existing_date = obj.issued.flat_map(&:start)
-
-        if existing_date != new_date
-          # Create or update the existing date.
-          if time_span = obj.issued.to_a.first
-            time_span.attributes = issued_attributes.first
-          else
-            obj.issued.build(issued_attributes.first)
-          end
-          obj.issued_will_change!
-        end
-      end
-
-      def update_notes(obj)
-        obj.notes = []
-        obj.notes_will_change!
+      def clear_attribute!(obj, attr)
+        obj[attr] = []
+        obj.send("#{attr}_will_change!")
       end
 
       def contributors_for_field(attrs, field)
