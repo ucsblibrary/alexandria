@@ -12,7 +12,10 @@ module Importer::MODS
 
     # TODO: this currently assumes one record per metadata file
     meta.each do |metadatum|
-      next if options[:skip] > ingests
+      if options[:skip] > ingests
+        ingests += 1
+        next
+      end
       next if options[:number] && options[:number] <= ingests
 
       start_record = Time.now
