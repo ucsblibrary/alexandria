@@ -29,10 +29,14 @@ module Importer::Factory
 
       object.attributes = update_attributes
 
-      if @files.empty?
+      # TODO: #attach_files needs to always run for ETD ingests, since
+      # it triggers {Proquest::Metadata#run} which updates the
+      # {AdminPolicy} of the ETD itself. Currently on ETD ingests,
+      # `files' is never empty, so for now this is OK.
+      if files.empty?
         $stderr.puts "No files provided for #{object.id}"
       else
-        attach_files(object, @files)
+        attach_files(object, files)
       end
 
       run_callbacks(:save) do
@@ -86,10 +90,14 @@ module Importer::Factory
 
       @object = klass.new(attrs)
 
-      if @files.empty?
-        $stderr.puts "No files provided for #{@object.id}"
+      # TODO: #attach_files needs to always run for ETD ingests, since
+      # it triggers {Proquest::Metadata#run} which updates the
+      # {AdminPolicy} of the ETD itself. Currently on ETD ingests,
+      # `files' is never empty, so for now this is OK.
+      if files.empty?
+        $stderr.puts "No files provided for #{object.id}"
       else
-        attach_files(@object, @files)
+        attach_files(object, files)
       end
 
       run_callbacks :save do

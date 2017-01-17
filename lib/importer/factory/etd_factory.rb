@@ -5,16 +5,6 @@ module Importer::Factory
     self.klass = ETD
     self.system_identifier_field = :system_number
 
-    def create
-      super
-      Proquest::Metadata.new(object).run
-    end
-
-    def update
-      super
-      Proquest::Metadata.new(object).run
-    end
-
     def attach_files(object, files)
       return unless files[:xml]
       object.proquest.mime_type = 'application/xml'
@@ -22,6 +12,13 @@ module Importer::Factory
       object.proquest.content = File.new(files[:xml])
 
       object.proquest.content.rewind
+
+      # This needs to run after object.proquest.content is set
+      # (because it uses that to locate the ProQuest XML) and before
+      # the FileSet itself is created (otherwise they'll be left with
+      # the default restricted policy, instead of having the same
+      # permissions as the ETD)
+      Proquest::Metadata.new(object).run
 
       # FIXME: Currently the actual ETD has no special status among
       # the FileSets attached to the object; the catalog/_files
