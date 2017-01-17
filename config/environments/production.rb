@@ -77,5 +77,5 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.host_name = 'alexandria.ucsb.edu/'
+  config.host_name = 'alexandria.ucsb.edu'
 end
