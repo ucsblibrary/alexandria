@@ -116,8 +116,8 @@ module Importer
                  "in #{end_record - start_record} seconds"
             ingests += 1
           rescue => e
-            puts e
-            puts e.backtrace
+            $stderr.puts e
+            $stderr.puts e.backtrace
             raise_error = true
           rescue Interrupt
             puts "\nIngest stopped, cleaning up..."
