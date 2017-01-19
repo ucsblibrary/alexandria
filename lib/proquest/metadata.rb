@@ -15,7 +15,7 @@ module Proquest
 
   def run
     if attributes.blank?
-      Rails.logger.warn "ProQuest metadata not found for ETD: #{etd.id}"
+      $stderr.puts "ProQuest metadata not found for ETD: #{etd.id}"
     else
       update_embargo_metadata!
       update_access_metadata
