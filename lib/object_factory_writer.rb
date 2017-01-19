@@ -75,8 +75,8 @@ class ObjectFactoryWriter
       next if match.blank?
       cylinder_number = match[1]
       files = []
-      dirs.each do |dir|  # Look in all the dirs
-        files += Dir.glob(File.join(dir, "**", "cusb-cyl#{cylinder_number}*"))
+      dirs.each do |dir| # Look in all the dirs
+        files += Dir.glob(File.join(dir, '**', "cusb-cyl#{cylinder_number}*"))
       end
       file_groups << files unless files.blank?
     end
@@ -89,7 +89,7 @@ class ObjectFactoryWriter
 
     def print_file_names(file_groups)
       return unless @verbose
-      puts "Files to attach:"
+      puts 'Files to attach:'
       puts file_groups.flatten.each { |f| puts f.inspect }
     end
 

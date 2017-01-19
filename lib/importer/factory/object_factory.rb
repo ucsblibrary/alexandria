@@ -28,7 +28,13 @@ module Importer::Factory
       update_notes(object)
 
       object.attributes = update_attributes
-      attach_files(object, @files) unless @files.empty?
+
+      if @files.empty?
+        $stderr.puts "No files provided for #{object.id}"
+      else
+        attach_files(object, @files)
+      end
+
       run_callbacks(:save) do
         object.save!
       end
@@ -79,7 +85,13 @@ module Importer::Factory
       # TODO: what does the above comment mean, and how does it relate to this code
 
       @object = klass.new(attrs)
-      attach_files(@object, @files) unless @files.empty?
+
+      if @files.empty?
+        $stderr.puts "No files provided for #{@object.id}"
+      else
+        attach_files(@object, @files)
+      end
+
       run_callbacks :save do
         run_callbacks :create do
           object.save!
