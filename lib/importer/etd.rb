@@ -78,7 +78,7 @@ module Importer
 
           # The 956$f MARC field holds the name of the PDF from
           # ProQuest; we need this field to match data with metadata
-          if record['956'].nil?
+          if record['956'].nil? || record['956']['f'].nil?
             $stderr.puts record
             $stderr.puts
             $stderr.puts 'MARC is missing 956$f field; cannot process this record'
