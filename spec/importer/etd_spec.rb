@@ -25,7 +25,7 @@ describe Importer::ETD do
       let(:data) { ["#{Rails.root}/spec/fixtures/proquest/Batch\ 3/2013-11-06_Summer2013/etdadmin_upload_234724/etdadmin_upload_234724.zip"] }
       let(:options) { { skip: 0 } }
 
-      it 'ingests the ETD' do
+      it 'ingests the ETD and sets the permissions correctly' do
         expect(ETD.count).to eq 0
 
         VCR.use_cassette('etd_importer') do
@@ -33,7 +33,22 @@ describe Importer::ETD do
         end
 
         expect(ETD.count).to eq 1
-        expect(ETD.first.admin_policy_id).to eq AdminPolicy::DISCOVERY_POLICY_ID
+
+        costa = ETD.first
+        expect(costa.admin_policy_id).to eq AdminPolicy::DISCOVERY_POLICY_ID
+
+        costa_set = costa.file_sets.first
+        expect(costa_set.admin_policy_id).to eq AdminPolicy::DISCOVERY_POLICY_ID
+
+        costa_set.admin_policy_id = AdminPolicy::RESTRICTED_POLICY_ID
+        costa_set.save!
+        expect(costa_set.admin_policy_id).to eq AdminPolicy::RESTRICTED_POLICY_ID
+
+        VCR.use_cassette('etd_importer') do
+          Importer::ETD.import(meta, data, options)
+        end
+
+        expect(ETD.count).to eq 1
         expect(ETD.first.file_sets.first.admin_policy_id).to eq AdminPolicy::DISCOVERY_POLICY_ID
       end
     end
