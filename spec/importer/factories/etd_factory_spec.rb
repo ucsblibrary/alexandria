@@ -12,7 +12,7 @@ describe Importer::Factory::ETDFactory do
       created_attributes: [{ start: [2014] }],
       system_number: ['123'],
       author: ['Valerie'],
-      identifier: ['ark:/48907/f3gt5k61']
+      identifier: ['ark:/48907/f3gt5k61'],
     }.with_indifferent_access
   end
 
@@ -136,19 +136,18 @@ describe Importer::Factory::ETDFactory do
       let(:attributes) do
         { id: 'f3gt5k61',
           system_number: ['123'],
-          identifier: ['ark:/48907/f3gt5k61'],
-        }.with_indifferent_access
+          identifier: ['ark:/48907/f3gt5k61'] }.with_indifferent_access
       end
 
       let!(:etd) { create(:etd, attributes.merge(old_date_attrs)) }
 
-      it "doesn't change the existing date" do
+      it 'zeroes out the existing date' do
         etd.reload
         expect(etd.created.first.start).to eq [old_date]
 
         factory.run
         etd.reload
-        expect(etd.created.first.start).to eq [old_date]
+        expect(etd.created).to eq []
       end
     end
   end # update an existing record
