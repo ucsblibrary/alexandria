@@ -27,6 +27,11 @@ You can run tests with `make spec`, and HTML documentation by
 installing `yardoc` with `gem install yardoc` then running `make
 html`.
 
+# Run the CI build
+
+`CI=1 bundle exec rake ci`
+ * Note: CI=1 keeps it from looking for a local Marmotta instance. 
+
 # Provisioning
 
 See the readme in the
