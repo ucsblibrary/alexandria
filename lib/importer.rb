@@ -13,4 +13,5 @@ module Importer
   autoload :Factory
   autoload :LocalAuthorityImporter
   autoload :MODS
+  autoload :ImportLogger
 end
