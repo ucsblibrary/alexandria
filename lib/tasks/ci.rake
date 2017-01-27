@@ -24,6 +24,7 @@ unless Rails.env.production?
     SolrWrapper.wrap(solr_params) do |solr|
       solr.with_collection(
         name: 'test',
+        persist: false,
         dir: Rails.root.join('solr', 'config')
       ) do
         FcrepoWrapper.wrap(fcrepo_params) do
