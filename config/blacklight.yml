@@ -3,7 +3,7 @@ defaults: &defaults
 
 development:
   <<: *defaults
-  url: <%= ENV['DEV_SOLR_URL'] || 'http://localhost:8985/solr/development' %>
+  url: <%= ENV['DEV_SOLR_URL'] || 'http://localhost:8983/solr/development' %>
 
 test:
   <<: *defaults

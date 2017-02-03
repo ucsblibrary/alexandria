@@ -1,0 +1,9 @@
+collection:
+    persist: false
+    dir: solr/config/
+    name: test
+managed: true
+port: 8985
+solr_xml: solr/config/solrconfig.xml
+verbose: true
+version: 6.3.0
