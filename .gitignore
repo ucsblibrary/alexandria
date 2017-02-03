@@ -56,3 +56,6 @@ public/assets
 /env
 .idea/
 dump.rdb
+
+# Don't keep the logs we generate during rspec testing
+spec/fixtures/logs/*.log
