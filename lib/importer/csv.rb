@@ -1,19 +1,28 @@
 require 'csv'
 require File.expand_path('../factory', __FILE__)
 
+# Import CSV files
+
 module Importer::CSV
+
+  include Importer::ImportLogger
+
   # Match headers like "lc_subject_type"
   TYPE_HEADER_PATTERN = /\A.*_type\Z/
 
+  # The method called by bin/ingest
   # @param [Array] meta
   # @param [Array] data
   # @param [Hash] options See the options specified with Trollop in {bin/ingest}
-  #
   # @return [Int] The number of records ingested
   def self.import(meta, data, options)
+
+    logger.debug "Starting import with options #{options.inspect}"
+
     ingests = 0
 
     meta.each do |m|
+      logger.debug "Importing file #{m}"
       head, tail = split(m)
 
       if options[:skip] >= tail.length
@@ -69,10 +78,21 @@ module Importer::CSV
     raise IngestError.new(reached: ingests)
   end
 
+  # Read in a CSV file and split it into nested arrays.
+  # Check for character encoding problems.
   # @param [String, Pathname] metadata
   # @return [Array]
   def self.split(metadata)
-    csv = ::CSV.read(metadata)
+    csv = nil
+    begin
+      csv = ::CSV.read(metadata, encoding: "UTF-8")
+    rescue ArgumentError => e # Most likely this is "invalid byte sequence in UTF-8"
+        logger.error "The file #{metadata} could not be read in UTF-8. The error was: #{e}. Trying ISO-8859-1"
+        csv = ::CSV.read(metadata, encoding: "ISO-8859-1")
+    rescue => e
+        logger.error "Couldn't process file #{metadata}. The error was: #{e}."
+        raise e
+    end
     [csv.first, csv.slice(1, csv.length)]
   end
 
@@ -218,4 +238,7 @@ module Importer::CSV
     date[field.to_sym] ||= []
     date[field.to_sym] << val
   end
-end
+
+
+
+end # End of module
