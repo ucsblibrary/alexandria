@@ -31,21 +31,49 @@ module Importer
       def self.set_log_location(logfile)
         pathname = Pathname.new(logfile)
         FileUtils.touch logfile
-        # outfile = File.new(logfile, "a") # Ensure it exists, but don't zero it out
-        # outfile.close
         raise ArgumentError.new("Can't write to logfile #{logfile}") unless pathname.writable?
         @logger = Logger.new(logfile)
         true # return true if everything worked out okay
       end
 
+      # Process any logging options passed on comamnd line
+      # @param [Hash] options As passed by trollop on the command line
+      def self.parse_log_options(options)
+        if options[:logfile]
+          self.set_log_location(options[:logfile])
+        end
+        # DEBUG,INFO,WARN or ERROR
+        if options[:loglevel]
+          case options[:loglevel].upcase
+          when "DEBUG"
+            @logger.level = Logger::DEBUG
+          when "INFO"
+            @logger.level = Logger::INFO
+          when "WARN"
+            @logger.level = Logger::WARN
+          when "ERROR"
+            @logger.level = Logger::ERROR
+          else
+            @logger.warn "#{options[:loglevel]} isn't a valid log level. Defaulting to DEBUG."
+            @logger.level = Logger::DEBUG
+          end
+        end
+      end
+
     # Addition
     def self.included(base)
       class << base
+
         def logger
           ImportLogger.logger
         end
+
         def set_log_location(logfile)
           ImportLogger.set_log_location(logfile)
+        end
+
+        def parse_log_options(options)
+          ImportLogger.parse_log_options(options)
         end
       end
     end
