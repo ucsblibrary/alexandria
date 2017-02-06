@@ -2,6 +2,7 @@
 class ContactUsController < ApplicationController
   # Display the "Contact Us" form the the user.
   def new
+    @page_title = 'Contact Us'
   end
 
   # When a user submits the "Contact Us" form, send the email.

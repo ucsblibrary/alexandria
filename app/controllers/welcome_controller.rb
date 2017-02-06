@@ -7,6 +7,7 @@ class WelcomeController < ApplicationController
   end
 
   def about
+    @page_title = 'About'
   end
 
   def collection_usage_guidelines
@@ -14,6 +15,7 @@ class WelcomeController < ApplicationController
   end
 
   def using
+    @page_title = 'FAQ'
   end
 
   def images
