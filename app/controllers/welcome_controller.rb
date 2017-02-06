@@ -9,6 +9,10 @@ class WelcomeController < ApplicationController
   def about
   end
 
+  def collection_usage_guidelines
+    @page_title = 'Collection Usage Guidelines'
+  end
+
   def using
   end
 

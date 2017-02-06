@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   get 'welcome/about', as: 'about'
+  get 'welcome/collection-usage-guidelines', as: 'collection-usage-guidelines'
   get 'welcome/using', as: 'using'
 
   post 'contact_us' => 'contact_us#create', as: :contact_us
