@@ -17,12 +17,14 @@ module Importer::CSV
   # @return [Int] The number of records ingested
   def self.import(meta, data, options)
 
+    self.parse_log_options(options)
+
     logger.debug "Starting import with options #{options.inspect}"
 
     ingests = 0
 
     meta.each do |m|
-      logger.debug "Importing file #{m}"
+      logger.info "Importing file #{m}"
       head, tail = split(m)
 
       if options[:skip] >= tail.length

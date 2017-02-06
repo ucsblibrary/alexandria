@@ -32,6 +32,8 @@ EOS
   opt :number, 'Only ingest N records', type: :integer
   opt :skip, 'Skip the first N records', default: 0
   opt :verbose, 'Provide additional output', default: false
+  opt :logfile, '/full/path/to/logfile.log (CSV imports only)', type: :string
+  opt :level, 'Log level: DEBUG,INFO,WARN or ERROR (CSV imports only)', type: :string, default: "DEBUG"
 end
 
 require File.expand_path('../../lib/importer', __FILE__)
