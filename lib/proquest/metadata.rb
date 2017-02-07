@@ -27,7 +27,7 @@ module Proquest
   def attributes
     return @attributes if @attributes
     @attributes = Proquest::XML.new(etd.proquest.content).attributes
-    @attributes = {} if @attributes.all? { |_k, v| v.blank? }
+    @attributes = {} if @attributes.values.all?(&:blank?)
     @attributes
   end
 
@@ -42,8 +42,7 @@ module Proquest
   # @return [Nil, Date] the date of the embargo end-date, or nil if no
   #   embargo or permanent embargo
   def embargo_release_date
-    return @embargo_end if @embargo_end
-    @embargo_end = parse_embargo
+    @embargo_end ||= parse_embargo
   end
 
   def policy_during_embargo
@@ -51,12 +50,11 @@ module Proquest
   end
 
   def policy_after_embargo
-    return @policy_after_embargo if @policy_after_embargo
-    @policy_after_embargo = if !attributes[:DISS_access_option].blank?
-                              parse_access_option
-                            elsif batch_3?
-                              AdminPolicy::PUBLIC_CAMPUS_POLICY_ID
-                            end
+    @policy_after_embargo ||= if !attributes[:DISS_access_option].blank?
+                                parse_access_option
+                              elsif batch_3?
+                                AdminPolicy::PUBLIC_CAMPUS_POLICY_ID
+                              end
   end
 
   private
@@ -112,13 +110,13 @@ module Proquest
     #
     # @return [Date, Nil]
     def transformed_start_date
-      unless attributes[:DISS_accept_date].blank?
-        date = Date.parse(attributes[:DISS_accept_date])
-        if date.month == 1 && date.day == 1
-          date = Date.parse("#{date.year}-12-31")
-        end
-        date
+      return if attributes[:DISS_accept_date].blank?
+
+      date = Date.parse(attributes[:DISS_accept_date])
+      if date.month == 1 && date.day == 1
+        date = Date.parse("#{date.year}-12-31")
       end
+      date
     end
 
     def six_month_embargo
