@@ -41,6 +41,8 @@ module Importer
       def self.parse_log_options(options)
         if options[:logfile]
           self.set_log_location(options[:logfile])
+        else
+          self.logger
         end
         # DEBUG,INFO,WARN or ERROR
         if options[:loglevel]
