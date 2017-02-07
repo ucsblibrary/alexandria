@@ -39,22 +39,11 @@ module Proquest
     end
   end
 
+  # @return [Nil, Date] the date of the embargo end-date, or nil if no
+  #   embargo or permanent embargo
   def embargo_release_date
     return @embargo_end if @embargo_end
-    # If the field DISS_agreement_decision_date is blank, that means
-    # this is a pre-Spring 2014 ETD without the ADRL-specific embargo
-    # metadata; see
-    # https://wiki.library.ucsb.edu/display/repos/ETD+Sample+Files+for+DCE.
-    # In that case, parse the ProQuest embargo code.  If there is an
-    # DISS_agreement_decision_date, calculate the embargo by comparing
-    # the agreement date with the delayed release date.
-    #
-    # See also https://help.library.ucsb.edu/browse/DIGREPO-466
-    @embargo_end = if attributes[:DISS_agreement_decision_date].blank?
-                     parse_embargo_code
-                   else
-                     parse_delayed_release_date
-                   end
+    @embargo_end = parse_embargo
   end
 
   def policy_during_embargo
@@ -73,7 +62,8 @@ module Proquest
   private
 
     def update_embargo_metadata!
-      return if no_embargo?
+      return if no_embargo? || infinite_embargo?
+
       etd.embargo_release_date = embargo_release_date
 
       etd.visibility_during_embargo = RDF::URI(ActiveFedora::Base.id_to_uri(policy_during_embargo))
@@ -84,10 +74,10 @@ module Proquest
 
     def update_access_metadata
       etd.admin_policy_id =
-        if etd.embargo_release_date || infinite_embargo?
-          policy_during_embargo
-        else
+        if embargo_release_date == :no_embargo
           policy_after_embargo
+        else
+          policy_during_embargo
         end
     end
 
@@ -97,16 +87,17 @@ module Proquest
       end
     end
 
+    # @return [Hash]
     def descriptive_attributes
       attributes.except(*Proquest::XML.embargo_xpaths.keys)
     end
 
     def no_embargo?
-      embargo_release_date.blank?
+      embargo_release_date == :no_embargo
     end
 
     def infinite_embargo?
-      attributes[:embargo_code] == '4' && embargo_release_date.blank?
+      embargo_release_date == :infinite_embargo
     end
 
     # The embargo release date for ETDs must be calculated based
@@ -118,6 +109,8 @@ module Proquest
     # Therefore, all DISS_accept_date with a value of 01/01/YYYY
     # for ETDs should be interpreted as 12/31/YYYY for purposes
     # of calculating the embargo release date.
+    #
+    # @return [Date, Nil]
     def transformed_start_date
       unless attributes[:DISS_accept_date].blank?
         date = Date.parse(attributes[:DISS_accept_date])
@@ -141,33 +134,51 @@ module Proquest
     end
 
     # Calculate the release date based on <DISS_delayed_release>
-    def parse_delayed_release_date
-      if attributes[:DISS_delayed_release].blank?
-        nil
-      elsif attributes[:DISS_delayed_release] =~ /^.*2\s*year.*\Z/i
-        two_year_embargo
-      elsif attributes[:DISS_delayed_release] =~ /^.*1\s*year.*\Z/i
-        one_year_embargo
-      elsif attributes[:DISS_delayed_release] =~ /^.*6\s*month.*\Z/i
-        six_month_embargo
-      else
-        Date.parse(attributes[:DISS_delayed_release])
-      end
-    end
-
-    # Calculate the release date based on <embargo_code>
-    def parse_embargo_code
-      case attributes[:embargo_code]
-      when '1'
-        six_month_embargo
-      when '2'
-        one_year_embargo
-      when '3'
-        two_year_embargo
-      when '4'
-        if attributes[:embargo_remove_date]
+    #
+    # If the field DISS_agreement_decision_date is blank, that means
+    # this is a pre-Spring 2014 ETD without the ADRL-specific embargo
+    # metadata; see
+    # https://wiki.library.ucsb.edu/display/repos/ETD+Sample+Files+for+DCE.
+    # In that case, parse the ProQuest embargo code.  If there is an
+    # DISS_agreement_decision_date, calculate the embargo by comparing
+    # the agreement date with the delayed release date.
+    #
+    # See also https://help.library.ucsb.edu/browse/DIGREPO-466
+    #
+    # @return [Date, Symbol] the date of the embargo release, or
+    #   :no_embargo or :infinite_embargo if no release date
+    def parse_embargo
+      if attributes[:DISS_agreement_decision_date].blank?
+        case attributes[:embargo_code]
+        when '1'
+          six_month_embargo
+        when '2'
+          one_year_embargo
+        when '3'
+          two_year_embargo
+        when '4'
+          return :infinite_embargo if attributes[:embargo_remove_date].nil?
           Date.parse(attributes[:embargo_remove_date])
+        else
+          :no_embargo
         end
+
+      else
+        case attributes[:DISS_delayed_release]
+        when lambda { |release| release.blank? }
+          :no_embargo
+        when 'never deliver'
+          :infinite_embargo
+        when /^.*2\s*year.*\Z/i
+          two_year_embargo
+        when /^.*1\s*year.*\Z/i
+          one_year_embargo
+        when /^.*6\s*month.*\Z/i
+          six_month_embargo
+        else
+          Date.parse(attributes[:DISS_delayed_release])
+        end
+
       end
     end
 
@@ -183,8 +194,8 @@ module Proquest
       end
     end
 
-    # ETDs submitted between Fall 2011 and Winter 2014 are in
-    # batch #3.  See this page for the batch descriptions:
+    # ETDs submitted between Fall 2011 and Winter 2014 are in batch
+    # #3.  See this page for the batch descriptions:
     # https://wiki.library.ucsb.edu/pages/viewpage.action?title=ETD+Sample+Files+for+DCE&spaceKey=repos
     def batch_3?
       attributes[:DISS_agreement_decision_date].nil?
