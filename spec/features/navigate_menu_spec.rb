@@ -63,14 +63,6 @@ feature 'Navigation menu:' do
       expect(page).to_not have_link('Local Authorities')
       expect(page).to_not have_link('Add Record')
       expect(page).to_not have_link('Embargos')
-
-      # Should be able to see non-admin menu items
-      expect(page).to have_link('Contact Us')
-
-      # Make sure the link works
-      click_link 'Contact Us'
-      expect(page).to have_current_path(contact_us_path)
     end
   end
-
 end
