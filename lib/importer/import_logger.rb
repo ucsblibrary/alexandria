@@ -63,18 +63,16 @@ module Importer
 
     # Addition
     def self.included(base)
-      class << base
-        def logger
-          ImportLogger.logger
-        end
+      def base.logger
+        ImportLogger.logger
+      end
 
-        def log_location(logfile)
-          ImportLogger.log_location(logfile)
-        end
+      def base.log_location(logfile)
+        ImportLogger.log_location(logfile)
+      end
 
-        def parse_log_options(options)
-          ImportLogger.parse_log_options(options)
-        end
+      def base.parse_log_options(options)
+        ImportLogger.parse_log_options(options)
       end
     end
 
