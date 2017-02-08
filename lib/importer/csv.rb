@@ -36,7 +36,7 @@ module Importer::CSV
         attrs = csv_attributes(head, row)
 
         if options[:skip] > ingests
-          logger.info "Skipping record #{ingests}: accession number #{attrs[:accession_number]}"
+          logger.info "Skipping record #{ingests}: accession number #{attrs[:accession_number].first}"
           ingests += 1
           next
         end
@@ -44,7 +44,7 @@ module Importer::CSV
 
         start_record = Time.now
 
-        logger.info "Ingesting record #{ingests}: accession number #{attrs[:accession_number]}"
+        logger.info "Ingesting record #{ingests}: accession number #{attrs[:accession_number].first}"
 
         files = if attrs[:files].nil?
                   []
