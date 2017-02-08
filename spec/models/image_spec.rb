@@ -6,6 +6,11 @@ describe Image do
     expect(subject.title).to eq ['War and Peace']
   end
 
+  it 'has a scale' do
+    subject.scale = ['1:30000']
+    expect(subject.scale).to eq ['1:30000']
+  end
+
   it 'has collections' do
     expect(subject.in_collections).to eq []
   end

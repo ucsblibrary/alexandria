@@ -36,16 +36,22 @@ module Metadata
       index.as :stored_searchable
     end
 
+    # Spatial
+
     property :latitude, predicate: RDF::Vocab::EXIF.gpsLatitude do |index|
       index.as :displayable
     end
 
-    property :language, predicate: RDF::Vocab::DC.language,
-                        class_name: Oargun::ControlledVocabularies::Language do |index|
+    property :longitude, predicate: RDF::Vocab::EXIF.gpsLongitude do |index|
       index.as :displayable
     end
 
-    property :longitude, predicate: RDF::Vocab::EXIF.gpsLongitude do |index|
+    property :scale, predicate: RDF::URI('http://www.rdaregistry.info/Elements/u/#P60563') do |index|
+      index.as :stored_searchable
+    end
+
+    property :language, predicate: RDF::Vocab::DC.language,
+                        class_name: Oargun::ControlledVocabularies::Language do |index|
       index.as :displayable
     end
 
