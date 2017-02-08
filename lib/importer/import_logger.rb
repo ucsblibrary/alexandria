@@ -9,7 +9,7 @@ module Importer
   #  module Importer::Whatever
   #    include Importer::ImportLogger
   #    def foo
-  #      logger.set_log_location("/somewhere/out/there.log")
+  #      logger.log_location("/somewhere/out/there.log")
   #      logger.debug "tisk, tisk, it looks like rain"
   #    end
   #  end
@@ -27,7 +27,7 @@ module Importer
     # Return true if successful. Raise an error if the logfile isn't writable.
     # @param [String] logfile The full path the logfile location
     # @return [Boolean] return true if successful
-    def self.set_log_location(logfile)
+    def self.log_location(logfile)
       pathname = Pathname.new(logfile)
       FileUtils.touch logfile
       raise ArgumentError, "Can't write to logfile #{logfile}" unless pathname.writable?
@@ -39,7 +39,7 @@ module Importer
     # @param [Hash] options As passed by trollop on the command line
     def self.parse_log_options(options)
       if options[:logfile]
-        set_log_location(options[:logfile])
+        log_location(options[:logfile])
       else
         logger
       end

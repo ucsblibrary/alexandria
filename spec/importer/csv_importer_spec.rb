@@ -1,3 +1,4 @@
+# coding: utf-8
 require 'rails_helper'
 require 'importer'
 
@@ -5,7 +6,7 @@ describe Importer::CSV do
   before { Image.destroy_all }
   let(:logfile) { "#{fixture_path}/logs/csv_import.log" }
   before(:example) do
-    Importer::CSV.set_log_location(logfile)
+    Importer::CSV.log_location(logfile)
   end
 
   let(:data) { Dir['spec/fixtures/images/*'] }
