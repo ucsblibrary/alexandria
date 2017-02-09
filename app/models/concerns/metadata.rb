@@ -1,4 +1,5 @@
 require 'concerns/relators'
+# Metadata fields common to all objects
 module Metadata
   extend ActiveSupport::Concern
 
@@ -49,6 +50,13 @@ module Metadata
     property :scale, predicate: RDF::URI('http://www.rdaregistry.info/Elements/u/#P60563') do |index|
       index.as :stored_searchable
     end
+
+    # Defines the bounding box for the layer.
+    # We always assert units of decimal degrees and EPSG:4326 projection.
+    # @see http://dublincore.org/documents/dcmi-box/
+    # @example
+    #   object.coverage = 'northlimit=43.039; eastlimit=-69.856; southlimit=42.943; westlimit=-71.032; units=degrees; projection=EPSG:4326'
+    property :coverage, predicate: ::RDF::Vocab::DC11.coverage, multiple: false
 
     property :language, predicate: RDF::Vocab::DC.language,
                         class_name: Oargun::ControlledVocabularies::Language do |index|

@@ -6,11 +6,6 @@ describe Image do
     expect(subject.title).to eq ['War and Peace']
   end
 
-  it 'has a scale' do
-    subject.scale = ['1:30000']
-    expect(subject.scale).to eq ['1:30000']
-  end
-
   it 'has collections' do
     expect(subject.in_collections).to eq []
   end
@@ -229,9 +224,26 @@ describe Image do
       end
     end
   end
-
   describe '#to_partial_path' do
     subject { described_class.new.to_partial_path }
     it { is_expected.to eq 'catalog/document' }
+  end
+
+  # These are fields introduced for scanned maps. They would be better placed
+  # in the map model tests, once those exist.
+  context 'spatial fields' do
+    let(:dcmi_encoded_string) { 'northlimit=43.039; eastlimit=-69.856; southlimit=42.943; westlimit=-71.032; units=degrees; projection=EPSG:4326' }
+    let(:scale) { ['1:30000'] }
+    it 'has a scale' do
+      subject.scale = scale
+      expect(subject.scale).to eq scale
+    end
+
+    # See http://dublincore.org/documents/dcmi-box/
+    # See http://geoconcerns.github.io/tutorial/2016/06/07/create-an-image-work.html
+    it 'has coverage encoded as DCMI' do
+      subject.coverage = dcmi_encoded_string
+      expect(subject.coverage).to eq dcmi_encoded_string
+    end
   end
 end
