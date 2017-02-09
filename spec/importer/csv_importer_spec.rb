@@ -35,6 +35,44 @@ describe Importer::CSV do
     end
   end
 
+  context 'format coordinates as DCMI box' do
+    let(:in_process_data) do
+      {
+        west_bound_longitude: ['-74.0000'],
+        east_bound_longitude: ['-34.0000'],
+        north_bound_latitude: ['4.0000'],
+        south_bound_latitude: ['-34.0000'],
+      }
+    end
+    let(:dcmi_formatted_data) do
+      {
+        coverage: 'northlimit=4.0000; eastlimit=-34.0000; southlimit=-34.0000; westlimit=-74.0000; units=degrees; projection=EPSG:4326',
+      }
+    end
+    it 'takes coordinate data and turns it into a DCMI box' do
+      expect(Importer::CSV.transform_coordinates_to_dcmi_box(in_process_data)).to eql(dcmi_formatted_data)
+    end
+    it 'does not error out if the file has no coordinates' do
+      expect(Importer::CSV.transform_coordinates_to_dcmi_box({})).to eql({})
+    end
+    context 'all components are optional' do
+      let(:western_hemisphere_coordinates) do
+        {
+          west_bound_longitude: ['180'],
+          east_bound_longitude: ['0'],
+        }
+      end
+      let(:western_hemisphere_dcmi_formatted) do
+        {
+          coverage: 'eastlimit=0; westlimit=180; units=degrees; projection=EPSG:4326',
+        }
+      end
+      it 'takes coordinate data and turns it into a DCMI box for only two values' do
+        expect(Importer::CSV.transform_coordinates_to_dcmi_box(western_hemisphere_coordinates)).to eql(western_hemisphere_dcmi_formatted)
+      end
+    end
+  end
+
   context "#split" do
     let(:csvfile) { "#{fixture_path}/csv/pamss045.csv" }
     let(:utf8problemfile) { "#{fixture_path}/csv/mcpeak-utf8problems.csv" }

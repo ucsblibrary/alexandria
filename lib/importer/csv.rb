@@ -61,6 +61,8 @@ module Importer::CSV
           puts files.each { |f| puts f }
         end
 
+        attrs = Importer::CSV.transform_coordinates_to_dcmi_box(attrs)
+
         model = attrs.delete(:type)
         raise NoModelError if model.nil? || model.empty?
 
@@ -171,8 +173,8 @@ module Importer::CSV
     end
   end
 
-  # @param [String] header
-  # @param [String] val
+  # @param [String] header the column heading
+  # @param [String] val the associated value
   # @param [Hash] processed
   def self.extract_field(header, val, processed)
     return unless val
@@ -200,6 +202,31 @@ module Importer::CSV
         extract_multi_value_field(header, val, processed)
       end
     end
+  end
+
+  # Transform coordinates as provided in CSV spreadsheet into dcmi-box formatting
+  # Output should look like 'northlimit=43.039; eastlimit=-69.856; southlimit=42.943; westlimit=-71.032; units=degrees; projection=EPSG:4326'
+  # TODO: The transform_coordinates_to_dcmi_box method should invoke a DCMIBox.new method
+  # DCMI behaviors should be encapsulated there and it should have a .to_s method
+  # @param [Hash] attrs A hash of attributes that will become a fedora object
+  # @return [Hash]
+  def self.transform_coordinates_to_dcmi_box(attrs)
+    return attrs unless attrs[:north_bound_latitude] || attrs[:east_bound_longitude] || attrs[:south_bound_latitude] || attrs[:west_bound_longitude]
+    attrs[:coverage] = ''
+    if attrs[:north_bound_latitude]
+      attrs[:coverage] << "northlimit=#{attrs.delete(:north_bound_latitude).first}; "
+    end
+    if attrs[:east_bound_longitude]
+      attrs[:coverage] << "eastlimit=#{attrs.delete(:east_bound_longitude).first}; "
+    end
+    if attrs[:south_bound_latitude]
+      attrs[:coverage] << "southlimit=#{attrs.delete(:south_bound_latitude).first}; "
+    end
+    if attrs[:west_bound_longitude]
+      attrs[:coverage] << "westlimit=#{attrs.delete(:west_bound_longitude).first}; "
+    end
+    attrs[:coverage] << 'units=degrees; projection=EPSG:4326'
+    attrs
   end
 
   # @param [String] header
@@ -246,7 +273,4 @@ module Importer::CSV
     date[field.to_sym] ||= []
     date[field.to_sym] << val
   end
-
-
-
 end # End of module
