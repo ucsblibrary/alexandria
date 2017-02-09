@@ -152,6 +152,7 @@ class CatalogController < ApplicationController
                           label: 'Summary',
                           helper_method: 'not_simple_format'
     config.add_show_field solr_name('extent', :displayable), label: 'Physical Description'
+    config.add_show_field solr_name('scale', :stored_searchable), label: 'Scale'
     config.add_show_field solr_name('work_type_label', :stored_searchable),
                           label: 'Format',
                           link_to_search: 'work_type_label_sim'
