@@ -47,7 +47,7 @@ module Metadata
       index.as :displayable
     end
 
-    property :scale, predicate: RDF::URI('http://www.rdaregistry.info/Elements/u/#P60563') do |index|
+    property :scale, predicate: RDF::URI('http://www.rdaregistry.info/Elements/u/#horizontalScaleOfCartographicContent.en') do |index|
       index.as :stored_searchable
     end
 

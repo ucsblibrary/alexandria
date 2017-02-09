@@ -64,10 +64,12 @@ module Importer::CSV
         model = attrs.delete(:type)
         raise NoModelError if model.nil? || model.empty?
 
-        ::Importer::Factory.for(model).new(
+        o = ::Importer::Factory.for(model).new(
           attrs.merge(admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID),
           files
         ).run
+
+        logger.info "accession_number #{attrs[:accession_number].first} ingested as #{o.id}"
 
         end_record = Time.now
         puts "Ingested record #{ingests + 1} of #{tail.length} in #{end_record - start_record} seconds"
