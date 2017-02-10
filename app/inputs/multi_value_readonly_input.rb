@@ -1,3 +1,4 @@
+# frozen_string_literal: false
 class MultiValueReadonlyInput < MultiValueInput
   def input(_wrapper_options)
     @rendered_first_element = false
