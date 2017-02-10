@@ -77,6 +77,10 @@ module Proquest
         else
           policy_during_embargo
         end
+      etd.file_sets.each do |fs|
+        fs.admin_policy_id = etd.admin_policy_id
+        fs.save!
+      end
     end
 
     def update_descriptive_metadata
