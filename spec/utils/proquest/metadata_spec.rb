@@ -63,7 +63,7 @@ describe Proquest::Metadata do
           DISS_access_option: 'Open access',
           embargo_remove_date: nil }
       end
-      it { is_expected.to be_nil }
+      it { is_expected.to eq :no_embargo }
     end
 
     context 'DISS_delayed_release: 2 years' do
@@ -111,7 +111,7 @@ describe Proquest::Metadata do
           DISS_access_option: nil,
           embargo_remove_date: nil }
       end
-      it { is_expected.to be_nil }
+      it { is_expected.to eq :no_embargo }
     end
 
     context 'embargo_code 1: 6-month embargo' do
@@ -171,7 +171,7 @@ describe Proquest::Metadata do
           DISS_access_option: nil,
           embargo_remove_date: nil }
       end
-      it { is_expected.to be_nil }
+      it { is_expected.to eq :infinite_embargo }
     end
   end  # describe "#embargo_release_date"
 
@@ -346,7 +346,7 @@ describe Proquest::Metadata do
       end
 
       context 'without ProQuest or ADRL embargo' do
-        let(:file)  { "#{fixture_path}/proquest/Bones_ucsb_0035D_12540_DATA.xml" }
+        let(:file) { "#{fixture_path}/proquest/Bones_ucsb_0035D_12540_DATA.xml" }
 
         it 'sets the access policy, no embargo' do
           expect(reloaded.admin_policy_id).to eq AdminPolicy::PUBLIC_POLICY_ID
@@ -378,6 +378,19 @@ describe Proquest::Metadata do
           expect(reloaded.embargo_release_date).to eq Date.parse('2021-02-09')
           expect(reloaded.visibility_during_embargo.id).to eq ActiveFedora::Base.id_to_uri(AdminPolicy::DISCOVERY_POLICY_ID)
           expect(reloaded.visibility_after_embargo.id).to eq ActiveFedora::Base.id_to_uri(AdminPolicy::PUBLIC_POLICY_ID)
+        end
+      end
+
+      # JIRA: DIGREPO-710
+      context 'with a permanent embargo' do
+        let(:file) { "#{fixture_path}/proquest/Infinite_ucsb_0035D_12716_DATA.xml" }
+
+        it 'sets an "infinite embargo"' do
+          expect(reloaded.embargo_release_date).to be_nil
+          expect(reloaded.visibility_during_embargo).to be_nil
+          expect(reloaded.visibility_after_embargo).to be_nil
+          expect(reloaded.under_embargo?).to eq false
+          expect(reloaded.admin_policy_id).to eq AdminPolicy::DISCOVERY_POLICY_ID
         end
       end
     end
