@@ -61,14 +61,11 @@ module Importer::CSV
           puts files.each { |f| puts f }
         end
 
+        attrs = Importer::CSV.assign_access_policy(attrs)
         model = attrs.delete(:type)
         raise NoModelError if model.nil? || model.empty?
 
-        o = ::Importer::Factory.for(model).new(
-          attrs.merge(admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID),
-          files
-        ).run
-
+        o = ::Importer::Factory.for(model).new(attrs, files).run
         logger.info "accession_number #{attrs[:accession_number].first} ingested as #{o.id}"
 
         end_record = Time.now
@@ -247,6 +244,24 @@ module Importer::CSV
     date[field.to_sym] << val
   end
 
+  # Given a shorthand string for an access policy,
+  # assign the right AccessPolicy object
+  # @param [Hash] attrs A hash of attributes that will become a fedora object
+  # @return [Hash]
+  def self.assign_access_policy(attrs)
+    access_policy = if attrs[:access_policy]
+                      attrs.delete(:access_policy).first
+                    else
+                      'public'
+                    end
+    case access_policy
+    when 'public'
+      attrs[:admin_policy_id] = AdminPolicy::PUBLIC_POLICY_ID
+    when 'ucsb'
+      attrs[:admin_policy_id] = AdminPolicy::UCSB_POLICY_ID
+    end
+    attrs
+  end
 
 
 end # End of module
