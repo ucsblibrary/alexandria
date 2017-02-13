@@ -1,6 +1,13 @@
+inherit_from:
+  - .rubocop_todo.yml
+
 AllCops:
   Exclude:
+    - '**/*~'
     - 'db/**/*'
+    - 'bin/all-audio'
+    - 'bin/export-image-arks'
+    - 'bin/export-solr'
 
 Lint/AssignmentInCondition:
   Enabled: false

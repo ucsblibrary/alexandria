@@ -60,11 +60,11 @@ module ExtractContributors
   end
 
   def roles_for(field)
-    sub_4 = field.subfields.select { |s| s.code == '4'.freeze }
-              .map { |role| Traject::Macros::Marc21.trim_punctuation(role.value) }
-    sub_e = field.subfields.select { |s| s.code == 'e'.freeze }
-              .map { |role| Traject::Macros::Marc21.trim_punctuation(role.value) }
-    roles = sub_4 + sub_e
+    sub4 = field.subfields.select { |s| s.code == "4" }
+                .map { |role| Traject::Macros::Marc21.trim_punctuation(role.value) }
+    sub_e = field.subfields.select { |s| s.code == "e" }
+                 .map { |role| Traject::Macros::Marc21.trim_punctuation(role.value) }
+    roles = sub4 + sub_e
 
     if roles.blank?
       [:performer]

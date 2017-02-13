@@ -13,8 +13,8 @@ BRANCH ?= $(shell git rev-parse --abbrev-ref HEAD | tr -d '\n')
 prod:
 	bundle exec cap production deploy
 
-rubocop:
-	rubocop --format simple --config .rubocop.yml --auto-correct
+cops:
+	rubocop --format simple --config .rubocop.yml
 
 spec:
 	CI=1 RAILS_ENV=test bundle exec rake ci --trace
