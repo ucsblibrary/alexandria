@@ -11,7 +11,7 @@ module EzidHelper
   #
   def stub_out_ezid(ids = "123")
     identifiers = Array(ids).map do |id|
-      double(id: id, "[]=": nil, save: nil)
+      double(:id => id, "[]=" => nil, :save => nil)
     end
 
     allow(Ezid::Identifier).to receive(:mint).and_return(*identifiers)
