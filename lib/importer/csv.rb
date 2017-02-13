@@ -207,20 +207,20 @@ module Importer::CSV
   # @return [Hash]
   def self.transform_coordinates_to_dcmi_box(attrs)
     return attrs unless attrs[:north_bound_latitude] || attrs[:east_bound_longitude] || attrs[:south_bound_latitude] || attrs[:west_bound_longitude]
-    attrs[:coverage] = ""
+
     if attrs[:north_bound_latitude]
-      attrs[:coverage] << "northlimit=#{attrs.delete(:north_bound_latitude).first}; "
+      north = "northlimit=#{attrs.delete(:north_bound_latitude).first}; "
     end
     if attrs[:east_bound_longitude]
-      attrs[:coverage] << "eastlimit=#{attrs.delete(:east_bound_longitude).first}; "
+      east = "eastlimit=#{attrs.delete(:east_bound_longitude).first}; "
     end
     if attrs[:south_bound_latitude]
-      attrs[:coverage] << "southlimit=#{attrs.delete(:south_bound_latitude).first}; "
+      south = "southlimit=#{attrs.delete(:south_bound_latitude).first}; "
     end
     if attrs[:west_bound_longitude]
-      attrs[:coverage] << "westlimit=#{attrs.delete(:west_bound_longitude).first}; "
+      west = "westlimit=#{attrs.delete(:west_bound_longitude).first}; "
     end
-    attrs[:coverage] << "units=degrees; projection=EPSG:4326"
+    attrs[:coverage] = "#{north}#{east}#{south}#{west}units=degrees; projection=EPSG:4326"
     attrs
   end
 
