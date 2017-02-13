@@ -1,7 +1,8 @@
+# frozen_string_literal: true
 class MultiValueSelectInput < MultiValueInput
   # Overriding this so that the class is correct and the javascript for multivalue will work on this.
   def input_type
-    'multi_value'.freeze
+    "multi_value"
   end
 
   protected
@@ -36,7 +37,7 @@ class MultiValueSelectInput < MultiValueInput
       @rendered_first_element = true
 
       selected_option = value.respond_to?(:id) ? value.id : value
-      html_options[:prompt] = '' if selected_option.blank?
+      html_options[:prompt] = "" if selected_option.blank?
       template.select_tag(attribute_name, template.options_for_select(select_options, selected_option), html_options)
     end
 end

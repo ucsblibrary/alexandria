@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module CurationConcernsHelper
   include ::BlacklightHelper
   include CurationConcerns::MainAppHelpers
@@ -9,10 +10,10 @@ module CurationConcernsHelper
     doc = doc.solr_document if doc.respond_to? :solr_document
     return doc.public_uri if doc.public_uri
 
-    case Array(doc['has_model_ssim']).first
-    when 'Collection'
+    case Array(doc["has_model_ssim"]).first
+    when "Collection"
       collection_path(doc)
-    when 'Image', 'ETD', 'AudioRecording'
+    when "Image", "ETD", "AudioRecording"
       if doc.ark
         ark_path(doc.ark.html_safe)
       else

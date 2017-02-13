@@ -1,17 +1,17 @@
-require 'importer'
-require 'traject'
+# frozen_string_literal: true
+require "importer"
+require "traject"
 
 class ObjectFactoryWriter
-
-  AUDIO_TYPES = [RDF::URI('http://id.loc.gov/vocabulary/resourceTypes/aum'),
-                 RDF::URI('http://id.loc.gov/vocabulary/resourceTypes/aun')].freeze
-  ETD_TYPES   = [RDF::URI('http://id.loc.gov/vocabulary/resourceTypes/txt')].freeze
+  AUDIO_TYPES = [RDF::URI("http://id.loc.gov/vocabulary/resourceTypes/aum"),
+                 RDF::URI("http://id.loc.gov/vocabulary/resourceTypes/aun"),].freeze
+  ETD_TYPES   = [RDF::URI("http://id.loc.gov/vocabulary/resourceTypes/txt")].freeze
 
   def initialize(arg_settings)
     @settings = Traject::Indexer::Settings.new(arg_settings)
-    @etd = @settings['etd']
-    @verbose = @settings['verbose']
-    @local_collection_id = @settings['local_collection_id']
+    @etd = @settings["etd"]
+    @verbose = @settings["verbose"]
+    @local_collection_id = @settings["local_collection_id"]
   end
 
   def serialize(context)
@@ -19,7 +19,7 @@ class ObjectFactoryWriter
   end
 
   def close
-    puts 'closing'
+    puts "closing"
     # null
   end
 
@@ -30,10 +30,10 @@ class ObjectFactoryWriter
     # Attributes are assembled by Traject's MARC parser
     attributes = defaults.merge(from_traject)
 
-    contrib = Array(attributes.delete('contributors')).first
+    contrib = Array(attributes.delete("contributors")).first
     attributes.merge!(contrib) unless contrib.blank?
 
-    relators = parse_relators(attributes.delete('names'), attributes.delete('relators'))
+    relators = parse_relators(attributes.delete("names"), attributes.delete("relators"))
 
     if relators
       attributes.merge!(relators)
@@ -43,17 +43,16 @@ class ObjectFactoryWriter
     end
 
     # created date is a TimeSpan
-    created = attributes.delete('created_start')
+    created = attributes.delete("created_start")
     attributes[:created_attributes] = [{ start: created }] if created
 
     # id must be singular
     attributes[:id] = attributes[:id].first
 
     files = find_files_to_attach(attributes)
-    attributes[:files] = attributes.delete('filename')
+    attributes[:files] = attributes.delete("filename")
     build_object(attributes, files)
   end
-
 
   # Extract the cylinder numbers from names like these:
   # ["Cylinder 12783", "Cylinder 0006"]
@@ -76,7 +75,7 @@ class ObjectFactoryWriter
       cylinder_number = match[1]
       files = []
       dirs.each do |dir| # Look in all the dirs
-        files += Dir.glob(File.join(dir, '**', "cusb-cyl#{cylinder_number}*"))
+        files += Dir.glob(File.join(dir, "**", "cusb-cyl#{cylinder_number}*"))
       end
       file_groups << files unless files.blank?
     end
@@ -89,7 +88,7 @@ class ObjectFactoryWriter
 
     def print_file_names(file_groups)
       return unless @verbose
-      puts 'Files to attach:'
+      puts "Files to attach:"
       puts file_groups.flatten.each { |f| puts f.inspect }
     end
 
@@ -105,7 +104,7 @@ class ObjectFactoryWriter
     end
 
     def build_object(attributes, metadata)
-      work_type = attributes.fetch('work_type').first
+      work_type = attributes.fetch("work_type").first
       attributes[:local_collection_id] = Array(@local_collection_id) unless @local_collection_id.blank?
       factory(work_type).new(attributes, metadata).run
     end
@@ -113,9 +112,9 @@ class ObjectFactoryWriter
     def factory(work_type)
       case work_type
       when *ETD_TYPES
-        Importer::Factory.for('ETD'.freeze)
+        Importer::Factory.for("ETD")
       when *AUDIO_TYPES
-        Importer::Factory.for('AudioRecording'.freeze)
+        Importer::Factory.for("AudioRecording")
       else
         raise ArgumentError, "Unknown work type #{work_type}"
       end

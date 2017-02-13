@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module DateUtil
   def self.extract_year(date)
     date = date.to_s

@@ -1,4 +1,5 @@
-require 'fileutils'
+# frozen_string_literal: true
+require "fileutils"
 
 module Proquest
   extend ActiveSupport::Autoload
@@ -20,14 +21,14 @@ module Proquest
 
     # -j: flatten directory structure in `dest'
     # -o: overwrite existing files in `dest'
-    system 'unzip', '-j', '-o', zipfile, '-d', dest
+    system "unzip", "-j", "-o", zipfile, "-d", dest
 
     # https://github.library.ucsb.edu/ADRL/alexandria/issues/45#issuecomment-101
     {
       xml: Dir["#{dest}/*ucsb_0035*_DATA.xml"].first,
       pdf: Dir["#{dest}/*ucsb_0035*.pdf"].first,
       supplements: Dir["#{dest}/*"].reject do |f|
-        File.basename(f).include?('ucsb_0035')
+        File.basename(f).include?("ucsb_0035")
       end,
     }
   end

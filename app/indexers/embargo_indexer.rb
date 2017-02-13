@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class EmbargoIndexer
   def initialize(object)
     @object = object
@@ -5,7 +6,7 @@ class EmbargoIndexer
 
   def generate_solr_document
     {}.tap do |doc|
-      date_field_name = Hydra.config.permissions.embargo.release_date.sub(/_dtsi/, '')
+      date_field_name = Hydra.config.permissions.embargo.release_date.sub(/_dtsi/, "")
       Solrizer.insert_field(doc, date_field_name, @object.embargo_release_date, :stored_sortable)
       doc[visibility_during_key] = visibility_during_embargo_id
       doc[visibility_after_key] = visibility_after_embargo_id
@@ -15,11 +16,11 @@ class EmbargoIndexer
   private
 
     def visibility_during_key
-      ::Solrizer.solr_name('visibility_during_embargo', :symbol)
+      ::Solrizer.solr_name("visibility_during_embargo", :symbol)
     end
 
     def visibility_after_key
-      ::Solrizer.solr_name('visibility_after_embargo', :symbol)
+      ::Solrizer.solr_name("visibility_after_embargo", :symbol)
     end
 
     def visibility_during_embargo_id

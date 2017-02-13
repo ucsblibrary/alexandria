@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module LocalAuthority
   def self.local_name_models
     [Agent, Person, Group, Organization]
@@ -15,7 +16,7 @@ module LocalAuthority
   # Input record should be ActiveFedora::Base or SolrDocument.
   def self.local_authority?(record, models = nil)
     klass = if record.is_a?(SolrDocument)
-              Array(record['has_model_ssim']).first.constantize
+              Array(record["has_model_ssim"]).first.constantize
             else
               record.class
             end

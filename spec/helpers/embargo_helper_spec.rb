@@ -1,4 +1,5 @@
-require 'rails_helper'
+# frozen_string_literal: true
+require "rails_helper"
 
 describe EmbargoHelper do
   let(:policy_after_embargo) { AdminPolicy::RESTRICTED_POLICY_ID }
@@ -8,8 +9,8 @@ describe EmbargoHelper do
 
   before { AdminPolicy.ensure_admin_policy_exists }
 
-  describe 'after_visibility' do
+  describe "after_visibility" do
     subject { helper.after_visibility(etd) }
-    it { is_expected.to eq 'Restricted access' }
+    it { is_expected.to eq "Restricted access" }
   end
 end

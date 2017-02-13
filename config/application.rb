@@ -1,6 +1,7 @@
-require File.expand_path('../boot', __FILE__)
+# frozen_string_literal: true
+require File.expand_path("../boot", __FILE__)
 
-require 'rails/all'
+require "rails/all"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -32,13 +33,13 @@ module AlexandriaV2
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
 
-    config.action_mailer.smtp_settings = YAML.load(File.read(Rails.root.join('config', 'smtp.yml')))[Rails.env] || {}
+    config.action_mailer.smtp_settings = YAML.load(File.read(Rails.root.join("config", "smtp.yml")))[Rails.env] || {}
 
     # Set the backend for running background jobs
     config.active_job.queue_adapter = :resque
     # Should make Resque clean up tempfiles more aggressively
     # https://groups.google.com/d/msg/hydra-tech/muk1eLjycXE/m0ejQl1lCAAJ
     # https://github.com/resque/resque/blob/105a54017fe2eb12cb09fa3241afce06581cf586/HISTORY.md#1240-2013-3-21p
-    config.before_configuration { ENV['RUN_AT_EXIT_HOOKS'] = '1' }
+    config.before_configuration { ENV["RUN_AT_EXIT_HOOKS"] = "1" }
   end
 end

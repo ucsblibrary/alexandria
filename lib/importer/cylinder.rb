@@ -1,6 +1,6 @@
+# frozen_string_literal: true
 module Importer
   class Cylinder
-
     # Array of MARC record files to import.
     attr_reader :metadata_files
 
@@ -14,11 +14,10 @@ module Importer
     attr_reader :imported_records_count
 
     # Attributes for the cylinders collection
-    COLLECTION_ATTRIBUTES = { accession_number: ['Cylinders'] }
+    COLLECTION_ATTRIBUTES = { accession_number: ["Cylinders"] }.freeze
 
-
-    def initialize(metadata_files, files_dirs, options={})
-      $stdout.sync = true  # flush output immediately
+    def initialize(metadata_files, files_dirs, options = {})
+      $stdout.sync = true # flush output immediately
       @metadata_files = metadata_files
       @files_dirs = files_dirs
       @options = options
@@ -31,7 +30,7 @@ module Importer
 
       # https://github.com/traject/traject/blob/master/lib/traject/indexer.rb#L101
       @indexer = Traject::Indexer.new
-      @indexer.load_config_file('lib/traject/audio_config.rb')
+      @indexer.load_config_file("lib/traject/audio_config.rb")
       @indexer.settings(files_dirs: files_dirs)
       @indexer.settings(verbose: options[:verbose])
       @indexer.settings(local_collection_id: @collection.id) if @collection
@@ -54,7 +53,7 @@ module Importer
         next if options[:skip] && options[:skip] > count
         break if options[:number] && options[:number] <= imported_records_count
 
-        if record['024'].blank? || record['024']['a'].blank?
+        if record["024"].blank? || record["024"]["a"].blank?
           puts "Skipping record #{count + 1}: No ARK found"
           next
         end
@@ -73,7 +72,7 @@ module Importer
     ensure
       indexer.writer.close if indexer && indexer.writer
       if @collection
-        puts 'Updating collection index'
+        puts "Updating collection index"
         @collection.update_index
       end
     end
@@ -99,7 +98,7 @@ module Importer
         puts "ABORTING IMPORT:  Before you can import cylinder records, the cylinders collection must exist.  Please import the cylinders collection record first, then re-try this import."
         puts
 
-        raise CollectionNotFound.new("Not Found: Collection with accession number #{COLLECTION_ATTRIBUTES[:accession_number]}")
+        raise CollectionNotFound, "Not Found: Collection with accession number #{COLLECTION_ATTRIBUTES[:accession_number]}"
       end
 
       def print_attributes(record, item_number)
@@ -114,7 +113,7 @@ module Importer
       def print_files_dirs
         return unless options[:verbose]
         puts
-        puts 'Audio files directories:'
+        puts "Audio files directories:"
         files_dirs.each { |d| puts d }
         puts
       end

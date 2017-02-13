@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # Create local authorities with data imported from a CSV file
 module Importer
   class LocalAuthorityImporter
@@ -41,7 +42,7 @@ module Importer
       attributes = { id: attrs[:id] }
 
       list_of_names = Array(attrs).flat_map { |a| a.first == :name ? a - [a[0]] : nil }.compact
-      names = if model.attribute_names.include?('foaf_name')
+      names = if model.attribute_names.include?("foaf_name")
                 { foaf_name:  list_of_names.first }
               else
                 { label: list_of_names }

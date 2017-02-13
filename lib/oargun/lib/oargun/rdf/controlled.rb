@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Oargun::RDF
   module Controlled
     extend ActiveSupport::Concern

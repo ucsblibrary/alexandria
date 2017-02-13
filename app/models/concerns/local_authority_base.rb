@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module LocalAuthorityBase
   extend ActiveSupport::Concern
   include WithAdminPolicy
@@ -23,8 +24,8 @@ module LocalAuthorityBase
 
   def to_solr(solr_doc = {})
     super.tap do |solr_doc|
-      solr_doc['uri_ssim'] = uri
-      solr_doc['public_uri_ssim'] = public_uri
+      solr_doc["uri_ssim"] = uri
+      solr_doc["public_uri_ssim"] = public_uri
     end
   end
 
@@ -42,6 +43,6 @@ module LocalAuthorityBase
 
   # When a collection of these are rendered, which partial should be used
   def to_partial_path
-    'catalog/document'
+    "catalog/document"
   end
 end

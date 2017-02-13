@@ -1,8 +1,9 @@
-require 'factory_girl'
+# frozen_string_literal: true
+require "factory_girl"
 
 FactoryGirl.define do
   factory :audio, class: AudioRecording do
-    title ['Test Recording']
+    title ["Test Recording"]
 
     factory :public_audio do
       admin_policy_id AdminPolicy::PUBLIC_POLICY_ID

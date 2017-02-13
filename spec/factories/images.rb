@@ -1,9 +1,10 @@
-require 'factory_girl'
+# frozen_string_literal: true
+require "factory_girl"
 
 FactoryGirl.define do
   factory :image do
-    title ['Test Image']
-    identifier { [Time.now.strftime('%m%d%Y%M%S') + rand(1_000_000).to_s] }
+    title ["Test Image"]
+    identifier { [Time.now.strftime("%m%d%Y%M%S") + rand(1_000_000).to_s] }
     factory :public_image do
       admin_policy_id AdminPolicy::PUBLIC_POLICY_ID
     end

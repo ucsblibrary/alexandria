@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # This extends the DownloadController from Hydra-Core in order to unescape
 # slashes in the ids. It also ensures that when you pass the id for a FileSet
 # you are going to be served the orignal pcdm:File (not a derivative)
@@ -14,7 +15,7 @@ class DownloadsController < ApplicationController
 
     # set the disposition to attachment for downloading
     def derivative_download_options
-      return { type: mime_type_for(file), filename: file_name, disposition: 'attachment' } if params[:dl].present?
+      return { type: mime_type_for(file), filename: file_name, disposition: "attachment" } if params[:dl].present?
       super
     end
 
@@ -30,7 +31,7 @@ class DownloadsController < ApplicationController
     end
 
     def filename_for_derivative
-      File.basename(asset.restored.original_name, '.*') + ".#{params[:file]}"
+      File.basename(asset.restored.original_name, ".*") + ".#{params[:file]}"
     end
 
     def original_file?

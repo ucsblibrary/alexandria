@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Oargun::ControlledVocabularies
   extend ActiveSupport::Autoload
   autoload :Geographic

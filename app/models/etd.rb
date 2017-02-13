@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class ETD < ActiveFedora::Base
   include CurationConcerns::WorkBehavior
   include WithAdminPolicy
@@ -7,9 +8,9 @@ class ETD < ActiveFedora::Base
   include HumanReadableType
   include EmbargoBehavior
 
-  self.human_readable_type = 'Thesis or dissertation'
+  self.human_readable_type = "Thesis or dissertation"
 
-  validates :title, presence: { message: 'Your work must have a title.' }
+  validates :title, presence: { message: "Your work must have a title." }
 
   property :isbn, predicate: ::RDF::Vocab::Identifiers.isbn do |index|
     index.as :symbol
@@ -44,6 +45,6 @@ class ETD < ActiveFedora::Base
 
   # When a collection of these are rendered, which partial should be used
   def to_partial_path
-    'catalog/document'
+    "catalog/document"
   end
 end

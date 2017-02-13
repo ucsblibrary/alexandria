@@ -1,11 +1,12 @@
+# frozen_string_literal: true
 # Simple Role Syntax
 # ==================
 # Supports bulk-adding hosts to roles, the primary server in each group
 # is considered to be the first unless any hosts have the primary
 # property set.  Don't declare `role :all`, it's a meta role.
 set :stage, :aws
-set :rails_env, 'production'
-server 'perftest.curationexperts.com', user: 'deploy', roles: [:web, :app, :db, :resque_pool]
+set :rails_env, "production"
+server "perftest.curationexperts.com", user: "deploy", roles: [:web, :app, :db, :resque_pool]
 
 set :linked_files, %w(
   config/application.yml

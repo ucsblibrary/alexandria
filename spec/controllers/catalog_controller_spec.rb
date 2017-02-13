@@ -1,15 +1,16 @@
-require 'rails_helper'
+# frozen_string_literal: true
+require "rails_helper"
 
 describe CatalogController do
   before do
     AdminPolicy.ensure_admin_policy_exists
   end
 
-  describe 'the search results' do
+  describe "the search results" do
     let!(:file_set) { FileSet.create! }
     let!(:image) { create(:public_image) }
 
-    it 'only shows images (not FileSets)' do
+    it "only shows images (not FileSets)" do
       get :index
       found = assigns[:document_list].map(&:id)
       expect(found).to include(image.id)
@@ -17,50 +18,50 @@ describe CatalogController do
     end
   end
 
-  describe 'show tools' do
-    it 'includes the edit link' do
+  describe "show tools" do
+    it "includes the edit link" do
       expect(CatalogController.blacklight_config.show.document_actions.keys).to include :edit
     end
 
-    it 'includes the access and embargo link' do
+    it "includes the access and embargo link" do
       expect(CatalogController.blacklight_config.show.document_actions.keys).to include :access
     end
   end
 
-  describe 'show page' do
+  describe "show page" do
     let(:ark) { "ark:/99999/123" }
 
-    context 'download TTL file' do
+    context "download TTL file" do
       before do
         get :show, id: record, format: :ttl
       end
 
-      context 'for an Image record' do
+      context "for an Image record" do
         let(:record) { create :public_image, identifier: [ark] }
 
-        it 'shows public urls (not fedora urls)' do
+        it "shows public urls (not fedora urls)" do
           expect(response.body).to include "<http://test.host/lib/#{ark}>"
         end
       end
 
-      context 'for an ETD record' do
+      context "for an ETD record" do
         let(:record) { create :public_etd, identifier: [ark] }
 
-        it 'shows public urls (not fedora urls)' do
+        it "shows public urls (not fedora urls)" do
           expect(response.body).to include "<http://test.host/lib/#{ark}>"
         end
       end
 
-      context 'for a record with no ark' do
+      context "for a record with no ark" do
         let(:record) { create :public_image, identifier: nil }
 
-        it 'shows public urls (not fedora urls)' do
+        it "shows public urls (not fedora urls)" do
           expect(response.body).to include "<http://test.host/catalog/#{record.id}>"
         end
       end
     end
 
-    context 'view a restricted file' do
+    context "view a restricted file" do
       let(:restricted_image) { create(:image, :restricted) }
 
       before do
@@ -68,43 +69,43 @@ describe CatalogController do
         get :show, id: restricted_image
       end
 
-      context 'logged in as an admin user' do
+      context "logged in as an admin user" do
         let(:user) { create(:metadata_admin) }
 
-        it 'is successful' do
+        it "is successful" do
           expect(response).to be_successful
           expect(response).to render_template(:show)
         end
       end
 
-      context 'logged in as a UCSB user' do
+      context "logged in as a UCSB user" do
         let(:user) { create(:ucsb_user) }
 
-        it 'access is denied' do
+        it "access is denied" do
           expect(response).to redirect_to root_path
           expect(flash[:alert]).to match(/You do not have sufficient access privileges/)
         end
       end
     end
 
-    context 'bad URL' do
-      it 'returns a 404' do
-        get :show, id: 'fk4cn8cc3d'
+    context "bad URL" do
+      it "returns a 404" do
+        get :show, id: "fk4cn8cc3d"
         expect(response.response_code).to eq 404
       end
     end
   end # show page
 
-  describe '#editor?' do
+  describe "#editor?" do
     before { allow(controller).to receive(:current_user).and_return(user) }
     subject { controller.editor?(nil, document: SolrDocument.new) }
 
-    context 'for an admin' do
+    context "for an admin" do
       let(:user) { create :admin }
       it { is_expected.to be true }
     end
 
-    context 'for a non-admin user' do
+    context "for a non-admin user" do
       let(:user) { create :user }
       it { is_expected.to be false }
     end

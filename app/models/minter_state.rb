@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # This is a work-around to allow us to run Alexandria in
 # production mode.  If this file doesn't exist, we get this
 # error when running rails server or rails console in

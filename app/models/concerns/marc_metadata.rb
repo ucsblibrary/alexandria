@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # Fields common to both ETDs and AudioRecordings
 module MarcMetadata
   extend ActiveSupport::Concern

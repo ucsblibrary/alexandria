@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Note < ActiveTriples::Resource
   include StoredInline
 

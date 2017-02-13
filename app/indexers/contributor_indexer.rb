@@ -1,11 +1,12 @@
+# frozen_string_literal: true
 # Selects a sortable (singular) creator and unions all the contributor
 # subtypes together into a single solr field.
 class ContributorIndexer
-  ALL_CONTRIBUTORS_FACET = Solrizer.solr_name('all_contributors_label', :facetable)
-  ALL_CONTRIBUTORS_LABEL = Solrizer.solr_name('all_contributors_label', :stored_searchable)
+  ALL_CONTRIBUTORS_FACET = Solrizer.solr_name("all_contributors_label", :facetable)
+  ALL_CONTRIBUTORS_LABEL = Solrizer.solr_name("all_contributors_label", :stored_searchable)
 
-  SORTABLE_CREATOR = Solrizer.solr_name('creator_label', :sortable)
-  CREATOR_MULTIPLE = Solrizer.solr_name('creator_label', :stored_searchable)
+  SORTABLE_CREATOR = Solrizer.solr_name("creator_label", :sortable)
+  CREATOR_MULTIPLE = Solrizer.solr_name("creator_label", :stored_searchable)
 
   attr_reader :object
 

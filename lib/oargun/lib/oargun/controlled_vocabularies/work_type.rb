@@ -1,4 +1,5 @@
-require 'rdf/vocab'
+# frozen_string_literal: true
+require "rdf/vocab"
 module Oargun::ControlledVocabularies
   class WorkType < ActiveTriples::Resource
     include Oargun::RDF::Controlled
@@ -7,6 +8,5 @@ module Oargun::ControlledVocabularies
     use_vocabulary :ldp, class: ::RDF::Vocab::LDP
     # use_vocabulary :worktype
     use_vocabulary :lcsh, class: Oargun::Vocabularies::LCSH
-
   end
 end

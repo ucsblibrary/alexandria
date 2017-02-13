@@ -1,4 +1,5 @@
-require 'exporter/base_exporter'
+# frozen_string_literal: true
+require "exporter/base_exporter"
 
 module Exporter
   class LocalAuthorityExporter < BaseExporter
@@ -13,7 +14,7 @@ module Exporter
 
     def initialize(dir = nil, file_name = nil)
       super
-      @temp_file_name = File.basename(export_file_name, '.*') + '.tmp'
+      @temp_file_name = File.basename(export_file_name, ".*") + ".tmp"
       @temp_file = File.join(export_dir, temp_file_name)
       @max_names = 1
     end
@@ -27,7 +28,7 @@ module Exporter
     end
 
     def print_object_counts
-      puts 'Number of records to export:'
+      puts "Number of records to export:"
       classes_to_export.each do |model|
         puts "   #{model}: #{model.exact_model.count}"
       end
@@ -40,7 +41,7 @@ module Exporter
     end
 
     def write_data_to_temp_file
-      CSV.open(temp_file, 'w') do |csv|
+      CSV.open(temp_file, "w") do |csv|
         classes_to_export.each do |model|
           puts "Exporting #{model} objects..."
           model.exact_model.each do |fedora_object|
@@ -74,15 +75,15 @@ module Exporter
     # line to a file, so we write the headers to a new file and
     # then append the data from the temp file.
     def write_headers_and_data_to_export_file
-      puts 'Adding headers to data from temp file...'
-      CSV.open(export_file, 'w') do |csv|
+      puts "Adding headers to data from temp file..."
+      CSV.open(export_file, "w") do |csv|
         csv << headers
         CSV.foreach(temp_file) { |row| csv << row }
       end
     end
 
     def headers
-      %w(type id) + Array.new(max_names) { |_i| 'name' }
+      %w(type id) + Array.new(max_names) { |_i| "name" }
     end
 
     def clean_up_temp_file

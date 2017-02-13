@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Importer::Factory
   class ObjectFactory
     extend ActiveModel::Callbacks
@@ -80,7 +81,7 @@ module Importer::Factory
           erc_what: attrs[:title].first
         )
         attrs[:identifier] = [identifier.id]
-        attrs[:id] = identifier.id.split('/').last
+        attrs[:id] = identifier.id.split("/").last
       end
 
       # There's a bug in ActiveFedora when there are many
@@ -131,7 +132,7 @@ module Importer::Factory
         # Use the combination of all authorial roles
         contributors = object.to_solr[ContributorIndexer::ALL_CONTRIBUTORS_LABEL]
         unless contributors.blank?
-          identifier[:erc_who] = contributors.join('; ')
+          identifier[:erc_who] = contributors.join("; ")
         end
 
         identifier.save
@@ -247,7 +248,7 @@ module Importer::Factory
         if field
           field.join('\n\n')
         else
-          ''
+          ""
         end
       end
 
@@ -256,21 +257,21 @@ module Importer::Factory
       # type="personal" should map to the Person model.
       def contributor_classes
         @contributor_classes ||= {
-          'personal' => Person,
-          'corporate' => Organization,
-          'conference' => Group,
-          'family' => Group,
-          'person' => Person,
-          'group' => Group,
-          'organization' => Organization,
-          'agent' => Agent,
+          "personal" => Person,
+          "corporate" => Organization,
+          "conference" => Group,
+          "family" => Group,
+          "person" => Person,
+          "group" => Group,
+          "organization" => Organization,
+          "agent" => Agent,
         }
       end
 
       def topic_classes
         @topic_classes ||= {
-          'topic' => Topic,
-          'subject' => Topic,
+          "topic" => Topic,
+          "subject" => Topic,
         }.merge(contributor_classes)
       end
 

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # This is a local name authority adapter for questioning authority
 class LocalNames
   include Blacklight::SearchHelper
@@ -7,8 +8,8 @@ class LocalNames
 
   configure_blacklight do |config|
     config.default_solr_params = {
-      qf: 'foaf_name_tesim',
-      fl: 'foaf_name_tesim id',
+      qf: "foaf_name_tesim",
+      fl: "foaf_name_tesim id",
     }
     config.search_builder_class = LocalNameSearchBuilder
   end

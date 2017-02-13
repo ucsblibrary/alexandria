@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class User < ActiveRecord::Base
   # Connects this user object to Hydra behaviors.
   include Hydra::User
@@ -51,7 +52,7 @@ class User < ActiveRecord::Base
   end
 
   def self.batchuser_key
-    'batchuser'
+    "batchuser"
   end
 
   private

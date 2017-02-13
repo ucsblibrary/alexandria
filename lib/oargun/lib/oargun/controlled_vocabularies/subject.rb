@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Oargun::ControlledVocabularies
   class Subject < ActiveTriples::Resource
     include Oargun::RDF::Controlled
@@ -6,6 +7,5 @@ module Oargun::ControlledVocabularies
     use_vocabulary :lcnames, class: Oargun::Vocabularies::LCNAMES
     use_vocabulary :tgm, class: Oargun::Vocabularies::TGM
     use_vocabulary :aat, class: Oargun::Vocabularies::AAT
-
   end
 end

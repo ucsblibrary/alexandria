@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Menubar
   extend ActiveSupport::Concern
 
@@ -17,5 +18,4 @@ module Menubar
   def can_destroy_authorities?
     can?(:destroy, :local_authorities)
   end
-
 end

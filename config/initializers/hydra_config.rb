@@ -1,5 +1,6 @@
+# frozen_string_literal: true
 # windows doesn't properly require hydra-head (from the gemfile), so we need to require it explicitly here:
-require 'hydra/head' unless defined? Hydra
+require "hydra/head" unless defined? Hydra
 
 Hydra.configure do |_config|
   # This specifies the solr field names of permissions-related fields.
@@ -20,15 +21,13 @@ Hydra.configure do |_config|
   # specify the user model
   # config.user_model = 'User'
 
-
-
   def read_ark_from_graph(graph)
     statement = graph.query([nil, ::RDF::Vocab::DC.identifier, nil]).first
     statement.object.to_s unless statement.blank?
   end
 
   def uri_from_ark(routes, ark)
-    array_of_params = ark.split('/')
+    array_of_params = ark.split("/")
     routes.catalog_ark_url(*array_of_params, host: Rails.application.config.host_name)
   end
 
@@ -40,7 +39,6 @@ Hydra.configure do |_config|
   def uri_from_id(routes, id)
     routes.solr_document_url(id, host: Rails.application.config.host_name)
   end
-
 
   # Map internal ids to external paths
   Hydra.config.id_to_resource_uri = lambda do |id, graph|

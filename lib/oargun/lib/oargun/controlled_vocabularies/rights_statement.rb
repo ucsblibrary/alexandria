@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Oargun::ControlledVocabularies
   class RightsStatement < ActiveTriples::Resource
     include Oargun::RDF::Controlled
@@ -10,9 +11,9 @@ module Oargun::ControlledVocabularies
     use_vocabulary :cclicenses, class: Oargun::Vocabularies::CCLICENSES
 
     def rdf_label
-      if rdf_subject.to_s.match(/opaquenamespace/)
+      if rdf_subject.to_s =~ /opaquenamespace/
         term = RDF::Vocabulary.find_term(rdf_subject.to_s)
-        raise TermNotFound.new(rdf_subject.to_s) unless term
+        raise TermNotFound, rdf_subject.to_s unless term
         Array(term.label)
       else
         super

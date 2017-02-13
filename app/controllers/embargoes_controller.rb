@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # TODO: Merge this with CurationConcerns
 # Provides a mechanism to interact with embargos.
 class EmbargoesController < ApplicationController

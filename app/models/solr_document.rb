@@ -1,4 +1,5 @@
 # -*- encoding : utf-8 -*-
+# frozen_string_literal: true
 class SolrDocument
   include Blacklight::Solr::Document
   include Blacklight::Gallery::OpenseadragonSolrDocument
@@ -32,7 +33,7 @@ class SolrDocument
 
   # Something besides a local authority
   def curation_concern?
-    case fetch('has_model_ssim').first
+    case fetch("has_model_ssim").first
     when Collection.to_class_uri, Image.to_class_uri, ETD.to_class_uri
       true
     else
@@ -42,19 +43,19 @@ class SolrDocument
 
   # blank if there is no embargo or the embargo status
   def after_embargo_status
-    return if self['visibility_after_embargo_ssim'].blank?
+    return if self["visibility_after_embargo_ssim"].blank?
 
-    date = Date.parse self['embargo_release_date_dtsi']
-    policy = AdminPolicy.find(self['visibility_after_embargo_ssim'].first)
+    date = Date.parse self["embargo_release_date_dtsi"]
+    policy = AdminPolicy.find(self["visibility_after_embargo_ssim"].first)
     " - Becomes #{policy} on #{date.to_s(:us)}"
   end
 
   def etd?
-    self['has_model_ssim'] == [ETD.to_class_uri]
+    self["has_model_ssim"] == [ETD.to_class_uri]
   end
 
   def admin_policy_id
-    fetch('isGovernedBy_ssim').first
+    fetch("isGovernedBy_ssim").first
   end
 
   def to_param
@@ -62,13 +63,13 @@ class SolrDocument
   end
 
   def ark
-    Array(self[Solrizer.solr_name('identifier', :displayable)]).first
+    Array(self[Solrizer.solr_name("identifier", :displayable)]).first
   end
 
   # TODO: investigate if this method is still needed.
   def file_sets
     @file_sets ||= begin
-      if ids = self[Solrizer.solr_name('member_ids', :symbol)]
+      if ids = self[Solrizer.solr_name("member_ids", :symbol)]
         load_file_sets(ids)
       else
         []
@@ -78,28 +79,28 @@ class SolrDocument
 
   def public_uri
     return nil unless LocalAuthority.local_authority?(self)
-    Array(self['public_uri_ssim']).first
+    Array(self["public_uri_ssim"]).first
   end
 
   def restrictions
-    fetch('restrictions_tesim', [])
+    fetch("restrictions_tesim", [])
   end
 
   def alternative
-    fetch('alternative_tesim', [])
+    fetch("alternative_tesim", [])
   end
 
   # this overrides CurationConcerns to use the language_label_ssm field
   def language
-    fetch('language_label_ssm', [])
+    fetch("language_label_ssm", [])
   end
 
   def issue_number
-    fetch('issue_number_ssm', [])
+    fetch("issue_number_ssm", [])
   end
 
   def matrix_number
-    fetch('matrix_number_ssm', [])
+    fetch("matrix_number_ssm", [])
   end
 
   def issued
@@ -107,69 +108,69 @@ class SolrDocument
   end
 
   def place_of_publication
-    fetch('place_of_publication_tesim', [])
+    fetch("place_of_publication_tesim", [])
   end
 
   def extent
-    fetch('extent_ssm', [])
+    fetch("extent_ssm", [])
   end
 
   def notes
-    fetch('note_label_tesim', [])
+    fetch("note_label_tesim", [])
   end
 
   def table_of_contents
-    fetch('table_of_contents_tesim', [])
+    fetch("table_of_contents_tesim", [])
   end
 
   def form_of_work
-    fetch('form_of_work_label_tesim', [])
+    fetch("form_of_work_label_tesim", [])
   end
 
   def work_type
-    fetch('work_type_label_tesim', [])
+    fetch("work_type_label_tesim", [])
   end
 
   def rights_holder
-    fetch('rights_holder_label_ssim', [])
+    fetch("rights_holder_label_ssim", [])
   end
 
   def copyright_status
-    fetch('copyright_status_label_tesim', [])
+    fetch("copyright_status_label_tesim", [])
   end
 
   def sub_location
-    fetch('sub_location_ssm', [])
+    fetch("sub_location_ssm", [])
   end
 
   def accession_number
-    fetch('accession_number_tesim', [])
+    fetch("accession_number_tesim", [])
   end
 
   def location
-    fetch('location_label_tesim', [])
+    fetch("location_label_tesim", [])
   end
 
   def fulltext_link
-    fetch('fulltext_link_ssm', [])
+    fetch("fulltext_link_ssm", [])
   end
 
   def citation
-    fetch('citation_ssm', [])
+    fetch("citation_ssm", [])
   end
 
   def license
-    fetch('license_label_tesim', [])
+    fetch("license_label_tesim", [])
   end
 
   def collection
-    fetch('collection_label_ssim', [])
+    fetch("collection_label_ssim", [])
   end
 
   private
 
     def load_file_sets(ids)
-      docs = ActiveFedora::SolrService.query("{!terms f=id}#{ids.join(',')}").map { |res| SolrDocument.new(res) }
+      docs = ActiveFedora::SolrService.query("{!terms f=id}#{ids.join(",")}").map { |res| SolrDocument.new(res) }
       ids.map { |id| docs.find { |doc| doc.id == id } }
     end
 end

@@ -1,4 +1,5 @@
-require 'factory_girl'
+# frozen_string_literal: true
+require "factory_girl"
 FactoryGirl::SyntaxRunner.class_eval do
   include RSpec::Mocks::ExampleMethods
 end

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ExpireEmbargos
   def self.run
     assets = Worthwhile::EmbargoService.assets_with_expired_embargoes

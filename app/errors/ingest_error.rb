@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class IngestError < RuntimeError
   attr_reader :data, :metadata, :model, :reached
 

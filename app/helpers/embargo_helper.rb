@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module EmbargoHelper
   # Because we're storing admin policies in the embargos, we need to lookup the object.
   def after_visibility(curation_concern)

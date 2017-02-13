@@ -1,4 +1,5 @@
-require 'concerns/relators'
+# frozen_string_literal: true
+require "concerns/relators"
 # Metadata fields common to all objects
 module Metadata
   extend ActiveSupport::Concern
@@ -10,7 +11,7 @@ module Metadata
 
   included do
     # For info about how local_collection_id is used, @see {doc/local_collections.md}
-    property :local_collection_id, predicate: RDF::URI('http://opaquenamespace.org/ns/localCollectionID') do |index|
+    property :local_collection_id, predicate: RDF::URI("http://opaquenamespace.org/ns/localCollectionID") do |index|
       index.as :symbol
     end
 
@@ -19,7 +20,7 @@ module Metadata
       index.as :displayable
     end
 
-    property :accession_number, predicate: RDF::URI('http://opaquenamespace.org/ns/cco/accessionNumber') do |index|
+    property :accession_number, predicate: RDF::URI("http://opaquenamespace.org/ns/cco/accessionNumber") do |index|
       index.as :symbol, :stored_searchable # symbol is needed for exact match search in the CollectionFactory
     end
 
@@ -47,7 +48,7 @@ module Metadata
       index.as :displayable
     end
 
-    property :scale, predicate: RDF::URI('http://www.rdaregistry.info/Elements/u/#horizontalScaleOfCartographicContent.en') do |index|
+    property :scale, predicate: RDF::URI("http://www.rdaregistry.info/Elements/u/#horizontalScaleOfCartographicContent.en") do |index|
       index.as :stored_searchable
     end
 
@@ -109,7 +110,7 @@ module Metadata
     end
     validates_vocabulary_of :work_type
 
-    property :series_name, predicate: RDF::URI('http://opaquenamespace.org/ns/seriesName') do |index|
+    property :series_name, predicate: RDF::URI("http://opaquenamespace.org/ns/seriesName") do |index|
       index.as :displayable, :facetable
     end
 
@@ -121,30 +122,30 @@ module Metadata
       index.as :stored_searchable
     end
 
-    property :folder_name, predicate: RDF::URI('http://opaquenamespace.org/ns/folderName') do |index|
+    property :folder_name, predicate: RDF::URI("http://opaquenamespace.org/ns/folderName") do |index|
       index.as :stored_searchable, :facetable
     end
 
-    property :issue_number, predicate: RDF::URI('http://id.loc.gov/vocabulary/identifiers/issue-number') do |index|
+    property :issue_number, predicate: RDF::URI("http://id.loc.gov/vocabulary/identifiers/issue-number") do |index|
       index.as :stored_searchable
     end
 
-    property :matrix_number, predicate: RDF::URI('http://id.loc.gov/vocabulary/identifiers/matrix-number') do |index|
+    property :matrix_number, predicate: RDF::URI("http://id.loc.gov/vocabulary/identifiers/matrix-number") do |index|
       index.as :stored_searchable
     end
 
     # Dates
-    property :created, predicate: RDF::Vocab::DC.created, class_name: 'TimeSpan'
-    property :date_other, predicate: RDF::Vocab::DC.date, class_name: 'TimeSpan'
-    property :date_valid, predicate: RDF::Vocab::DC.valid, class_name: 'TimeSpan'
+    property :created, predicate: RDF::Vocab::DC.created, class_name: "TimeSpan"
+    property :date_other, predicate: RDF::Vocab::DC.date, class_name: "TimeSpan"
+    property :date_valid, predicate: RDF::Vocab::DC.valid, class_name: "TimeSpan"
 
     # RDA
-    property :form_of_work, predicate: RDF::URI('http://www.rdaregistry.info/Elements/w/#formOfWork.en'),
+    property :form_of_work, predicate: RDF::URI("http://www.rdaregistry.info/Elements/w/#formOfWork.en"),
                             class_name: Oargun::ControlledVocabularies::WorkType do |index|
       index.as :stored_searchable, :facetable
     end
 
-    property :citation, predicate: RDF::URI('http://www.rdaregistry.info/Elements/u/#preferredCitation.en') do |index|
+    property :citation, predicate: RDF::URI("http://www.rdaregistry.info/Elements/u/#preferredCitation.en") do |index|
       index.as :displayable
     end
 
@@ -169,11 +170,11 @@ module Metadata
       index.as :stored_searchable
     end
 
-    property :finding_aid, predicate: RDF::URI('http://lod.xdams.org/reload/oad/has_findingAid') do |index|
+    property :finding_aid, predicate: RDF::URI("http://lod.xdams.org/reload/oad/has_findingAid") do |index|
       index.as :stored_searchable
     end
 
-    property :notes, predicate: RDF::Vocab::MODS.note, class_name: 'Note'
+    property :notes, predicate: RDF::Vocab::MODS.note, class_name: "Note"
 
     def self.contributor_fields
       RELATIONS.keys

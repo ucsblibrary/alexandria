@@ -1,54 +1,55 @@
-require 'rails_helper'
+# frozen_string_literal: true
+require "rails_helper"
 
 describe MergeRecordsService do
-  let(:image1) { create(:image, id: 'image1', creator: [old_name], lc_subject: [old_name]) }
-  let(:image2) { create(:image, id: 'image2', photographer: [old_name], lc_subject: [old_name, new_name, other_name]) }
+  let(:image1) { create(:image, id: "image1", creator: [old_name], lc_subject: [old_name]) }
+  let(:image2) { create(:image, id: "image2", photographer: [old_name], lc_subject: [old_name, new_name, other_name]) }
 
   let(:collection) { create(:collection, collector: [old_name, other_name]) }
 
-  let(:old_name) { create(:person, foaf_name: 'Old Name') }
-  let(:new_name) { create(:person, foaf_name: 'New Name') }
-  let(:other_name) { create(:person, foaf_name: 'Some Other Name') }
+  let(:old_name) { create(:person, foaf_name: "Old Name") }
+  let(:new_name) { create(:person, foaf_name: "New Name") }
+  let(:other_name) { create(:person, foaf_name: "Some Other Name") }
 
-  describe '#initialize' do
-    context 'normal init with no errors' do
+  describe "#initialize" do
+    context "normal init with no errors" do
       subject { described_class.new(old_name, new_name) }
 
-      it 'sets instance variables' do
+      it "sets instance variables" do
         expect(subject.old_reference).to eq old_name
         expect(subject.new_reference).to eq new_name
       end
     end
 
-    context 'with non-local-authority records' do
-      it 'raises an error' do
+    context "with non-local-authority records" do
+      it "raises an error" do
         expect do
           described_class.new(old_name, image1)
-        end.to raise_error(IncompatibleMergeError, 'Error: Cannot merge records that are not local authority records.')
+        end.to raise_error(IncompatibleMergeError, "Error: Cannot merge records that are not local authority records.")
       end
     end
 
-    context 'with incompatible merge target' do
+    context "with incompatible merge target" do
       let(:topic) { Topic.create }
 
-      it 'raises an error' do
+      it "raises an error" do
         expect do
           described_class.new(old_name, topic)
-        end.to raise_error(IncompatibleMergeError, 'Error: Cannot merge records that are not the same type of local authority.')
+        end.to raise_error(IncompatibleMergeError, "Error: Cannot merge records that are not the same type of local authority.")
       end
     end
 
-    context 'attempt to merge record with itself' do
-      it 'raises an error' do
-        expect { described_class.new(old_name, old_name) }.to raise_error(IncompatibleMergeError, 'Error: Cannot merge a record with itself.')
+    context "attempt to merge record with itself" do
+      it "raises an error" do
+        expect { described_class.new(old_name, old_name) }.to raise_error(IncompatibleMergeError, "Error: Cannot merge a record with itself.")
       end
     end
   end
 
-  describe '#run' do
+  describe "#run" do
     subject { described_class.new(old_name, new_name) }
-    let!(:image1) { create(:image, id: 'image1', creator: [old_name], lc_subject: [old_name]) }
-    let!(:image2) { create(:image, id: 'image2', photographer: [old_name], lc_subject: [old_name, new_name, other_name]) }
+    let!(:image1) { create(:image, id: "image1", creator: [old_name], lc_subject: [old_name]) }
+    let!(:image2) { create(:image, id: "image2", photographer: [old_name], lc_subject: [old_name, new_name, other_name]) }
 
     let!(:collection) { create(:collection, collector: [old_name, other_name]) }
 
@@ -60,7 +61,7 @@ describe MergeRecordsService do
       collection.reload
     end
 
-    it 'updates all references to the old name' do
+    it "updates all references to the old name" do
       expect(image1.creator.count).to eq 1
       expect(image1.creator.first).to be_a(Oargun::ControlledVocabularies::Creator)
       expect(image1.creator.first.rdf_subject).to eq new_name.rdf_subject
@@ -86,15 +87,15 @@ describe MergeRecordsService do
       expect(ActiveFedora::Base.exists?(old_name.id)).to be false
     end
 
-    context 'with bad arguments' do
-      let!(:old_name) { create(:person, foaf_name: 'Old Name') }
-      let!(:new_name) { create(:person, foaf_name: 'New Name') }
+    context "with bad arguments" do
+      let!(:old_name) { create(:person, foaf_name: "Old Name") }
+      let!(:new_name) { create(:person, foaf_name: "New Name") }
 
       before do
         new_name.destroy # merge target does not exist
       end
 
-      it 'raises an error' do
+      it "raises an error" do
         expect { subject.run }.to raise_error(Ldp::Gone)
       end
     end

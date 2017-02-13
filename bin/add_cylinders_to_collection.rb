@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
 # Add all cylinder records to the cylinder collection.
 
@@ -6,12 +7,12 @@
 # records are cylinders.  If you have existing non-cylinder
 # audio records, don't use this script.
 
-$stdout.sync = true  # flush output immediately
-puts 'Loading environment'
-require File.expand_path('../../config/environment', __FILE__)
+$stdout.sync = true # flush output immediately
+puts "Loading environment"
+require File.expand_path("../../config/environment", __FILE__)
 
 # Find or create the right collection:
-require 'importer'
+require "importer"
 collection = Importer::Factory::CollectionFactory.new(Importer::Cylinder::COLLECTION_ATTRIBUTES).find_or_create
 
 puts "Adding cylinder records to: #{collection.title}"
@@ -24,7 +25,7 @@ puts "Adding records to collection"
 i = 0
 AudioRecording.find_each do |audio|
   i += 1
-  i%100 == 0 ? print(i) : print('.')
+  (i % 100).zero? ? print(i) : print(".")
   next if audio.local_collection_id.include?(collection.id)
   audio.local_collection_id += [collection.id]
   audio.save!
@@ -39,4 +40,3 @@ puts "End time: #{end_time.strftime("%Y-%m-%d %H:%M:%S")}"
 
 delta = (end_time - start_time) / 60.0
 printf "Finished in %0.2f minutes.\n", delta
-

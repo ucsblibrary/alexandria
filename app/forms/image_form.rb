@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class ImageForm
   include HydraEditor::Form
   self.model_class = Image
@@ -8,7 +9,7 @@ class ImageForm
                 :contributor, :latitude, :longitude, :digital_origin, :institution,
                 :sub_location, :restrictions, :created, :issued,
                 :date_other, :date_copyrighted, :language, :description_standard,
-                :copyright_status, :license, :rights_holder, :admin_policy_id]
+                :copyright_status, :license, :rights_holder, :admin_policy_id,]
 
   self.required_fields = [] # Required fields
 
@@ -45,9 +46,9 @@ class ImageForm
         # TODO: I suspect this is dead code
         self[key] += [class_name.new]
       elsif self.class.multiple?(key)
-        self[key] = Array.wrap(self[key]) + ['']
+        self[key] = Array.wrap(self[key]) + [""]
       elsif self[key].blank?
-        self[key] = ''
+        self[key] = ""
       end
     end
 
@@ -133,8 +134,7 @@ class ImageForm
          finish_qualifier: [],
          label: [],
          note: [],
-       },
-      ]
+       },]
     end
 
     def self.build_permitted_params

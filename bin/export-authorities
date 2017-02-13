@@ -1,8 +1,9 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
-puts 'Loading environment...'
-require File.expand_path('../../config/environment', __FILE__)
-require 'exporter'
-puts 'Starting export...'
+puts "Loading environment..."
+require File.expand_path("../../config/environment", __FILE__)
+require "exporter"
+puts "Starting export..."
 
 Exporter::LocalAuthorityExporter.new.run

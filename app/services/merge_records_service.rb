@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class MergeRecordsService
   # This service is intended to merge duplicate records.
   #
@@ -31,7 +32,7 @@ class MergeRecordsService
     # are local authority records.
     def validate_records_are_local_authorities
       unless [old_reference, new_reference].all? { |ref| LocalAuthority.local_authority?(ref) }
-        raise IncompatibleMergeError.new('Error: Cannot merge records that are not local authority records.')
+        raise IncompatibleMergeError, "Error: Cannot merge records that are not local authority records."
       end
     end
 
@@ -48,13 +49,13 @@ class MergeRecordsService
       both_local_subjects = [old_reference, new_reference].all? { |ref| LocalAuthority.local_subject_authority?(ref) }
 
       unless both_local_names || both_local_subjects
-        raise IncompatibleMergeError.new('Error: Cannot merge records that are not the same type of local authority.')
+        raise IncompatibleMergeError, "Error: Cannot merge records that are not the same type of local authority."
       end
     end
 
     def validate_records_are_different
       if new_reference == old_reference
-        raise IncompatibleMergeError.new('Error: Cannot merge a record with itself.')
+        raise IncompatibleMergeError, "Error: Cannot merge a record with itself."
       end
     end
 

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ExtractFulltextLink
   # Filters out 856u fields that look like: http://alexandria.ucsb.edu/lib/ark:/48907/f3gt5k61
   # We're attempting to capture URLs that look like:
@@ -5,7 +6,7 @@ module ExtractFulltextLink
   #   OR
   #   http://www.library.ucsb.edu/OBJID/Cylinder4374
   def extract_fulltext_link
-    extract856u = Traject::MarcExtractor.new('856u', separator: nil)
+    extract856u = Traject::MarcExtractor.new("856u", separator: nil)
     lambda do |record, accumulator|
       extract856u.extract(record).grep_v(%r{^http://alexandria\.ucsb\.edu/lib/}).each do |val|
         accumulator << val

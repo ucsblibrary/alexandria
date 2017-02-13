@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # This is a local subjects authority adapter for questioning authority
 class LocalSubjects
   include Blacklight::SearchHelper
@@ -7,8 +8,8 @@ class LocalSubjects
 
   configure_blacklight do |config|
     config.default_solr_params = {
-      qf: 'label_tesim',
-      fl: 'label_tesim id',
+      qf: "label_tesim",
+      fl: "label_tesim id",
     }
     config.search_builder_class = LocalSubjectSearchBuilder
   end

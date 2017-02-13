@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class MergeRecordsJob < ActiveJob::Base
   queue_as :merge
 

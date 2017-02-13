@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Features
   module SessionHelper
     def login_as(user)

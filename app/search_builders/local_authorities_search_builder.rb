@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class LocalAuthoritiesSearchBuilder < Blacklight::SearchBuilder
   include Blacklight::Solr::SearchBuilderBehavior
   include Hydra::AccessControlsEnforcement
@@ -7,6 +8,6 @@ class LocalAuthoritiesSearchBuilder < Blacklight::SearchBuilder
 
   def only_models_for_local_authorities(solr_params)
     solr_params[:fq] ||= []
-    solr_params[:fq] << "{!terms f=has_model_ssim}#{LocalAuthority.local_authority_models.join(',')}"
+    solr_params[:fq] << "{!terms f=has_model_ssim}#{LocalAuthority.local_authority_models.join(",")}"
   end
 end

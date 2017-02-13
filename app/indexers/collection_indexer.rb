@@ -1,5 +1,5 @@
+# frozen_string_literal: true
 class CollectionIndexer < CurationConcerns::CollectionIndexer
-
   def rdf_service
     RDF::DeepIndexingService
   end
@@ -16,10 +16,9 @@ class CollectionIndexer < CurationConcerns::CollectionIndexer
     super.tap do |solr_doc|
       query = ActiveFedora::SolrQueryBuilder.construct_query(local_collection_id_ssim: object.id)
       rows = ActiveFedora::Base.count.to_s
-      results = ActiveFedora::SolrService.query(query, fl: 'id'.freeze, rows: rows)
-      solr_doc[Hydra::PCDM::Config.indexing_member_ids_key] += results.map { |doc| doc['id'] }
+      results = ActiveFedora::SolrService.query(query, fl: "id", rows: rows)
+      solr_doc[Hydra::PCDM::Config.indexing_member_ids_key] += results.map { |doc| doc["id"] }
       solr_doc[Hydra::PCDM::Config.indexing_member_ids_key].uniq!
     end
   end
-
 end

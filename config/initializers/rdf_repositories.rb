@@ -1,7 +1,8 @@
-require_relative 'settings'
+# frozen_string_literal: true
+require_relative "settings"
 def configure_repositories
   ActiveTriples::Repositories.clear_repositories!
-  vocab_repo = if ENV['CI']
+  vocab_repo = if ENV["CI"]
                  RDF::Repository.new
                else
                  RDF::Marmotta.new("http://#{Rails.application.secrets.marmotta_host}:8080/marmotta")

@@ -1,11 +1,12 @@
+# frozen_string_literal: true
 # This stands in for ActiveFedora::CleanConnection. It behaves the same way,
 # but it doesn't clear the has_model assertion
 class CleanConnection < SimpleDelegator
   def get(*args)
     result = __getobj__.get(*args) do |req|
-      prefer_headers = Ldp::PreferHeaders.new(req.headers['Prefer'])
+      prefer_headers = Ldp::PreferHeaders.new(req.headers["Prefer"])
       prefer_headers.omit = prefer_headers.omit | omit_uris
-      req.headers['Prefer'] = prefer_headers.to_s
+      req.headers["Prefer"] = prefer_headers.to_s
     end
     result
   end

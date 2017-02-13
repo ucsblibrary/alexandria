@@ -1,5 +1,6 @@
-require 'rails_helper'
-require 'importer'
+# frozen_string_literal: true
+require "rails_helper"
+require "importer"
 
 describe Importer::Factory::ETDFactory do
   let(:factory) { described_class.new(attributes, files) }
@@ -7,17 +8,17 @@ describe Importer::Factory::ETDFactory do
 
   let(:attributes) do
     {
-      id: 'f3gt5k61',
-      title: ['Test Thesis'],
+      id: "f3gt5k61",
+      title: ["Test Thesis"],
       created_attributes: [{ start: [2014] }],
-      system_number: ['123'],
-      author: ['Valerie'],
-      identifier: ['ark:/48907/f3gt5k61'],
+      system_number: ["123"],
+      author: ["Valerie"],
+      identifier: ["ark:/48907/f3gt5k61"],
     }.with_indifferent_access
   end
 
   before do
-    ETD.find('f3gt5k61').destroy(eradicate: true) if ETD.exists? 'f3gt5k61'
+    ETD.find("f3gt5k61").destroy(eradicate: true) if ETD.exists? "f3gt5k61"
 
     allow($stdout).to receive(:puts) # squelch output
     AdminPolicy.ensure_admin_policy_exists
@@ -26,47 +27,47 @@ describe Importer::Factory::ETDFactory do
     allow_any_instance_of(RDF::DeepIndexingService).to receive(:fetch_external)
   end
 
-  describe '#create_attributes' do
+  describe "#create_attributes" do
     subject { factory.create_attributes }
 
-    it 'adds the default attributes' do
+    it "adds the default attributes" do
       expect(subject[:admin_policy_id]).to eq AdminPolicy::RESTRICTED_POLICY_ID
-      expect(subject[:copyright_status]).to eq [RDF::URI('http://id.loc.gov/vocabulary/preservation/copyrightStatus/cpr')]
-      expect(subject[:license]).to eq [RDF::URI('http://rightsstatements.org/vocab/InC/1.0/')]
+      expect(subject[:copyright_status]).to eq [RDF::URI("http://id.loc.gov/vocabulary/preservation/copyrightStatus/cpr")]
+      expect(subject[:license]).to eq [RDF::URI("http://rightsstatements.org/vocab/InC/1.0/")]
     end
   end
 
-  describe 'attach_files' do
-    ETD.find('f3gt5k61').destroy(eradicate: true) if ETD.exists? 'f3gt5k61'
+  describe "attach_files" do
+    ETD.find("f3gt5k61").destroy(eradicate: true) if ETD.exists? "f3gt5k61"
 
     let(:files) do
       {
-        xml: 'spec/fixtures/proquest/Button_ucsb_0035D_11990_DATA.xml',
-        pdf: 'spec/fixtures/pdf/sample.pdf',
+        xml: "spec/fixtures/proquest/Button_ucsb_0035D_11990_DATA.xml",
+        pdf: "spec/fixtures/pdf/sample.pdf",
         supplements: [],
       }
     end
     let(:attributes) do
       {
         files: files,
-        id: 'f3gt5k61',
-        identifier: ['ark:/48907/f3gt5k61'],
-        title: ['plunk!'],
+        id: "f3gt5k61",
+        identifier: ["ark:/48907/f3gt5k61"],
+        title: ["plunk!"],
       }
     end
 
-    context 'when a PDF is provided' do
-      it 'attaches files' do
-        VCR.use_cassette('etd_importer') do
+    context "when a PDF is provided" do
+      it "attaches files" do
+        VCR.use_cassette("etd_importer") do
           factory.run
         end
-        expect(ETD.find('f3gt5k61').file_sets.first.files.first.file_name).to eq(['sample.pdf'])
+        expect(ETD.find("f3gt5k61").file_sets.first.files.first.file_name).to eq(["sample.pdf"])
       end
     end
 
-    context 'when the file is already attached' do
+    context "when the file is already attached" do
       let!(:etd) do
-        VCR.use_cassette('etd_importer') do
+        VCR.use_cassette("etd_importer") do
           factory.run
         end
       end
@@ -77,7 +78,7 @@ describe Importer::Factory::ETDFactory do
         # by the ingest background job.  For the spec, we'll
         # set the file_name manually.
         fs = etd.file_sets.first
-        fs.files.first.file_name = ['sample.pdf']
+        fs.files.first.file_name = ["sample.pdf"]
         fs.save!
       end
 
@@ -89,7 +90,7 @@ describe Importer::Factory::ETDFactory do
     end
   end
 
-  describe 'update an existing record' do
+  describe "update an existing record" do
     let(:old_date) { 2222 }
     let(:old_date_attrs) { { created_attributes: [{ start: [old_date] }] }.with_indifferent_access }
 
@@ -106,10 +107,10 @@ describe Importer::Factory::ETDFactory do
       end
     end
 
-    context 'when the created date has changed' do
+    context "when the created date has changed" do
       let!(:etd) { create(:etd, attributes.except(:files).merge(old_date_attrs)) }
 
-      it 'updates the existing date instead of adding a new one' do
+      it "updates the existing date instead of adding a new one" do
         etd.reload
         expect(etd.created.flat_map(&:start)).to eq [old_date]
 
@@ -122,7 +123,7 @@ describe Importer::Factory::ETDFactory do
     context "when the ETD doesn't have existing created date" do
       let!(:etd) { create(:etd, attributes.except(:files, :created_attributes)) }
 
-      it 'adds the new date' do
+      it "adds the new date" do
         etd.reload
         expect(etd.created).to eq []
 
@@ -134,14 +135,14 @@ describe Importer::Factory::ETDFactory do
 
     context "when the ETD has existing created date, but new attributes don't have a date" do
       let(:attributes) do
-        { id: 'f3gt5k61',
-          system_number: ['123'],
-          identifier: ['ark:/48907/f3gt5k61'] }.with_indifferent_access
+        { id: "f3gt5k61",
+          system_number: ["123"],
+          identifier: ["ark:/48907/f3gt5k61"], }.with_indifferent_access
       end
 
       let!(:etd) { create(:etd, attributes.merge(old_date_attrs)) }
 
-      it 'zeroes out the existing date' do
+      it "zeroes out the existing date" do
         etd.reload
         expect(etd.created.first.start).to eq [old_date]
 

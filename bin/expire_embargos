@@ -1,15 +1,16 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
-print 'Loading environment... '
-require File.expand_path('../../config/environment', __FILE__)
+print "Loading environment... "
+require File.expand_path("../../config/environment", __FILE__)
 puts Rails.env
-require 'expire_embargos'
-puts 'Starting to expire embargos...'
+require "expire_embargos"
+puts "Starting to expire embargos..."
 
 size = ExpireEmbargos.run
 
-if size == 0
-  puts 'There are no objects with expired embargos.'
+if size.zero?
+  puts "There are no objects with expired embargos."
 else
   puts "Expired #{size} objects."
 end

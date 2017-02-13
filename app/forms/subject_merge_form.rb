@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class SubjectMergeForm
   include HydraEditor::Form
 
@@ -8,6 +9,6 @@ class SubjectMergeForm
   self.terms = [:label]
 
   def title
-    Array(model.label).join(', ')
+    Array(model.label).join(", ")
   end
 end

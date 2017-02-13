@@ -1,10 +1,11 @@
-require 'rails_helper'
+# frozen_string_literal: true
+require "rails_helper"
 
-feature 'Collection:' do
-  let!(:collection) { create(:public_collection, description: ['with a description!', '', 'description 3']) }
+feature "Collection:" do
+  let!(:collection) { create(:public_collection, description: ["with a description!", "", "description 3"]) }
   let(:user) { create :user }
-  let!(:audio1) { create(:public_audio, title: ['Audio 111']) }
-  let!(:audio2) { create(:public_audio, title: ['Audio 222']) }
+  let!(:audio1) { create(:public_audio, title: ["Audio 111"]) }
+  let!(:audio2) { create(:public_audio, title: ["Audio 222"]) }
 
   before do
     login_as user
@@ -23,7 +24,7 @@ feature 'Collection:' do
     collection.update_index
   end
 
-  scenario 'viewing the show page for a collection' do
+  scenario "viewing the show page for a collection" do
     visit collection_path(collection)
 
     # It should display both audio records as collection members

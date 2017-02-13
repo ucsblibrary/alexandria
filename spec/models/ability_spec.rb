@@ -1,6 +1,7 @@
-require 'spec_helper'
-require 'rails_helper'
-require 'cancan/matchers'
+# frozen_string_literal: true
+require "spec_helper"
+require "rails_helper"
+require "cancan/matchers"
 
 describe Ability do
   subject { ability }
@@ -32,7 +33,7 @@ describe Ability do
     end
   end
 
-  context 'for a user who is not logged in' do
+  context "for a user who is not logged in" do
     let(:user) { User.new }
 
     it do
@@ -59,7 +60,7 @@ describe Ability do
     end
   end
 
-  context 'for a logged-in UCSB user' do
+  context "for a logged-in UCSB user" do
     let(:user) { create(:ucsb_user) }
 
     it do
@@ -81,7 +82,7 @@ describe Ability do
     end
   end
 
-  context 'for an metadata admin user' do
+  context "for an metadata admin user" do
     let(:user) { create(:metadata_admin) }
 
     it do
@@ -108,7 +109,7 @@ describe Ability do
     end
   end
 
-  context 'for a rights admin user' do
+  context "for a rights admin user" do
     let(:user) { create(:rights_admin) }
 
     it do

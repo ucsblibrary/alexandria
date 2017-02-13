@@ -1,5 +1,6 @@
+# frozen_string_literal: true
 module Oargun::Vocabularies
-  class RS < ::RDF::StrictVocabulary('http://rightsstatements.org/vocab/')
+  class RS < ::RDF::StrictVocabulary("http://rightsstatements.org/vocab/")
     property :"InC/1.0/"
     property :"InC-OW-EU/1.0/"
     property :"InC-EDU/1.0/"

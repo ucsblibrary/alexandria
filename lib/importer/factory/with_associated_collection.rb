@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Importer
   module Factory
     module WithAssociatedCollection
@@ -9,13 +10,13 @@ module Importer
 
       def create_attributes
         attrs = super.except(:collection)
-        attrs.merge!(local_collection_id: [collection.id]) if has_collection?
+        attrs[:local_collection_id] = [collection.id] if has_collection?
         attrs
       end
 
       def update_attributes
         attrs = super.except(:collection)
-        attrs.merge!(local_collection_id: [collection.id]) if has_collection?
+        attrs[:local_collection_id] = [collection.id] if has_collection?
         attrs
       end
 
@@ -23,7 +24,6 @@ module Importer
         return unless has_collection?
         collection.update_index
       end
-
 
       private
 
@@ -35,7 +35,6 @@ module Importer
           collection_attrs = attributes.fetch(:collection).merge(admin_policy_id: attributes[:admin_policy_id])
           CollectionFactory.new(collection_attrs).find_or_create
         end
-
     end
   end
 end

@@ -1,9 +1,10 @@
+# frozen_string_literal: true
 # https://gist.github.com/bmaddy/4567fad5aa55e5a600e1
 #
 # On Vagrant, Passenger is run under Apache, so EXPLAIN_PARTIALS must
 # be set in /etc/sysconfig/httpd; see
 # https://www.phusionpassenger.com/library/indepth/environment_variables.html
-if Rails.env.development? || ENV['EXPLAIN_PARTIALS']
+if Rails.env.development? || ENV["EXPLAIN_PARTIALS"]
   module ActionView
     class PartialRenderer
       def render_with_explanation(*args)

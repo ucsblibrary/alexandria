@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # Overrides the CollectionsController provided by hydra-collections
 # it provides display and search within collections.
 class CollectionsController < ApplicationController
@@ -5,7 +6,7 @@ class CollectionsController < ApplicationController
   # FIXME: remove once https://github.com/projecthydra/curation_concerns/issues/616 is closed
   include CurationConcerns::ThemedLayoutController
 
-  self.theme = 'alexandria'
+  self.theme = "alexandria"
 
   # FIXME: https://github.com/projecthydra/hydra-collections/issues/110
   skip_before_filter :authenticate_user!
@@ -17,7 +18,7 @@ class CollectionsController < ApplicationController
 
   configure_blacklight do |config|
     # Fields for the Collection show page
-    config.show_fields.delete(Solrizer.solr_name('description', :stored_searchable))
+    config.show_fields.delete(Solrizer.solr_name("description", :stored_searchable))
   end
 
   def edit

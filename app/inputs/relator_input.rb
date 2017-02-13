@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class RelatorInput < ControlledVocabularySelectInput
   protected
 
@@ -6,7 +7,7 @@ class RelatorInput < ControlledVocabularySelectInput
       value = value.resource if value.is_a? ActiveFedora::Base
 
       if value.respond_to? :rdf_label
-        options[:name] = name_for(attribute_name, index, 'hidden_label'.freeze)
+        options[:name] = name_for(attribute_name, index, "hidden_label")
         options[:data] = { attribute: attribute_name }
         options[:id] = id_for_hidden_label(index)
         if value.node?
@@ -22,10 +23,10 @@ class RelatorInput < ControlledVocabularySelectInput
       @rendered_first_element = true
       text_field = @builder.text_field(attribute_name, options)
       controls = content_tag(:div, text_field + hidden_id_field(value, index) +
-                             hidden_predicate_field(value, index) + destroy_widget(attribute_name, index), class: 'input-group input-group-append')
+                             hidden_predicate_field(value, index) + destroy_widget(attribute_name, index), class: "input-group input-group-append")
 
-      content_tag(:div, content_tag(:span, value.predicate.to_s.humanize, class: 'predicate'), class: 'role') +
-        content_tag(:div, controls, class: 'text')
+      content_tag(:div, content_tag(:span, value.predicate.to_s.humanize, class: "predicate"), class: "role") +
+        content_tag(:div, controls, class: "text")
     end
 
     def inner_wrapper
@@ -37,9 +38,9 @@ class RelatorInput < ControlledVocabularySelectInput
     end
 
     def hidden_predicate_field(value, index)
-      name = name_for(attribute_name, index, 'predicate'.freeze)
-      id = id_for(attribute_name, index, 'predicate'.freeze)
-      hidden_value = value.node? ? '' : value.predicate
+      name = name_for(attribute_name, index, "predicate")
+      id = id_for(attribute_name, index, "predicate")
+      hidden_value = value.node? ? "" : value.predicate
       @builder.hidden_field(attribute_name, name: name, id: id, value: hidden_value)
     end
 end

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class RDF::DeepIndexingService < ActiveFedora::RDF::IndexingService
   # We're overiding the default indexer in order to index the RDF labels. In order
   # for this to be called, you must specify at least one default indexer on the property.
@@ -40,7 +41,7 @@ class RDF::DeepIndexingService < ActiveFedora::RDF::IndexingService
 
   def fetch_value(value)
     Rails.logger.info "Fetching #{value.rdf_subject} from the authorative source. (this is slow)"
-    value.fetch(headers: { 'Accept'.freeze => default_accept_header })
+    value.fetch(headers: { "Accept" => default_accept_header })
   rescue IOError, SocketError => e
     # IOError could result from a 500 error on the remote server
     # SocketError results if there is no server to connect to
@@ -49,7 +50,7 @@ class RDF::DeepIndexingService < ActiveFedora::RDF::IndexingService
 
   # Stripping off the */* to work around https://github.com/rails/rails/issues/9940
   def default_accept_header
-    RDF::Util::File::HttpAdapter.default_accept_header.sub(/, \*\/\*;q=0\.1\Z/, '')
+    RDF::Util::File::HttpAdapter.default_accept_header.sub(/, \*\/\*;q=0\.1\Z/, "")
   end
 
   # Appends the uri to the default solr field and puts the label (if found) in the label solr field
@@ -96,6 +97,6 @@ class RDF::DeepIndexingService < ActiveFedora::RDF::IndexingService
   #   label(["http://id.loc.gov/authorities/subjects/sh85062487", {:label=>"Hotels$http://id.loc.gov/authorities/subjects/sh85062487"}])
   #   => 'Hotels'
   def label(val)
-    val.last[:label].split('$').first
+    val.last[:label].split("$").first
   end
 end

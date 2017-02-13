@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class LocalNameSearchBuilder < Blacklight::SearchBuilder
   include Blacklight::Solr::SearchBuilderBehavior
 

@@ -1,4 +1,5 @@
-file = Rails.root.join('config/application.yml')
+# frozen_string_literal: true
+file = Rails.root.join("config/application.yml")
 raise "You are missing a configuration file: #{file}." unless File.exist?(file)
 
 begin

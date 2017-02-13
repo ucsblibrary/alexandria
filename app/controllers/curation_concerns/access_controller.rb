@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class CurationConcerns::AccessController < ApplicationController
   include Hydra::Controller::ControllerBehavior
 
@@ -12,7 +13,7 @@ class CurationConcerns::AccessController < ApplicationController
 
   def update
     authorize! :update_rights, curation_concern
-    if etd_params.delete(:embargo) == 'true'
+    if etd_params.delete(:embargo) == "true"
       EmbargoService.create_or_update_embargo(curation_concern, etd_params)
     else
       curation_concern.admin_policy_id = etd_params.fetch(:admin_policy_id)
@@ -42,7 +43,7 @@ class CurationConcerns::AccessController < ApplicationController
     end
 
     def deny_access(exception)
-      if params[:action] == 'edit'
+      if params[:action] == "edit"
         redirect_to main_app.solr_document_path(curation_concern), alert: exception.message
       else
         super

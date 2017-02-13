@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Importer::Factory
   class AudioRecordingFactory < ObjectFactory
     self.klass = AudioRecording
@@ -14,7 +15,7 @@ module Importer::Factory
     #    ['/opt/ingest/special/cusb-cyl2119a.wav', '/opt/ingest/special/cusb-cyl2119b.wav'],
     # ]
     def attach_files(object, cylinders)
-      return if object.file_sets.count > 0
+      return if object.file_sets.count.positive?
       cylinders.each do |filegroup|
         next if filegroup.empty?
         number = cylinder_number(filegroup)
@@ -38,7 +39,7 @@ module Importer::Factory
       original = filegroup.map { |f| f.match(/.*cusb-cyl(\d+)a.wav$/) }.compact.first
 
       unless original && filegroup.detect { |f| f.match(/.*cusb-cyl#{original[1]}b.wav$/) }
-        $stderr.puts "Could not extract cylinder number from: #{filegroup.join(', ')}"
+        $stderr.puts "Could not extract cylinder number from: #{filegroup.join(", ")}"
         return nil
       end
 
@@ -63,7 +64,7 @@ module Importer::Factory
     def attach_restored(actor, number, cylinders)
       if rest_path = cylinders.select { |c| c.include? "cusb-cyl#{number}b.wav" }.first
         Rails.logger.debug "Attaching restored #{rest_path}"
-        actor.create_content(File.new(rest_path), 'restored')
+        actor.create_content(File.new(rest_path), "restored")
       else
         $stderr.puts "No restored file provided for Cylinder #{number}"
       end
@@ -75,13 +76,13 @@ module Importer::Factory
     def create_attributes
       super.merge(
         admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID,
-        copyright_status: [RDF::URI('http://id.loc.gov/vocabulary/preservation/copyrightStatus/cpr')],
-        digital_origin: ['reformatted digital'],
-        institution: [RDF::URI('http://id.loc.gov/vocabulary/organizations/cusb')],
-        license: [RDF::URI('http://creativecommons.org/licenses/by-nc/2.5/')],
+        copyright_status: [RDF::URI("http://id.loc.gov/vocabulary/preservation/copyrightStatus/cpr")],
+        digital_origin: ["reformatted digital"],
+        institution: [RDF::URI("http://id.loc.gov/vocabulary/organizations/cusb")],
+        license: [RDF::URI("http://creativecommons.org/licenses/by-nc/2.5/")],
         restrictions: RESTRICTIONS,
-        rights_holder: [RDF::URI('http://id.loc.gov/authorities/names/n85088322')],
-        sub_location: ['Department of Special Research Collections']
+        rights_holder: [RDF::URI("http://id.loc.gov/authorities/names/n85088322")],
+        sub_location: ["Department of Special Research Collections"]
       )
     end
   end

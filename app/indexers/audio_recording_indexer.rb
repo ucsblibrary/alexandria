@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class AudioRecordingIndexer < ObjectIndexer
   def generate_solr_document
     super do |solr_doc|

@@ -1,13 +1,14 @@
+# frozen_string_literal: true
 # This file is copied to spec/ when you run 'rails generate rspec:install'
-ENV['RAILS_ENV'] ||= 'test'
-require 'spec_helper'
-require File.expand_path('../../config/environment', __FILE__)
+ENV["RAILS_ENV"] ||= "test"
+require "spec_helper"
+require File.expand_path("../../config/environment", __FILE__)
 
-require 'rspec/rails'
+require "rspec/rails"
 # Add additional requires below this line. Rails is not loaded until this point!
 
-require 'capybara/rails'
-require 'capybara/poltergeist'
+require "capybara/rails"
+require "capybara/poltergeist"
 Capybara.register_driver :poltergeist do |app|
   Capybara::Poltergeist::Driver.new(app, js_errors: false)
 end
@@ -18,14 +19,14 @@ Capybara.javascript_driver = :poltergeist
 # HttpLogger.colorize = true
 # HttpLogger.log_headers = false
 
-require 'webmock'
+require "webmock"
 WebMock.enable!
 WebMock.disable_net_connect!(allow_localhost: true)
 # WebMock.allow_net_connect!
 
 VCR.configure do |config|
-  config.ignore_hosts '127.0.0.1', 'localhost'
-  config.cassette_library_dir = 'spec/fixtures/vcr'
+  config.ignore_hosts "127.0.0.1", "localhost"
+  config.cassette_library_dir = "spec/fixtures/vcr"
   config.hook_into :webmock
 end
 
@@ -35,7 +36,7 @@ Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.maintain_test_schema!
 
-require 'active_fedora/cleaner'
+require "active_fedora/cleaner"
 
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures

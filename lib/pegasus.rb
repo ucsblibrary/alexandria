@@ -1,8 +1,9 @@
+# frozen_string_literal: true
 module Pegasus
-  SRU = '#{Rails.application.secrets.sru_host}/sba01pub?version=1.1&operation=searchRetrieve'.freeze
-  ARK_SHOULDER = 'ark..48907'.freeze
-  PAYLOAD_HEADER = "<?xml version=\"1.0\"?>\n<zs:searchRetrieveResponse xmlns:zs=\"http://www.loc.gov/zing/srw/\"><zs:version>1.1</zs:version><zs:numberOfRecords>1</zs:numberOfRecords><zs:records>".freeze
-  PAYLOAD_FOOTER = '</zs:records></zs:searchRetrieveResponse>'.freeze
+  SRU = "#{Rails.application.secrets.sru_host}/sba01pub?version=1.1&operation=searchRetrieve"
+  ARK_SHOULDER = "ark..48907"
+  PAYLOAD_HEADER = "<?xml version=\"1.0\"?>\n<zs:searchRetrieveResponse xmlns:zs=\"http://www.loc.gov/zing/srw/\"><zs:version>1.1</zs:version><zs:numberOfRecords>1</zs:numberOfRecords><zs:records>"
+  PAYLOAD_FOOTER = "</zs:records></zs:searchRetrieveResponse>"
 
   # @param [String] binary
   def self.by_binary(binary)
@@ -23,9 +24,9 @@ module Pegasus
   def self.batch(options)
     query = case options.fetch(:type)
             when :cylinder
-              '(dc.format=wd)'
+              "(dc.format=wd)"
             when :etd
-              '(marc.947.a=pqd)'
+              "(marc.947.a=pqd)"
             else
               raise ArgumentError,
                     "Bad :type #{options.fetch(:type)} for Pegasus.batch (should be :cylinder or :etd)"
@@ -49,7 +50,7 @@ module Pegasus
       "&maximumRecords=#{options.fetch(:max, 1)}",
       "&startRecord=#{options.fetch(:start, 1)}",
       "&query=#{options.fetch(:query)}",
-    ].join('')
+    ].join("")
 
     # $stderr.puts query
 
@@ -57,9 +58,9 @@ module Pegasus
     search = client.get(query)
 
     result = search.body
-    if result.include?('zs:numberOfRecords>0<')
+    if result.include?("zs:numberOfRecords>0<")
       $stderr.puts "Nothing found for #{query}"
-      return ''
+      return ""
     end
     result
   end
@@ -67,7 +68,7 @@ module Pegasus
   # @param [String] payload The MARCXML returned by the Aleph API
   # @return [String]
   def self.strip(payload)
-    payload.sub(PAYLOAD_HEADER, '').sub(PAYLOAD_FOOTER, '')
+    payload.sub(PAYLOAD_HEADER, "").sub(PAYLOAD_FOOTER, "")
   end
 
   # @param [Array] records

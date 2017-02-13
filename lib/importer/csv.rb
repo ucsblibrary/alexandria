@@ -1,10 +1,10 @@
-require 'csv'
-require File.expand_path('../factory', __FILE__)
+# frozen_string_literal: true
+require "csv"
+require File.expand_path("../factory", __FILE__)
 
 # Import CSV files
 
 module Importer::CSV
-
   include Importer::ImportLogger
 
   # Match headers like "lc_subject_type"
@@ -16,8 +16,7 @@ module Importer::CSV
   # @param [Hash] options See the options specified with Trollop in {bin/ingest}
   # @return [Int] The number of records ingested
   def self.import(meta, data, options)
-
-    self.parse_log_options(options)
+    parse_log_options(options)
 
     logger.debug "Starting import with options #{options.inspect}"
 
@@ -79,10 +78,10 @@ module Importer::CSV
   rescue => e
     puts e
     puts e.backtrace
-    raise IngestError.new(reached: ingests)
+    raise IngestError, reached: ingests
   rescue Interrupt
     puts "\nIngest stopped, cleaning up..."
-    raise IngestError.new(reached: ingests)
+    raise IngestError, reached: ingests
   end
 
   # Read in a CSV file and split it into nested arrays.
@@ -94,15 +93,14 @@ module Importer::CSV
     begin
       csv = ::CSV.read(metadata, encoding: "UTF-8")
     rescue ArgumentError => e # Most likely this is "invalid byte sequence in UTF-8"
-        logger.error "The file #{metadata} could not be read in UTF-8. The error was: #{e}. Trying ISO-8859-1"
-        csv = ::CSV.read(metadata, encoding: "ISO-8859-1")
+      logger.error "The file #{metadata} could not be read in UTF-8. The error was: #{e}. Trying ISO-8859-1"
+      csv = ::CSV.read(metadata, encoding: "ISO-8859-1")
     rescue => e
-        logger.error "Couldn't process file #{metadata}. The error was: #{e}."
-        raise e
+      logger.error "Couldn't process file #{metadata}. The error was: #{e}."
+      raise e
     end
     [csv.first, csv.slice(1, csv.length)]
   end
-
 
   # @param [Array] row
   # @return [Array]
@@ -114,7 +112,7 @@ module Importer::CSV
     # 'Person'.
     difference = (row - valid_headers).reject { |h| h.match(TYPE_HEADER_PATTERN) }
 
-    raise "Invalid headers: #{difference.join(', ')}" unless difference.blank?
+    raise "Invalid headers: #{difference.join(", ")}" unless difference.blank?
 
     validate_header_pairs(row)
     row
@@ -127,15 +125,15 @@ module Importer::CSV
   def self.validate_header_pairs(row)
     errors = []
     row.each_with_index do |header, i|
-      next if header == 'work_type'
+      next if header == "work_type"
       next unless header.match(TYPE_HEADER_PATTERN)
       next_header = row[i + 1]
-      field_name = header.gsub('_type', '')
+      field_name = header.gsub("_type", "")
       if next_header != field_name
         errors << "Invalid headers: '#{header}' column must be immediately followed by '#{field_name}' column."
       end
     end
-    raise errors.join(', ') unless errors.blank?
+    raise errors.join(", ") unless errors.blank?
   end
 
   # @return [Array]
@@ -176,7 +174,7 @@ module Importer::CSV
   def self.extract_field(header, val, processed)
     return unless val
     case header
-    when 'type', 'id'
+    when "type", "id"
       # type and id are singular
       processed[header.to_sym] = val
     when /^(created|issued|date_copyrighted|date_valid)_(.*)$/
@@ -184,7 +182,7 @@ module Importer::CSV
       # TODO: this only handles one date of each type
       processed[key] ||= [{}]
       update_date(processed[key].first, Regexp.last_match(2), val)
-    when 'work_type'
+    when "work_type"
       extract_multi_value_field(header, val, processed)
     when TYPE_HEADER_PATTERN
       update_typed_field(header, val, processed)
@@ -209,7 +207,7 @@ module Importer::CSV
   # @return [Hash]
   def self.transform_coordinates_to_dcmi_box(attrs)
     return attrs unless attrs[:north_bound_latitude] || attrs[:east_bound_longitude] || attrs[:south_bound_latitude] || attrs[:west_bound_longitude]
-    attrs[:coverage] = ''
+    attrs[:coverage] = ""
     if attrs[:north_bound_latitude]
       attrs[:coverage] << "northlimit=#{attrs.delete(:north_bound_latitude).first}; "
     end
@@ -222,7 +220,7 @@ module Importer::CSV
     if attrs[:west_bound_longitude]
       attrs[:coverage] << "westlimit=#{attrs.delete(:west_bound_longitude).first}; "
     end
-    attrs[:coverage] << 'units=degrees; projection=EPSG:4326'
+    attrs[:coverage] << "units=degrees; projection=EPSG:4326"
     attrs
   end
 
@@ -249,7 +247,7 @@ module Importer::CSV
   # @param [Hash] processed
   def self.update_typed_field(header, val, processed)
     if header.match(TYPE_HEADER_PATTERN)
-      stripped_header = header.gsub('_type', '')
+      stripped_header = header.gsub("_type", "")
       processed[stripped_header.to_sym] ||= []
       processed[stripped_header.to_sym] << { type: val }
     else
@@ -279,12 +277,12 @@ module Importer::CSV
     access_policy = if attrs[:access_policy]
                       attrs.delete(:access_policy).first
                     else
-                      'public'
+                      "public"
                     end
     case access_policy
-    when 'public'
+    when "public"
       attrs[:admin_policy_id] = AdminPolicy::PUBLIC_POLICY_ID
-    when 'ucsb'
+    when "ucsb"
       attrs[:admin_policy_id] = AdminPolicy::UCSB_POLICY_ID
     end
     attrs

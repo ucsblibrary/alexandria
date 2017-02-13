@@ -1,7 +1,8 @@
+# frozen_string_literal: true
 module ExtractLanguage
   # Transform field 008 into an iso639-2 URI
   def extract_language
-    lang_extractor = Traject::MarcExtractor.new('008[35-37]')
+    lang_extractor = Traject::MarcExtractor.new("008[35-37]")
     lambda do |record, accumulator|
       abbrev = lang_extractor.extract(record).compact.first
       # Check for empty strings

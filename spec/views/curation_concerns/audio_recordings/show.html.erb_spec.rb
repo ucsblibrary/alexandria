@@ -1,36 +1,37 @@
-require 'rails_helper'
+# frozen_string_literal: true
+require "rails_helper"
 
-describe 'curation_concerns/audio_recordings/show.html.erb' do
+describe "curation_concerns/audio_recordings/show.html.erb" do
   let(:presenter) { AudioRecordingPresenter.new(solr_document, nil) }
   let(:solr_document) do
-    SolrDocument.new(id: '123',
-                     title_tesim: 'My Audio',
-                     description_tesim: 'Just a cylinder',
+    SolrDocument.new(id: "123",
+                     title_tesim: "My Audio",
+                     description_tesim: "Just a cylinder",
                      restrictions_tesim: ["Don't be evil"],
-                     alternative_tesim: ['my alt title'],
-                     language_label_ssm: ['English'],
-                     issue_number_ssm: ['Edison Gold Moulded Record: 8958'],
-                     issued_ssm: ['ca. 1903 - 1906'],
-                     matrix_number_ssm: ['12345'],
-                     has_model_ssim: ['AudioRecording'])
+                     alternative_tesim: ["my alt title"],
+                     language_label_ssm: ["English"],
+                     issue_number_ssm: ["Edison Gold Moulded Record: 8958"],
+                     issued_ssm: ["ca. 1903 - 1906"],
+                     matrix_number_ssm: ["12345"],
+                     has_model_ssim: ["AudioRecording"])
   end
 
   before do
-    stub_template 'curation_concerns/audio_recordings/_related_files.html.erb' => 'files'
-    view.lookup_context.prefixes += ['curation_concerns/base']
+    stub_template "curation_concerns/audio_recordings/_related_files.html.erb" => "files"
+    view.lookup_context.prefixes += ["curation_concerns/base"]
     assign(:presenter, presenter)
   end
 
-  it 'draws the page' do
-    expect(view).to receive(:provide).with(:page_title, 'My Audio')
+  it "draws the page" do
+    expect(view).to receive(:provide).with(:page_title, "My Audio")
     expect(view).to receive(:provide).with(:page_header)
     render
-    expect(rendered).to have_content 'Edison Gold Moulded Record: 8958'
-    expect(rendered).to have_content '12345'
-    expect(rendered).to have_content 'Just a cylinder'
+    expect(rendered).to have_content "Edison Gold Moulded Record: 8958"
+    expect(rendered).to have_content "12345"
+    expect(rendered).to have_content "Just a cylinder"
     expect(rendered).to have_content "Don't be evil"
-    expect(rendered).to have_content 'my alt title'
-    expect(rendered).to have_content 'English'
-    expect(rendered).to have_content 'ca. 1903 - 1906'
+    expect(rendered).to have_content "my alt title"
+    expect(rendered).to have_content "English"
+    expect(rendered).to have_content "ca. 1903 - 1906"
   end
 end

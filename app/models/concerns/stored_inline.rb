@@ -1,10 +1,11 @@
+# frozen_string_literal: true
 module StoredInline
   extend ActiveSupport::Concern
 
   def initialize(uri = RDF::Node.new, parent = nil)
     uri = if uri.try(:node?)
-            RDF::URI("#timespan_#{uri.to_s.gsub('_:', '')}")
-          elsif uri.to_s.include?('#')
+            RDF::URI("#timespan_#{uri.to_s.gsub("_:", "")}")
+          elsif uri.to_s.include?("#")
             RDF::URI(uri)
     end
     super
@@ -19,6 +20,6 @@ module StoredInline
   end
 
   def new_record?
-    id.start_with?('#')
+    id.start_with?("#")
   end
 end

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class ContactUsMailer < ApplicationMailer
   default to: Rails.application.secrets.contact_us_email_to
 
@@ -12,8 +13,8 @@ class ContactUsMailer < ApplicationMailer
   # we suspect this email might be a spam message and flag it
   # with a special subject header.
   def subject_header(spam = false)
-    header = Rails.env.production? ? 'ADRL' : 'ADRL Demo'
-    spam_marker = spam ? ' SPAMBOT?' : ''
+    header = Rails.env.production? ? "ADRL" : "ADRL Demo"
+    spam_marker = spam ? " SPAMBOT?" : ""
     "[#{header}#{spam_marker}] "
   end
 end

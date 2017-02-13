@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class ApplicationController < ActionController::Base
   include Menubar
 
@@ -5,7 +6,7 @@ class ApplicationController < ActionController::Base
   include Blacklight::Controller
   include Hydra::Controller::ControllerBehavior
   include CurationConcerns::ApplicationControllerBehavior
-  layout 'blacklight'
+  layout "blacklight"
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -27,16 +28,16 @@ class ApplicationController < ActionController::Base
 
   rescue_from Blacklight::Exceptions::RecordNotFound do |e|
     logger.error "(Blacklight::Exceptions::RecordNotFound): #{e.inspect}"
-    @unknown_type = 'Document'
+    @unknown_type = "Document"
     @unknown_id = params[:id]
-    render 'errors/not_found', status: 404
+    render "errors/not_found", status: 404
   end
 
   rescue_from Blacklight::Exceptions::InvalidSolrID do |e|
     logger.error e
-    @unknown_type = 'Document'
+    @unknown_type = "Document"
     @unknown_id = params[:id]
-    render 'errors/not_found', status: 404
+    render "errors/not_found", status: 404
   end
 
   def on_campus?
@@ -46,7 +47,7 @@ class ApplicationController < ActionController::Base
   helper_method :on_campus?
 
   def on_campus_network_prefixes
-    ['128.111', '169.231']
+    ["128.111", "169.231"]
   end
 
   def current_ability
@@ -60,5 +61,4 @@ class ApplicationController < ActionController::Base
   def show_author?(_config, document)
     document.etd?
   end
-
 end

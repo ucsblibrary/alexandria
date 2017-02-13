@@ -1,4 +1,5 @@
-require 'factory_girl'
+# frozen_string_literal: true
+require "factory_girl"
 
 FactoryGirl.define do
   factory :file_set do

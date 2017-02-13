@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Exporter
   class BaseExporter
     attr_reader :export_dir, :export_file_name, :export_file
@@ -9,11 +10,11 @@ module Exporter
     end
 
     def default_dir
-      File.join(Rails.root, 'tmp', 'exports')
+      File.join(Rails.root, "tmp", "exports")
     end
 
     def timestamp
-      @timestamp ||= Time.now.strftime('%Y_%m_%d_%H%M%S')
+      @timestamp ||= Time.now.strftime("%Y_%m_%d_%H%M%S")
     end
 
     def run
@@ -37,7 +38,7 @@ module Exporter
 
     def print_export_complete
       puts "Records were exported to: #{export_file}"
-      puts 'Export complete.'
+      puts "Export complete."
     end
   end
 end

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # Extends and customizes the RecordsController in hydra-editor
 class RecordsController < ApplicationController
   load_resource only: [:destroy]
@@ -6,7 +7,7 @@ class RecordsController < ApplicationController
   include RecordsControllerBehavior
 
   def deny_access(exception)
-    redirect_to({ controller: :catalog, action: 'show' }, alert: exception.message)
+    redirect_to({ controller: :catalog, action: "show" }, alert: exception.message)
   end
 
   def destroy
@@ -19,7 +20,7 @@ class RecordsController < ApplicationController
       flash[:notice] = "Record \"#{@record.rdf_label.first}\" has been destroyed"
       @record.destroy
     else
-      flash[:alert] = "Record \"#{@record.rdf_label.first}\" cannot be deleted because it is referenced by #{references.count} other #{'record'.pluralize(references.count)}."
+      flash[:alert] = "Record \"#{@record.rdf_label.first}\" cannot be deleted because it is referenced by #{references.count} other #{"record".pluralize(references.count)}."
     end
 
     redirect_to local_authorities_path
@@ -30,7 +31,7 @@ class RecordsController < ApplicationController
     if LocalAuthority.local_authority?(@record)
       new_merge_form
     else
-      flash[:alert] = 'This record cannot be merged.  Only local authority records can be merged.'
+      flash[:alert] = "This record cannot be merged.  Only local authority records can be merged."
       redirect_to local_authorities_path
     end
   end
@@ -40,10 +41,10 @@ class RecordsController < ApplicationController
     if !uri.blank?
       merge_target_id = ActiveFedora::Base.uri_to_id(uri)
       MergeRecordsJob.perform_later(@record.id, merge_target_id, current_user.user_key)
-      flash[:notice] = 'A background job has been queued to merge the records.'
+      flash[:notice] = "A background job has been queued to merge the records."
       redirect_to local_authorities_path
     else
-      flash[:alert] = 'Error:  Unable to queue merge job.  Please fill in all required fields.'
+      flash[:alert] = "Error:  Unable to queue merge job.  Please fill in all required fields."
       new_merge_form
       render :new_merge
     end
@@ -81,6 +82,6 @@ class RecordsController < ApplicationController
 
     def fetch_merge_target
       attrs = params.select { |key| key.match(/^.*merge_target_attributes$/) }.values.first || {}
-      attrs.fetch('0', {}).fetch('id', nil)
+      attrs.fetch("0", {}).fetch("id", nil)
     end
 end

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Importer::MODS
   # @param [String] meta
   # @param [Array<String>] data
@@ -22,7 +23,7 @@ module Importer::MODS
 
       selected_data = data.select do |f|
         # FIXME: find a more reliable test
-        meta_base = File.basename(metadatum, '.xml')
+        meta_base = File.basename(metadatum, ".xml")
         data_base = File.basename(f, File.extname(f))
         data_base.include?(meta_base) || meta_base.include?(data_base)
       end
@@ -52,16 +53,16 @@ module Importer::MODS
   rescue => e
     puts e
     puts e.backtrace
-    raise IngestError.new(reached: ingests)
+    raise IngestError, reached: ingests
   rescue Interrupt
     puts "\nIngest stopped, cleaning up..."
-    raise IngestError.new(reached: ingests)
+    raise IngestError, reached: ingests
   end
 
   class Parser
-    ORIGIN_TEXT = 'Converted from MODS 3.4 to local RDF profile by ADRL'.freeze
+    ORIGIN_TEXT = "Converted from MODS 3.4 to local RDF profile by ADRL"
 
-    NAMESPACES = { 'mods'.freeze => Mods::MODS_NS }.freeze
+    NAMESPACES = { "mods" => Mods::MODS_NS }.freeze
 
     def initialize(file)
       @file = file
@@ -87,9 +88,9 @@ module Importer::MODS
                               # Collections have their work_type be
                               # Collection /and/ all the formats of
                               # the items they contain
-                              MODS_RESOURCE_MAP['collection'].merge(
+                              MODS_RESOURCE_MAP["collection"].merge(
                                 uri: [
-                                  MODS_RESOURCE_MAP['collection'][:uri],
+                                  MODS_RESOURCE_MAP["collection"][:uri],
                                   *mods.typeOfResource.content.map { |t| MODS_RESOURCE_MAP[t][:uri] },
                                 ].flatten
                               )
@@ -101,12 +102,12 @@ module Importer::MODS
 
     def collection?
       type_keys = mods.typeOfResource.attributes.map(&:keys).flatten
-      return false unless type_keys.include?('collection')
-      mods.typeOfResource.attributes.any? { |hash| hash.fetch('collection').value == 'yes' }
+      return false unless type_keys.include?("collection")
+      mods.typeOfResource.attributes.any? { |hash| hash.fetch("collection").value == "yes" }
     end
 
     def image?
-      type_of_resource[:label] == 'Still image'
+      type_of_resource[:label] == "Still image"
     end
 
     def attributes
@@ -119,7 +120,7 @@ module Importer::MODS
 
     def record_attributes
       common_attributes.merge(
-        files: mods.extension.xpath('./fileName').map(&:text),
+        files: mods.extension.xpath("./fileName").map(&:text),
         collection: collection,
         series_name: mods.xpath("//mods:relatedItem[@type='series']", NAMESPACES).titleInfo.title.map(&:text)
       )
@@ -162,15 +163,15 @@ module Importer::MODS
       {
         restrictions: mods.xpath('/mods:mods/mods:accessCondition[@type="use and reproduction"]', NAMESPACES).map { |node| strip_whitespace(node.text) },
         rights_holder: rights_holder,
-        copyright_status: mods.xpath('//mods:extension/copyrightStatus/@valueURI', NAMESPACES).map { |uri| RDF::URI.new(uri.value) },
-        license: mods.xpath('//mods:extension/copyrightStatement/@valueURI', NAMESPACES).map { |uri| RDF::URI.new(uri.value) },
+        copyright_status: mods.xpath("//mods:extension/copyrightStatus/@valueURI", NAMESPACES).map { |uri| RDF::URI.new(uri.value) },
+        license: mods.xpath("//mods:extension/copyrightStatement/@valueURI", NAMESPACES).map { |uri| RDF::URI.new(uri.value) },
       }
     end
 
     def locations
       {
         location: mods.subject.geographic.valueURI.map { |uri| RDF::URI.new(uri) },
-        sub_location: mods.location.holdingSimple.xpath('./mods:copyInformation/mods:subLocation', NAMESPACES).map(&:text),
+        sub_location: mods.location.holdingSimple.xpath("./mods:copyInformation/mods:subLocation", NAMESPACES).map(&:text),
         institution: mods.location.physicalLocation.valueURI.map { |uri| RDF::URI.new(uri) },
         place_of_publication: mods.origin_info.place.placeTerm.map(&:text),
       }.merge(coordinates)
@@ -224,10 +225,10 @@ module Importer::MODS
     end
 
     def relations
-      name_nodes = mods.xpath('//mods:mods/mods:name'.freeze, NAMESPACES)
+      name_nodes = mods.xpath("//mods:mods/mods:name", NAMESPACES)
       property_name_for_uri = Metadata::MARCREL.invert
       name_nodes.each_with_object({}) do |node, relations|
-        uri = node.attributes['valueURI']
+        uri = node.attributes["valueURI"]
         key = if value_uri = node.role.roleTerm.valueURI.first
                 property_name_for_uri[RDF::URI(value_uri)]
               else
@@ -241,8 +242,8 @@ module Importer::MODS
         relations[key] ||= []
         val = if uri.blank?
                 {
-                  name: node.namePart.map { |o| o }.join(', '),
-                  type: node.attributes['type'].value,
+                  name: node.namePart.map { |o| o }.join(", "),
+                  type: node.attributes["type"].value,
                 }
               else
                 RDF::URI.new(uri)
@@ -253,7 +254,7 @@ module Importer::MODS
 
     def persistent_id(raw_id)
       return unless raw_id
-      raw_id.downcase.gsub(/\s*/, '')
+      raw_id.downcase.gsub(/\s*/, "")
     end
 
     def collection
@@ -264,31 +265,31 @@ module Importer::MODS
     end
 
     def collection_name
-      node_set = mods.at_xpath("//mods:relatedItem[@type='host']".freeze, NAMESPACES)
+      node_set = mods.at_xpath("//mods:relatedItem[@type='host']", NAMESPACES)
       return unless node_set
       [node_set.titleInfo.title.text.strip]
     end
 
     def human_readable_id
-      node_set = mods.related_item.at_xpath('mods:identifier[@type="local"]'.freeze, NAMESPACES)
+      node_set = mods.related_item.at_xpath('mods:identifier[@type="local"]', NAMESPACES)
       return [] unless node_set
       Array(node_set.text)
     end
 
     # Remove multiple whitespace
     def citation
-      mods.xpath('//mods:note[@type="preferred citation"]'.freeze, NAMESPACES).map do |node|
+      mods.xpath('//mods:note[@type="preferred citation"]', NAMESPACES).map do |node|
         node.text.gsub(/\n\s+/, "\n")
       end
     end
 
     def notes
-      preferred_citation = 'preferred citation'.freeze
+      preferred_citation = "preferred citation"
 
       mods.note.map do |note|
-        next if note.attributes.key?('type') && note.attributes['type'].value == preferred_citation
+        next if note.attributes.key?("type") && note.attributes["type"].value == preferred_citation
         hash = { value: note.text.gsub(/\n\s+/, "\n") }
-        type_attr = note.attributes['type'.freeze].try(:text)
+        type_attr = note.attributes["type"].try(:text)
         hash[:note_type] = type_attr if type_attr
         hash
       end.compact
@@ -302,7 +303,7 @@ module Importer::MODS
         dates = [
           {
             start: start.map(&:text), finish: finish.map(&:text), label: date_label(node),
-            start_qualifier: qualifier(start), finish_qualifier: qualifier(finish)
+            start_qualifier: qualifier(start), finish_qualifier: qualifier(finish),
           },
         ]
         dates.delete_if { |date| date.values.all?(&:blank?) }
@@ -310,7 +311,7 @@ module Importer::MODS
       end
 
       def qualifier(nodes)
-        nodes.map { |node| node.attributes['qualifier'].try(:value) }.compact
+        nodes.map { |node| node.attributes["qualifier"].try(:value) }.compact
       end
 
       def finish_point(node)
@@ -318,21 +319,21 @@ module Importer::MODS
       end
 
       def start_point(node)
-        node.css("[encoding]:not([point='end'])".freeze)
+        node.css("[encoding]:not([point='end'])")
       end
 
       def date_label(node)
-        node.css(':not([encoding])'.freeze).map(&:text)
+        node.css(":not([encoding])").map(&:text)
       end
 
       def untyped_title
-        mods.xpath('/mods:mods/mods:titleInfo[not(@type)]/mods:title', NAMESPACES).map(&:text)
+        mods.xpath("/mods:mods/mods:titleInfo[not(@type)]/mods:title", NAMESPACES).map(&:text)
       end
 
       def alt_title
-        Array(mods.xpath('//mods:titleInfo[@type]', NAMESPACES)).flat_map do |node|
-          type = node.attributes['type'].text
-          alternative = 'alternative'.freeze
+        Array(mods.xpath("//mods:titleInfo[@type]", NAMESPACES)).flat_map do |node|
+          type = node.attributes["type"].text
+          alternative = "alternative"
 
           node.title.map do |title|
             value = title.text
@@ -345,9 +346,9 @@ module Importer::MODS
       end
 
       def rights_holder
-        nodes = mods.extension.xpath('./copyrightHolder')
+        nodes = mods.extension.xpath("./copyrightHolder")
         nodes.map do |node|
-          uri = node.attributes['valueURI']
+          uri = node.attributes["valueURI"]
           text = node.text
           uri.blank? ? strip_whitespace(text) : RDF::URI.new(uri)
         end
@@ -358,11 +359,11 @@ module Importer::MODS
       end
 
       def strip_whitespace(text)
-        text.tr("\n", ' ').delete("\t")
+        text.tr("\n", " ").delete("\t")
       end
 
       def subject
-        mods.xpath('//mods:subject/mods:name/@valueURI|//mods:subject/mods:topic/@valueURI', NAMESPACES).map { |uri| RDF::URI.new(uri) }
+        mods.xpath("//mods:subject/mods:name/@valueURI|//mods:subject/mods:topic/@valueURI", NAMESPACES).map { |uri| RDF::URI.new(uri) }
       end
   end
 end

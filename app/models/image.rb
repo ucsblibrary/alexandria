@@ -1,4 +1,5 @@
-require File.expand_path('../../indexers/image_indexer.rb', __FILE__)
+# frozen_string_literal: true
+require File.expand_path("../../indexers/image_indexer.rb", __FILE__)
 
 class Image < ActiveFedora::Base
   include CurationConcerns::WorkBehavior
@@ -7,12 +8,12 @@ class Image < ActiveFedora::Base
   include EmbargoBehavior
   include LocalAuthorityHashAccessor
 
-  self.human_readable_type = 'Image'
+  self.human_readable_type = "Image"
 
-  validates :title, presence: { message: 'Your work must have a title.' }
+  validates :title, presence: { message: "Your work must have a title." }
 
-  property :issued, predicate: ::RDF::Vocab::DC.issued, class_name: 'TimeSpan'
-  property :date_copyrighted, predicate: ::RDF::Vocab::DC.dateCopyrighted, class_name: 'TimeSpan'
+  property :issued, predicate: ::RDF::Vocab::DC.issued, class_name: "TimeSpan"
+  property :date_copyrighted, predicate: ::RDF::Vocab::DC.dateCopyrighted, class_name: "TimeSpan"
 
   accepts_nested_attributes_for :issued, reject_if: :time_span_blank, allow_destroy: true
   accepts_nested_attributes_for :date_copyrighted, reject_if: :time_span_blank, allow_destroy: true
@@ -29,6 +30,6 @@ class Image < ActiveFedora::Base
 
   # When a collection of these are rendered, which partial should be used
   def to_partial_path
-    'catalog/document'
+    "catalog/document"
   end
 end

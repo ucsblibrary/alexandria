@@ -1,4 +1,5 @@
-require 'logger'
+# frozen_string_literal: true
+require "logger"
 
 module Importer
   # Add a common logging system to any part of the Importer module.
@@ -46,13 +47,13 @@ module Importer
       # DEBUG,INFO,WARN or ERROR
       if options[:loglevel]
         case options[:loglevel].upcase
-        when 'DEBUG'
+        when "DEBUG"
           @logger.level = Logger::DEBUG
-        when 'INFO'
+        when "INFO"
           @logger.level = Logger::INFO
-        when 'WARN'
+        when "WARN"
           @logger.level = Logger::WARN
-        when 'ERROR'
+        when "ERROR"
           @logger.level = Logger::ERROR
         else
           @logger.warn "#{options[:loglevel]} isn't a valid log level. Defaulting to DEBUG."

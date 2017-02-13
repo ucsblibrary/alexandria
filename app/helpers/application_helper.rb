@@ -1,4 +1,5 @@
 # coding: utf-8
+# frozen_string_literal: true
 module ApplicationHelper
   include CurationConcerns::CatalogHelper
 
@@ -11,7 +12,7 @@ module ApplicationHelper
   def self.hostp
     Rails.application.config.host_name
   rescue NoMethodError
-    raise 'host_name is not configured'
+    raise "host_name is not configured"
   end
 
   # @param [String] string
@@ -25,7 +26,7 @@ module ApplicationHelper
   def not_simple_format(data)
     data[:value].map do |val|
       val.split('\n\n').map { |para| "<p>#{para}</p>" }
-    end.flatten.join('').html_safe
+    end.flatten.join("").html_safe
   end
 
   def display_link(data)
@@ -38,7 +39,7 @@ module ApplicationHelper
   end
 
   def random_thumbnail_from_collection(member_docs = [])
-    thumb = member_docs.select {|doc| doc.has_key?("thumbnail_url_ssm") }.sample
+    thumb = member_docs.select { |doc| doc.key?("thumbnail_url_ssm") }.sample
     return nil unless thumb
     thumb["thumbnail_url_ssm"]
   end

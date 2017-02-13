@@ -1,18 +1,19 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
-$stdout.sync = true  # flush output immediately
+$stdout.sync = true # flush output immediately
 
 # If there are no options given, invoke help
-ARGV << '-h' if ARGV.empty?
+ARGV << "-h" if ARGV.empty?
 
-puts 'Loading environment...'
-require File.expand_path('../../config/environment', __FILE__)
+puts "Loading environment..."
+require File.expand_path("../../config/environment", __FILE__)
 
 puts "Running in #{Rails.env} mode..."
 
-require 'trollop'
+require "trollop"
 
-options = Trollop::options do
+options = Trollop.options do
   banner <<-EOS
 
 Command line object ingest for the UCSB Alexandria Digital Library
@@ -25,30 +26,29 @@ where [options] are:
 
 EOS
 
-
-  opt :data, 'Data file(s)/directory', type: :strings
-  opt :format, 'Metadata format (csv, mods, etd, cyl)', type: :string
-  opt :metadata, 'Metadata file(s)/directory', type: :strings
-  opt :number, 'Only ingest N records', type: :integer
-  opt :skip, 'Skip the first N records', default: 0
-  opt :verbose, 'Provide additional output', default: false
-  opt :logfile, '/full/path/to/logfile.log (CSV imports only)', type: :string
-  opt :loglevel, 'Log level: DEBUG,INFO,WARN or ERROR (CSV imports only)', type: :string, default: "DEBUG", short: "-g"
+  opt :data, "Data file(s)/directory", type: :strings
+  opt :format, "Metadata format (csv, mods, etd, cyl)", type: :string
+  opt :metadata, "Metadata file(s)/directory", type: :strings
+  opt :number, "Only ingest N records", type: :integer
+  opt :skip, "Skip the first N records", default: 0
+  opt :verbose, "Provide additional output", default: false
+  opt :logfile, "/full/path/to/logfile.log (CSV imports only)", type: :string
+  opt :loglevel, "Log level: DEBUG,INFO,WARN or ERROR (CSV imports only)", type: :string, default: "DEBUG", short: "-g"
 end
 
-require File.expand_path('../../lib/importer', __FILE__)
+require File.expand_path("../../lib/importer", __FILE__)
 AdminPolicy.ensure_admin_policy_exists
 
-require 'fileutils'
-require 'find'
-require 'json'
-require 'traject'
+require "fileutils"
+require "find"
+require "json"
+require "traject"
 
 metadata_ext = case options[:format]
-               when 'csv'
-                 '.csv'
+               when "csv"
+                 ".csv"
                else
-                 '.xml'
+                 ".xml"
                end
 
 # For each argument passed to --metadata, if it's a file, add it
@@ -76,7 +76,7 @@ meta = if options[:metadata]
 # the array, otherwise drill down and add each file within to the
 # array
 data = if options[:data]
-         if options[:format] == 'cyl'
+         if options[:format] == "cyl"
            options[:data] # Just pass the options through
          else
            options[:data].map do |arg|
@@ -104,10 +104,10 @@ end
 
 if options[:verbose]
   puts
-  puts 'Metadata inputs:'
+  puts "Metadata inputs:"
   meta.each { |m| puts m }
   puts
-  puts 'Data inputs:'
+  puts "Data inputs:"
   data.each { |d| puts d }
 end
 
@@ -121,24 +121,24 @@ puts "Import start time: #{start_overall.strftime("%Y-%m-%d %H:%M:%S")}"
 
 begin
   case options[:format]
-  when 'csv'
+  when "csv"
     ingests = Importer::CSV.import(meta, data, options)
-  when 'mods'
+  when "mods"
     ingests = Importer::MODS.import(meta, data, options)
-  when 'etd'
+  when "etd"
     ingests = Importer::ETD.import(meta, data, options)
-  when 'cyl'
+  when "cyl"
     begin
       importer = Importer::Cylinder.new(meta, data, options)
       importer.run
     rescue => e
       puts e
       puts e.backtrace
-      raise IngestError.new(reached: options[:skip] + importer.imported_records_count)
+      raise IngestError, reached: options[:skip] + importer.imported_records_count
     ensure
       ingests = importer.imported_records_count
     end
-  end  # case/when
+  end # case/when
 
   end_overall = Time.now
   puts "Ingested #{ingests} records in #{(end_overall - start_overall) / 60} minutes"

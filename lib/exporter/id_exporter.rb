@@ -1,4 +1,5 @@
-require 'exporter/base_exporter'
+# frozen_string_literal: true
+require "exporter/base_exporter"
 
 # Export the ID and ARK for fedora records.
 # This is meant to be used for data migration, so that when new
@@ -16,14 +17,14 @@ module Exporter
     end
 
     def print_object_counts
-      puts 'Number of records to export:'
+      puts "Number of records to export:"
       classes_to_export.each do |model|
         puts "   #{model}: #{model.count}"
       end
     end
 
     def export_data
-      CSV.open(export_file, 'w') do |csv|
+      CSV.open(export_file, "w") do |csv|
         csv << headers
         classes_to_export.each do |model|
           puts "Exporting #{model} objects..."

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module GuestUsername
   module Helpers
     def self.define_helpers(mapping) #:nodoc:

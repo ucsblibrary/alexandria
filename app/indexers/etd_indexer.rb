@@ -1,11 +1,12 @@
+# frozen_string_literal: true
 class ETDIndexer < ObjectIndexer
   def generate_solr_document
     super.tap do |solr_doc|
-      solr_doc[Solrizer.solr_name('member_ids', :symbol)] = object.member_ids
-      solr_doc[Solrizer.solr_name('copyright', :displayable)] = "#{object.rights_holder.first}, #{object.date_copyrighted.first}"
+      solr_doc[Solrizer.solr_name("member_ids", :symbol)] = object.member_ids
+      solr_doc[Solrizer.solr_name("copyright", :displayable)] = "#{object.rights_holder.first}, #{object.date_copyrighted.first}"
 
-      solr_doc[Solrizer.solr_name('department', :facetable)] = department(solr_doc)
-      solr_doc[Solrizer.solr_name('dissertation', :displayable)] = dissertation
+      solr_doc[Solrizer.solr_name("department", :facetable)] = department(solr_doc)
+      solr_doc[Solrizer.solr_name("dissertation", :displayable)] = dissertation
     end
   end
 
@@ -14,14 +15,14 @@ class ETDIndexer < ObjectIndexer
     def dissertation
       return if [object.dissertation_degree,
                  object.dissertation_institution,
-                 object.dissertation_year].any? { |f| f.first.blank? }
+                 object.dissertation_year,].any? { |f| f.first.blank? }
       "#{object.dissertation_degree.first}--#{object.dissertation_institution.first}, #{object.dissertation_year.first}"
     end
 
     # Derive department by stripping "UC, SB" from the degree grantor field
     def department(solr_doc)
-      Array(solr_doc[Solrizer.solr_name('degree_grantor', :symbol)])
-        .map { |a| a.sub(/^University of California, Santa Barbara\. /, '') }
+      Array(solr_doc[Solrizer.solr_name("degree_grantor", :symbol)])
+        .map { |a| a.sub(/^University of California, Santa Barbara\. /, "") }
     end
 
     # Create a date field for sorting on

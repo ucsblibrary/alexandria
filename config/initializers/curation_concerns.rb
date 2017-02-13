@@ -1,5 +1,6 @@
-require_relative 'inflections'
-require_relative 'settings'
+# frozen_string_literal: true
+require_relative "inflections"
+require_relative "settings"
 CurationConcerns.configure do |config|
   # Injected via `rails g curation_concerns:work AudioRecording`
   config.register_curation_concern :audio_recording
@@ -49,7 +50,7 @@ CurationConcerns.configure do |config|
   # config.redis_namespace = "curation_concerns"
 
   # Specify the path to the file characterization tool:
-  config.fits_path = 'fits'
+  config.fits_path = "fits"
 
   # Specify a date you wish to start collecting Google Analytic statistics for.
   # Leaving it blank will set the start date to when ever the file was uploaded by
@@ -59,4 +60,4 @@ CurationConcerns.configure do |config|
   config.ingest_queue_name = :ingest
 end
 
-Date::DATE_FORMATS[:standard] = '%m/%d/%Y'
+Date::DATE_FORMATS[:standard] = "%m/%d/%Y"

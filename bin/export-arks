@@ -1,28 +1,29 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
 # Usage example
 #   ./export-arks Image http://localhost:8080/solr/collection1
 
-require 'rsolr'
+require "rsolr"
 
 model = ARGV[0]
 solr = RSolr.connect(url: ARGV[1])
 
-doc_count = solr.get('select', params: { q: "has_model_ssim:#{model}" })['response']['numFound']
+doc_count = solr.get("select", params: { q: "has_model_ssim:#{model}" })["response"]["numFound"]
 
 objects = solr.get(
-  'select',
+  "select",
   params: {
     q: "has_model_ssim:#{model}",
     start: 0,
     rows: doc_count,
   }
-)['response']['docs'].map do |doc|
+)["response"]["docs"].map do |doc|
   {
-    id: (doc['identifier_ssm'] ? doc['identifier_ssm'].first : ''),
-    erc_what: (doc['title_tesim'] ? doc['title_tesim'].first : ''),
-    erc_who: (doc['contributor_label_tesim'] ? doc['contributor_label_tesim'].first : ''),
-    erc_when: (doc['created_ssm'] ? doc['created_ssm'].first : ''),
+    id: (doc["identifier_ssm"] ? doc["identifier_ssm"].first : ""),
+    erc_what: (doc["title_tesim"] ? doc["title_tesim"].first : ""),
+    erc_who: (doc["contributor_label_tesim"] ? doc["contributor_label_tesim"].first : ""),
+    erc_when: (doc["created_ssm"] ? doc["created_ssm"].first : ""),
   }
 end
 

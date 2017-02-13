@@ -1,7 +1,8 @@
-require 'rails_helper'
+# frozen_string_literal: true
+require "rails_helper"
 
 describe CollectionsController do
-  describe '#index' do
+  describe "#index" do
     before do
       Collection.destroy_all
     end
@@ -10,21 +11,21 @@ describe CollectionsController do
     let!(:private_collection1) { create :collection }
     let!(:image) { create :image }
 
-    context 'when not signed in' do
-      it 'shows a list of public collections' do
+    context "when not signed in" do
+      it "shows a list of public collections" do
         get :index
         expect(response).to be_successful
         expect(assigns[:document_list].map(&:id)).to contain_exactly(collection1.id, collection2.id)
       end
     end
 
-    context 'when the user is signed in' do
+    context "when the user is signed in" do
       let(:user) { create :user }
       before do
         sign_in user
       end
 
-      it 'shows a list of collections accessible to me' do
+      it "shows a list of collections accessible to me" do
         get :index
         expect(response).to be_successful
         expect(assigns[:document_list].map(&:id)).to contain_exactly(collection1.id, collection2.id)
@@ -32,12 +33,12 @@ describe CollectionsController do
     end
   end
 
-  describe '#show' do
-    let(:collection) { create :public_collection, id: 'fk4v989d9j', members: [image, private_image], identifier: ['ark:/99999/fk4v989d9j'] }
+  describe "#show" do
+    let(:collection) { create :public_collection, id: "fk4v989d9j", members: [image, private_image], identifier: ["ark:/99999/fk4v989d9j"] }
     let(:private_image) { create :image }
     let(:image) { create :public_image }
 
-    it 'shows only public image' do
+    it "shows only public image" do
       get :show, id: collection
       expect(response).to be_successful
       expect(assigns[:member_docs].map(&:id)).to eq [image.id]

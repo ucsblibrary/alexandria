@@ -1,5 +1,6 @@
-require 'rails_helper'
-require 'active_fedora/cleaner'
+# frozen_string_literal: true
+require "rails_helper"
+require "active_fedora/cleaner"
 
 describe AuthService do
   before do
@@ -12,46 +13,46 @@ describe AuthService do
 
     data = Dir["#{Rails.root}/spec/fixtures/images/*"]
     meta = ["#{Rails.root}/spec/fixtures/csv/pamss045.csv"]
-    VCR.use_cassette('csv_importer') do
+    VCR.use_cassette("csv_importer") do
       Importer::CSV.import(meta, data, skip: 0)
     end
   end
 
-  describe '#can?' do
+  describe "#can?" do
     let(:fs) { Image.first.file_sets.first }
     subject { AuthService.new(Riiif::ImagesController.new).can?(:show, fs) }
 
-    context 'public image' do
-      context 'thumbnail' do
-        let(:params) { { 'size' => '400' } }
+    context "public image" do
+      context "thumbnail" do
+        let(:params) { { "size" => "400" } }
 
-        context 'accessed by ucsb user' do
+        context "accessed by ucsb user" do
           let(:user) { create :ucsb_user }
           it { is_expected.to be true }
         end
 
-        context 'accessed by admin' do
+        context "accessed by admin" do
           let(:user) { create :metadata_admin }
           it { is_expected.to be true }
         end
       end
 
-      context 'image' do
-        let(:params) { { 'size' => '900' } }
+      context "image" do
+        let(:params) { { "size" => "900" } }
 
-        context 'accessed by ucsb user' do
+        context "accessed by ucsb user" do
           let(:user) { create :ucsb_user }
           it { is_expected.to be true }
         end
 
-        context 'accessed by admin' do
+        context "accessed by admin" do
           let(:user) { create :metadata_admin }
           it { is_expected.to be true }
         end
       end
     end
 
-    context 'private image' do
+    context "private image" do
       let(:fs) { Image.first.file_sets.first }
       subject { AuthService.new(Riiif::ImagesController.new).can?(:show, fs) }
 
@@ -60,29 +61,29 @@ describe AuthService do
         fs.update_index
       end
 
-      context 'thumbnail' do
-        let(:params) { { 'size' => '400' } }
+      context "thumbnail" do
+        let(:params) { { "size" => "400" } }
 
-        context 'accessed by ucsb user' do
+        context "accessed by ucsb user" do
           let(:user) { create :ucsb_user }
           it { is_expected.to be true }
         end
 
-        context 'accessed by admin' do
+        context "accessed by admin" do
           let(:user) { create :metadata_admin }
           it { is_expected.to be true }
         end
       end
 
-      context 'image' do
-        let(:params) { { 'size' => '900' } }
+      context "image" do
+        let(:params) { { "size" => "900" } }
 
-        context 'accessed by ucsb user' do
+        context "accessed by ucsb user" do
           let(:user) { create :ucsb_user }
           it { is_expected.to be false }
         end
 
-        context 'accessed by admin' do
+        context "accessed by admin" do
           let(:user) { create :metadata_admin }
           it { is_expected.to be true }
         end

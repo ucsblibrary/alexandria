@@ -1,7 +1,8 @@
-require 'rails_helper'
+# frozen_string_literal: true
+require "rails_helper"
 
 describe FileSet do
-  describe '.indexer' do
+  describe ".indexer" do
     subject { described_class.indexer }
     it { is_expected.to eq FileSetIndexer }
   end

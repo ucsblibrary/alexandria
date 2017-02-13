@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Oargun::ControlledVocabularies
   class Language < ActiveTriples::Resource
     include Oargun::RDF::Controlled

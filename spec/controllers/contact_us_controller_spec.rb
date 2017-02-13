@@ -1,23 +1,24 @@
-require 'rails_helper'
+# frozen_string_literal: true
+require "rails_helper"
 
 RSpec.describe ContactUsController, type: :controller do
-  let(:frodo) { 'Frodo Baggins' }
-  let(:frodo_email) { 'frodo@example.com' }
-  let(:from) { 'Frodo Baggins <frodo@example.com>' }
+  let(:frodo) { "Frodo Baggins" }
+  let(:frodo_email) { "frodo@example.com" }
+  let(:from) { "Frodo Baggins <frodo@example.com>" }
 
-  let(:category) { 'Feedback' }
-  let(:subject) { '[ADRL Demo] Feedback' }
-  let(:spam_subject) { '[ADRL Demo SPAMBOT?] Feedback' }
+  let(:category) { "Feedback" }
+  let(:subject) { "[ADRL Demo] Feedback" }
+  let(:spam_subject) { "[ADRL Demo SPAMBOT?] Feedback" }
 
-  let(:message) { 'Hello there, friends.' }
-  let(:referer) { 'Page that I came from' }
+  let(:message) { "Hello there, friends." }
+  let(:referer) { "Page that I came from" }
 
   before do
-    request.env['HTTP_REFERER'] = referer
+    request.env["HTTP_REFERER"] = referer
     ActionMailer::Base.deliveries.clear
   end
 
-  describe 'GET new' do
+  describe "GET new" do
     before { get :new }
 
     it 'displays the "contact us" form' do
@@ -26,12 +27,12 @@ RSpec.describe ContactUsController, type: :controller do
     end
   end
 
-  describe 'GET create' do
+  describe "GET create" do
     before do
       post :create, name: frodo, email: frodo_email, category: category, message: message
     end
 
-    it 'generates an email' do
+    it "generates an email" do
       expect(response).to redirect_to referer
       expect(flash[:notice]).to match(/Thank you for the feedback/i)
       expect(ActionMailer::Base.deliveries.count).to eq 1
@@ -45,14 +46,14 @@ RSpec.describe ContactUsController, type: :controller do
     end
   end
 
-  describe 'GET create with spam' do
+  describe "GET create with spam" do
     before do
       # If the invisible zipcode field is filled in,
       # we suspect it is spam.
-      post :create, name: frodo, email: frodo_email, category: category, message: message, zipcode: '55402'
+      post :create, name: frodo, email: frodo_email, category: category, message: message, zipcode: "55402"
     end
 
-    it 'generates an email, but flags it as spam' do
+    it "generates an email, but flags it as spam" do
       expect(ActionMailer::Base.deliveries.count).to eq 1
       email = ActionMailer::Base.deliveries.first
       expect(email.subject).to eq spam_subject

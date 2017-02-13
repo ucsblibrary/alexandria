@@ -1,8 +1,9 @@
+# frozen_string_literal: true
 # Sends email to the admin from the contact form
 class ContactUsController < ApplicationController
   # Display the "Contact Us" form the the user.
   def new
-    @page_title = 'Contact Us'
+    @page_title = "Contact Us"
   end
 
   # When a user submits the "Contact Us" form, send the email.
@@ -12,7 +13,7 @@ class ContactUsController < ApplicationController
     email = ContactUsMailer.web_inquiry(from, params[:category], params[:message], spam)
     email.deliver_now
 
-    flash[:notice] = 'Thank you for the feedback.  Your submission has been successfully sent to the ADRL.'
+    flash[:notice] = "Thank you for the feedback.  Your submission has been successfully sent to the ADRL."
     redirect_to :back
   end
 end

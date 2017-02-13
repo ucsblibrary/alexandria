@@ -1,4 +1,5 @@
-require File.expand_path('../features/session_helper', __FILE__)
+# frozen_string_literal: true
+require File.expand_path("../features/session_helper", __FILE__)
 
 RSpec.configure do |config|
   config.include Warden::Test::Helpers, type: :feature

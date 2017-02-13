@@ -1,4 +1,5 @@
-require 'proquest'
+# frozen_string_literal: true
+require "proquest"
 
 module Importer::Factory
   class ETDFactory < ObjectFactory
@@ -7,7 +8,7 @@ module Importer::Factory
 
     def attach_files(object, files)
       return unless files[:xml]
-      object.proquest.mime_type = 'application/xml'
+      object.proquest.mime_type = "application/xml"
       object.proquest.original_name = File.basename(files[:xml])
       object.proquest.content = File.new(files[:xml])
 
@@ -52,8 +53,8 @@ module Importer::Factory
       # ProQuest metadata gets imported.
       super.merge(
         admin_policy_id: AdminPolicy::RESTRICTED_POLICY_ID,
-        copyright_status: [RDF::URI('http://id.loc.gov/vocabulary/preservation/copyrightStatus/cpr')],
-        license: [RDF::URI('http://rightsstatements.org/vocab/InC/1.0/')]
+        copyright_status: [RDF::URI("http://id.loc.gov/vocabulary/preservation/copyrightStatus/cpr")],
+        license: [RDF::URI("http://rightsstatements.org/vocab/InC/1.0/")]
       )
     end
   end
