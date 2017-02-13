@@ -11,9 +11,9 @@ class TimeSpan < ActiveTriples::Resource
   property :note, predicate: ::RDF::SKOS.note
 
   # MODS date qualifiers
-  APPROX = "approximate"
-  INFERRED = "inferred"
-  QUESTIONABLE = "questionable"
+  APPROX = "approximate".freeze
+  INFERRED = "inferred".freeze
+  QUESTIONABLE = "questionable".freeze
 
   QUALIFIERS = [APPROX, INFERRED, QUESTIONABLE].freeze
 

@@ -60,7 +60,7 @@ module Importer::MODS
   end
 
   class Parser
-    ORIGIN_TEXT = "Converted from MODS 3.4 to local RDF profile by ADRL"
+    ORIGIN_TEXT = "Converted from MODS 3.4 to local RDF profile by ADRL".freeze
 
     NAMESPACES = { "mods" => Mods::MODS_NS }.freeze
 

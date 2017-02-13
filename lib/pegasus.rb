@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 module Pegasus
-  SRU = "#{Rails.application.secrets.sru_host}/sba01pub?version=1.1&operation=searchRetrieve"
-  ARK_SHOULDER = "ark..48907"
-  PAYLOAD_HEADER = "<?xml version=\"1.0\"?>\n<zs:searchRetrieveResponse xmlns:zs=\"http://www.loc.gov/zing/srw/\"><zs:version>1.1</zs:version><zs:numberOfRecords>1</zs:numberOfRecords><zs:records>"
-  PAYLOAD_FOOTER = "</zs:records></zs:searchRetrieveResponse>"
+  SRU = "#{Rails.application.secrets.sru_host}/sba01pub?version=1.1&operation=searchRetrieve".freeze
+  ARK_SHOULDER = "ark..48907".freeze
+  PAYLOAD_HEADER = "<?xml version=\"1.0\"?>\n<zs:searchRetrieveResponse xmlns:zs=\"http://www.loc.gov/zing/srw/\"><zs:version>1.1</zs:version><zs:numberOfRecords>1</zs:numberOfRecords><zs:records>".freeze
+  PAYLOAD_FOOTER = "</zs:records></zs:searchRetrieveResponse>".freeze
 
   # @param [String] binary
   def self.by_binary(binary)
