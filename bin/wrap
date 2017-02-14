@@ -11,7 +11,7 @@ for service in solr fcrepo; do
     exit 1
   fi
 
-  "${service}_wrapper" --config "config/${service}_wrapper_development.yml" >> "log/${service}.log" 2>&1 &
+  bundle exec "${service}_wrapper" --config "config/${service}_wrapper_development.yml" >> "log/${service}.log" 2>&1 &
   pid="$!"
   echo "Running ${service}_wrapper with Process ID $pid"
   echo "Logging to log/${service}.log"
