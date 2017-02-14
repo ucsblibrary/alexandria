@@ -19,8 +19,11 @@ module Importer::Factory
       # the FileSet itself is created (otherwise they'll be left with
       # the default restricted policy, instead of having the same
       # permissions as the ETD)
-      Proquest::Metadata.new(object).run
-
+      # TODO: Adding an extra #save method to fix DIGREPO-702. In the future
+      # we might want to go back and see if there is another way to fix this.
+      r = Proquest::Metadata.new(object)
+      r.etd.save
+      r.run
       # FIXME: Currently the actual ETD has no special status among
       # the FileSets attached to the object; the catalog/_files
       # partial just assumes the first one is the ETD and the rest are
