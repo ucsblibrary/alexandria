@@ -62,7 +62,7 @@ group :development, :test do
   gem "poltergeist"
   gem "rspec-activemodel-mocks"
   gem "rspec-rails"
-  gem "rubocop", require: false
+  gem "rubocop", "~> 0.47.1", require: false
   gem "spring"
   gem "spring-commands-rspec", group: :development
 end
