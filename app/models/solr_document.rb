@@ -115,6 +115,10 @@ class SolrDocument
     fetch("extent_ssm", [])
   end
 
+  def scale
+    fetch("scale_tesim", [])
+  end
+
   def notes
     fetch("note_label_tesim", [])
   end

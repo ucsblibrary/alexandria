@@ -13,6 +13,7 @@
   <%= presenter.attribute_to_html(:description, label: 'Summary').gsub('\n', '<br />').html_safe %>
   <%= presenter.attribute_to_html(:table_of_contents, label: 'Table of Contents') %>
   <%= presenter.attribute_to_html(:extent, label: 'Physical Description') %>
+  <%= presenter.attribute_to_html(:scale, label: 'Scale') %>
   <%= presenter.attribute_to_html(:work_type, label: 'Format') %>
   <%= presenter.attribute_to_html(:collection) %>
   <%= presenter.attribute_to_html(:sub_location, label: 'Library Location') %>
