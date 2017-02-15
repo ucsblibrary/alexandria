@@ -22,8 +22,8 @@ describe Importer::ETD do
     context "with an existing ETD collection" do
       before { ETD.destroy_all }
 
-      let(:meta) { ["#{Rails.root}/spec/fixtures/proquest/Batch\ 3/2013-11-06_Summer2013/etdadmin_upload_234724/Costa_ucsb_0035D_11752_MARC.xml"] }
-      let(:data) { ["#{Rails.root}/spec/fixtures/proquest/Batch\ 3/2013-11-06_Summer2013/etdadmin_upload_234724/etdadmin_upload_234724.zip"] }
+      let(:meta) { ["#{Rails.root}/spec/fixtures/proquest/zipped/ETD_ucsb_0035D_13132_MARC.xml"] }
+      let(:data) { ["#{Rails.root}/spec/fixtures/proquest/zipped/ETD_ucsb_0035D_13132.zip"] }
       let(:options) { { skip: 0 } }
 
       it "ingests the ETD and sets the permissions correctly" do

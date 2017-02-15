@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<zs:searchRetrieveResponse xmlns:zs="http://www.loc.gov/zing/srw/"><zs:version>1.1</zs:version><zs:numberOfRecords>1</zs:numberOfRecords><zs:records><zs:record><zs:recordSchema>info:srw/schema/1/marcxml-v1.1</zs:recordSchema><zs:recordPacking>xml</zs:recordPacking><zs:recordData><record xmlns="http://www.loc.gov/MARC21/slim">
+<!-- Indicator length at offset 10 should hold a digit. Assuming 2 -->
+<!-- Identifier length at offset 11 should hold a digit. Assuming 2 -->
+  <leader>00962nam a22002537  4500</leader>
+  <controlfield tag="001">004751226</controlfield>
+  <controlfield tag="005">20170212080432.0</controlfield>
+  <controlfield tag="008">170212s2016    cau|||||sm||||00| ||eng d</controlfield>
+  <datafield tag="024" ind1="7" ind2=" ">
+    <subfield code="a">ark:/48907/f30865g5</subfield>
+    <subfield code="2">local</subfield>
+  </datafield>
+  <datafield tag="100" ind1="1" ind2=" ">
+    <subfield code="a">ETD, New.</subfield>
+  </datafield>
+  <datafield tag="245" ind1="1" ind2="0">
+    <subfield code="a">I don't ingest right :</subfield>
+    <subfield code="b">what is my deal /</subfield>
+    <subfield code="c">by New ETD.</subfield>
+  </datafield>
+  <datafield tag="264" ind1=" " ind2="1">
+    <subfield code="a">[Santa Barbara, Calif.] :</subfield>
+    <subfield code="b">University of California, Santa Barbara,</subfield>
+    <subfield code="c">2016.</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Advisors: Ugh I. Frick.</subfield>
+  </datafield>
+  <datafield tag="653" ind1=" " ind2=" ">
+    <subfield code="a">Frick.</subfield>
+  </datafield>
+  <datafield tag="653" ind1=" " ind2=" ">
+    <subfield code="a">Dang.</subfield>
+  </datafield>
+  <datafield tag="653" ind1=" " ind2=" ">
+    <subfield code="a">It.</subfield>
+  </datafield>
+  <datafield tag="710" ind1="2" ind2=" ">
+    <subfield code="a">University of California, Santa Barbara.</subfield>
+    <subfield code="b">Religious Studies.</subfield>
+  </datafield>
+  <datafield tag="852" ind1=" " ind2=" ">
+    <subfield code="a">CU-SB</subfield>
+    <subfield code="b">MAIN</subfield>
+    <subfield code="c">EDIS</subfield>
+    <subfield code="4">Main Library</subfield>
+    <subfield code="5">Electronic Dissertations</subfield>
+  </datafield>
+  <datafield tag="946" ind1=" " ind2=" ">
+    <subfield code="a">Fall 2016</subfield>
+  </datafield>
+  <datafield tag="947" ind1=" " ind2=" ">
+    <subfield code="a">PQD</subfield>
+    <subfield code="b">ProQuest Dissertations &amp; Theses Database</subfield>
+    <subfield code="l">do not send to LTI</subfield>
+    <subfield code="o">do not send to OCLC</subfield>
+  </datafield>
+  <datafield tag="956" ind1=" " ind2="0">
+    <subfield code="f">ETD_ucsb_0035D_13132.pdf</subfield>
+  </datafield>
+</record></zs:recordData><zs:recordPosition>1</zs:recordPosition></zs:record></zs:records></zs:searchRetrieveResponse>
