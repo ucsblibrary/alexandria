@@ -9,6 +9,16 @@ class AudioRoutingConcern
     results.present?
   end
 end
+class ScannedMapRoutingConcern
+  def matches?(request)
+    query = [
+      "_query_:\"#{ActiveFedora::SolrQueryBuilder.construct_query_for_ids([request.params[:id]])}\"",
+      ActiveFedora::SolrQueryBuilder.construct_query_for_rel([[:has_model, ScannedMap.to_class_uri]]),
+    ].join(" AND ")
+    results = ActiveFedora::SolrService.query query, fl: "has_model_ssim"
+    results.present?
+  end
+end
 
 Rails.application.routes.draw do
   concern :range_searchable, BlacklightRangeLimit::Routes::RangeSearchable.new
@@ -45,6 +55,7 @@ Rails.application.routes.draw do
   end
 
   get "lib/:prot/:shoulder/:id" => "curation_concerns/audio_recordings#show", constraints: AudioRoutingConcern.new
+  get "lib/:prot/:shoulder/:id" => "curation_concerns/scanned_maps#show", constraints: ScannedMapRoutingConcern.new
   get "lib/:prot/:shoulder/:id" => "catalog#show", as: "catalog_ark"
 
   resources :local_authorities, only: :index
