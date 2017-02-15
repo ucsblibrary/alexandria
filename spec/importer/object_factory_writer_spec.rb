@@ -86,7 +86,7 @@ describe ObjectFactoryWriter do
     end
 
     context "with a single directory" do
-      let(:files_dirs) { File.join(fixture_path, "cylinders") }
+      let(:files_dirs) { File.join(fixture_path, "cylinders", "cyl1-2") }
 
       it "contains the correct files" do
         expect(subject.count).to eq 1 # It's an array of arrays
@@ -97,15 +97,17 @@ describe ObjectFactoryWriter do
 
     context "with more than one directory" do
       let(:files_dirs) do
-        [File.join(fixture_path, "cylinders"),
-         File.join(fixture_path, "cylinders2"),]
+        [
+          File.join(fixture_path, "cylinders", "cyl1-2"),
+          File.join(fixture_path, "cylinders", "cyl3-"),
+        ]
       end
 
       it "contains the correct files, grouped by cylinder" do
         expect(subject.count).to eq 2
 
-        expect(subject[0]).to include(File.join(files_dirs.last, "audio_files", "cusb-cyl12783a.wav"),
-                                      File.join(files_dirs.last, "audio_files", "cusb-cyl12783b.wav"))
+        expect(subject[0]).to include(File.join(files_dirs.last, "cusb-cyl12783a.wav"),
+                                      File.join(files_dirs.last, "cusb-cyl12783b.wav"))
 
         expect(subject[1]).to include(File.join(files_dirs.first, "cusb-cyl0001a.wav"),
                                       File.join(files_dirs.first, "cusb-cyl0001b.wav"))

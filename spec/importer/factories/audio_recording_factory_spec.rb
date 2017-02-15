@@ -4,8 +4,7 @@ require "importer"
 require "active_fedora/cleaner"
 
 describe Importer::Factory::AudioRecordingFactory do
-  let(:data) { Dir["spec/fixtures/cylinders/*"] }
-  let(:files_dir) { File.join(fixture_path, "cylinders") }
+  let(:data) { File.join(fixture_path, "cylinders") }
   let(:metadata) { "spec/fixtures/cylinders/cylinders-objects.xml" }
 
   let(:attributes) do
@@ -41,12 +40,12 @@ describe Importer::Factory::AudioRecordingFactory do
     subject { factory.cylinder_number(filegroup) }
 
     context "with a correct file name" do
-      let(:filegroup) { Dir["spec/fixtures/cylinders/cusb-cyl0001*"] }
+      let(:filegroup) { Dir["#{Rails.root}/spec/fixtures/cylinders/cyl1-2/cusb-cyl0001*"] }
       it { is_expected.to eq "0001" }
     end
 
     context "with only the md5 for a correct file name" do
-      let(:filegroup) { [File.join(files_dir, "cusb-cyl0001a.wav.md5")] }
+      let(:filegroup) { [File.join(fixture_path, "cylinders", "cyl1-2", "cusb-cyl0001a.wav.md5")] }
       it { is_expected.to be_nil }
     end
 
@@ -64,8 +63,8 @@ describe Importer::Factory::AudioRecordingFactory do
         # include an empty filegroup
         [],
         # include non-WAV files
-        Dir["spec/fixtures/cylinders/cusb-cyl0001*"],
-        Dir["spec/fixtures/cylinders/cusb-cyl0002*"],
+        Dir["#{Rails.root}/spec/fixtures/cylinders/cyl1-2/cusb-cyl0001*"],
+        Dir["#{Rails.root}/spec/fixtures/cylinders/cyl1-2/cusb-cyl0002*"],
       ]
     end
 
@@ -124,7 +123,7 @@ describe Importer::Factory::AudioRecordingFactory do
 
       indexer = Traject::Indexer.new
       indexer.load_config_file("lib/traject/audio_config.rb")
-      indexer.settings(files_dirs: files_dir)
+      indexer.settings(files_dirs: data)
 
       VCR.use_cassette("audio_recording_factory") do
         indexer.writer.put indexer.map_record(MARC::XMLReader.new(metadata).first)

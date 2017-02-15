@@ -66,7 +66,7 @@ class ObjectFactoryWriter
     return @etd if @etd
     return [] unless @settings[:files_dirs]
 
-    dirs = Array(@settings[:files_dirs])
+    dirs = [@settings[:files_dirs]].flatten
     file_groups = []
 
     attributes[:filename].each do |name|

@@ -4,12 +4,12 @@ require "rails_helper"
 require "importer"
 
 describe Importer::Cylinder do
-  let(:files_dir) { File.join(fixture_path, "cylinders2") }
-  let(:meta_files) do # Records are spread across 2 files
-    [File.join(fixture_path, "marcxml", "cylinder_sample_marc.xml"),
-     File.join(files_dir, "cylinders_2.xml"),]
+  let(:files_dir) { File.join(fixture_path, "cylinders") }
+  let(:meta_files) do
+    [File.join(fixture_path, "cylinders", "cylinder_bit_of_everything.xml"),
+     File.join(fixture_path, "cylinders", "cylinders-objects.xml"),]
   end
-  let(:options) { {} }
+  let(:options) { { skip: 0 } }
   let(:importer) { described_class.new(meta_files, files_dir, options) }
 
   # Give it an identifier so it doesn't try to mint a new ark
@@ -31,7 +31,7 @@ describe Importer::Cylinder do
   describe "#attributes" do
     before { collection } # Make sure collection exists
 
-    let(:meta_files) { [File.join(fixture_path, "marcxml", "cylinder_sample_marc.xml")] }
+    let(:meta_files) { [File.join(fixture_path, "cylinders", "cylinder_bit_of_everything.xml")] }
 
     let(:marc_record) do
       records = importer.parse_marc_files(meta_files)
@@ -116,16 +116,18 @@ describe Importer::Cylinder do
       collection # Make sure collection exists
     end
 
+    let(:files_dir) { File.join(fixture_path, "cylinders", "cyl3-") }
+
     it "imports the records" do
       expect do
         VCR.use_cassette("cylinder_import") do
           importer.run
         end
-      end.to change { AudioRecording.count }.by(3)
-        .and(change { FileSet.count }.by(2))
+      end.to change { AudioRecording.count }.by(11)
+        .and(change { FileSet.count }.by(3))
 
       # Make sure the importer reports the correct number
-      expect(importer.imported_records_count).to eq 3
+      expect(importer.imported_records_count).to eq 11
 
       # The new cylinder records
       record1 = AudioRecording.where(Solrizer.solr_name("system_number", :symbol) => "002556253").first
@@ -238,12 +240,11 @@ describe Importer::Cylinder do
       solr = Blacklight.default_index.connection
       res = solr.select(params: { id: collection.id, qt: "document" })
       doc = res["response"]["docs"].first
-      expect(doc["member_ids_ssim"]).to contain_exactly(record1.id, record2.id, record3.id)
+      expect(doc["member_ids_ssim"]).to include(record1.id, record2.id, record3.id)
     end
   end
 
   context "a record without an ARK" do
-    let(:files_dir) { File.join(fixture_path, "marcxml") }
     let(:meta_files) { [File.join(files_dir, "cylinder_missing_ark.xml")] }
 
     before do
@@ -261,7 +262,6 @@ describe Importer::Cylinder do
   end
 
   context "marc file without language" do
-    let(:files_dir) { File.join(fixture_path, "marcxml") }
     let(:meta_files) { [File.join(files_dir, "cylinder_sample_without_language_marc.xml")] }
     let(:id) { "f3888888" } # ID from the MARC file
 
