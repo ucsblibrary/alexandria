@@ -108,4 +108,10 @@ describe Importer::CSV do
       expect(a[1][2][3]).to eql("Rio Xixé")
     end
   end
+
+  context "determine model" do
+    it "returns ScannedMap when the model value is 'Scanned map'" do
+      expect(Importer::CSV.determine_model("Scanned map")).to eql("ScannedMap")
+    end
+  end
 end

@@ -52,10 +52,8 @@ module Importer::CSV
                 end
 
         if options[:verbose]
-          puts
           puts "Object attributes for item #{ingests + 1}:"
           puts attrs.each { |k, v| puts "#{k}: #{v}" }
-          puts
           puts "Associated files for item #{ingests + 1}:"
           puts files.each { |f| puts f }
         end
@@ -63,14 +61,12 @@ module Importer::CSV
         attrs = Importer::CSV.assign_access_policy(attrs)
         attrs = Importer::CSV.transform_coordinates_to_dcmi_box(attrs)
 
-        model = attrs.delete(:type)
+        model = Importer::CSV.determine_model(attrs.delete(:type))
         raise NoModelError if model.nil? || model.empty?
 
         o = ::Importer::Factory.for(model).new(attrs, files).run
-        logger.info "accession_number #{attrs[:accession_number].first} ingested as #{o.id}"
-
         end_record = Time.now
-        puts "Ingested record #{ingests + 1} of #{tail.length} in #{end_record - start_record} seconds"
+        logger.info "accession_number #{attrs[:accession_number].first} ingested as #{o.id} in #{end_record - start_record} seconds (#{ingests + 1}/#{tail.length})"
         ingests += 1
       end
     end
@@ -82,6 +78,13 @@ module Importer::CSV
   rescue Interrupt
     puts "\nIngest stopped, cleaning up..."
     raise IngestError, reached: ingests
+  end
+
+  # Given a 'type' field from the CSV, determine which object model pertains
+  # @param [String] csv_type_field
+  # @return [String] the name of the model class
+  def self.determine_model(csv_type_field)
+    csv_type_field.titleize.gsub(/\s+/, "")
   end
 
   # Read in a CSV file and split it into nested arrays.
