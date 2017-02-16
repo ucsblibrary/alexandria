@@ -13,6 +13,13 @@ class AudioRoutingConcern
     for_model?(request, AudioRecording)
   end
 end
+
+class CollectionRoutingConcern
+  def matches?(request)
+    for_model?(request, Collection)
+  end
+end
+
 class ScannedMapRoutingConcern
   def matches?(request)
     for_model?(request, ScannedMap)
@@ -55,6 +62,7 @@ Rails.application.routes.draw do
 
   get "lib/:prot/:shoulder/:id" => "curation_concerns/audio_recordings#show", constraints: AudioRoutingConcern.new
   get "lib/:prot/:shoulder/:id" => "curation_concerns/scanned_maps#show", constraints: ScannedMapRoutingConcern.new
+  get "lib/:prot/:shoulder/:id" => "collections#show", constraints: CollectionRoutingConcern.new
   get "lib/:prot/:shoulder/:id" => "catalog#show", as: "catalog_ark"
 
   resources :local_authorities, only: :index
