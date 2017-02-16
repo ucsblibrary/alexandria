@@ -38,6 +38,12 @@ class ComponentMapRoutingConcern
   end
 end
 
+class MapSetRoutingConcern
+  def matches?(request)
+    for_model?(request, MapSet)
+  end
+end
+
 Rails.application.routes.draw do
   concern :range_searchable, BlacklightRangeLimit::Routes::RangeSearchable.new
   root "welcome#index"
@@ -76,6 +82,7 @@ Rails.application.routes.draw do
   get "lib/:prot/:shoulder/:id" => "curation_concerns/scanned_maps#show", constraints: ScannedMapRoutingConcern.new
   get "lib/:prot/:shoulder/:id" => "curation_concerns/index_maps#show", constraints: IndexMapRoutingConcern.new
   get "lib/:prot/:shoulder/:id" => "curation_concerns/component_maps#show", constraints: ComponentMapRoutingConcern.new
+  get "lib/:prot/:shoulder/:id" => "curation_concerns/map_sets#show", constraints: MapSetRoutingConcern.new
   get "lib/:prot/:shoulder/:id" => "collections#show", constraints: CollectionRoutingConcern.new
   get "lib/:prot/:shoulder/:id" => "catalog#show", as: "catalog_ark"
 
