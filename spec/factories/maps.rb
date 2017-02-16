@@ -6,4 +6,11 @@ FactoryGirl.define do
       admin_policy_id AdminPolicy::PUBLIC_POLICY_ID
     end
   end
+
+  factory :index_map do
+    sequence(:title) { |n| ["Index Map #{n}"] }
+    factory :public_index_map do
+      admin_policy_id AdminPolicy::PUBLIC_POLICY_ID
+    end
+  end
 end
