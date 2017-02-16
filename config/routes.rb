@@ -1,22 +1,21 @@
 # frozen_string_literal: true
+def for_model?(request, model)
+  query = [
+    "_query_:\"#{ActiveFedora::SolrQueryBuilder.construct_query_for_ids([request.params[:id]])}\"",
+    ActiveFedora::SolrQueryBuilder.construct_query_for_rel([[:has_model, model.to_class_uri]]),
+  ].join(" AND ")
+  results = ActiveFedora::SolrService.query query, fl: "has_model_ssim"
+  results.present?
+end
+
 class AudioRoutingConcern
   def matches?(request)
-    query = [
-      "_query_:\"#{ActiveFedora::SolrQueryBuilder.construct_query_for_ids([request.params[:id]])}\"",
-      ActiveFedora::SolrQueryBuilder.construct_query_for_rel([[:has_model, AudioRecording.to_class_uri]]),
-    ].join(" AND ")
-    results = ActiveFedora::SolrService.query query, fl: "has_model_ssim"
-    results.present?
+    for_model?(request, AudioRecording)
   end
 end
 class ScannedMapRoutingConcern
   def matches?(request)
-    query = [
-      "_query_:\"#{ActiveFedora::SolrQueryBuilder.construct_query_for_ids([request.params[:id]])}\"",
-      ActiveFedora::SolrQueryBuilder.construct_query_for_rel([[:has_model, ScannedMap.to_class_uri]]),
-    ].join(" AND ")
-    results = ActiveFedora::SolrService.query query, fl: "has_model_ssim"
-    results.present?
+    for_model?(request, ScannedMap)
   end
 end
 
