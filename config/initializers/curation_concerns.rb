@@ -2,6 +2,8 @@
 require_relative "inflections"
 require_relative "settings"
 CurationConcerns.configure do |config|
+  # Injected via `rails g curation_concerns:work IndexMap`
+  config.register_curation_concern :index_map
   # Injected via `rails g curation_concerns:work ScannedMap`
   config.register_curation_concern :scanned_map
   # Injected via `rails g curation_concerns:work AudioRecording`
