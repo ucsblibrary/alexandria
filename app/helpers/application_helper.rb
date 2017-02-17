@@ -44,6 +44,20 @@ module ApplicationHelper
     thumb["thumbnail_url_ssm"]
   end
 
+  def show_license_icons(data)
+    uri = data[:document]["license_tesim"].first
+
+    icons = rights_icons(uri).map do |statement|
+      link_to(image_tag(statement, class: "icon"), uri)
+    end.join("")
+
+    link_to_search = link_to(
+      data[:value].first,
+      "/catalog?f%5Blicense_label_sim%5D%5B%5D=#{data[:value].first.tr(" ", "+")}"
+    )
+
+    "#{icons} #{link_to_search}".html_safe
+  end
 
   def rights_icons(uri)
     if category = uri.match(%r{.*rightsstatements\.org\/vocab\/([a-z]+)}i)
