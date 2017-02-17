@@ -20,4 +20,11 @@ FactoryGirl.define do
       admin_policy_id AdminPolicy::PUBLIC_POLICY_ID
     end
   end
+
+  factory :map_set do
+    sequence(:title) { |n| ["Map Set #{n}"] }
+    factory :public_map_set do
+      admin_policy_id AdminPolicy::PUBLIC_POLICY_ID
+    end
+  end
 end

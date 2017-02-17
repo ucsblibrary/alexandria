@@ -2,6 +2,8 @@
 require_relative "inflections"
 require_relative "settings"
 CurationConcerns.configure do |config|
+  # Injected via `rails g curation_concerns:work MapSet`
+  config.register_curation_concern :map_set
   # Injected via `rails g curation_concerns:work IndexMap`
   config.register_curation_concern :index_map
   # Injected via `rails g curation_concerns:work ComponentMap`
