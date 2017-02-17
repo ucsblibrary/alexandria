@@ -32,4 +32,17 @@ describe "map routes" do
         )
     end
   end
+  context "ComponentMap" do
+    before { create(:public_component_map, identifier: ["ark:/99999/#{id}"], id: id) }
+    it "finds the correct controller" do
+      expect(get: "/lib/ark:/99999/#{id}")
+        .to route_to(
+          controller: "curation_concerns/component_maps",
+          prot: "ark:",
+          shoulder: "99999",
+          action: "show",
+          id: id
+        )
+    end
+  end
 end

@@ -13,4 +13,11 @@ FactoryGirl.define do
       admin_policy_id AdminPolicy::PUBLIC_POLICY_ID
     end
   end
+
+  factory :component_map do
+    sequence(:title) { |n| ["Component Map #{n}"] }
+    factory :public_component_map do
+      admin_policy_id AdminPolicy::PUBLIC_POLICY_ID
+    end
+  end
 end
