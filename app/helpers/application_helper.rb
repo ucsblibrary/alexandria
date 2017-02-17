@@ -43,4 +43,28 @@ module ApplicationHelper
     return nil unless thumb
     thumb["thumbnail_url_ssm"]
   end
+
+
+  def rights_icons(uri)
+    if category = uri.match(%r{.*rightsstatements\.org\/vocab\/([a-z]+)}i)
+      [
+        case category[1]
+        when "InC"
+          "rights-statements/InC.Icon-Only.dark.png"
+        when "NoC"
+          "rights-statements/NoC.Icon-Only.dark.png"
+        else
+          "rights-statements/Other.Icon-Only.dark.png"
+        end,
+      ].compact
+
+    elsif categories = uri.match(%r{.*creativecommons\.org\/(licenses|publicdomain)\/([a-z-]+)}i)
+
+      categories[2].split("-").map do |cat|
+        "creative-commons/#{cat}.png"
+      end
+    else
+      []
+    end
+  end
 end
