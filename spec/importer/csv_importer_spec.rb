@@ -113,5 +113,32 @@ describe Importer::CSV do
     it "returns ScannedMap when the model value is 'Scanned map'" do
       expect(Importer::CSV.determine_model("Scanned map")).to eql("ScannedMap")
     end
+    it "returns ScannedMap when the model value is 'ScannedMap'" do
+      expect(Importer::CSV.determine_model("ScannedMap")).to eql("ScannedMap")
+    end
+    it "returns Image when the model value is 'image'" do
+      expect(Importer::CSV.determine_model("image")).to eql("Image")
+    end
+    it "returns IndexMap when the model value is 'index Map'" do
+      expect(Importer::CSV.determine_model("index Map")).to eql("IndexMap")
+    end
+  end
+
+  context "map parent data" do
+    let(:structural_metadata) do
+      {
+        parent_title: ["Carta do Brasil"],
+        parent_id: ["4450s250b7"],
+        parent_accession_number: ["4450s 250 b7"],
+        index_map_accession_number: ["4450s 250 b7 index"],
+      }
+    end
+    # TODO: This will need to change when we are actually processing this data
+    it "(for now) removes structural metadata so we can go ahead and import." do
+      expect(Importer::CSV.handle_structural_metadata(structural_metadata)).to eql({})
+    end
+    it "doesn't throw any errors if these fields don't exist" do
+      expect(Importer::CSV.handle_structural_metadata({})).to eql({})
+    end
   end
 end
