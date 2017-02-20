@@ -58,6 +58,7 @@ module Importer::CSV
           puts files.each { |f| puts f }
         end
 
+        attrs = Importer::CSV.strip_extra_spaces(attrs)
         attrs = Importer::CSV.assign_access_policy(attrs)
         attrs = Importer::CSV.transform_coordinates_to_dcmi_box(attrs)
         attrs = Importer::CSV.handle_structural_metadata(attrs)
@@ -285,6 +286,19 @@ module Importer::CSV
   def self.update_date(date, field, val)
     date[field.to_sym] ||= []
     date[field.to_sym] << val
+  end
+
+  # Sometimes spaces or punctuation make their way into CSV field names.
+  # When they do, clean it up.
+  # @param [Hash] attrs A hash of attributes that will become a fedora object
+  # @return [Hash] the same hash, but with spaces stripped off all the field names
+  def self.strip_extra_spaces(attrs)
+    new_h = {}
+    attrs.each_pair do |k, v|
+      new_k = k.to_s.strip.to_sym
+      new_h[new_k] = v
+    end
+    new_h
   end
 
   # Given a shorthand string for an access policy,
