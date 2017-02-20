@@ -60,6 +60,7 @@ module Importer::CSV
 
         attrs = Importer::CSV.assign_access_policy(attrs)
         attrs = Importer::CSV.transform_coordinates_to_dcmi_box(attrs)
+        attrs = Importer::CSV.handle_structural_metadata(attrs)
 
         model = Importer::CSV.determine_model(attrs.delete(:type))
         raise NoModelError if model.nil? || model.empty?
@@ -224,6 +225,20 @@ module Importer::CSV
       west = "westlimit=#{attrs.delete(:west_bound_longitude).first}; "
     end
     attrs[:coverage] = "#{north}#{east}#{south}#{west}units=degrees; projection=EPSG:4326"
+    attrs
+  end
+
+  # Process the structural metadata, e.g., parent_id, index_map_id
+  # TODO: As a first pass, so we can do a complete test of data importing,
+  # we're just deleting this data. We need to come back and
+  # use it to create links between objects.
+  # @param [Hash] attrs A hash of attributes that will become a fedora object
+  # @param [Hash]
+  def self.handle_structural_metadata(attrs)
+    attrs.delete(:parent_title)
+    attrs.delete(:parent_id)
+    attrs.delete(:parent_accession_number)
+    attrs.delete(:index_map_accession_number)
     attrs
   end
 
