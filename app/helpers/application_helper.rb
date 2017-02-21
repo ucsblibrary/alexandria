@@ -51,7 +51,7 @@ module ApplicationHelper
       image_tag(statement, class: "icon")
     end.join("")
 
-    "<a href='#{uri}' title='Rights Statment'>#{icons} #{data[:value].first}</a>".html_safe
+    "<a href='#{uri}' title='Rights Statement'>#{icons} #{data[:value].first}</a>".html_safe
   end
 
   def rights_icons(uri)
