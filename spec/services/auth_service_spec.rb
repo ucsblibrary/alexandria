@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 require "rails_helper"
 require "active_fedora/cleaner"
+require "importer"
 
 describe AuthService do
   before do

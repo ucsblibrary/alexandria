@@ -18,12 +18,11 @@ module Importer::CSV
   def self.import(meta, data, options)
     parse_log_options(options)
 
-    logger.debug "Starting import with options #{options.inspect}"
+    logger.debug "Starting ingest with options #{options.inspect}"
 
-    ingests = 0
+    ingested = 0
 
     meta.each do |m|
-      logger.info "Importing file #{m}"
       head, tail = split(m)
 
       if options[:skip] >= tail.length
@@ -31,55 +30,75 @@ module Importer::CSV
               "Number of records skipped (#{options[:skip]}) greater than total records to ingest"
       end
 
-      tail.each do |row|
-        attrs = csv_attributes(head, row)
+      logger.info "Ingesting file #{m}: #{tail.length} records"
 
-        if options[:skip] > ingests
-          logger.info "Skipping record #{ingests}: accession number #{attrs[:accession_number].first}"
-          ingests += 1
-          next
-        end
-        next if options[:number] && options[:number] <= ingests
-
-        start_record = Time.now
-
-        logger.info "Ingesting record #{ingests}: accession number #{attrs[:accession_number].first}"
-
-        files = if attrs[:files].nil?
-                  []
-                else
-                  data.select { |d| attrs[:files].include? File.basename(d) }
-                end
-
-        if options[:verbose]
-          puts "Object attributes for item #{ingests + 1}:"
-          puts attrs.each { |k, v| puts "#{k}: #{v}" }
-          puts "Associated files for item #{ingests + 1}:"
-          puts files.each { |f| puts f }
-        end
-
-        attrs = Importer::CSV.strip_extra_spaces(attrs)
-        attrs = Importer::CSV.assign_access_policy(attrs)
-        attrs = Importer::CSV.transform_coordinates_to_dcmi_box(attrs)
-        attrs = Importer::CSV.handle_structural_metadata(attrs)
-
-        model = Importer::CSV.determine_model(attrs.delete(:type))
-        raise NoModelError if model.nil? || model.empty?
-
-        o = ::Importer::Factory.for(model).new(attrs, files).run
-        end_record = Time.now
-        logger.info "accession_number #{attrs[:accession_number].first} ingested as #{o.id} in #{end_record - start_record} seconds (#{ingests + 1}/#{tail.length})"
-        ingests += 1
+      begin
+        ingested += ingest_sheet(head: head, tail: tail, data: data, options: options)
+      rescue IngestError => e
+        raise IngestError, e.merge(reached: ingested)
       end
     end
-    ingests
-  rescue => e
-    puts e
-    puts e.backtrace
-    raise IngestError, reached: ingests
-  rescue Interrupt
-    puts "\nIngest stopped, cleaning up..."
-    raise IngestError, reached: ingests
+
+    ingested
+  end
+
+  def self.ingest_sheet(head:, tail:, data: [], options: { verbose: false, skip: 0 })
+    ingested = 0
+
+    tail.each_with_index do |row, i|
+      next if options[:skip] > i
+      next if options[:number] && options[:number] <= ingested
+
+      begin
+        logger.info "Ingesting record #{ingested + 1} "\
+                    "of #{options[:number] || tail.length}"
+        ingest_row(head: head,
+                   row: row,
+                   data: data,
+                   verbose: options[:verbose])
+        ingested += 1
+      rescue IngestError => e
+        raise IngestError, e.merge(reached: i)
+      end
+    end
+
+    ingested
+  end
+
+  def self.ingest_row(head:, row:, data: [], verbose: false)
+    attrs = csv_attributes(head, row)
+
+    logger.info "Ingesting accession number #{attrs[:accession_number].first}"
+
+    files = if attrs[:files].nil?
+              []
+            else
+              data.select { |d| attrs[:files].include? File.basename(d) }
+            end
+
+    if verbose
+      puts "Object attributes for item #{ingests + 1}:"
+      puts attrs.each { |k, v| puts "#{k}: #{v}" }
+      puts "Associated files for item #{ingests + 1}:"
+      puts files.each { |f| puts f }
+    end
+
+    start_time = Time.now
+
+    attrs = handle_structural_metadata(
+      transform_coordinates_to_dcmi_box(
+        assign_access_policy(
+          strip_extra_spaces(attrs))))
+
+    model = determine_model(attrs.delete(:type))
+    raise NoModelError if model.blank?
+
+    record = ::Importer::Factory.for(model).new(attrs, files).run
+
+    end_time = Time.now
+    logger.info "Accession number #{attrs[:accession_number].first} ingested as #{record.id} in #{end_time - start_time} seconds"
+
+    record
   end
 
   # Given a 'type' field from the CSV, determine which object model pertains

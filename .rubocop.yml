@@ -27,6 +27,9 @@ Style/IndentationConsistency:
 Style/Lambda:
   EnforcedStyle: lambda
 
+Style/MultilineMethodCallBraceLayout:
+  Enabled: false
+
 Style/SafeNavigation:
   Enabled: false
 
