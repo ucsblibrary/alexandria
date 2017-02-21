@@ -141,4 +141,16 @@ describe Importer::CSV do
       expect(Importer::CSV.handle_structural_metadata({})).to eql({})
     end
   end
+
+  # Sometimes exta spaces get into import CSVs. Strip them out.
+  context "extra spaces in CSV" do
+    let(:import_metdata) do
+      { :"license " => ["public"],
+        parent_title: ["Carta do Brasil"], }
+    end
+    let(:stripped) { Importer::CSV.strip_extra_spaces(import_metdata) }
+    it "strips any extra spaces off of field names" do
+      expect(stripped.keys.first.to_s).to eq "license"
+    end
+  end
 end
