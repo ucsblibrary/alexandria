@@ -6,7 +6,7 @@ module ExtractLanguage
     lambda do |record, accumulator|
       abbrev = lang_extractor.extract(record).compact.first
       # Check for empty strings
-      return if /\s/.match abbrev
+      return if /\s/ =~ abbrev
       accumulator << RDF::URI("http://id.loc.gov/vocabulary/iso639-2/#{abbrev}")
     end
   end
