@@ -55,9 +55,9 @@ module Oargun::ControlledVocabularies
     end
 
     def top_level_element?
-      featureCode = self.featureCode.first
+      feature_code = featureCode.first
       top_level_codes = [RDF::URI("http://www.geonames.org/ontology#A.PCLI")]
-      featureCode.respond_to?(:rdf_subject) && top_level_codes.include?(featureCode.rdf_subject)
+      feature_code.respond_to?(:rdf_subject) && top_level_codes.include?(feature_code.rdf_subject)
     end
   end
 end
