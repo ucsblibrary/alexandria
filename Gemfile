@@ -6,11 +6,10 @@ group :production, :development do
 end
 
 gem "rails", "4.2.8"
-# Use SCSS for stylesheets
-gem "sass-rails", "~> 5.0"
 
-gem "uglifier", "~> 2.7.2"
 gem "jquery-rails", "~> 4.0.5"
+gem "sass-rails", "~> 5.0"
+gem "uglifier", "~> 2.7.2"
 
 gem "jbuilder", "~> 2.0"
 gem "therubyracer", platforms: :ruby
@@ -34,12 +33,12 @@ gem "kaminari", "~> 0.16.3"
 gem "kaminari_route_prefix"
 
 gem "devise", "~> 3.5.2"
-gem "devise_ldap_authenticatable"
 gem "devise-guests", "~> 0.5.0"
+gem "devise_ldap_authenticatable"
 gem "settingslogic"
 
-gem "resque-status"
 gem "resque-pool"
+gem "resque-status"
 
 # for bin/ingest
 gem "trollop"
@@ -79,9 +78,9 @@ end
 
 group :development do
   gem "capistrano", "3.7.0"
-  gem "capistrano-rails", ">= 1.1.3"
   gem "capistrano-bundler"
   gem "capistrano-passenger"
+  gem "capistrano-rails", ">= 1.1.3"
   gem "highline"
 
   gem "method_source"
