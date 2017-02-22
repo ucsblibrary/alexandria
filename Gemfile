@@ -5,7 +5,7 @@ group :production, :development do
   gem "pg", "~> 0.18.4"
 end
 
-gem "rails", "4.2.7.1"
+gem "rails", "4.2.8"
 # Use SCSS for stylesheets
 gem "sass-rails", "~> 5.0"
 
