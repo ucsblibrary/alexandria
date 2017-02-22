@@ -25,9 +25,7 @@ module EmbargoService
     work.embargo = nil
   end
 
-  private
-
-    def self.resource_for(id)
-      RDF::URI(ActiveFedora::Base.id_to_uri(id))
-    end
+  def self.resource_for(id)
+    RDF::URI(ActiveFedora::Base.id_to_uri(id))
+  end
 end
