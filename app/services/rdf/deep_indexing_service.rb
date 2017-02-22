@@ -50,7 +50,7 @@ class RDF::DeepIndexingService < ActiveFedora::RDF::IndexingService
 
   # Stripping off the */* to work around https://github.com/rails/rails/issues/9940
   def default_accept_header
-    RDF::Util::File::HttpAdapter.default_accept_header.sub(/, \*\/\*;q=0\.1\Z/, "")
+    RDF::Util::File::HttpAdapter.default_accept_header.sub(%r{, \*\/\*;q=0\.1\Z}, "")
   end
 
   # Appends the uri to the default solr field and puts the label (if found) in the label solr field
