@@ -88,16 +88,25 @@ describe Importer::CSV do
     end
   end
 
-  context "#split" do
+  context "character encoding checks" do
     let(:csvfile) { "#{fixture_path}/csv/pamss045.csv" }
-    let(:utf8problemfile) { "#{fixture_path}/csv/mcpeak-utf8problems.csv" }
-
     it "reads in a known CSV file" do
       expect(Importer::CSV.split(csvfile)).to be_instance_of(Array)
     end
 
+    let(:utf8problemfile) { "#{fixture_path}/csv/mcpeak-utf8problems.csv" }
     it "reads in a CSV file with UTF-8 problems" do
       expect(Importer::CSV.split(utf8problemfile)).to be_instance_of(Array)
+    end
+
+    # Sometimes we encounter CSV input files with BOM characters
+    # See https://en.wikipedia.org/wiki/Byte_order_mark for more info
+    # You have to read in BOM files with encoding: "bom|UTF-8"
+    let(:bomproblemfile) { "#{fixture_path}/csv/bom_encoded_file.csv" }
+    let(:split) { Importer::CSV.split(bomproblemfile) }
+    let(:attrs) { Importer::CSV.csv_attributes(split[0], split[1][0]) }
+    it "handles bom encoding" do
+      expect(attrs[:type]).to eql("Map set")
     end
 
     let(:brazilmap) { "#{fixture_path}/csv/brazil.csv" }

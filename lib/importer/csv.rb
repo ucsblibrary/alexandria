@@ -96,7 +96,7 @@ module Importer::CSV
   def self.split(metadata)
     csv = nil
     begin
-      csv = ::CSV.read(metadata, encoding: "UTF-8")
+      csv = ::CSV.read(metadata, encoding: "bom|UTF-8")
     rescue ArgumentError => e # Most likely this is "invalid byte sequence in UTF-8"
       logger.error "The file #{metadata} could not be read in UTF-8. The error was: #{e}. Trying ISO-8859-1"
       csv = ::CSV.read(metadata, encoding: "ISO-8859-1")
