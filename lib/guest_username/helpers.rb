@@ -2,7 +2,6 @@
 module GuestUsername
   module Helpers
     def self.define_helpers(mapping) #:nodoc:
-      class_name = mapping.class_name
       mapping = mapping.name
 
       class_eval <<-METHODS, __FILE__, __LINE__ + 1

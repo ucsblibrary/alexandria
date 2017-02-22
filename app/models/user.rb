@@ -41,6 +41,7 @@ class User < ActiveRecord::Base
     # For now, we will assume that anyone who logs in with LDAP
     # is a UCSB user.
     new_groups += [AdminPolicy::UCSB_GROUP] if ucsb_user?
+    new_groups
   end
 
   def ucsb_user?

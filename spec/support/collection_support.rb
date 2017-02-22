@@ -5,7 +5,7 @@ module CollectionSupport
     collection = Collection.create!(coll_defaults.merge(collection_attrs))
 
     attrs_for_images.each do |attrs|
-      image = FactoryGirl.create(:image, attrs.merge(local_collection_id: [collection.id]))
+      FactoryGirl.create(:image, attrs.merge(local_collection_id: [collection.id]))
     end
 
     collection.update_index
