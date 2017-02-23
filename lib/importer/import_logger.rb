@@ -44,21 +44,19 @@ module Importer
       else
         logger
       end
-      # DEBUG,INFO,WARN or ERROR
-      if options[:loglevel]
-        case options[:loglevel].upcase
-        when "DEBUG"
-          @logger.level = Logger::DEBUG
-        when "INFO"
-          @logger.level = Logger::INFO
-        when "WARN"
-          @logger.level = Logger::WARN
-        when "ERROR"
-          @logger.level = Logger::ERROR
-        else
-          @logger.warn "#{options[:loglevel]} isn't a valid log level. Defaulting to DEBUG."
-          @logger.level = Logger::DEBUG
-        end
+      # DEBUG (default), INFO, WARN or ERROR
+      case options.fetch(:loglevel, "DEBUG").upcase
+      when "DEBUG"
+        @logger.level = Logger::DEBUG
+      when "INFO"
+        @logger.level = Logger::INFO
+      when "WARN"
+        @logger.level = Logger::WARN
+      when "ERROR"
+        @logger.level = Logger::ERROR
+      else
+        @logger.warn "#{options[:loglevel]} isn't a valid log level. Defaulting to DEBUG."
+        @logger.level = Logger::DEBUG
       end
     end
 
