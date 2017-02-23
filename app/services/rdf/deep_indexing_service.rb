@@ -70,11 +70,10 @@ class RDF::DeepIndexingService < ActiveFedora::RDF::IndexingService
     self.class.create_and_insert_terms(solr_field_key,
                                        val.first,
                                        field_info.behaviors, solr_doc)
-    if val.last.is_a? Hash
-      self.class.create_and_insert_terms("#{solr_field_key}_label",
-                                         label(val),
-                                         field_info.behaviors, solr_doc)
-    end
+    return unless val.last.is_a? Hash
+    self.class.create_and_insert_terms("#{solr_field_key}_label",
+                                       label(val),
+                                       field_info.behaviors, solr_doc)
   end
 
   # Use this method to append a string value from a controlled vocabulary field

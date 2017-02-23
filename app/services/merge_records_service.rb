@@ -31,9 +31,8 @@ class MergeRecordsService
     # Currently the only types of records we are allowed to merge
     # are local authority records.
     def validate_records_are_local_authorities
-      unless [old_reference, new_reference].all? { |ref| LocalAuthority.local_authority?(ref) }
-        raise IncompatibleMergeError, "Error: Cannot merge records that are not local authority records."
-      end
+      return if [old_reference, new_reference].all? { |ref| LocalAuthority.local_authority?(ref) }
+      raise IncompatibleMergeError, "Error: Cannot merge records that are not local authority records."
     end
 
     # Make sure these 2 type of records can be merged.
@@ -48,15 +47,13 @@ class MergeRecordsService
       both_local_names = [old_reference, new_reference].all? { |ref| LocalAuthority.local_name_authority?(ref) }
       both_local_subjects = [old_reference, new_reference].all? { |ref| LocalAuthority.local_subject_authority?(ref) }
 
-      unless both_local_names || both_local_subjects
-        raise IncompatibleMergeError, "Error: Cannot merge records that are not the same type of local authority."
-      end
+      return if both_local_names || both_local_subjects
+      raise IncompatibleMergeError, "Error: Cannot merge records that are not the same type of local authority."
     end
 
     def validate_records_are_different
-      if new_reference == old_reference
-        raise IncompatibleMergeError, "Error: Cannot merge a record with itself."
-      end
+      return unless new_reference == old_reference
+      raise IncompatibleMergeError, "Error: Cannot merge a record with itself."
     end
 
     # Find all the records that refer to old_reference

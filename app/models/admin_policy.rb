@@ -105,14 +105,14 @@ module AdminPolicy
       policy.save!
     end
 
-    unless Hydra::AdminPolicy.exists?(PUBLIC_POLICY_ID)
-      policy = Hydra::AdminPolicy.create(id: PUBLIC_POLICY_ID, title: ["Public access"])
-      policy.default_permissions.build([
-                                         { type: "group", name: META_ADMIN_GROUP, access: "edit" },
-                                         { type: "group", name: RIGHTS_ADMIN_GROUP, access: "read" },
-                                         { type: "group", name: PUBLIC_GROUP, access: "read" },
-                                       ])
-      policy.save!
-    end
+    return if Hydra::AdminPolicy.exists?(PUBLIC_POLICY_ID)
+
+    policy = Hydra::AdminPolicy.create(id: PUBLIC_POLICY_ID, title: ["Public access"])
+    policy.default_permissions.build([
+                                       { type: "group", name: META_ADMIN_GROUP, access: "edit" },
+                                       { type: "group", name: RIGHTS_ADMIN_GROUP, access: "read" },
+                                       { type: "group", name: PUBLIC_GROUP, access: "read" },
+                                     ])
+    policy.save!
   end
 end
