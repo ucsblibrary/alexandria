@@ -30,7 +30,7 @@ class ControlledVocabularyInput < MultiValueInput
                      @builder.text_area(attribute_name, options)
                    else
                      @builder.text_field(attribute_name, options)
-      end
+                   end
       text_field + hidden_id_field(value, index) + destroy_widget(attribute_name, index)
     end
 

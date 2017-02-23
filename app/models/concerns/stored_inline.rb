@@ -7,7 +7,7 @@ module StoredInline
             RDF::URI("#timespan_#{uri.to_s.gsub("_:", "")}")
           elsif uri.to_s.include?("#")
             RDF::URI(uri)
-    end
+          end
     super
   end
 
