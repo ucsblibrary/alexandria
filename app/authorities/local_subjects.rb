@@ -14,8 +14,7 @@ class LocalSubjects
     config.search_builder_class = LocalSubjectSearchBuilder
   end
 
-  def initialize(_)
-  end
+  def initialize(_); end
 
   def search(q)
     _, list = search_results(q: q)
