@@ -10,24 +10,24 @@ module Importer
 
       def create_attributes
         attrs = super.except(:collection)
-        attrs[:local_collection_id] = [collection.id] if has_collection?
+        attrs[:local_collection_id] = [collection.id] if collection?
         attrs
       end
 
       def update_attributes
         attrs = super.except(:collection)
-        attrs[:local_collection_id] = [collection.id] if has_collection?
+        attrs[:local_collection_id] = [collection.id] if collection?
         attrs
       end
 
       def reindex_collection
-        return unless has_collection?
+        return unless collection?
         collection.update_index
       end
 
       private
 
-        def has_collection?
+        def collection?
           attributes.key?(:collection)
         end
 
