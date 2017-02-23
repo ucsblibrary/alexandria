@@ -65,6 +65,8 @@ Metrics/MethodLength:
 # Configuration parameters: CountComments.
 Metrics/ModuleLength:
   Max: 208
+  Exclude:
+    - 'lib/importer/csv.rb'
 
 # Offense count: 12
 Metrics/PerceivedComplexity:
