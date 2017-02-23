@@ -306,16 +306,25 @@ module Importer::CSV
   # @param [Hash] attrs A hash of attributes that will become a fedora object
   # @return [Hash]
   def self.assign_access_policy(attrs)
-    access_policy = if attrs[:access_policy]
-                      attrs.delete(:access_policy).first
-                    else
-                      "public"
-                    end
+    raise "No access policy defined" unless attrs[:access_policy]
+    access_policy = attrs.delete(:access_policy).first
     case access_policy
     when "public"
       attrs[:admin_policy_id] = AdminPolicy::PUBLIC_POLICY_ID
     when "ucsb"
       attrs[:admin_policy_id] = AdminPolicy::UCSB_POLICY_ID
+    when "discovery"
+      attrs[:admin_policy_id] = AdminPolicy::DISCOVERY_POLICY_ID
+    when "public_campus"
+      attrs[:admin_policy_id] = AdminPolicy::PUBLIC_CAMPUS_POLICY_ID
+    when "restricted"
+      attrs[:admin_policy_id] = AdminPolicy::RESTRICTED_POLICY_ID
+    when "ucsb_campus"
+      attrs[:admin_policy_id] = AdminPolicy::UCSB_CAMPUS_POLICY_ID
+    when "uc"
+      attrs[:admin_policy_id] = AdminPolicy::UC_POLICY_ID
+    else
+      raise "Invalid access policy: #{access_policy}"
     end
     attrs
   end
