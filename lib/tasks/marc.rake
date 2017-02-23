@@ -52,6 +52,6 @@ namespace :marc do
   end
 
   def batch_name(start, type_of_record)
-    File.join(Settings.marc_directory, "%s-%05d-%05d.xml" % [type_of_record, start, start + BATCH_SIZE - 1])
+    File.join(Settings.marc_directory, format("%s-%05d-%05d.xml", type_of_record, start, (start + BATCH_SIZE - 1)))
   end
 end
