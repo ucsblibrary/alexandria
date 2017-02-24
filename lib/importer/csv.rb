@@ -3,7 +3,6 @@ require "csv"
 require File.expand_path("../factory", __FILE__)
 
 # Import CSV files
-
 module Importer::CSV
   include Importer::ImportLogger
 
@@ -85,10 +84,10 @@ module Importer::CSV
 
     start_time = Time.now
 
-    attrs = handle_structural_metadata(
-      transform_coordinates_to_dcmi_box(
-        assign_access_policy(
-          strip_extra_spaces(attrs))))
+    attrs = strip_extra_spaces(attrs)
+    attrs = handle_structural_metadata(attrs)
+    attrs = transform_coordinates_to_dcmi_box(attrs)
+    attrs = assign_access_policy(attrs)
 
     model = determine_model(attrs.delete(:type))
     raise NoModelError if model.blank?
@@ -223,6 +222,20 @@ module Importer::CSV
     end
   end
 
+  # Given an accession_number, get the id of the associated object
+  # @param [Array|String] accession_number
+  # @return [String] the id of the associated object or nil if nothing found
+  def self.get_id_for_accession_number(accession_number)
+    a = if accession_number.instance_of? Array
+          accession_number.first
+        else
+          accession_number
+        end
+    o = ActiveFedora::Base.where(accession_number_ssim: a).first
+    return o.id if o
+    nil
+  end
+
   # Transform coordinates as provided in CSV spreadsheet into dcmi-box formatting
   # Output should look like 'northlimit=43.039; eastlimit=-69.856; southlimit=42.943; westlimit=-71.032; units=degrees; projection=EPSG:4326'
   # TODO: The transform_coordinates_to_dcmi_box method should invoke a DCMIBox.new method
@@ -255,10 +268,17 @@ module Importer::CSV
   # @param [Hash] attrs A hash of attributes that will become a fedora object
   # @param [Hash]
   def self.handle_structural_metadata(attrs)
-    attrs.delete(:parent_title)
-    attrs.delete(:parent_id)
-    attrs.delete(:parent_accession_number)
-    attrs.delete(:index_map_accession_number)
+    a = attrs.delete(:parent_accession_number)
+    if a
+      parent_id = get_id_for_accession_number(a)
+      attrs[:parent_id] = parent_id if parent_id
+    end
+
+    im = attrs.delete(:index_map_accession_number)
+    if im
+      index_map_id = get_id_for_accession_number(im)
+      attrs[:index_map_id] = [index_map_id] if index_map_id
+    end
     attrs
   end
 

@@ -19,4 +19,18 @@ class MapSet < ActiveFedora::Base
 
   # must be included after all properties are declared
   include NestedAttributes
+
+  # Note: These methods should NOT be used for display. They are convenience methods
+  # for testing data import only.
+  # Find all the index maps attached to this MapSet
+  # @return [ActiveFedora::Relation] an array of any matching IndexMap objects
+  def index_maps
+    IndexMap.where(parent_id_ssim: id)
+  end
+
+  # Find all the ComponentMaps attached to this MapSet
+  # @return [ActiveFedora::Relation] an array of any matching ComponentMap objects
+  def component_maps
+    ComponentMap.where(parent_id_ssim: id)
+  end
 end

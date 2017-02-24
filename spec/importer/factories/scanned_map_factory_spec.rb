@@ -3,23 +3,36 @@ require "rails_helper"
 require "importer"
 
 describe Importer::Factory::ScannedMapFactory do
-  let(:files) { Dir["spec/fixtures/maps/*.tif"] }
-  let(:collection_attrs) { { accession_number: ["SBHC Mss 36"], title: ["Test collection"] } }
-  let(:a) do
-    {
-      accession_number: ["abc123def"],
-      admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID,
-      collection: collection_attrs,
-      files: files,
-      issued_attributes: [{ start: ["1925"], finish: [], label: [], start_qualifier: [], finish_qualifier: [] }],
-      notes_attributes: [{ value: "Title from item." }],
-      title: ["Test map"],
-    }
-  end
-  it "can make a ScannedMap" do
+  before(:all) do
+    (Collection.all + ScannedMap.all).map(&:id).each do |id|
+      ActiveFedora::Base.find(id).destroy(eradicate: true) if ActiveFedora::Base.exists?(id)
+    end
+    @files = Dir["spec/fixtures/maps/*.tif"]
+    @collection_attrs = { accession_number: ["SBHC Mss 36"], title: ["Test collection"] }
+    @map_attrs =
+      {
+        accession_number: ["abc123def"],
+        admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID,
+        collection: @collection_attrs,
+        files: @files,
+        issued_attributes: [{ start: ["1925"], finish: [], label: [], start_qualifier: [], finish_qualifier: [] }],
+        notes_attributes: [{ value: "Title from item." }],
+        title: ["Test map"],
+      }
+    VCR.use_cassette("collection_factory") do
+      @collection = Importer::Factory::CollectionFactory.new(@collection_attrs, []).run
+    end
     VCR.use_cassette("map_factory1") do
-      i = Importer::Factory::ScannedMapFactory.new(a, files).run
-      expect(i).to be_instance_of(ScannedMap)
+      @scanned_map = Importer::Factory::ScannedMapFactory.new(@map_attrs, @files).run
+    end
+  end
+  context "creating a ScannedMap" do
+    it "can make a ScannedMap" do
+      expect(@scanned_map).to be_instance_of(ScannedMap)
+      expect(ScannedMap.count).to eql(1)
+    end
+    it "attaches a ScannedMap to its Collection" do
+      expect(@scanned_map.local_collection_id.first).to eql(@collection.id)
     end
   end
 end

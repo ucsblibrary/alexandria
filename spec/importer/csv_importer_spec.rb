@@ -159,20 +159,47 @@ describe Importer::CSV do
   end
 
   context "map parent data" do
-    let(:structural_metadata) do
-      {
-        parent_title: ["Carta do Brasil"],
-        parent_id: ["4450s250b7"],
-        parent_accession_number: ["4450s 250 b7"],
-        index_map_accession_number: ["4450s 250 b7 index"],
-      }
-    end
-    # TODO: This will need to change when we are actually processing this data
-    it "(for now) removes structural metadata so we can go ahead and import." do
-      expect(Importer::CSV.handle_structural_metadata(structural_metadata)).to eql({})
+    before do
+      @map_set_accession_number = ["4450s 250 b7"]
+      @index_map_accession_number = ["4450s 250 b7 index"]
+      @structural_metadata =
+        {
+          parent_accession_number: @map_set_accession_number,
+          index_map_accession_number: @index_map_accession_number,
+        }
+      @map_set_attrs = { accession_number: @map_set_accession_number, title: ["Carta do Brasil"] }
+      VCR.use_cassette("map_set_factory2") do
+        @map_set = Importer::Factory::MapSetFactory.new(@map_set_attrs).run
+      end
+      @index_map_attrs = { accession_number: @index_map_accession_number, title: ["Index Map do Brasil"] }
+      VCR.use_cassette("index_map_factory2") do
+        @index_map = Importer::Factory::IndexMapFactory.new(@index_map_attrs).run
+      end
+      @goal_state =
+        {
+          parent_id: @map_set.id,
+          # a map set can contain many index maps,
+          # so index_map_id must be an Array because of the way the field is defined
+          index_map_id: [@index_map.id],
+        }
     end
     it "doesn't throw any errors if these fields don't exist" do
       expect(Importer::CSV.handle_structural_metadata({})).to eql({})
+    end
+    it "can return a map set's id when given an accession_number" do
+      expect(Importer::CSV.get_id_for_accession_number(@map_set_attrs[:accession_number])).to eql(@map_set.id)
+    end
+    it "can return an index map's id when given an accession_number" do
+      expect(Importer::CSV.get_id_for_accession_number(@index_map_attrs[:accession_number])).to eql(@index_map.id)
+    end
+    it "returns nil when it can't find an id for a given accession_number" do
+      expect(Importer::CSV.get_id_for_accession_number("foobar")).to eql(nil)
+    end
+    it "attaches an index map to its map set" do
+      expect(Importer::CSV.handle_structural_metadata(@structural_metadata)[:parent_id]).to eql(@goal_state[:parent_id])
+    end
+    it "attaches a component map to its index map" do
+      expect(Importer::CSV.handle_structural_metadata(@structural_metadata)[:index_map_id]).to eql(@goal_state[:index_map_id])
     end
   end
 
