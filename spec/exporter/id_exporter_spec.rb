@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 require "rails_helper"
-require "exporter/id_exporter"
+require "exporter"
 
 describe Exporter::IdExporter do
   let(:dir) { File.join("tmp", "test_exports") }
