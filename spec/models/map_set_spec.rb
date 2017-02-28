@@ -11,4 +11,10 @@ describe MapSet do
     subject.admin_policy_id = AdminPolicy::PUBLIC_POLICY_ID
     expect(subject.admin_policy_id).to eq AdminPolicy::PUBLIC_POLICY_ID
   end
+  it "can find its attached index maps" do
+    expect(subject).to respond_to(:index_maps)
+  end
+  it "can find its attached component maps" do
+    expect(subject).to respond_to(:component_maps)
+  end
 end

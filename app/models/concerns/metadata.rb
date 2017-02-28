@@ -15,6 +15,15 @@ module Metadata
       index.as :symbol
     end
 
+    # Attach an object to its parent, following the same pattern we use for local_collection_id
+    property :parent_id, predicate: Hydra::PCDM::Vocab::PCDMTerms.memberOf, multiple: false do |index|
+      index.as :symbol
+    end
+
+    property :index_map_id, predicate: Hydra::PCDM::Vocab::PCDMTerms.hasRelatedObject do |index|
+      index.as :symbol
+    end
+
     # For ARKs
     property :identifier, predicate: RDF::Vocab::DC.identifier do |index|
       index.as :displayable

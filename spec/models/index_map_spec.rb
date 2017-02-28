@@ -12,4 +12,10 @@ describe IndexMap do
     subject.admin_policy_id = AdminPolicy::PUBLIC_POLICY_ID
     expect(subject.admin_policy_id).to eq AdminPolicy::PUBLIC_POLICY_ID
   end
+  it "can be attached to a parent object (MapSet)" do
+    expect(subject).to respond_to(:parent_id)
+  end
+  it "can get any ComponentMaps that are attached to it" do
+    expect(subject).to respond_to(:component_maps)
+  end
 end

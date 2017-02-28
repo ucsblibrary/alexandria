@@ -20,4 +20,10 @@ class IndexMap < ActiveFedora::Base
 
   # must be included after all properties are declared
   include NestedAttributes
+
+  # Find all the ComponentMaps attached to this IndexMap
+  # @return [ActiveFedora::Relation] an array of any matching ComponentMap objects
+  def component_maps
+    ComponentMap.where(index_map_id_ssim: id)
+  end
 end
