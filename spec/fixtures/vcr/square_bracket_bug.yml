@@ -1,0 +1,130 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://ezid.cdlib.org/shoulder/ark:/99999/fk4
+    body:
+      encoding: UTF-8
+      string: |-
+        _profile: erc
+        erc.what: Maps of California
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - ezid.cdlib.org
+      Content-Type:
+      - text/plain; charset=UTF-8
+      Authorization:
+      - Basic YXBpdGVzdDphcGl0ZXN0
+  response:
+    status:
+      code: 201
+      message: CREATED
+    headers:
+      Date:
+      - Tue, 28 Feb 2017 23:06:58 GMT
+      Server:
+      - Apache/2.2.17 (Unix) mod_ssl/2.2.17 OpenSSL/1.0.1k-fips mod_wsgi/4.4.9 Python/2.7.12
+      Content-Length:
+      - '30'
+      Vary:
+      - Accept-Language,Cookie
+      Content-Language:
+      - en
+      Content-Type:
+      - text/plain; charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: 'success: ark:/99999/fk4gf12h43'
+    http_version: 
+  recorded_at: Tue, 28 Feb 2017 23:07:18 GMT
+- request:
+    method: post
+    uri: https://ezid.cdlib.org/id/ark:/99999/fk4gf12h43
+    body:
+      encoding: UTF-8
+      string: "_target: http://test.host/lib/ark:/99999/fk4gf12h43\nerc.when: "
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - ezid.cdlib.org
+      Content-Type:
+      - text/plain; charset=UTF-8
+      Authorization:
+      - Basic YXBpdGVzdDphcGl0ZXN0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 28 Feb 2017 23:07:22 GMT
+      Server:
+      - Apache/2.2.17 (Unix) mod_ssl/2.2.17 OpenSSL/1.0.1k-fips mod_wsgi/4.4.9 Python/2.7.12
+      Content-Length:
+      - '30'
+      Vary:
+      - Accept-Language,Cookie
+      Content-Language:
+      - en
+      Content-Type:
+      - text/plain; charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: 'success: ark:/99999/fk4gf12h43'
+    http_version: 
+  recorded_at: Tue, 28 Feb 2017 23:07:24 GMT
+- request:
+    method: post
+    uri: https://ezid.cdlib.org/shoulder/ark:/99999/fk4
+    body:
+      encoding: UTF-8
+      string: |-
+        _profile: erc
+        erc.what: [Map of the Santa Barbara Channel, including all current oil leases and other pertinent data]
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - ezid.cdlib.org
+      Content-Type:
+      - text/plain; charset=UTF-8
+      Authorization:
+      - Basic YXBpdGVzdDphcGl0ZXN0
+  response:
+    status:
+      code: 201
+      message: CREATED
+    headers:
+      Date:
+      - Tue, 28 Feb 2017 23:07:24 GMT
+      Server:
+      - Apache/2.2.17 (Unix) mod_ssl/2.2.17 OpenSSL/1.0.1k-fips mod_wsgi/4.4.9 Python/2.7.12
+      Content-Length:
+      - '30'
+      Vary:
+      - Accept-Language,Cookie
+      Content-Language:
+      - en
+      Content-Type:
+      - text/plain; charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: 'success: ark:/99999/fk4bp0bq1w'
+    http_version: 
+  recorded_at: Tue, 28 Feb 2017 23:07:26 GMT
+recorded_with: VCR 3.0.3
