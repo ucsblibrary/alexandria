@@ -214,4 +214,24 @@ describe Importer::CSV do
       expect(stripped.keys.first.to_s).to eq "license"
     end
   end
+
+  # 9507-n2446_h8_1970_s8.csv won't import because of a malformed URI
+  context "invalid URIs in CSV" do
+    let(:problemfile) { "#{fixture_path}/csv/malformed_uri.csv" }
+    let(:split) { Importer::CSV.split(problemfile) }
+    let(:head) { split[0] }
+    let(:row) { split[1][0] }
+    it "has a method to check for well-formed URIs" do
+      expect { Importer::CSV.check_uris(row) }.to raise_error(RuntimeError, /Invalid URI/)
+    end
+    it "does not raise an error if all uris are well formed" do
+      goodrow = ["http://id.loc.gov/authorities/subjects/sh2004006618", "http://vocab.getty.edu/aat/300028142", "[Just a string]"]
+      expect { Importer::CSV.check_uris(goodrow) }.not_to raise_error
+    end
+    it "raises a meaningful error when there's a malformed URI in the import file" do
+      VCR.use_cassette("invalid_uri_bug") do
+        expect { Importer::CSV.ingest_row(head: head, row: row, data: []) }.to raise_error(RuntimeError, /Invalid URI/)
+      end
+    end
+  end
 end

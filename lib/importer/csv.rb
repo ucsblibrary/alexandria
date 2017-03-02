@@ -65,6 +65,9 @@ module Importer::CSV
   end
 
   def self.ingest_row(head:, row:, data: [], verbose: false)
+    # Check that all URIs are well formed
+    Importer::CSV.check_uris(row)
+
     attrs = csv_attributes(head, row)
 
     logger.info "Ingesting accession number #{attrs[:accession_number].first}"
@@ -234,6 +237,18 @@ module Importer::CSV
     o = ActiveFedora::Base.where(accession_number_ssim: a).first
     return o.id if o
     nil
+  end
+
+  # Given a row of data from a spreadsheet, check that all the URIs are well formed
+  # If we wait until we create the object to detect errors, it's much more difficult
+  # to raise a helpful error message.
+  # @param [Array] row
+  def self.check_uris(row)
+    row.each do |x|
+      if x && Importer::CSV.looks_like_uri?(x)
+        raise "Invalid URI: #{x}" unless x =~ /\A#{URI.regexp}\z/
+      end
+    end
   end
 
   # Transform coordinates as provided in CSV spreadsheet into dcmi-box formatting
