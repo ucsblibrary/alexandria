@@ -3,7 +3,7 @@
 # Developing
 
 If you’re developing in a Vagrant VM, see the
-[provisioning](#provisioning) section below.  Otherwise:
+[provisioning](#provisioning) section below. Otherwise:
 
 1. Copy `config/secrets.yml.template` to `config/secrets.yml` and add
    the LDAP and Ezid passwords from

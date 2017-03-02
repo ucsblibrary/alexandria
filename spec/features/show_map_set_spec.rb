@@ -5,7 +5,8 @@ feature "MapSet show page:" do
   let(:title) { ["Japan 1:250,000"] }
   let(:scale) { ["approximately 1:300,000"] }
   let(:extent) { ["maps : color ; 47 x 71 cm or smaller"] }
-  let(:creator) { ["United States. Army Map Service"] }
+  let(:creator) { "http://id.loc.gov/authorities/names/n79122611" }
+  let(:creator_uri) { RDF::URI.new(creator) }
   let(:file_path) { File.join(fixture_path, "maps", "7070s_250_u54_index.jpg") }
   let(:policy_id) { AdminPolicy::PUBLIC_POLICY_ID }
   let(:file_set) do
@@ -14,7 +15,9 @@ feature "MapSet show page:" do
     end
   end
   let(:map_set) do
-    FactoryGirl.create(:public_map_set, title: title, scale: scale, extent: extent, creator: creator)
+    VCR.use_cassette("show_map_set_feature_spec") do
+      FactoryGirl.create(:public_map_set, title: title, scale: scale, extent: extent, creator: [creator_uri])
+    end
   end
   let!(:index_map0) do
     FactoryGirl.create(:public_index_map, title: ["Index Map 0"], parent_id: map_set.id)
@@ -45,7 +48,7 @@ feature "MapSet show page:" do
     visit catalog_ark_path("ark:", "99999", map_set.id)
     expect(page).to have_content title.first
     expect(page).to have_content extent.first
-    expect(page).to have_content creator.first
+    expect(page).to have_content "United States. Army Map Service" # de-referenced creator
     expect(page).to have_content scale.first
     expect(page).to have_link("indexmap0")
     expect(page).to have_link("indexmap1")

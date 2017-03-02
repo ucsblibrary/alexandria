@@ -2,12 +2,15 @@
 require "rails_helper"
 
 feature "ScannedMap show page:" do
-  let(:creator) { ["Century Company"] }
+  let(:creator) { "http://id.loc.gov/authorities/names/n81038526" }
+  let(:creator_uri) { RDF::URI.new(creator) }
   let(:title) { ["Region around the North Pole : giving the records of the most important explorations"] }
   let(:extent) { ["1 map : color ; 27 x 38 cm"] }
   let(:scale) { ["1:18,374,400"] }
   let(:map) do
-    FactoryGirl.create(:public_scanned_map, title: title, creator: creator, extent: extent, scale: scale)
+    VCR.use_cassette("show_scanned_map_feature_spec") do
+      FactoryGirl.create(:public_scanned_map, title: title, creator: [creator_uri], extent: extent, scale: scale)
+    end
   end
 
   # See config/routes.rb: routing for images is a little weird
@@ -15,7 +18,7 @@ feature "ScannedMap show page:" do
     visit catalog_ark_path("ark:", "99999", map.id)
     expect(page).to have_content title.first
     expect(page).to have_content extent.first
-    expect(page).to have_content creator.first
+    expect(page).to have_content "Century Company"
     expect(page).to have_content scale.first
   end
 end

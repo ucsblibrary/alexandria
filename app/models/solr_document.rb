@@ -95,6 +95,10 @@ class SolrDocument
     fetch("language_label_ssm", [])
   end
 
+  def creator
+    fetch("creator_label_tesim", [])
+  end
+
   def issue_number
     fetch("issue_number_ssm", [])
   end
