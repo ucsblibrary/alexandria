@@ -19,4 +19,8 @@ class ScannedMap < ActiveFedora::Base
 
   # must be included after all properties are declared
   include NestedAttributes
+
+  def self.indexer
+    ScannedMapIndexer
+  end
 end
