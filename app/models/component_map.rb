@@ -20,4 +20,8 @@ class ComponentMap < ActiveFedora::Base
 
   # must be included after all properties are declared
   include NestedAttributes
+
+  def self.indexer
+    ComponentMapIndexer
+  end
 end
