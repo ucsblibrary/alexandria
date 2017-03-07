@@ -37,7 +37,7 @@ describe Importer::Factory::MapSetFactory do
       expect(@map_set.local_collection_id.first).to eql(@collection.id)
     end
     it "attaches a MapSet to its IndexMap" do
-      expect(@map_set.index_map_id).to eql(@index_map_id)
+      expect(@map_set.index_map_id).to contain_exactly(*@index_map_id)
     end
   end
 end
