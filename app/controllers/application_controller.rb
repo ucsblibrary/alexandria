@@ -6,7 +6,6 @@ class ApplicationController < ActionController::Base
   include Blacklight::Controller
   include Hydra::Controller::ControllerBehavior
   include CurationConcerns::ApplicationControllerBehavior
-  layout "blacklight"
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.

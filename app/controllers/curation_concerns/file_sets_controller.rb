@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 class CurationConcerns::FileSetsController < ApplicationController
   include CurationConcerns::FileSetsControllerBehavior
-  self.theme = "alexandria"
 
   def search_builder_class
     ::FileSetSearchBuilder

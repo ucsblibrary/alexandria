@@ -6,8 +6,6 @@ class CollectionsController < ApplicationController
   # FIXME: remove once https://github.com/projecthydra/curation_concerns/issues/616 is closed
   include CurationConcerns::ThemedLayoutController
 
-  self.theme = "alexandria"
-
   # FIXME: https://github.com/projecthydra/hydra-collections/issues/110
   skip_before_filter :authenticate_user!
 

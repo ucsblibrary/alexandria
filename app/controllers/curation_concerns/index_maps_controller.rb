@@ -6,7 +6,6 @@ module CurationConcerns
   class IndexMapsController < ApplicationController
     include CurationConcerns::CurationConcernController
     self.curation_concern_type = IndexMap
-    self.theme = "alexandria"
 
     def show_presenter
       ::IndexMapPresenter

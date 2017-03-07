@@ -20,6 +20,12 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  curation_concerns:
+    product_name: 'Alexandria Digital Research Library'
+  blacklight:
+    search:
+      page_title:
+        title: 'Results for “%{constraints}”'
   catalog:
     access_denied:
       authorities/policies/discovery: This item is restricted and not available for digital download.  Please contact UCSB Library staff if you need additional assistance.

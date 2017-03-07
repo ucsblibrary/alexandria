@@ -4,8 +4,6 @@ class CatalogController < ApplicationController
   include BlacklightRangeLimit::ControllerOverride
   # helper Openseadragon::OpenseadragonHelper
 
-  self.theme = "alexandria"
-
   # enforce_show_permissions is from hydra-access-controls gem
   before_filter :enforce_show_permissions, only: :show
 

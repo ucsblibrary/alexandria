@@ -6,7 +6,6 @@ module CurationConcerns
   class ComponentMapsController < ApplicationController
     include CurationConcerns::CurationConcernController
     self.curation_concern_type = ComponentMap
-    self.theme = "alexandria"
 
     def show_presenter
       ::ComponentMapPresenter

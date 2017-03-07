@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 # This is the controller that draws the home page
 class WelcomeController < ApplicationController
-  layout "blacklight", except: :index
+  layout "curation_concerns", except: :index
 
   def index
     @background = images.sample

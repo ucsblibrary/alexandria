@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 # Sends email to the admin from the contact form
 class ContactUsController < ApplicationController
-  # Display the "Contact Us" form the the user.
   def new
     @page_title = "Contact Us"
   end

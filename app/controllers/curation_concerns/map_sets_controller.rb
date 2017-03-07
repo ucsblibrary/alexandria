@@ -6,7 +6,6 @@ module CurationConcerns
   class MapSetsController < ApplicationController
     include CurationConcerns::CurationConcernController
     self.curation_concern_type = MapSet
-    self.theme = "alexandria"
 
     # Gives the class of the show presenter. Override this if you want
     # to use a different presenter.
