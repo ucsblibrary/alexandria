@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 class MapSetPresenter < CurationConcerns::WorkShowPresenter
+  include WithComponents
+
   delegate(
     :accession_number,
     :alternative,
@@ -26,26 +28,4 @@ class MapSetPresenter < CurationConcerns::WorkShowPresenter
     :work_type,
     to: :solr_document
   )
-
-  def index_map_ids
-    fetch("index_maps_ssim", [])
-  end
-
-  def component_map_ids
-    fetch("component_maps_ssim", [])
-  end
-
-  # @param [Array<String>] ids a list of ids to build presenters for
-  # @param [Class] presenter_class the type of presenter to build
-  # @return [Array<presenter_class>] presenters for the ordered_members (not filtered by class)
-  def index_map_presenters(ids = index_map_ids, presenter_class = IndexMapPresenter)
-    CurationConcerns::PresenterFactory.build_presenters(ids, presenter_class, *presenter_factory_arguments)
-  end
-
-  # @param [Array<String>] ids a list of ids to build presenters for
-  # @param [Class] presenter_class the type of presenter to build
-  # @return [Array<presenter_class>] presenters for the ordered_members (not filtered by class)
-  def component_map_presenters(ids = component_map_ids, presenter_class = ComponentMapPresenter)
-    CurationConcerns::PresenterFactory.build_presenters(ids, presenter_class, *presenter_factory_arguments)
-  end
 end

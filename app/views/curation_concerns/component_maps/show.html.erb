@@ -9,6 +9,9 @@
 <% provide :page_header do %>
   <h1><%= @presenter %> <span class="human_readable_type">(<%= @presenter.human_readable_type %>)</span></h1>
 <% end %>
+
 <%= render 'representative_media', presenter: @presenter %>
+<%= render 'index_maps', presenter: @presenter %>
+<%= render 'component_maps', presenter: @presenter %>
 <%= render 'attributes', presenter: @presenter %>
 <%= render 'related_files', presenter: @presenter %>

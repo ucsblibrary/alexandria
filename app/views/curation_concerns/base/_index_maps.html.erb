@@ -1,0 +1,5 @@
+<h2>Index Maps</h2>
+
+<% presenter.index_map_presenters.each_with_index do |p,i| %>
+  <%= render_thumbnail_tag p.solr_document, {}, { class: "IndexMap", id: "indexmap#{i}" }%>
+<% end %>
