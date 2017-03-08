@@ -17,4 +17,13 @@ describe ComponentMap do
   it "can be attached to an index map" do
     expect(subject).to respond_to(:index_map_id)
   end
+
+  describe "#to_solr" do
+    let(:image) { build(:image, accession_number: ["acc 1"]) }
+    let(:solr_hash) { image.to_solr }
+
+    it 'includes a sortable accession number' do
+      expect(solr_hash["accession_number_si"]).to eq "acc 1"
+    end
+  end
 end
