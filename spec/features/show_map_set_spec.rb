@@ -5,8 +5,7 @@ feature "MapSet show page:" do
   let(:title) { ["Japan 1:250,000"] }
   let(:scale) { ["approximately 1:300,000"] }
   let(:extent) { ["maps : color ; 47 x 71 cm or smaller"] }
-  let(:creator) { "http://id.loc.gov/authorities/names/n79122611" }
-  let(:creator_uri) { RDF::URI.new(creator) }
+  let(:creator_uri) { RDF::URI.new("http://id.loc.gov/authorities/names/n79122611") }
   let(:file_path) { File.join(fixture_path, "maps", "7070s_250_u54_index.jpg") }
   let(:policy_id) { AdminPolicy::PUBLIC_POLICY_ID }
   let(:file_set) do
@@ -36,8 +35,6 @@ feature "MapSet show page:" do
     index_map1.save
     component_map0.members << file_set
     component_map0.save
-    # puts index_map.resource.dump(:ttl)
-    # puts map_set.resource.dump(:ttl)
     index_map0.update_index
     index_map1.update_index
     component_map0.update_index
