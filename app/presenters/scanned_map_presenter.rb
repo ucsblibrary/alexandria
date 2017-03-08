@@ -7,6 +7,7 @@ class ScannedMapPresenter < CurationConcerns::WorkShowPresenter
     :citation,
     :collection,
     :copyright_status,
+    :creator,
     :extent,
     :form_of_work,
     :fulltext_link,
@@ -19,11 +20,10 @@ class ScannedMapPresenter < CurationConcerns::WorkShowPresenter
     :place_of_publication,
     :restrictions,
     :rights_holder,
+    :scale,
     :sub_location,
     :table_of_contents,
     :work_type,
-    :scale,
-    :extent,
     to: :solr_document
   )
 end

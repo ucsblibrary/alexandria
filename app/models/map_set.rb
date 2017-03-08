@@ -20,6 +20,10 @@ class MapSet < ActiveFedora::Base
   # must be included after all properties are declared
   include NestedAttributes
 
+  def self.indexer
+    MapSetIndexer
+  end
+
   # Note: These methods should NOT be used for display. They are convenience methods
   # for testing data import only.
   # Find all the index maps attached to this MapSet
