@@ -18,26 +18,34 @@ feature "MapSet show page:" do
       FactoryGirl.create(:public_map_set, title: title, scale: scale, extent: extent, creator: [creator_uri])
     end
   end
-  let!(:index_map0) do
-    FactoryGirl.create(:public_index_map, title: ["Index Map 0"], parent_id: map_set.id)
+
+  let!(:index_map_west) do
+    FactoryGirl.create(:public_index_map, title: ["Index Map, West Side"], parent_id: map_set.id, accession_number: ["west"])
   end
-  let!(:index_map1) do
-    FactoryGirl.create(:public_index_map, title: ["Index Map 1"], parent_id: map_set.id)
+
+  let!(:index_map_east) do
+    FactoryGirl.create(:public_index_map, title: ["Index Map, East Side"], parent_id: map_set.id, accession_number: ["east"])
   end
-  let!(:component_map0) do
-    FactoryGirl.create(:public_component_map, title: ["Component Map 0"], parent_id: map_set.id)
+
+  let!(:component_map_river) do
+    FactoryGirl.create(:public_component_map, title: ["Component Map of the River Area"], parent_id: map_set.id, accession_number: ["river"])
+  end
+
+  let!(:component_map_city) do
+    FactoryGirl.create(:public_component_map, title: ["Component Map of the City Area"], parent_id: map_set.id, accession_number: ["city"])
   end
 
   before do
-    index_map0.members << file_set
-    index_map1.members << file_set
-    index_map0.save
-    index_map1.save
-    component_map0.members << file_set
-    component_map0.save
-    index_map0.update_index
-    index_map1.update_index
-    component_map0.update_index
+    index_map_west.members << file_set
+    index_map_west.save
+    index_map_east.members << file_set
+    index_map_east.save
+
+    component_map_river.members << file_set
+    component_map_river.save
+    component_map_city.members << file_set
+    component_map_city.save
+
     map_set.update_index
   end
 
@@ -47,10 +55,22 @@ feature "MapSet show page:" do
     expect(page).to have_content extent.first
     expect(page).to have_content "United States. Army Map Service" # de-referenced creator
     expect(page).to have_content scale.first
-    expect(page).to have_link("indexmap0")
-    expect(page).to have_link("indexmap1")
-    expect(page).to have_link("componentmap0")
+
+    # The index and component maps should appear in order of
+    # accession number
+    expect(page).to have_link("indexmap0", href: curation_concerns_index_map_path(index_map_east))
+    expect(page).to have_link("indexmap1", href: curation_concerns_index_map_path(index_map_west))
+    expect(page).to have_link("componentmap0", href: curation_concerns_component_map_path(component_map_city))
+    expect(page).to have_link("componentmap1", href: curation_concerns_component_map_path(component_map_river))
+
+    # The thumbnail should be a link to the show page for that
+    # record.
     click_link("indexmap1")
-    expect(page).to have_content "Index Map 1"
+    expect(page).to have_content index_map_west.title.first
+
+    # Now we're on the show page for the West Index Map. The 0th
+    # thumbnail for the component maps should be the City map.
+    click_link("componentmap0")
+    expect(page).to have_content component_map_city.title.first
   end
 end

@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 class MapSetIndexer < ObjectIndexer
+  MAP_SORT_FIELD = "accession_number_si asc".freeze
+
   def generate_solr_document
     super do |solr_doc|
       query = ActiveFedora::SolrQueryBuilder.construct_query(parent_id_ssim: object.id)
-      results = ActiveFedora::SolrService.query(query, fl: "id has_model_ssim")
+      results = ActiveFedora::SolrService.query(query, fl: "id has_model_ssim", sort: MAP_SORT_FIELD)
       index_maps, component_maps = results.partition { |doc| doc["has_model_ssim"].include? "IndexMap" }
       solr_doc["index_maps_ssim"] = index_maps.map { |doc| doc["id"] }
       solr_doc["component_maps_ssim"] = component_maps.map { |doc| doc["id"] }
