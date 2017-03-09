@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 class IndexMapPresenter < CurationConcerns::WorkShowPresenter
+  include WithComponents
+
   delegate(
     :accession_number,
     :alternative,
