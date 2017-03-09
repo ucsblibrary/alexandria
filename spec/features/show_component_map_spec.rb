@@ -10,7 +10,7 @@ feature "ComponentMap show page:" do
 
   let(:map) do
     VCR.use_cassette("show_component_map_feature_spec") do
-      FactoryGirl.create(:public_component_map, title: title, creator: [creator_uri], extent: extent, scale: scale, parent_id: map_set.id)
+      FactoryGirl.create(:public_component_map, title: title, creator: [creator_uri], extent: extent, scale: scale, parent_id: map_set.id, local_collection_id: [collection.id])
     end
   end
 
@@ -32,6 +32,8 @@ feature "ComponentMap show page:" do
     end
   end
 
+  let(:collection) { create(:public_collection, title: ["My Maps"]) }
+
   before do
     map.members << file_set
     map.save!
@@ -52,5 +54,8 @@ feature "ComponentMap show page:" do
     expect(page).to have_link("indexmap0")
     expect(page).to have_link("componentmap0")
     expect(page).to have_link("componentmap1")
+
+    expect(page).to have_link(collection.title.first, collection_path(collection))
+    expect(page).to have_link(map_set.title.first, curation_concerns_map_set_path(map_set))
   end
 end
