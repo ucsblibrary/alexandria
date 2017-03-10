@@ -8,6 +8,7 @@ class IndexMapPresenter < CurationConcerns::WorkShowPresenter
     :ark,
     :citation,
     :collection,
+    :collection_ids,
     :copyright_status,
     :extent,
     :form_of_work,

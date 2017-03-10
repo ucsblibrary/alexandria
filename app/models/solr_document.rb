@@ -175,6 +175,10 @@ class SolrDocument
     fetch("collection_label_ssim", [])
   end
 
+  def collection_ids
+    fetch("collection_ssim", [])
+  end
+
   private
 
     def load_file_sets(ids)

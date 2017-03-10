@@ -22,6 +22,10 @@ module WithComponents
                          end
   end
 
+  def map_set_label
+    (map_set_presenter.title || []).first
+  end
+
   def component_map_ids
     map_set_presenter.fetch("component_maps_ssim", [])
   end

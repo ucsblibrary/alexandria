@@ -8,6 +8,7 @@ class ComponentMapPresenter < CurationConcerns::WorkShowPresenter
     :ark,
     :citation,
     :collection,
+    :collection_ids,
     :copyright_status,
     :creator,
     :extent,
