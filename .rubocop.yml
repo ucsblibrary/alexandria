@@ -25,6 +25,9 @@ Style/AsciiComments:
 Style/ClassAndModuleChildren:
   EnforcedStyle: compact
 
+Style/For:
+  Enabled: false
+
 Style/IndentationConsistency:
   EnforcedStyle: rails
 
