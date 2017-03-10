@@ -245,9 +245,10 @@ module Importer::CSV
   # @param [Array] row
   def self.check_uris(row)
     row.each do |x|
-      if x && Importer::CSV.looks_like_uri?(x)
-        raise "Invalid URI: #{x}" unless x =~ /\A#{URI.regexp}\z/
-      end
+      next if x.nil? || !Importer::CSV.looks_like_uri?(x)
+      next if x.strip =~ /\A#{URI.regexp}\z/
+
+      raise "Invalid URI: #{x}"
     end
   end
 
