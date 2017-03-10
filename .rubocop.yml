@@ -5,6 +5,7 @@ AllCops:
   Exclude:
     - '**/*~'
     - 'db/**/*'
+    - 'tmp/**/*'
     - 'bin/all-audio'
     - 'bin/export-image-arks'
     - 'bin/export-solr'
