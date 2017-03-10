@@ -6,9 +6,6 @@ class CollectionsController < ApplicationController
   # FIXME: remove once https://github.com/projecthydra/curation_concerns/issues/616 is closed
   include CurationConcerns::ThemedLayoutController
 
-  # FIXME: https://github.com/projecthydra/hydra-collections/issues/110
-  skip_before_filter :authenticate_user!
-
   # Overridden to use our local search builders with Admin Policies
   self.list_search_builder_class = ::CollectionsSearchBuilder
   self.single_item_search_builder_class = ::CollectionSearchBuilder

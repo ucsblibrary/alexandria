@@ -4,6 +4,8 @@ class RecordsController < ApplicationController
   load_resource only: [:destroy]
   load_and_authorize_resource only: [:new_merge, :merge]
 
+  layout "curation_concerns"
+
   include RecordsControllerBehavior
 
   def deny_access(exception)

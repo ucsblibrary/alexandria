@@ -19,8 +19,8 @@ RSpec.describe WelcomeController, type: :controller do
       expect(response).to render_template(:about)
     end
 
-    it "uses the normal blacklight layout" do
-      expect(response).to render_template(:blacklight)
+    it "uses the normal CC layout" do
+      expect(response).to render_template(:curation_concerns)
       expect(response).to_not render_template(:welcome)
     end
   end
