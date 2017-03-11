@@ -35,11 +35,25 @@ module Exporter
     end
 
     def headers
-      %w(type id accession_number identifier title)
+      %w(
+        type
+        id
+        accession_number
+        identifier
+        title
+        access_policy
+      )
     end
 
     def object_data(object)
-      [object.class.to_s, object.id, object.accession_number.first, object.ark, Array(object.title).first]
+      [
+        object.class.to_s,
+        object.id,
+        object.accession_number.first,
+        object.ark,
+        Array(object.title).first,
+        object.admin_policy.id.sub("authorities/policies/", "").sub("_on_", "_"),
+      ]
     end
   end
 end
