@@ -29,28 +29,51 @@ describe Exporter::IdExporter do
 
     # Create some records to export
     let!(:animals) do
-      create(:collection,
-             title: ["My Favorite Animals"],
-             identifier: ["ark:/123/animals"],
-             accession_number: ["animals_123"])
+      create(
+        :collection,
+        title: ["My Favorite Animals"],
+        identifier: ["ark:/123/animals"],
+        accession_number: ["animals_123"],
+        admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID
+      )
     end
     let!(:puppies) do
-      create(:image, title: ["Puppies"],
-                     identifier: ["ark:/123/puppies"],
-                     accession_number: ["puppies_123"])
+      create(
+        :image,
+        title: ["Puppies"],
+        identifier: ["ark:/123/puppies"],
+        accession_number: ["puppies_123"],
+        admin_policy_id: AdminPolicy::RESTRICTED_POLICY_ID
+      )
     end
     let!(:kitties) do
-      create(:image, title: ["Kitties"],
-                     identifier: ["ark:/123/kitties"],
-                     accession_number: ["kitties_123"])
+      create(
+        :image,
+        title: ["Kitties"],
+        identifier: ["ark:/123/kitties"],
+        accession_number: ["kitties_123"],
+        admin_policy_id: AdminPolicy::UCSB_CAMPUS_POLICY_ID
+      )
     end
     let!(:etd) do
-      ETD.create!(title: ["Cute Animals Thesis"],
-                  identifier: ["ark:/123/thesis"],
-                  accession_number: ["thesis_123"])
+      ETD.create!(
+        title: ["Cute Animals Thesis"],
+        identifier: ["ark:/123/thesis"],
+        accession_number: ["thesis_123"],
+        admin_policy_id: AdminPolicy::PUBLIC_CAMPUS_POLICY_ID
+      )
     end
 
-    let(:headers) { %w(type id accession_number identifier title) }
+    let(:headers) do
+      %w(
+        type
+        id
+        accession_number
+        identifier
+        title
+        access_policy
+      )
+    end
 
     it "exports the records" do
       exporter.run
@@ -63,20 +86,52 @@ describe Exporter::IdExporter do
 
       expect(contents[0].split(",")).to eq headers
 
-      expect(contents[1].split(",")).to eq ["Collection", animals.id, animals.accession_number.first, animals.ark, animals.title.first]
+      expect(contents[1].split(",")).to(
+        eq([
+             "Collection",
+             animals.id,
+             animals.accession_number.first,
+             animals.ark,
+             animals.title.first,
+             "public",
+           ])
+      )
 
+      # The Image records may be in any order
       line2 = contents[2].split(",")
       line3 = contents[3].split(",")
 
-      # We don't know what order they will be in.  Decide if
-      # we should compare this line to 'puppies' or 'kitties'.
-      image = line2[1] == puppies.id ? puppies : kitties
-      expect(line2).to eq ["Image", image.id, image.accession_number.first, image.ark, image.title.first]
+      expect([line2, line3]).to(
+        contain_exactly(
+          [
+            "Image",
+            puppies.id,
+            puppies.accession_number.first,
+            puppies.ark,
+            puppies.title.first,
+            "restricted",
+          ],
+          [
+            "Image",
+            kitties.id,
+            kitties.accession_number.first,
+            kitties.ark,
+            kitties.title.first,
+            "ucsb_campus",
+          ]
+        )
+      )
 
-      image = line3[1] == puppies.id ? puppies : kitties
-      expect(line3).to eq ["Image", image.id, image.accession_number.first, image.ark, image.title.first]
-
-      expect(contents[4].split(",")).to eq ["ETD", etd.id, etd.accession_number.first, etd.ark, etd.title.first]
+      expect(contents[4].split(",")).to(
+        eq([
+             "ETD",
+             etd.id,
+             etd.accession_number.first,
+             etd.ark,
+             etd.title.first,
+             "public_campus",
+           ])
+      )
     end
   end # run
 end
