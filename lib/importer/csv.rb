@@ -69,7 +69,9 @@ module Importer::CSV
 
     attrs = csv_attributes(head, row)
 
-    logger.info "Ingesting accession number #{attrs[:accession_number].first}"
+    unless attrs[:accession_number].blank?
+      logger.info "Ingesting accession number #{attrs[:accession_number].first}"
+    end
 
     files = if attrs[:files].nil?
               []
@@ -97,7 +99,13 @@ module Importer::CSV
     record = ::Importer::Factory.for(model).new(attrs, files).run
 
     end_time = Time.now
-    logger.info "Accession number #{attrs[:accession_number].first} ingested as #{record.id} in #{end_time - start_time} seconds"
+
+    obj_name = if attrs[:accession_number].blank?
+                 "Object"
+               else
+                 "Accession number #{attrs[:accession_number].first}"
+               end
+    logger.info "#{obj_name} ingested as #{record.id} in #{end_time - start_time} seconds"
 
     record
   end
