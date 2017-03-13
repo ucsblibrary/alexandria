@@ -44,13 +44,12 @@ module Importer::CSV
   def self.ingest_sheet(head:, tail:, data: [], options: { verbose: false, skip: 0 })
     ingested = 0
 
-    tail.each_with_index do |row, i|
-      next if options[:skip] > i
+    tail.drop(options[:skip]).each_with_index do |row, i|
       next if options[:number] && options[:number] <= ingested
 
       begin
         logger.info "Ingesting record #{ingested + 1} "\
-                    "of #{options[:number] || tail.length}"
+                    "of #{options[:number] || (tail.length - options[:skip])}"
         ingest_row(head: head,
                    row: row,
                    data: data,
