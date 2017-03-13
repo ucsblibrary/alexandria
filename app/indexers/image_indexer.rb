@@ -28,7 +28,7 @@ class ImageIndexer < ObjectIndexer
         Riiif::Engine.routes.url_helpers.image_url(
           file.id,
           size: size,
-          host: ApplicationHelper.hostp
+          only_path: true
         )
       end
     end
