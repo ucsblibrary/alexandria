@@ -36,7 +36,7 @@ feature "ComponentMap show page:" do
 
   before do
     # Need ARK to be able to draw thumbnail links
-    allow_any_instance_of(SolrDocument).to receive(:ark).and_return('123')
+    allow_any_instance_of(SolrDocument).to receive(:ark).and_return("123")
     map.members << file_set
     map.save!
     index_map.members << file_set
