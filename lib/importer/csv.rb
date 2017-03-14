@@ -100,12 +100,10 @@ module Importer::CSV
 
     end_time = Time.now
 
-    obj_name = if attrs[:accession_number].blank?
-                 "Object"
-               else
-                 "Accession number #{attrs[:accession_number].first}"
-               end
-    logger.info "#{obj_name} ingested as #{record.id} in #{end_time - start_time} seconds"
+    accession_string = unless attrs[:accession_number].blank?
+                         " with accession number #{attrs[:accession_number].first}"
+                       end
+    logger.info "#{model}#{accession_string} ingested as #{record.id} in #{end_time - start_time} seconds"
 
     record
   end
