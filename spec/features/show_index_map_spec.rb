@@ -34,6 +34,8 @@ feature "IndexMap show page:" do
   end
 
   before do
+    # Need ARK to be able to draw thumbnail links
+    allow_any_instance_of(SolrDocument).to receive(:ark).and_return("123")
     map.members << file_set
     map.save!
     sibling_index_map.members << file_set

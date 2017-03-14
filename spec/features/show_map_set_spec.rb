@@ -19,23 +19,31 @@ feature "MapSet show page:" do
     end
   end
 
-  let!(:index_map_west) do
-    FactoryGirl.create(:public_index_map, title: ["Index Map, West Side"], parent_id: map_set.id, accession_number: ["west"])
+  let(:index_map_west_id) { "index_map_west" }
+  let(:index_map_west) do
+    FactoryGirl.create(:public_index_map, id: index_map_west_id, title: ["Index Map, West Side"], parent_id: map_set.id, accession_number: ["west"], identifier: ["ark:/99999/#{index_map_west_id}"])
   end
 
-  let!(:index_map_east) do
-    FactoryGirl.create(:public_index_map, title: ["Index Map, East Side"], parent_id: map_set.id, accession_number: ["east"])
+  let(:index_map_east_id) { "index_map_east" }
+  let(:index_map_east) do
+    FactoryGirl.create(:public_index_map, id: index_map_east_id, title: ["Index Map, East Side"], parent_id: map_set.id, accession_number: ["east"], identifier: ["ark:/99999/#{index_map_east_id}"])
   end
 
-  let!(:component_map_river) do
-    FactoryGirl.create(:public_component_map, title: ["Component Map of the River Area"], parent_id: map_set.id, accession_number: ["river"])
+  let(:component_map_river_id) { "component_map_river" }
+  let(:component_map_river) do
+    FactoryGirl.create(:public_component_map, id: component_map_river_id, title: ["Component Map of the River Area"], parent_id: map_set.id, accession_number: ["river"], identifier: ["ark:/99999/#{component_map_river_id}"])
   end
 
-  let!(:component_map_city) do
-    FactoryGirl.create(:public_component_map, title: ["Component Map of the City Area"], parent_id: map_set.id, accession_number: ["city"])
+  let(:component_map_city_id) { "component_map_city" }
+  let(:component_map_city) do
+    FactoryGirl.create(:public_component_map, id: component_map_city_id, title: ["Component Map of the City Area"], parent_id: map_set.id, accession_number: ["city"], identifier: ["ark:/99999/#{component_map_city_id}"])
   end
 
   before do
+    [index_map_west_id, index_map_east_id, component_map_river_id, component_map_city_id].each do |id|
+      ActiveFedora::Base.find(id).destroy(eradicate: true) if ActiveFedora::Base.exists?(id)
+    end
+
     index_map_west.members << file_set
     index_map_west.save
     index_map_east.members << file_set
@@ -58,10 +66,10 @@ feature "MapSet show page:" do
 
     # The index and component maps should appear in order of
     # accession number
-    expect(page).to have_link("indexmap0", href: curation_concerns_index_map_path(index_map_east))
-    expect(page).to have_link("indexmap1", href: curation_concerns_index_map_path(index_map_west))
-    expect(page).to have_link("componentmap0", href: curation_concerns_component_map_path(component_map_city))
-    expect(page).to have_link("componentmap1", href: curation_concerns_component_map_path(component_map_river))
+    expect(page).to have_link("indexmap0", href: catalog_ark_path("ark:", "99999", index_map_east.id))
+    expect(page).to have_link("indexmap1", href: catalog_ark_path("ark:", "99999", index_map_west.id))
+    expect(page).to have_link("componentmap0", href: catalog_ark_path("ark:", "99999", component_map_city.id))
+    expect(page).to have_link("componentmap1", href: catalog_ark_path("ark:", "99999", component_map_river.id))
 
     # The thumbnail should be a link to the show page for that
     # record.
