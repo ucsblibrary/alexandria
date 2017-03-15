@@ -96,7 +96,7 @@ Rails.application.routes.draw do
 
   devise_for :users
   mount Hydra::RoleManagement::Engine => "/"
-  mount Riiif::Engine => "/images"
+  mount Riiif::Engine => "/image-service", as: "riiif"
   mount Qa::Engine => "/qa"
   mount HydraEditor::Engine => "/"
 
