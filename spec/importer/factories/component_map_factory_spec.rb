@@ -44,5 +44,19 @@ describe Importer::Factory::ComponentMapFactory do
     it "attaches a ComponentMap to its IndexMap" do
       expect(@component_map.index_map_id).to eql(@index_map_id)
     end
+    it "has only one FileSet even if you ingest the object again" do
+      expect(@component_map.file_sets.size).to eql(1)
+      VCR.use_cassette("component_map_factory") do
+        @component_map = Importer::Factory::ComponentMapFactory.new(@map_attrs, @files).run
+      end
+      expect(@component_map.file_sets.size).to eql(1)
+    end
+    it "doesn't delete FileSets if you do a metadata-only re-import" do
+      expect(@component_map.file_sets.size).to eql(1)
+      VCR.use_cassette("component_map_factory") do
+        @component_map = Importer::Factory::ComponentMapFactory.new(@map_attrs, []).run
+      end
+      expect(@component_map.file_sets.size).to eql(1)
+    end
   end
 end
