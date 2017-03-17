@@ -143,10 +143,6 @@ begin
   end_overall = Time.now
   puts "Ingested #{ingests} records in #{(end_overall - start_overall) / 60} minutes"
 rescue IngestError => e
-  puts
-  end_overall = Time.now
-  puts "Ingested #{e.reached} records in #{(end_overall - start_overall) / 60} minutes"
-  puts
   puts "To continue this ingest, re-run the command with `--skip #{e.reached}`"
   exit 1
 end

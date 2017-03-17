@@ -34,7 +34,7 @@ module Importer::CSV
       begin
         ingested += ingest_sheet(head: head, tail: tail, data: data, options: options)
       rescue IngestError => e
-        raise IngestError, e.merge(reached: ingested)
+        raise IngestError, reached: (options[:skip] + ingested + e.reached)
       end
     end
 
@@ -55,8 +55,11 @@ module Importer::CSV
                    data: data,
                    verbose: options[:verbose])
         ingested += 1
-      rescue IngestError => e
-        raise IngestError, e.merge(reached: i)
+      rescue Interrupt
+        raise IngestError, reached: i
+      rescue => e
+        logger.error e.message
+        raise IngestError, reached: i
       end
     end
 
