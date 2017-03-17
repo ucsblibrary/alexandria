@@ -55,6 +55,19 @@ module Importer::Factory
       transform_attributes.except(:id, :files)
     end
 
+    # Remove any existing FileSets via the FileSetActor Actor
+    # This will also remove any derivatives etc that the FileSet created, and
+    # it will remove it from membership in the given object.
+    # @param [ActiveFedora::Base] object
+    def remove_existing_file_sets(object)
+      return unless object.file_sets && !object.file_sets.empty?
+      object.file_sets.each do |f|
+        CurationConcerns::Actors::FileSetActor.new(f, nil).destroy
+      end
+      object.save
+      object.reload.file_sets
+    end
+
     # Overridden in classes that inherit from ObjectFactory
     #
     # @param [Hash] object

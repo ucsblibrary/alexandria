@@ -34,5 +34,19 @@ describe Importer::Factory::ScannedMapFactory do
     it "attaches a ScannedMap to its Collection" do
       expect(@scanned_map.local_collection_id.first).to eql(@collection.id)
     end
+    it "has only one FileSet even if you ingest the object again" do
+      expect(@scanned_map.file_sets.size).to eql(1)
+      VCR.use_cassette("map_factory1") do
+        @scanned_map = Importer::Factory::ScannedMapFactory.new(@map_attrs, @files).run
+      end
+      expect(@scanned_map.file_sets.size).to eql(1)
+    end
+    it "doesn't delete FileSets if you do a metadata-only re-import" do
+      expect(@scanned_map.file_sets.size).to eql(1)
+      VCR.use_cassette("map_factory1") do
+        @scanned_map = Importer::Factory::ScannedMapFactory.new(@map_attrs, []).run
+      end
+      expect(@scanned_map.file_sets.size).to eql(1)
+    end
   end
 end
