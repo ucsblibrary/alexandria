@@ -3,8 +3,8 @@ require "rails_helper"
 require "importer"
 
 describe Importer::MODS do
-  let(:data) { Dir["spec/fixtures/images/cusbspcmss36*.tif"] }
-  let(:metadata) { ["spec/fixtures/mods/cusbspcmss36_110108.xml"] }
+  let(:data) { Dir["#{Rails.root}/spec/fixtures/images/cusbspcmss36*.tif"] }
+  let(:metadata) { ["#{Rails.root}/spec/fixtures/mods/cusbspcmss36_110108.xml"] }
 
   before do
     # Don't fetch external records during specs
@@ -89,7 +89,7 @@ describe Importer::MODS do
   end
 
   describe "#import a Collection" do
-    let(:metadata) { ["spec/fixtures/mods/sbhcmss78_FlyingAStudios_collection.xml"] }
+    let(:metadata) { ["#{Rails.root}/spec/fixtures/mods/sbhcmss78_FlyingAStudios_collection.xml"] }
 
     context "when the collection does not exist" do
       before do
@@ -164,7 +164,7 @@ describe Importer::MODS do
   end
 
   describe "fields that have Strings instead of URIs" do
-    let(:metadata) { ["spec/fixtures/mods/sbhcmss78_FlyingAStudios_collection.xml"] }
+    let(:metadata) { ["#{Rails.root}/spec/fixtures/mods/sbhcmss78_FlyingAStudios_collection.xml"] }
 
     let(:frodo) { "Frodo Baggins" }
     let(:bilbo) { "Bilbo Baggins" }

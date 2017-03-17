@@ -42,8 +42,8 @@ describe Importer::Factory::ETDFactory do
 
     let(:files) do
       {
-        xml: "spec/fixtures/proquest/Button_ucsb_0035D_11990_DATA.xml",
-        pdf: "spec/fixtures/pdf/sample.pdf",
+        xml: "#{Rails.root}/spec/fixtures/proquest/Button_ucsb_0035D_11990_DATA.xml",
+        pdf: "#{Rails.root}/spec/fixtures/pdf/sample.pdf",
         supplements: [],
       }
     end

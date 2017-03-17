@@ -8,7 +8,7 @@ describe Proquest::XML do
 
   describe "#attributes" do
     context "a record that has <embargo_code>" do
-      let(:file) { "spec/fixtures/proquest/Johnson_ucsb_0035N_12164_DATA.xml" }
+      let(:file) { "#{Rails.root}/spec/fixtures/proquest/Johnson_ucsb_0035N_12164_DATA.xml" }
 
       it "collects attributes for the ETD record" do
         expect(attributes[:embargo_code]).to eq "3"
@@ -21,7 +21,7 @@ describe Proquest::XML do
     end
 
     context "a record that has <DISS_sales_restriction>" do
-      let(:file) { "spec/fixtures/proquest/Button_ucsb_0035D_11990_DATA.xml" }
+      let(:file) { "#{Rails.root}/spec/fixtures/proquest/Button_ucsb_0035D_11990_DATA.xml" }
 
       it "collects attributes for the ETD record" do
         expect(attributes[:embargo_code]).to eq "4"
@@ -31,7 +31,7 @@ describe Proquest::XML do
     end
 
     describe "copyright fields" do
-      let(:file) { "spec/fixtures/proquest/Miggs_ucsb_0035D_12446_DATA.xml" }
+      let(:file) { "#{Rails.root}/spec/fixtures/proquest/Miggs_ucsb_0035D_12446_DATA.xml" }
       it "collects attributes for the ETD record" do
         expect(attributes[:rights_holder]).to eq ["Martin Miggs"]
         expect(attributes[:date_copyrighted]).to eq [2014]

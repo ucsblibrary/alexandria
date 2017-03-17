@@ -7,7 +7,7 @@ describe Importer::Factory::ScannedMapFactory do
     (Collection.all + ScannedMap.all).map(&:id).each do |id|
       ActiveFedora::Base.find(id).destroy(eradicate: true) if ActiveFedora::Base.exists?(id)
     end
-    @files = Dir["spec/fixtures/maps/*.tif"]
+    @files = Dir["#{Rails.root}/spec/fixtures/maps/*.tif"]
     @collection_attrs = { accession_number: ["SBHC Mss 36"], title: ["Test collection"] }
     @map_attrs =
       {

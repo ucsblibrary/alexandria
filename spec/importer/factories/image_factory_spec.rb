@@ -26,7 +26,7 @@ describe Importer::Factory::ImageFactory do
   end
 
   context "with files" do
-    let(:files) { Dir["spec/fixtures/images/dirge*"] }
+    let(:files) { Dir["#{Rails.root}/spec/fixtures/images/dirge*"] }
 
     before do
       VCR.use_cassette("image_factory") do
