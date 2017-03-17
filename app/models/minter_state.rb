@@ -12,5 +12,8 @@
 #
 # See also:
 # https://github.com/projecthydra/curation_concerns/issues/1045
+#
+# UPDATE:  I see this entry in the release notes for curation_concerns 1.7.0, so maybe we can delete this file the next time we upgrade CC:
+# 2016-10-18: Change when AF::Noid is required so it doesn't break in production mode. [Michael J. Giarlo]
 
 # class MinterState; end
