@@ -19,7 +19,7 @@ class EmbargoForm
   end
 
   def embargo?
-    model.embargo
+    model.embargo_release_date.present?
   end
 
   def visibility_after_embargo_id

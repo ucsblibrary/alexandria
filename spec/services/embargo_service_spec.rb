@@ -3,6 +3,7 @@ require "rails_helper"
 
 describe EmbargoService do
   before { AdminPolicy.ensure_admin_policy_exists }
+
   describe ".create_or_update_embargo" do
     let(:work) { create(:etd) }
 
@@ -55,6 +56,44 @@ describe EmbargoService do
     it "nullifies the embargo" do
       EmbargoService.remove_embargo(work)
       expect(work.embargo).to be_nil
+    end
+  end
+
+  describe ".deactivate_embargo" do
+    let(:vis_during_embargo) { RDF::URI(ActiveFedora::Base.id_to_uri(AdminPolicy::RESTRICTED_POLICY_ID)) }
+    let(:vis_after_embargo) { RDF::URI(ActiveFedora::Base.id_to_uri(AdminPolicy::PUBLIC_POLICY_ID)) }
+
+    let!(:work) do
+      create(:etd,
+             admin_policy_id: AdminPolicy::RESTRICTED_POLICY_ID,
+             visibility_during_embargo: vis_during_embargo,
+             visibility_after_embargo: vis_after_embargo,
+             embargo_release_date: release_date)
+    end
+
+    before do
+      EmbargoService.deactivate_embargo(work)
+      work.reload
+    end
+
+    context "with an expired embargo" do
+      let(:release_date) { Time.zone.today - 2 }
+
+      it "deactivates embargo & updates ETD visibility" do
+        expect(work.embargo_release_date).to be_nil
+        expect(work.embargo_history).to_not be_nil
+        expect(work.admin_policy_id).to eq AdminPolicy::PUBLIC_POLICY_ID
+      end
+    end
+
+    context "with an active embargo" do
+      let(:release_date) { Time.zone.today + 2 }
+
+      it "deactivates embargo, but keeps old ETD visibility" do
+        expect(work.embargo_release_date).to be_nil
+        expect(work.embargo_history).to_not be_nil
+        expect(work.admin_policy_id).to eq AdminPolicy::RESTRICTED_POLICY_ID
+      end
     end
   end
 end

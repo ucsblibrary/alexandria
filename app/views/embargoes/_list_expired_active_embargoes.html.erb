@@ -1,11 +1,11 @@
-<% if assets_with_expired_embargoes.empty? %>
+<% if works_with_expired_embargoes.empty? %>
   <table  class="embargoes table">
     <tbody>
     <tr>
       <th>Type of Work</th><th>Title</th><th>Current Visibility</th><th>Embargo Release Date</th><th>Visibility will Change to</th>
     </tr>
     <tr>
-      <td colspan="5" style='text-align:center'><p>There are no expired embargoes in effect at this time.</p> </td>
+      <td colspan="5" class="text-center"><p>There are no expired embargoes in effect at this time.</p> </td>
     </tr>
     </tbody>
   </table>
@@ -21,20 +21,21 @@
         </tr>
       </thead>
       <tbody>
-      <% assets_with_expired_embargoes.each_with_index do |curation_concern, i| %>
+      <% works_with_expired_embargoes.each_with_index do |curation_concern, i| %>
+        <% after_vis = after_visibility(curation_concern) %>
         <tr>
           <td><%= button_for_add_to_batch curation_concern %></td>
           <td class="human-readable-type"><%= curation_concern.human_readable_type %></td>
-          <td class="title"><%= link_to curation_concern.title, [:edit, curation_concern, :access] %></td>
+          <td class="title"><%= link_to curation_concern.title.first, [:edit, curation_concern, :access] %></td>
           <td class="current-visibility"><%= curation_concern.admin_policy.title %></td>
           <td class="embargo-release-date"><%= curation_concern.embargo_release_date %></td>
-          <td class="visibility-after-embargo"><%= after_visibility(curation_concern) %></td>
+          <td class="visibility-after-embargo"><%= after_vis %></td>
           <td class="actions"><%= link_to 'Deactivate Embargo', embargo_path(curation_concern), method: :delete, class: 'btn btn-primary' %></td>
         </tr>
         <tr data-behavior="extra" data-id="<%= curation_concern.id %>" class="extra-embargo-info">
           <td></td>
           <td colspan=5>
-            <%= check_box_tag "embargoes[#{i}][copy_visibility]", curation_concern.id, true %> Change all files within <%= curation_concern %> to <%= curation_concern.visibility_after_embargo %>?</td>
+            <%= check_box_tag "embargoes[#{i}][copy_visibility]", curation_concern.id, true %> Change all files within &quot;<%= curation_concern %>&quot; to <%= after_vis %>?</td>
         </tr>
       <% end %>
       </tbody>
