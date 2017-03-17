@@ -204,6 +204,8 @@ module Importer::CSV
   # @param [Hash] processed
   def self.extract_field(header, val, processed)
     return unless val
+    raise "No header corresponds to value '#{val}'" if header.nil?
+
     case header
     when "type", "id"
       # type and id are singular
