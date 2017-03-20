@@ -30,7 +30,7 @@ Riiif::Image.info_service = lambda do |id, _file|
   # (e.g. rv042t299%2Ffiles%2F6d71677a-4f80-42f1-ae58-ed1063fd79c7)
   # but we just want the id for the FileSet it's attached to.
   # Capture everything before the first slash
-  fs_id = id.sub(%r{/\A([^\/]*)\/.*/}, '\1')
+  fs_id = id.sub(%r{\A([^\/]*)\/.*}, '\1')
   resp = ActiveFedora::SolrService.get("id:#{fs_id}")
   doc = resp["response"]["docs"].first
   raise "Unable to find solr document with id:#{fs_id}" unless doc
