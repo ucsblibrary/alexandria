@@ -24,7 +24,7 @@ gem "marc"
 gem "mods", "~> 2.0.3"
 gem "qa", "~> 0.5.0"
 gem "rdf-marmotta", "~> 0.0.8"
-gem "riiif", "~> 1.1.2"
+gem "riiif", "~> 1.1"
 gem "rsolr", "~> 1.0.12"
 gem "traject", "~> 2.3.2"
 
