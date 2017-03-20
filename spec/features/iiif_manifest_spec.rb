@@ -13,7 +13,7 @@ feature "file_set iiif manifest" do
   scenario "visit the iiif manifest" do
     visit Riiif::Engine.routes.url_helpers.info_path(file_set.id)
     expect(JSON.parse(body)["@context"]).to eql("http://iiif.io/api/image/2/context.json")
-    # TODO: expect(JSON.parse(body)["width"]).to eql(some_number)
-    # TODO: expect(JSON.parse(body)["height"]).to eql(some_number)
+    expect(JSON.parse(body)["width"]).to eql(256)
+    expect(JSON.parse(body)["height"]).to eql(223)
   end
 end
