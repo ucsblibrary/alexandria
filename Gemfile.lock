@@ -751,6 +751,7 @@ DEPENDENCIES
   marc
   method_source
   mods (~> 2.0.3)
+  openseadragon
   pg (~> 0.18.4)
   poltergeist
   pry
