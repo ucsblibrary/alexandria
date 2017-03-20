@@ -5,7 +5,7 @@ require "active_fedora/cleaner"
 
 describe Importer::Factory::AudioRecordingFactory do
   let(:data) { File.join(fixture_path, "cylinders") }
-  let(:metadata) { "#{Rails.root}/spec/fixtures/cylinders/cylinders-objects.xml" }
+  let(:metadata) { "#{fixture_path}/cylinders/cylinders-objects.xml" }
 
   let(:attributes) do
     {
@@ -40,7 +40,7 @@ describe Importer::Factory::AudioRecordingFactory do
     subject { factory.cylinder_number(filegroup) }
 
     context "with a correct file name" do
-      let(:filegroup) { Dir["#{Rails.root}/spec/fixtures/cylinders/cyl1-2/cusb-cyl0001*"] }
+      let(:filegroup) { Dir["#{fixture_path}/cylinders/cyl1-2/cusb-cyl0001*"] }
       it { is_expected.to eq "0001" }
     end
 
@@ -63,8 +63,8 @@ describe Importer::Factory::AudioRecordingFactory do
         # include an empty filegroup
         [],
         # include non-WAV files
-        Dir["#{Rails.root}/spec/fixtures/cylinders/cyl1-2/cusb-cyl0001*"],
-        Dir["#{Rails.root}/spec/fixtures/cylinders/cyl1-2/cusb-cyl0002*"],
+        Dir["#{fixture_path}/cylinders/cyl1-2/cusb-cyl0001*"],
+        Dir["#{fixture_path}/cylinders/cyl1-2/cusb-cyl0002*"],
       ]
     end
 

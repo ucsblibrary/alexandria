@@ -7,7 +7,7 @@ describe Importer::Factory::ComponentMapFactory do
     (Collection.all + ComponentMap.all).map(&:id).each do |id|
       ActiveFedora::Base.find(id).destroy(eradicate: true) if ActiveFedora::Base.exists?(id)
     end
-    @files = Dir["#{Rails.root}/spec/fixtures/maps/*.tif"]
+    @files = Dir["#{fixture_path}/maps/*.tif"]
     @parent_id = "fk44q85873"
     @index_map_id = ["fk4057td1k"]
     @collection_attrs = { accession_number: ["MAP 01 02 03"], title: ["Maps of the Moon"] }
