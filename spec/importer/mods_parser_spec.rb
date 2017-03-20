@@ -8,7 +8,7 @@ describe Importer::MODS::Parser do
 
   describe "Determine which kind of record it is:" do
     describe "for a collection:" do
-      let(:file) { "#{Rails.root}/spec/fixtures/mods/sbhcmss78_FlyingAStudios_collection.xml" }
+      let(:file) { "#{fixture_path}/mods/sbhcmss78_FlyingAStudios_collection.xml" }
 
       it "knows it is a Collection" do
         expect(parser.collection?).to eq true
@@ -18,7 +18,7 @@ describe Importer::MODS::Parser do
     end
 
     describe "for an image:" do
-      let(:file) { "#{Rails.root}/spec/fixtures/mods/cusbspcsbhc78_100239.xml" }
+      let(:file) { "#{fixture_path}/mods/cusbspcsbhc78_100239.xml" }
 
       it "knows it is an Image" do
         expect(parser.image?).to eq true
@@ -30,7 +30,7 @@ describe Importer::MODS::Parser do
 
   describe "#attributes for an Image record" do
     let(:ns_decl) { "xmlns='#{Mods::MODS_NS}'" }
-    let(:file) { "#{Rails.root}/spec/fixtures/mods/cusbspcsbhc78_100239.xml" }
+    let(:file) { "#{fixture_path}/mods/cusbspcsbhc78_100239.xml" }
 
     it "finds metadata for the image" do
       expect(attributes[:description]).to eq ["Another description", "Man with a smile eyes to camera."]
@@ -63,7 +63,7 @@ describe Importer::MODS::Parser do
     end
 
     context "with a file that has a general (untyped) note" do
-      let(:file) { "#{Rails.root}/spec/fixtures/mods/cusbspcmss36_110108.xml" }
+      let(:file) { "#{fixture_path}/mods/cusbspcmss36_110108.xml" }
       it "imports notes" do
         expect(attributes[:notes_attributes].first[:value]).to eq "Title from item."
         expect(attributes[:notes_attributes].second[:value]).to eq "Postcard caption: 60. Arlington Hotel, Sta. Barbara Quake 6-29-25."
@@ -71,7 +71,7 @@ describe Importer::MODS::Parser do
     end
 
     context "with a file that has a publisher" do
-      let(:file) { "#{Rails.root}/spec/fixtures/mods/cusbspcmss36_110108.xml" }
+      let(:file) { "#{fixture_path}/mods/cusbspcmss36_110108.xml" }
 
       it "imports publisher" do
         expect(attributes[:publisher]).to eq ["[Cross & Dimmit Pictures]"]
@@ -79,7 +79,7 @@ describe Importer::MODS::Parser do
     end
 
     context "with a file that has a photographer" do
-      let(:file) { "#{Rails.root}/spec/fixtures/mods/cusbmss228-p00003.xml" }
+      let(:file) { "#{fixture_path}/mods/cusbmss228-p00003.xml" }
 
       it "imports photographer" do
         expect(attributes[:photographer]).to eq ["http://id.loc.gov/authorities/names/n97003180"]
@@ -103,7 +103,7 @@ describe Importer::MODS::Parser do
     end
 
     context "with a file that has coordinates" do
-      let(:file) { "#{Rails.root}/spec/fixtures/mods/cusbspcmss36_110089.xml" }
+      let(:file) { "#{fixture_path}/mods/cusbspcmss36_110089.xml" }
       it "imports coordinates" do
         expect(attributes[:latitude]).to eq ["34.442982"]
         expect(attributes[:longitude]).to eq ["-119.657362"]
@@ -133,14 +133,14 @@ describe Importer::MODS::Parser do
     end
 
     context "with a file that has a range of dateIssued" do
-      let(:file) { "#{Rails.root}/spec/fixtures/mods/cusbspcmss36_110089.xml" }
+      let(:file) { "#{fixture_path}/mods/cusbspcmss36_110089.xml" }
       it "imports issued" do
         expect(attributes[:issued_attributes]).to eq [{ start: ["1900"], finish: ["1959"], label: ["circa 1900s-1950s"], start_qualifier: ["approximate"], finish_qualifier: ["approximate"] }]
       end
     end
 
     context "with a file that has a single dateIssued" do
-      let(:file) { "#{Rails.root}/spec/fixtures/mods/cusbspcmss36_110108.xml" }
+      let(:file) { "#{fixture_path}/mods/cusbspcmss36_110108.xml" }
       it "imports issued" do
         expect(attributes[:issued_attributes]).to eq [{ start: ["1925"], finish: [], label: [], start_qualifier: [], finish_qualifier: [] }]
       end
@@ -165,7 +165,7 @@ describe Importer::MODS::Parser do
     end
 
     context "with a file that has an alternative title" do
-      let(:file) { "#{Rails.root}/spec/fixtures/mods/cusbspcmss36_110089.xml" }
+      let(:file) { "#{fixture_path}/mods/cusbspcmss36_110089.xml" }
       it "distinguishes between title and alternative title" do
         expect(attributes[:title]).to eq ["Patio, Gavit residence"]
         expect(attributes[:alternative]).to eq ["Lotusland"]
@@ -173,7 +173,7 @@ describe Importer::MODS::Parser do
     end
 
     context "with a file that has copyrightHolder" do
-      let(:file) { "#{Rails.root}/spec/fixtures/mods/cusbmss228-p00001.xml" }
+      let(:file) { "#{fixture_path}/mods/cusbmss228-p00001.xml" }
 
       it "finds the rights holder" do
         expect(attributes[:rights_holder]).to eq ["http://id.loc.gov/authorities/names/n85088322"]
@@ -181,7 +181,7 @@ describe Importer::MODS::Parser do
     end
 
     context "with a file that has placeTerm" do
-      let(:file) { "#{Rails.root}/spec/fixtures/mods/cusbspcmss36_110089.xml" }
+      let(:file) { "#{fixture_path}/mods/cusbspcmss36_110089.xml" }
       it "reads the place" do
         expect(attributes[:place_of_publication]). to eq ["Santa Barbara, California"]
       end
@@ -189,7 +189,7 @@ describe Importer::MODS::Parser do
   end
 
   describe "#attributes for a Collection record" do
-    let(:file) { "#{Rails.root}/spec/fixtures/mods/sbhcmss78_FlyingAStudios_collection.xml" }
+    let(:file) { "#{fixture_path}/mods/sbhcmss78_FlyingAStudios_collection.xml" }
 
     it "finds the metadata" do
       expect(attributes[:accession_number]).to eq ["SBHC Mss 78"]

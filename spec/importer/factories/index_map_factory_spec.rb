@@ -7,7 +7,7 @@ describe Importer::Factory::IndexMapFactory do
     (Collection.all + IndexMap.all).map(&:id).each do |id|
       ActiveFedora::Base.find(id).destroy(eradicate: true) if ActiveFedora::Base.exists?(id)
     end
-    @files = Dir["#{Rails.root}/spec/fixtures/maps/*.tif"]
+    @files = Dir["#{fixture_path}/maps/*.tif"]
     @collection_attrs = { accession_number: ["MAP 01 02 03"], title: ["Maps of the Moon"] }
     @parent_id = "fk44q85873"
     # This is what IndexMapFactory gets handed from the CSV importer

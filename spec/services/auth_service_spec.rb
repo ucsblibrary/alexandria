@@ -12,8 +12,8 @@ describe AuthService do
     allow_any_instance_of(Riiif::ImagesController).to receive(:params).and_return(params)
     allow_any_instance_of(Riiif::ImagesController).to receive(:on_campus?).and_return(true)
 
-    data = Dir["#{Rails.root}/spec/fixtures/images/*"]
-    meta = ["#{Rails.root}/spec/fixtures/csv/pamss045.csv"]
+    data = Dir["#{fixture_path}/images/*"]
+    meta = ["#{fixture_path}/csv/pamss045.csv"]
     VCR.use_cassette("csv_importer") do
       Importer::CSV.import(meta, data, skip: 0)
     end

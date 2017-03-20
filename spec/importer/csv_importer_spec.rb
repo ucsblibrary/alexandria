@@ -10,7 +10,7 @@ describe Importer::CSV do
     Importer::CSV.log_location(logfile)
   end
 
-  let(:data) { Dir["#{Rails.root}/spec/fixtures/images/*"] }
+  let(:data) { Dir["#{fixture_path}/images/*"] }
 
   context "when the model is specified" do
     let(:metadata) { ["#{fixture_path}/csv/pamss045.csv"] }
