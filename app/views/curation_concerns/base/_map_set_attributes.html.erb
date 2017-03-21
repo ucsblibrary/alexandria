@@ -11,7 +11,7 @@
           <ul class="tabular">
             <% presenter.collection_ids.each_with_index do |id, j| %>
               <li class="attribute">
-                <%= link_to presenter.collection[j], main_app.collection_path(id) %>
+                <%= link_to presenter.collection[j], main_app.catalog_ark_path("ark:", params["shoulder"], id) %>
               </li>
             <% end %>
           </ul>
@@ -23,7 +23,7 @@
         <td>
           <ul class="tabular">
             <li class="attribute">
-              <%= link_to presenter.map_set_label, main_app.curation_concerns_map_set_path(presenter.parent_id) %>
+              <%= link_to presenter.map_set_label, main_app.catalog_ark_path("ark:", params["shoulder"], presenter.parent_id) %>
             </li>
           </ul>
         </td>
