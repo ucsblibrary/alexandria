@@ -16,7 +16,7 @@ class IndexMapIndexer < ObjectIndexer
 
     # Called by the CurationConcerns::WorkIndexer
     def square_thumbnail_images
-      file_set_images("75,75")
+      file_set_images("100,", "square")
     end
 
     def thumbnail_path
@@ -27,13 +27,14 @@ class IndexMapIndexer < ObjectIndexer
       file_set_images("1000,")
     end
 
-    def file_set_images(size = "400,")
+    def file_set_images(size = "400,", region = "full")
       object.file_sets.map do |file_set|
         file = file_set.files.first
         next unless file
         Riiif::Engine.routes.url_helpers.image_url(
           file.id,
           size: size,
+          region: region,
           only_path: true
         )
       end
