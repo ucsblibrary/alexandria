@@ -1,6 +1,6 @@
 <% if presenter.index_map_presenters.size > 0 %>
   <h2>Index Maps</h2>
   <% presenter.index_map_presenters.each_with_index do |p,i| %>
-    <%= render_thumbnail_tag p.solr_document, {}, { class: "IndexMap", id: "indexmap#{i}" }%>
+    <%= link_to image_tag(p.solr_document["square_thumbnail_url_ssm"].first), main_app.catalog_ark_path("ark:", params["shoulder"], p.id), :id => "indexmap#{i}"  %>
   <% end %>
 <% end %>

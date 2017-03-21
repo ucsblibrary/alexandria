@@ -1,9 +1,8 @@
-<h2>Component Maps</h2>
-
-<div class="row">
-  <% presenter.component_map_presenters.each_with_index do |p,i| %>
-    <div class="col-xs-6 col-md-2">
-      <%= render_thumbnail_tag p.solr_document, { class: "ComponentMap"}, { class: "thumbnail", id: "componentmap#{i}" }%>
-    </div>
-  <% end %>
-</div>
+<% if presenter.component_map_presenters.size > 0 %>
+  <h2>Component Maps</h2>
+  <div class="row">
+    <% presenter.component_map_presenters.each_with_index do |p,i| %>
+      <%= link_to image_tag(p.solr_document["square_thumbnail_url_ssm"].first), main_app.catalog_ark_path("ark:", params["shoulder"], p.id), :id => "componentmap#{i}" %>
+    <% end %>
+  </div>
+<% end %>
