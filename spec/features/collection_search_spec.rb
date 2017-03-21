@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require "rails_helper"
 
-feature "Collection search page" do
+feature "Collection search page", js: true do
   let(:user) { create :user }
 
   before do
@@ -78,7 +78,7 @@ feature "Collection search page" do
 
       # Search for something that's not in this collection
       fill_in "q", with: banana[:title].first
-      click_button "search"
+      click_button "Search"
 
       expect(page).to_not have_link("Pink", href: "/lib/pink")
       expect(page).to_not have_link("Orange", href: "/lib/orange")

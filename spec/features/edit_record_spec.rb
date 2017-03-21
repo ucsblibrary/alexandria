@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require "rails_helper"
 
-feature "Editing Records:" do
+feature "Editing Records", js: true do
   let(:record) { Topic.create(label: ["old label"]) }
   let(:new_label) { "New label" }
 

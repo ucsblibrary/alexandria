@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require "rails_helper"
 
-feature "Local Authorities" do
+feature "Local Authorities", js: true do
   let(:admin) { create :admin }
 
   before do

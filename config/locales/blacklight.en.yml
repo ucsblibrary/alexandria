@@ -1,0 +1,6 @@
+---
+en:
+  blacklight:
+    search:
+      page_title:
+        title: 'Results for “%{constraints}”'
