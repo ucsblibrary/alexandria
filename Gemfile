@@ -6,6 +6,7 @@ group :production, :development do
   gem "pg", "~> 0.18.4"
 end
 
+gem "activemodel", "< 5"
 gem "rails", "4.2.8"
 
 gem "font-awesome-sass"
@@ -16,19 +17,21 @@ gem "uglifier", "~> 3.1"
 gem "jbuilder", "~> 2.0"
 gem "therubyracer", "~> 0.12.3", platforms: :ruby
 
+gem "active-fedora", "~> 11.0.0"
+gem "active-triples", "~> 0.11.0"
 gem "blacklight-gallery", "~> 0.5.0"
 gem "blacklight_range_limit", "~> 6.0.0"
 gem "curation_concerns", "~> 1.7.7"
 gem "ezid-client", "~> 1.2"
 gem "hydra-role-management"
-gem "linked_vocabs", "~> 0.3.1"
+gem "linked_vocabs", git: "https://github.com/projecthydra-labs/linked_vocabs.git"
+gem "linkeddata", "~> 2.0.0"
 gem "marc"
 gem "mods", "~> 2.0.3"
 gem "openseadragon"
 gem "qa", "~> 0.5.0"
-gem "rdf-marmotta", "~> 0.0.8"
+gem "rdf-marmotta", "~> 0.1.1"
 gem "riiif", "~> 1.1"
-gem "rsolr", "~> 1.0.12"
 gem "traject", "~> 2.3.2"
 
 gem "kaminari", "~> 0.16.3"
