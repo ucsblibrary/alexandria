@@ -7,12 +7,12 @@ end
 
 gem "rails", "4.2.8"
 
-gem "jquery-rails", "~> 4.0.5"
+gem "jquery-rails", "~> 4.0"
 gem "sass-rails", "~> 5.0"
-gem "uglifier", "~> 2.7.2"
+gem "uglifier", "~> 3.1"
 
 gem "jbuilder", "~> 2.0"
-gem "therubyracer", platforms: :ruby
+gem "therubyracer", "~> 0.12.3", platforms: :ruby
 
 gem "blacklight-gallery", "~> 0.5.0"
 gem "blacklight_range_limit", "~> 6.0.0"
@@ -51,7 +51,7 @@ gem "american_date", "~> 1.1.0"
 group :development, :test do
   gem "awesome_print"
   gem "byebug"
-  gem "factory_girl_rails", "~> 4.4"
+  gem "factory_girl_rails", "~> 4.8"
 
   # Used exact gem versions for solr_wrapper and fcrepo_wrapper
   # because they aren't careful about making breaking changes on
@@ -74,7 +74,7 @@ group :test do
   gem "sqlite3"
   gem "timecop", "0.7.3"
   gem "vcr"
-  gem "webmock", require: false
+  gem "webmock", "~> 2.3", require: false
 end
 
 group :development do

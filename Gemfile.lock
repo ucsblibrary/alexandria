@@ -255,10 +255,10 @@ GEM
     execjs (2.7.0)
     ezid-client (1.5.0)
       hashie (~> 3.4, >= 3.4.3)
-    factory_girl (4.7.0)
+    factory_girl (4.8.0)
       activesupport (>= 3.0.0)
-    factory_girl_rails (4.7.0)
-      factory_girl (~> 4.7.0)
+    factory_girl_rails (4.8.0)
+      factory_girl (~> 4.8.0)
       railties (>= 3.0.0)
     faraday (0.9.2)
       multipart-post (>= 1.2, < 3)
@@ -293,7 +293,7 @@ GEM
       signet (~> 0.7)
     haml (4.0.7)
       tilt
-    hashdiff (0.3.0)
+    hashdiff (0.3.2)
     hashie (3.4.6)
     highcharts-rails (5.0.7)
       railties (>= 3.1)
@@ -382,7 +382,7 @@ GEM
       linkeddata (>= 1.1)
       rdf-vocab
       slop
-    libv8 (3.16.14.15)
+    libv8 (3.16.14.19)
     link_header (0.0.8)
     linked_vocabs (0.3.1)
       active-triples (>= 0.6.0)
@@ -715,8 +715,8 @@ GEM
       net-ssh (>= 2.8.0)
     stomp (1.4.3)
     sxp (0.1.5)
-    therubyracer (0.12.2)
-      libv8 (~> 3.16.14.0)
+    therubyracer (0.12.3)
+      libv8 (~> 3.16.14.15)
       ref
     thor (0.19.4)
     thread_safe (0.3.6)
@@ -739,9 +739,8 @@ GEM
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uber (0.1.0)
-    uglifier (2.7.2)
-      execjs (>= 0.3.0)
-      json (>= 1.8.0)
+    uglifier (3.1.9)
+      execjs (>= 0.3.0, < 3)
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.2)
@@ -751,7 +750,7 @@ GEM
       rack (>= 1.0.0)
     warden (1.2.6)
       rack (>= 1.0)
-    webmock (2.1.0)
+    webmock (2.3.2)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff
@@ -785,12 +784,12 @@ DEPENDENCIES
   devise-guests (~> 0.5.0)
   devise_ldap_authenticatable
   ezid-client (~> 1.2)
-  factory_girl_rails (~> 4.4)
+  factory_girl_rails (~> 4.8)
   fcrepo_wrapper (= 0.7.0)
   highline
   hydra-role-management
   jbuilder (~> 2.0)
-  jquery-rails (~> 4.0.5)
+  jquery-rails (~> 4.0)
   kaminari (~> 0.16.3)
   kaminari_route_prefix
   linked_vocabs (~> 0.3.1)
@@ -818,13 +817,13 @@ DEPENDENCIES
   spring
   spring-commands-rspec
   sqlite3
-  therubyracer
+  therubyracer (~> 0.12.3)
   timecop (= 0.7.3)
   traject (~> 2.3.2)
   trollop
-  uglifier (~> 2.7.2)
+  uglifier (~> 3.1)
   vcr
-  webmock
+  webmock (~> 2.3)
 
 BUNDLED WITH
-   1.14.4
+   1.14.6
