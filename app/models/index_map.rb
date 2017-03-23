@@ -5,6 +5,9 @@ class IndexMap < ActiveFedora::Base
   include ::CurationConcerns::WorkBehavior
   include WithAdminPolicy
   include Metadata
+  include WithMapSet
+  after_save :map_set_update_index
+
   # Change this to restrict which works can be added as a child.
   # self.valid_child_concerns = []
   validates :title, presence: { message: "Your work must have a title." }
