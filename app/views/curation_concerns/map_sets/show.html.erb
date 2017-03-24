@@ -10,6 +10,14 @@
   <h1><%= @presenter %></h1>
 <% end %>
 
-<%= render 'index_maps', presenter: @presenter %>
-<%= render 'component_maps', presenter: @presenter %>
-<%= render 'attributes', presenter: @presenter %>
+<div class="row">
+  <div class="col-md-12">
+    <%= render 'index_maps', presenter: @presenter %>
+    <%= render 'component_maps', presenter: @presenter %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <%= render 'attributes', presenter: @presenter %>
+  </div>
+</div>
