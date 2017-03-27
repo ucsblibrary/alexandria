@@ -4,7 +4,9 @@ module LocalAuthorityHashAccessor
   extend ActiveSupport::Concern
 
   # Override the hash accessor to cast local objects to AF::Base
-  # TODO move this into Oargun using the casting functionality of ActiveTriples
+  #
+  # TODO: move this into linked_vocab using the casting functionality
+  # of ActiveTriples
   def [](arg)
     reflection = self.class.reflect_on_association(arg.to_sym)
     # Checking this avoids setting properties like head_id (belongs_to) to an array
@@ -30,7 +32,7 @@ module LocalAuthorityHashAccessor
         item.rdf_subject.is_a?(RDF::URI) &&
         item.rdf_subject.start_with?(ActiveFedora.fedora.host) &&
         # item.class.include?(LinkedVocabs::Controlled) # TODO this could replace the last term
-        (item.is_a?(Oargun::ControlledVocabularies::Creator) ||
-         item.is_a?(Oargun::ControlledVocabularies::Subject))
+        (item.is_a?(ControlledVocabularies::Creator) ||
+         item.is_a?(ControlledVocabularies::Subject))
     end
 end

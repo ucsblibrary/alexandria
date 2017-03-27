@@ -152,22 +152,22 @@ describe Importer::Cylinder do
 
       # Check the metadata for record1
       expect(record1.accession_number).to contain_exactly("Cylinder 4373", "Cylinder 4374", "Cylinder 4377")
-      expect(record1.copyright_status.map(&:class)).to eq [Oargun::ControlledVocabularies::CopyrightStatus]
+      expect(record1.copyright_status.map(&:class)).to eq [ControlledVocabularies::CopyrightStatus]
       expect(record1.digital_origin).to eq ["reformatted digital"]
       expect(record1.edition).to eq ["[Pathé Stentor (Concert) ed.]"]
-      expect(record1.institution.map(&:class)).to eq [Oargun::ControlledVocabularies::Organization]
+      expect(record1.institution.map(&:class)).to eq [ControlledVocabularies::Organization]
       expect(record1.issued.first.label).to eq ["[1903]"]
       expect(record1.issued.first.to_a).to eq 1903
       expect(record1.language.first.rdf_subject).to eq RDF::URI("http://id.loc.gov/vocabulary/iso639-2/eng")
       expect(record1.lc_subject.count).to eq 12
-      expect(record1.lc_subject.first.class).to eq Oargun::ControlledVocabularies::Subject
+      expect(record1.lc_subject.first.class).to eq ControlledVocabularies::Subject
       record1.lc_subject.map(&:solrize).flatten.each do |uri|
         expect(uri).to(
           match(%r{(http://test.host/authorities/topics/.{8}-.{4}-.{4}-.{4}-.{12})|(http://test.host/authorities/people/.{8}-.{4}-.{4}-.{4}-.{12})|(http://test.host/authorities/organizations/.{8}-.{4}-.{4}-.{4}-.{12})})
         )
       end
-      expect(record1.license.map(&:class)).to eq [Oargun::ControlledVocabularies::RightsStatement]
-      expect(record1.location.first.class).to eq Oargun::ControlledVocabularies::Geographic
+      expect(record1.license.map(&:class)).to eq [ControlledVocabularies::RightsStatement]
+      expect(record1.location.first.class).to eq ControlledVocabularies::Geographic
       expect(record1.matrix_number).to eq []
       expect(record1.description).to eq ['Baritone solo with orchestra accompaniment.\nIt\'s really good and you should all listen.']
       expect(record1.extent).to eq ["1 cylinder (ca. 2 min.) : 160 rpm ; 2 1/4 x 4 in. 1 record slip"]
@@ -196,7 +196,7 @@ describe Importer::Cylinder do
       # Check the contributors are correct
       [:performer, :instrumentalist, :lyricist, :arranger, :rights_holder, :singer].each do |property_name|
         contributor = record1.send(property_name)
-        expect(contributor.map(&:class).uniq).to eq [Oargun::ControlledVocabularies::Creator]
+        expect(contributor.map(&:class).uniq).to eq [ControlledVocabularies::Creator]
       end
 
       # Check local authorities were created for performers

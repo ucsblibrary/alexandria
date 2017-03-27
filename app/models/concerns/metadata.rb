@@ -40,7 +40,7 @@ module Metadata
     end
 
     RELATIONS.each do |field_name, predicate|
-      property field_name, predicate: predicate, class_name: Oargun::ControlledVocabularies::Creator do |index|
+      property field_name, predicate: predicate, class_name: ControlledVocabularies::Creator do |index|
         index.as :stored_searchable, :facetable
       end
     end
@@ -71,12 +71,12 @@ module Metadata
     property :coverage, predicate: ::RDF::Vocab::DC11.coverage, multiple: false
 
     property :language, predicate: RDF::Vocab::DC.language,
-                        class_name: Oargun::ControlledVocabularies::Language do |index|
+                        class_name: ControlledVocabularies::Language do |index|
       index.as :displayable
     end
 
     property :location, predicate: RDF::Vocab::DC.spatial,
-                        class_name: Oargun::ControlledVocabularies::Geographic do |index|
+                        class_name: ControlledVocabularies::Geographic do |index|
       index.as :stored_searchable, :facetable
     end
 
@@ -84,13 +84,13 @@ module Metadata
       index.as :stored_searchable
     end
 
-    property :lc_subject, predicate: RDF::Vocab::DC.subject, class_name: Oargun::ControlledVocabularies::Subject do |index|
+    property :lc_subject, predicate: RDF::Vocab::DC.subject, class_name: ControlledVocabularies::Subject do |index|
       index.as :stored_searchable, :facetable
     end
 
     validates_vocabulary_of :lc_subject
 
-    property :institution, predicate: Oargun::Vocabularies::OARGUN.contributingInstitution, class_name: Oargun::ControlledVocabularies::Organization do |index|
+    property :institution, predicate: Vocabularies::OARGUN.contributingInstitution, class_name: ControlledVocabularies::Organization do |index|
       index.as :stored_searchable
     end
 
@@ -100,23 +100,23 @@ module Metadata
       index.as :stored_searchable, :facetable
     end
 
-    property :rights_holder, predicate: RDF::Vocab::DC.rightsHolder, class_name: Oargun::ControlledVocabularies::Creator do |index|
+    property :rights_holder, predicate: RDF::Vocab::DC.rightsHolder, class_name: ControlledVocabularies::Creator do |index|
       index.as :symbol
     end
 
-    property :copyright_status, predicate: RDF::Vocab::PREMIS.hasCopyrightStatus, class_name: Oargun::ControlledVocabularies::CopyrightStatus do |index|
+    property :copyright_status, predicate: RDF::Vocab::PREMIS.hasCopyrightStatus, class_name: ControlledVocabularies::CopyrightStatus do |index|
       index.as :stored_searchable
     end
 
     validates_vocabulary_of :copyright_status
 
-    property :license, predicate: RDF::Vocab::DC.rights, class_name: Oargun::ControlledVocabularies::RightsStatement do |index|
+    property :license, predicate: RDF::Vocab::DC.rights, class_name: ControlledVocabularies::RightsStatement do |index|
       index.as :stored_searchable, :facetable
     end
 
     validates_vocabulary_of :license
 
-    property :work_type, predicate: RDF::Vocab::DC.type, class_name: Oargun::ControlledVocabularies::ResourceType do |index|
+    property :work_type, predicate: RDF::Vocab::DC.type, class_name: ControlledVocabularies::ResourceType do |index|
       index.as :stored_searchable, :facetable
     end
     validates_vocabulary_of :work_type
@@ -152,7 +152,7 @@ module Metadata
 
     # RDA
     property :form_of_work, predicate: RDF::URI("http://www.rdaregistry.info/Elements/w/#formOfWork.en"),
-                            class_name: Oargun::ControlledVocabularies::WorkType do |index|
+                            class_name: ControlledVocabularies::WorkType do |index|
       index.as :stored_searchable, :facetable
     end
 

@@ -64,24 +64,24 @@ describe MergeRecordsService do
 
     it "updates all references to the old name" do
       expect(image1.creator.count).to eq 1
-      expect(image1.creator.first).to be_a(Oargun::ControlledVocabularies::Creator)
+      expect(image1.creator.first).to be_a(ControlledVocabularies::Creator)
       expect(image1.creator.first.rdf_subject).to eq new_name.rdf_subject
 
       expect(image1.lc_subject.count).to eq 1
-      expect(image1.lc_subject.first).to be_a(Oargun::ControlledVocabularies::Subject)
+      expect(image1.lc_subject.first).to be_a(ControlledVocabularies::Subject)
       expect(image1.lc_subject.first.rdf_subject).to eq new_name.rdf_subject
 
       expect(image2.photographer.count).to eq 1
-      expect(image2.photographer.first).to be_a(Oargun::ControlledVocabularies::Creator)
+      expect(image2.photographer.first).to be_a(ControlledVocabularies::Creator)
       expect(image2.photographer.first.rdf_subject).to eq new_name.rdf_subject
 
       # It keeps other values and doesn't make duplicate values
       expect(image2.lc_subject.count).to eq 2
-      expect(image2.lc_subject.map(&:class).uniq).to eq [Oargun::ControlledVocabularies::Subject]
+      expect(image2.lc_subject.map(&:class).uniq).to eq [ControlledVocabularies::Subject]
       expect(image2.lc_subject.map(&:rdf_subject).sort).to eq [other_name.rdf_subject, new_name.rdf_subject].sort
 
       expect(collection.collector.count).to eq 2
-      expect(collection.collector.map(&:class).uniq).to eq [Oargun::ControlledVocabularies::Creator]
+      expect(collection.collector.map(&:class).uniq).to eq [ControlledVocabularies::Creator]
       expect(collection.collector.map(&:rdf_subject).sort).to eq [other_name.rdf_subject, new_name.rdf_subject].sort
 
       # It deletes the old name

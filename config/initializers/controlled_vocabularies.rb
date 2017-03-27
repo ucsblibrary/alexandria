@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require "controlled_vocabularies"
+require "vocabularies"
+
 require_relative "settings"
 
 LinkedVocabs.add_vocabulary("aat", "http://vocab.getty.edu/aat/")
@@ -18,13 +21,12 @@ LinkedVocabs.add_vocabulary("rights", "http://opaquenamespace.org/ns/rights/")
 LinkedVocabs.add_vocabulary("rs", "http://rightsstatements.org/vocab/")
 LinkedVocabs.add_vocabulary("tgm", "http://id.loc.gov/vocabulary/graphicMaterials")
 
-Oargun::ControlledVocabularies::RightsStatement.use_vocabulary(
-  :rs, class: Oargun::Vocabularies::RS
+ControlledVocabularies::RightsStatement.use_vocabulary(
+  :rs, class: Vocabularies::RS
 )
-Oargun::ControlledVocabularies::Creator.use_vocabulary(
-  :lcnames, class: Oargun::Vocabularies::LCNAMES
+ControlledVocabularies::Creator.use_vocabulary(
+  :lcnames, class: Vocabularies::LCNAMES
 )
 
-require "vocabularies/local"
-Oargun::ControlledVocabularies::Creator.use_vocabulary :local, class: Vocabularies::LOCAL
-Oargun::ControlledVocabularies::Subject.use_vocabulary :local, class: Vocabularies::LOCAL
+ControlledVocabularies::Creator.use_vocabulary :local, class: Vocabularies::LOCAL
+ControlledVocabularies::Subject.use_vocabulary :local, class: Vocabularies::LOCAL

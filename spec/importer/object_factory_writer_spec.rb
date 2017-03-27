@@ -60,7 +60,7 @@ describe ObjectFactoryWriter do
       expect(etd.place_of_publication).to eq ["[Santa Barbara, Calif.]"]
       expect(etd.publisher).to eq ["University of California, Santa Barbara"]
       expect(etd.title).to eq ["How to be awesome"]
-      expect(etd.work_type.first.class).to eq Oargun::ControlledVocabularies::ResourceType
+      expect(etd.work_type.first.class).to eq ControlledVocabularies::ResourceType
     end
   end
 
