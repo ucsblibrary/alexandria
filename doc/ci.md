@@ -22,9 +22,17 @@ Jenkins server.  Instead, it has worker VMs that it delegates jobs to.
   out the “Slack Webhook Settings” section of the Jenkins system
   configuration.
 
+- Under “GitHub Server”, the API URL should be
+  <https://github.library.ucsb.edu/api/v3/>.  Log into GitHub
+  Enterprise as the Jenkins user and create a Personal Access token
+  with `repo` and `admin:repo_hook` permissions, then add that token
+  as a “Secret text” credential.  Test the connection, check “Manage
+  hooks”, then under “Advanced”, click “Re-register hooks for all
+  jobs”.
+
 - Under “GitHub Pull Request Builder”, we’ve got the URL endpoint of
   our Enterprise API (not the github.com endpoint) and the credentials
-  for connecting.
+  for connecting.  The shared secret can be anything, just write it down.
 
     Check “Auto-manage webhooks”; I’m not sure if this is strictly
     necessary, but during testing leaving it unchecked _seemed_ to
@@ -37,12 +45,12 @@ Jenkins server.  Instead, it has worker VMs that it delegates jobs to.
 
 This is a multi-configuration project, meaning we run the same job(s)
 against a matrix of configuration.  For now we’re just testing against
-Ruby 2.3.0 and 2.3.1.
+Ruby 2.3.1 and 2.4.1.
 
-- In “General”, check “GitHub project” and enter the URL (without the
-  `.git`).  Also check “Rebuild Without Asking For Parameters”; this
-  will allow us to re-run jobs without manually entering the commit to
-  test.
+- In “General”, check “GitHub project” and enter the URL (in our case,
+  <https://github.library.ucsb.edu/ADRL/alexandria/>).  Also check
+  “Rebuild Without Asking For Parameters”; this will allow us to
+  re-run jobs without manually entering the commit to test.
 
 - Under “Advanced Project Options”, check “Restrict where this project
     can be run” and restrict it to running on `master` (i.e., the
@@ -75,8 +83,8 @@ Ruby 2.3.0 and 2.3.1.
   var and the _Values_ are space-separated values.
 
     Then to ensure these “downstream” jobs are only run on worker VMs
-    and not on master, we add a “Slaves” matrix (ugh, I know).  Name
-    it whatever you want, then select the appropriate machines under
+    and not on master, we add a “Slaves” matrix (ugh, I know).  Leave
+    the name as “label”, then select the appropriate machines under
     “Individual nodes”.
 
 - Under “Build Environment”, check “rbenv build wrapper” so it
@@ -87,12 +95,9 @@ Ruby 2.3.0 and 2.3.1.
 - Under “Build”, use the `RBENV_VERSION` to make sure the right Ruby
     version is available before running tests (we don’t need `rbenv
     local`; rbenv respects the value of the environment variable).
+    Here’s what the build script currently looks like:
 
     ```shell
-    {
-    # Remove the temporary Solr core from any previous tests
-    rm -rf /tmp/solr-*
-
     # Make sure rbenv and ruby-build are up do date,
     # since somehow the Jenkins plugin can’t do this itself
     pushd ~/.rbenv
@@ -103,6 +108,14 @@ Ruby 2.3.0 and 2.3.1.
     git fetch origin && git reset --hard origin/master
     popd
 
+    # adrljenkinsbuild3 is broken so we have to hold its hand through every god damn thing
+    export PATH="~/.rbenv/bin:$PATH"
+    eval "$(rbenv init -)"
+
+    old_proxy=$http_proxy
+    export http_proxy=
+    export https_proxy=
+
     if ! rbenv versions | grep "$RBENV_VERSION" >/dev/null 2>&1; then
       rbenv install $RBENV_VERSION
     fi
@@ -111,7 +124,6 @@ Ruby 2.3.0 and 2.3.1.
     bundle install --without=production development
     cp config/secrets.yml.template config/secrets.yml
     make spec
-    }
     ```
 
 ### Master branch configuration (<http://jenkins.library.ucsb.edu:8080/job/ADRL_master/configure>)
