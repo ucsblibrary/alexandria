@@ -5,12 +5,12 @@ automatically run.  Currently we use Jenkins for testing PRs and for
 running tests on the `master` branch itself.
 
 The Jenkins instance is located on the private network at
-<http://jenkins:8080/>, but tests aren’t run directly on the
+<http://jenkins.library.ucsb.edu:8080/>, but tests aren’t run directly on the
 Jenkins server.  Instead, it has worker VMs that it delegates jobs to.
 
 ## Jenkins configuration
 
-### System configuration (<http://jenkins:8080/configure>)
+### System configuration (<http://jenkins.library.ucsb.edu:8080/configure>)
 
 - Under “Usage”, we’ve selected “Only build jobs with label
   expressions matching this node”; the Jenkins server doesn’t have
@@ -31,7 +31,7 @@ Jenkins server.  Instead, it has worker VMs that it delegates jobs to.
     cause Jenkins to fallback to polling GitHub periodically for new
     PRs instead of listening to webhooks.
 
-### PR configuration (<http://jenkins:8080/job/ADRL_pull-requests/configure>)
+### PR configuration (<http://jenkins.library.ucsb.edu:8080/job/ADPR/configure>)
 
 (See also <https://github.com/jenkinsci/ghprb-plugin/blob/master/README.md#creating-a-job>.)
 
@@ -114,7 +114,7 @@ Ruby 2.3.0 and 2.3.1.
     }
     ```
 
-### Master branch configuration (<http://jenkins:8080/job/ADRL_master/configure>)
+### Master branch configuration (<http://jenkins.library.ucsb.edu:8080/job/ADRL_master/configure>)
 
 This is just a simplified version of the PR project.  It’s not a
 multi-configuration project, since we’re only testing against the
