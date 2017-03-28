@@ -58,7 +58,7 @@ describe Importer::Factory::ImageFactory do
             obj = factory.run
           end
           expect(obj.file_sets.first.admin_policy_id).to eq AdminPolicy::PUBLIC_POLICY_ID
-        end.not_to change { Image.count }
+        end.not_to(change { Image.count })
       end
     end
   end

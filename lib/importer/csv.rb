@@ -85,9 +85,9 @@ module Importer::CSV
 
     if verbose
       puts "Object attributes for item #{ingests + 1}:"
-      puts attrs.each { |k, v| puts "#{k}: #{v}" }
+      attrs.each { |k, v| puts "#{k}: #{v}" }
       puts "Associated files for item #{ingests + 1}:"
-      puts files.each { |f| puts f }
+      files.each { |f| puts f }
     end
 
     start_time = Time.now

@@ -85,7 +85,7 @@ class ObjectFactoryWriter
     def print_file_names(file_groups)
       return unless @verbose
       puts "Files to attach:"
-      puts file_groups.flatten.each { |f| puts f.inspect }
+      file_groups.flatten.each { |f| puts f.inspect }
     end
 
     # Traject doesn't have a mechanism for supplying defaults to these fields

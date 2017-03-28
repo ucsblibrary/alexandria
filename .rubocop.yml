@@ -34,6 +34,9 @@ Style/IndentationConsistency:
 Style/Lambda:
   EnforcedStyle: lambda
 
+Style/MultilineBlockChain:
+  Enabled: false
+
 Style/MultilineMethodCallBraceLayout:
   Enabled: false
 

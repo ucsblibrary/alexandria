@@ -11,7 +11,7 @@ module ExtractLCSubject
         ),
       }.each do |k, v|
         names = v.extract(record).compact
-        accumulator << names.map { |n| { type: k, name: Traject::Macros::Marc21.trim_punctuation(n) } }
+        accumulator << (names.map { |n| { type: k, name: Traject::Macros::Marc21.trim_punctuation(n) } })
         accumulator.flatten!
       end
     end

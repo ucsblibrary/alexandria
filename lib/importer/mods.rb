@@ -35,7 +35,7 @@ module Importer::MODS
         puts metadatum
         puts
         puts "Associated files for item #{ingests + 1}:"
-        puts selected_data.each { |f| puts f }
+        selected_data.each { |f| puts f }
       end
 
       Rails.logger.debug "Importing: #{meta}"
