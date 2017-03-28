@@ -54,47 +54,40 @@ metadata_ext = case options[:format]
 # For each argument passed to --metadata, if it's a file, add it
 # to the array, otherwise drill down and add each file within to
 # the array
-meta = if options[:metadata]
-         options[:metadata].map do |arg|
-           if File.file?(arg)
-             arg
-           else
-             next unless Dir.exist?(arg)
-             files = []
-             Find.find(arg) do |path|
-               next unless File.extname(path) == metadata_ext
-               files << path
-             end
-             files
-           end
-         end.flatten
-       else
-         []
-       end
+meta = (options[:metadata] || []).map do |arg|
+  if File.file?(arg)
+    arg
+  else
+    next unless Dir.exist?(arg)
+    files = []
+    Find.find(arg) do |path|
+      next unless File.extname(path) == metadata_ext
+      files << path
+    end
+    files
+  end
+end.flatten
 
 # For each argument passed to --data, if it's a file, add it to
 # the array, otherwise drill down and add each file within to the
 # array
-data = if options[:data]
-         if options[:format] == "cyl"
-           options[:data] # Just pass the options through
-         else
-           options[:data].map do |arg|
-             if File.file?(arg)
-               arg
-             else
-               next unless Dir.exist?(arg)
-               datas = []
-               Find.find(arg) do |path|
-                 next if File.directory?(path)
-                 datas << path
-               end
-               datas
-             end
-           end.flatten.compact
-         end
+data = if options[:format] == "cyl"
+         options[:data] # Just pass the options through
        end
-data ||= []
+
+data ||= (options[:data] || []).map do |arg|
+  if File.file?(arg)
+    arg
+  else
+    next unless Dir.exist?(arg)
+    datas = []
+    Find.find(arg) do |path|
+      next if File.directory?(path)
+      datas << path
+    end
+    datas
+  end
+end.flatten.compact
 
 if data.empty?
   puts

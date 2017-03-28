@@ -7,12 +7,15 @@ AllCops:
     - '**/*~'
     - 'db/**/*'
     - 'tmp/**/*'
-    - 'bin/all-audio'
-    - 'bin/export-image-arks'
-    - 'bin/export-solr'
 
 Lint/AssignmentInCondition:
   Enabled: false
+
+Lint/HandleExceptions:
+  Exclude:
+    - 'bin/rails'
+    - 'bin/rake'
+    - 'bin/rspec'
 
 Metrics/LineLength:
   Enabled: false
