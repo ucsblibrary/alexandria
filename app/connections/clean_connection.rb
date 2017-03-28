@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This stands in for ActiveFedora::CleanConnection. It behaves the same way,
 # but it doesn't clear the has_model assertion
 class CleanConnection < SimpleDelegator

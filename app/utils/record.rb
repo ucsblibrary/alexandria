@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Record
   # This method finds all fedora records that have a reference to this record in any metadata field.
   # The input should be an ActiveFedora::Base object.

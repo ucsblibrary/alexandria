@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 source "https://rubygems.org"
 
 group :production, :development do
@@ -62,7 +63,7 @@ group :development, :test do
   gem "poltergeist"
   gem "rspec-activemodel-mocks"
   gem "rspec-rails"
-  gem "rubocop", "~> 0.47.1", require: false
+  gem "rubocop", "~> 0.48.0", require: false
   gem "spring"
   gem "spring-commands-rspec", group: :development
 end

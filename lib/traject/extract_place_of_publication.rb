@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module ExtractPlaceOfPublication
   # As of
   # https://github.com/traject/traject/commit/0a0dfe308f1a90398eaf4ebede7b8d74f747742e,

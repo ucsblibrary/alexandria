@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # Parse an XML metadata file from the ProQuest system, and
 # collect all the interesting values in the attributes hash.
 

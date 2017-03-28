@@ -14,15 +14,15 @@ puts "Running in #{Rails.env} mode..."
 require "trollop"
 
 options = Trollop.options do
-  banner <<-EOS
+  banner <<~EOS
 
-Command line object ingest for the UCSB Alexandria Digital Library
+    Command line object ingest for the UCSB Alexandria Digital Library
 
-Example:
-      RAILS_ENV=development ./bin/ingest -f csv -m /data/mss292.csv -d /data/mss292-objects/ -v
-Usage:
-      RAILS_ENV=[development|test|production] ./bin/ingest [options]
-where [options] are:
+    Example:
+          RAILS_ENV=development ./bin/ingest -f csv -m /data/mss292.csv -d /data/mss292-objects/ -v
+    Usage:
+          RAILS_ENV=[development|test|production] ./bin/ingest [options]
+    where [options] are:
 
 EOS
 

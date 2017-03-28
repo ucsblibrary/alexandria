@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 namespace :cache do
   desc "Warm up the cache"
   task warm: :environment do

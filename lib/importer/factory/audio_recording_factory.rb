@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Importer::Factory
   class AudioRecordingFactory < ObjectFactory
     self.klass = AudioRecording

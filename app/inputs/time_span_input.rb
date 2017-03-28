@@ -1,4 +1,5 @@
 # frozen_string_literal: false
+
 class TimeSpanInput < MultiValueInput
   FORMAT_PLACEHOLDER = "YYYY-MM-DD".freeze
 

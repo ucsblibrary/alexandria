@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class LocalAuthoritiesSearchBuilder < Blacklight::SearchBuilder
   include Blacklight::Solr::SearchBuilderBehavior
   include Hydra::AccessControlsEnforcement

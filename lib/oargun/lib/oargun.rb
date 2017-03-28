@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require "oargun/version"
 require "active_support"
 require "active_triples"

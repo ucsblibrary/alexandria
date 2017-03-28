@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module LocalAuthority
   def self.local_name_models
     [Agent, Person, Group, Organization]

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class TimeSpan < ActiveTriples::Resource
   include StoredInline
 
@@ -11,9 +12,9 @@ class TimeSpan < ActiveTriples::Resource
   property :note, predicate: ::RDF::SKOS.note
 
   # MODS date qualifiers
-  APPROX = "approximate".freeze
-  INFERRED = "inferred".freeze
-  QUESTIONABLE = "questionable".freeze
+  APPROX = "approximate"
+  INFERRED = "inferred"
+  QUESTIONABLE = "questionable"
 
   QUALIFIERS = [APPROX, INFERRED, QUESTIONABLE].freeze
 

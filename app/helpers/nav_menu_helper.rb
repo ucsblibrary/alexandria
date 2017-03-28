@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module NavMenuHelper
   def local_authorities_link
     return unless can_read_authorities?

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class RDF::DeepIndexingService < ActiveFedora::RDF::IndexingService
   # We're overiding the default indexer in order to index the RDF labels. In order
   # for this to be called, you must specify at least one default indexer on the property.

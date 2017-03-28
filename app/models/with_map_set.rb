@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module WithMapSet
   # When this object is created or updated, its parent MapSet
   # needs to update its solr index

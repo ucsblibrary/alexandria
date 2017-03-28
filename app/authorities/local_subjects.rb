@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This is a local subjects authority adapter for questioning authority
 class LocalSubjects
   include Blacklight::SearchHelper

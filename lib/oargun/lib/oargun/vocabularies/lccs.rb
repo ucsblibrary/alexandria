@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Oargun::Vocabularies
   class LCCS < ::RDF::Vocabulary("http://id.loc.gov/vocabulary/preservation/copyrightStatus")
     # Other terms

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 config = YAML.safe_load(
   ERB.new(IO.read(File.join(Rails.root, "config", "redis.yml"))).result,
   # by default #safe_load doesn't allow aliases

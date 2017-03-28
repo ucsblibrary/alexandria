@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module EmbargoService
   def self.create_or_update_embargo(work, params)
     if new_admin_policy_id = params[:admin_policy_id]

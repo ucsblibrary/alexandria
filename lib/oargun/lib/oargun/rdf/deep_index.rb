@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Oargun::RDF
   module DeepIndex
     def solrize

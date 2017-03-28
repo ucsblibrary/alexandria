@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require "factory_girl"
 FactoryGirl.define do
   factory :scanned_map do

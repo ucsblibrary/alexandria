@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This is the controller that draws the home page
 class WelcomeController < ApplicationController
   layout "curation_concerns", except: :index

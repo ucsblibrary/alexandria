@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module ExtractLanguage
   # Transform field 008 into an iso639-2 URI
   def extract_language

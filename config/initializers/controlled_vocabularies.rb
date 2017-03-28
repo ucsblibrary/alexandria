@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require_relative "settings"
 
 LinkedVocabs.add_vocabulary("aat", "http://vocab.getty.edu/aat/")

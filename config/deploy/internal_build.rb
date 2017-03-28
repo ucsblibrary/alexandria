@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 set :stage, :internal_build
 set :rails_env, "production"
 set :branch, ENV["BRANCH"] || "master"

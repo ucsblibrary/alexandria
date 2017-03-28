@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class AudioRecordingPresenter < CurationConcerns::WorkShowPresenter
   delegate(
     :accession_number,

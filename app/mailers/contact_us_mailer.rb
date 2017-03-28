@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class ContactUsMailer < ApplicationMailer
   default to: Rails.application.secrets.contact_us_email_to
 

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Oargun::ControlledVocabularies
   class Organization < ActiveTriples::Resource
     include Oargun::RDF::Controlled

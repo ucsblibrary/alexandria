@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class ComponentMapIndexer < ObjectIndexer
   def generate_solr_document
     super do |solr_doc|

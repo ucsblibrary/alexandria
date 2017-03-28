@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class ETDIndexer < ObjectIndexer
   def generate_solr_document
     super.tap do |solr_doc|

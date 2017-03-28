@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module ExtractArk
   def extract_ark
     ark_extractor = Traject::MarcExtractor.new("024a", separator: nil)

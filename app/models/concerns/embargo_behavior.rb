@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # Because we are using admin_policies instead of directly writing users
 # and groups with access to each work, we need to override the default
 # embargo behavior from the hydra-access-controls gem.

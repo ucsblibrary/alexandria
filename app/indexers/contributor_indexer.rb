@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # Selects a sortable (singular) creator and unions all the contributor
 # subtypes together into a single solr field.
 class ContributorIndexer

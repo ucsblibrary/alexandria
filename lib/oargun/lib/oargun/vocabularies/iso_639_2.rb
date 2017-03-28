@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This file generated automatically using vocab-fetch from http://id.loc.gov/vocabulary/iso639-2.nt
 module Oargun::Vocabularies
   class ISO_639_2 < ::RDF::StrictVocabulary("http://id.loc.gov/vocabulary/iso639-2/")

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class ScannedMapPresenter < CurationConcerns::WorkShowPresenter
   delegate(
     :accession_number,

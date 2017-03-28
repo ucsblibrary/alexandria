@@ -1,15 +1,10 @@
 # frozen_string_literal: true
+
 class ImageForm
   include HydraEditor::Form
   self.model_class = Image
 
-  self.terms = [:title, :alternative, :accession_number, :description,
-                :series_name, :work_type, :form_of_work, :extent,
-                :place_of_publication, :location, :lc_subject, :publisher,
-                :contributor, :latitude, :longitude, :digital_origin, :institution,
-                :sub_location, :restrictions, :created, :issued,
-                :date_other, :date_copyrighted, :language, :description_standard,
-                :copyright_status, :license, :rights_holder, :admin_policy_id,]
+  self.terms = [:title, :alternative, :accession_number, :description, :series_name, :work_type, :form_of_work, :extent, :place_of_publication, :location, :lc_subject, :publisher, :contributor, :latitude, :longitude, :digital_origin, :institution, :sub_location, :restrictions, :created, :issued, :date_other, :date_copyrighted, :language, :description_standard, :copyright_status, :license, :rights_holder, :admin_policy_id]
 
   self.required_fields = [] # Required fields
 

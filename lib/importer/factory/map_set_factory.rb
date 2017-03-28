@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Importer::Factory
   class MapSetFactory < ObjectFactory
     # Note: A MapSet does not have any attached files

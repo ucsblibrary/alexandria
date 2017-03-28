@@ -1,6 +1,7 @@
 # frozen_string_literal: true
+
 class MapSetIndexer < ObjectIndexer
-  MAP_SORT_FIELD = "accession_number_si asc".freeze
+  MAP_SORT_FIELD = "accession_number_si asc"
 
   def generate_solr_document
     super do |solr_doc|

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # Europeana rights statements are not returning labels,
 # this puts a valid label into Marmotta so we don't hit
 # Europeana multiple times without effect.

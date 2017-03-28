@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require "rails_helper"
 
 describe "curation_concerns/audio_recordings/show.html.erb" do

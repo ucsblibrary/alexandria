@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # A parent MapSet might contain several ComponentMap and
 # IndexMap records.  The full list of component and index maps
 # is indexed on the solr document for the parent MapSet record.

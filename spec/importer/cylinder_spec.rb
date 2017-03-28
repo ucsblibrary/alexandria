@@ -1,5 +1,6 @@
 # coding: utf-8
 # frozen_string_literal: true
+
 require "rails_helper"
 require "importer"
 
@@ -193,12 +194,7 @@ describe Importer::Cylinder do
       expect(record1.table_of_contents).to eq ["The whistling coon Sam Devere, words / Sam Raeburn, music -- sleep, baby, sleep -- if it wasn't for the irish and the jews William Jerome, words / Jean Schwartz, music"]
 
       # Check the contributors are correct
-      [:performer,
-       :instrumentalist,
-       :lyricist,
-       :arranger,
-       :rights_holder,
-       :singer,].each do |property_name|
+      [:performer, :instrumentalist, :lyricist, :arranger, :rights_holder, :singer].each do |property_name|
         contributor = record1.send(property_name)
         expect(contributor.map(&:class).uniq).to eq [Oargun::ControlledVocabularies::Creator]
       end

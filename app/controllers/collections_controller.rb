@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # Overrides the CollectionsController provided by hydra-collections
 # it provides display and search within collections.
 class CollectionsController < ApplicationController

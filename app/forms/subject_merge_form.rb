@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class SubjectMergeForm
   include HydraEditor::Form
 

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 namespace :fedora do
   desc "Cleans the ActiveFedora repository"
   task clean: [:environment] do

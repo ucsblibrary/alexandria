@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module ExtractLCSubject
   def extract_lc_subject
     lambda do |record, accumulator|

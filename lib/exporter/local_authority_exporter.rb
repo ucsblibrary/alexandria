@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require "exporter/base_exporter"
 
 class Exporter::LocalAuthorityExporter < Exporter::BaseExporter

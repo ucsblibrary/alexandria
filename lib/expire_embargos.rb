@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module ExpireEmbargos
   def self.run
     assets = EmbargoQueryService.assets_with_expired_embargoes

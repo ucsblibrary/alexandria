@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 set :stage, :vagrant
 set :rails_env, "production"
 set :bundle_without, [:development, :test]

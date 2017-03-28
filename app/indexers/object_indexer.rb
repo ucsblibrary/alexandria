@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class ObjectIndexer < CurationConcerns::WorkIndexer
   def rdf_service
     RDF::DeepIndexingService
@@ -13,7 +14,7 @@ class ObjectIndexer < CurationConcerns::WorkIndexer
   OTHER = Solrizer.solr_name("date_other", :displayable)
 
   SORTABLE_DATE = Solrizer.solr_name("date", :sortable)
-  FACETABLE_YEAR = "year_iim".freeze
+  FACETABLE_YEAR = "year_iim"
 
   COLLECTION_LABEL = Solrizer.solr_name("collection_label", :symbol)
   COLLECTION = Solrizer.solr_name("collection", :symbol)

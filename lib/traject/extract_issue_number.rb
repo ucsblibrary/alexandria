@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module ExtractIssueNumber
   # Transform field 028 with "0" in the indicator1 field.
   # Format "$b : $a"

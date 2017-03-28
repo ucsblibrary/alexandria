@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module ExtractMatrixNumber
   # Transform field 028 with "1" in the indicator1 field.
   # Format "$b : $a"

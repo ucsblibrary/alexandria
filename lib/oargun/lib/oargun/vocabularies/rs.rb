@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Oargun::Vocabularies
   class RS < ::RDF::StrictVocabulary("http://rightsstatements.org/vocab/")
     property :"InC/1.0/"

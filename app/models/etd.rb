@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class ETD < ActiveFedora::Base
   include CurationConcerns::WorkBehavior
   include WithAdminPolicy

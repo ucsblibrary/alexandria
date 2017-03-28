@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Importer::Factory
   class ObjectFactory
     extend ActiveModel::Callbacks

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This is SeachHistoryController from Blacklight, updated
 # to support Blacklight Range Limit
 class SearchHistoryController < ApplicationController

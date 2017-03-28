@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require "rdf"
 module Oargun::Vocabularies
   class RIGHTS < ::RDF::StrictVocabulary("http://opaquenamespace.org/ns/rights/")

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Importer::MODS
   # @param [String] meta
   # @param [Array<String>] data
@@ -60,7 +61,7 @@ module Importer::MODS
   end
 
   class Parser
-    ORIGIN_TEXT = "Converted from MODS 3.4 to local RDF profile by ADRL".freeze
+    ORIGIN_TEXT = "Converted from MODS 3.4 to local RDF profile by ADRL"
 
     NAMESPACES = { "mods" => Mods::MODS_NS }.freeze
 

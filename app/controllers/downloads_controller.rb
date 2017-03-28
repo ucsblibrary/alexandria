@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This extends the DownloadController from Hydra-Core in order to unescape
 # slashes in the ids. It also ensures that when you pass the id for a FileSet
 # you are going to be served the orignal pcdm:File (not a derivative)

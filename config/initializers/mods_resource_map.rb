@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # Mapping of MODS typeOfResource to URIs
 # https://help.library.ucsb.edu/browse/DIGREPO-522
 # https://www.loc.gov/standards/mods/userguide/typeofresource.html

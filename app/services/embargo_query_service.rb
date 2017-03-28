@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Methods for Querying Repository to find Embargoed Objects
 
 module EmbargoQueryService

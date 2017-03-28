@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class Ability
   # For fedora objects that have an admin policy assigned to
   # them, some of the rights that a user will be granted are

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class CurationConcerns::AudioRecordingsController < ApplicationController
   include CurationConcerns::CurationConcernController
   self.curation_concern_type = AudioRecording

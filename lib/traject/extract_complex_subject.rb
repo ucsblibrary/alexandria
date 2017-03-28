@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module ExtractComplexSubject
   # Transform fields 650 and 651 that have "0" in the indicator2
   # field.  Concatenate sub-fields with a double-dash.

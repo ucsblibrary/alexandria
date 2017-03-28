@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require_relative "settings"
 def configure_repositories
   ActiveTriples::Repositories.clear_repositories!

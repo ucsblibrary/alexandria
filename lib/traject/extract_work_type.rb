@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module ExtractWorkType
   # Transfor leader field 006 into a LOC Resource Type URI
   def extract_work_type

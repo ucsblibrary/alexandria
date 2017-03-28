@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This helper was ported from curation_concerns v1.6.3
 
 # View Helpers for Hydra Batch Edit functionality

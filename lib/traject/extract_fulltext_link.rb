@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module ExtractFulltextLink
   # Filters out 856u fields that look like: http://alexandria.ucsb.edu/lib/ark:/48907/f3gt5k61
   # We're attempting to capture URLs that look like:

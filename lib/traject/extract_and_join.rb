@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module ExtractAndJoin
   def extract_and_join(fields, options = {})
     fieldsep = options.fetch(:field, nil)

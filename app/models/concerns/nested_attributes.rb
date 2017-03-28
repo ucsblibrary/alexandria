@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # accepts_nested_attributes_for can not be called until all the properties are declared
 # because it calls resource_class, which finalizes the propery declarations
 # See https://github.com/projecthydra/active_fedora/issues/847

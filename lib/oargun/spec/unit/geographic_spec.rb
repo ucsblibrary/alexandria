@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require "spec_helper"
 
 describe "A controlled vocabulary" do

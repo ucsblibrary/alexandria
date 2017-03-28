@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 def for_model?(request, model)
   query = [
     "_query_:\"#{ActiveFedora::SolrQueryBuilder.construct_query_for_ids([request.params[:id]])}\"",

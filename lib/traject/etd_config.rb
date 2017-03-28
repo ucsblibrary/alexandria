@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require "object_factory_writer"
 require "solrizer"
 require "traject/extract_ark"

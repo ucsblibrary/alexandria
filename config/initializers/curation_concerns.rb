@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require_relative "inflections"
 require_relative "settings"
 CurationConcerns.configure do |config|

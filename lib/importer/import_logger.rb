@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require "logger"
 
 # Add a common logging system to any part of the Importer module.

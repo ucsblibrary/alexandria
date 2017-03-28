@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class FileSetIndexer < CurationConcerns::FileSetIndexer
   self.thumbnail_field = ObjectIndexer.thumbnail_field
   def generate_solr_document

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This is a local name authority adapter for questioning authority
 class LocalNames
   include Blacklight::SearchHelper

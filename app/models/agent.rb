@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # Agent is a class in FOAF that has possible subclasses of
 # Person, Group, or Organization.
 # See:  http://xmlns.com/foaf/spec/#term_Agent

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module CurationConcerns
   class AudioRecordingForm < CurationConcerns::Forms::WorkForm
     self.model_class = ::AudioRecording

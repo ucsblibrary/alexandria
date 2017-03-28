@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 namespace :resque do
   namespace :pool do
     desc "Stop resque pool"

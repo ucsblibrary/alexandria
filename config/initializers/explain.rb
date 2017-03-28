@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 if Rails.env.development? || ENV["EXPLAIN_PARTIALS"]
   # https://gist.github.com/bmaddy/4567fad5aa55e5a600e1
   #

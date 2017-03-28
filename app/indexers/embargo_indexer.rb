@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class EmbargoIndexer
   def initialize(object)
     @object = object

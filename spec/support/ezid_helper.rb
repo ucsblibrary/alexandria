@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module EzidHelper
   # For specs where you aren't testing the behavior of
   # minted ARKs, you can just stub out Ezid.

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require "rdf/vocab"
 module Oargun::ControlledVocabularies
   class WorkType < ActiveTriples::Resource

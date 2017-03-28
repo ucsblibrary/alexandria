@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # Utilities for tranforming noids to ARKs and Fedora treeified paths
 module Identifier
   def self.ark_to_noid(ark)

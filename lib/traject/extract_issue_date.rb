@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module ExtractIssueDate
   # @return [Hash] with keys for making a TimeSpan
   def extract_issue_date

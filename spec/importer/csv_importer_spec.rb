@@ -1,5 +1,6 @@
 # coding: utf-8
 # frozen_string_literal: true
+
 require "rails_helper"
 require "importer"
 
@@ -206,7 +207,7 @@ describe Importer::CSV do
   # Sometimes exta spaces get into import CSVs. Strip them out.
   context "extra spaces in CSV" do
     let(:import_metdata) do
-      { :"license " => ["public"],
+      { "license ": ["public"],
         parent_title: ["Carta do Brasil"], }
     end
     let(:stripped) { Importer::CSV.strip_extra_spaces(import_metdata) }

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Override from hydra-access-controls gem so the title of
 # the visibility will be captured in the history message.
 require Hydra::Engine.root.to_s + "/app/models/hydra/access_controls/embargo"

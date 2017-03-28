@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # Provides search and display of local authority records
 class LocalAuthoritiesController < ApplicationController
   include Hydra::Catalog

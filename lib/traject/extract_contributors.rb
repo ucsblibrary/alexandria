@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module ExtractContributors
   # For wax cylinder recordings, we want to capture
   # contributor data from fields 100, 110, 700, and 710

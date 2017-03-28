@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class MultiValueSelectInput < MultiValueInput
   # Overriding this so that the class is correct and the javascript for multivalue will work on this.
   def input_type

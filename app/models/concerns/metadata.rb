@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require "concerns/relators"
 # Metadata fields common to all objects
 module Metadata

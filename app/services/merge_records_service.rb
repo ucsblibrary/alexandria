@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class MergeRecordsService
   # This service is intended to merge duplicate records.
   #
