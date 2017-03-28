@@ -14,14 +14,9 @@ class ObjectFactoryWriter
     @local_collection_id = @settings["local_collection_id"]
   end
 
-  def serialize(context)
-    # null
-  end
+  def serialize(context); end
 
-  def close
-    puts "closing"
-    # null
-  end
+  def close; end
 
   # Add a single context to fedora
   def put(context)
