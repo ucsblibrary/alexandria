@@ -1,0 +1,52 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# Usage example
+#   ./export-solr Image http://localhost:8080/solr/collection1
+
+require "rsolr"
+require "date"
+
+def solrkey(key, doc)
+  doc[key] ? "\"#{doc[key].first}\"" : ""
+end
+
+fields = %w(
+  creator_tesim
+  creator_label_tesim
+  description_tesim
+  language_ssm
+  language_label_ssm
+  location_tesim
+  location_label_tesim
+)
+
+model = ARGV[0]
+solr = RSolr.connect(url: ARGV[1])
+
+doc_count = solr.get("select", params: { q: "has_model_ssim:#{model}" })["response"]["numFound"]
+
+objects = solr.get(
+  "select",
+  params: {
+    q: "has_model_ssim:#{model}",
+    start: 0,
+    rows: doc_count,
+  }
+)["response"]["docs"].map do |doc|
+  hash = {}
+  fields.each do |key|
+    hash[key.to_sym] = solrkey(key, doc)
+  end
+  {
+    full_title_tesim: solrkey("title_tesim", doc),
+    url: "http://alexandria.ucsb.edu/lib/#{doc["identifier_ssm"].first}",
+    spotlight_upload_date_tesim: Date.today,
+    spotlight_upload_description_tesim: solrkey("description_tesim", doc),
+    spotlight_upload_attribution_tesim: "",
+  }
+end
+
+puts objects.first.keys.join(",")
+rows = objects.map { |d| d.values.join(",") }
+puts rows
