@@ -34,6 +34,11 @@ Style/IndentationConsistency:
 Style/Lambda:
   EnforcedStyle: lambda
 
+# RSpec's `include` method causes this to false-positive
+Style/MixinGrouping:
+  Exclude:
+    - 'spec/**/*'
+
 Style/MultilineBlockChain:
   Enabled: false
 
