@@ -12,7 +12,7 @@
   top: -999px;
 }
 
-@mixin inline($separator, $sep) {
+@mixin inline($separator, $distance) {
   &, & > li {
     /* http://www.alistapart.com/articles/taminglists/ */
     display: inline;
@@ -21,11 +21,11 @@
   }
   & > li + li {
     // old IE doesn't recognize ::before, so this keeps items at least a little separate
-    padding-left: $sep/2;
+    padding-left: $distance/2;
     &::before {
       font-style: normal;
       content: $separator;
-      padding-right: $sep/2;
+      padding-right: $distance/2;
     }
   }
 }
@@ -720,6 +720,33 @@ label.remove_time_span {
   height: 32px;
   padding: 2px;
   width: 32px;
+}
+
+// ------------------
+// Component Map Tray
+// ------------------
+
+.map-tray {
+  display: inline-block;
+  max-height: 150px;
+  overflow: auto;
+  white-space: nowrap;
+
+  // this is the `inline` mixin but without applying it to the ul itself
+  li {
+    display: inline;
+    margin: 0;
+    padding-left: 0;
+  }
+  li + li {
+    // old IE doesn't recognize ::before, so this keeps items at least a little separate
+    padding-left: .25em;
+    &::before {
+      font-style: normal;
+      content: '';
+      padding-right: .25em;
+    }
+  }
 }
 
 // --------

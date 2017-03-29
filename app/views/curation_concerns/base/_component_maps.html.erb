@@ -1,14 +1,24 @@
 <% if presenter.component_map_presenters.size > 0 %>
+  <h3>Component Maps</h3>
   <!-- If there are no index maps, take up the whole width of the screen -->
   <% if presenter.index_map_presenters.size == 0 %>
-    <div class="col-md-12">
+    <div class="col-md-12 map-tray">
   <!-- If there is a single index map, give it 2 / 12 columns -->
   <% elsif presenter.index_map_presenters.size == 1 %>
-    <div class="col-md-10">
+    <div class="col-md-10 map-tray">
   <% end %>
-      <h3>Component Maps</h3>
+      <ul>
       <% presenter.component_map_presenters.each_with_index do |p,i| %>
-        <%= link_to image_tag(p.solr_document["square_thumbnail_url_ssm"].first), main_app.catalog_ark_path("ark:", params["shoulder"], p.id), :id => "componentmap#{i}" %>
+        <li>
+          <%=
+          link_to(
+            image_tag(p.solr_document["square_thumbnail_url_ssm"].first),
+            main_app.catalog_ark_path("ark:", params["shoulder"], p.id),
+            :id => "componentmap#{i}"
+          )
+          %>
+        </li>
       <% end %>
+      </ul>
     </div>
 <% end %>
