@@ -3,22 +3,41 @@
   <!-- If there are no index maps, take up the whole width of the screen -->
   <% if presenter.index_map_presenters.size == 0 %>
     <div class="col-md-12 map-tray">
-  <!-- If there is a single index map, give it 2 / 12 columns -->
+      <!-- If there is a single index map, give it 2 / 12 columns -->
   <% elsif presenter.index_map_presenters.size == 1 %>
-    <div class="col-md-10 map-tray">
+      <div class="col-md-10 map-tray">
   <% end %>
-      <ul>
-      <% presenter.component_map_presenters.each_with_index do |p,i| %>
-        <li>
-          <%=
-          link_to(
-            image_tag(p.solr_document["square_thumbnail_url_ssm"].first),
-            main_app.catalog_ark_path("ark:", params["shoulder"], p.id),
-            :id => "componentmap#{i}"
-          )
-          %>
-        </li>
-      <% end %>
-      </ul>
-    </div>
+  <ul>
+    <%
+    overlap_length = 0
+    presenter.component_map_presenters.first.accession_number.first.chars.each_with_index do |char, i|
+      break if presenter.component_map_presenters.any? do |map|
+        char != map.accession_number.first.chars[i]
+      end
+
+      overlap_length += 1
+    end
+    %>
+    <% presenter.component_map_presenters.each_with_index do |p,i| %>
+      <li>
+        <%=
+        link_to(
+          image_tag(p.solr_document["square_thumbnail_url_ssm"].first),
+          main_app.catalog_ark_path("ark:", params["shoulder"], p.id),
+          :id => "componentmap#{i}"
+        )
+        %>
+        <%=
+        acc_num = p.accession_number.first
+        link_to(
+          content_tag(:span,
+                      acc_num.slice(overlap_length, acc_num.length),
+                      class: "tray-label"),
+          main_app.catalog_ark_path("ark:", params["shoulder"], p.id)
+        )
+        %>
+      </li>
+    <% end %>
+  </ul>
+      </div>
 <% end %>

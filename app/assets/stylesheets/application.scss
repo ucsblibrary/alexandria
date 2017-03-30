@@ -737,16 +737,33 @@ label.remove_time_span {
     display: inline;
     margin: 0;
     padding-left: 0;
+    position: relative;
+    overflow: hidden;
   }
   li + li {
-    // old IE doesn't recognize ::before, so this keeps items at least a little separate
-    padding-left: .25em;
     &::before {
       font-style: normal;
       content: '';
       padding-right: .25em;
     }
   }
+}
+
+.tray-label {
+  background: rgb(0,0,0);
+  background: rgba(0, 0, 0, 0.6);
+  bottom: 0;
+  color: white;
+  font-size: 80%;
+  left: 0;
+  line-height: 1em;
+  margin-bottom: -50px;
+  margin-left: .25em;
+  padding: .125em;
+  position: absolute;
+  white-space: normal;
+  width: 100px;
+  z-index: 2;
 }
 
 // --------
