@@ -6,7 +6,7 @@ module ControlledVocabularies
     include ::Solrize
 
     configure repository: :vocabs
-    configure rdf_label: RDF::SKOS.hiddenLabel
+    configure rdf_label: RDF::Vocab::SKOS.hiddenLabel
     use_vocabulary :lc_orgs, class: Vocabularies::LC_ORGS
     property :label, predicate: RDF::RDFS.label
   end

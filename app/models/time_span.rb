@@ -8,8 +8,8 @@ class TimeSpan < ActiveTriples::Resource
   property :finish, predicate: ::RDF::Vocab::EDM.end
   property :start_qualifier, predicate: ::RDF::Vocab::CRM.P79_beginning_is_qualified_by
   property :finish_qualifier, predicate: ::RDF::Vocab::CRM.P80_end_is_qualified_by
-  property :label, predicate: ::RDF::SKOS.prefLabel
-  property :note, predicate: ::RDF::SKOS.note
+  property :label, predicate: ::RDF::Vocab::SKOS.prefLabel
+  property :note, predicate: ::RDF::Vocab::SKOS.note
 
   # MODS date qualifiers
   APPROX = "approximate"
