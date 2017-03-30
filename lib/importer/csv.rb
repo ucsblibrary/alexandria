@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require "csv"
 require File.expand_path("../factory", __FILE__)
 
 # Import CSV files
@@ -84,9 +83,9 @@ module Importer::CSV
             end
 
     if verbose
-      puts "Object attributes for item #{ingests + 1}:"
+      puts "Object attributes:"
       attrs.each { |k, v| puts "#{k}: #{v}" }
-      puts "Associated files for item #{ingests + 1}:"
+      puts "Associated files:"
       files.each { |f| puts f }
     end
 
