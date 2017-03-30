@@ -11,12 +11,27 @@ feature "ComponentMap show page:" do
 
   let(:map) do
     VCR.use_cassette("show_component_map_feature_spec") do
-      FactoryGirl.create(:public_component_map, title: title, creator: [creator_uri], extent: extent, scale: scale, parent_id: map_set.id, local_collection_id: [collection.id])
+      FactoryGirl.create(
+        :public_component_map,
+        accession_number: ["7070 something"],
+        title: title,
+        creator: [creator_uri],
+        extent: extent,
+        scale: scale,
+        parent_id: map_set.id,
+        local_collection_id: [collection.id]
+      )
     end
   end
 
   let!(:sibling_component_map) do
-    FactoryGirl.create(:public_component_map, title: ["Sibling CM"], scale: ["Sibling's scale"], parent_id: map_set.id)
+    FactoryGirl.create(
+      :public_component_map,
+      accession_number: ["7070 another thing"],
+      title: ["Sibling CM"],
+      scale: ["Sibling's scale"],
+      parent_id: map_set.id
+    )
   end
 
   let!(:index_map) do

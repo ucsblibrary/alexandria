@@ -24,7 +24,12 @@ feature "IndexMap show page:" do
   end
 
   let!(:component_map) do
-    FactoryGirl.create(:public_component_map, title: ["CM0"], parent_id: map_set.id)
+    FactoryGirl.create(
+      :public_component_map,
+      accession_number: ["7070 CM0"],
+      title: ["CM0"],
+      parent_id: map_set.id
+    )
   end
 
   let(:file_path) { File.join(fixture_path, "maps", "7070s_250_u54_index.jpg") }
