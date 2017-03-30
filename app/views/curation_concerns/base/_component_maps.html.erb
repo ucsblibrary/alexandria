@@ -9,6 +9,9 @@
   <% end %>
   <ul>
     <%
+    # Because maps have very long accession numbers, we're going to
+    # calculate the substring that all of them begin with, then trim
+    # that off before displaying
     overlap_length = 0
     presenter.component_map_presenters.first.accession_number.first.chars.each_with_index do |char, i|
       break if presenter.component_map_presenters.any? do |map|

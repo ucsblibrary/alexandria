@@ -737,6 +737,7 @@ label.remove_time_span {
     display: inline;
     margin: 0;
     padding-left: 0;
+    // this is so we can absolutely position the .tray-label below
     position: relative;
     overflow: hidden;
   }
@@ -758,6 +759,7 @@ label.remove_time_span {
   left: 0;
   line-height: 1em;
   margin-bottom: -50px;
+  // this is to match the padding-right of li + li above
   margin-left: .25em;
   padding: .125em;
   position: absolute;
