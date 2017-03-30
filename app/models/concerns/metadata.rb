@@ -146,9 +146,9 @@ module Metadata
     end
 
     # Dates
-    property :created, predicate: RDF::Vocab::DC.created, class_name: "TimeSpan"
-    property :date_other, predicate: RDF::Vocab::DC.date, class_name: "TimeSpan"
-    property :date_valid, predicate: RDF::Vocab::DC.valid, class_name: "TimeSpan"
+    property :created, predicate: RDF::Vocab::DC.created, class_name: TimeSpan
+    property :date_other, predicate: RDF::Vocab::DC.date, class_name: TimeSpan
+    property :date_valid, predicate: RDF::Vocab::DC.valid, class_name: TimeSpan
 
     # RDA
     property :form_of_work, predicate: RDF::URI("http://www.rdaregistry.info/Elements/w/#formOfWork.en"),

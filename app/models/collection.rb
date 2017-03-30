@@ -5,8 +5,8 @@ class Collection < ActiveFedora::Base
   include Metadata
   include WithAdminPolicy
 
-  property :issued, predicate: ::RDF::DC.issued, class_name: "TimeSpan"
-  property :date_copyrighted, predicate: ::RDF::DC.dateCopyrighted, class_name: "TimeSpan"
+  property :issued, predicate: ::RDF::Vocab::DC.issued, class_name: TimeSpan
+  property :date_copyrighted, predicate: ::RDF::Vocab::DC.dateCopyrighted, class_name: TimeSpan
 
   accepts_nested_attributes_for :creator, reject_if: lambda { |attributes| attributes[:id].blank? }
   accepts_nested_attributes_for :collector, reject_if: lambda { |attributes| attributes[:id].blank? }

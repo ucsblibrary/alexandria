@@ -8,7 +8,7 @@ class AudioRecording < ActiveFedora::Base
 
   validates :title, presence: { message: "Your work must have a title." }
 
-  property :issued, predicate: ::RDF::Vocab::DC.issued, class_name: "TimeSpan"
+  property :issued, predicate: ::RDF::Vocab::DC.issued, class_name: TimeSpan
   accepts_nested_attributes_for :issued, reject_if: :time_span_blank, allow_destroy: true
 
   include NestedAttributes
