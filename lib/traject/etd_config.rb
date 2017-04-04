@@ -24,9 +24,9 @@ settings do
 end
 
 to_field "identifier", extract_ark
-to_field "id", lambda { |_record, accumulator, context|
-  accumulator << Identifier.ark_to_id(context.output_hash["identifier"].first)
-}
+to_field "id", (lambda do |_record, accumulator, context|
+                  accumulator << Identifier.ark_to_id(context.output_hash["identifier"].first)
+                end)
 
 to_field "author", extract_marc("100a", trim_punctuation: true)
 to_field "work_type", extract_work_type
