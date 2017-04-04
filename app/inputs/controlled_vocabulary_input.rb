@@ -3,11 +3,6 @@
 class ControlledVocabularyInput < MultiValueInput
   protected
 
-    # Delegate this completely to the form.
-    def collection
-      @collection ||= object[attribute_name]
-    end
-
     def build_field(value, index)
       options = input_html_options.dup
       value = value.resource if value.is_a? ActiveFedora::Base

@@ -2,12 +2,22 @@
 
 require "rails_helper"
 
-describe "ControlledVocabularyInput", type: :input do
-  let(:image) { Image.new }
-  let(:bar1) { double("value 1", rdf_label: ["Item 1"], rdf_subject: "http://example.org/1", node?: false) }
-  let(:bar2) { double("value 2", rdf_label: ["Item 2"], rdf_subject: "http://example.org/2") }
+describe ControlledVocabularyInput, type: :input do
   let(:builder) { SimpleForm::FormBuilder.new(:image, image, view, {}) }
-  let(:input) { ControlledVocabularyInput.new(builder, :creator, nil, :multi_value, {}) }
+  let(:image) { Image.new }
+  let(:input) { described_class.new(builder, :creator, nil, :multi_value, {}) }
+
+  let(:bar1) do
+    double("value 1",
+           rdf_label: ["Item 1"],
+           rdf_subject: "http://example.org/1",
+           node?: false)
+  end
+  let(:bar2) do
+    double("value 2",
+           rdf_label: ["Item 2"],
+           rdf_subject: "http://example.org/2")
+  end
 
   describe "#input" do
     before { allow(image).to receive(:[]).with(:creator).and_return([bar1, bar2]) }
@@ -22,7 +32,12 @@ describe "ControlledVocabularyInput", type: :input do
     subject { input.send(:build_field, value, 0) }
 
     context "for a b-node" do
-      let(:value) { double("value 1", rdf_label: [], rdf_subject: "_:134", node?: true) }
+      let(:value) do
+        double("value 1",
+               rdf_label: [],
+               rdf_subject: "_:134",
+               node?: true)
+      end
       it "renders multi-value" do
         expect(subject).to have_selector("input.image_creator.multi_value")
         expect(subject).to have_selector('input[name="image[creator_attributes][0][id]"][value=""]')
@@ -32,7 +47,12 @@ describe "ControlledVocabularyInput", type: :input do
     end
 
     context "for a resource" do
-      let(:value) { double("value 1", rdf_label: ["Item 1"], rdf_subject: "http://example.org/1", node?: false) }
+      let(:value) do
+        double("value 1",
+               rdf_label: ["Item 1"],
+               rdf_subject: "http://example.org/1",
+               node?: false)
+      end
       it "renders multi-value" do
         expect(subject).to have_selector("input.image_creator.multi_value")
         expect(subject).to have_field("image[creator_attributes][0][hidden_label]", with: "Item 1")
