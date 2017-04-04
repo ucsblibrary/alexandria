@@ -34,11 +34,10 @@ class SolrDocument
 
   # Something besides a local authority
   def curation_concern?
-    case fetch("has_model_ssim").first
-    when Collection.to_class_uri, Image.to_class_uri, ETD.to_class_uri
-      true
-    else
-      false
+    return false if fetch("has_model_ssim").empty?
+
+    [Collection.to_class_uri, Image.to_class_uri, ETD.to_class_uri].any? do |uri|
+      uri == fetch("has_model_ssim").first
     end
   end
 
@@ -64,7 +63,9 @@ class SolrDocument
   end
 
   def ark
-    Array(self[Solrizer.solr_name("identifier", :displayable)]).first
+    Array.wrap(
+      self[Solrizer.solr_name("identifier", :displayable)]
+    ).first
   end
 
   # TODO: investigate if this method is still needed.
@@ -80,7 +81,7 @@ class SolrDocument
 
   def public_uri
     return nil unless LocalAuthority.local_authority?(self)
-    Array(self["public_uri_ssim"]).first
+    Array.wrap(self["public_uri_ssim"]).first
   end
 
   def restrictions
