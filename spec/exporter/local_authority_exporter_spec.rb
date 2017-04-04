@@ -47,10 +47,10 @@ describe Exporter::LocalAuthorityExporter do
     let!(:alicia) { create(:person, foaf_name: "Alicia") }
     let!(:devs) { create(:group, foaf_name: "DCE Dev Team") }
     let!(:dce) { create(:organization, foaf_name: "DCE") }
-    let!(:tools) { create(:topic, label: %w(hydra blacklight fedora solr)) }
+    let!(:tools) { create(:topic, label: %w[hydra blacklight fedora solr]) }
     let!(:fun) { create(:topic, label: ["happy hour", "nerdy jokes"]) }
 
-    let(:headers) { %w(type id name name name name) }
+    let(:headers) { %w[type id name name name name] }
 
     it "exports the local authorities" do
       exporter.run

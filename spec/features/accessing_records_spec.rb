@@ -28,7 +28,7 @@ feature "Accessing records:" do
   end
 
   before do
-    %w(111 222 333).each do |id|
+    %w[111 222 333].each do |id|
       ActiveFedora::Base.find(id).destroy(eradicate: true) if ActiveFedora::Base.exists?(id)
     end
 

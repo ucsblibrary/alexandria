@@ -57,7 +57,7 @@ class LocalAuthoritiesController < ApplicationController
 
     config.add_index_field "public_uri_ssim", label: "URI"
 
-    config.index.title_field = %w(foaf_name_tesim label_tesim)
+    config.index.title_field = %w[foaf_name_tesim label_tesim]
     config.add_index_field "active_fedora_model_ssi", label: "Type"
   end # configure_blacklight
 

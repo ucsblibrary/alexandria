@@ -7,7 +7,7 @@ set :application, "alexandria"
 set :repo_url, ENV.fetch("REPO", "ssh://jenkins@github.library.ucsb.edu/ADRL/alexandria.git")
 set :deploy_to, ENV.fetch("TARGET", "/opt/alexandria")
 
-set :stages, %w(production vagrant)
+set :stages, %w[production vagrant]
 set :default_stage, "vagrant"
 
 set :log_level, :debug
@@ -18,13 +18,13 @@ set :keep_releases, 5
 set :passenger_restart_with_touch, true
 set :assets_prefix, "#{shared_path}/public/assets"
 
-set :linked_dirs, %w(
+set :linked_dirs, %w[
   tmp/pids
   tmp/cache
   tmp/sockets
   public/assets
   config/environments
-)
+]
 
 # Default branch is :master
 set :branch, ENV["REVISION"] || ENV["BRANCH_NAME"] || "master"
@@ -32,9 +32,9 @@ set :branch, ENV["REVISION"] || ENV["BRANCH_NAME"] || "master"
 # Default value for :pty is false
 # set :pty, true
 
-set :linked_files, %w(
+set :linked_files, %w[
   config/secrets.yml
-)
+]
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }

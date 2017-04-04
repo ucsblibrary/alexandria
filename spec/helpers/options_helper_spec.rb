@@ -10,7 +10,7 @@ describe OptionsHelper do
 
   describe "#description_standard_options" do
     subject { helper.description_standard_options }
-    it { is_expected.to eq %w(aacr rda dacs dcrmg fgdc iso19115 local none) }
+    it { is_expected.to eq %w[aacr rda dacs dcrmg fgdc iso19115 local none] }
   end
 
   describe "#sub_location_options" do

@@ -10,7 +10,7 @@ describe Importer::Factory::MapSetFactory do
     end
     @collection_attrs = { accession_number: ["MAP 01 02 03"], title: ["Maps of the Moon"] }
     # A MapSet can contain many IndexMaps
-    @index_map_id = %w(fk4057td1k fkx057td1x)
+    @index_map_id = %w[fk4057td1k fkx057td1x]
     @map_attrs =
       {
         accession_number: ["111213"],

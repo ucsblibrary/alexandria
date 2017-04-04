@@ -26,7 +26,7 @@ module Importer::Factory
     def update
       raise "Object doesn't exist" unless object
 
-      %w(created issued notes).each do |prop|
+      %w[created issued notes].each do |prop|
         clear_attribute!(object, prop)
       end
 

@@ -25,7 +25,7 @@ describe Importer::LocalAuthorityImporter do
     let(:dce) { { id: "org-1", name: "DCE", model: Organization } }
     let(:tools) do
       { id: "topic-1", model: Topic,
-        name: %w(hydra blacklight fedora solr), }
+        name: %w[hydra blacklight fedora solr], }
     end
     let(:fun) do
       { id: "topic-2", model: Topic,

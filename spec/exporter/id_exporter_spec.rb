@@ -66,14 +66,14 @@ describe Exporter::IdExporter do
     end
 
     let(:headers) do
-      %w(
+      %w[
         type
         id
         accession_number
         identifier
         title
         access_policy
-      )
+      ]
     end
 
     it "exports the records" do

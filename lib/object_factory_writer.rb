@@ -90,7 +90,7 @@ class ObjectFactoryWriter
 
     # Traject doesn't have a mechanism for supplying defaults to these fields
     def overwrite_fields
-      @overwrite_fields ||= %w(language created_start fulltext_link)
+      @overwrite_fields ||= %w[language created_start fulltext_link]
     end
 
     # This ensures that if a field isn't in a MARC record, but it is in Fedora,

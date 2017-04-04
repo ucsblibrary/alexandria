@@ -4,14 +4,14 @@ module ExtractContributors
   # For wax cylinder recordings, we want to capture
   # contributor data from fields 100, 110, 700, and 710
   # of the MARC record.
-  TAGS = %w(100 110 700 710).freeze
+  TAGS = %w[100 110 700 710].freeze
 
   # For each field, which subfields do we use to construct the
   # contributor's name?
-  SUBFIELD_MAP = { "100" => %w(a c d q),
-                   "110" => %w(a b),
-                   "700" => %w(a b c d q),
-                   "710" => %w(a b), }.freeze
+  SUBFIELD_MAP = { "100" => %w[a c d q],
+                   "110" => %w[a b],
+                   "700" => %w[a b c d q],
+                   "710" => %w[a b], }.freeze
 
   # Decide which type of local authority to create, based on
   # the field indicators

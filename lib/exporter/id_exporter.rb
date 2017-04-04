@@ -33,14 +33,14 @@ class Exporter::IdExporter < Exporter::BaseExporter
   end
 
   def headers
-    %w(
+    %w[
       type
       id
       accession_number
       identifier
       title
       access_policy
-    )
+    ]
   end
 
   def object_data(object)

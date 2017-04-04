@@ -26,25 +26,25 @@ describe User do
 
         it "fetches the groups from ldap" do
           # It adds the "ucsb" group
-          expect(subject).to eq %w(metadata_admin rights_admin ucsb)
+          expect(subject).to eq %w[metadata_admin rights_admin ucsb]
         end
       end
 
       context "that has cached groups" do
         before do
-          user.group_list = %w(metadata_admin rights_admin)
+          user.group_list = %w[metadata_admin rights_admin]
           user.groups_list_expires_at = 1.day.from_now
         end
 
         it "returns the cached groups" do
           expect(user).not_to receive(:ldap_groups)
-          expect(subject).to eq %w(metadata_admin rights_admin)
+          expect(subject).to eq %w[metadata_admin rights_admin]
         end
       end
 
       context "that has an expired cache" do
         before do
-          user.group_list = %w(foo bar)
+          user.group_list = %w[foo bar]
           user.groups_list_expires_at = 1.day.ago
         end
 
@@ -52,7 +52,7 @@ describe User do
           expect(user).to receive(:ldap_groups).and_return(["cn=metadata_admin,ou=groups,dc=dce,dc=com",
                                                             "cn=rights_admin,ou=groups,dc=dce,dc=com",])
           # It adds the "ucsb" group
-          expect(subject).to eq %w(metadata_admin rights_admin ucsb)
+          expect(subject).to eq %w[metadata_admin rights_admin ucsb]
         end
       end
     end

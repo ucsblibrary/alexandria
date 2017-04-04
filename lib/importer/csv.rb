@@ -172,20 +172,20 @@ module Importer::CSV
 
   # @return [Array]
   def self.valid_headers
-    Image.attribute_names + %w(id type note_type note files) +
+    Image.attribute_names + %w[id type note_type note files] +
       time_span_headers + collection_headers
   end
 
   # @return [Array]
   def self.time_span_headers
-    %w(created issued date_copyrighted date_valid).flat_map do |prefix|
+    %w[created issued date_copyrighted date_valid].flat_map do |prefix|
       TimeSpan.properties.keys.map { |attribute| "#{prefix}_#{attribute}" }
     end
   end
 
   # @return [Array]
   def self.collection_headers
-    %w(collection_id collection_title collection_accession_number)
+    %w[collection_id collection_title collection_accession_number]
   end
 
   # Maps a row of CSV metadata to the CSV headers
@@ -344,7 +344,7 @@ module Importer::CSV
   # @param [String] field
   # @param [String] val
   def self.update_collection(collection, field, val)
-    val = [val] unless %w(admin_policy_id id).include? field
+    val = [val] unless %w[admin_policy_id id].include? field
     collection[field.to_sym] = val
   end
 

@@ -11,7 +11,7 @@ def solrkey(key, doc)
   doc[key] ? "\"#{doc[key].first}\"" : ""
 end
 
-fields = %w(
+fields = %w[
   creator_tesim
   creator_label_tesim
   description_tesim
@@ -19,7 +19,7 @@ fields = %w(
   language_label_ssm
   location_tesim
   location_label_tesim
-)
+]
 
 model = ARGV[0]
 solr = RSolr.connect(url: ARGV[1])

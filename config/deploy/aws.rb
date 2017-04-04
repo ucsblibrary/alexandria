@@ -9,7 +9,7 @@ set :stage, :aws
 set :rails_env, "production"
 server "ucsb.curationexperts.com", user: "deploy", roles: [:web, :app, :db, :resque_pool]
 
-set :linked_files, %w(
+set :linked_files, %w[
   config/application.yml
   config/blacklight.yml
   config/database.yml
@@ -21,7 +21,7 @@ set :linked_files, %w(
   config/secrets.yml
   config/smtp.yml
   config/solr.yml
-)
+]
 
 # Extended Server Syntax
 # ======================

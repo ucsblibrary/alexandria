@@ -7,7 +7,7 @@ describe "MultiValueSelectInput", type: :input do
   let(:builder) { SimpleForm::FormBuilder.new(:image, image, view, {}) }
   let(:input) { MultiValueSelectInput.new(builder, :digital_origin, nil, :multi_value_select, options) }
 
-  let(:base_options) { { as: :multi_value_select, required: true, collection: %w(one two) } }
+  let(:base_options) { { as: :multi_value_select, required: true, collection: %w[one two] } }
   let(:options) { base_options }
 
   subject { input.input(nil) }

@@ -83,7 +83,7 @@ class Exporter::LocalAuthorityExporter < Exporter::BaseExporter
   end
 
   def headers
-    %w(type id) + Array.new(max_names) { |_i| "name" }
+    %w[type id] + Array.new(max_names) { |_i| "name" }
   end
 
   def clean_up_temp_file
