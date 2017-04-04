@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
-# Generated via
-#  `rails generate curation_concerns:work IndexMap`
 class IndexMap < ActiveFedora::Base
-  include ::CurationConcerns::WorkBehavior
+  include CurationConcerns::WorkBehavior
   include WithAdminPolicy
   include Metadata
   include WithMapSet

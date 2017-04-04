@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Collection < ActiveFedora::Base
-  include ::CurationConcerns::CollectionBehavior
+  include CurationConcerns::CollectionBehavior
   include Metadata
   include WithAdminPolicy
   include LocalAuthorityHashAccessor
