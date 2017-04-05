@@ -16,7 +16,7 @@ describe CurationConcerns::AccessController do
     context "when I do not have edit permissions for the object" do
       let(:user) { create(:user) }
       it "redirects" do
-        get :edit, params: { etd_id: "123" }
+        get :edit, etd_id: "123"
         expect(response).to redirect_to main_app.solr_document_path(mock_etd)
       end
     end
@@ -25,7 +25,7 @@ describe CurationConcerns::AccessController do
       context "with an etd" do
         it "shows me the page" do
           expect(controller).to receive(:authorize!).with(:update_rights, mock_etd)
-          get :edit, params: { etd_id: "123" }
+          get :edit, etd_id: "123"
           expect(assigns[:form]).to be_kind_of EmbargoForm
           expect(response).to be_success
         end
@@ -34,7 +34,7 @@ describe CurationConcerns::AccessController do
       context "with an image" do
         it "shows me the page" do
           expect(controller).to receive(:authorize!).with(:update_rights, mock_etd)
-          get :edit, params: { image_id: "123" }
+          get :edit, image_id: "123"
           expect(assigns[:form]).to be_kind_of EmbargoForm
           expect(response).to be_success
         end
@@ -46,7 +46,7 @@ describe CurationConcerns::AccessController do
     context "as a metadata admin" do
       before { sign_in create(:metadata_admin) }
       it "is unauthorized" do
-        patch :update, params: { etd_id: "123" }
+        patch :update, etd_id: "123"
         expect(response).to redirect_to main_app.root_path
       end
     end
@@ -66,12 +66,12 @@ describe CurationConcerns::AccessController do
                                                                             visibility_after_embargo_id: "authorities/policies/ucsb")
           expect(mock_etd).to receive(:save!)
 
-          patch :update, params: { etd_id: "123", etd: {
+          patch :update, etd_id: "123", etd: {
             embargo: "true",
             admin_policy_id: "authorities/policies/restricted",
             embargo_release_date: "2099-07-29T00:00:00+00:00",
             visibility_after_embargo_id: "authorities/policies/ucsb",
-          }, }
+          }
           expect(response).to redirect_to main_app.solr_document_path(mock_etd)
         end
       end
@@ -84,11 +84,11 @@ describe CurationConcerns::AccessController do
                                                                             visibility_after_embargo_id: "authorities/policies/ucsb")
           expect(mock_etd).to receive(:save!)
 
-          patch :update, params: { etd_id: "123", etd: {
+          patch :update, etd_id: "123", etd: {
             embargo: "true",
             embargo_release_date: "2099-07-29T00:00:00+00:00",
             visibility_after_embargo_id: "authorities/policies/ucsb",
-          }, }
+          }
           expect(response).to redirect_to main_app.solr_document_path(mock_etd)
         end
 
@@ -98,12 +98,12 @@ describe CurationConcerns::AccessController do
           expect(mock_etd).to receive(:admin_policy_id=).with("authorities/policies/public")
           expect(mock_etd).to receive(:save!)
 
-          patch :update, params: { etd_id: "123", etd: {
+          patch :update, etd_id: "123", etd: {
             embargo: "false",
             admin_policy_id: "authorities/policies/public",
             embargo_release_date: "2099-07-29T00:00:00+00:00",
             visibility_after_embargo_id: "authorities/policies/ucsb",
-          }, }
+          }
 
           expect(response).to redirect_to main_app.solr_document_path(mock_etd)
         end
@@ -124,7 +124,7 @@ describe CurationConcerns::AccessController do
       context "when the etd is already under embargo" do
         it "removes embargo" do
           expect(controller).to receive(:authorize!).with(:update_rights, mock_etd)
-          delete :destroy, params: { etd_id: "123" }
+          delete :destroy, etd_id: "123"
           expect(response).to redirect_to main_app.solr_document_path(mock_etd)
         end
       end

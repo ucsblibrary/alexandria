@@ -12,7 +12,7 @@ describe CurationConcerns::FileSetsController do
     before { sign_in user }
 
     it "is successful" do
-      get :show, params: { id: file_set }
+      get :show, id: file_set
       expect(response).to be_successful
     end
   end

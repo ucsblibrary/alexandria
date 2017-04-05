@@ -12,7 +12,7 @@ describe CurationConcerns::AudioRecordingsController do
     before { sign_in user }
 
     it "is successful" do
-      get :show, params: { id: recording }
+      get :show, id: recording
       expect(response).to be_successful
     end
   end
