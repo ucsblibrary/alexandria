@@ -24,6 +24,9 @@ Metrics/LineLength:
 Metrics/ModuleLength:
   Enabled: false
 
+Rails:
+  Enabled: true
+
 Style/AsciiComments:
   Enabled: false
 

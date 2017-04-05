@@ -49,7 +49,7 @@ class Proquest::Metadata
   end
 
   def policy_after_embargo
-    @policy_after_embargo ||= if !attributes[:DISS_access_option].blank?
+    @policy_after_embargo ||= if attributes[:DISS_access_option].present?
                                 parse_access_option
                               elsif batch_3?
                                 AdminPolicy::PUBLIC_CAMPUS_POLICY_ID

@@ -35,7 +35,7 @@ class ImageIndexer < ObjectIndexer
     end
 
     def issued
-      return unless object.issued.present?
+      return if object.issued.blank?
       object.issued.first.display_label
     end
 end

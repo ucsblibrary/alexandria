@@ -7,8 +7,8 @@ class LocalAuthoritiesController < ApplicationController
 
   layout "curation_concerns"
 
-  before_filter :auth, only: :index
-  before_filter :add_view_path
+  before_action :auth, only: :index
+  before_action :add_view_path
 
   add_show_tools_partial(:edit, partial: "catalog/edit", if: :editor?)
   add_show_tools_partial(:merge, partial: "catalog/merge_link", if: :show_merge_link?)

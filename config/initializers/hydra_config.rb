@@ -24,7 +24,7 @@ Hydra.configure do |_config|
 
   def read_ark_from_graph(graph)
     statement = graph.query([nil, ::RDF::Vocab::DC.identifier, nil]).first
-    statement.object.to_s unless statement.blank?
+    statement.object.to_s if statement.present?
   end
 
   def uri_from_ark(routes, ark)

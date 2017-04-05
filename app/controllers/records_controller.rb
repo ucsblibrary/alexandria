@@ -41,7 +41,7 @@ class RecordsController < ApplicationController
 
   def merge
     uri = fetch_merge_target
-    if !uri.blank?
+    if uri.present?
       merge_target_id = ActiveFedora::Base.uri_to_id(uri)
       MergeRecordsJob.perform_later(@record.id, merge_target_id, current_user.user_key)
       flash[:notice] = "A background job has been queued to merge the records."

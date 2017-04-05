@@ -9,14 +9,10 @@ class ImageForm
   self.required_fields = [] # Required fields
 
   # ARK is a read only value on the form.
-  def ark
-    model.ark
-  end
+  delegate :ark, to: :model
 
   # record_origin is a read only value on the form.
-  def record_origin
-    model.record_origin
-  end
+  delegate :record_origin, to: :model
 
   NESTED_ASSOCIATIONS = [:created, :issued, :date_valid, :date_other, :date_copyrighted].freeze
 

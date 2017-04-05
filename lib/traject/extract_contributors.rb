@@ -77,7 +77,7 @@ module ExtractContributors
   def data_for(field)
     strings = field.subfields.each_with_object([]) do |subfield, values|
       v = subfield.value.strip
-      values << v if !v.blank? && relevant_subfield?(field.tag, subfield)
+      values << v if v.present? && relevant_subfield?(field.tag, subfield)
       values
     end
 

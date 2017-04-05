@@ -71,7 +71,7 @@ class ObjectIndexer < CurationConcerns::WorkIndexer
     end
 
     def created
-      return unless object.created.present?
+      return if object.created.blank?
       object.created.first.display_label
     end
 

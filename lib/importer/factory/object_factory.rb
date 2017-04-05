@@ -61,7 +61,7 @@ module Importer::Factory
     # it will remove it from membership in the given object.
     # @param [ActiveFedora::Base] object
     def remove_existing_file_sets(object)
-      return unless object.file_sets && !object.file_sets.empty?
+      return if object.file_sets.blank?
       object.file_sets.each do |f|
         CurationConcerns::Actors::FileSetActor.new(f, nil).destroy
       end
@@ -80,7 +80,7 @@ module Importer::Factory
     def find
       if attributes[:id]
         klass.find(attributes[:id]) if klass.exists?(attributes[:id])
-      elsif !attributes[system_identifier_field].blank?
+      elsif attributes[system_identifier_field].present?
         klass.where(Solrizer.solr_name(system_identifier_field, :symbol) => attributes[system_identifier_field]).first
       else
         raise "Missing identifier: Unable to search for existing object without either fedora ID or #{system_identifier_field}"
@@ -90,7 +90,7 @@ module Importer::Factory
     def create
       attrs = create_attributes
       # Don't mint arks for records that already have them (e.g. ETDs)
-      unless attrs[:identifier].present?
+      if attrs[:identifier].blank?
         identifier = Ezid::Identifier.mint(
           profile: :erc,
           erc_what: attrs[:title].first
@@ -146,9 +146,7 @@ module Importer::Factory
 
         # Use the combination of all authorial roles
         contributors = object.to_solr[ContributorIndexer::ALL_CONTRIBUTORS_LABEL]
-        unless contributors.blank?
-          identifier[:erc_who] = contributors.join("; ")
-        end
+        identifier[:erc_who] = contributors.join("; ") if contributors.present?
 
         identifier.save
       end

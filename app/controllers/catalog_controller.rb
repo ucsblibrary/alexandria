@@ -6,7 +6,7 @@ class CatalogController < ApplicationController
   # helper Openseadragon::OpenseadragonHelper
 
   # enforce_show_permissions is from hydra-access-controls gem
-  before_filter :enforce_show_permissions, only: :show
+  before_action :enforce_show_permissions, only: :show
 
   def enforce_show_permissions(_opts = {})
     permissions = current_ability.permissions_doc(params[:id])

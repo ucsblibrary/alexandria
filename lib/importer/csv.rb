@@ -72,7 +72,7 @@ module Importer::CSV
 
     attrs = csv_attributes(head, row)
 
-    unless attrs[:accession_number].blank?
+    if attrs[:accession_number].present?
       logger.info "Ingesting accession number #{attrs[:accession_number].first}"
     end
 
@@ -103,7 +103,7 @@ module Importer::CSV
 
     end_time = Time.now
 
-    accession_string = unless attrs[:accession_number].blank?
+    accession_string = if attrs[:accession_number].present?
                          " with accession number #{attrs[:accession_number].first}"
                        end
     logger.info "#{model}#{accession_string} ingested as #{record.id} in #{end_time - start_time} seconds"
@@ -146,7 +146,7 @@ module Importer::CSV
     # 'Person'.
     difference = (row - valid_headers).reject { |h| h.match(TYPE_HEADER_PATTERN) }
 
-    raise "Invalid headers: #{difference.join(", ")}" unless difference.blank?
+    raise "Invalid headers: #{difference.join(", ")}" if difference.present?
 
     validate_header_pairs(row)
     row
@@ -167,7 +167,7 @@ module Importer::CSV
         errors << "Invalid headers: '#{header}' column must be immediately followed by '#{field_name}' column."
       end
     end
-    raise errors.join(", ") unless errors.blank?
+    raise errors.join(", ") if errors.present?
   end
 
   # @return [Array]

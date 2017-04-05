@@ -7,9 +7,7 @@ class EmbargoForm
 
   self.terms = []
 
-  def admin_policy_id
-    model.admin_policy_id
-  end
+  delegate :admin_policy_id, to: :model
 
   def embargo_release_date
     model.embargo_release_date || Date.tomorrow.beginning_of_day

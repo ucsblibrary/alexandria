@@ -9,7 +9,7 @@ class ContactUsController < ApplicationController
   # When a user submits the "Contact Us" form, send the email.
   def create
     from = %("#{params[:name]}" <#{params[:email]}>)
-    spam = !params[:zipcode].blank?
+    spam = params[:zipcode].present?
     email = ContactUsMailer.web_inquiry(from, params[:category], params[:message], spam)
     email.deliver_now
 

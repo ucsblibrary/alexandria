@@ -34,7 +34,7 @@ describe CatalogController do
 
     context "download TTL file" do
       before do
-        get :show, id: record, format: :ttl
+        get :show, params: { id: record, format: :ttl }
       end
 
       context "for an Image record" do
@@ -67,7 +67,7 @@ describe CatalogController do
 
       before do
         sign_in user
-        get :show, id: restricted_image
+        get :show, params: { id: restricted_image }
       end
 
       context "logged in as an admin user" do
@@ -91,7 +91,7 @@ describe CatalogController do
 
     context "bad URL" do
       it "returns a 404" do
-        get :show, id: "fk4cn8cc3d"
+        get :show, params: { id: "fk4cn8cc3d" }
         expect(response.response_code).to eq 404
       end
     end

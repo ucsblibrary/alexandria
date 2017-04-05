@@ -6,7 +6,7 @@ describe LocalAuthoritiesController do
   describe "#show" do
     let(:topic) { Topic.create!(label: ["A Local Subject"]) }
     it "shows public urls" do
-      get :show, id: topic, format: :ttl
+      get :show, params: { id: topic, format: :ttl }
       expect(response.body).to include "<http://test.host/authorities/topics/#{topic.id}> <http://www.w3.org/2000/01/rdf-schema#label> \"A Local Subject\";"
     end
   end

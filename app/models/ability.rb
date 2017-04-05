@@ -77,7 +77,7 @@ class Ability
     Rails.logger.debug("[CANCAN] -policy- Does the POLICY #{policy_id} provide DISCOVER permissions for #{current_user.user_key}?")
 
     group_intersection = user_groups & discover_groups_from_policy(policy_id)
-    result = !group_intersection.blank?
+    result = group_intersection.present?
 
     Rails.logger.debug("[CANCAN] -policy- decision: #{result}")
     result
@@ -92,7 +92,7 @@ class Ability
     groups = []
     policy_permissions = policy_permissions_doc(policy_id)
 
-    unless policy_permissions.blank?
+    if policy_permissions.present?
       field_name = Hydra.config.permissions.inheritable[:discover][:group]
       groups = read_groups_from_policy(policy_id) |
                policy_permissions.fetch(field_name, [])

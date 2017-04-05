@@ -27,7 +27,7 @@ class ObjectFactoryWriter
     attributes = defaults.merge(from_traject)
 
     contrib = Array(attributes.delete("contributors")).first
-    attributes.merge!(contrib) unless contrib.blank?
+    attributes.merge!(contrib) if contrib.present?
 
     relators = parse_relators(attributes.delete("names"), attributes.delete("relators"))
 
@@ -73,7 +73,7 @@ class ObjectFactoryWriter
       dirs.each do |dir| # Look in all the dirs
         files += Dir.glob(File.join(dir, "**", "cusb-cyl#{cylinder_number}*"))
       end
-      file_groups << files unless files.blank?
+      file_groups << files if files.present?
     end
 
     print_file_names(file_groups)
@@ -101,7 +101,7 @@ class ObjectFactoryWriter
 
     def build_object(attributes, metadata)
       work_type = attributes.fetch("work_type").first
-      attributes[:local_collection_id] = Array(@local_collection_id) unless @local_collection_id.blank?
+      attributes[:local_collection_id] = Array(@local_collection_id) if @local_collection_id.present?
       factory(work_type).new(attributes, metadata).run
     end
 

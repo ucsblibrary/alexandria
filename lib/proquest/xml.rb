@@ -30,13 +30,13 @@ class Proquest::XML
 
     def rights_holder
       path = @doc.xpath('//DISS_author[@type="primary"]/DISS_name')
-      return unless path.present?
+      return if path.blank?
       [[path.xpath("DISS_fname").text, path.xpath("DISS_surname").text].join(" ")]
     end
 
     def date_copyrighted
       sdate = @doc.xpath("//DISS_dates/DISS_accept_date").text
-      [Date.parse(sdate).year] unless sdate.blank?
+      [Date.parse(sdate).year] if sdate.present?
     end
 
     def embargo_attributes
