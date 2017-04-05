@@ -25,9 +25,11 @@ module ApplicationHelper
   # Used in {CatalogController} to render notes and restrictions as
   # separate paragraphs
   def not_simple_format(data)
-    data[:value].map do |val|
-      val.split('\n\n').map { |para| "<p>#{para}</p>" }
-    end.flatten.join("").html_safe
+    safe_join(
+      data[:value].map do |val|
+        val.split('\n\n').map { |para| content_tag(:p, para) }
+      end.flatten
+    )
   end
 
   def display_link(data)
@@ -50,9 +52,11 @@ module ApplicationHelper
 
     icons = rights_icons(uri).map do |statement|
       image_tag(statement, class: "icon")
-    end.join("")
+    end
 
-    "<a href='#{uri}' title='Rights Statement'>#{icons} #{data[:value].first}</a>".html_safe
+    link_to safe_join(icons << " #{data[:value].first}"),
+            uri,
+            title: "Rights Statement"
   end
 
   def rights_icons(uri)

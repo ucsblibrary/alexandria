@@ -11,12 +11,12 @@ module CurationConcernsHelper
     doc = doc.solr_document if doc.respond_to? :solr_document
     return doc.public_uri if doc.public_uri
 
-    case Array(doc["has_model_ssim"]).first
+    case Array.wrap(doc["has_model_ssim"]).first
     when "Collection"
       collection_path(doc)
     when "Image", "ETD", "AudioRecording", "MapSet", "ComponentMap", "IndexMap", "ScannedMap"
       if doc.ark
-        ark_path(doc.ark.html_safe)
+        ark_path(doc.ark)
       else
         solr_document_path(search_state.url_for_document(doc, options))
       end
