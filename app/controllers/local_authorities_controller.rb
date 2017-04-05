@@ -89,6 +89,6 @@ class LocalAuthoritiesController < ApplicationController
     end
 
     def add_view_path
-      prepend_view_path "#{Rails.root}/app/views/local_authorities"
+      prepend_view_path Rails.root.join("app", "views", "local_authorities")
     end
 end

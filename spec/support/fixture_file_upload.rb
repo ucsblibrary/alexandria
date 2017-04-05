@@ -6,6 +6,6 @@ module FixtureFileUpload
   end
 
   def fixture_file_path(path)
-    File.join(Rails.root.to_s, "spec/fixtures", path)
+    Rails.root.join "spec", "fixtures", path
   end
 end

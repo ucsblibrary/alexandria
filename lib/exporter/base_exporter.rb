@@ -10,7 +10,7 @@ class Exporter::BaseExporter
   end
 
   def default_dir
-    File.join(Rails.root, "tmp", "exports")
+    Rails.root.join "tmp", "exports"
   end
 
   def timestamp
