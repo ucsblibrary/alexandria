@@ -50,7 +50,7 @@ class TimeSpan < ActiveTriples::Resource
   end
 
   # Return an array of years, for faceting in Solr.
-  def to_a
+  def as_array
     if range?
       (start_integer..finish_integer).to_a
     else

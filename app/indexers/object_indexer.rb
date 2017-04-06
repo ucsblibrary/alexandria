@@ -105,7 +105,7 @@ class ObjectIndexer < CurationConcerns::WorkIndexer
 
     # Create a year field (integer, multiple) for faceting on
     def facetable_year
-      Array(sorted_key_date).flat_map { |d| d.try(:to_a) }
+      Array(sorted_key_date).flat_map { |d| d.try(:as_array) }
     end
 
     def key_date

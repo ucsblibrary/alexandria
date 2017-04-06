@@ -154,7 +154,7 @@ describe Importer::Cylinder do
       expect(record1.edition).to eq ["[Pathé Stentor (Concert) ed.]"]
       expect(record1.institution.map(&:class)).to eq [ControlledVocabularies::Organization]
       expect(record1.issued.first.label).to eq ["[1903]"]
-      expect(record1.issued.first.to_a).to eq 1903
+      expect(record1.issued.first.as_array).to eq 1903
       expect(record1.language.first.rdf_subject).to eq RDF::URI("http://id.loc.gov/vocabulary/iso639-2/eng")
       expect(record1.lc_subject.count).to eq 12
       expect(record1.lc_subject.first.class).to eq ControlledVocabularies::Subject
