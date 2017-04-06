@@ -7,7 +7,7 @@ module NestedAttributes
   extend ActiveSupport::Concern
 
   included do
-    id_blank = proc { |attributes| attributes[:id].blank? }
+    id_blank = lambda { |attributes| attributes[:id].blank? }
 
     Metadata::RELATIONS.keys.each do |relation|
       accepts_nested_attributes_for relation, reject_if: id_blank, allow_destroy: true
