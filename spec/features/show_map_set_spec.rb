@@ -3,6 +3,26 @@
 require "rails_helper"
 
 feature "MapSet show page:" do
+  before do
+    [index_map_west_id, index_map_east_id, component_map_river_id, component_map_city_id].each do |id|
+      ActiveFedora::Base.find(id).destroy(eradicate: true) if ActiveFedora::Base.exists?(id)
+    end
+
+    VCR.use_cassette("show_map_set_feature_spec") do
+      index_map_west.members << file_set
+      index_map_west.save
+      index_map_east.members << file_set
+      index_map_east.save
+
+      component_map_river.members << file_set
+      component_map_river.save
+      component_map_city.members << file_set
+      component_map_city.save
+
+      map_set.update_index
+    end
+  end
+
   let(:title) { ["Japan 1:250,000"] }
   let(:scale) { ["approximately 1:300,000"] }
   let(:extent) { ["maps : color ; 47 x 71 cm or smaller"] }
@@ -28,18 +48,16 @@ feature "MapSet show page:" do
   end
 
   let(:map_set) do
-    VCR.use_cassette("show_map_set_feature_spec") do
-      MapSet.create(
-        admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID,
-        identifier: ["ark:/99999/guh"],
-        index_map_id: %w[east west],
-        creator: [creator_uri],
-        extent: extent,
-        local_collection_id: [collection.id],
-        scale: scale,
-        title: title
-      )
-    end
+    MapSet.create(
+      admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID,
+      identifier: ["ark:/99999/guh"],
+      index_map_id: %w[east west],
+      creator: [creator_uri],
+      extent: extent,
+      local_collection_id: [collection.id],
+      scale: scale,
+      title: title
+    )
   end
 
   let(:index_map_west_id) { "index_map_west" }
@@ -94,24 +112,6 @@ feature "MapSet show page:" do
       parent_id: map_set.id,
       title: ["Component Map of the City Area"]
     )
-  end
-
-  before do
-    [index_map_west_id, index_map_east_id, component_map_river_id, component_map_city_id].each do |id|
-      ActiveFedora::Base.find(id).destroy(eradicate: true) if ActiveFedora::Base.exists?(id)
-    end
-
-    index_map_west.members << file_set
-    index_map_west.save
-    index_map_east.members << file_set
-    index_map_east.save
-
-    component_map_river.members << file_set
-    component_map_river.save
-    component_map_city.members << file_set
-    component_map_city.save
-
-    map_set.update_index
   end
 
   scenario "show the page" do

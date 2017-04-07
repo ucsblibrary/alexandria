@@ -60,10 +60,12 @@ feature "IndexMap show page:" do
     # Need ARK to be able to draw thumbnail links
     allow_any_instance_of(SolrDocument).to receive(:ark).and_return("123")
     map.members << file_set
-    map.save!
-    component_map.members << file_set
-    component_map.save!
-    map_set.update_index
+    VCR.use_cassette("show_index_map_feature_spec") do
+      map.save!
+      component_map.members << file_set
+      component_map.save!
+      map_set.update_index
+    end
   end
 
   scenario "show the page" do
