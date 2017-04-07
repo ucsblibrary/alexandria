@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "rails_helper"
-require "exporter/local_authority_exporter"
+require "exporter"
 
 describe Exporter::LocalAuthorityExporter do
   let(:dir) { File.join("tmp", "test_exports") }
@@ -78,10 +78,10 @@ describe Exporter::LocalAuthorityExporter do
 
       # We don't know what order the topics will be in.
       topic = line6[1] == fun.id ? fun : tools
-      expect(line6).to eq ["Topic", topic.id] + topic.label
+      expect(line6).to eq ["Topic", topic.id] + topic.label.to_a
 
       topic = line7[1] == fun.id ? fun : tools
-      expect(line7).to eq ["Topic", topic.id] + topic.label
+      expect(line7).to eq ["Topic", topic.id] + topic.label.to_a
     end
   end # run
 end

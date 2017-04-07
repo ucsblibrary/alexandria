@@ -301,7 +301,10 @@ describe ObjectIndexer do
     let(:image) { Image.new(notes_attributes: [acq_note, cit_note]) }
 
     it "indexes with labels" do
-      expect(subject["note_label_tesim"]).to include(acq_note[:value], cit_note[:value])
+      expect(subject["note_label_tesim"].map(&:first)).to(
+        contain_exactly(acq_note[:value],
+                        cit_note[:value])
+      )
     end
   end
 

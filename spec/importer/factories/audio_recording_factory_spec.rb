@@ -117,7 +117,7 @@ describe Importer::Factory::AudioRecordingFactory do
       expect(AudioRecording.count).to eq 1
       audio = AudioRecording.first
       expect(audio.file_sets).to eq []
-      expect(audio.issued.flat_map(&:start)).to eq [2222]
+      expect(audio.issued.first.start).to eq [2222]
 
       indexer = Traject::Indexer.new
       indexer.load_config_file("lib/traject/audio_config.rb")
@@ -130,7 +130,7 @@ describe Importer::Factory::AudioRecordingFactory do
       expect(AudioRecording.count).to eq 1
       audio = AudioRecording.first
       expect(audio.file_sets).to_not eq []
-      expect(audio.issued.flat_map(&:start)).to eq [1912]
+      expect(audio.issued.first.start).to eq [1912]
     end
   end
 end

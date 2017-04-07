@@ -6,17 +6,23 @@ class RelatorInput < ControlledVocabularySelectInput
     def build_field(value, index)
       options = input_html_options.dup
       value = value.resource if value.is_a? ActiveFedora::Base
+      value = value.first if value.is_a? ActiveTriples::Relation
 
-      if value.respond_to? :rdf_label
-        options[:name] = name_for(attribute_name, index, "hidden_label")
-        options[:data] = { attribute: attribute_name }
-        options[:id] = id_for_hidden_label(index)
-        if value.node?
-          build_options_for_new_row(attribute_name, index, options)
-        else
-          build_options_for_existing_row(attribute_name, index, value, options)
-        end
+      options[:name] = name_for(attribute_name, index, "hidden_label")
+      options[:data] = { attribute: attribute_name }
+      options[:id] = id_for_hidden_label(index)
+
+      if value.nil? || value.node?
+        build_options_for_new_row(attribute_name, index, options)
+      else
+        build_options_for_existing_row(
+          attribute_name,
+          index,
+          (value.respond_to?(:rdf_label) ? value.rdf_label.first : value),
+          options
+        )
       end
+
       options[:required] = nil if @rendered_first_element
       options[:class] ||= []
       options[:class] += ["#{input_dom_id} form-control multi-text-field"]

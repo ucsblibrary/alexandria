@@ -85,6 +85,8 @@ describe RecordsController do
       context "created" do
         context "creating a new date" do
           it "persists the nested object" do
+            expect(image.created.first).to eq nil
+
             patch :update, id: image, image: {
               created_attributes: { "0" => ts_attributes },
               creator_attributes: initial_creators,

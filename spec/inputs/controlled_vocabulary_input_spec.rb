@@ -34,7 +34,7 @@ describe ControlledVocabularyInput, type: :input do
     context "for a b-node" do
       let(:value) do
         double("value 1",
-               rdf_label: [],
+               rdf_label: [""],
                rdf_subject: "_:134",
                node?: true)
       end

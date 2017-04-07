@@ -5,18 +5,25 @@ class ControlledVocabularyInput < MultiValueInput
 
     def build_field(value, index)
       options = input_html_options.dup
-      value = value.resource if value.is_a? ActiveFedora::Base
 
-      if value.respond_to? :rdf_label
-        options[:name] = name_for(attribute_name, index, "hidden_label")
-        options[:data] = { attribute: attribute_name }
-        options[:id] = id_for_hidden_label(index)
-        if value.node?
-          build_options_for_new_row(attribute_name, index, options)
-        else
-          build_options_for_existing_row(attribute_name, index, value, options)
-        end
+      value = value.resource if value.is_a? ActiveFedora::Base
+      value = value.first if value.is_a? ActiveTriples::Relation
+
+      options[:name] = name_for(attribute_name, index, "hidden_label")
+      options[:data] = { attribute: attribute_name }
+      options[:id] = id_for_hidden_label(index)
+
+      if value.nil? || value.node?
+        build_options_for_new_row(attribute_name, index, options)
+      else
+        build_options_for_existing_row(
+          attribute_name,
+          index,
+          (value.respond_to?(:rdf_label) ? value.rdf_label.first : value),
+          options
+        )
       end
+
       options[:required] = nil if @rendered_first_element
       options[:class] ||= []
       options[:class] += ["#{input_dom_id} form-control multi-text-field"]
@@ -46,7 +53,8 @@ class ControlledVocabularyInput < MultiValueInput
       id = id_for(attribute_name, index, "id")
 
       # order matters here
-      form_value = if value.respond_to?(:node?) && value.node?
+      form_value = if (value.respond_to?(:empty?) && value.empty?) ||
+                      (value.respond_to?(:node?) && value.node?)
                      ""
                    elsif value.respond_to? :rdf_subject
                      value.rdf_subject
@@ -62,7 +70,7 @@ class ControlledVocabularyInput < MultiValueInput
     end
 
     def build_options_for_existing_row(_attribute_name, _index, value, options)
-      options[:value] = value.rdf_label.first || "Unable to fetch label for #{value.rdf_subject}"
+      options[:value] = value || "Unable to fetch label for #{value}"
       options[:readonly] = true
     end
 

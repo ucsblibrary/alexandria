@@ -111,8 +111,18 @@ describe Image do
 
       it "has notes" do
         expect(subject.notes.size).to eq 3
-        expect(subject.notes.flat_map(&:note_type)).to eq cite_note[:note_type]
-        expect(subject.notes.flat_map(&:value).sort).to eq [title_note[:value], caption_note[:value], cite_note[:value]].flatten.sort
+
+        expect(subject.notes.reject do |note|
+                 note.note_type.empty?
+               end.first.note_type).to(eq cite_note[:note_type])
+
+        expect(subject.notes.map(&:value)).to(
+          contain_exactly(
+            title_note[:value],
+            caption_note[:value],
+            cite_note[:value]
+          )
+        )
       end
     end
 

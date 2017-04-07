@@ -90,7 +90,7 @@ class ObjectIndexer < CurationConcerns::WorkIndexer
     end
 
     def display_date(date_name)
-      Array(object[date_name]).map(&:display_label)
+      [object[date_name].first.try(:display_label)]
     end
 
     def created

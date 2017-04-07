@@ -98,11 +98,11 @@ describe Importer::Factory::ETDFactory do
 
       it "doesn't add a new duplicate date" do
         etd.reload
-        expect(etd.created.flat_map(&:start)).to eq [2014]
+        expect(etd.created.first.start).to eq [2014]
 
         factory.run
         etd.reload
-        expect(etd.created.flat_map(&:start)).to eq [2014]
+        expect(etd.created.first.start).to eq [2014]
       end
     end
 
@@ -111,11 +111,11 @@ describe Importer::Factory::ETDFactory do
 
       it "updates the existing date instead of adding a new one" do
         etd.reload
-        expect(etd.created.flat_map(&:start)).to eq [old_date]
+        expect(etd.created.first.start).to eq [old_date]
 
         factory.run
         etd.reload
-        expect(etd.created.flat_map(&:start)).to eq [2014]
+        expect(etd.created.first.start).to eq [2014]
       end
     end
 
@@ -128,7 +128,7 @@ describe Importer::Factory::ETDFactory do
 
         factory.run
         etd.reload
-        expect(etd.created.flat_map(&:start)).to eq [2014]
+        expect(etd.created.first.start).to eq [2014]
       end
     end
 

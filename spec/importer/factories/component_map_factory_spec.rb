@@ -43,7 +43,7 @@ describe Importer::Factory::ComponentMapFactory do
       expect(@component_map.parent_id).to eql(@parent_id)
     end
     it "attaches a ComponentMap to its IndexMap" do
-      expect(@component_map.index_map_id).to eql(@index_map_id)
+      expect(@component_map.index_map_id.to_a).to eql(@index_map_id.to_a)
     end
     it "has only one FileSet even if you ingest the object again" do
       expect(@component_map.file_sets.size).to eql(1)

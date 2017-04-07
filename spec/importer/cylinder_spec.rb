@@ -138,7 +138,7 @@ describe Importer::Cylinder do
       # in the files_dir, so no files will get attached for
       # thise spec.
       expect(record1.file_sets).to eq []
-      expect(record2.file_sets.map(&:title).flatten).to contain_exactly("Cylinder0006", "Cylinder12783")
+      expect(record2.file_sets.map(&:title).map(&:first)).to contain_exactly("Cylinder0006", "Cylinder12783")
       expect(record3.file_sets).to eq []
 
       # Check the titles

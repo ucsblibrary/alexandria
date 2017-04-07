@@ -26,6 +26,6 @@ class MultiValueReadonlyInput < MultiValueInput
   end
 
   def collection
-    @collection ||= Array.wrap(object[attribute_name]).reject { |value| value.to_s.strip.blank? }
+    @collection ||= object[attribute_name].reject(&:blank?)
   end
 end

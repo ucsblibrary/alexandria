@@ -140,7 +140,7 @@ describe ImageForm do
     end
   end
 
-  describe "initialize_field" do
+  describe "#initialize_field" do
     let(:form) { described_class.new(model) }
     let(:model) { Image.new(attributes) }
     let(:attributes) { {} }
@@ -154,12 +154,6 @@ describe ImageForm do
       end
     end
 
-    describe "#admin_policy_id" do
-      let(:field) { :admin_policy_id }
-      subject { form.admin_policy_id }
-      it { is_expected.to eq "authorities/policies/public" }
-    end
-
     context "for form_of_work" do
       let(:attributes) { { form_of_work: ["one"] } }
       let(:field) { :form_of_work }
@@ -167,6 +161,12 @@ describe ImageForm do
       it "does not add anything to form_of_work" do
         expect(form.form_of_work).to eq ["one"]
       end
+    end
+
+    describe "#admin_policy_id" do
+      let(:field) { :admin_policy_id }
+      subject { form.admin_policy_id }
+      it { is_expected.to eq "authorities/policies/public" }
     end
   end
 end

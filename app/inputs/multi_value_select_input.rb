@@ -37,7 +37,14 @@ class MultiValueSelectInput < MultiValueInput
       html_options.delete(:multiple)
       @rendered_first_element = true
 
-      selected_option = value.respond_to?(:id) ? value.id : value
+      selected_option = if value.respond_to?(:id)
+                          value.id
+                        elsif value.empty?
+                          ""
+                        else
+                          value
+                        end
+
       html_options[:prompt] = "" if selected_option.blank?
       template.select_tag(attribute_name, template.options_for_select(select_options, selected_option), html_options)
     end

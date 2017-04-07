@@ -1,16 +1,21 @@
 # coding: utf-8
 # frozen_string_literal: true
 
+require "active_fedora/cleaner"
 require "rails_helper"
 require "importer"
 
 describe Importer::CSV do
-  before { Image.destroy_all }
-  let(:logfile) { "#{fixture_path}/logs/csv_import.log" }
+  before do
+    ActiveFedora::Cleaner.clean!
+    AdminPolicy.ensure_admin_policy_exists
+  end
+
   before(:example) do
     Importer::CSV.log_location(logfile)
   end
 
+  let(:logfile) { "#{fixture_path}/logs/csv_import.log" }
   let(:data) { Dir["#{fixture_path}/images/*"] }
 
   context "when the model is specified" do
@@ -27,7 +32,7 @@ describe Importer::CSV do
       img = Image.first
       expect(img.title).to eq ["Dirge for violin and piano (violin part)"]
       expect(img.file_sets.count).to eq 4
-      expect(img.file_sets.map { |d| d.files.map(&:file_name) }.flatten)
+      expect(img.file_sets.map { |d| d.files.map { |f| f.file_name.first } }.flatten)
         .to contain_exactly("dirge1.tif",
                             "dirge2.tif",
                             "dirge3.tif",

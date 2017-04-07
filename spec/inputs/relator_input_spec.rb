@@ -22,7 +22,7 @@ describe RelatorInput, type: :input do
     subject { input.send(:build_field, value, 0) }
 
     context "for a b-node" do
-      let(:value) { double("value 1", rdf_label: [], rdf_subject: "_:134", node?: true, predicate: :programmer) }
+      let(:value) { double("value 1", rdf_label: [""], rdf_subject: "_:134", node?: true, predicate: :programmer) }
       it "renders multi-value" do
         expect(subject).to have_selector("input.image_creator.multi_value")
         expect(subject).to have_selector('input[name="image[creator_attributes][0][id]"][value=""]')

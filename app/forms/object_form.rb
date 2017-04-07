@@ -61,7 +61,8 @@ class ObjectForm
       # Initialize linked properties such as language
       self[key] += [class_name.new]
     elsif self.class.multiple?(key)
-      self[key] = Array.wrap(self[key]) + [""]
+      # pull the values out of the ActiveTriples::Relation into an ordinary array
+      self[key] = self[key].map { |val| val }
     elsif self[key].blank?
       self[key] = ""
     end

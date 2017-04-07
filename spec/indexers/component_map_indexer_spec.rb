@@ -38,7 +38,7 @@ describe ComponentMapIndexer do
       end
     end
 
-    context "with an copyrighted date" do
+    context "with a copyrighted date" do
       let(:copyrighted) { ["1913"] }
       let(:component_map) { ComponentMap.new(date_copyrighted_attributes: [{ start: copyrighted }]) }
 
