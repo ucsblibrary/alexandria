@@ -4,8 +4,8 @@ require "rails_helper"
 require "local_authority"
 
 describe MergeRecordsService do
-  let(:image1) { create(:image, id: "image1", creator: [old_name], lc_subject: [old_name]) }
-  let(:image2) { create(:image, id: "image2", photographer: [old_name], lc_subject: [old_name, new_name, other_name]) }
+  let(:image1) { create(:image, id: "image1", creator: [old_name.uri], lc_subject: [old_name.uri]) }
+  let(:image2) { create(:image, id: "image2", photographer: [old_name.uri], lc_subject: [old_name.uri, new_name.uri, other_name.uri]) }
 
   let(:collection) { create(:collection, collector: [old_name, other_name]) }
 
@@ -50,10 +50,10 @@ describe MergeRecordsService do
 
   describe "#run" do
     subject { described_class.new(old_name, new_name) }
-    let!(:image1) { create(:image, id: "image1", creator: [old_name], lc_subject: [old_name]) }
-    let!(:image2) { create(:image, id: "image2", photographer: [old_name], lc_subject: [old_name, new_name, other_name]) }
+    let!(:image1) { create(:image, id: "image1", creator: [old_name.uri], lc_subject: [old_name.uri]) }
+    let!(:image2) { create(:image, id: "image2", photographer: [old_name.uri], lc_subject: [old_name.uri, new_name.uri, other_name.uri]) }
 
-    let!(:collection) { create(:collection, collector: [old_name, other_name]) }
+    let!(:collection) { create(:collection, collector: [old_name.uri, other_name.uri]) }
 
     before do
       old_name.reload

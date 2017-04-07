@@ -16,7 +16,12 @@ RSpec.describe MergeRecordsJob, type: :job do
       let(:joel) { create(:person, foaf_name: "Joel Conway", id: "joel") }
       let(:conway) { create(:person, foaf_name: "Conway, J", id: "conway") }
 
-      let(:image) { create(:image, id: "image", creator: [conway], lc_subject: [conway]) }
+      let(:image) do
+        create(:image,
+               id: "image",
+               creator: [conway.uri],
+               lc_subject: [conway.uri])
+      end
 
       before do
         AdminPolicy.ensure_admin_policy_exists

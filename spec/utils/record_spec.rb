@@ -14,7 +14,7 @@ describe Record do
     end
 
     context "when record is referenced by another record" do
-      let!(:image) { create(:image, creator: [record]) }
+      let!(:image) { create(:image, creator: [record.uri]) }
       before { record.reload }
 
       it "returns list of object IDs" do

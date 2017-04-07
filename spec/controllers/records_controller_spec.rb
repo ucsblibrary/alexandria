@@ -155,7 +155,7 @@ describe RecordsController do
       let!(:person) { create(:person) }
 
       context "a person that is referenced by another record" do
-        let!(:image) { create(:image, creator: [person]) }
+        let!(:image) { create(:image, creator: [person.uri]) }
 
         it "returns message that record cannot be destroyed" do
           expect do
