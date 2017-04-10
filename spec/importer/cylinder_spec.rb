@@ -22,9 +22,6 @@ describe Importer::Cylinder do
     # Don't run background jobs/derivatives during the specs
     allow(CharacterizeJob).to receive_messages(perform_later: nil, perform_now: nil)
 
-    # Don't print output messages during specs
-    allow($stdout).to receive(:puts)
-
     # Don't fetch external records during specs
     allow_any_instance_of(RDF::DeepIndexingService).to receive(:fetch_external)
   end

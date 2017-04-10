@@ -268,10 +268,11 @@ describe Proquest::Metadata do
 
     context "when proquest file contents aren't parseable" do
       let(:run) do
-        allow($stdout).to receive(:puts) # Squelch output
         described_class.new(etd).run
       end
+
       let(:policy_id) { AdminPolicy::PUBLIC_POLICY_ID }
+
       let(:etd) do
         obj = create(:etd, admin_policy_id: policy_id)
         obj.proquest.original_name = "my_data_file.xml"

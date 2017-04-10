@@ -14,11 +14,6 @@ describe Importer::ETD do
            identifier: ["etds"])
   end
 
-  before do
-    # Don't print output messages during specs
-    allow($stdout).to receive(:puts)
-  end
-
   describe "#import" do
     context "with an existing ETD collection" do
       before { ETD.destroy_all }

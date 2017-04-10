@@ -20,8 +20,6 @@ describe Importer::Factory::ETDFactory do
 
   before do
     ETD.find("f3gt5k61").destroy(eradicate: true) if ETD.exists? "f3gt5k61"
-
-    allow($stdout).to receive(:puts) # squelch output
     AdminPolicy.ensure_admin_policy_exists
 
     # Don't fetch external records during specs

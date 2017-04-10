@@ -27,9 +27,6 @@ describe Importer::Factory::AudioRecordingFactory do
       ActiveFedora::Base.find(id).destroy(eradicate: true) if ActiveFedora::Base.exists?(id)
     end
 
-    # Don't print output messages during specs
-    allow($stdout).to receive(:puts)
-
     # Don't fetch external records during specs
     allow_any_instance_of(RDF::DeepIndexingService).to receive(:fetch_external)
 

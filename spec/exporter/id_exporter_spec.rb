@@ -9,11 +9,6 @@ describe Exporter::IdExporter do
 
   let(:exporter) { described_class.new(dir, file) }
 
-  before do
-    # Don't print exporter status messages while running tests
-    allow($stdout).to receive(:puts)
-  end
-
   it "takes an output directory and filename" do
     expect(exporter.export_dir).to eq dir
     expect(exporter.export_file_name).to eq file

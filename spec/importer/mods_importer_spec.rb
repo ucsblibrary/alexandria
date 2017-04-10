@@ -10,9 +10,6 @@ describe Importer::MODS do
   before do
     # Don't fetch external records during specs
     allow_any_instance_of(RDF::DeepIndexingService).to receive(:fetch_external)
-
-    # Don't print output messages during specs
-    allow($stdout).to receive(:puts)
   end
 
   describe "#import an Image" do

@@ -7,11 +7,6 @@ describe Importer::LocalAuthorityImporter do
   let(:importer) { described_class.new(input_file) }
   let(:input_file) { File.join(fixture_path, "local_authority_csv", "authorities.csv") }
 
-  before do
-    # Don't print exporter status messages while running tests
-    allow($stdout).to receive(:puts)
-  end
-
   it "takes a CSV input file" do
     expect(importer.input_file).to eq input_file
   end
