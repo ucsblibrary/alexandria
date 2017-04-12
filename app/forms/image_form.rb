@@ -32,7 +32,7 @@ class ImageForm
     elsif reflection = model_class.reflect_on_association(key)
       initialize_association(reflection, key)
     elsif class_name = model_class.properties[key.to_s].class_name
-      # TODO: I suspect this is dead code
+      # Initialize linked properties such as language
       self[key] += [class_name.new]
     elsif self.class.multiple?(key)
       self[key] = Array.wrap(self[key]) + [""]
