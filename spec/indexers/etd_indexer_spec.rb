@@ -82,7 +82,7 @@ describe ETDIndexer do
       let(:etd) { ETD.new(issued: ["1925-11-10", "1931"]) }
 
       it "indexes dates for display" do
-        expect(subject["issued_ssm"]).to eq ["1925-11-10", "1931"]
+        expect(subject["issued_ssm"]).to contain_exactly("1925-11-10", "1931")
       end
 
       it "makes a sortable date field" do

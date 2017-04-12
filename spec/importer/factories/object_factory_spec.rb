@@ -97,14 +97,19 @@ describe Importer::Factory::ObjectFactory do
 
         importer.run
         reloaded = image.reload
-
-        expect(reloaded.notes[0].note_type).to eq []
-        expect(reloaded.notes[0].value).to eq ["an untyped note"]
-        expect(reloaded.notes[1].note_type).to eq ["type 1"]
-        expect(reloaded.notes[1].value).to eq ["note 1"]
-        expect(reloaded.notes[2].note_type).to eq ["type 2"]
-        expect(reloaded.notes[2].value).to eq ["note 2"]
         expect(reloaded.notes.count).to eq 3
+
+        expect(reloaded.notes.map(&:note_type)).to(
+          contain_exactly([],
+                          ["type 1"],
+                          ["type 2"])
+        )
+
+        expect(reloaded.notes.map(&:value)).to(
+          contain_exactly(["an untyped note"],
+                          ["note 1"],
+                          ["note 2"])
+        )
       end
     end
   end

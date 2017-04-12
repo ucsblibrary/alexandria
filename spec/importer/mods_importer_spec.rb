@@ -39,9 +39,10 @@ describe Importer::MODS do
         expect(Collection.count).to eq 1
 
         image = Image.first
-        original = image.file_sets.first.original_file
+        original = image.file_sets.select do |fs|
+          fs.original_file.original_name == "cusbspcmss36_110108_1_a.tif"
+        end.first
         expect(original.mime_type).to eq "image/tiff"
-        expect(original.original_name).to eq "cusbspcmss36_110108_1_a.tif"
 
         # Image.reload doesn't clear @file_association
         reloaded = Image.find(image.id)

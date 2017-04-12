@@ -139,7 +139,11 @@ describe ObjectIndexer do
 
     it "indexes with a label" do
       VCR.use_cassette("object_indexer") do
-        expect(subject["license_tesim"]).to eq [pd_uri.to_s, by_uri.to_s, edu_uri.to_s]
+        expect(subject["license_tesim"]).to(
+          contain_exactly(pd_uri.to_s,
+                          by_uri.to_s,
+                          edu_uri.to_s)
+        )
         expect(subject["license_label_tesim"]).to(
           contain_exactly("Public Domain Mark 1.0",
                           "Attribution 4.0 International",
@@ -158,8 +162,16 @@ describe ObjectIndexer do
 
     it "indexes with a label" do
       VCR.use_cassette("copyright_status") do
-        expect(subject["copyright_status_tesim"]).to eq [public_domain_uri, copyright_uri, unknown_uri]
-        expect(subject["copyright_status_label_tesim"]).to eq ["public domain", "copyrighted", "unknown"]
+        expect(subject["copyright_status_tesim"]).to(
+          contain_exactly(public_domain_uri,
+                          copyright_uri,
+                          unknown_uri)
+        )
+        expect(subject["copyright_status_label_tesim"]).to(
+          contain_exactly("public domain",
+                          "copyrighted",
+                          "unknown")
+        )
       end
     end
   end
@@ -250,7 +262,9 @@ describe ObjectIndexer do
       # Since blue.id was first for the collection_id_*
       # fields, I expect the blue.title to be first for the
       # collection_titles_* field.
-      expect(subject["collection_label_ssim"]).to eq [blue.title, red.title].flatten
+      expect(subject["collection_label_ssim"]).to(
+        contain_exactly(blue.title.first, red.title.first)
+      )
     end
   end
 

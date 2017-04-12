@@ -93,8 +93,13 @@ describe ImageIndexer do
 
     it "indexes with a label" do
       VCR.use_cassette("image_indexer") do
-        expect(subject["rights_holder_ssim"]).to eq [valerie_uri, regents_uri]
-        expect(subject["rights_holder_label_tesim"]).to eq ["Valerie", "University of California (System). Regents"]
+        expect(subject["rights_holder_ssim"]).to(
+          contain_exactly(valerie_uri, regents_uri)
+        )
+        expect(subject["rights_holder_label_tesim"]).to(
+          contain_exactly("Valerie",
+                          "University of California (System). Regents")
+        )
       end
     end
   end
