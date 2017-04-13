@@ -8,7 +8,7 @@ class AuthService
 
   def can?(_action, object)
     # Strip off the /files/fedora-junk to get the FileSet PID
-    id = object.id.sub(%r{\/.*}, "")
+    id = CGI.unescape(object.id).sub(%r{\/.*}, "")
     return true if @ability.test_discover_from_policy(id)
     @params["size"].to_i <= 400
   end

@@ -12,7 +12,10 @@ Riiif::Image.file_resolver.id_to_uri = lambda do |id|
   end
 end
 
-Riiif::Image.file_resolver.basic_auth_credentials = [ActiveFedora.fedora.user, ActiveFedora.fedora.password]
+Riiif::Image.file_resolver.basic_auth_credentials = [
+  ActiveFedora.fedora.user,
+  ActiveFedora.fedora.password,
+]
 
 Riiif::Image.info_service = lambda do |id, _file|
   # id will look like a path to a pcdm:file
