@@ -15,11 +15,4 @@ class MapSetIndexer < ObjectIndexer
       solr_doc["rights_holder_label_tesim"] = object["rights_holder"].flat_map(&:rdf_label)
     end
   end
-
-  private
-
-    def issued
-      return if object.issued.blank?
-      object.issued.first.display_label
-    end
 end
