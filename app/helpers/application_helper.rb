@@ -47,6 +47,29 @@ module ApplicationHelper
     thumb["thumbnail_url_ssm"]
   end
 
+  def icon_for_file(file)
+    if file.audio?
+      "🎵"
+    elsif file.pdf?
+      "📄"
+    end
+  end
+
+  def link_to_file(file)
+    if file.pdf?
+      link_to(file.fetch("original_filename_ss"),
+              Rails.application.routes.url_helpers.download_url(
+                file.id,
+                host: ApplicationHelper.hostp
+              ),
+              target: "_blank",
+              data: { no_turbolink: true })
+    else
+      link_to(file.fetch("title_tesim").first,
+              main_app.curation_concerns_file_set_path(file))
+    end
+  end
+
   def show_license_icons(data)
     uri = data[:document]["license_tesim"].first
 
