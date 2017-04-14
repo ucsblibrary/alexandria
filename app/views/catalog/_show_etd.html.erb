@@ -1,15 +1,8 @@
-<% unless document['description_tesim'].blank? %>
+<% if document['description_tesim'].present? %>
   <%= content_for :head do %>
     <meta name="description" content="<%= document['description_tesim'].first.split('\n\n').first %>">
   <% end %>
 <% end %>
 
 <%= render 'show_default', document: document %>
-
-<% if document.file_sets.present? %>
-  <% if can?(:read, document) %>
-    <%= render 'files', document: document %>
-  <% else %>
-    <%= render 'access_denied', document: document %>
-  <% end %>
-<% end %>
+<%= render 'file_sets_list', document: document %>
