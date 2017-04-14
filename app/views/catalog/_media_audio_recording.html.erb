@@ -4,4 +4,4 @@
   </div>
 </div>
 
-<%= media_display(document.file_sets.first) %>
+<%= media_display(document.file_sets.first) if document.file_sets.present? %>

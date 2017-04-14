@@ -21,8 +21,8 @@ describe Person do
     it { is_expected.to eq ["Justin"] }
   end
 
-  describe "#to_partial_path" do
-    subject { described_class.new.to_partial_path }
+  describe "::_to_partial_path" do
+    subject { described_class._to_partial_path }
     it { is_expected.to eq "catalog/document" }
   end
 
