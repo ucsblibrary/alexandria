@@ -170,6 +170,9 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name("sub_location", :displayable, type: :string),
                           label: "Library Location",
                           link_to_search: "sub_location_sim"
+    config.add_show_field solr_name("fulltext_link", :displayable),
+                          label: "Other Versions",
+                          helper_method: :display_link
     config.add_show_field solr_name("identifier", :displayable), label: "ARK"
     config.add_show_field solr_name("accession_number", :symbol), label: "Local Identifier"
     config.add_show_field "isbn_ssim", label: "ISBN"
