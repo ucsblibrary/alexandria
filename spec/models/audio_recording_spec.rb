@@ -3,6 +3,11 @@
 require "rails_helper"
 
 describe AudioRecording do
+  describe "::_to_partial_path" do
+    subject { described_class._to_partial_path }
+    it { is_expected.to eq "catalog/document" }
+  end
+
   describe "#to_solr" do
     let(:audio) { described_class.new }
     it "calls the ImageIndexer" do

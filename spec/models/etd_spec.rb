@@ -7,6 +7,11 @@ describe ETD do
     expect(described_class.properties).to have_key "system_number"
   end
 
+  describe "::_to_partial_path" do
+    subject { described_class._to_partial_path }
+    it { is_expected.to eq "catalog/document" }
+  end
+
   describe "#to_solr" do
     let(:etd) { described_class.new(system_number: ["004092515"]) }
     subject { etd.to_solr }

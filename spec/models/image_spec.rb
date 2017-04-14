@@ -3,6 +3,11 @@
 require "rails_helper"
 
 describe Image do
+  describe "::_to_partial_path" do
+    subject { described_class._to_partial_path }
+    it { is_expected.to eq "catalog/document" }
+  end
+
   it "has a title" do
     subject.title = ["War and Peace"]
     expect(subject.title).to eq ["War and Peace"]
