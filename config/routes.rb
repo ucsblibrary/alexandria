@@ -9,12 +9,6 @@ def for_model?(request, model)
   results.present?
 end
 
-class AudioRoutingConcern
-  def matches?(request)
-    for_model?(request, AudioRecording)
-  end
-end
-
 class CollectionRoutingConcern
   def matches?(request)
     for_model?(request, Collection)
@@ -79,7 +73,6 @@ Rails.application.routes.draw do
     end
   end
 
-  get "lib/:prot/:shoulder/:id" => "curation_concerns/audio_recordings#show", constraints: AudioRoutingConcern.new
   get "lib/:prot/:shoulder/:id" => "curation_concerns/scanned_maps#show", constraints: ScannedMapRoutingConcern.new
   get "lib/:prot/:shoulder/:id" => "curation_concerns/index_maps#show", constraints: IndexMapRoutingConcern.new
   get "lib/:prot/:shoulder/:id" => "curation_concerns/component_maps#show", constraints: ComponentMapRoutingConcern.new
