@@ -15,7 +15,7 @@
     </tr>
     <tr>
       <td class="col_1">
-        <span class="file_format"><%= icon_for_file(file_set) %></span>
+        <span class="fa <%= icon_class(file_set) %>"> </span>
         <%= link_to_file(file_set) %>
       </td>
       <td class="col_2">
@@ -33,7 +33,7 @@
     <% files.sort { |a, b| a.fetch('original_filename_ss') <=> b.fetch('original_filename_ss') }.each do |file_set| %>
     <tr>
       <td class="col_1">
-        <span class="file_format"><%= icon_for_file(file_set) %></span>
+        <span class="fa <%= icon_class(file_set) %>"> </span>
         <%= link_to_file(file_set) %>
       </td>
       <td class="col_2">

@@ -1,8 +1,7 @@
 /*
  *= require_self
- *= require 'blacklight_range_limit'
+ *= require blacklight_range_limit
  *= require openseadragon/openseadragon
- *
 */
 
 @mixin hide {
@@ -58,6 +57,8 @@ $bg_image: 'ADRL_BG_1280x160.png';
 @import 'hydra-editor/multi_value_fields';
 @import 'curation_concerns/modules/forms';
 @import 'curation_concerns/modules/collections';
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
 
 // -------------------
 // Bootstrap overrides

@@ -47,11 +47,11 @@ module ApplicationHelper
     thumb["thumbnail_url_ssm"]
   end
 
-  def icon_for_file(file)
+  def icon_class(file)
     if file.audio?
-      "🎵"
+      "fa-music"
     elsif file.pdf?
-      "📄"
+      "fa-file-text-o"
     end
   end
 

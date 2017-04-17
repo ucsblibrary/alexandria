@@ -8,6 +8,7 @@ end
 
 gem "rails", "4.2.8"
 
+gem "font-awesome-sass"
 gem "jquery-rails", "~> 4.0"
 gem "sass-rails", "~> 5.0"
 gem "uglifier", "~> 3.1"
