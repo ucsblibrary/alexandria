@@ -1,0 +1,11 @@
+<% if document['description_tesim'].present? %>
+  <%= content_for :head do %>
+    <meta name="description" content="<%= document['description_tesim'].first.split('\n\n').first %>">
+  <% end %>
+<% end %>
+
+<div class="row">
+  <div class="col-md-12">
+    <%= render 'show_header_default', document: document %>
+  </div>
+</div>

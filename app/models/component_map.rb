@@ -5,6 +5,7 @@ class ComponentMap < ActiveFedora::Base
   include WithAdminPolicy
   include Metadata
   include WithMapSet
+
   after_save :map_set_update_index
 
   # Change this to restrict which works can be added as a child.
@@ -25,5 +26,11 @@ class ComponentMap < ActiveFedora::Base
 
   def self.indexer
     ComponentMapIndexer
+  end
+
+  # Override CC
+  # https://github.com/projecthydra/curation_concerns/blob/5680a3317c14cca1928476c74a91a5dc6703feda/app/models/concerns/curation_concerns/work_behavior.rb#L33-L42
+  def self._to_partial_path
+    "catalog/document"
   end
 end

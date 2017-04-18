@@ -1,8 +1,2 @@
-<% if document['description_tesim'].present? %>
-  <%= content_for :head do %>
-    <meta name="description" content="<%= document['description_tesim'].first.split('\n\n').first %>">
-  <% end %>
-<% end %>
-
 <%= render 'show_default', document: document %>
 <%= render 'file_sets_list', document: document %>

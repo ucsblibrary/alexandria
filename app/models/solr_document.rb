@@ -86,101 +86,31 @@ class SolrDocument
     Array.wrap(self["public_uri_ssim"]).first
   end
 
-  def restrictions
-    fetch("restrictions_tesim", [])
+  def in_collections
+    fetch("local_collection_id_ssim", []).map do |id|
+      query = ActiveFedora::SolrQueryBuilder.construct_query(id: id)
+      ActiveFedora::SolrService.query(query).first
+    end
   end
 
-  def alternative
-    fetch("alternative_tesim", [])
+  def map_set
+    if fetch("has_model_ssim", []).include? "MapSet"
+      self
+    else
+      query = ActiveFedora::SolrQueryBuilder.construct_query(
+        id: self["parent_id_ssim"]
+      )
+      ActiveFedora::SolrService.query(query).first
+    end
   end
 
-  # this overrides CurationConcerns to use the language_label_ssm field
-  def language
-    fetch("language_label_ssm", [])
-  end
-
-  def creator
-    fetch("creator_label_tesim", [])
-  end
-
-  def issue_number
-    fetch("issue_number_ssm", [])
-  end
-
-  def matrix_number
-    fetch("matrix_number_ssm", [])
-  end
-
-  def issued
-    fetch(ObjectIndexer::ISSUED, [])
-  end
-
-  def place_of_publication
-    fetch("place_of_publication_tesim", [])
-  end
-
-  def extent
-    fetch("extent_ssm", [])
-  end
-
-  def scale
-    fetch("scale_tesim", [])
-  end
-
-  def notes
-    fetch("note_label_tesim", [])
-  end
-
-  def table_of_contents
-    fetch("table_of_contents_tesim", [])
-  end
-
-  def form_of_work
-    fetch("form_of_work_label_tesim", [])
-  end
-
-  def work_type
-    fetch("work_type_label_tesim", [])
-  end
-
-  def rights_holder
-    fetch("rights_holder_label_ssim", [])
-  end
-
-  def copyright_status
-    fetch("copyright_status_label_tesim", [])
-  end
-
-  def sub_location
-    fetch("sub_location_ssm", [])
-  end
-
-  def accession_number
-    fetch("accession_number_tesim", [])
-  end
-
-  def location
-    fetch("location_label_tesim", [])
-  end
-
-  def fulltext_link
-    fetch("fulltext_link_ssm", [])
-  end
-
-  def citation
-    fetch("citation_ssm", [])
-  end
-
-  def license
-    fetch("license_label_tesim", [])
-  end
-
-  def collection
-    fetch("collection_label_ssim", [])
-  end
-
-  def collection_ids
-    fetch("collection_ssim", [])
+  # @param [Symbol] :index or :component
+  # @param [SolrDocument]
+  def related_maps(type)
+    map_set.fetch("#{type}_maps_ssim", []).map do |id|
+      query = ActiveFedora::SolrQueryBuilder.construct_query(id: id)
+      ActiveFedora::SolrService.query(query).first
+    end
   end
 
   private

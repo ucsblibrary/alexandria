@@ -1,0 +1,30 @@
+<% component_maps = document.related_maps(:component) %>
+<% index_maps = document.related_maps(:index) %>
+
+<% if index_maps.present? %>
+  <div class="col-md-2">
+    <h3>Index Map</h3>
+    <% index_maps.each_with_index do |map, i| %>
+      <%= link_to(
+        image_tag(map["square_thumbnail_url_ssm"].first),
+        main_app.catalog_ark_path("ark:", params["shoulder"], map.id),
+        :id => "indexmap#{i}"
+      ) %>
+    <% end %>
+  </div>
+<% end %>
+
+<% if component_maps.present? %>
+  <h3>Component Maps</h3>
+  <!-- If there are no index maps, take up the whole width of the screen -->
+  <% if index_maps.count == 0 %>
+    <div class="col-md-12 map-tray">
+      <!-- If there is a single index map, give it 2 / 12 columns -->
+  <% elsif index_maps.count == 1 %>
+      <div class="col-md-10 map-tray">
+  <% end %>
+  <%= render('component_map_tray',
+             document: document,
+             component_maps: component_maps) %>
+      </div>
+<% end %>

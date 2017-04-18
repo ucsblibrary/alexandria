@@ -1,0 +1,44 @@
+<div class="panel panel-default parent_attrs">
+  <div class="panel-heading">
+    <h2>Collection Attributes</h2>
+  </div>
+
+  <table class="table table-striped attributes">
+    <tbody>
+      <tr>
+        <th>Collection</th>
+        <td>
+          <ul class="tabular">
+            <% document.in_collections.each_with_index do |collection, i| %>
+              <li class="attribute">
+                <%= link_to(
+                  collection["title_tesim"].first,
+                  main_app.catalog_ark_path("ark:",
+                                            params["shoulder"],
+                                            collection.id)
+                  ) %>
+              </li>
+            <% end %>
+          </ul>
+        </td>
+      </tr>
+
+      <tr>
+        <th>Map Set</th>
+        <td>
+          <ul class="tabular">
+            <li class="attribute">
+              <% mapset = document.map_set %>
+              <%= link_to(
+                mapset["title_tesim"].first,
+                main_app.catalog_ark_path("ark:",
+                                          params["shoulder"],
+                                          mapset.id)
+                ) %>
+            </li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
