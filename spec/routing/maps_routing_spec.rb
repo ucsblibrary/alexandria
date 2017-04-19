@@ -12,7 +12,7 @@ describe "map routes" do
     it "finds the correct controller" do
       expect(get: "/lib/ark:/99999/#{id}")
         .to route_to(
-          controller: "curation_concerns/scanned_maps",
+          controller: "catalog",
           prot: "ark:",
           shoulder: "99999",
           action: "show",
@@ -25,7 +25,7 @@ describe "map routes" do
     it "finds the correct controller" do
       expect(get: "/lib/ark:/99999/#{id}")
         .to route_to(
-          controller: "curation_concerns/index_maps",
+          controller: "catalog",
           prot: "ark:",
           shoulder: "99999",
           action: "show",
@@ -38,7 +38,7 @@ describe "map routes" do
     it "finds the correct controller" do
       expect(get: "/lib/ark:/99999/#{id}")
         .to route_to(
-          controller: "curation_concerns/component_maps",
+          controller: "catalog",
           prot: "ark:",
           shoulder: "99999",
           action: "show",
@@ -51,7 +51,7 @@ describe "map routes" do
     it "finds the correct controller" do
       expect(get: "/lib/ark:/99999/#{id}")
         .to route_to(
-          controller: "curation_concerns/map_sets",
+          controller: "catalog",
           prot: "ark:",
           shoulder: "99999",
           action: "show",
