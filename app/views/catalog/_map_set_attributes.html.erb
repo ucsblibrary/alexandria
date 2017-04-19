@@ -1,14 +1,18 @@
-<div class="panel panel-default parent_attrs">
-  <div class="panel-heading">
-    <h2>Collection Attributes</h2>
-  </div>
+<% mapsets = document.map_sets %>
+<% collections = document.in_collections %>
 
-  <table class="table table-striped attributes">
-    <tbody>
-      <tr>
-        <th>Collection</th>
-        <td>
-          <ul class="tabular">
+<% if mapsets.present? || collections.present? %>
+
+  <div class="panel panel-default parent_attrs">
+    <div class="panel-heading">
+      <h2>Collection Attributes</h2>
+    </div>
+
+    <table class="table table-striped attributes"><tbody>
+
+      <% if collections.present? %>
+        <tr><th>Collections</th>
+          <td><ul class="tabular">
             <% document.in_collections.each_with_index do |collection, i| %>
               <li class="attribute">
                 <%= link_to(
@@ -16,29 +20,32 @@
                   main_app.catalog_ark_path("ark:",
                                             params["shoulder"],
                                             collection.id)
-                  ) %>
+                ) %>
               </li>
             <% end %>
           </ul>
-        </td>
-      </tr>
+          </td>
+        </tr>
+      <% end %>
 
-      <tr>
-        <th>Map Set</th>
-        <td>
-          <ul class="tabular">
+      <% if !document.fetch("has_model_ssim", []).include?("MapSet") && mapsets.present? %>
+      <tr><th>Map Sets</th>
+        <td><ul class="tabular">
+          <% mapsets.each do |set| %>
             <li class="attribute">
-              <% mapset = document.map_set %>
               <%= link_to(
-                mapset["title_tesim"].first,
+                set["title_tesim"].first,
                 main_app.catalog_ark_path("ark:",
                                           params["shoulder"],
-                                          mapset.id)
-                ) %>
+                                          set.id)
+              ) %>
             </li>
-          </ul>
+          <% end %>
+        </ul>
         </td>
       </tr>
+      <% end %>
     </tbody>
-  </table>
-</div>
+    </table>
+  </div>
+<% end %>

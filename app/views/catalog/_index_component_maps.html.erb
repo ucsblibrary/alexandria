@@ -1,9 +1,9 @@
-<% component_maps = document.related_maps(:component) %>
-<% index_maps = document.related_maps(:index) %>
+<% component_maps = document.component_maps %>
+<% index_maps = document.index_maps %>
 
 <% if index_maps.present? %>
   <div class="col-md-2">
-    <h3>Index Map</h3>
+    <h3>Index Maps</h3>
     <% index_maps.each_with_index do |map, i| %>
       <%= link_to(
         image_tag(map["square_thumbnail_url_ssm"].first),

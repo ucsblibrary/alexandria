@@ -93,24 +93,40 @@ class SolrDocument
     end
   end
 
-  def map_set
-    if fetch("has_model_ssim", []).include? "MapSet"
-      self
-    else
-      query = ActiveFedora::SolrQueryBuilder.construct_query(
-        id: self["parent_id_ssim"]
-      )
-      ActiveFedora::SolrService.query(query).first
-    end
+  def map_sets
+    models = fetch("has_model_ssim", [])
+
+    return [self] if models.include? "MapSet"
+
+    query = if models.include? "ComponentMap"
+              { id: self["parent_id_ssim"] }
+            else
+              {
+                index_maps_ssim: self["accession_number_ssim"],
+                has_model_ssim: "MapSet",
+              }
+            end
+    ActiveFedora::SolrService.query(
+      ActiveFedora::SolrQueryBuilder.construct_query(query)
+    )
   end
 
-  # @param [Symbol] :index or :component
-  # @param [SolrDocument]
-  def related_maps(type)
-    map_set.fetch("#{type}_maps_ssim", []).map do |id|
-      query = ActiveFedora::SolrQueryBuilder.construct_query(id: id)
-      ActiveFedora::SolrService.query(query).first
+  def index_maps
+    field_pairs = fetch("index_maps_ssim", []).map do |index|
+      ["accession_number_ssim", index]
     end
+
+    query = ActiveFedora::SolrQueryBuilder.construct_query(field_pairs, " OR ")
+    ActiveFedora::SolrService.query(query)
+  end
+
+  def component_maps
+    ids = map_sets.map do |set|
+      set.fetch("component_maps_ssim", [])
+    end
+
+    query = ActiveFedora::SolrQueryBuilder.construct_query_for_ids(ids)
+    ActiveFedora::SolrService.query(query)
   end
 
   private
