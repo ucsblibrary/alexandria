@@ -110,7 +110,10 @@ module ApplicationHelper
   # that off before displaying
   #
   # @param [Array<SolrDocument>]
+  # @return [Int]
   def accession_overlap(documents)
+    return 0 if documents.count < 2
+
     overlap_length = 0
     documents.first["accession_number_ssim"].first.chars.each_with_index do |char, i|
       break if documents.any? do |map|
