@@ -5,8 +5,9 @@ require "rails_helper"
 describe MapSetIndexer do
   let(:map_set) do
     MapSet.create(
-      title: ["Lots O' Components"],
-      index_map_id: (1..11).map { |i| (100 + i).to_s }
+      admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID,
+      index_map_id: (1..11).map { |i| (100 + i).to_s },
+      title: ["Lots O' Components"]
     )
   end
 

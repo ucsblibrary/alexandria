@@ -9,26 +9,35 @@ feature "IndexMap show page:" do
   let(:scale) { ["1:18,374,400"] }
 
   # This is the map whose show page we want to view
-  let(:map) do
+  let!(:map) do
     VCR.use_cassette("show_index_map_feature_spec") do
-      FactoryGirl.create(:public_index_map, title: title, creator: [creator_uri], extent: extent, scale: scale, parent_id: map_set.id)
+      IndexMap.create(
+        accession_number: ["north pole"],
+        admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID,
+        creator: [creator_uri],
+        extent: extent,
+        parent_id: map_set.id,
+        scale: scale,
+        title: title
+      )
     end
   end
 
-  let!(:sibling_index_map) do
-    FactoryGirl.create(:public_index_map, title: ["Sibling Index Map"], parent_id: map_set.id)
-  end
-
   let!(:map_set) do
-    FactoryGirl.create(:public_map_set, title: ["Parent Map Set"])
+    MapSet.create(
+      admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID,
+      title: ["Parent Map Set"],
+      index_map_id: ["south pole", "north pole"]
+    )
   end
 
   let!(:component_map) do
-    FactoryGirl.create(
-      :public_component_map,
+    ComponentMap.create(
       accession_number: ["7070 CM0"],
-      title: ["CM0"],
-      parent_id: map_set.id
+      admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID,
+      index_map_id: ["north pole"],
+      parent_id: map_set.id,
+      title: ["CM0"]
     )
   end
 
@@ -44,8 +53,6 @@ feature "IndexMap show page:" do
     allow_any_instance_of(SolrDocument).to receive(:ark).and_return("123")
     map.members << file_set
     map.save!
-    sibling_index_map.members << file_set
-    sibling_index_map.save!
     component_map.members << file_set
     component_map.save!
     map_set.update_index
@@ -58,8 +65,7 @@ feature "IndexMap show page:" do
     expect(page).to have_content "Century Company"
     expect(page).to have_content scale.first
 
-    expect(page).to have_link("indexmap0")
-    expect(page).to have_link("indexmap1")
-    expect(page).to have_link("componentmap0")
+    expect(page).to have_content "Component Maps"
+    expect(page).to have_link("7070 CM0")
   end
 end
