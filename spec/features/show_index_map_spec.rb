@@ -27,7 +27,7 @@ feature "IndexMap show page:" do
     MapSet.create(
       admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID,
       title: ["Parent Map Set"],
-      index_map_id: ["south pole", "north pole"]
+      index_map_id: ["north pole"]
     )
   end
 

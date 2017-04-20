@@ -11,23 +11,25 @@ feature "ComponentMap show page:" do
 
   let(:map) do
     VCR.use_cassette("show_component_map_feature_spec") do
-      FactoryGirl.create(
-        :public_component_map,
+      ComponentMap.create(
         accession_number: ["7070 something"],
+        admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID,
         title: title,
         creator: [creator_uri],
         extent: extent,
-        scale: scale,
+        index_map_id: ["north pole"],
         parent_id: map_set.id,
+        scale: scale,
         local_collection_id: [collection.id]
       )
     end
   end
 
   let!(:sibling_component_map) do
-    FactoryGirl.create(
-      :public_component_map,
+    ComponentMap.create(
       accession_number: ["7070 another thing"],
+      admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID,
+      index_map_id: ["north pole"],
       title: ["Sibling CM"],
       scale: ["Sibling's scale"],
       parent_id: map_set.id
@@ -35,11 +37,19 @@ feature "ComponentMap show page:" do
   end
 
   let!(:index_map) do
-    FactoryGirl.create(:public_index_map, title: ["Index Map 0"], parent_id: map_set.id)
+    IndexMap.create(
+      accession_number: ["north pole"],
+      admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID,
+      parent_id: map_set.id,
+      title: ["Index Map 0"]
+    )
   end
 
   let!(:map_set) do
-    FactoryGirl.create(:public_map_set, title: ["Parent Map Set"])
+    MapSet.create(
+      admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID,
+      title: ["Parent Map Set"]
+    )
   end
 
   let(:file_set) do
@@ -69,9 +79,11 @@ feature "ComponentMap show page:" do
     expect(page).to have_content "Century Company"
     expect(page).to have_content scale.first
 
-    expect(page).to have_link("indexmap0")
-    expect(page).to have_link("componentmap0")
-    expect(page).to have_link("componentmap1")
+    expect(page).to have_content "Index Maps"
+    expect(page).to have_content "Component Maps"
+
+    expect(page).to have_link("something")
+    expect(page).to have_link("another thing")
 
     expect(page).to have_link(collection.title.first, collection_path(collection))
     expect(page).to have_link(map_set.title.first, curation_concerns_map_set_path(map_set))
