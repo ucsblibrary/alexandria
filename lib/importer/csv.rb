@@ -288,9 +288,7 @@ module Importer::CSV
   end
 
   # Process the structural metadata, e.g., parent_id, index_map_id
-  # TODO: As a first pass, so we can do a complete test of data importing,
-  # we're just deleting this data. We need to come back and
-  # use it to create links between objects.
+  #
   # @param [Hash] attrs A hash of attributes that will become a fedora object
   # @param [Hash]
   def self.handle_structural_metadata(attrs)
@@ -300,11 +298,14 @@ module Importer::CSV
       attrs[:parent_id] = parent_id if parent_id
     end
 
+    # This is an attribute of MapSets, which are generally created
+    # before the IndexMap specified in the metadata.  If we use
+    # {get_id_for_accession_number}, we'll be setting this attribute
+    # to nil since the IndexMap doesn't exist in Fedora yet.  So
+    # instead just use the accession number itself.
     im = attrs.delete(:index_map_accession_number)
-    if im
-      index_map_id = get_id_for_accession_number(im)
-      attrs[:index_map_id] = [index_map_id] if index_map_id
-    end
+    attrs[:index_map_id] = im if im.present?
+
     attrs
   end
 

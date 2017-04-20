@@ -181,7 +181,7 @@ describe Importer::CSV do
           parent_id: @map_set.id,
           # a map set can contain many index maps,
           # so index_map_id must be an Array because of the way the field is defined
-          index_map_id: [@index_map.id],
+          index_map_id: @index_map_accession_number,
         }
     end
     it "doesn't throw any errors if these fields don't exist" do
