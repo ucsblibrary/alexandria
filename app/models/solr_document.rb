@@ -87,10 +87,10 @@ class SolrDocument
   end
 
   def in_collections
-    fetch("local_collection_id_ssim", []).map do |id|
-      query = ActiveFedora::SolrQueryBuilder.construct_query(id: id)
-      ActiveFedora::SolrService.query(query).first
-    end
+    query = ActiveFedora::SolrQueryBuilder.construct_query_for_ids(
+      fetch("local_collection_id_ssim", [])
+    )
+    ActiveFedora::SolrService.query(query)
   end
 
   def map_sets
