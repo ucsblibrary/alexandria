@@ -8,36 +8,72 @@ feature "MapSet show page:" do
   let(:extent) { ["maps : color ; 47 x 71 cm or smaller"] }
   let(:creator_uri) { RDF::URI.new("http://id.loc.gov/authorities/names/n79122611") }
   let(:file_path) { File.join(fixture_path, "maps", "7070s_250_u54_index.jpg") }
-  let(:policy_id) { AdminPolicy::PUBLIC_POLICY_ID }
+
   let(:file_set) do
-    FileSet.new(admin_policy_id: policy_id) do |fs|
+    FileSet.new(admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID) do |fs|
       Hydra::Works::AddFileToFileSet.call(fs, File.new(file_path), :original_file)
     end
   end
+
   let(:map_set) do
     VCR.use_cassette("show_map_set_feature_spec") do
-      FactoryGirl.create(:public_map_set, title: title, scale: scale, extent: extent, creator: [creator_uri])
+      MapSet.create(
+        admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID,
+        index_map_id: %w[east west],
+        creator: [creator_uri],
+        extent: extent,
+        scale: scale,
+        title: title
+      )
     end
   end
 
   let(:index_map_west_id) { "index_map_west" }
   let(:index_map_west) do
-    FactoryGirl.create(:public_index_map, id: index_map_west_id, title: ["Index Map, West Side"], parent_id: map_set.id, accession_number: ["west"], identifier: ["ark:/99999/#{index_map_west_id}"])
+    IndexMap.create(
+      accession_number: ["west"],
+      admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID,
+      id: index_map_west_id,
+      identifier: ["ark:/99999/#{index_map_west_id}"],
+      parent_id: map_set.id,
+      title: ["Index Map, West Side"]
+    )
   end
 
   let(:index_map_east_id) { "index_map_east" }
   let(:index_map_east) do
-    FactoryGirl.create(:public_index_map, id: index_map_east_id, title: ["Index Map, East Side"], parent_id: map_set.id, accession_number: ["east"], identifier: ["ark:/99999/#{index_map_east_id}"])
+    IndexMap.create(
+      accession_number: ["east"],
+      admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID,
+      id: index_map_east_id,
+      identifier: ["ark:/99999/#{index_map_east_id}"],
+      parent_id: map_set.id,
+      title: ["Index Map, East Side"]
+    )
   end
 
   let(:component_map_river_id) { "component_map_river" }
   let(:component_map_river) do
-    FactoryGirl.create(:public_component_map, id: component_map_river_id, title: ["Component Map of the River Area"], parent_id: map_set.id, accession_number: ["river"], identifier: ["ark:/99999/#{component_map_river_id}"])
+    ComponentMap.create(
+      accession_number: ["river"],
+      admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID,
+      id: component_map_river_id,
+      identifier: ["ark:/99999/#{component_map_river_id}"],
+      parent_id: map_set.id,
+      title: ["Component Map of the River Area"]
+    )
   end
 
   let(:component_map_city_id) { "component_map_city" }
   let(:component_map_city) do
-    FactoryGirl.create(:public_component_map, id: component_map_city_id, title: ["Component Map of the City Area"], parent_id: map_set.id, accession_number: ["city"], identifier: ["ark:/99999/#{component_map_city_id}"])
+    ComponentMap.create(
+      accession_number: ["city"],
+      admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID,
+      id: component_map_city_id,
+      identifier: ["ark:/99999/#{component_map_city_id}"],
+      parent_id: map_set.id,
+      title: ["Component Map of the City Area"]
+    )
   end
 
   before do
@@ -65,21 +101,22 @@ feature "MapSet show page:" do
     expect(page).to have_content "United States. Army Map Service" # de-referenced creator
     expect(page).to have_content scale.first
 
-    # The index and component maps should appear in order of
-    # accession number
-    expect(page).to have_link("indexmap0", href: catalog_ark_path("ark:", "99999", index_map_east.id))
-    expect(page).to have_link("indexmap1", href: catalog_ark_path("ark:", "99999", index_map_west.id))
-    expect(page).to have_link("componentmap0", href: catalog_ark_path("ark:", "99999", component_map_city.id))
-    expect(page).to have_link("componentmap1", href: catalog_ark_path("ark:", "99999", component_map_river.id))
+    expect(page).to have_content "Index Maps"
+    expect(page).to have_link("Index Map, East Side", href: catalog_ark_path("ark:", "99999", index_map_east.id))
+    expect(page).to have_link("Index Map, West Side", href: catalog_ark_path("ark:", "99999", index_map_west.id))
+
+    expect(page).to have_content "Component Maps"
+    expect(page).to have_link("city", href: catalog_ark_path("ark:", "99999", component_map_city.id))
+    expect(page).to have_link("river", href: catalog_ark_path("ark:", "99999", component_map_river.id))
 
     # The thumbnail should be a link to the show page for that
     # record.
-    click_link("indexmap1")
+    click_link("Index Map, West Side")
     expect(page).to have_content index_map_west.title.first
 
     # Now we're on the show page for the West Index Map. The 0th
     # thumbnail for the component maps should be the City map.
-    click_link("componentmap0")
+    click_link("city")
     expect(page).to have_content component_map_city.title.first
   end
 end

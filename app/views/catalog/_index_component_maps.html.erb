@@ -2,29 +2,58 @@
 <% index_maps = document.index_maps %>
 
 <% if index_maps.present? %>
-  <div class="col-md-2">
-    <h3>Index Maps</h3>
+  <h3>Index Maps</h3>
+  <div class="col-md-2 map-tray"><ul>
     <% index_maps.each_with_index do |map, i| %>
-      <%= link_to(
-        image_tag(map["square_thumbnail_url_ssm"].first),
-        main_app.catalog_ark_path("ark:", params["shoulder"], map.id),
-        :id => "indexmap#{i}"
-      ) %>
+      <li>
+        <%=
+        link_to(
+          image_tag(map["square_thumbnail_url_ssm"].first),
+          main_app.catalog_ark_path("ark:", params["shoulder"], map.id),
+          :id => "indexmap#{i}"
+        )
+        %> <%=
+        link_to(
+          content_tag(:span, map["title_tesim"].first, class: "tray-label"),
+          main_app.catalog_ark_path("ark:", params["shoulder"], map.id)
+        )
+        %>
+      </li>
     <% end %>
-  </div>
+  </ul></div>
 <% end %>
 
 <% if component_maps.present? %>
   <h3>Component Maps</h3>
-  <!-- If there are no index maps, take up the whole width of the screen -->
-  <% if index_maps.count == 0 %>
-    <div class="col-md-12 map-tray">
-      <!-- If there is a single index map, give it 2 / 12 columns -->
-  <% elsif index_maps.count == 1 %>
+  <% # If there are no index maps, take up the whole width of the screen
+    if index_maps.count == 0 %>
+      <div class="col-md-12 map-tray">
+  <% # If there is a single index map, give it 2 / 12 columns
+    elsif index_maps.count == 1 %>
       <div class="col-md-10 map-tray">
   <% end %>
-  <%= render('component_map_tray',
-             document: document,
-             component_maps: component_maps) %>
-      </div>
+  <ul>
+    <%
+    overlap_length = accession_overlap(component_maps)
+
+    component_maps.each_with_index do |comp, i| %>
+      <% acc_num = comp["accession_number_ssim"].first %>
+      <li>
+        <%=
+        link_to(
+          image_tag(comp["square_thumbnail_url_ssm"].first),
+          main_app.catalog_ark_path("ark:", params["shoulder"], comp.id),
+          :id => "componentmap#{i}"
+        )
+        %> <%=
+        link_to(
+          content_tag(:span,
+                      acc_num.slice(overlap_length, acc_num.length),
+                      class: "tray-label"),
+          main_app.catalog_ark_path("ark:", params["shoulder"], comp.id)
+        )
+        %>
+      </li>
+    <% end %>
+  </ul></div>
 <% end %>

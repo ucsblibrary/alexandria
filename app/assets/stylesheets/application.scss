@@ -740,7 +740,11 @@ label.remove_time_span {
   overflow: auto;
   white-space: nowrap;
 
-  // this is the `inline` mixin but without applying it to the ul itself
+  ul {
+    padding-left: 0;
+  }
+
+  // this is the `inline` mixin but without applying it all to the <ul>
   li {
     display: inline;
     margin: 0;

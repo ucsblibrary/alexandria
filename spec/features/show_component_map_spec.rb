@@ -80,8 +80,9 @@ feature "ComponentMap show page:" do
     expect(page).to have_content scale.first
 
     expect(page).to have_content "Index Maps"
-    expect(page).to have_content "Component Maps"
+    expect(page).to have_link "Index Map 0"
 
+    expect(page).to have_content "Component Maps"
     expect(page).to have_link("something")
     expect(page).to have_link("another thing")
 
