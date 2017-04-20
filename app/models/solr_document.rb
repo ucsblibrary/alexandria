@@ -90,7 +90,7 @@ class SolrDocument
     query = ActiveFedora::SolrQueryBuilder.construct_query_for_ids(
       fetch("local_collection_id_ssim", [])
     )
-    ActiveFedora::SolrService.query(query)
+    ActiveFedora::SolrService.query(query, rows: Collection.count)
   end
 
   def map_sets
@@ -107,7 +107,8 @@ class SolrDocument
               }
             end
     ActiveFedora::SolrService.query(
-      ActiveFedora::SolrQueryBuilder.construct_query(query)
+      ActiveFedora::SolrQueryBuilder.construct_query(query),
+      rows: MapSet.count
     )
   end
 
@@ -117,7 +118,7 @@ class SolrDocument
     end
 
     query = ActiveFedora::SolrQueryBuilder.construct_query(field_pairs, " OR ")
-    ActiveFedora::SolrService.query(query)
+    ActiveFedora::SolrService.query(query, rows: IndexMap.count)
   end
 
   def component_maps
@@ -126,7 +127,7 @@ class SolrDocument
     end
 
     query = ActiveFedora::SolrQueryBuilder.construct_query_for_ids(ids)
-    ActiveFedora::SolrService.query(query)
+    ActiveFedora::SolrService.query(query, rows: ComponentMap.count)
   end
 
   private
