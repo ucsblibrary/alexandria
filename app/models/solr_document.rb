@@ -127,7 +127,11 @@ class SolrDocument
     end
 
     query = ActiveFedora::SolrQueryBuilder.construct_query_for_ids(ids)
-    ActiveFedora::SolrService.query(query, rows: ComponentMap.count)
+    ActiveFedora::SolrService.query(
+      query,
+      sort: "accession_number_si asc",
+      rows: ComponentMap.count
+    )
   end
 
   private

@@ -42,11 +42,10 @@ describe MapSetIndexer do
       subject { described_class.new(map_set).generate_solr_document }
 
       it "returns the full list of component and index maps" do
-        expect(subject["component_maps_ssim"]).to(
-          contain_exactly(*cm_docs.map(&:id))
-        )
+        expect(subject["component_maps_ssim"]).to eq cm_docs.map(&:id)
+
         expect(subject["index_maps_ssim"]).to(
-          contain_exactly(*im_docs.map { |im| im["accession_number_ssim"] })
+          eq(im_docs.map { |im| im["accession_number_ssim"] })
         )
       end
     end
