@@ -20,7 +20,10 @@ describe ETDIndexer do
   describe "Indexing copyright" do
     let(:copyrighted) { ["2014"] }
     let(:etd) do
-      ETD.new(date_copyrighted: copyrighted, rights_holder: ["Samantha Lauren"])
+      ETD.new(
+        date_copyrighted: copyrighted,
+        rights_holder: [Agent.create(foaf_name: "Samantha Lauren").uri]
+      )
     end
     let(:subject) { document["copyright_ssm"] }
 

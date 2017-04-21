@@ -5,7 +5,6 @@ class Image < ActiveFedora::Base
   include Metadata
   include WithAdminPolicy
   include EmbargoBehavior
-  include LocalAuthorityHashAccessor
 
   self.human_readable_type = "Image"
 

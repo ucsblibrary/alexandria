@@ -20,7 +20,7 @@ describe "MultiValueReadonlyInput", type: :input do
   end
 
   describe "#collection" do
-    subject { input.send(:collection) }
+    subject { input.send(:collection).first }
 
     it { is_expected.to eq ["value 1", "value 2"] }
   end

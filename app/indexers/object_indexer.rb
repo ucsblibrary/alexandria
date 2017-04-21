@@ -33,7 +33,9 @@ class ObjectIndexer < CurationConcerns::WorkIndexer
       solr_doc[FACETABLE_YEAR] = facetable_year
 
       index_contributors(solr_doc)
-      solr_doc["note_label_tesim"] = object.notes.flat_map(&:value)
+      solr_doc["note_label_tesim"] = object.notes.map(&:value).flatten
+      solr_doc["rights_holder_label_tesim"] = object["rights_holder"].map(&:rdf_label).flatten
+
       yield(solr_doc) if block_given?
     end
   end

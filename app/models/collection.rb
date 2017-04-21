@@ -4,7 +4,6 @@ class Collection < ActiveFedora::Base
   include CurationConcerns::CollectionBehavior
   include Metadata
   include WithAdminPolicy
-  include LocalAuthorityHashAccessor
 
   property :issued, predicate: ::RDF::DC.issued, class_name: "TimeSpan"
   property :date_copyrighted, predicate: ::RDF::DC.dateCopyrighted, class_name: "TimeSpan"

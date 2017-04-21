@@ -215,22 +215,6 @@ describe Image do
     end
   end
 
-  describe "#[]" do
-    context "with a local creator" do
-      let(:person) { Person.create(foaf_name: "Tony") }
-      let(:tony_uri) { RDF::URI.new(person.uri) }
-      let(:merle_uri) { RDF::URI.new("http://id.loc.gov/authorities/names/n81053687") }
-      let(:photographers) { [tony_uri, merle_uri] }
-
-      let(:image) { Image.new(photographer: photographers) }
-
-      subject { image[:photographer] }
-      it "has an ActiveFedora object and and ActiveTriples object" do
-        expect(subject.first).to eq person
-        expect(subject.last).to be_kind_of ActiveTriples::Resource
-      end
-    end
-  end
   describe "#to_partial_path" do
     subject { described_class.new.to_partial_path }
     it { is_expected.to eq "catalog/document" }

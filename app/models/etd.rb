@@ -5,7 +5,6 @@ class ETD < ActiveFedora::Base
   include WithAdminPolicy
   include Metadata
   include MarcMetadata
-  include LocalAuthorityHashAccessor
   include HumanReadableType
   include EmbargoBehavior
 

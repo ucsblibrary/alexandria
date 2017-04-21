@@ -4,7 +4,12 @@ class ETDIndexer < ObjectIndexer
   def generate_solr_document
     super.tap do |solr_doc|
       solr_doc[Solrizer.solr_name("member_ids", :symbol)] = object.member_ids
-      solr_doc[Solrizer.solr_name("copyright", :displayable)] = "#{object.rights_holder.first}, #{object.date_copyrighted.first}"
+
+      rights_holders = object.rights_holder.map do |holder|
+        holder.rdf_label.first
+      end.join(" and ")
+
+      solr_doc[Solrizer.solr_name("copyright", :displayable)] = "#{rights_holders}, #{object.date_copyrighted.first}"
 
       solr_doc[Solrizer.solr_name("department", :facetable)] = department(solr_doc)
       solr_doc[Solrizer.solr_name("dissertation", :displayable)] = dissertation
