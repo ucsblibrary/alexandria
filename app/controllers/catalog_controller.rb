@@ -82,7 +82,7 @@ class CatalogController < ApplicationController
     # facet bar
     config.add_facet_field solr_name("work_type_label", :facetable), label: "Format", limit: true
     config.add_facet_field solr_name("collection_label", :symbol), label: "Collection", limit: true
-    config.add_facet_field ContributorIndexer::ALL_CONTRIBUTORS_FACET, label: "Contributor", limit: true
+    config.add_facet_field ObjectIndexer::ALL_CONTRIBUTORS_FACET, label: "Contributor", limit: true
     config.add_facet_field solr_name("lc_subject_label", :facetable), label: "Topic", limit: 20
     config.add_facet_field solr_name("location_label", :facetable), label: "Place", limit: true
     config.add_facet_field solr_name("form_of_work_label", :facetable), label: "Genre", limit: true
@@ -103,7 +103,7 @@ class CatalogController < ApplicationController
     #   The ordering of the field names is the order of the display
     config.add_index_field solr_name("work_type_label", :stored_searchable), label: "Format"
     config.add_index_field solr_name("collection_label", :symbol), label: "Collection"
-    config.add_index_field ContributorIndexer::ALL_CONTRIBUTORS_LABEL, label: "Contributors", if: :show_contributors?
+    config.add_index_field ObjectIndexer::ALL_CONTRIBUTORS_LABEL, label: "Contributors", if: :show_contributors?
     config.add_index_field solr_name("author", :stored_searchable), label: "Author", if: :show_author?
     config.add_index_field solr_name("created", :displayable), label: "Creation Date"
     config.add_index_field solr_name("issued", :displayable), label: "Issued Date"

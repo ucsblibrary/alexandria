@@ -19,6 +19,12 @@ class ObjectIndexer < CurationConcerns::WorkIndexer
   COLLECTION_LABEL = Solrizer.solr_name("collection_label", :symbol)
   COLLECTION = Solrizer.solr_name("collection", :symbol)
 
+  ALL_CONTRIBUTORS_FACET = Solrizer.solr_name("all_contributors_label", :facetable)
+  ALL_CONTRIBUTORS_LABEL = Solrizer.solr_name("all_contributors_label", :stored_searchable)
+
+  SORTABLE_CREATOR = Solrizer.solr_name("creator_label", :sortable)
+  CREATOR_MULTIPLE = Solrizer.solr_name("creator_label", :stored_searchable)
+
   def generate_solr_document
     super do |solr_doc|
       collection_ids, collection_titles = collections
@@ -32,7 +38,10 @@ class ObjectIndexer < CurationConcerns::WorkIndexer
       solr_doc[SORTABLE_DATE] = sortable_date
       solr_doc[FACETABLE_YEAR] = facetable_year
 
-      index_contributors(solr_doc)
+      solr_doc[SORTABLE_CREATOR] = sortable_creator(solr_doc)
+      solr_doc[ALL_CONTRIBUTORS_LABEL] = all_contributors_combined
+      solr_doc[ALL_CONTRIBUTORS_FACET] = solr_doc[ALL_CONTRIBUTORS_LABEL]
+
       solr_doc["note_label_tesim"] = object.notes.map(&:value).flatten
       solr_doc["rights_holder_label_tesim"] = object["rights_holder"].map(&:rdf_label).flatten
 
@@ -41,6 +50,22 @@ class ObjectIndexer < CurationConcerns::WorkIndexer
   end
 
   private
+
+    # Create a creator field suitable for sorting on
+    def sortable_creator(solr_doc)
+      solr_doc.fetch(CREATOR_MULTIPLE).first if solr_doc.key? CREATOR_MULTIPLE
+    end
+
+    # @return [NilClass, Array] Union of all the MARC relators. If non exist, return nil
+    # Returns the rdf label if it's a URI, otherwise the value itself.
+    def all_contributors_combined
+      Metadata::RELATIONS.keys.map do |field|
+        next if object[field].empty?
+        object[field].map do |val|
+          val.respond_to?(:rdf_label) ? val.rdf_label.first : val
+        end
+      end.flatten.compact
+    end
 
     # Find all the collections the object belongs to, whether
     # it has normal hydra-style collection membership or it
@@ -62,10 +87,6 @@ class ObjectIndexer < CurationConcerns::WorkIndexer
       return [] unless object.id
       query = ActiveFedora::SolrQueryBuilder.construct_query_for_rel(member_ids: object.id, has_model: Collection.to_class_uri)
       ActiveFedora::SolrService.query(query, fl: "title_tesim id")
-    end
-
-    def index_contributors(solr_doc)
-      ContributorIndexer.new(object).generate_solr_document(solr_doc)
     end
 
     def display_date(date_name)

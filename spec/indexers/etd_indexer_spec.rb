@@ -18,20 +18,22 @@ describe ETDIndexer do
   end
 
   describe "Indexing copyright" do
-    let(:copyrighted) { ["2014"] }
     let(:etd) do
       ETD.new(
-        date_copyrighted: copyrighted,
+        date_copyrighted: ["2014"],
         rights_holder: [Agent.create(foaf_name: "Samantha Lauren").uri]
       )
     end
-    let(:subject) { document["copyright_ssm"] }
+    subject { document["copyright_ssm"] }
 
     it { is_expected.to eq "Samantha Lauren, 2014" }
   end
 
   describe "Indexing author (as contributor facet)" do
-    let(:etd) { ETD.new(author: ["Kfir Lazare Sargent"]) }
+    let(:etd) do
+      ETD.new(author: [Agent.create(foaf_name: "Kfir Lazare Sargent").uri])
+    end
+
     subject { document["all_contributors_label_sim"] }
 
     it { is_expected.to eq ["Kfir Lazare Sargent"] }

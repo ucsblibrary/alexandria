@@ -145,7 +145,7 @@ module Importer::Factory
                                 end
 
         # Use the combination of all authorial roles
-        contributors = object.to_solr[ContributorIndexer::ALL_CONTRIBUTORS_LABEL]
+        contributors = object.to_solr[ObjectIndexer::ALL_CONTRIBUTORS_LABEL]
         identifier[:erc_who] = contributors.join("; ") if contributors.present?
 
         identifier.save

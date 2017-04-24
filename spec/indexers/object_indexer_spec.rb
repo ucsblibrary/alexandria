@@ -202,16 +202,11 @@ describe ObjectIndexer do
     before { AdminPolicy.ensure_admin_policy_exists }
 
     it "has a creator" do
-      expect_any_instance_of(ContributorIndexer).to receive(:generate_solr_document) do |_, solr_doc|
-        solr_doc.merge!("contributors" => "this", "sorted_creator" => "that")
-      end
       VCR.use_cassette("lc_names_american_film") do
         expect(subject["creator_tesim"]).to eq ["http://id.loc.gov/authorities/names/n87914041"]
         # The *_label_tesim is the result of the DeepIndexer
         expect(subject["creator_label_tesim"]).to eq ["American Film Manufacturing Company"]
         expect(subject["author_label_tesim"]).to eq ["Frank"]
-        expect(subject["contributors"]).to eq "this"
-        expect(subject["sorted_creator"]).to eq "that"
       end
     end
   end
