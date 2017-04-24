@@ -104,7 +104,7 @@
     <DISS_binary type="PDF">Button_ucsb_0035D_11990.pdf</DISS_binary>
   </DISS_content>
   <DISS_restriction>
-    <DISS_sales_restriction code="1" remove="2017-04-24 00:00:00"/>
+    <DISS_sales_restriction code="1" remove="2099-04-24 00:00:00"/>
   </DISS_restriction>
   <DISS_repository>
     <DISS_version/>

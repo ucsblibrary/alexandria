@@ -307,7 +307,7 @@ describe Proquest::Metadata do
       let(:file)  { "#{fixture_path}/proquest/Button_ucsb_0035D_11990_DATA.xml" }
 
       it "imports metadata from proquest file" do
-        expect(reloaded.embargo_release_date).to eq(Date.parse("2017-04-24"))
+        expect(reloaded.embargo_release_date).to eq(Date.parse("2099-04-24"))
         expect(reloaded.admin_policy_id).to eq AdminPolicy::DISCOVERY_POLICY_ID
         expect(reloaded.visibility_during_embargo.id).to eq ActiveFedora::Base.id_to_uri(AdminPolicy::DISCOVERY_POLICY_ID)
         expect(reloaded.visibility_after_embargo.id).to eq ActiveFedora::Base.id_to_uri(AdminPolicy::PUBLIC_CAMPUS_POLICY_ID)

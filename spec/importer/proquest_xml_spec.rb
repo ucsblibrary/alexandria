@@ -27,7 +27,7 @@ describe Proquest::XML do
       it "collects attributes for the ETD record" do
         expect(attributes[:embargo_code]).to eq "4"
         expect(attributes[:DISS_accept_date]).to eq "01/01/2013"
-        expect(attributes[:embargo_remove_date]).to eq "2017-04-24 00:00:00"
+        expect(attributes[:embargo_remove_date]).to eq "2099-04-24 00:00:00"
       end
     end
 
