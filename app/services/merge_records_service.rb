@@ -66,14 +66,33 @@ class MergeRecordsService
     def update_records_with_new_reference
       records_with_references.each do |id|
         record = ActiveFedora::Base.find(id)
-        attributes = record.attributes.select do |_k, v|
-          Array(v).include?(old_reference)
-        end
 
-        attributes.each do |attr_name, value|
-          value.delete(old_reference)
-          new_value = value + [new_reference]
-          record.send("#{attr_name}=", new_value)
+        attributes = record.attributes.map do |key, val|
+          values = Array(val).map do |zorp|
+            # All of our {Agent}s ({Person}, etc.) are indexed in Solr
+            # as {ControlledVocabularies::Creator},
+            # {ControlledVocabularies::Subject} etc.  When we need to
+            # modify the actual Fedora record, therefore, there's this
+            # little dance where we convert the RDF object back into
+            # an {ActiveFedora::Base} object
+            if LocalAuthority.local_object? zorp
+              LocalAuthority.rdf_to_fedora(zorp)
+            else
+              zorp
+            end
+          end
+
+          { key => values } if Array(values).include?(old_reference)
+        end.compact
+
+        attributes.each do |hash|
+          attr_name = hash.keys.first
+
+          hash.values.each do |value|
+            value.delete(old_reference)
+            new_value = value + [new_reference]
+            record.send("#{attr_name}=", new_value)
+          end
         end
 
         record.save!

@@ -53,6 +53,23 @@ module LocalAuthority
     local_authority?(record, LOCAL_SUBJECT_MODELS)
   end
 
+  # @param [ActiveTriples::Resource] item
+  # @return [Boolean] true if the target is a local authority record
+  def self.local_object?(item)
+    item.respond_to?(:rdf_subject) &&
+      item.rdf_subject.is_a?(RDF::URI) &&
+      item.rdf_subject.start_with?(ActiveFedora.fedora.host) &&
+      # item.class.include?(LinkedVocabs::Controlled) # TODO this could replace the last term
+      (item.is_a?(ControlledVocabularies::Creator) ||
+       item.is_a?(ControlledVocabularies::Subject))
+  end
+
+  # @param [#rdf_subject]
+  # @return [ActiveFedora::Base]
+  def self.rdf_to_fedora(item)
+    ActiveFedora::Base.find(ActiveFedora::Base.uri_to_id(item.rdf_subject))
+  end
+
   def self.find_or_create_contributors(fields, attrs)
     {}.tap do |contributors|
       fields.each do |field|
