@@ -19,13 +19,12 @@ class Proquest::Metadata
     else
       update_embargo_metadata!
       update_access_metadata
-      update_descriptive_metadata
     end
   end
 
   def attributes
     return @attributes if @attributes
-    @attributes = Proquest::XML.new(etd.proquest.content).attributes
+    @attributes = Proquest::XML.attributes(Nokogiri::XML(etd.proquest.content))
     @attributes = {} if @attributes.values.all?(&:blank?)
     @attributes
   end
@@ -80,17 +79,6 @@ class Proquest::Metadata
         fs.admin_policy_id = etd.admin_policy_id
         fs.save!
       end
-    end
-
-    def update_descriptive_metadata
-      descriptive_attributes.each do |attr, val|
-        etd[attr] = val
-      end
-    end
-
-    # @return [Hash]
-    def descriptive_attributes
-      attributes.except(*Proquest::XML.embargo_xpaths.keys)
     end
 
     def no_embargo?

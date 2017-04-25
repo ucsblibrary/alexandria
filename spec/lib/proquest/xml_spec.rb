@@ -4,8 +4,9 @@ require "rails_helper"
 require "proquest"
 
 describe Proquest::XML do
-  let(:parser) { described_class.new(File.read(file)) }
-  let(:attributes) { parser.attributes }
+  let(:attributes) do
+    Proquest::XML.attributes(Nokogiri::XML(File.read(file)))
+  end
 
   describe "#attributes" do
     context "a record that has <embargo_code>" do

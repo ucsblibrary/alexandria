@@ -47,6 +47,14 @@ class ObjectFactoryWriter
 
     files = find_files_to_attach(attributes)
     attributes[:files] = attributes.delete("filename")
+
+    if @etd.present?
+      xml = Nokogiri::XML(File.read(@etd["xml"]))
+
+      attributes[:rights_holder] = Proquest::XML.rights_holder(xml)
+      attributes[:date_copyrighted] = Proquest::XML.date_copyrighted(xml)
+    end
+
     build_object(attributes, files)
   end
 

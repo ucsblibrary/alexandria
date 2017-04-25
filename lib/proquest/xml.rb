@@ -3,16 +3,18 @@
 # Parse an XML metadata file from the ProQuest system, and
 # collect all the interesting values in the attributes hash.
 
-class Proquest::XML
-  def initialize(file_contents)
-    @doc = Nokogiri::XML(file_contents)
+module Proquest::XML
+  # @param [Nokogiri::XML]
+  def self.attributes(xml)
+    embargo_attributes(xml).merge(
+      rights_holder: rights_holder(xml),
+      date_copyrighted: date_copyrighted(xml)
+    )
   end
 
-  def attributes
-    embargo_attributes.merge(
-      rights_holder: rights_holder,
-      date_copyrighted: date_copyrighted
-    )
+  # @return [Hash]
+  def self.descriptive_attributes(xml)
+    attributes(xml).except(*embargo_xpaths.keys)
   end
 
   def self.embargo_xpaths
@@ -26,25 +28,28 @@ class Proquest::XML
     }
   end
 
-  private
+  # @param [Nokogiri::XML]
+  def self.rights_holder(xml)
+    path = xml.xpath('//DISS_author[@type="primary"]/DISS_name')
+    return if path.blank?
+    [[path.xpath("DISS_fname").text, path.xpath("DISS_surname").text].join(" ")]
+  end
 
-    def rights_holder
-      path = @doc.xpath('//DISS_author[@type="primary"]/DISS_name')
-      return if path.blank?
-      [[path.xpath("DISS_fname").text, path.xpath("DISS_surname").text].join(" ")]
-    end
+  # @param [Nokogiri::XML]
+  def self.date_copyrighted(xml)
+    sdate = xml.xpath("//DISS_dates/DISS_accept_date").text
+    [Date.parse(sdate).year] if sdate.present?
+  end
 
-    def date_copyrighted
-      sdate = @doc.xpath("//DISS_dates/DISS_accept_date").text
-      [Date.parse(sdate).year] if sdate.present?
+  # FIXME: what on earth is happening here
+  #
+  # @param [Nokogiri::XML]
+  def self.embargo_attributes(xml)
+    embargo_xpaths.inject({}) do |attrs, (field, xpath)|
+      element = xml.xpath(xpath)
+      value = element.text
+      value = nil if value.blank?
+      attrs.merge(field => value)
     end
-
-    def embargo_attributes
-      self.class.embargo_xpaths.inject({}) do |attrs, (field, xpath)|
-        element = @doc.xpath(xpath)
-        value = element.text
-        value = nil if value.blank?
-        attrs.merge(field => value)
-      end
-    end
+  end
 end
