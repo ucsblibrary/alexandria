@@ -20,7 +20,7 @@ namespace :fedora do
   task count: [:environment] do
     models = CurationConcerns.config.curation_concerns +
              [Collection, FileSet] +
-             LocalAuthority.local_authority_models - [Agent]
+             LocalAuthority::LOCAL_AUTHORITY_MODELS - [Agent]
 
     puts "Number of objects in fedora:"
     models.each do |model|

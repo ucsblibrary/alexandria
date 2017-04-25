@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "local_authority"
+
 module Importer::Factory
   class ObjectFactory
     extend ActiveModel::Callbacks
@@ -161,96 +163,11 @@ module Importer::Factory
       Rails.logger.debug "Updated #{klass.model_name.human} #{obj.id} (#{Array(attributes[system_identifier_field]).first})"
     end
 
-    def find_or_create_contributors(fields, attrs)
-      {}.tap do |contributors|
-        fields.each do |field|
-          next unless attrs.key?(field)
-          contributors[field] = contributors_for_field(attrs, field)
-        end
-      end
-    end
-
-    # @param [Symbol] thing :rights_holder, :lc_subject
-    # @param [Hash] attrs
-    # @return [Hash]
-    def find_or_create_rdf_attribute(thing, attrs)
-      values = attrs.fetch(thing, []).map do |value|
-        if value.is_a?(RDF::URI)
-          value
-        else
-          case thing
-          when :lc_subject
-            find_or_create_local_lc_subject(value)
-          when :location
-            find_or_create_local_location(value)
-          when :rights_holder
-            find_or_create_local_rights_holder(value)
-          end
-        end
-      end
-      values.empty? ? {} : { thing => values }
-    end
-
     private
 
       def clear_attribute!(obj, attr)
         obj[attr] = []
         obj.send("#{attr}_will_change!")
-      end
-
-      def contributors_for_field(attrs, field)
-        attrs[field].each_with_object([]) do |value, object|
-          object << case value
-                    when RDF::URI, String
-                      value
-                    when Hash
-                      find_or_create_local_contributor(value)
-                    end
-        end
-      end
-
-      def find_or_create_local_contributor(attrs)
-        type = attrs.fetch(:type).downcase
-        name = attrs.fetch(:name)
-        klass = contributor_classes[type]
-        contributor = klass.where(foaf_name_ssim: name).first || klass.create(foaf_name: name)
-        RDF::URI.new(contributor.public_uri)
-      end
-
-      # @param [Hash, String] value
-      # @return [RDF::URI]
-      def find_or_create_local_rights_holder(value)
-        if value.is_a?(Hash)
-          klass = contributor_classes[value.fetch(:type).downcase]
-          value = value.fetch(:name)
-        end
-        klass ||= Agent
-
-        rights_holder = klass.exact_model.where(foaf_name_ssim: value).first
-        rights_holder ||= klass.create(foaf_name: value)
-        RDF::URI.new(rights_holder.public_uri)
-      end
-
-      # @param [Hash] value
-      # @return [RDF::URI]
-      def find_or_create_local_lc_subject(value)
-        type = value.fetch(:type).downcase
-
-        if contributor_classes.keys.include?(type)
-          find_or_create_local_contributor(value)
-        else
-          klass = topic_classes[type]
-          name = value.fetch(:name)
-          subj = klass.where(label_ssim: name).first || klass.create(label: Array(name))
-          RDF::URI.new(subj.public_uri)
-        end
-      end
-
-      # @param [String] value
-      # @return [RDF::URI]
-      def find_or_create_local_location(value)
-        subj = Topic.where(label: value).first || Topic.create(label: [value])
-        RDF::URI.new(subj.public_uri)
       end
 
       # Since arrays of RDF elements are not saved in order in Fedora,
@@ -265,36 +182,24 @@ module Importer::Factory
         end
       end
 
-      # Map the type to the correct model.  Example:
-      # <mods:name type="personal">
-      # type="personal" should map to the Person model.
-      def contributor_classes
-        @contributor_classes ||= {
-          "personal" => Person,
-          "corporate" => Organization,
-          "conference" => Group,
-          "family" => Group,
-          "person" => Person,
-          "group" => Group,
-          "organization" => Organization,
-          "agent" => Agent,
-        }
-      end
-
-      def topic_classes
-        @topic_classes ||= {
-          "topic" => Topic,
-          "subject" => Topic,
-        }.merge(contributor_classes)
-      end
-
       def transform_attributes
-        contributors = find_or_create_contributors(klass.contributor_fields, attributes)
-        notes = extract_notes(attributes)
-        rights_holders = find_or_create_rdf_attribute(:rights_holder, attributes)
-        subjects = find_or_create_rdf_attribute(:lc_subject, attributes)
-        locations = find_or_create_rdf_attribute(:location, attributes)
+        contributors = LocalAuthority.find_or_create_contributors(
+          klass.contributor_fields,
+          attributes
+        )
+        rights_holders = LocalAuthority.find_or_create_rdf_attribute(
+          :rights_holder, attributes
+        )
+        subjects = LocalAuthority.find_or_create_rdf_attribute(
+          :lc_subject,
+          attributes
+        )
+        locations = LocalAuthority.find_or_create_rdf_attribute(
+          :location,
+          attributes
+        )
 
+        notes = extract_notes(attributes)
         description = { description: [join_paragraphs(attributes[:description])] }
         restrictions = { restrictions: [join_paragraphs(attributes[:restrictions])] }
 

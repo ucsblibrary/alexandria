@@ -9,6 +9,6 @@ class LocalAuthoritiesSearchBuilder < Blacklight::SearchBuilder
 
   def only_models_for_local_authorities(solr_params)
     solr_params[:fq] ||= []
-    solr_params[:fq] << "{!terms f=has_model_ssim}#{LocalAuthority.local_authority_models.join(",")}"
+    solr_params[:fq] << "{!terms f=has_model_ssim}#{LocalAuthority::LOCAL_AUTHORITY_MODELS.join(",")}"
   end
 end

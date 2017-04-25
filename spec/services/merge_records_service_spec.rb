@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "rails_helper"
+require "local_authority"
 
 describe MergeRecordsService do
   let(:image1) { create(:image, id: "image1", creator: [old_name], lc_subject: [old_name]) }

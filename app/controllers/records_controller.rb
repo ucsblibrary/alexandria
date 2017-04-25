@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "local_authority"
+
 # Extends and customizes the RecordsController in hydra-editor
 class RecordsController < ApplicationController
   load_resource only: [:destroy]

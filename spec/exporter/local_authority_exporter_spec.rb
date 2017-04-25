@@ -31,7 +31,7 @@ describe Exporter::LocalAuthorityExporter do
   describe "#run" do
     before do
       AdminPolicy.ensure_admin_policy_exists
-      LocalAuthority.local_authority_models.each(&:destroy_all)
+      LocalAuthority::LOCAL_AUTHORITY_MODELS.each(&:destroy_all)
     end
 
     after { FileUtils.rm_rf(dir, secure: true) }

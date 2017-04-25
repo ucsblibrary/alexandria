@@ -24,7 +24,7 @@ class Exporter::LocalAuthorityExporter < Exporter::BaseExporter
   end
 
   def classes_to_export
-    LocalAuthority.local_authority_models
+    LocalAuthority::LOCAL_AUTHORITY_MODELS
   end
 
   def print_object_counts
