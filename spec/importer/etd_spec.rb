@@ -16,7 +16,11 @@ describe Importer::ETD do
 
   describe "#import" do
     context "with an existing ETD collection" do
-      before { ETD.destroy_all }
+      before do
+        ETD.destroy_all
+        # Don't fetch external records
+        allow_any_instance_of(RDF::DeepIndexingService).to receive(:fetch_external)
+      end
 
       let(:meta) { ["#{fixture_path}/proquest/zipped/ETD_ucsb_0035D_13132_MARC.xml"] }
       let(:data) { ["#{fixture_path}/proquest/zipped/ETD_ucsb_0035D_13132.zip"] }
@@ -32,7 +36,15 @@ describe Importer::ETD do
         expect(ETD.count).to eq 1
 
         costa = ETD.first
+
         expect(costa.admin_policy_id).to eq AdminPolicy::DISCOVERY_POLICY_ID
+        expect(costa.author).to eq ["ETD, New"]
+        expect(costa.issued).to eq ["2016"]
+        expect(costa.keywords).to contain_exactly("Frick", "It", "Dang")
+        expect(costa.local_collection_id).to eq ["etds"]
+        expect(costa.place_of_publication).to eq ["[Santa Barbara, Calif.]"]
+        expect(costa.publisher).to eq ["University of California, Santa Barbara"]
+        expect(costa.title).to eq ["I don't ingest right : what is my deal"]
 
         costa_set = costa.file_sets.first
         expect(costa_set.admin_policy_id).to eq AdminPolicy::DISCOVERY_POLICY_ID
