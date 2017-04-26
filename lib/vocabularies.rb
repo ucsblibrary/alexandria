@@ -6,6 +6,7 @@ module Vocabularies
   autoload :CCLICENSES
   autoload :CCPUBLIC
   autoload :EURIGHTS
+  autoload :FEDORA
   autoload :GEONAMES
   autoload :ISO_639_2
   autoload :LCCS

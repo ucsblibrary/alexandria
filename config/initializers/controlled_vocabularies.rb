@@ -30,3 +30,17 @@ ControlledVocabularies::Creator.use_vocabulary(
 
 ControlledVocabularies::Creator.use_vocabulary :local, class: Vocabularies::LOCAL
 ControlledVocabularies::Subject.use_vocabulary :local, class: Vocabularies::LOCAL
+
+# During some specs we turn off the DeepIndexingService so URI labels
+# don't get converted to strings; as a result the validation fails
+# since Fedora URLs aren't valid in the controlled vocabulary (on
+# production, the URI for a local authority is
+# alexandria.ucsb.edu/organization/etc/etc rather than
+# localhost:8080/fedora/rest/blah). So this is just to keep the tests
+# happy.
+if Rails.env.test?
+  LinkedVocabs.add_vocabulary("fedora", "#{ActiveFedora.fedora.host}/")
+
+  ControlledVocabularies::Creator.use_vocabulary :fedora, class: Vocabularies::FEDORA
+  ControlledVocabularies::Subject.use_vocabulary :fedora, class: Vocabularies::FEDORA
+end
