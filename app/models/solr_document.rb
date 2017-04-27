@@ -43,9 +43,10 @@ class SolrDocument
     end
   end
 
-  # blank if there is no embargo or the embargo status
   def after_embargo_status
-    return if self["visibility_after_embargo_ssim"].blank?
+    # blank if there is no embargo or the embargo is expired:
+    # https://github.com/projecthydra/hydra-head/blob/master/hydra-access-controls/app/models/hydra/access_controls/embargo.rb#L22-L24
+    return if self["embargo_release_date_dtsi"].blank?
 
     date = Date.parse self["embargo_release_date_dtsi"]
     policy = AdminPolicy.find(self["visibility_after_embargo_ssim"].first)
