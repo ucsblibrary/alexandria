@@ -40,7 +40,7 @@ describe Importer::ETD do
         expect(costa.admin_policy_id).to eq AdminPolicy::DISCOVERY_POLICY_ID
         expect(costa.author).to eq ["ETD, New"]
         expect(costa.issued).to eq ["2016"]
-        expect(costa.keywords).to contain_exactly("Frick", "It", "Dang")
+        expect(costa.keywords).to contain_exactly("Frick", "It.", "Dang")
         expect(costa.local_collection_id).to eq ["etds"]
         expect(costa.place_of_publication).to eq ["[Santa Barbara, Calif.]"]
         expect(costa.publisher).to eq ["University of California, Santa Barbara"]
