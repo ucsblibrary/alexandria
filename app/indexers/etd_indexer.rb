@@ -9,7 +9,9 @@ class ETDIndexer < ObjectIndexer
         holder.rdf_label.first
       end.join(" and ")
 
-      solr_doc[Solrizer.solr_name("copyright", :displayable)] = "#{rights_holders}, #{object.date_copyrighted.first}"
+      if rights_holders.present?
+        solr_doc[Solrizer.solr_name("copyright", :displayable)] = "#{rights_holders}, #{object.date_copyrighted.first}"
+      end
 
       solr_doc[Solrizer.solr_name("department", :facetable)] = department(solr_doc)
       solr_doc[Solrizer.solr_name("dissertation", :displayable)] = dissertation
