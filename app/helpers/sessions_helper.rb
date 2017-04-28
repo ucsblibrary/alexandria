@@ -65,18 +65,24 @@ module SessionsHelper
   def update_groups_for!(user, groups, type)
     return if groups.first[:memberof].empty?
 
-    add_groups = [AdminPolicy::UCSB_GROUP, AdminPolicy::UC_GROUP] # unless type == 'shibboleth'
-    possible_groups = case type
-                      when "staff"
-                        [AdminPolicy::META_ADMIN, AdminPolicy::RIGHTS_ADMIN]
-                      when "ucsb"
-                        []
-                      end
+    default_groups = [AdminPolicy::UCSB_GROUP, AdminPolicy::UC_GROUP] # unless type == 'shibboleth'
 
-    new_groups = groups.first[:memberof].map { |m| m.split(",").first.sub(/^CN=/, "") }
+    special_groups = case type
+                     when "staff"
+                       [AdminPolicy::META_ADMIN, AdminPolicy::RIGHTS_ADMIN]
+                     when "ucsb"
+                       []
+                     end
+
+    ldap_groups = if Rails.env.production?
+                    groups.first[:memberof].map { |m| m.split(",").first.sub(/^CN=/, "") }
+                  else
+                    default_groups + special_groups
+                  end
+
     user.update_attribute(
       :group_list,
-      add_groups + (possible_groups.select { |grp| new_groups.include? grp })
+      default_groups + (special_groups.select { |grp| ldap_groups.include? grp })
     )
   end
 end
