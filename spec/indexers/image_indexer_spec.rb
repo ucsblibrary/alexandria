@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "rails_helper"
+require "importer"
 
 describe ImageIndexer do
   before do
@@ -77,6 +78,29 @@ describe ImageIndexer do
         expect(subject["location_label_sim"]).to eq ["Kodiak Island (Alaska)"]
         expect(subject["location_label_tesim"]).to eq ["Kodiak Island (Alaska)"]
       end
+    end
+  end
+
+  context "with a note" do
+    subject do
+      VCR.use_cassette("image_indexer") do
+        Importer::Factory::ImageFactory.new(
+          { title: ["This is Fine"],
+            accession_number: ["bork"],
+            notes_attributes: [
+              { note_type: nil,
+                value: "A dog holding a coffee cup in a burning house.", },
+            ], },
+          []
+        ).run.to_solr
+      end
+    end
+
+    it "indexes the note" do
+      expect(subject["note_label_tesim"].count).to eq 1
+      expect(subject["note_label_tesim"].first).to(
+        eq "A dog holding a coffee cup in a burning house."
+      )
     end
   end
 

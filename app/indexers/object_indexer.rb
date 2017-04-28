@@ -42,7 +42,7 @@ class ObjectIndexer < CurationConcerns::WorkIndexer
       solr_doc[ALL_CONTRIBUTORS_LABEL] = all_contributors_combined
       solr_doc[ALL_CONTRIBUTORS_FACET] = solr_doc[ALL_CONTRIBUTORS_LABEL]
 
-      solr_doc["note_label_tesim"] = object.notes.map(&:value).flatten
+      solr_doc["note_label_tesim"] = object.notes.map { |note| note.value.first }.flatten
       solr_doc["rights_holder_label_tesim"] = object["rights_holder"].map(&:rdf_label).flatten
 
       yield(solr_doc) if block_given?
