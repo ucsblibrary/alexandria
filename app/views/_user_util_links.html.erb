@@ -9,17 +9,15 @@
   <%= new_record_link %>
   <%= embargoes_link %>
 
-  <% if Rails.env.development? %>
-    <li class="login-link">
-      <% if logged_in? %>
-        <%= link_to t('blacklight.header_links.logout'), main_app.logout_path %>
-        <% unless current_user.to_s.blank? %>
-          <%= "(#{current_user})" %>
-        <% end %>
-      <% else %>
-        <%= link_to 'Login', main_app.new_user_session_path %>
+  <li class="login-link">
+    <% if logged_in? %>
+      <%= link_to t('blacklight.header_links.logout'), main_app.logout_path %>
+      <% unless current_user.to_s.blank? %>
+        <%= "(#{current_user})" %>
       <% end %>
-    </li>
-  <% end %>
+    <% else %>
+      <%= link_to 'Login', main_app.new_user_session_path %>
+    <% end %>
+  </li>
 </ul>
 </nav>
