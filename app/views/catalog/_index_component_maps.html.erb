@@ -5,17 +5,18 @@
   <h3>Index Maps</h3>
   <div class="col-md-2 map-tray"><ul>
     <% index_maps.each_with_index do |map, i| %>
+      <% shoulder = params["shoulder"] || map["identifier_ssm"].first.match(%r{ark:\/([^\/]+)\/.*})[1] %>
       <li>
         <%=
         link_to(
           image_tag(map["square_thumbnail_url_ssm"].first),
-          main_app.catalog_ark_path("ark:", params["shoulder"], map.id),
+          main_app.catalog_ark_path("ark:", shoulder, map.id),
           :id => "indexmap#{i}"
         )
         %> <%=
         link_to(
           content_tag(:span, map["title_tesim"].first, class: "tray-label"),
-          main_app.catalog_ark_path("ark:", params["shoulder"], map.id)
+          main_app.catalog_ark_path("ark:", shoulder, map.id)
         )
         %>
       </li>
@@ -38,11 +39,12 @@
 
     component_maps.each_with_index do |comp, i| %>
       <% acc_num = comp["accession_number_ssim"].first %>
+      <% shoulder = params["shoulder"] || comp["identifier_ssm"].first.match(%r{ark:\/([^\/]+)\/.*})[1] %>
       <li>
         <%=
         link_to(
           image_tag(comp["square_thumbnail_url_ssm"].first),
-          main_app.catalog_ark_path("ark:", params["shoulder"], comp.id),
+          main_app.catalog_ark_path("ark:", shoulder, comp.id),
           :id => "componentmap#{i}"
         )
         %> <%=
@@ -50,7 +52,7 @@
           content_tag(:span,
                       acc_num.slice(overlap_length, acc_num.length),
                       class: "tray-label"),
-          main_app.catalog_ark_path("ark:", params["shoulder"], comp.id)
+          main_app.catalog_ark_path("ark:", shoulder, comp.id)
         )
         %>
       </li>

@@ -14,11 +14,13 @@
         <tr><th>Collections</th>
           <td><ul class="tabular">
             <% document.in_collections.each_with_index do |collection, i| %>
+              <% # TODO: index this in Solr %>
+              <% shoulder = params["shoulder"] || collection["identifier_ssm"].first.match(%r{ark:\/([^\/]+)\/.*})[1] %>
               <li class="attribute">
                 <%= link_to(
                   collection["title_tesim"].first,
                   main_app.catalog_ark_path("ark:",
-                                            params["shoulder"],
+                                            shoulder,
                                             collection.id)
                 ) %>
               </li>
@@ -32,11 +34,13 @@
       <tr><th>Map Sets</th>
         <td><ul class="tabular">
           <% mapsets.each do |set| %>
+            <% shoulder = params["shoulder"] || set["identifier_ssm"].first.match(%r{ark:\/([^\/]+)\/.*})[1] %>
+
             <li class="attribute">
               <%= link_to(
                 set["title_tesim"].first,
                 main_app.catalog_ark_path("ark:",
-                                          params["shoulder"],
+                                          shoulder,
                                           set.id)
               ) %>
             </li>
