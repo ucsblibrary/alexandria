@@ -476,4 +476,137 @@ http_interactions:
         "@value": "University of California (System). Board of Regents" } ], "http://www.loc.gov/mads/rdf/v1#elementList": [ { "@id": "_:b37authoritiesnamesn85088322" } ] } ]
     http_version:
   recorded_at: Thu, 09 Jun 2016 23:47:59 GMT
+- request:
+    method: get
+    uri: http://rightsstatements.org/vocab/InC/1.0/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - text/turtle, text/rdf+turtle, application/turtle;q=0.2, application/x-turtle;q=0.2,
+        application/ld+json, application/x-ld+json, application/n-triples, text/plain;q=0.2,
+        application/n-quads, text/x-nquads;q=0.2, application/rdf+json, text/html;q=0.5,
+        application/xhtml+xml;q=0.7, image/svg+xml;q=0.4, text/n3, text/rdf+n3;q=0.2,
+        application/rdf+n3;q=0.2, application/rdf+xml, text/csv, text/tab-separated-values,
+        application/csvm+json, application/trig, application/x-trig, application/trix
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.1 (darwin16.5.0 x86_64) ruby/2.3.1p112
+      Host:
+      - rightsstatements.org
+  response:
+    status:
+      code: 303
+      message: See Other
+    headers:
+      Date:
+      - Fri, 28 Apr 2017 01:14:09 GMT
+      Server:
+      - Apache
+      Location:
+      - http://rightsstatements.org/page/InC/1.0/?language=en
+      Content-Length:
+      - '0'
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version:
+  recorded_at: Fri, 28 Apr 2017 01:14:12 GMT
+- request:
+    method: get
+    uri: http://rightsstatements.org/page/InC/1.0/?language=en
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - text/turtle, text/rdf+turtle, application/turtle;q=0.2, application/x-turtle;q=0.2,
+        application/ld+json, application/x-ld+json, application/n-triples, text/plain;q=0.2,
+        application/n-quads, text/x-nquads;q=0.2, application/rdf+json, text/html;q=0.5,
+        application/xhtml+xml;q=0.7, image/svg+xml;q=0.4, text/n3, text/rdf+n3;q=0.2,
+        application/rdf+n3;q=0.2, application/rdf+xml, text/csv, text/tab-separated-values,
+        application/csvm+json, application/trig, application/x-trig, application/trix
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.1 (darwin16.5.0 x86_64) ruby/2.3.1p112
+      Host:
+      - rightsstatements.org
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 28 Apr 2017 01:14:09 GMT
+      Server:
+      - Apache
+      Link:
+      - "<http://localhost:9000/page/InC/1.0/>; rel=derivedfrom"
+      Content-Type:
+      - text/html
+      Content-Language:
+      - en
+      Vary:
+      - Accept-Encoding
+      Content-Encoding:
+      - gzip
+      Content-Length:
+      - '2170'
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        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
+        +DeBR2aQJx4AAA==
+    http_version:
+  recorded_at: Fri, 28 Apr 2017 01:14:12 GMT
 recorded_with: VCR 3.0.3

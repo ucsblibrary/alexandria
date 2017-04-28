@@ -38,7 +38,7 @@ describe Importer::CSV do
                             "dirge3.tif",
                             "dirge4.tif")
       expect(img.in_collections.first.title).to eq(["Mildred Couper papers"])
-      expect(img.license.first.rdf_label).to eq ["In Copyright"]
+      expect(img.license.first.rdf_label).to eq ["http://rightsstatements.org/vocab/InC/1.0/"]
     end
   end
 

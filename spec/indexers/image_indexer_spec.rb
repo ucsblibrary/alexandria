@@ -80,6 +80,18 @@ describe ImageIndexer do
     end
   end
 
+  context "with a license" do
+    let(:image) do
+      Image.create(title: ["This is Fine"],
+                   license: [RDF::URI("http://rightsstatements.org/vocab/InC/1.0/")])
+    end
+    it "indexes the license label" do
+      VCR.use_cassette("image_indexer") do
+        expect(subject["license_label_tesim"]).to eq ["In Copyright"]
+      end
+    end
+  end
+
   context "with local and LOC rights holders" do
     let(:regents_uri) { RDF::URI("http://id.loc.gov/authorities/names/n85088322") }
     let(:valerie) { Agent.create(foaf_name: "Valerie") }
