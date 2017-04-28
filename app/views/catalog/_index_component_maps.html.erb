@@ -1,5 +1,5 @@
 <% component_maps = document.component_maps %>
-<% index_maps = document.index_maps %>
+<% index_maps = document.index_maps.reject { |i| i["square_thumbnail_url_ssm"].nil? } %>
 
 <% if index_maps.present? %>
   <h3>Index Maps</h3>
