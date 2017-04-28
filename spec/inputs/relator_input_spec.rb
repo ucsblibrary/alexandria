@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe "RelatorInput", type: :input do
+describe RelatorInput, type: :input do
   let(:image) { Image.new }
   let(:bar1) { double("value 1", rdf_label: ["Item 1"], rdf_subject: "http://example.org/1", node?: false) }
   let(:bar2) { double("value 2", rdf_label: ["Item 2"], rdf_subject: "http://example.org/2") }

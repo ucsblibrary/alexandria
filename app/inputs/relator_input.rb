@@ -42,6 +42,7 @@ class RelatorInput < ControlledVocabularySelectInput
       name = name_for(attribute_name, index, "predicate")
       id = id_for(attribute_name, index, "predicate")
       hidden_value = value.node? ? "" : value.predicate
+
       @builder.hidden_field(attribute_name, name: name, id: id, value: hidden_value)
     end
 end

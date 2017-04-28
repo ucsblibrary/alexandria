@@ -44,8 +44,17 @@ class ControlledVocabularyInput < MultiValueInput
     def hidden_id_field(value, index)
       name = name_for(attribute_name, index, "id")
       id = id_for(attribute_name, index, "id")
-      hidden_value = value.node? ? "" : value.rdf_subject
-      @builder.hidden_field(attribute_name, name: name, id: id, value: hidden_value, data: { id: "remote" })
+
+      # order matters here
+      form_value = if value.respond_to?(:node?) && value.node?
+                     ""
+                   elsif value.respond_to? :rdf_subject
+                     value.rdf_subject
+                   else
+                     value
+                   end
+
+      @builder.hidden_field(attribute_name, name: name, id: id, value: form_value, data: { id: "remote" })
     end
 
     def build_options_for_new_row(_attribute_name, _index, options)
