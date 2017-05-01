@@ -65,7 +65,7 @@ module SessionsHelper
   def update_groups_for!(user, groups, type)
     return if groups.first[:memberof].empty?
 
-    default_groups = [AdminPolicy::UCSB_GROUP, AdminPolicy::UC_GROUP] # unless type == 'shibboleth'
+    default_groups = [AdminPolicy::UCSB_GROUP]
 
     special_groups = case type
                      when "staff"

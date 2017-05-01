@@ -6,7 +6,6 @@ module AdminPolicy
   DISCOVERY_POLICY_ID     = "authorities/policies/discovery"
   UCSB_CAMPUS_POLICY_ID   = "authorities/policies/ucsb_on_campus"
   UCSB_POLICY_ID          = "authorities/policies/ucsb"
-  UC_POLICY_ID            = "authorities/policies/uc"
   PUBLIC_CAMPUS_POLICY_ID = "authorities/policies/public_on_campus"
   PUBLIC_POLICY_ID        = "authorities/policies/public"
 
@@ -19,7 +18,6 @@ module AdminPolicy
   PUBLIC_GROUP        = "public"
   UCSB_CAMPUS_GROUP   = "ucsb_on_campus"
   UCSB_GROUP          = "ucsb"
-  UC_GROUP            = "any_uc"
 
   # @return [Hash]
   def self.all
@@ -78,18 +76,6 @@ module AdminPolicy
                                          { type: "group", name: META_ADMIN, access: "edit" },
                                          { type: "group", name: RIGHTS_ADMIN, access: "read" },
                                          { type: "group", name: UCSB_GROUP, access: "read" },
-                                         { type: "group", name: PUBLIC_GROUP, access: "discover" },
-                                       ])
-      policy.save!
-    end
-
-    unless Hydra::AdminPolicy.exists?(UC_POLICY_ID)
-      policy = Hydra::AdminPolicy.create(id: UC_POLICY_ID, title: ["UC users only"])
-      policy.default_permissions.build([
-                                         { type: "group", name: META_ADMIN, access: "edit" },
-                                         { type: "group", name: RIGHTS_ADMIN, access: "read" },
-                                         { type: "group", name: UCSB_GROUP, access: "read" },
-                                         { type: "group", name: UC_GROUP, access: "read" },
                                          { type: "group", name: PUBLIC_GROUP, access: "discover" },
                                        ])
       policy.save!

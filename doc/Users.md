@@ -3,17 +3,22 @@
 There are a number of different user types defined in ADRL,
 corresponding to different levels of access required and allowed:
 
-- The public ({AdminPolicy::PUBLIC_GROUP})
+- The public: {AdminPolicy::PUBLIC_GROUP}
 
-- Members of the public, _while on campus_ ({AdminPolicy::PUBLIC_CAMPUS_GROUP})
+- Members of the public, _while on campus_: {AdminPolicy::PUBLIC_CAMPUS_GROUP}
 
-- Students, faculty and staff of the UC system ({AdminPolicy::UC_GROUP})
+- Students, faculty and staff of the UC system:
+  {AdminPolicy::UC_GROUP} (not yet implemented)
 
-- Students, faculty and staff of UCSB ({AdminPolicy::UCSB_GROUP})
+- Students, faculty and staff of UCSB: {AdminPolicy::UCSB_GROUP}
 
-- Rights administrators ({AdminPolicy::RIGHTS_ADMIN})
+- Rights administrators: {AdminPolicy::RIGHTS_ADMIN}
 
-- Metadata administrators ({AdminPolicy::META_ADMIN})
+- Metadata administrators: {AdminPolicy::META_ADMIN}
+
+- SRC staff: {AdminPolicy::SRC_STAFF} (not yet implemented)
+
+- MIL staff: {AdminPolicy::MIL_STAFF} (not yet implemented)
 
 The same user may be a rights administrator and a metadata
 administrator.
@@ -62,19 +67,6 @@ administrator.
 <td style="text-align: left;"></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><code>UC_GROUP</code></td>
-<td style="text-align: left;">Shibboleth</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">x</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
 <td style="text-align: left;"><code>UCSB_GROUP</code></td>
 <td style="text-align: left;">Campus LDAP</td>
 <td style="text-align: left;"></td>
@@ -87,7 +79,7 @@ administrator.
 <td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;"><code>MIL_STAFF</code></td>
 <td style="text-align: left;">Active Directory</td>
 <td style="text-align: left;"></td>
@@ -100,7 +92,7 @@ administrator.
 <td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;"><code>SRC_STAFF</code></td>
 <td style="text-align: left;">Active Directory</td>
 <td style="text-align: left;"></td>
@@ -113,7 +105,7 @@ administrator.
 <td style="text-align: left;">x</td>
 <td style="text-align: left;"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;"><code>RIGHTS_ADMIN</code></td>
 <td style="text-align: left;">Active Directory</td>
 <td style="text-align: left;">x</td>
@@ -126,7 +118,7 @@ administrator.
 <td style="text-align: left;">x</td>
 <td style="text-align: left;"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;"><code>METADATA_ADMIN</code></td>
 <td style="text-align: left;">Active Directory</td>
 <td style="text-align: left;"></td>

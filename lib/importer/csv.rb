@@ -387,8 +387,6 @@ module Importer::CSV
       attrs[:admin_policy_id] = AdminPolicy::RESTRICTED_POLICY_ID
     when "ucsb_campus"
       attrs[:admin_policy_id] = AdminPolicy::UCSB_CAMPUS_POLICY_ID
-    when "uc"
-      attrs[:admin_policy_id] = AdminPolicy::UC_POLICY_ID
     else
       raise "Invalid access policy: #{access_policy}"
     end

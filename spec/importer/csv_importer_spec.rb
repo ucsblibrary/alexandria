@@ -62,10 +62,7 @@ describe Importer::CSV do
     it "assigns the ucsb_campus policy" do
       expect(Importer::CSV.assign_access_policy(ucsb_campus)).to eql(admin_policy_id: AdminPolicy::UCSB_CAMPUS_POLICY_ID)
     end
-    let(:uc) { { access_policy: ["uc"] } }
-    it "assigns the uc policy" do
-      expect(Importer::CSV.assign_access_policy(uc)).to eql(admin_policy_id: AdminPolicy::UC_POLICY_ID)
-    end
+
     # Per DIGREPO-728: If no access policy is specified in the CSV file, raise an error
     it "raises an error if there is no policy specified" do
       expect { Importer::CSV.assign_access_policy({}) }.to raise_error(RuntimeError, "No access policy defined")
