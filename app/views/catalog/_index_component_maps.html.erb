@@ -1,9 +1,13 @@
 <% component_maps = document.component_maps %>
 <% index_maps = document.index_maps.reject { |i| i["square_thumbnail_url_ssm"].nil? } %>
 
+<% return if index_maps.blank? && component_maps.blank? %>
+
+<div class="map-trays">
 <% if index_maps.present? %>
-  <h3>Index Maps</h3>
-  <div class="col-md-2 map-tray"><ul>
+  <div class="col-md-3 map-tray">
+    <h3>Index Maps</h3>
+    <ul>
     <% index_maps.each_with_index do |map, i| %>
       <% shoulder = params["shoulder"] || map["identifier_ssm"].first.match(%r{ark:\/([^\/]+)\/.*})[1] %>
       <li>
@@ -25,14 +29,14 @@
 <% end %>
 
 <% if component_maps.present? %>
-  <h3>Component Maps</h3>
   <% # If there are no index maps, take up the whole width of the screen
     if index_maps.count == 0 %>
       <div class="col-md-12 map-tray">
   <% # If there is a single index map, give it 2 / 12 columns
     elsif index_maps.count == 1 %>
-      <div class="col-md-10 map-tray">
+      <div class="col-md-9 map-tray">
   <% end %>
+  <h3>Component Maps</h3>
   <ul>
     <%
     overlap_length = accession_overlap(component_maps)
@@ -58,4 +62,5 @@
       </li>
     <% end %>
   </ul></div>
+</div>
 <% end %>

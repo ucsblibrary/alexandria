@@ -759,35 +759,31 @@ label.remove_time_span {
   margin-bottom: 5em;
 }
 
-// ------------------
-// Component Map Tray
-// ------------------
+// ---------
+// Map Trays
+// ---------
 
 .map-tray {
-  display: inline-block;
-  max-height: 150px;
-  overflow: auto;
-  white-space: nowrap;
-
   ul {
+    align-items: center;
+    display: flex;
+    flex-flow: row nowrap;
+    overflow-x: auto;
     padding-left: 0;
   }
 
-  // this is the `inline` mixin but without applying it all to the <ul>
   li {
     display: inline;
-    margin: 0;
-    padding-left: 0;
     // this is so we can absolutely position the .tray-label below
     position: relative;
-    overflow: hidden;
-  }
-  li + li {
-    &::before {
-      font-style: normal;
-      content: '';
-      padding-right: .25em;
+
+    img {
+      min-width: 100px;
     }
+  }
+
+  li + li {
+    margin-left: .5em;
   }
 }
 
@@ -799,7 +795,6 @@ label.remove_time_span {
   font-size: 80%;
   left: 0;
   line-height: 1em;
-  margin-bottom: -50px;
   // this is to match the padding-right of li + li above
   margin-left: .25em;
   padding: .125em;
