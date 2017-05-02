@@ -14,6 +14,7 @@ feature "ComponentMap show page:" do
       ComponentMap.create(
         accession_number: ["7070 something"],
         admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID,
+        alternative: ["something"],
         title: title,
         creator: [creator_uri],
         extent: extent,
@@ -29,6 +30,7 @@ feature "ComponentMap show page:" do
     ComponentMap.create(
       accession_number: ["7070 another thing"],
       admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID,
+      alternative: ["another thing"],
       index_map_id: ["north pole"],
       title: ["Sibling CM"],
       scale: ["Sibling's scale"],

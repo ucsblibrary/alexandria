@@ -35,6 +35,7 @@ feature "IndexMap show page:" do
     ComponentMap.create(
       accession_number: ["7070 CM0"],
       admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID,
+      alternative: ["7070 CM0"],
       index_map_id: ["north pole"],
       parent_id: map_set.id,
       title: ["CM0"]

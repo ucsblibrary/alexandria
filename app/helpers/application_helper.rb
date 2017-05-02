@@ -105,26 +105,6 @@ module ApplicationHelper
     end
   end
 
-  # Because maps have very long accession numbers, we're going to
-  # calculate the substring that all of them begin with, then trim
-  # that off before displaying
-  #
-  # @param [Array<SolrDocument>]
-  # @return [Int]
-  def accession_overlap(documents)
-    return 0 if documents.count < 2
-
-    overlap_length = 0
-    documents.first["accession_number_ssim"].first.chars.each_with_index do |char, i|
-      break if documents.any? do |map|
-        char != map["accession_number_ssim"].first.chars[i]
-      end
-
-      overlap_length += 1
-    end
-    overlap_length
-  end
-
   def embargo_manager?
     can?(:discover, Hydra::AccessControls::Embargo)
   end

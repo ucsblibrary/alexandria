@@ -42,11 +42,8 @@
   <h3>Component Maps<%= counter_string %></h3>
   <ul>
     <%
-    overlap_length = accession_overlap(component_maps)
-
     component_maps.each_with_index do |comp, i| %>
       <% self_map = document.id == comp.id %>
-      <% acc_num = comp["accession_number_ssim"].first %>
       <% shoulder = params["shoulder"] || comp["identifier_ssm"].first.match(%r{ark:\/([^\/]+)\/.*})[1] %>
       <li>
         <%=
@@ -60,7 +57,7 @@
         end
         %> <%=
            span = content_tag(:span,
-                              acc_num.slice(overlap_length, acc_num.length),
+                              comp["alternative_tesim"].first,
                               class: "tray-label#{' self-map' if self_map}")
            # don't link to yourself
            if self_map

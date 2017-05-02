@@ -57,6 +57,7 @@ feature "MapSet show page:" do
     ComponentMap.create(
       accession_number: ["river"],
       admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID,
+      alternative: ["river"],
       id: component_map_river_id,
       identifier: ["ark:/99999/#{component_map_river_id}"],
       parent_id: map_set.id,
@@ -69,6 +70,7 @@ feature "MapSet show page:" do
     ComponentMap.create(
       accession_number: ["city"],
       admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID,
+      alternative: ["city"],
       id: component_map_city_id,
       identifier: ["ark:/99999/#{component_map_city_id}"],
       parent_id: map_set.id,
