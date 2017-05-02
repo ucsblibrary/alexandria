@@ -33,7 +33,13 @@
     elsif index_maps.count == 1 %>
       <div class="col-md-9 map-tray">
   <% end %>
-  <h3>Component Maps</h3>
+  <%
+     self_index = component_maps.index { |cm| cm.id == document.id }
+     counter_string = if self_index.is_a? Integer
+       " (viewing #{self_index + 1} of #{component_maps.count})"
+     end
+  %>
+  <h3>Component Maps<%= counter_string %></h3>
   <ul>
     <%
     overlap_length = accession_overlap(component_maps)
