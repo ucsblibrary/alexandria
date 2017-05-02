@@ -14,7 +14,7 @@ set :log_level, :debug
 set :bundle_flags, "--without=development test"
 set :bundle_env_variables, nokogiri_use_system_libraries: 1
 
-set :keep_releases, 5
+set :keep_releases, 2
 set :passenger_restart_with_touch, true
 set :assets_prefix, "#{shared_path}/public/assets"
 
