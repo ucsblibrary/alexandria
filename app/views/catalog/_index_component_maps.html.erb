@@ -1,9 +1,6 @@
 <% component_maps = document.component_maps %>
 <% index_maps = document.index_maps.reject { |i| i["square_thumbnail_url_ssm"].nil? } %>
 
-<% return if index_maps.blank? && component_maps.blank? %>
-
-<div class="map-trays">
 <% if index_maps.present? %>
   <div class="col-md-3 map-tray">
     <h3>Index Maps</h3>
@@ -62,5 +59,4 @@
       </li>
     <% end %>
   </ul></div>
-</div>
 <% end %>
