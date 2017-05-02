@@ -137,7 +137,10 @@ class CatalogController < ApplicationController
                           label: "Topics",
                           link_to_search: "marc_subjects_sim"
 
-    config.add_show_field solr_name("location_label", :stored_searchable), label: "Places"
+    config.add_show_field solr_name("location_label", :stored_searchable),
+                          label: "Places",
+                          link_to_search: "location_label_sim"
+
     config.add_show_field solr_name("keywords", :stored_searchable),
                           label: "Keywords",
                           link_to_search: "keywords_sim",
