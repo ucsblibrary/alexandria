@@ -787,6 +787,10 @@ label.remove_time_span {
   }
 }
 
+img.self-map {
+  border: .125em solid rgba(0, 0, 0, 0.6);
+}
+
 .tray-label {
   background: rgb(0,0,0);
   background: rgba(0, 0, 0, 0.6);
@@ -795,8 +799,6 @@ label.remove_time_span {
   font-size: 80%;
   left: 0;
   line-height: 1em;
-  // this is to match the padding-right of li + li above
-  margin-left: .25em;
   padding: .125em;
   position: absolute;
   white-space: normal;

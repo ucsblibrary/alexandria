@@ -39,22 +39,29 @@
     overlap_length = accession_overlap(component_maps)
 
     component_maps.each_with_index do |comp, i| %>
+      <% self_map = document.id == comp.id %>
       <% acc_num = comp["accession_number_ssim"].first %>
       <% shoulder = params["shoulder"] || comp["identifier_ssm"].first.match(%r{ark:\/([^\/]+)\/.*})[1] %>
       <li>
         <%=
-        link_to(
-          image_tag(comp["square_thumbnail_url_ssm"].first),
-          main_app.catalog_ark_path("ark:", shoulder, comp.id),
-          :id => "componentmap#{i}"
-        )
+        img = image_tag(comp["square_thumbnail_url_ssm"].first,
+                        class: "#{'self-map' if self_map}")
+        # don't link to yourself
+        if self_map
+          img
+        else
+          link_to(img, main_app.catalog_ark_path("ark:", shoulder, comp.id))
+        end
         %> <%=
-        link_to(
-          content_tag(:span,
-                      acc_num.slice(overlap_length, acc_num.length),
-                      class: "tray-label"),
-          main_app.catalog_ark_path("ark:", shoulder, comp.id)
-        )
+           span = content_tag(:span,
+                              acc_num.slice(overlap_length, acc_num.length),
+                              class: "tray-label#{' self-map' if self_map}")
+           # don't link to yourself
+           if self_map
+             span
+           else
+             link_to(span, main_app.catalog_ark_path("ark:", shoulder, comp.id))
+           end
         %>
       </li>
     <% end %>

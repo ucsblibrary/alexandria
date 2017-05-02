@@ -83,7 +83,8 @@ feature "ComponentMap show page:" do
     expect(page).to have_link "Index Map 0"
 
     expect(page).to have_content "Component Maps"
-    expect(page).to have_link("something")
+    # The map tray doesn't link to itself
+    expect(page).to have_content("something")
     expect(page).to have_link("another thing")
 
     expect(page).to have_link(collection.title.first, collection_path(collection))
