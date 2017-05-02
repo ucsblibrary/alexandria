@@ -18,7 +18,7 @@ gem "therubyracer", "~> 0.12.3", platforms: :ruby
 
 gem "blacklight-gallery", "~> 0.5.0"
 gem "blacklight_range_limit", "~> 6.0.0"
-gem "curation_concerns", "~> 1.7.6"
+gem "curation_concerns", "~> 1.7.7"
 gem "ezid-client", "~> 1.2"
 gem "hydra-role-management"
 gem "linked_vocabs", "~> 0.3.1"
