@@ -13,7 +13,7 @@
 # https://help.library.ucsb.edu/browse/DIGREPO-547
 
 defaults: &defaults
-  'ingest': 5
+  'ingest': 4
 
 development:
   <<: *defaults
