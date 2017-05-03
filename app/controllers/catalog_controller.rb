@@ -68,7 +68,7 @@ class CatalogController < ApplicationController
     # - _show_audio_recording.html.erb
     #
     # falling back to _title_default etc. in each case.
-    config.show.partials = [:title, :media, :show]
+    config.show.partials = [:breadcrumb, :title, :media, :show]
 
     # Solr fields that will be treated as facets by the blacklight application
     #

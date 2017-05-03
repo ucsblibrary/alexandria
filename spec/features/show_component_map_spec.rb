@@ -9,19 +9,25 @@ feature "ComponentMap show page:" do
   let(:extent) { ["1 map : color ; 27 x 38 cm"] }
   let(:scale) { ["1:18,374,400"] }
 
+  let(:collection) do
+    create(:public_collection,
+           identifier: ["ark:/99999/weh"],
+           title: ["My Maps"])
+  end
+
   let(:map) do
     VCR.use_cassette("show_component_map_feature_spec") do
       ComponentMap.create(
         accession_number: ["7070 something"],
         admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID,
         alternative: ["something"],
-        title: title,
         creator: [creator_uri],
         extent: extent,
         index_map_id: ["north pole"],
+        local_collection_id: [collection.id],
         parent_id: map_set.id,
         scale: scale,
-        local_collection_id: [collection.id]
+        title: title
       )
     end
   end
@@ -32,9 +38,10 @@ feature "ComponentMap show page:" do
       admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID,
       alternative: ["another thing"],
       index_map_id: ["north pole"],
-      title: ["Sibling CM"],
+      local_collection_id: [collection.id],
+      parent_id: map_set.id,
       scale: ["Sibling's scale"],
-      parent_id: map_set.id
+      title: ["Sibling CM"]
     )
   end
 
@@ -50,6 +57,8 @@ feature "ComponentMap show page:" do
   let!(:map_set) do
     MapSet.create(
       admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID,
+      identifier: ["ark:/99999/bleh"],
+      local_collection_id: [collection.id],
       title: ["Parent Map Set"]
     )
   end
@@ -59,8 +68,6 @@ feature "ComponentMap show page:" do
       Hydra::Works::AddFileToFileSet.call(fs, File.new(file_path), :original_file)
     end
   end
-
-  let(:collection) { create(:public_collection, title: ["My Maps"]) }
 
   before do
     # Need ARK to be able to draw thumbnail links

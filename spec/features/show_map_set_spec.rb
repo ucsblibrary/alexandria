@@ -15,13 +15,27 @@ feature "MapSet show page:" do
     end
   end
 
+  let(:collection) do
+    create(:public_collection,
+           identifier: ["ark:/99999/weh"],
+           title: ["My Maps"])
+  end
+
+  let(:index_collection) do
+    create(:public_collection,
+           identifier: ["ark:/99999/wehhhh"],
+           title: ["Index Maps"])
+  end
+
   let(:map_set) do
     VCR.use_cassette("show_map_set_feature_spec") do
       MapSet.create(
         admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID,
+        identifier: ["ark:/99999/guh"],
         index_map_id: %w[east west],
         creator: [creator_uri],
         extent: extent,
+        local_collection_id: [collection.id],
         scale: scale,
         title: title
       )
@@ -35,6 +49,7 @@ feature "MapSet show page:" do
       admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID,
       id: index_map_west_id,
       identifier: ["ark:/99999/#{index_map_west_id}"],
+      local_collection_id: [index_collection.id],
       parent_id: map_set.id,
       title: ["Index Map, West Side"]
     )
@@ -47,6 +62,7 @@ feature "MapSet show page:" do
       admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID,
       id: index_map_east_id,
       identifier: ["ark:/99999/#{index_map_east_id}"],
+      local_collection_id: [index_collection.id],
       parent_id: map_set.id,
       title: ["Index Map, East Side"]
     )
@@ -60,6 +76,7 @@ feature "MapSet show page:" do
       alternative: ["river"],
       id: component_map_river_id,
       identifier: ["ark:/99999/#{component_map_river_id}"],
+      local_collection_id: [collection.id],
       parent_id: map_set.id,
       title: ["Component Map of the River Area"]
     )
@@ -73,6 +90,7 @@ feature "MapSet show page:" do
       alternative: ["city"],
       id: component_map_city_id,
       identifier: ["ark:/99999/#{component_map_city_id}"],
+      local_collection_id: [collection.id],
       parent_id: map_set.id,
       title: ["Component Map of the City Area"]
     )

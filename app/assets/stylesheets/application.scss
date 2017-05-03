@@ -759,6 +759,28 @@ label.remove_time_span {
   margin-bottom: 5em;
 }
 
+// -----------
+// Breadcrumbs
+// -----------
+
+.maps-breadcrumb {
+  // We can't use the `inline' mixin since these are nested lists
+  &,
+  & * {
+    display: inline;
+    margin: 0;
+    padding-left: 0;
+  }
+  li li {
+    padding-left: .25em;
+    &::before {
+      font-style: normal;
+      content: '>';
+      padding-right: .25em;
+    }
+  }
+}
+
 // ---------
 // Map Trays
 // ---------

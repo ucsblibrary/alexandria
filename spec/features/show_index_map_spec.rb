@@ -8,6 +8,12 @@ feature "IndexMap show page:" do
   let(:extent) { ["1 map : color ; 27 x 38 cm"] }
   let(:scale) { ["1:18,374,400"] }
 
+  let(:collection) do
+    create(:public_collection,
+           identifier: ["ark:/99999/weh"],
+           title: ["My Maps"])
+  end
+
   # This is the map whose show page we want to view
   let!(:map) do
     VCR.use_cassette("show_index_map_feature_spec") do
@@ -16,6 +22,7 @@ feature "IndexMap show page:" do
         admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID,
         creator: [creator_uri],
         extent: extent,
+        local_collection_id: [collection.id],
         parent_id: map_set.id,
         scale: scale,
         title: title

@@ -94,6 +94,7 @@ class SolrDocument
     ActiveFedora::SolrService.query(query, rows: Collection.count)
   end
 
+  # @return [Array<SolrDocument>]
   def map_sets
     models = fetch("has_model_ssim", [])
 
@@ -107,10 +108,12 @@ class SolrDocument
                 has_model_ssim: "MapSet",
               }
             end
+
+    # Convert ActiveFedora::SolrHit to SolrDocument
     ActiveFedora::SolrService.query(
       ActiveFedora::SolrQueryBuilder.construct_query(query),
       rows: MapSet.count
-    )
+    ).map { |hit| SolrDocument.new(hit) }
   end
 
   def index_maps

@@ -1,0 +1,38 @@
+<% # FIXME: this will break when we have curated collections and maps in multiple MapSets %>
+<% map_set = document.map_sets.first %>
+<% collection = document.in_collections.first %>
+
+<ul class="maps-breadcrumb">
+  <li><%= link_to("ADRL", root_url) %>
+    <ul>
+      <li><%= link_to(collection["title_tesim"].first,
+                      main_app.catalog_ark_path(
+                        "ark:",
+                        collection["identifier_ssm"].first.match(%r{ark:\/([^\/]+)\/.*})[1],
+                        collection.id
+                      )) %>
+        <%
+        # When `document' is a MapSet, this would just be diplaying
+        # itself again; when `document is an IndexMap we want to skip
+        # the MapSet and just show the Collection of IndexMaps:
+        # https://help.library.ucsb.edu/browse/DIGREPO-736?focusedCommentId=312339&page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-312339
+        %>
+        <% if document["has_model_ssim"].include?("ComponentMap") %>
+          <ul>
+            <li><%= link_to(map_set["title_tesim"].first,
+                            main_app.catalog_ark_path(
+                              "ark:",
+                              map_set["identifier_ssm"].first.match(%r{ark:\/([^\/]+)\/.*})[1],
+                              map_set.id
+                            )) %>
+        <% end %>
+        <ul>
+          <li><%= document["title_tesim"].first %></li>
+        </ul>
+        <% if document["has_model_ssim"].include?("ComponentMap") %>
+          </li></ul>
+        <% end %>
+      </li>
+    </ul>
+  </li>
+</ul>
