@@ -66,7 +66,7 @@ feature "IndexMap show page:" do
     expect(page).to have_content "Century Company"
     expect(page).to have_content scale.first
 
-    expect(page).to have_content "Component Maps"
+    expect(page).to have_content "Map Sheets"
     expect(page).to have_link("7070 CM0")
   end
 end

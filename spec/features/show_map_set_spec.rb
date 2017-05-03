@@ -107,7 +107,7 @@ feature "MapSet show page:" do
     expect(page).to have_link("Index Map, East Side", href: catalog_ark_path("ark:", "99999", index_map_east.id))
     expect(page).to have_link("Index Map, West Side", href: catalog_ark_path("ark:", "99999", index_map_west.id))
 
-    expect(page).to have_content "Component Maps"
+    expect(page).to have_content "Map Sheets"
     expect(page).to have_link("city", href: catalog_ark_path("ark:", "99999", component_map_city.id))
     expect(page).to have_link("river", href: catalog_ark_path("ark:", "99999", component_map_river.id))
 
