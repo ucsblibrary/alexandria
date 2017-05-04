@@ -43,6 +43,7 @@ class CatalogController < ApplicationController
     config.default_solr_params = {
       qf: %w[
         accession_number_tesim
+        alternative_tesim
         author_tesim
         keywords_tesim
         lc_subject_label_tesim
