@@ -8,9 +8,21 @@ feature "ScannedMap show page:" do
   let(:title) { ["Region around the North Pole : giving the records of the most important explorations"] }
   let(:extent) { ["1 map : color ; 27 x 38 cm"] }
   let(:scale) { ["1:18,374,400"] }
+
+  let(:collection) do
+    create(:collection,
+           title: ["THE SCANNED MAPS"],
+           identifier: ["ark:/99999/WOO"])
+  end
+
   let(:map) do
     VCR.use_cassette("show_scanned_map_feature_spec") do
-      FactoryGirl.create(:public_scanned_map, title: title, creator: [creator_uri], extent: extent, scale: scale)
+      create(:public_scanned_map,
+             title: title,
+             creator: [creator_uri],
+             extent: extent,
+             local_collection_id: [collection.id],
+             scale: scale)
     end
   end
 

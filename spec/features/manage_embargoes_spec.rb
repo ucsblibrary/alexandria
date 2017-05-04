@@ -11,12 +11,19 @@ feature "Embargo management:" do
     Image.destroy_all
   end
 
-  let!(:etd) do
+  let(:collection) do
+    create(:collection,
+           title: ["HECK"],
+           identifier: ["ark:/99999/YES"])
+  end
+
+  let(:etd) do
     create(:etd,
            admin_policy_id: AdminPolicy::DISCOVERY_POLICY_ID,
            embargo_release_date: old_date,
-           visibility_during_embargo: RDF::URI(ActiveFedora::Base.id_to_uri(AdminPolicy::DISCOVERY_POLICY_ID)),
-           visibility_after_embargo: RDF::URI(ActiveFedora::Base.id_to_uri(old_policy_id))
+           local_collection_id: [collection.id],
+           visibility_after_embargo: RDF::URI(ActiveFedora::Base.id_to_uri(old_policy_id)),
+           visibility_during_embargo: RDF::URI(ActiveFedora::Base.id_to_uri(AdminPolicy::DISCOVERY_POLICY_ID))
           )
   end
 

@@ -3,9 +3,16 @@
 require "rails_helper"
 
 feature "Collection show page:" do
-  let!(:recording) do
+  let(:collection) do
+    create(:collection,
+           title: ["HECK"],
+           identifier: ["ark:/99999/YES"])
+  end
+
+  let(:recording) do
     AudioRecording.create(title: ["Any rags"],
                           description: ["Baritone solo with orchestra accompaniment."],
+                          local_collection_id: [collection.id],
                           admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID)
   end
 

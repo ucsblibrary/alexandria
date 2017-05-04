@@ -63,12 +63,13 @@ class CatalogController < ApplicationController
     # This controls which partials are used, and in what order, for
     # each record type.  E.g., for an AudioRecording we will render
     #
+    # - _breadcrumbs_audio_recording.html.erb
     # - _title_audio_recording.html.erb
     # - _media_audio_recording.html.erb
     # - _show_audio_recording.html.erb
     #
     # falling back to _title_default etc. in each case.
-    config.show.partials = [:breadcrumb, :title, :media, :show]
+    config.show.partials = [:breadcrumbs, :title, :media, :show]
 
     # Solr fields that will be treated as facets by the blacklight application
     #

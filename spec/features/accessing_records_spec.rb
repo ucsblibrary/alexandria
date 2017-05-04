@@ -3,45 +3,53 @@
 require "rails_helper"
 
 feature "Accessing records:" do
-  let(:restricted_image) do
-    create :image, :restricted, title: ["Restricted Image"],
-                                identifier: ["ark:/99999/111"], id: "111"
-  end
-
-  let(:discovery_image) do
-    create :image, :discovery, title: ["Discovery Image"],
-                               identifier: ["ark:/99999/222"], id: "222"
-  end
-
-  let(:public_image) do
-    create :public_image, title: ["Public Image"],
-                          identifier: ["ark:/99999/333"], id: "333"
-  end
-
-  let(:members) { [restricted_image, discovery_image, public_image] }
-
   let(:collection) do
-    c = create :public_collection
-    c.members += members
-    c.save!
-    c
+    create(:collection,
+           admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID,
+           title: ["HECK"],
+           identifier: ["ark:/99999/YES"])
+  end
+
+  let!(:restricted_image) do
+    create(:image,
+           admin_policy_id: AdminPolicy::RESTRICTED_POLICY_ID,
+           id: "111",
+           identifier: ["ark:/99999/111"],
+           local_collection_id: [collection.id],
+           title: ["Restricted Image"])
+  end
+
+  let!(:discovery_image) do
+    create(:image,
+           admin_policy_id: AdminPolicy::DISCOVERY_POLICY_ID,
+           id: "222",
+           identifier: ["ark:/99999/222"],
+           local_collection_id: [collection.id],
+           title: ["Discovery Image"])
+  end
+
+  let!(:public_image) do
+    create(:public_image,
+           id: "333",
+           identifier: ["ark:/99999/333"],
+           local_collection_id: [collection.id],
+           title: ["Public Image"])
   end
 
   before do
-    allow_any_instance_of(User).to receive(:groups).and_return(groups)
+    allow_any_instance_of(CollectionsController).to receive(:current_user).and_return(user)
+    allow_any_instance_of(CatalogController).to receive(:current_user).and_return(user)
+    allow_any_instance_of(RecordsController).to receive(:current_user).and_return(user)
 
-    %w[111 222 333].each do |id|
-      ActiveFedora::Base.find(id).destroy(eradicate: true) if ActiveFedora::Base.exists?(id)
-    end
-
-    AdminPolicy.ensure_admin_policy_exists
+    collection.update_index
   end
 
   context "a metadata admin" do
-    let(:groups) { [AdminPolicy::META_ADMIN] }
+    let(:user) { user_with_groups [AdminPolicy::META_ADMIN] }
 
     scenario "views a collection and members" do
       visit collection_path(collection)
+
       expect(page).to have_link public_image[:title].first
       expect(page).to have_link discovery_image[:title].first
       expect(page).to have_link restricted_image[:title].first
@@ -61,7 +69,7 @@ feature "Accessing records:" do
   end
 
   context "a not logged in user" do
-    let(:groups) { [AdminPolicy::PUBLIC_GROUP] }
+    let(:user) { user_with_groups [AdminPolicy::PUBLIC_GROUP] }
 
     scenario "views a collection and members" do
       visit collection_path(collection)
