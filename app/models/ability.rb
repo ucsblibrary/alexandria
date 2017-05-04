@@ -56,27 +56,29 @@ class Ability
   # are not, so we define them here.
   def discover_permissions
     can :discover, String do |id|
-      test_discover_from_policy(id)
+      test_access(access: :discover, object_id: id)
     end
 
     can :discover, ActiveFedora::Base.descendants - [Hydra::AccessControls::Embargo] do |obj|
-      test_discover_from_policy(obj.id)
+      test_access(access: :discover, object_id: obj.id)
     end
 
     can :discover, SolrDocument do |obj|
       cache.put(obj.id, obj)
-      test_discover_from_policy(obj.id)
+      test_access(access: :discover, object_id: obj.id)
     end
   end
 
-  # Tests whether the object's admin policy grants DISCOVER access for the current user
-  def test_discover_from_policy(object_id)
+  # @param [Symbol] access E.g., :discover, :read
+  # @param [String] object_id
+  def test_access(access:, object_id:)
     policy_id = policy_id_for(object_id)
     return false if policy_id.nil?
 
-    Rails.logger.debug("[CANCAN] -policy- Does the POLICY #{policy_id} provide DISCOVER permissions for #{current_user.user_key}?")
+    Rails.logger.debug("[CANCAN] -policy- Does the POLICY #{policy_id} provide #{access} permissions for #{current_user.user_key}?")
 
-    group_intersection = user_groups & discover_groups_from_policy(policy_id)
+    group_intersection = user_groups & groups_from_policy(access: access,
+                                                          policy_id: policy_id)
     result = group_intersection.present?
 
     Rails.logger.debug("[CANCAN] -policy- decision: #{result}")
@@ -88,17 +90,20 @@ class Ability
   # Note:  Edit or read access implies discover access, so the
   # resulting list of groups is the union of edit, read, and
   # discover groups.
-  def discover_groups_from_policy(policy_id)
+  #
+  # @param [Symbol] access E.g., :discover, :read
+  # @param [AdminPolicy] policy_id
+  def groups_from_policy(access:, policy_id:)
     groups = []
     policy_permissions = policy_permissions_doc(policy_id)
 
     if policy_permissions.present?
-      field_name = Hydra.config.permissions.inheritable[:discover][:group]
+      field_name = Hydra.config.permissions.inheritable[access][:group]
       groups = read_groups_from_policy(policy_id) |
                policy_permissions.fetch(field_name, [])
     end
 
-    Rails.logger.debug("[CANCAN] -policy- discover_groups: #{groups.inspect}")
+    Rails.logger.debug("[CANCAN] -policy- #{access}_groups: #{groups.inspect}")
     groups
   end
 

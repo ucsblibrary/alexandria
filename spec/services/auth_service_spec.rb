@@ -54,6 +54,44 @@ describe AuthService do
       end
     end
 
+    context "merely discoverable image" do
+      let(:fs) { Image.first.file_sets.first }
+      subject { AuthService.new(Riiif::ImagesController.new).can?(:show, fs) }
+
+      before do
+        fs.admin_policy_id = AdminPolicy::DISCOVERY_POLICY_ID
+        fs.update_index
+      end
+
+      context "thumbnail" do
+        let(:params) { { "size" => "400" } }
+
+        context "accessed by ucsb user" do
+          let(:user) { user_with_groups [AdminPolicy::PUBLIC_GROUP] }
+          it { is_expected.to be true }
+        end
+
+        context "accessed by admin" do
+          let(:user) { user_with_groups [AdminPolicy::META_ADMIN] }
+          it { is_expected.to be true }
+        end
+      end
+
+      context "image" do
+        let(:params) { { "size" => "900" } }
+
+        context "accessed by ucsb user" do
+          let(:user) { user_with_groups [AdminPolicy::PUBLIC_GROUP] }
+          it { is_expected.to be false }
+        end
+
+        context "accessed by admin" do
+          let(:user) { user_with_groups [AdminPolicy::META_ADMIN] }
+          it { is_expected.to be true }
+        end
+      end
+    end
+
     context "private image" do
       let(:fs) { Image.first.file_sets.first }
       subject { AuthService.new(Riiif::ImagesController.new).can?(:show, fs) }
