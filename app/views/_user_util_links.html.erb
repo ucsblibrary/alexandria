@@ -5,6 +5,13 @@
   <li><%= link_to 'Usage Guidelines', main_app.collection_usage_guidelines_path %></li>
   <li><%= link_to 'Contact', main_app.contact_us_form_path %></li>
 
+  <% if logged_in? %>
+    <li><%= link_to main_app.bookmarks_path, id: "bookmarks_nav" do %>
+      <%= t('blacklight.header_links.bookmarks') %>
+      (<span data-role='bookmark-counter'><%= current_user.bookmarks.count %></span>)
+    <% end %></li>
+  <% end %>
+
   <%= local_authorities_link %>
   <%= new_record_link %>
   <%= embargoes_link %>
