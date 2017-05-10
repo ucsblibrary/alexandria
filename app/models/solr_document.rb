@@ -116,26 +116,34 @@ class SolrDocument
     ).map { |hit| SolrDocument.new(hit) }
   end
 
+  # @return [Array<SolrDocument>]
   def index_maps
     field_pairs = fetch("index_maps_ssim", []).map do |index|
       ["accession_number_ssim", index]
     end
 
     query = ActiveFedora::SolrQueryBuilder.construct_query(field_pairs, " OR ")
-    ActiveFedora::SolrService.query(query, rows: IndexMap.count)
+    ActiveFedora::SolrService.query(query, rows: IndexMap.count).map { |hit| SolrDocument.new(hit) }
   end
 
+  # @return [Array<SolrDocument>]
   def component_maps
     ids = map_sets.map do |set|
       set.fetch("component_maps_ssim", [])
+    end.flatten
+
+    batches = []
+
+    while ids.present?
+      # Searching for too many IDs at once results in 414 URL Too Long errors
+      query = ActiveFedora::SolrQueryBuilder.construct_query_for_ids(ids.slice!(0, 250))
+      batches += ActiveFedora::SolrService.query(
+        query,
+        rows: ComponentMap.count
+      ).map { |hit| SolrDocument.new(hit) }
     end
 
-    query = ActiveFedora::SolrQueryBuilder.construct_query_for_ids(ids)
-    ActiveFedora::SolrService.query(
-      query,
-      sort: "accession_number_si asc",
-      rows: ComponentMap.count
-    )
+    batches.flatten.sort { |x, y| x["accession_number_ssim"] <=> y["accession_number_ssim"] }
   end
 
   private
