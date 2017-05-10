@@ -86,4 +86,48 @@ describe SolrDocument do
     subject { document.after_embargo_status }
     it { is_expected.to eq " - Becomes Public access on 10/10/2010" }
   end
+
+  describe "#map_sets" do
+    let(:map_set) do
+      SolrDocument.new(id: "mapset",
+                       index_maps_ssim: "indexmap",
+                       has_model_ssim: "MapSet")
+    end
+
+    let(:index_map) do
+      SolrDocument.new(id: "indexmap",
+                       accession_number_ssim: "indexmap",
+                       has_model_ssim: "IndexMap")
+    end
+
+    let(:component_map) do
+      SolrDocument.new(id: "componentmap",
+                       parent_id_ssim: "mapset",
+                       has_model_ssim: "ComponentMap")
+    end
+
+    before do
+      ActiveFedora::SolrService.add([map_set, index_map, component_map])
+      ActiveFedora::SolrService.commit
+    end
+
+    context "called on a MapSet" do
+      # They won't be the very same SolrDocument
+      subject { map_set.map_sets.map(&:id) }
+
+      it { is_expected.to eq [map_set.id] }
+    end
+
+    context "called on an IndexMap" do
+      subject { index_map.map_sets.map(&:id) }
+
+      it { is_expected.to eq [map_set.id] }
+    end
+
+    context "called on a ComponentMap" do
+      subject { component_map.map_sets.map(&:id) }
+
+      it { is_expected.to eq [map_set.id] }
+    end
+  end
 end
