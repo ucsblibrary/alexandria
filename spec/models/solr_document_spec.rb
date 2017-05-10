@@ -89,6 +89,7 @@ describe SolrDocument do
 
   let(:map_set) do
     SolrDocument.new(id: "mapset",
+                     component_maps_ssim: ["componentmap"],
                      index_maps_ssim: ["indexmap"],
                      has_model_ssim: ["MapSet"])
   end
@@ -101,6 +102,7 @@ describe SolrDocument do
 
   let(:component_map) do
     SolrDocument.new(id: "componentmap",
+                     accession_number_ssim: ["componentmap"],
                      index_maps_ssim: ["indexmap"],
                      parent_id_ssim: ["mapset"],
                      has_model_ssim: ["ComponentMap"])
@@ -150,6 +152,48 @@ describe SolrDocument do
       subject { component_map.index_maps.map(&:id) }
 
       it { is_expected.to eq [index_map.id] }
+    end
+  end
+
+  describe "#component_maps" do
+    let(:map_set) do
+      SolrDocument.new(id: "mapset",
+                       component_maps_ssim: (0..1500).map { |i| "componentmap_#{i}" },
+                       index_maps_ssim: ["indexmap"],
+                       has_model_ssim: ["MapSet"])
+    end
+
+    let(:component_maps) do
+      (0..1500).map do |i|
+        SolrDocument.new(id: "componentmap_#{i}",
+                         accession_number_ssim: "componentmap_#{i}",
+                         parent_id_ssim: ["mapset"],
+                         has_model_ssim: ["ComponentMap"])
+      end
+    end
+
+    before do
+      ActiveFedora::SolrService.add(component_maps)
+      ActiveFedora::SolrService.commit
+    end
+
+    context "called on a MapSet" do
+      # They won't be the very same SolrDocument
+      subject { map_set.component_maps.map(&:id) }
+
+      it { is_expected.to eq((0..1500).map { |i| "componentmap_#{i}" }.sort) }
+    end
+
+    context "called on an IndexMap" do
+      subject { index_map.component_maps.map(&:id) }
+
+      it { is_expected.to eq((0..1500).map { |i| "componentmap_#{i}" }.sort) }
+    end
+
+    context "called on a ComponentMap" do
+      subject { component_map.component_maps.map(&:id) }
+
+      it { is_expected.to eq((0..1500).map { |i| "componentmap_#{i}" }.sort) }
     end
   end
 end
