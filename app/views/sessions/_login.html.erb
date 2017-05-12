@@ -7,5 +7,5 @@
   <p><%= f.label(:password) %><%= f.password_field(:password,
                                                    required: true) %></p>
   <%= f.hidden_field(:type, value: type) %>
-  <p><%= f.submit("Log in") %></p>
+  <p><%= f.submit("Log in", class: "btn btn-primary") %></p>
 <% end %>

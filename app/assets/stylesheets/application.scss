@@ -375,31 +375,47 @@ html.welcome,
 }
 
 // -----
-// Login
+// Forms
 // -----
 
 .help {
   color: #696969;
 }
 
-form p {
-  label {
-    padding-right: 1em;
-  }
-  input,
-  textarea {
-    float: right;
-    width: 70%;
-  }
-}
-
 @media screen and (min-width: $breakpoint2) {
+  form p {
+    label {
+      padding-right: 1em;
+    }
+    input,
+    textarea {
+      float: right;
+      width: 70%;
+    }
+  }
+
   .option {
     float: left;
     width: 35%;
   }
   .option + .option {
     margin-left: 15%;
+  }
+}
+
+@media screen and (max-width: $breakpoint2) {
+  .option {
+    overflow: hidden;
+  }
+
+  form p {
+    label,
+    input,
+    textarea {
+      float: left;
+      clear: both;
+      width: 100%;
+    }
   }
 }
 
