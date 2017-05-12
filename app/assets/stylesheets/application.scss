@@ -769,6 +769,21 @@ label.remove_time_span {
   width: 32px;
 }
 
+// --------------
+// Thumbnail view
+// --------------
+
+// DIGREPO-481
+.thumbnail {
+  dl {
+    @include hide;
+  }
+
+  .index_title {
+    padding: 0 1em .5em 1em;
+  }
+}
+
 // ---------
 // Deep Zoom
 // ---------
