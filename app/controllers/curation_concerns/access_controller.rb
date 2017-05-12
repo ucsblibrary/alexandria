@@ -3,6 +3,8 @@
 class CurationConcerns::AccessController < ApplicationController
   include Hydra::Controller::ControllerBehavior
 
+  layout "curation_concerns"
+
   before_action :load_curation_concern
   attr_accessor :curation_concern
   helper_method :curation_concern

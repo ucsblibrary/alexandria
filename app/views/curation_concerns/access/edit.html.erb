@@ -1,5 +1,5 @@
 <h1>Manage Access Policy and Embargo for <%= curation_concern.ark %></h1>
-<h2><%= curation_concern.title %></h2>
+<h2><%= curation_concern.title.first %></h2>
 
 <%= simple_form_for @form, url: polymorphic_path([main_app, @form, :access]), html: { id: 'embargo-form' } do |f| %>
 
@@ -21,4 +21,3 @@
     </div>
   </div>
 <% end %>
-

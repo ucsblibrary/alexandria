@@ -3,6 +3,8 @@
 class CurationConcerns::FileSetsController < ApplicationController
   include CurationConcerns::FileSetsControllerBehavior
 
+  layout "curation_concerns"
+
   def search_builder_class
     ::FileSetSearchBuilder
   end
