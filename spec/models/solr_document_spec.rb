@@ -3,10 +3,46 @@
 require "rails_helper"
 
 describe SolrDocument do
-  context "for an image" do
-    let(:image) { create(:image) }
-    let(:document) { SolrDocument.new(id: image.id, identifier_ssm: ["ark:/99999/fk4v989d9j"], has_model_ssim: [Image.to_class_uri]) }
+  before do
+    ActiveFedora::SolrService.add([map_set, index_map, component_map])
+    ActiveFedora::SolrService.commit
+  end
 
+  let(:image) { create(:image) }
+
+  let(:document) do
+    SolrDocument.new(
+      id: image.id,
+      identifier_ssm: ["ark:/99999/fk4v989d9j"],
+      has_model_ssim: [Image.to_class_uri])
+  end
+
+  let(:etd_document) do
+    SolrDocument.new(id: "foobar", has_model_ssim: [ETD.to_class_uri])
+  end
+
+  let(:map_set) do
+    SolrDocument.new(id: "mapset",
+                     component_maps_ssim: ["componentmap"],
+                     index_maps_ssim: ["indexmap"],
+                     has_model_ssim: ["MapSet"])
+  end
+
+  let(:index_map) do
+    SolrDocument.new(id: "indexmap",
+                     accession_number_ssim: ["indexmap"],
+                     has_model_ssim: ["IndexMap"])
+  end
+
+  let(:component_map) do
+    SolrDocument.new(id: "componentmap",
+                     accession_number_ssim: ["componentmap"],
+                     index_maps_ssim: ["indexmap"],
+                     parent_id_ssim: ["mapset"],
+                     has_model_ssim: ["ComponentMap"])
+  end
+
+  context "for an image" do
     describe "#ark" do
       subject { document.ark }
       it { is_expected.to eq "ark:/99999/fk4v989d9j" }
@@ -24,8 +60,6 @@ describe SolrDocument do
   end
 
   context "for an etd" do
-    let(:etd_document) { SolrDocument.new(id: "foobar", has_model_ssim: [ETD.to_class_uri]) }
-
     describe "#etd?" do
       subject { etd_document.etd? }
       it { is_expected.to be true }
@@ -87,30 +121,20 @@ describe SolrDocument do
     it { is_expected.to eq " - Becomes Public access on 10/10/2010" }
   end
 
-  let(:map_set) do
-    SolrDocument.new(id: "mapset",
-                     component_maps_ssim: ["componentmap"],
-                     index_maps_ssim: ["indexmap"],
-                     has_model_ssim: ["MapSet"])
-  end
+  describe "#curation_concern?" do
+    let(:collection) do
+      SolrDocument.new(has_model_ssim: ["Collection"])
+    end
 
-  let(:index_map) do
-    SolrDocument.new(id: "indexmap",
-                     accession_number_ssim: ["indexmap"],
-                     has_model_ssim: ["IndexMap"])
-  end
-
-  let(:component_map) do
-    SolrDocument.new(id: "componentmap",
-                     accession_number_ssim: ["componentmap"],
-                     index_maps_ssim: ["indexmap"],
-                     parent_id_ssim: ["mapset"],
-                     has_model_ssim: ["ComponentMap"])
-  end
-
-  before do
-    ActiveFedora::SolrService.add([map_set, index_map, component_map])
-    ActiveFedora::SolrService.commit
+    it "identifies correctly" do
+      expect(SolrDocument.new.curation_concern?).to eq false
+      expect(collection.curation_concern?).to eq false
+      expect(component_map.curation_concern?).to eq true
+      expect(document.curation_concern?).to eq true
+      expect(etd_document.curation_concern?).to eq true
+      expect(index_map.curation_concern?).to eq true
+      expect(map_set.curation_concern?).to eq true
+    end
   end
 
   describe "#map_sets" do

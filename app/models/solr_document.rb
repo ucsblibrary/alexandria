@@ -36,10 +36,10 @@ class SolrDocument
 
   # Something besides a local authority
   def curation_concern?
-    return false if fetch("has_model_ssim").empty?
+    return false if fetch("has_model_ssim", []).empty?
 
-    [Collection.to_class_uri, Image.to_class_uri, ETD.to_class_uri].any? do |uri|
-      uri == fetch("has_model_ssim").first
+    CurationConcerns.config.registered_curation_concern_types.any? do |type|
+      type == fetch("has_model_ssim", []).first
     end
   end
 
