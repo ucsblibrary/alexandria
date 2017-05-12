@@ -1,42 +1,26 @@
-<div id="contact-us-page">
-  <div class='row'>
-    <h1> Contact Us </h1>
-    <p> Please use the contact form to submit general questions about the Alexandria Digital Research Library website, to report a problem you are experiencing with the system, or to provide feedback. </p>
-  </div>
+<div class="static">
+  <h1> Contact Us </h1>
+  <p> Please use the contact form to submit general questions about the Alexandria Digital Research Library website, to report a problem you are experiencing with the system, or to provide feedback. </p>
 
+  <p>
   <%= form_tag(contact_us_form_path) do %>
-    <div class='row'>
-      <%= label_tag :category, 'Issue Type (Please Select)' %>
-      <br />
-      <%= select_tag :category, options_for_select(contact_us_categories, 'General Inquiry or Request'), required: 'required' %>
-    </div>
+    <p><%= label_tag :category, 'Issue Type (Please Select)' %>
+      <%= select_tag :category, options_for_select(contact_us_categories, 'General Inquiry or Request'), required: true %></p>
 
-    <div class='row'>
-      <%= label_tag :name, 'Your Name' %>
-      <br />
-      <%= text_field_tag :name, nil, required: 'required', class: contact_us_fields_class %>
-    </div>
+    <p><%= label_tag :name, 'Your Name' %>
+      <%= text_field_tag :name, nil, required: true %></p>
 
-    <div class='row'>
-      <%= label_tag :email, 'Your Email' %>
-      <br />
-      <%= email_field_tag :email, nil, required: 'required', class: contact_us_fields_class %>
-    </div>
+    <p><%= label_tag :email, 'Your Email' %>
+      <%= email_field_tag :email, nil, required: true %></p>
 
-    <div class='row invisible'>
+    <p class="invisible">
       <%= label_tag :zipcode, 'Your Zip Code (Humans: Leave This Empty)' %>
-      <br />
-      <%= text_field_tag :zipcode, nil, class: contact_us_fields_class %>
-    </div>
+      <%= text_field_tag :zipcode, nil %></p>
 
-    <div class='row'>
-      <%= label_tag :message %>
-      <br />
-      <%= text_area_tag :message, nil, rows: 8, required: 'required', class: contact_us_fields_class %>
-    </div>
+    <p><%= label_tag :message %>
+      <%= text_area_tag :message, nil, rows: 8, required: true %></p>
 
-    <div class='form-actions row'>
-      <%= submit_tag('Send', class: 'btn btn-primary') %>
-    </div>
+    <p><%= submit_tag('Send', class: 'btn btn-primary') %></p>
   <% end %>
+  </p>
 </div>

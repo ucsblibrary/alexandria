@@ -2,6 +2,8 @@
 
 # Sends email to the admin from the contact form
 class ContactUsController < ApplicationController
+  layout "curation_concerns"
+
   def new
     @page_title = "Contact Us"
   end

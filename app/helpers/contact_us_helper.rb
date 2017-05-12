@@ -9,8 +9,4 @@ module ContactUsHelper
       "Report Problem",
     ]
   end
-
-  def contact_us_fields_class
-    "col-xs-12 col-sm-6"
-  end
 end
