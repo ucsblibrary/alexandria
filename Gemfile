@@ -81,7 +81,7 @@ group :test do
 end
 
 group :development do
-  gem "capistrano", "3.7.0"
+  gem "capistrano", "~> 3.8.0"
   gem "capistrano-bundler"
   gem "capistrano-passenger"
   gem "capistrano-rails", ">= 1.1.3"

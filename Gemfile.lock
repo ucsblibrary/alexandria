@@ -140,16 +140,14 @@ GEM
     builder (3.2.3)
     byebug (9.0.6)
     cancancan (1.16.0)
-    capistrano (3.7.0)
+    capistrano (3.8.1)
       airbrussh (>= 1.0.0)
-      capistrano-harrow
       i18n
       rake (>= 10.0.0)
       sshkit (>= 1.9.0)
     capistrano-bundler (1.2.0)
       capistrano (~> 3.1)
       sshkit (~> 1.2)
-    capistrano-harrow (0.5.3)
     capistrano-passenger (0.2.0)
       capistrano (~> 3.0)
     capistrano-rails (1.2.3)
@@ -775,7 +773,7 @@ DEPENDENCIES
   blacklight-gallery (~> 0.5.0)
   blacklight_range_limit (~> 6.0.0)
   byebug
-  capistrano (= 3.7.0)
+  capistrano (~> 3.8.0)
   capistrano-bundler
   capistrano-passenger
   capistrano-rails (>= 1.1.3)

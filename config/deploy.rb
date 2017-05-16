@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-# config valid only for current version of Capistrano
-lock "3.7.0"
-
 set :application, "alexandria"
 set :repo_url, ENV.fetch("REPO", "ssh://jenkins@github.library.ucsb.edu/ADRL/alexandria.git")
 set :deploy_to, ENV.fetch("TARGET", "/opt/alexandria")
