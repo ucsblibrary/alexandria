@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "rest_client"
-
 module ControlledVocabularies
   class Geographic < ActiveTriples::Resource
     include LinkedVocabs::Controlled
