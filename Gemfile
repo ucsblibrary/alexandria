@@ -31,6 +31,7 @@ gem "openseadragon"
 gem "qa", "~> 0.11.0"
 gem "rdf-marmotta", "~> 0.1.1"
 gem "riiif", "~> 1.1"
+gem "rsolr"
 gem "traject", "~> 2.3.2"
 
 gem "kaminari", "~> 0.16.3"
