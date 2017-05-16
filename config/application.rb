@@ -17,6 +17,9 @@ module Alexandria
       g.test_framework :rspec, spec: true
     end
 
+    # FIXME: https://gitlab.com/gitlab-org/gitlab-ce/merge_requests/5555/diffs#note_15843755
+    config.action_controller.permit_all_parameters = true
+
     # Handle exceptions manually
     config.exceptions_app = routes
 
