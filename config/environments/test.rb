@@ -15,8 +15,10 @@ Rails.application.configure do
   config.eager_load = false
 
   # Configure static file server for tests with Cache-Control for performance.
-  config.serve_static_files   = true
-  config.static_cache_control = "public, max-age=3600"
+  config.public_file_server.enabled = true
+  config.public_file_server.headers = {
+    "Cache-Control" => "public, max-age=3600",
+  }
 
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true
@@ -32,6 +34,7 @@ Rails.application.configure do
   # The :test delivery method accumulates sent emails in the
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
+  config.action_mailer.perform_caching = false
 
   # Randomize the order test cases are executed.
   config.active_support.test_order = :random
@@ -41,6 +44,6 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
-  #
+
   config.host_name = "test.host"
 end
