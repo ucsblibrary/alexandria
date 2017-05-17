@@ -99,6 +99,7 @@ describe CatalogController do
       it "returns a 404" do
         get :show, id: "fk4cn8cc3d"
         expect(response.response_code).to eq 404
+        expect(response).to render_template("errors/not_found")
       end
     end
   end # show page
