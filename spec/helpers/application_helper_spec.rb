@@ -11,14 +11,30 @@ describe ApplicationHelper do
   end
 
   describe "#linkify" do
+    subject { helper.linkify(url_string) }
+
     context "a HTTP URL" do
-      subject { helper.linkify("http://alexandria.ucsb.edu") }
+      let(:url_string) { "http://alexandria.ucsb.edu" }
+
       it { is_expected.to eq '<a href="http://alexandria.ucsb.edu">http://alexandria.ucsb.edu</a>' }
     end
 
     context "a HTTPS URL" do
-      subject { helper.linkify("https://alexandria.ucsb.edu") }
+      let(:url_string) { "https://alexandria.ucsb.edu" }
+
       it { is_expected.to eq '<a href="https://alexandria.ucsb.edu">https://alexandria.ucsb.edu</a>' }
+    end
+
+    context "multiple URLs" do
+      let(:url_string) do
+        "we have cylinders on http://cylinders.library.ucsb.edu as well as https://alexandria.ucsb.edu"
+      end
+
+      it do
+        is_expected.to(
+          eq 'we have cylinders on <a href="http://cylinders.library.ucsb.edu">http://cylinders.library.ucsb.edu</a> as well as <a href="https://alexandria.ucsb.edu">https://alexandria.ucsb.edu</a>'
+        )
+      end
     end
 
     context "an ARK" do
