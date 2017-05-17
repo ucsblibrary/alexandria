@@ -13,6 +13,9 @@ module ApplicationHelper
 
   # Used in {CatalogController} to render notes and restrictions as
   # separate paragraphs
+  #
+  # @param [Hash] data
+  # @return [ActiveSupport::SafeBuffer]
   def not_simple_format(data)
     safe_join(
       data[:value].map do |val|
@@ -21,21 +24,28 @@ module ApplicationHelper
     )
   end
 
+  # @param [Hash] data
+  # @return [ActiveSupport::SafeBuffer]
   def display_link(data)
     href = data.fetch(:value).first
     link_to(href, href)
   end
 
+  # @return [AdminPolicy]
   def policy_title(document)
     AdminPolicy.find(document.admin_policy_id)
   end
 
+  # @param [Array<SolrDocument>] member_docs
+  # @return [Nil, String]
   def random_thumbnail_from_collection(member_docs = [])
     thumb = member_docs.select { |doc| doc.key?("thumbnail_url_ssm") }.sample
     return nil unless thumb
     thumb["thumbnail_url_ssm"]
   end
 
+  # @param [FileSet] file
+  # @return [String]
   def icon_class(file)
     if file.audio?
       "fa-music"
@@ -44,6 +54,8 @@ module ApplicationHelper
     end
   end
 
+  # @param [FileSet] file
+  # @return [ActiveSupport::SafeBuffer]
   def link_to_file(file)
     if file.pdf?
       link_to(file.fetch("original_filename_ss"),
@@ -59,6 +71,8 @@ module ApplicationHelper
     end
   end
 
+  # @param [Hash] data
+  # @return [ActiveSupport::SafeBuffer]
   def show_license_icons(data)
     uri = data[:document]["license_tesim"].first
 
@@ -71,6 +85,8 @@ module ApplicationHelper
             title: "Rights Statement"
   end
 
+  # @param [String] uri
+  # @return [Array<String>]
   def rights_icons(uri)
     if category = uri.match(%r{.*rightsstatements\.org\/vocab\/([a-z]+)}i)
       [
