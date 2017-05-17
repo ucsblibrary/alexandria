@@ -693,4 +693,176 @@ http_interactions:
       string: 'success: ark:/99999/fk4765rj7p'
     http_version:
   recorded_at: Fri, 28 Apr 2017 02:11:55 GMT
+- request:
+    method: get
+    uri: http://rightsstatements.org/vocab/InC/1.0/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - text/turtle, text/rdf+turtle, application/turtle;q=0.2, application/x-turtle;q=0.2,
+        application/ld+json, application/x-ld+json, application/n-triples, text/plain;q=0.2,
+        application/n-quads, text/x-nquads;q=0.2, application/rdf+json, text/html;q=0.5,
+        application/xhtml+xml;q=0.7, image/svg+xml;q=0.4, text/n3, text/rdf+n3;q=0.2,
+        application/rdf+n3;q=0.2, application/rdf+xml, text/csv, text/tab-separated-values,
+        application/csvm+json, application/trig, application/x-trig, application/trix
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 303
+      message: See Other
+    headers:
+      Date:
+      - Wed, 17 May 2017 15:28:55 GMT
+      Server:
+      - Apache
+      Location:
+      - http://rightsstatements.org/page/InC/1.0/?language=en
+      Content-Length:
+      - '0'
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version:
+  recorded_at: Wed, 17 May 2017 15:28:55 GMT
+- request:
+    method: get
+    uri: http://rightsstatements.org/page/InC/1.0/?language=en
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - text/turtle, text/rdf+turtle, application/turtle;q=0.2, application/x-turtle;q=0.2,
+        application/ld+json, application/x-ld+json, application/n-triples, text/plain;q=0.2,
+        application/n-quads, text/x-nquads;q=0.2, application/rdf+json, text/html;q=0.5,
+        application/xhtml+xml;q=0.7, image/svg+xml;q=0.4, text/n3, text/rdf+n3;q=0.2,
+        application/rdf+n3;q=0.2, application/rdf+xml, text/csv, text/tab-separated-values,
+        application/csvm+json, application/trig, application/x-trig, application/trix
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 17 May 2017 15:28:56 GMT
+      Server:
+      - Apache
+      Link:
+      - "<http://localhost:9000/page/InC/1.0/>; rel=derivedfrom"
+      Content-Type:
+      - text/html
+      Content-Language:
+      - en
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '2170'
+    body:
+      encoding: ASCII-8BIT
+      string: "<!doctype html>\n\n<html class=\"no-js\" lang=\"\">\n\n<head>\n    <meta
+        charset=\"utf-8\" />\n    <meta http-equiv=\"x-ua-compatible\" content=\"ie=edge\">\n
+        \   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"
+        />\n    <title>Rights Statements</title>\n    <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/foundation/6.2.0/foundation.min.css\"
+        />\n    <link href='//rightsstatements.org/css/rights-stmt.css' rel='stylesheet'>\n
+        \   <link rel=\"stylesheet\" type=\"text/css\" href=\"//cloud.typography.com/7018914/6677352/css/fonts.css\"
+        />\n</head>\n\n\n<body markdown=\"0\">\n\n    <script type=\"application/ld+json\">\n
+        \       {\n  \"identifier\": \"InC\",\n  \"note\": [\n    {\n      \"@language\":
+        \"en\",\n      \"@value\": \"You may find additional information about the
+        copyright status of the Item on the website of the organization that has made
+        the Item available.\"\n    },\n    {\n      \"@language\": \"en\",\n      \"@value\":
+        \"Unless expressly stated otherwise, the organization that has made this Item
+        available makes no warranties about the Item and cannot guarantee the accuracy
+        of this Rights Statement. You are responsible for your own use.\"\n    },\n
+        \   {\n      \"@language\": \"en\",\n      \"@value\": \"You may need to obtain
+        other permissions for your intended use. For example, other rights such as
+        publicity, privacy or moral rights may limit how you may use the material.\"\n
+        \   }\n  ],\n  \"creator\": \"http://rightsstatements.org/vocab/irswg\",\n
+        \ \"inScheme\": \"http://rightsstatements.org/vocab/1.0/\",\n  \"@type\":
+        [\n    \"dcterms:RightsStatement\",\n    \"skos:Concept\"\n  ],\n  \"prefLabel\":
+        {\n    \"@language\": \"en\",\n    \"@value\": \"In Copyright\"\n  },\n  \"versionInfo\":
+        \"1.0\",\n  \"@context\": {\n    \"note\": \"http://www.w3.org/2004/02/skos/core#note\",\n
+        \   \"creator\": {\n      \"@id\": \"http://purl.org/dc/terms/creator\",\n
+        \     \"@type\": \"@id\"\n    },\n    \"relatedMatch\": {\n      \"@id\":
+        \"http://www.w3.org/2004/02/skos/core#relatedMatch\",\n      \"@type\": \"@id\"\n
+        \   },\n    \"scopeNote\": \"http://www.w3.org/2004/02/skos/core#scopeNote\",\n
+        \   \"prefLabel\": \"http://www.w3.org/2004/02/skos/core#prefLabel\",\n    \"definition\":
+        \"http://www.w3.org/2004/02/skos/core#definition\",\n    \"identifier\": \"http://purl.org/dc/elements/1.1/identifier\",\n
+        \   \"inScheme\": {\n      \"@id\": \"http://www.w3.org/2004/02/skos/core#inScheme\",\n
+        \     \"@type\": \"@id\"\n    },\n    \"closeMatch\": {\n      \"@id\": \"http://www.w3.org/2004/02/skos/core#closeMatch\",\n
+        \     \"@type\": \"@id\"\n    },\n    \"modified\": {\n      \"@id\": \"http://purl.org/dc/terms/modified\",\n
+        \     \"@type\": \"http://www.w3.org/2001/XMLSchema#date\"\n    },\n    \"versionInfo\":
+        \"http://www.w3.org/2002/07/owl#versionInfo\",\n    \"cc\": \"http://creativecommons.org/ns#\",\n
+        \   \"schema\": \"http://schema.org/\",\n    \"premiscopy\": \"http://id.loc.gov/vocabulary/preservation/copyrightStatus/\",\n
+        \   \"owl\": \"http://www.w3.org/2002/07/owl#\",\n    \"xsd\": \"http://www.w3.org/2001/XMLSchema#\",\n
+        \   \"dcmitype\": \"http://purl.org/dc/dcmitype/\",\n    \"skos\": \"http://www.w3.org/2004/02/skos/core#\",\n
+        \   \"rdfs\": \"http://www.w3.org/2000/01/rdf-schema#\",\n    \"p3p\": \"http://www.w3.org/2002/01/p3prdfv1#\",\n
+        \   \"edm\": \"http://www.europeana.eu/schemas/edm/\",\n    \"dcterms\": \"http://purl.org/dc/terms/\",\n
+        \   \"odrl\": \"http://www.w3c.org/community/odrl/two/vocab/2.1/\",\n    \"foaf\":
+        \"http://xmlns.com/foaf/0.1/\",\n    \"dc\": \"http://purl.org/dc/elements/1.1/\"\n
+        \ },\n  \"closeMatch\": \"http://www.europeana.eu/rights/rr-f/\",\n  \"relatedMatch\":
+        \"premiscopy:cpr\",\n  \"modified\": \"2016-05-09\",\n  \"definition\": {\n
+        \   \"@language\": \"en\",\n    \"@value\": \"This Item is protected by copyright
+        and/or related rights.\\n\\n  You are free to use this Item in any way that
+        is permitted by the copyright and related rights legislation that applies
+        to your use.\\n\\n  For other uses you need to obtain permission from the
+        rights-holder(s).\"\n  },\n  \"@id\": \"http://rightsstatements.org/vocab/InC/1.0/\",\n
+        \ \"scopeNote\": {\n    \"@language\": \"en\",\n    \"@value\": \"This Rights
+        Statement can be used for an Item that is in copyright. Using this statement
+        implies that the organization making this Item available has determined that
+        the Item is in copyright and either is the rights-holder, has obtained permission
+        from the rights-holder(s) to make the Work available, or makes the Work available
+        under an exception or limitation to copyright (including Fair Use) that entitles
+        it to make the Work available.\"\n  }\n}\n    </script>\n\n    <div class=\"row
+        columns statement-container\">\n        <div class=\"statement-wrapper\">\n
+        \           <div class=\"row statement-main\">\n                <div class=\"large-4
+        columns\">\n                    <div class=\"statement-iconcolumn\">\n                        <img
+        src=\"//rightsstatements.org/files/buttons/InC.white.svg\" title=\"In Copyright\"
+        />\n                    </div>\n                </div>\n                <div
+        class=\"large-8 columns\">\n                    <div class=\"statement-textcolumn\">\n
+        \                       <h1>In Copyright</h1>\n                        <p>This
+        Item is protected by copyright and/or related rights.\n\n  You are free to
+        use this Item in any way that is permitted by the copyright and related rights
+        legislation that applies to your use.\n\n  For other uses you need to obtain
+        permission from the rights-holder(s).</p>\n                        \n\n                        \n
+        \                       <h2>Notices</h2>\n                        <ul>\n                            \n
+        \                               <li><span>Unless expressly stated otherwise,
+        the organization that has made this Item available makes no warranties about
+        the Item and cannot guarantee the accuracy of this Rights Statement. You are
+        responsible for your own use.</span></li>\n                            \n
+        \                               <li><span>You may find additional information
+        about the copyright status of the Item on the website of the organization
+        that has made the Item available.</span></li>\n                            \n
+        \                               <li><span>You may need to obtain other permissions
+        for your intended use. For example, other rights such as publicity, privacy
+        or moral rights may limit how you may use the material.</span></li>\n                            \n
+        \                       </ul>\n                        <p class=\"disclaimer\">DISCLAIMER
+        The purpose of this statement is to help the public understand how this Item
+        may be used. When there is a (non-standard) License or contract that governs
+        re-use of the associated Item, this statement only summarizes the effects
+        of some of its terms. It is not a License, and should not be used to license
+        your Work. To license your own Work, use a License offered at <a href=\"http://creativecommons.org/\">http://creativecommons.org/</a></p>\n
+        \                       <p>URI for this statement:<br/>\n                            <a
+        href=\"http://rightsstatements.org/vocab/InC/1.0/\">http://rightsstatements.org/vocab/InC/1.0/</a></p>\n
+        \                   </div>\n                </div>\n            </div>\n\n
+        \           <div class=\"row footer\">\n                <div class=\"large-9
+        columns\">\n                    This statement is provided by <a href=\"http://rightsstatements.org\">rightsstatements.org</a>\n
+        \               </div>\n                <div class=\"large-3 columns\">\n
+        \                   <img src=\"//rightsstatements.org/files/images/logo.svg\"
+        />\n                </div>\n            </div>\n        </div>\n    </div>\n
+        \   <script src=\"https://code.jquery.com/jquery-1.12.0.min.js\"></script>\n
+        \   <script src=\"https://code.jquery.com/jquery-migrate-1.2.1.min.js\"></script>\n
+        \   <script src=\"https://cdn.jsdelivr.net/what-input/2.0.1/what-input.min.js\"></script>\n
+        \   <script src=\"https://cdn.jsdelivr.net/foundation/6.2.0/foundation.min.js\"></script>\n
+        \   <script>\n        $(document).foundation();\n    </script>\n\n</body>\n\n\n</html>\n"
+    http_version:
+  recorded_at: Wed, 17 May 2017 15:28:56 GMT
 recorded_with: VCR 3.0.3

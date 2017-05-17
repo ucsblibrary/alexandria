@@ -20,6 +20,7 @@ describe Importer::CSV do
     end
     @m = MapSet.first
   end
+
   context "all maps are imported and map set is reindexed" do
     it "creates all expected objects" do
       expect(MapSet.count).to eq(1)
