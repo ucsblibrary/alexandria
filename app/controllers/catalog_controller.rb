@@ -18,6 +18,20 @@ class CatalogController < ApplicationController
     )
   end
 
+  rescue_from Blacklight::Exceptions::RecordNotFound do |e|
+    logger.error "(Blacklight::Exceptions::RecordNotFound): #{e.inspect}"
+    @unknown_type = "Document"
+    @unknown_id = params[:id]
+    render "errors/not_found", status: 404
+  end
+
+  rescue_from Blacklight::Exceptions::InvalidSolrID do |e|
+    logger.error e
+    @unknown_type = "Document"
+    @unknown_id = params[:id]
+    render "errors/not_found", status: 404
+  end
+
   # Turn off SMS
   # https://groups.google.com/d/msg/blacklight-development/l_zHRF_GQc8/_qUUbJSs__YJ
   CatalogController.blacklight_config.show.document_actions.delete(:sms)
