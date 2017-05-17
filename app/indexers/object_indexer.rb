@@ -85,7 +85,7 @@ class ObjectIndexer < CurationConcerns::WorkIndexer
 
     def query_for_hydra_collections
       return [] unless object.id
-      query = ActiveFedora::SolrQueryBuilder.construct_query_for_rel(member_ids: object.id, has_model: Collection.to_class_uri)
+      query = ActiveFedora::SolrQueryBuilder.construct_query_for_rel(member_ids: object.id, has_model: Collection.to_rdf_representation)
       ActiveFedora::SolrService.query(query, fl: "title_tesim id")
     end
 

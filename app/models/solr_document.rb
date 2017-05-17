@@ -54,7 +54,7 @@ class SolrDocument
   end
 
   def etd?
-    self["has_model_ssim"] == [ETD.to_class_uri]
+    self["has_model_ssim"] == [ETD.to_rdf_representation]
   end
 
   def admin_policy_id

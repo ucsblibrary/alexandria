@@ -3,7 +3,7 @@
 def for_model?(request, model)
   query = [
     "_query_:\"#{ActiveFedora::SolrQueryBuilder.construct_query_for_ids([request.params[:id]])}\"",
-    ActiveFedora::SolrQueryBuilder.construct_query_for_rel([[:has_model, model.to_class_uri]]),
+    ActiveFedora::SolrQueryBuilder.construct_query_for_rel([[:has_model, model.to_rdf_representation]]),
   ].join(" AND ")
   results = ActiveFedora::SolrService.query query, fl: "has_model_ssim"
   results.present?

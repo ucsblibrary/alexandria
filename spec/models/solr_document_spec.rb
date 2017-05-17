@@ -14,11 +14,11 @@ describe SolrDocument do
     SolrDocument.new(
       id: image.id,
       identifier_ssm: ["ark:/99999/fk4v989d9j"],
-      has_model_ssim: [Image.to_class_uri])
+      has_model_ssim: [Image.to_rdf_representation])
   end
 
   let(:etd_document) do
-    SolrDocument.new(id: "foobar", has_model_ssim: [ETD.to_class_uri])
+    SolrDocument.new(id: "foobar", has_model_ssim: [ETD.to_rdf_representation])
   end
 
   let(:map_set) do
