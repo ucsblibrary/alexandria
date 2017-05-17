@@ -54,6 +54,8 @@ module ApplicationHelper
       "fa-music"
     elsif file.pdf?
       "fa-file-text-o"
+    else
+      "fa-file-image-o"
     end
   end
 

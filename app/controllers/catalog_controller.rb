@@ -54,6 +54,24 @@ class CatalogController < ApplicationController
     config.view.slideshow.partials = [:index]
     config.view.slideshow.slideshow_method = :choose_image
 
+    # This controls which partials are used, and in what order, for
+    # each record type.  E.g., for an AudioRecording we will render
+    #
+    # - _breadcrumbs_audio_recording.html.erb
+    # - _title_audio_recording.html.erb
+    # - _media_audio_recording.html.erb
+    # - _show_audio_recording.html.erb
+    # - _downloads_audio_recording.html.erb
+    #
+    # falling back to _title_default etc. in each case.
+    config.show.partials = [
+      :breadcrumbs,
+      :title,
+      :media,
+      :show,
+      :downloads,
+    ]
+
     # config.show.tile_source_field = :content_metadata_image_iiif_info_ssm
     # config.show.partials.insert(1, :openseadragon)
 
@@ -76,17 +94,6 @@ class CatalogController < ApplicationController
     config.index.title_field = solr_name("title", :stored_searchable)
     config.index.display_type_field = "has_model_ssim"
     config.index.thumbnail_field = ObjectIndexer.thumbnail_field
-
-    # This controls which partials are used, and in what order, for
-    # each record type.  E.g., for an AudioRecording we will render
-    #
-    # - _breadcrumbs_audio_recording.html.erb
-    # - _title_audio_recording.html.erb
-    # - _media_audio_recording.html.erb
-    # - _show_audio_recording.html.erb
-    #
-    # falling back to _title_default etc. in each case.
-    config.show.partials = [:breadcrumbs, :title, :media, :show]
 
     # Solr fields that will be treated as facets by the blacklight application
     #
