@@ -3,6 +3,19 @@
 require "rails_helper"
 
 describe ImageForm do
+  let(:image) { Image.new(identifier: ["ark:/99999/fk4f76j320"], record_origin: ["This is the origin"]) }
+  let(:instance) { described_class.new image }
+
+  describe "#ark" do
+    subject { instance.ark }
+    it { is_expected.to eq "ark:/99999/fk4f76j320" }
+  end
+
+  describe "#record_origin" do
+    subject { instance.record_origin }
+    it { is_expected.to eq ["This is the origin"] }
+  end
+
   describe ".build_permitted_params" do
     subject { described_class.build_permitted_params }
 
@@ -55,24 +68,9 @@ describe ImageForm do
     end
   end
 
-  describe "an instance" do
-    let(:image) { Image.new(identifier: ["ark:/99999/fk4f76j320"], record_origin: ["This is the origin"]) }
-    let(:instance) { described_class.new image }
-
-    describe "#ark" do
-      subject { instance.ark }
-      it { is_expected.to eq "ark:/99999/fk4f76j320" }
-    end
-
-    describe "#record_origin" do
-      subject { instance.record_origin }
-      it { is_expected.to eq ["This is the origin"] }
-    end
-  end
-
-  describe "model_attributes" do
+  describe ".model_attributes" do
     let(:params) { ActionController::Parameters.new(request_params) }
-    let(:model_attributes) { ImageForm.model_attributes(params) }
+    let(:model_attributes) { described_class.model_attributes(params) }
 
     context "for complex nested associations" do
       let(:request_params) do

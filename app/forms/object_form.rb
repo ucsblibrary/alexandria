@@ -114,22 +114,24 @@ class ObjectForm
     demultiplex_contributors(super)
   end
 
+  # @param [ActiveController::Parameters] attrs
   def self.demultiplex_contributors(attrs)
-    attributes_collection = attrs[:contributor_attributes]
-    return attrs unless attributes_collection
+    attributes_collection = (attrs.delete(:contributor_attributes) || {})
+                            .sort_by do |i, _|
+                              i.to_i
+                            end.map { |_, attributes| attributes }
 
-    if attributes_collection.is_a? Hash
-      attributes_collection =
-        attributes_collection.sort_by { |i, _| i.to_i }.map { |_, attributes| attributes }
+    return attrs if attributes_collection.empty?
+
+    attributes_collection.each do |row|
+      next unless row[:predicate]
+
+      attr_key = "#{row.delete(:predicate)}_attributes"
+      attrs[attr_key] ||= []
+      attrs[attr_key] << row.with_indifferent_access
     end
-    attrs.except(:contributor_attributes).merge(
-      attributes_collection.each_with_object({}.with_indifferent_access) do |row, relations|
-        next unless row[:predicate]
-        attr_key = "#{row.delete(:predicate)}_attributes"
-        relations[attr_key] ||= []
-        relations[attr_key] << row.with_indifferent_access
-      end
-    )
+
+    attrs
   end
 
   def self.fedora_url_prefix
