@@ -27,20 +27,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  rescue_from Blacklight::Exceptions::RecordNotFound do |e|
-    logger.error "(Blacklight::Exceptions::RecordNotFound): #{e.inspect}"
-    @unknown_type = "Document"
-    @unknown_id = params[:id]
-    render "errors/not_found", status: 404
-  end
-
-  rescue_from Blacklight::Exceptions::InvalidSolrID do |e|
-    logger.error e
-    @unknown_type = "Document"
-    @unknown_id = params[:id]
-    render "errors/not_found", status: 404
-  end
-
   def on_campus?
     return true if Rails.env.development?
 
