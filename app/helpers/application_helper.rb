@@ -10,12 +10,6 @@ module ApplicationHelper
   # Modified to only match http/https URLs
   URL_REGEXP = %r{((?:https?:(?:\/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))}
 
-  def self.hostp
-    Rails.application.config.host_name
-  rescue NoMethodError
-    raise "host_name is not configured"
-  end
-
   # @param [String] string
   # @return [String]
   def linkify(string)
@@ -60,7 +54,7 @@ module ApplicationHelper
       link_to(file.fetch("original_filename_ss"),
               Rails.application.routes.url_helpers.download_url(
                 file.id,
-                host: ApplicationHelper.hostp
+                only_path: true
               ),
               target: "_blank",
               data: { no_turbolink: true })

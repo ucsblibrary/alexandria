@@ -12,7 +12,7 @@ describe "FileSet routes" do
 
   context "download path" do
     it "finds the correct controller" do
-      expect(get: Rails.application.routes.url_helpers.download_url(id, host: ApplicationHelper.hostp))
+      expect(get: Rails.application.routes.url_helpers.download_url(id, only_path: true))
         .to route_to(
           controller: "downloads",
           action: "show",
