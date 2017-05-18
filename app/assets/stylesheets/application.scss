@@ -378,6 +378,20 @@ html.welcome,
 // Forms
 // -----
 
+.date-editor .field-wrapper {
+  display: flex;
+  flex-flow: column;
+}
+
+ul.listing {
+  display: block;
+  list-style: none;
+
+  .row {
+    display: block;
+  }
+}
+
 .help {
   color: #696969;
 }
