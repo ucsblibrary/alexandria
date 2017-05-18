@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe "catalog/_download.html.erb" do
+describe "catalog/_download.html.erb", type: :view do
   let(:document) { SolrDocument.new(id: "123") }
   let(:blacklight_config) { CatalogController.blacklight_config }
 

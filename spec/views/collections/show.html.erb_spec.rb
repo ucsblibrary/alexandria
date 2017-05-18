@@ -2,22 +2,54 @@
 
 require "rails_helper"
 
-describe "collections/show.html.erb" do
+describe "collections/show.html.erb", type: :view do
+  helper ApplicationHelper,
+         Blacklight::CatalogHelperBehavior,
+         CurationConcerns::CollectionsHelper,
+         SessionsHelper
+
+  let(:blacklight_config) { CatalogController.blacklight_config }
+  let(:blacklight_configuration_context) { Blacklight::Configuration::Context.new(controller) }
+  let(:member_docs) { [image1, image2] }
+  let(:presenter) { CurationConcerns::CollectionPresenter.new(solr_document, nil) }
+  let(:response) { Blacklight::Solr::Response.new(sample_response, {}) }
+
+  let(:search_state) do
+    double("SearchState",
+           params_for_search: {},
+           url_for_document: solr_document)
+  end
+
   let(:sample_response) do
     { "responseHeader" => { "params" => { "rows" => 3 } },
       "docs" => [], }
   end
-  let(:response) { Blacklight::Solr::Response.new(sample_response, {}) }
-  let(:presenter) { CurationConcerns::CollectionPresenter.new(solr_document, nil) }
-  let(:solr_document) { SolrDocument.new(id: "123", title_tesim: "My Collection", description: "Just a collection", has_model_ssim: ["Collection"]) }
 
-  let(:blacklight_config) { CatalogController.blacklight_config }
-  let(:image1) { SolrDocument.new(id: "234", identifier_ssm: ["ark:/99999/fk4v989d9j"], "object_profile_ssm" => ["{}"], "has_model_ssim" => ["Image"]) }
-  let(:image2) { SolrDocument.new(id: "456", identifier_ssm: ["ark:/99999/fk4zp46p1g"], "object_profile_ssm" => ["{}"], "has_model_ssim" => ["Image"]) }
-  let(:member_docs) { [image1, image2] }
-  let(:search_state) { double("SearchState", params_for_search: {}) }
-  let(:blacklight_configuration_context) do
-    Blacklight::Configuration::Context.new(controller)
+  let(:image1) do
+    SolrDocument.new(
+      id: "234",
+      identifier_ssm: ["ark:/99999/fk4v989d9j"],
+      object_profile_ssm: ["{}"],
+      has_model_ssim: ["Image"]
+    )
+  end
+
+  let(:image2) do
+    SolrDocument.new(
+      id: "456",
+      identifier_ssm: ["ark:/99999/fk4zp46p1g"],
+      object_profile_ssm: ["{}"],
+      has_model_ssim: ["Image"]
+    )
+  end
+
+  let(:solr_document) do
+    SolrDocument.new(
+      id: "123",
+      title_tesim: "My Collection",
+      description: "Just a collection",
+      has_model_ssim: ["Collection"]
+    )
   end
 
   before do
