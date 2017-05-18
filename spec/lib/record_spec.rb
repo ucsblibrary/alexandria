@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "rails_helper"
+require "record"
 
 describe Record do
   describe "::references_for" do

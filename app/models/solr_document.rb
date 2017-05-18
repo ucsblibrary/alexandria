@@ -2,6 +2,7 @@
 # frozen_string_literal: true
 
 require "local_authority"
+require "identifier"
 
 class SolrDocument
   include Blacklight::Solr::Document

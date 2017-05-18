@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "date_util"
+
 class TimeSpan < ActiveTriples::Resource
   include StoredInline
 
