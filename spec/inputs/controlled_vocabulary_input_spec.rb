@@ -38,11 +38,12 @@ describe ControlledVocabularyInput, type: :input do
                rdf_subject: "_:134",
                node?: true)
       end
+
       it "renders multi-value" do
-        expect(subject).to have_selector("input.image_creator.multi_value")
-        expect(subject).to have_selector('input[name="image[creator_attributes][0][id]"][value=""]')
-        expect(subject).to have_selector('input[name="image[creator_attributes][0][_destroy]"]')
         expect(subject).to have_field("image[creator_attributes][0][hidden_label]", with: "")
+        expect(subject).to have_selector("input.image_creator.multi_value")
+        expect(subject).to have_selector('input[name="image[creator_attributes][0][_destroy]"]', visible: false)
+        expect(subject).to have_selector('input[name="image[creator_attributes][0][id]"][value=""]', visible: false)
       end
     end
 
@@ -53,21 +54,35 @@ describe ControlledVocabularyInput, type: :input do
                rdf_subject: "http://example.org/1",
                node?: false)
       end
+
       it "renders multi-value" do
         expect(subject).to have_selector("input.image_creator.multi_value")
         expect(subject).to have_field("image[creator_attributes][0][hidden_label]", with: "Item 1")
-        expect(subject).to have_selector('input[name="image[creator_attributes][0][id]"][value="http://example.org/1"]')
-        expect(subject).to have_selector('input[name="image[creator_attributes][0][_destroy]"][value=""][data-destroy]')
+        expect(subject).to(
+          have_selector('input[name="image[creator_attributes][0][id]"][value="http://example.org/1"]',
+                        visible: false)
+        )
+        expect(subject).to(
+          have_selector('input[name="image[creator_attributes][0][_destroy]"][value=""][data-destroy]',
+                        visible: false)
+        )
       end
     end
 
     context "for an ActiveFedora object" do
       let(:value) { Person.new(id: "ffffff", foaf_name: "Item 1") }
+
       it "renders multi-value" do
         expect(subject).to have_selector("input.image_creator.multi_value")
         expect(subject).to have_field("image[creator_attributes][0][hidden_label]", with: "Item 1")
-        expect(subject).to have_selector("input[name=\"image[creator_attributes][0][id]\"][value=\"#{ActiveFedora.fedora.host}/test/ff/ff/ff/ffffff\"]")
-        expect(subject).to have_selector('input[name="image[creator_attributes][0][_destroy]"][value=""][data-destroy]')
+        expect(subject).to(
+          have_selector("input[name=\"image[creator_attributes][0][id]\"][value=\"#{ActiveFedora.fedora.host}/test/ff/ff/ff/ffffff\"]",
+                        visible: false)
+        )
+        expect(subject).to(
+          have_selector('input[name="image[creator_attributes][0][_destroy]"][value=""][data-destroy]',
+                        visible: false)
+        )
       end
     end
   end
