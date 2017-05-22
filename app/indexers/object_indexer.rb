@@ -95,7 +95,7 @@ class ObjectIndexer < CurationConcerns::WorkIndexer
 
     def created
       return if object.created.blank?
-      object.created.first.display_label
+      object.created.map(&:display_label)
     end
 
     # Create a date field for sorting on

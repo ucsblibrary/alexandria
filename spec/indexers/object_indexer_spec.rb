@@ -38,7 +38,7 @@ describe ObjectIndexer do
       let(:image) { Image.new(created_attributes: [{ start: created_start, finish: created_end }]) }
 
       it "indexes dates for display" do
-        expect(subject["created_ssm"]).to eq "1917 - 1923"
+        expect(subject["created_ssm"]).to eq ["1917 - 1923"]
       end
 
       it "makes a sortable date field" do
