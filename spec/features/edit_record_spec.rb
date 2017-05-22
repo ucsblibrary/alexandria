@@ -14,6 +14,7 @@ feature "Editing Records", js: true do
   let!(:record) do
     VCR.use_cassette("image_factory") do
       create(:public_image,
+             created_attributes: [{ start: ["2000"], finish: ["2010"] }],
              local_collection_id: ["blahbhbhbh"],
              id: "bork",
              lc_subject: [RDF::URI("http://id.loc.gov/authorities/subjects/sh90003868")],
@@ -33,6 +34,10 @@ feature "Editing Records", js: true do
     scenario "edits a record" do
       VCR.use_cassette("image_factory") do
         visit catalog_ark_path("ark:", "99999", "bork")
+
+        expect(page).to have_content "I am real and not fake"
+        expect(page).to have_content "2000 - 2010"
+
         click_link "Edit Metadata"
         expect(page).to have_content "Edit I am real and not fake"
 
@@ -42,8 +47,11 @@ feature "Editing Records", js: true do
         )
 
         fill_in "Title", with: "OK I'm fake"
+        first("#image_created_attributes_0_hidden_label").set "1999"
+
         click_button "Save"
         expect(page).to have_content "OK I'm fake"
+        expect(page).to have_content "1999 - 2010"
         expect(record.reload.title).to eq ["OK I'm fake"]
       end
     end

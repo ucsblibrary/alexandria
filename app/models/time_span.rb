@@ -34,12 +34,13 @@ class TimeSpan < ActiveTriples::Resource
 
   # Return a string for display of this record
   def display_label
-    if label.present?
+    if label.first.present?
       label.first
     else
       start_string = qualified_date(start, start_qualifier)
       finish_string = qualified_date(finish, finish_qualifier)
-      [start_string, finish_string].compact.join(" - ")
+
+      [start_string, finish_string].reject(&:blank?).join(" - ")
     end
   end
 
