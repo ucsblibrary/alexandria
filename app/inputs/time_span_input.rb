@@ -3,10 +3,6 @@
 class TimeSpanInput < MultiValueInput
   FORMAT_PLACEHOLDER = "YYYY-MM-DD".freeze
 
-  def input(wrapper_options)
-    super
-  end
-
   protected
 
     # Delegate this completely to the form.
