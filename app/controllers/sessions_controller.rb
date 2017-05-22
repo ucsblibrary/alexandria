@@ -39,7 +39,7 @@ class SessionsController < ApplicationController
       return redirect_to root_url
     else
       flash.now[:error] = "Bad email/password combination."
-      return render type
+      return render "new"
     end
   end
 end
