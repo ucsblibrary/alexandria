@@ -130,14 +130,14 @@ describe RecordsController do
           it "allows updating the existing timespan" do
             patch :update, id: image, image: {
               created_attributes: {
-                "0" => ts_attributes.merge(id: image.created.first.id, start: ["1337"], start_qualifier: ["approximate"]),
+                "0" => { id: image.created.first.id, start: ["1337"], start_qualifier: ["approximate"] },
               },
               creator_attributes: initial_creators,
             }
 
             image.reload
 
-            expect(image.created.count).to eq(1)
+            expect(image.created.count).to eq 1
 
             created_date = image.created.first
 
@@ -148,7 +148,7 @@ describe RecordsController do
         end
       end
     end # context dates
-  end  # describe #update
+  end # describe #update
 
   describe "#destroy" do
     routes { Rails.application.routes }
