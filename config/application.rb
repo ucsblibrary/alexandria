@@ -8,7 +8,7 @@ require "rails/all"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module AlexandriaV2
+module Alexandria
   class Application < Rails::Application
     config.generators do |g|
       g.test_framework :rspec, spec: true
