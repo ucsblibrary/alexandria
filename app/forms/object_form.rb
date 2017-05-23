@@ -128,10 +128,10 @@ class ObjectForm
 
       attr_key = "#{row.delete(:predicate)}_attributes"
       attrs[attr_key] ||= []
-      attrs[attr_key] << row.with_indifferent_access
+      attrs[attr_key] << row
     end
 
-    attrs
+    attrs.to_h
   end
 
   def self.fedora_url_prefix

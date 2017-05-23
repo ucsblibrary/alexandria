@@ -32,18 +32,26 @@ describe RecordsController do
         {
           "0" => { "id" => "http://id.loc.gov/authorities/names/n87914041",
                    "hidden_label" => "http://id.loc.gov/authorities/names/n87914041", },
+
           "1" => { "id" => "http://id.loc.gov/authorities/names/n87141298",
                    "predicate" => "creator",
                    "hidden_label" => "http://dummynamespace.org/creator/", },
+
           "2" => { "id" => "",
                    "hidden_label" => "http://dummynamespace.org/creator/", },
         }
       end
 
       it "adds creators" do
-        patch :update, id: image, image: { contributor_attributes: contributor_attributes }
-        expect(image.reload.creator_ids).to eq ["http://id.loc.gov/authorities/names/n87914041",
-                                                "http://id.loc.gov/authorities/names/n87141298",]
+        patch :update,
+              params: {
+                id: image,
+                image: { contributor_attributes: contributor_attributes },
+              }
+        expect(image.reload.creator_ids).to(
+          contain_exactly("http://id.loc.gov/authorities/names/n87914041",
+                          "http://id.loc.gov/authorities/names/n87141298")
+        )
         expect(response).to redirect_to(Rails.application.routes.url_helpers.solr_document_path(image.id))
       end
     end
@@ -56,14 +64,22 @@ describe RecordsController do
 
       let(:contributor_attributes) do
         {
-          "0" => { "id" => "http://id.loc.gov/authorities/names/n87914041", "_destroy" => "" },
-          "1" => { "id" => "http://id.loc.gov/authorities/names/n81019162", predicate: "creator", "_destroy" => "true" },
+          "0" => { "id" => "http://id.loc.gov/authorities/names/n87914041",
+                   "_destroy" => "", },
+
+          "1" => { "id" => "http://id.loc.gov/authorities/names/n81019162",
+                   predicate: "creator", "_destroy" => "true", },
+
           "2" => { "id" => "", "_destroy" => "" },
         }
       end
 
       it "removes creators" do
-        patch :update, id: image, image: { contributor_attributes: contributor_attributes }
+        patch :update,
+              params: {
+                id: image,
+                image: { contributor_attributes: contributor_attributes },
+              }
         expect(image.reload.creator_ids).to eq ["http://id.loc.gov/authorities/names/n87914041"]
       end
     end
