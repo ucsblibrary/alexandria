@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require "identifier"
 require "object_factory_writer"
 require "traject/macros/marc_format_classifier"
 require "traject/macros/marc21_semantics"
