@@ -8,6 +8,8 @@ module Importer::Factory
     self.system_identifier_field = :accession_number
 
     def attach_files(object, files)
+      remove_existing_file_sets(object)
+
       files.each do |f|
         unless File.file?(f)
           $stderr.puts "No file exists at #{f}"

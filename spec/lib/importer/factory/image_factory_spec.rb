@@ -61,6 +61,20 @@ describe Importer::Factory::ImageFactory do
         end.not_to(change { Image.count })
       end
     end
+
+    context "for an existing image with files" do
+      obj = nil
+
+      before do
+        VCR.use_cassette("image_factory-2") do
+          2.times { obj = factory.run }
+        end
+      end
+
+      it "does not add duplicate files" do
+        expect(obj.file_sets.count).to eq 4
+      end
+    end
   end
 
   describe "collections:" do
