@@ -1,1 +1,3 @@
-<%= link_to 'Download Metadata', solr_document_path(document, format: :ttl) %>
+<% if document %>
+  <%= link_to 'Download Metadata', solr_document_path(document, format: :ttl) %>
+<% end %>

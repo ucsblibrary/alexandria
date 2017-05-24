@@ -282,7 +282,7 @@ class CatalogController < ApplicationController
   end
 
   def show_embargos_link?(_config, options)
-    doc = options.fetch(:document)
+    return false unless doc = options.fetch(:document)
     doc.curation_concern? && can?(:update_rights, doc)
   end
 
