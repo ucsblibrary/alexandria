@@ -39,9 +39,12 @@ module ApplicationHelper
   # @param [Array<SolrDocument>] member_docs
   # @return [Nil, String]
   def random_thumbnail_from_collection(member_docs = [])
-    thumb = member_docs.select { |doc| doc.key?("thumbnail_url_ssm") }.sample
-    return nil unless thumb
-    thumb["thumbnail_url_ssm"]
+    random_with_thumbnail = member_docs.select do |doc|
+      doc.key?("square_thumbnail_url_ssm")
+    end.sample
+
+    return nil if random_with_thumbnail.nil?
+    random_with_thumbnail["square_thumbnail_url_ssm"]
   end
 
   # @param [FileSet] file

@@ -42,6 +42,10 @@ class ObjectIndexer < CurationConcerns::WorkIndexer
       solr_doc[ALL_CONTRIBUTORS_LABEL] = all_contributors_combined
       solr_doc[ALL_CONTRIBUTORS_FACET] = solr_doc[ALL_CONTRIBUTORS_LABEL]
 
+      # Primarily for the Index and Component Map trays, but also used
+      # for collections' representative image thumbnail
+      solr_doc["square_thumbnail_url_ssm"] = square_thumbnail_images
+
       solr_doc["note_label_tesim"] = object.notes.map { |note| note.value.first }.flatten
       solr_doc["rights_holder_label_tesim"] = object["rights_holder"].map(&:rdf_label).flatten
 
