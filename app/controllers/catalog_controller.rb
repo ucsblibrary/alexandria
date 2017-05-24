@@ -166,7 +166,6 @@ class CatalogController < ApplicationController
 
     config.add_show_field solr_name("keywords", :stored_searchable),
                           label: "Keywords",
-                          link_to_search: "keywords_sim",
                           separator_options: {
                             words_connector: '<span class="invisible">,</span> <br />',
                             two_words_connector: '<span class="invisible">,</span> <br />',
