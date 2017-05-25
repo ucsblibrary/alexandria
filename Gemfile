@@ -87,6 +87,7 @@ group :development do
   gem "capistrano-rails", ">= 1.1.3"
   gem "highline"
 
+  gem "http_logger"
   gem "method_source"
   gem "pry"
   gem "pry-doc"

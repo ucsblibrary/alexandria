@@ -786,6 +786,7 @@ DEPENDENCIES
   fcrepo_wrapper (= 0.7.0)
   font-awesome-sass
   highline
+  http_logger
   hydra-role-management
   jbuilder (~> 2.0)
   jquery-rails (~> 4.0)
