@@ -119,12 +119,18 @@ describe CurationConcerns::AccessController do
     context "as a rights admin" do
       before do
         AdminPolicy.ensure_admin_policy_exists
-        allow(mock_etd).to receive(:embargo).and_return(double("the embargo", destroy: true))
+        allow(mock_etd).to receive(:embargo).and_return(embargo)
         allow(mock_etd).to receive(:embargo=).with(nil)
+        allow(mock_etd).to receive(:embargo_visibility!)
+        allow(mock_etd).to receive(:deactivate_embargo!)
+        allow(mock_etd).to receive(:save)
         allow(mock_etd).to receive(:save!)
+
+        allow(embargo).to receive(:save!)
       end
 
       let(:user) { user_with_groups [AdminPolicy::RIGHTS_ADMIN] }
+      let(:embargo) { double("the embargo", destroy: true) }
 
       context "when the etd is already under embargo" do
         it "removes embargo" do
