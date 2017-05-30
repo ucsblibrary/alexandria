@@ -26,7 +26,7 @@ class CurationConcerns::AccessController < ApplicationController
 
   def destroy
     authorize! :update_rights, curation_concern
-    ::EmbargoService.remove_embargo(curation_concern)
+    ::EmbargoService.deactivate_embargo(curation_concern)
     curation_concern.save!
     redirect_to main_app.solr_document_path(curation_concern)
   end
