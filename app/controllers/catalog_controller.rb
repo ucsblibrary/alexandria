@@ -291,4 +291,9 @@ class CatalogController < ApplicationController
     document = stuff.fetch(:document)
     can?(:edit, document) && !document.etd?
   end
+
+  # Overriding to permit parameters; see https://groups.google.com/d/msg/blacklight-development/Gr12dc1S4no/TQq3DQXABQAJ
+  def search_state
+    @search_state ||= search_state_class.new(params.permit!, blacklight_config, self)
+  end
 end
