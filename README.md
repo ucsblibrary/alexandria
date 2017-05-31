@@ -40,7 +40,7 @@ repository.
 
 # Ingesting records
 
-See {file:Ingesting.md} and DCE’s wiki:
+See {file:ingesting.md} and DCE’s wiki:
 <https://github.com/curationexperts/alexandria-v2/wiki>
 
 # Caveats
