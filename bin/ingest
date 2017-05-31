@@ -107,7 +107,7 @@ end
 ######################
 # Begin ingest process
 ######################
-start_overall = Time.now
+start_overall = Time.zone.now
 ingests = 0
 
 puts "Import start time: #{start_overall.strftime("%Y-%m-%d %H:%M:%S")}"
@@ -133,7 +133,7 @@ begin
     end
   end # case/when
 
-  end_overall = Time.now
+  end_overall = Time.zone.now
   puts "Ingested #{ingests} records in #{(end_overall - start_overall) / 60} minutes"
 rescue IngestError => e
   puts "To continue this ingest, re-run the command with `--skip #{e.reached}`"

@@ -41,7 +41,7 @@ objects = solr.get(
   {
     full_title_tesim: solrkey("title_tesim", doc),
     url: "http://alexandria.ucsb.edu/lib/#{doc["identifier_ssm"].first}",
-    spotlight_upload_date_tesim: Date.today,
+    spotlight_upload_date_tesim: Time.zone.today,
     spotlight_upload_description_tesim: solrkey("description_tesim", doc),
     spotlight_upload_attribution_tesim: "",
   }

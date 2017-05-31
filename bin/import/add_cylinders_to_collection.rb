@@ -18,7 +18,7 @@ collection = Importer::Factory::CollectionFactory.new(Importer::Cylinder::COLLEC
 puts "Adding cylinder records to: #{collection.title}"
 puts "Number of cylinder records: #{AudioRecording.count}"
 
-start_time = Time.now
+start_time = Time.zone.now
 puts "Start time: #{start_time.strftime("%Y-%m-%d %H:%M:%S")}"
 
 puts "Adding records to collection"
@@ -35,7 +35,7 @@ print "\n"
 # Update the solr index to add the new collection members
 collection.update_index
 
-end_time = Time.now
+end_time = Time.zone.now
 puts "End time: #{end_time.strftime("%Y-%m-%d %H:%M:%S")}"
 
 delta = (end_time - start_time) / 60.0
