@@ -17,11 +17,15 @@ extend Traject::Macros::Marc21Semantics
 extend Traject::Macros::MarcFormats
 
 settings do
-  provide "writer_class_name", "ObjectFactoryWriter"
-  provide "marc_source.type", "xml"
-  # Don't use threads. Workaround for https://github.com/fcrepo4/fcrepo4/issues/880
-  provide "processing_thread_pool", 0
   provide "allow_empty_fields", true
+  provide "marc_source.type", "xml"
+  provide "writer_class_name", "ObjectFactoryWriter"
+
+  # Don't use threads. Workaround for
+  # https://jira.duraspace.org/browse/FCREPO-2086
+  #
+  # TODO: remove when we upgrade to 4.7
+  provide "processing_thread_pool", 0
 end
 
 to_field "identifier", extract_ark
