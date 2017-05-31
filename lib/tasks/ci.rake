@@ -9,19 +9,20 @@ unless Rails.env.production?
   task :ci do
     ENV["environment"] = "test"
     solr_params = {
-      version: "6.2.0",
-      port: 8985,
-      verbose: true,
+      instance_dir: Rails.root.join("tmp", "solr-test"),
       managed: true,
+      port: 8985,
       solr_xml: Rails.root.join("solr", "config", "solrconfig.xml"),
+      verbose: true,
+      version: "6.3.0",
     }
     fcrepo_params = {
-      version: "4.6.0",
-      port: 8986,
-      verbose: true,
+      fcrepo_home_dir: Rails.root.join("tmp", "fedora", "test"),
       managed: true,
       no_jms: true,
-      fcrepo_home_dir: "fcrepo4-test-data",
+      port: 8986,
+      verbose: true,
+      version: "4.6.0",
     }
     SolrWrapper.wrap(solr_params) do |solr|
       solr.with_collection(
