@@ -2,6 +2,7 @@ collection:
     persist: false
     dir: solr/config/
     name: development
+instance_dir: tmp/solr-development
 managed: true
 port: 8983
 solr_xml: solr/config/solrconfig.xml
