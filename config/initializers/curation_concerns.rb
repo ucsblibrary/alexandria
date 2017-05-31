@@ -2,19 +2,15 @@
 
 require_relative "inflections"
 require_relative "settings"
+
 CurationConcerns.configure do |config|
-  # Injected via `rails g curation_concerns:work MapSet`
-  config.register_curation_concern :map_set
-  # Injected via `rails g curation_concerns:work IndexMap`
-  config.register_curation_concern :index_map
-  # Injected via `rails g curation_concerns:work ComponentMap`
-  config.register_curation_concern :component_map
-  # Injected via `rails g curation_concerns:work ScannedMap`
-  config.register_curation_concern :scanned_map
-  # Injected via `rails g curation_concerns:work AudioRecording`
   config.register_curation_concern :audio_recording
-  config.register_curation_concern :image
+  config.register_curation_concern :component_map
   config.register_curation_concern :etd
+  config.register_curation_concern :image
+  config.register_curation_concern :index_map
+  config.register_curation_concern :map_set
+  config.register_curation_concern :scanned_map
 
   # Enable displaying usage statistics in the UI
   # Defaults to FALSE
@@ -66,6 +62,7 @@ CurationConcerns.configure do |config|
   # NOTE: if you have always sent analytics to GA for downloads and page views leave this commented out
   # config.analytic_start_date = DateTime.new(2014,9,10)
 
+  # Must match the queue in config/resque-pool.yml
   config.ingest_queue_name = :ingest
 end
 
