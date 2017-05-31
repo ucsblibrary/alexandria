@@ -72,15 +72,21 @@ class SolrDocument
     ).first
   end
 
-  # TODO: investigate if this method is still needed.
+  # @return [Array<SolrDocument>]
   def file_sets
-    @file_sets ||= begin
-      if ids = self[Solrizer.solr_name("member_ids", :symbol)]
-        load_file_sets(ids)
-      else
-        []
-      end
-    end
+    return @file_sets unless @file_sets.nil?
+
+    ids = self[Solrizer.solr_name("member_ids", :symbol)]
+
+    @file_sets = if ids.present?
+                   query = ActiveFedora::SolrQueryBuilder.construct_query_for_ids(ids)
+
+                   ActiveFedora::SolrService.query(
+                     query, rows: FileSet.count
+                   ).map { |hit| SolrDocument.new(hit) }
+                 else
+                   []
+                 end
   end
 
   def public_uri
@@ -150,11 +156,4 @@ class SolrDocument
 
     batches.flatten.sort { |x, y| x["accession_number_ssim"] <=> y["accession_number_ssim"] }
   end
-
-  private
-
-    def load_file_sets(ids)
-      docs = ActiveFedora::SolrService.query("{!terms f=id}#{ids.join(",")}").map { |res| SolrDocument.new(res) }
-      ids.map { |id| docs.find { |doc| doc.id == id } }
-    end
 end
