@@ -65,5 +65,3 @@ CurationConcerns.configure do |config|
   # Must match the queue in config/resque-pool.yml
   config.ingest_queue_name = :ingest
 end
-
-Date::DATE_FORMATS[:standard] = "%m/%d/%Y"
