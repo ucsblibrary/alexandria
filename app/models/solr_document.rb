@@ -88,11 +88,15 @@ class SolrDocument
     Array.wrap(self["public_uri_ssim"]).first
   end
 
+  # @return [Array<SolrDocument>]
   def in_collections
     query = ActiveFedora::SolrQueryBuilder.construct_query_for_ids(
       fetch("local_collection_id_ssim", [])
     )
-    ActiveFedora::SolrService.query(query, rows: Collection.count)
+
+    ActiveFedora::SolrService.query(
+      query, rows: Collection.count
+    ).map { |hit| SolrDocument.new(hit) }
   end
 
   # @return [Array<SolrDocument>]
