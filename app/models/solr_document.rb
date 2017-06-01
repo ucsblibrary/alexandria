@@ -154,6 +154,6 @@ class SolrDocument
       ).map { |hit| SolrDocument.new(hit) }
     end
 
-    batches.flatten.sort { |x, y| x["accession_number_ssim"] <=> y["accession_number_ssim"] }
+    batches.flatten.sort_by { |a| a["accession_number_ssim"] }
   end
 end

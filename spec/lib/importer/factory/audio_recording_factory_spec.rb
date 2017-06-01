@@ -108,7 +108,7 @@ describe Importer::Factory::AudioRecordingFactory do
       indexer = Traject::Indexer.new
       indexer.load_config_file("lib/traject/audio_config.rb")
       hash = indexer.map_record(MARC::XMLReader.new(metadata).first)
-                    .merge(issued_attributes: [{ start: [2222] }])
+        .merge(issued_attributes: [{ start: [2222] }])
 
       VCR.use_cassette("audio_recording_factory") do
         indexer.writer.put hash

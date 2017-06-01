@@ -10,6 +10,12 @@ AllCops:
     - 'tmp/**/*'
     - 'provisioning/**/*'
 
+Layout/IndentationConsistency:
+  EnforcedStyle: rails
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
 Lint/AssignmentInCondition:
   Enabled: false
 
@@ -39,9 +45,6 @@ Style/AsciiComments:
 Style/ClassAndModuleChildren:
   EnforcedStyle: compact
 
-Style/IndentationConsistency:
-  EnforcedStyle: rails
-
 Style/Lambda:
   EnforcedStyle: lambda
 
@@ -51,9 +54,6 @@ Style/MixinGrouping:
     - 'spec/**/*'
 
 Style/MultilineBlockChain:
-  Enabled: false
-
-Style/MultilineMethodCallBraceLayout:
   Enabled: false
 
 Style/SafeNavigation:

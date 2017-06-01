@@ -15,7 +15,7 @@ prod:
 	bundle exec cap production deploy
 
 cops:
-	bundle exec rubocop --format simple --config .rubocop.yml
+	bundle exec rubocop --format simple --config .rubocop.yml --parallel
 
 spec:
 	CI=1 RAILS_ENV=test bundle exec rake ci --trace

@@ -204,12 +204,12 @@ module Importer::Factory
         restrictions = { restrictions: [join_paragraphs(attributes[:restrictions])] }
 
         attributes.merge(contributors)
-                  .merge(description)
-                  .merge(locations)
-                  .merge(notes)
-                  .merge(restrictions)
-                  .merge(rights_holders)
-                  .merge(subjects)
+          .merge(description)
+          .merge(locations)
+          .merge(notes)
+          .merge(restrictions)
+          .merge(rights_holders)
+          .merge(subjects)
       end
 
       def extract_notes(attributes)

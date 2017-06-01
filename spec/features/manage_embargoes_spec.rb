@@ -23,8 +23,7 @@ feature "Embargo management:" do
            embargo_release_date: old_date,
            local_collection_id: [collection.id],
            visibility_after_embargo: RDF::URI(ActiveFedora::Base.id_to_uri(old_policy_id)),
-           visibility_during_embargo: RDF::URI(ActiveFedora::Base.id_to_uri(AdminPolicy::DISCOVERY_POLICY_ID))
-          )
+           visibility_during_embargo: RDF::URI(ActiveFedora::Base.id_to_uri(AdminPolicy::DISCOVERY_POLICY_ID)))
   end
 
   let(:old_date) { Date.today + 7.days }

@@ -14,7 +14,8 @@ describe SolrDocument do
     SolrDocument.new(
       id: image.id,
       identifier_ssm: ["ark:/99999/fk4v989d9j"],
-      has_model_ssim: [Image.to_rdf_representation])
+      has_model_ssim: [Image.to_rdf_representation]
+    )
   end
 
   let(:etd_document) do

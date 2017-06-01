@@ -117,9 +117,9 @@ class ObjectForm
   # @param [ActiveController::Parameters] attrs
   def self.demultiplex_contributors(attrs)
     attributes_collection = (attrs.delete(:contributor_attributes) || {})
-                            .sort_by do |i, _|
-                              i.to_i
-                            end.map { |_, attributes| attributes }
+      .sort_by do |i, _|
+        i.to_i
+      end.map { |_, attributes| attributes }
 
     return attrs if attributes_collection.empty?
 
