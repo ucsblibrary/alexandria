@@ -214,10 +214,10 @@ module Importer::MODS
       coords = mods.subject.cartographics.coordinates.map(&:text)
       # a hash where any value defaults to an empty array
       result = Hash.new { |h, k| h[k] = [] }
-      coords.each_with_object(result) do |coord, result|
+      coords.each_with_object(result) do |coord, obj|
         (latitude, longitude) = coord.split(/,\s*/)
-        result[:latitude] << latitude
-        result[:longitude] << longitude
+        obj[:latitude] << latitude
+        obj[:longitude] << longitude
       end
     end
 

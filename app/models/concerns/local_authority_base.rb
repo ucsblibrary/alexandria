@@ -23,7 +23,7 @@ module LocalAuthorityBase
     true
   end
 
-  def to_solr(solr_doc = {})
+  def to_solr(_doc = {})
     super.tap do |solr_doc|
       solr_doc["uri_ssim"] = uri
       solr_doc["public_uri_ssim"] = public_uri
