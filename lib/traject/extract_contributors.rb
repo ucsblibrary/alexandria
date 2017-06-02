@@ -75,13 +75,16 @@ module ExtractContributors
   end
 
   def data_for(field)
-    strings = field.subfields.each_with_object([]) do |subfield, values|
-      v = subfield.value.strip
-      values << v if v.present? && relevant_subfield?(field.tag, subfield)
-      values
-    end
+    strings = field.subfields.map do |subfield|
+      next unless relevant_subfield?(field.tag, subfield)
 
-    { type: model_name_for(field), name: strings.join(" ") }
+      subfield.value.strip
+    end.compact
+
+    {
+      type: model_name_for(field),
+      name: Traject::Macros::Marc21.trim_punctuation(strings.join(" ")),
+    }
   end
 
   # Only use the text from certain subfields

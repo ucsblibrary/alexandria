@@ -203,23 +203,23 @@ describe Importer::Cylinder do
       group = perfs.find { |target| target.is_a? Group }
       person = perfs.find { |target| target.is_a? Person }
 
-      expect(org.foaf_name).to eq "United States. National Guard Bureau. Fife and Drum Corps."
+      expect(org.foaf_name).to eq "United States. National Guard Bureau. Fife and Drum Corps"
       expect(group.foaf_name).to eq "Allen field c text 1876 field q text"
-      expect(person.foaf_name).to eq "Milner, David,"
+      expect(person.foaf_name).to eq "Milner, David"
 
       # Check local authorities were created for singers
       ids = record1.singer.map { |s| s.rdf_label.first.gsub(Regexp.new('^.*\/'), "") }
       singers = ids.map { |id| ActiveFedora::Base.find(id) }
       org, person = singers.partition { |obj| obj.is_a?(Organization) }.map(&:first)
       expect(org.foaf_name).to eq "Louisiana Five. text from b."
-      expect(person.foaf_name).to eq "Collins, Arthur."
+      expect(person.foaf_name).to eq "Collins, Arthur"
       expect(person.class).to eq Person
 
       # This is the same person who is listed as 3 different
       # types of contributor.
       person_id = record1.instrumentalist.first.rdf_label.first.gsub(Regexp.new('^.*\/'), "")
       person = Person.find(person_id)
-      expect(person.foaf_name).to eq "Allen, Thos. S., 1876-1919."
+      expect(person.foaf_name).to eq "Allen, Thos. S., 1876-1919"
       [:instrumentalist, :lyricist, :arranger].each do |property_name|
         contributor = record1.send(property_name)
         contributor_id = contributor.first.rdf_label.first.gsub(Regexp.new('^.*\/'), "")
