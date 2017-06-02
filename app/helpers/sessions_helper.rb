@@ -80,7 +80,7 @@ module SessionsHelper
                     default_groups + special_groups
                   end
 
-    user.update_attribute(
+    user.update_attributes(
       :group_list,
       default_groups + (special_groups.select { |grp| ldap_groups.include? grp })
     )
