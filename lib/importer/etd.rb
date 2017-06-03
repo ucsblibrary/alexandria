@@ -85,7 +85,7 @@ class Importer::ETD
           next
         end
 
-        start_record = Time.now
+        start_record = Time.zone.now
 
         indexer = Traject::Indexer.new
         indexer.load_config_file("lib/traject/etd_config.rb")
@@ -107,7 +107,7 @@ class Importer::ETD
         begin
           indexer.writer.put indexer.map_record(record)
           indexer.writer.close
-          end_record = Time.now
+          end_record = Time.zone.now
           # Since earlier we skipped the unzip operations we don't
           # need, the array of records to iterate over is smaller, so
           # we modify the numbers here so that we still get the

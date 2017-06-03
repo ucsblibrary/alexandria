@@ -14,7 +14,7 @@ class Exporter::BaseExporter
   end
 
   def timestamp
-    @timestamp ||= Time.now.strftime("%Y_%m_%d_%H%M%S")
+    @timestamp ||= Time.zone.now.strftime("%Y_%m_%d_%H%M%S")
   end
 
   def run

@@ -60,9 +60,9 @@ class Importer::Cylinder
 
       print_attributes(record, count + 1)
 
-      start_record = Time.now
+      start_record = Time.zone.now
       indexer.writer.put attributes(record, indexer)
-      end_record = Time.now
+      end_record = Time.zone.now
 
       @imported_records_count += 1
 

@@ -89,7 +89,7 @@ module Importer::CSV
       files.each { |f| puts f }
     end
 
-    start_time = Time.now
+    start_time = Time.zone.now
 
     attrs = strip_extra_spaces(attrs)
     attrs = handle_structural_metadata(attrs)
@@ -101,7 +101,7 @@ module Importer::CSV
 
     record = ::Importer::Factory.for(model).new(attrs, files).run
 
-    end_time = Time.now
+    end_time = Time.zone.now
 
     accession_string = if attrs[:accession_number].present?
                          " with accession number #{attrs[:accession_number].first}"

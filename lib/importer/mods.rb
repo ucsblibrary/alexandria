@@ -20,7 +20,7 @@ module Importer::MODS
       end
       next if options[:number] && options[:number] <= ingests
 
-      start_record = Time.now
+      start_record = Time.zone.now
 
       selected_data = data.select do |f|
         # FIXME: find a more reliable test
@@ -46,7 +46,7 @@ module Importer::MODS
         selected_data
       ).run
 
-      end_record = Time.now
+      end_record = Time.zone.now
       puts "Ingested record #{ingests + 1} of #{meta.length} in #{end_record - start_record} seconds"
       ingests += 1
     end
