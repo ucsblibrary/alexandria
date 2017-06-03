@@ -25,6 +25,10 @@ Lint/HandleExceptions:
     - 'bin/rake'
     - 'bin/rspec'
 
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+
 Metrics/LineLength:
   Enabled: false
 
