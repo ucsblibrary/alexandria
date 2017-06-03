@@ -19,12 +19,6 @@ Layout/MultilineMethodCallIndentation:
 Lint/AssignmentInCondition:
   Enabled: false
 
-Lint/HandleExceptions:
-  Exclude:
-    - 'bin/rails'
-    - 'bin/rake'
-    - 'bin/rspec'
-
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
