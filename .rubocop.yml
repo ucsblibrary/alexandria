@@ -23,6 +23,12 @@ Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
 
+Metrics/ClassLength:
+  # Vocabulary classes are auto-generated so we don't have much
+  # control over length
+  Exclude:
+    - 'lib/vocabularies/*'
+
 Metrics/LineLength:
   Enabled: false
 
