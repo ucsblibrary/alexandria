@@ -47,6 +47,12 @@ Style/ClassAndModuleChildren:
   Exclude:
     - 'lib/vocabularies/*'
 
+Style/Documentation:
+  # Vocabulary classes are auto-generated
+  Exclude:
+    - 'lib/vocabularies/*'
+    - 'spec/**/*'
+
 Style/Lambda:
   EnforcedStyle: lambda
 
