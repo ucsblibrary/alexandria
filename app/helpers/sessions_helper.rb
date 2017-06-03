@@ -22,7 +22,7 @@ module SessionsHelper
 
   def ldap_conf
     @conf ||= YAML.safe_load(
-      ERB.new(File.read("#{Rails.root}/config/ldap.yml")).result,
+      ERB.new(File.read(Rails.root.join("config", "ldap.yml"))).result,
       # by default #safe_load doesn't allow aliases
       # https://github.com/ruby/psych/blob/2884f7bf8d1bd6433babe6b7b8e4b6007e59af97/lib/psych.rb#L290
       [], [], true
