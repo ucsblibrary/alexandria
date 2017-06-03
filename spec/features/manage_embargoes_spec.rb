@@ -26,8 +26,8 @@ feature "Embargo management:" do
            visibility_during_embargo: RDF::URI(ActiveFedora::Base.id_to_uri(AdminPolicy::DISCOVERY_POLICY_ID)))
   end
 
-  let(:old_date) { Date.today + 7.days }
-  let(:new_date) { Date.today + 14.days }
+  let(:old_date) { Time.zone.today + 7.days }
+  let(:new_date) { Time.zone.today + 14.days }
 
   let(:old_policy_id) { AdminPolicy::PUBLIC_POLICY_ID }
   let(:new_policy) { Hydra::AdminPolicy.find(AdminPolicy::UCSB_POLICY_ID) }
@@ -73,7 +73,7 @@ feature "Embargo management:" do
     end
 
     context "for an active embargo that has expired:" do
-      let(:old_date) { Date.today - 3.days }
+      let(:old_date) { Time.zone.today - 3.days }
 
       scenario "deactivates the embargo for the ETD, but not for the attached file" do
         # The ETD starts with "Discovery" access

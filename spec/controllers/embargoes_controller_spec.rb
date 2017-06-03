@@ -51,7 +51,7 @@ describe EmbargoesController do
       end
 
       context "with an active embargo" do
-        let(:release_date) { Date.today + 2 }
+        let(:release_date) { Time.zone.today + 2 }
 
         it "deactivates embargo without updating admin_policy_id and redirects" do
           expect(work.admin_policy_id).to eq AdminPolicy::UCSB_CAMPUS_POLICY_ID
@@ -60,7 +60,7 @@ describe EmbargoesController do
       end
 
       context "with an expired embargo" do
-        let(:release_date) { Date.today - 2 }
+        let(:release_date) { Time.zone.today - 2 }
 
         it "deactivates embargo, updates the admin_policy_id and redirects" do
           expect(work.admin_policy_id).to eq AdminPolicy::PUBLIC_POLICY_ID
@@ -73,7 +73,7 @@ describe EmbargoesController do
   describe "#update" do
     context "when I have permission to edit the object" do
       let(:user) { user_with_groups [AdminPolicy::RIGHTS_ADMIN] }
-      let(:release_date) { Date.today + 2 }
+      let(:release_date) { Time.zone.today + 2 }
 
       before do
         AdminPolicy.ensure_admin_policy_exists
@@ -86,7 +86,7 @@ describe EmbargoesController do
       end
 
       context "with an expired embargo" do
-        let(:release_date) { Date.today - 2 }
+        let(:release_date) { Time.zone.today - 2 }
         it "deactivates embargo, update the visibility and redirect" do
           patch :update, batch_document_ids: [work.id]
           expect(work.reload.admin_policy_id).to eq AdminPolicy::PUBLIC_POLICY_ID
