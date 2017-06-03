@@ -37,7 +37,7 @@ describe CatalogController do
 
     context "download TTL file" do
       before do
-        get :show, id: record, format: :ttl
+        get :show, params: { id: record, format: :ttl }
       end
 
       context "for an Image record" do
@@ -72,7 +72,7 @@ describe CatalogController do
         let(:user) { user_with_groups [AdminPolicy::META_ADMIN] }
 
         before do
-          get :show, id: restricted_image
+          get :show, params: { id: restricted_image }
         end
 
         it "is successful" do
@@ -85,7 +85,7 @@ describe CatalogController do
         let(:user) { user_with_groups [AdminPolicy::UCSB_GROUP] }
 
         before do
-          get :show, id: restricted_image
+          get :show, params: { id: restricted_image }
         end
 
         it "access is denied" do
@@ -97,7 +97,7 @@ describe CatalogController do
 
     context "bad URL" do
       it "returns a 404" do
-        get :show, id: "fk4cn8cc3d"
+        get :show, params: { id: "fk4cn8cc3d" }
         expect(response.response_code).to eq 404
         expect(response).to render_template("errors/not_found")
       end

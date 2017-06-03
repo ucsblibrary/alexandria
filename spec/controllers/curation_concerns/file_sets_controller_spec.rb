@@ -9,7 +9,7 @@ describe CurationConcerns::FileSetsController do
     end
 
     it "is successful" do
-      get :show, id: file_set
+      get :show, params: { id: file_set }
       expect(response).to be_successful
     end
   end

@@ -16,7 +16,7 @@ describe RecordsController do
   describe "#create" do
     context "of a local authority" do
       it "is successful" do
-        post :create, type: "Person", person: { foaf_name: "Kylo Ren" }
+        post :create, params: { type: "Person", person: { foaf_name: "Kylo Ren" } }
         expect(response).to redirect_to Rails.application.routes.url_helpers.person_path(assigns[:record])
         expect(assigns[:record].foaf_name).to eq "Kylo Ren"
       end
@@ -103,10 +103,10 @@ describe RecordsController do
           it "persists the nested object" do
             expect(image.created.first).to eq nil
 
-            patch :update, id: image, image: {
+            patch :update, params: { id: image, image: {
               created_attributes: { "0" => ts_attributes },
               creator_attributes: initial_creators,
-            }
+            }, }
 
             image.reload
 
@@ -131,12 +131,12 @@ describe RecordsController do
             image.reload
             expect(image.created.count).to eq 1
 
-            patch :update, id: image, image: {
+            patch :update, params: { id: image, image: {
               creator_attribues: initial_creators,
               created_attributes: {
                 "0" => { id: image.created.first.id, _destroy: "true" },
               },
-            }
+            }, }
 
             image.reload
 
@@ -144,12 +144,12 @@ describe RecordsController do
           end
 
           it "allows updating the existing timespan" do
-            patch :update, id: image, image: {
+            patch :update, params: { id: image, image: {
               created_attributes: {
                 "0" => { id: image.created.first.id, start: ["1337"], start_qualifier: ["approximate"] },
               },
               creator_attributes: initial_creators,
-            }
+            }, }
 
             image.reload
 
@@ -177,7 +177,7 @@ describe RecordsController do
 
         it "returns message that record cannot be destroyed" do
           expect do
-            delete :destroy, id: person
+            delete :destroy, params: { id: person }
           end.to change { Person.count }.by(0)
           expect(flash[:alert]).to eq "Record \"#{person.rdf_label.first}\" cannot be deleted because it is referenced by 1 other record."
         end
@@ -186,7 +186,7 @@ describe RecordsController do
       context "a person that is not referenced by any other record" do
         it "destroys the record" do
           expect do
-            delete :destroy, id: person
+            delete :destroy, params: { id: person }
           end.to change { Person.count }.by(-1)
           expect(response).to redirect_to local_authorities_path
           expect(flash[:notice]).to eq "Record \"#{person.rdf_label.first}\" has been destroyed"
@@ -197,7 +197,7 @@ describe RecordsController do
         let(:user) { user_with_groups [AdminPolicy::PUBLIC_GROUP] }
 
         it "access is denied" do
-          delete :destroy, id: person
+          delete :destroy, params: { id: person }
           expect(flash[:alert]).to match(/You are not authorized/)
           expect(response).to redirect_to root_url
         end
@@ -212,7 +212,7 @@ describe RecordsController do
       let!(:person) { create(:person, foaf_name: "old name") }
 
       it "displays the record merge form" do
-        get :new_merge, id: person
+        get :new_merge, params: { id: person }
         expect(assigns(:record)).to eq person
         expect(response).to be_successful
         expect(response).to render_template(:new_merge)
@@ -223,7 +223,7 @@ describe RecordsController do
       let(:image) { create(:image) }
 
       it "returns message that record cannot be merged" do
-        get :new_merge, id: image
+        get :new_merge, params: { id: image }
         expect(flash[:alert]).to eq "This record cannot be merged.  Only local authority records can be merged."
         expect(response).to redirect_to local_authorities_path
       end
@@ -235,7 +235,7 @@ describe RecordsController do
       let!(:person) { create(:person) }
 
       it "access is denied" do
-        get :new_merge, id: person
+        get :new_merge, params: { id: person }
         expect(flash[:alert]).to match(/You are not authorized/)
         expect(response).to redirect_to root_url
       end
@@ -261,7 +261,7 @@ describe RecordsController do
 
     it "queues a job to merge the records" do
       expect(MergeRecordsJob).to receive(:perform_later).with(person.id, target_id, "testkey")
-      post :merge, { id: person }.merge(form_params)
+      post :merge, params: { id: person }.merge(form_params)
       expect(response).to redirect_to local_authorities_path
     end
 
@@ -272,7 +272,7 @@ describe RecordsController do
 
       it "displays an error message" do
         expect(MergeRecordsJob).to_not receive(:perform_later)
-        post :merge, { id: person }.merge(form_params)
+        post :merge, params: { id: person }.merge(form_params)
         expect(response).to render_template(:new_merge)
         expect(flash[:alert]).to match(/Error:  Unable to queue merge job\.  Please fill in all required fields\./)
       end
@@ -282,7 +282,7 @@ describe RecordsController do
       let(:user) { user_with_groups [AdminPolicy::PUBLIC_GROUP] }
 
       it "access is denied" do
-        post :merge, { id: person }.merge(form_params)
+        post :merge, params: { id: person }.merge(form_params)
         expect(flash[:alert]).to match(/You are not authorized/)
         expect(response).to redirect_to root_url
       end

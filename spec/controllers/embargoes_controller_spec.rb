@@ -31,7 +31,7 @@ describe EmbargoesController do
   describe "#destroy" do
     context "when I do not have edit permissions for the object" do
       it "denies access" do
-        get :destroy, id: work
+        get :destroy, params: { id: work }
         expect(response).to redirect_to root_url
       end
     end
@@ -46,7 +46,7 @@ describe EmbargoesController do
         work.visibility_after_embargo = RDF::URI(ActiveFedora::Base.id_to_uri(AdminPolicy::PUBLIC_POLICY_ID))
         work.embargo_release_date = release_date.to_s
         work.save(validate: false)
-        get :destroy, id: work
+        get :destroy, params: { id: work }
         work.reload
       end
 
@@ -88,7 +88,7 @@ describe EmbargoesController do
       context "with an expired embargo" do
         let(:release_date) { Time.zone.today - 2 }
         it "deactivates embargo, update the visibility and redirect" do
-          patch :update, batch_document_ids: [work.id]
+          patch :update, params: { batch_document_ids: [work.id] }
           expect(work.reload.admin_policy_id).to eq AdminPolicy::PUBLIC_POLICY_ID
           expect(response).to redirect_to embargoes_path
         end

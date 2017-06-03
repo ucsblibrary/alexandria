@@ -30,7 +30,7 @@ RSpec.describe ContactUsController, type: :controller do
 
   describe "GET create" do
     before do
-      post :create, name: frodo, email: frodo_email, category: category, message: message
+      post :create, params: { name: frodo, email: frodo_email, category: category, message: message }
     end
 
     it "generates an email" do
@@ -51,7 +51,7 @@ RSpec.describe ContactUsController, type: :controller do
     before do
       # If the invisible zipcode field is filled in,
       # we suspect it is spam.
-      post :create, name: frodo, email: frodo_email, category: category, message: message, zipcode: "55402"
+      post :create, params: { name: frodo, email: frodo_email, category: category, message: message, zipcode: "55402" }
     end
 
     it "generates an email, but flags it as spam" do

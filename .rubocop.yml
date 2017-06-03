@@ -38,11 +38,6 @@ Metrics/ModuleLength:
 Rails:
   Enabled: true
 
-# TODO: re-enable when we're on Rails 5
-# http://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Rails/HttpPositionalArguments
-Rails/HttpPositionalArguments:
-  Enabled: false
-
 Style/AsciiComments:
   Enabled: false
 
