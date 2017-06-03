@@ -10,10 +10,9 @@ class ContactUsController < ApplicationController
 
   # When a user submits the "Contact Us" form, send the email.
   def create
-    from = %("#{params[:name]}" <#{params[:email]}>)
-    spam = params[:zipcode].present?
-    email = ContactUsMailer.web_inquiry(from, params[:category], params[:message], spam)
-    email.deliver_now
+    ContactUsMailer.web_inquiry(
+      params.permit(:name, :email, :category, :message, :zipcode)
+    ).deliver_now
 
     flash[:notice] = "Thank you for the feedback.  Your submission has been successfully sent to the ADRL."
     redirect_to :back
