@@ -55,9 +55,6 @@ Style/MixinGrouping:
 Style/MultilineBlockChain:
   Enabled: false
 
-Style/SafeNavigation:
-  Enabled: false
-
 Style/StringLiterals:
   EnforcedStyle: double_quotes
 

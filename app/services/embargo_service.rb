@@ -21,7 +21,7 @@ module EmbargoService
   end
 
   def self.remove_embargo(work)
-    work.embargo.destroy if work.embargo
+    work.embargo&.destroy
     # TODO: this shouldn't be necessary, but if omitted raises a stack trace:
     work.embargo = nil
   end
