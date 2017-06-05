@@ -34,7 +34,6 @@ gem "riiif", "~> 1.1"
 gem "rsolr"
 gem "traject", "~> 2.3.2"
 
-gem "kaminari", "~> 0.16.3"
 # https://github.com/amatsuda/kaminari/pull/636
 gem "kaminari_route_prefix"
 
