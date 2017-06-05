@@ -17,12 +17,6 @@ class CollectionsController < ApplicationController
     config.show_fields.delete(Solrizer.solr_name("description", :stored_searchable))
   end
 
-  # FIXME: why is this happening
-  def params_for_members_query
-    params.permit!
-    super
-  end
-
   def edit
     raise NotImplementedError
   end
