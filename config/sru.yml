@@ -1,0 +1,10 @@
+---
+ark_shoulder: <%= Rails.application.secrets.ezid_default_shoulder %>
+host: <%= Rails.application.secrets.sru_host %>
+default_params:
+  # https://developers.exlibrisgroup.com/alma/integrations/SRU
+  - "version=1.2"
+  - "operation=searchRetrieve"
+  - "alma.mms_tagSuppressed=false"
+id_field: alma.standard_number
+all_cylinders: "(alma.all_for_ui=http://www.library.ucsb.edu/OBJID/Cylinder*)"
