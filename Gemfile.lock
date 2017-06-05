@@ -346,7 +346,7 @@ GEM
       hydra-file_characterization (~> 0.3, >= 0.3.3)
       hydra-pcdm (>= 0.9)
       om (~> 3.1)
-    i18n (0.8.1)
+    i18n (0.8.4)
     ice_nine (0.11.2)
     inflecto (0.0.2)
     iso-639 (0.2.8)
@@ -365,7 +365,7 @@ GEM
       multi_json (~> 1.12)
       rdf (~> 2.2)
     jwt (1.5.6)
-    kaminari (0.16.3)
+    kaminari (0.17.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     kaminari_route_prefix (0.0.2)
@@ -430,7 +430,7 @@ GEM
     mime-types-data (3.2016.0521)
     mimemagic (0.3.2)
     mini_magick (4.7.0)
-    mini_portile2 (2.1.0)
+    mini_portile2 (2.2.0)
     minitest (5.10.2)
     mods (2.0.3)
       iso-639
@@ -448,8 +448,8 @@ GEM
     net-ssh (4.1.0)
     nio4r (2.0.0)
     noid (0.9.0)
-    nokogiri (1.7.2)
-      mini_portile2 (~> 2.1.0)
+    nokogiri (1.8.0)
+      mini_portile2 (~> 2.2.0)
     nom-xml (0.5.4)
       activesupport (>= 3.2.18)
       i18n
@@ -793,7 +793,6 @@ DEPENDENCIES
   hydra-role-management
   jbuilder (~> 2.0)
   jquery-rails (~> 4.0)
-  kaminari (~> 0.16.3)
   kaminari_route_prefix
   linked_vocabs!
   marc
