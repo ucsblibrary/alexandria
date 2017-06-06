@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-if Rails.env.development? || ENV["EXPLAIN_PARTIALS"]
+if ENV["EXPLAIN_PARTIALS"]
   # https://gist.github.com/bmaddy/4567fad5aa55e5a600e1
   #
   # On Vagrant, Passenger is run under Apache, so EXPLAIN_PARTIALS must
