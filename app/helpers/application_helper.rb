@@ -60,17 +60,13 @@ module ApplicationHelper
   # @param [FileSet] file
   # @return [ActiveSupport::SafeBuffer]
   def link_to_file(file)
-    if file.pdf?
-      link_to(file.fetch("original_filename_ss"),
-              Rails.application.routes.url_helpers.download_url(
-                file.id,
-                only_path: true
-              ),
-              target: "_blank",
-              data: { no_turbolink: true })
-    else
+    if file.audio?
       link_to(file.fetch("title_tesim").first,
               main_app.curation_concerns_file_set_path(file))
+    else
+      link_to(file.fetch("original_filename_ss"),
+              download_url(file.id, only_path: true),
+              target: "_blank")
     end
   end
 
