@@ -81,8 +81,7 @@ module SessionsHelper
                   end
 
     user.update_attributes(
-      :group_list,
-      default_groups + (special_groups.select { |grp| ldap_groups.include? grp })
+      group_list: default_groups + (special_groups.select { |grp| ldap_groups.include? grp })
     )
   end
 end
