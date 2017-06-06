@@ -16,7 +16,12 @@ class CollectionRoutingConcern
 end
 
 Rails.application.routes.draw do
-  concern :range_searchable, BlacklightRangeLimit::Routes::RangeSearchable.new
+  mount Blacklight::Engine => "/"
+  mount Hydra::RoleManagement::Engine => "/"
+  mount HydraEditor::Engine => "/"
+  mount Qa::Engine => "/qa"
+  mount Riiif::Engine => "/image-service", as: "riiif"
+
   root "welcome#index"
 
   get "welcome/about", as: "about"
@@ -35,30 +40,9 @@ Rails.application.routes.draw do
   get "422", to: "error#server_error"
   get "500", to: "error#server_error"
 
-  mount Blacklight::Engine => "/"
+  get "lib/:prot/:shoulder/:id" => "collections#show",
+      constraints: CollectionRoutingConcern.new
 
-  concern :searchable, Blacklight::Routes::Searchable.new
-
-  resource :catalog, only: [:index], as: "catalog", path: "/catalog", controller: "catalog" do
-    concerns :searchable
-    concerns :range_searchable
-  end
-
-  concern :exportable, Blacklight::Routes::Exportable.new
-
-  resources :solr_documents, only: [:show], path: "/catalog", controller: "catalog" do
-    concerns :exportable
-  end
-
-  resources :bookmarks do
-    concerns :exportable
-
-    collection do
-      delete "clear"
-    end
-  end
-
-  get "lib/:prot/:shoulder/:id" => "collections#show", constraints: CollectionRoutingConcern.new
   get "lib/:prot/:shoulder/:id" => "catalog#show", as: "catalog_ark"
 
   resources :local_authorities, only: :index
@@ -69,21 +53,51 @@ Rails.application.routes.draw do
   get "authorities/organizations/:id", to: "local_authorities#show", as: "organization"
   get "authorities/topics/:id",        to: "local_authorities#show", as: "topic"
 
-  mount Hydra::RoleManagement::Engine => "/"
-  mount Riiif::Engine => "/image-service", as: "riiif"
-  mount Qa::Engine => "/qa"
-  mount HydraEditor::Engine => "/"
+  concern :searchable, Blacklight::Routes::Searchable.new
+  concern :range_searchable, BlacklightRangeLimit::Routes::RangeSearchable.new
+  resource :catalog,
+           only: [:index],
+           as: "catalog",
+           path: "/catalog",
+           controller: "catalog" do
+    concerns :searchable
+    concerns :range_searchable
+  end
+
+  # Make sure to define this concern before using it in
+  # `curation_concerns_basic_routes' below
+  concern :exportable, Blacklight::Routes::Exportable.new
+  resources :solr_documents,
+            only: [:show],
+            path: "/catalog",
+            controller: "catalog" do
+    concerns :exportable
+  end
 
   mount CurationConcerns::Engine, at: "/"
   curation_concerns_collections
+
   curation_concerns_basic_routes do
     resource :access, only: [:edit, :update, :destroy], controller: "access"
     concerns :exportable
   end
-  curation_concerns_embargo_management
+
+  resources :embargoes, only: [:index, :edit, :destroy] do
+    collection do
+      patch :update
+    end
+  end
 
   resources :records, only: :destroy do
     get "new_merge", on: :member
     post "merge", on: :member
+  end
+
+  resources :bookmarks do
+    concerns :exportable
+
+    collection do
+      delete "clear"
+    end
   end
 end
