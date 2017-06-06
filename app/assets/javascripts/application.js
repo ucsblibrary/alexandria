@@ -15,7 +15,6 @@
 //
 //= require blacklight/blacklight
 //= require bootstrap/tab
-//= require embargo
 //
 //= require jquery.jcarousel
 //= require search_typeahead

@@ -2,22 +2,30 @@
 
 require "rails_helper"
 
-describe CurationConcerns::AccessController do
-  let(:mock_etd) { double "The ETD", attributes: [] }
-  let(:main_app) { Rails.application.routes.url_helpers }
-
+describe AccessController do
   before do
-    allow(ActiveFedora::Base).to receive(:find).with("123").and_return(mock_etd)
+    ETD.where(id: "123").each { |etd| etd.destroy(eradicate: true) }
+
+    AdminPolicy.ensure_admin_policy_exists
     allow(controller).to receive(:current_user).and_return(user)
   end
 
   let(:user) { nil }
 
+  let!(:etd) do
+    create(:etd,
+           embargo_release_date: Date.parse("2010-10-10"),
+           id: "123",
+           title: ["mock"],
+           visibility_after_embargo: RDF::URI(ActiveFedora::Base.id_to_uri(AdminPolicy::PUBLIC_POLICY_ID)),
+           visibility_during_embargo: RDF::URI(ActiveFedora::Base.id_to_uri(AdminPolicy::UCSB_CAMPUS_POLICY_ID)))
+  end
+
   describe "#edit" do
-    context "when I am not logged in" do
-      it "redirects" do
-        get :edit, params: { etd_id: "123" }
-        expect(response).to redirect_to main_app.new_user_session_path
+    context "when I'm not logged in" do
+      it "redirects me to the login page" do
+        get :edit, params: { id: etd.id }
+        expect(response).to redirect_to new_user_session_path
       end
     end
 
@@ -26,18 +34,18 @@ describe CurationConcerns::AccessController do
 
       context "with an etd" do
         it "shows me the page" do
-          expect(controller).to receive(:authorize!).with(:update_rights, mock_etd)
-          get :edit, params: { etd_id: "123" }
-          expect(assigns[:form]).to be_kind_of EmbargoForm
+          expect(controller).to(
+            receive(:authorize!).with(:update_rights, etd)
+          )
+          get :edit, params: { id: etd.id }
           expect(response).to be_success
         end
       end
 
       context "with an image" do
         it "shows me the page" do
-          expect(controller).to receive(:authorize!).with(:update_rights, mock_etd)
-          get :edit, params: { image_id: "123" }
-          expect(assigns[:form]).to be_kind_of EmbargoForm
+          expect(controller).to receive(:authorize!).with(:update_rights, etd)
+          get :edit, params: { id: etd.id }
           expect(response).to be_success
         end
       end
@@ -49,94 +57,80 @@ describe CurationConcerns::AccessController do
       let(:user) { user_with_groups [AdminPolicy::META_ADMIN] }
 
       it "is unauthorized" do
-        patch :update, params: { etd_id: "123" }
-        expect(response).to redirect_to main_app.root_path
+        post :update, params: { id: etd.id }
+        expect(response).to redirect_to root_path
       end
     end
 
     context "as a rights admin" do
-      before do
-        AdminPolicy.ensure_admin_policy_exists
-      end
-
       let(:user) { user_with_groups [AdminPolicy::RIGHTS_ADMIN] }
 
       context "when there is no embargo" do
         it "creates embargo" do
-          expect(controller).to receive(:authorize!).with(:update_rights, mock_etd)
-          expect(EmbargoService).to receive(:create_or_update_embargo).with(mock_etd,
-                                                                            admin_policy_id: "authorities/policies/restricted",
-                                                                            embargo_release_date: "2099-07-29T00:00:00+00:00",
-                                                                            visibility_after_embargo_id: "authorities/policies/ucsb")
-          expect(mock_etd).to receive(:save!)
+          post :update,
+               params: {
+                 admin_policy_id: "authorities/policies/restricted",
+                 embargo_release_date: "2099-07-29T00:00:00+00:00",
+                 id: etd.id,
+                 visibility_after_embargo_id: "authorities/policies/ucsb",
+               }
 
-          patch :update, params: { etd_id: "123", etd: {
-            embargo: "true",
-            admin_policy_id: "authorities/policies/restricted",
-            embargo_release_date: "2099-07-29T00:00:00+00:00",
-            visibility_after_embargo_id: "authorities/policies/ucsb",
-          }, }
-          expect(response).to redirect_to main_app.solr_document_path(mock_etd)
+          expect(etd.reload.admin_policy_id).to eq "authorities/policies/restricted"
         end
       end
 
       context "when the etd is already under embargo" do
         it "updates values" do
-          expect(controller).to receive(:authorize!).with(:update_rights, mock_etd)
-          expect(EmbargoService).to receive(:create_or_update_embargo).with(mock_etd,
-                                                                            embargo_release_date: "2099-07-29T00:00:00+00:00",
-                                                                            visibility_after_embargo_id: "authorities/policies/ucsb")
-          expect(mock_etd).to receive(:save!)
+          post :update,
+               params: {
+                 admin_policy_id: "authorities/policies/discovery",
+                 id: etd.id,
+                 embargo_release_date: "2099-07-29T00:00:00+00:00",
+                 visibility_after_embargo_id: "authorities/policies/ucsb",
+               }
 
-          patch :update, params: { etd_id: "123", etd: {
-            embargo: "true",
-            embargo_release_date: "2099-07-29T00:00:00+00:00",
-            visibility_after_embargo_id: "authorities/policies/ucsb",
-          }, }
-          expect(response).to redirect_to main_app.solr_document_path(mock_etd)
-        end
-
-        it "removes embargo" do
-          expect(controller).to receive(:authorize!).with(:update_rights, mock_etd)
-          expect(EmbargoService).to receive(:remove_embargo).with(mock_etd)
-          expect(mock_etd).to receive(:admin_policy_id=).with("authorities/policies/public")
-          expect(mock_etd).to receive(:save!)
-
-          patch :update, params: { etd_id: "123", etd: {
-            embargo: "false",
-            admin_policy_id: "authorities/policies/public",
-            embargo_release_date: "2099-07-29T00:00:00+00:00",
-            visibility_after_embargo_id: "authorities/policies/ucsb",
-          }, }
-
-          expect(response).to redirect_to main_app.solr_document_path(mock_etd)
+          expect(etd.reload.admin_policy_id).to eq "authorities/policies/discovery"
         end
       end
     end
   end
 
-  describe "destroy" do
-    context "as a rights admin" do
-      before do
-        AdminPolicy.ensure_admin_policy_exists
-        allow(mock_etd).to receive(:embargo).and_return(embargo)
-        allow(mock_etd).to receive(:embargo=).with(nil)
-        allow(mock_etd).to receive(:embargo_visibility!)
-        allow(mock_etd).to receive(:deactivate_embargo!)
-        allow(mock_etd).to receive(:save)
-        allow(mock_etd).to receive(:save!)
+  describe "#deactivate" do
+    context "when I'm not logged in" do
+      it "redirects me to the login page" do
+        post :deactivate, params: { id: etd.id }
 
-        allow(embargo).to receive(:save!)
+        expect(response).to redirect_to new_user_session_path
       end
+    end
 
+    context "as a rights admin" do
       let(:user) { user_with_groups [AdminPolicy::RIGHTS_ADMIN] }
-      let(:embargo) { double("the embargo", destroy: true) }
+
+      it "deactivates the embargo" do
+        post :deactivate, params: { id: etd.id }
+
+        expect(etd.reload.admin_policy_id).to eq "authorities/policies/public"
+      end
+    end
+  end
+
+  describe "destroy" do
+    context "when I'm not logged in" do
+      it "redirects me to the login page" do
+        post :destroy, params: { id: etd.id }
+
+        expect(response).to redirect_to new_user_session_path
+      end
+    end
+
+    context "as a rights admin" do
+      let(:user) { user_with_groups [AdminPolicy::RIGHTS_ADMIN] }
 
       context "when the etd is already under embargo" do
         it "removes embargo" do
-          expect(controller).to receive(:authorize!).with(:update_rights, mock_etd)
-          delete :destroy, params: { etd_id: "123" }
-          expect(response).to redirect_to main_app.solr_document_path(mock_etd)
+          post :destroy, params: { id: etd.id }
+          expect(etd.reload.embargo).to be_nil
         end
       end
     end

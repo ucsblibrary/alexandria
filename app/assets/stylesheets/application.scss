@@ -402,6 +402,7 @@ ul.listing {
       padding-right: 1em;
     }
     input,
+    select,
     textarea {
       float: right;
       width: 70%;
@@ -440,6 +441,15 @@ ul.listing {
 .embargo-notice {
   padding: 1em;
   text-decoration: underline;
+}
+
+.embargo-remove {
+  margin-top: 3em;
+  overflow: hidden;
+
+  form {
+    padding-bottom: 1em;
+  }
 }
 
 // ------

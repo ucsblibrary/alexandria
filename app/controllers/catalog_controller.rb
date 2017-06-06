@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class CatalogController < ApplicationController
-  include CurationConcerns::CatalogController
   include BlacklightRangeLimit::ControllerOverride
-  # helper Openseadragon::OpenseadragonHelper
+  include CurationConcerns::CatalogController
+  include Hydra::Controller::ControllerBehavior
 
   # enforce_show_permissions is from hydra-access-controls gem
   before_action :enforce_show_permissions, only: :show

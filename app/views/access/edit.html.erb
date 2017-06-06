@@ -1,0 +1,52 @@
+<% ark_link = link_to record.ark,
+                      catalog_ark_url(
+                        "ark:",
+                        record.ark.match(%r{ark:\/([^\/]+)\/.*})[1],
+                        record.id
+                      ) %>
+
+<h1>Manage Access Policy and Embargo for <%= ark_link %></h1>
+<h2><%= record.title.first %></h2>
+
+<% if record.embargo %>
+  <div class="embargo-notice"><span class="glyphicon glyphicon-lock"></span> EMBARGO: access policy is scheduled to change in the future</div>
+<% end %>
+
+<%= form_tag controller: "access", action: "update" do %>
+  <% if record.embargo %>
+    <h3> Edit embargo</h3>
+  <% else %>
+    <h3> Create embargo</h3>
+  <% end %>
+
+  <p>
+    <%= label_tag :admin_policy_id, "Current visibility" %>
+    <%= select_tag :admin_policy_id,  options_for_select(@visibility_options, @current_vis) %>
+  </p>
+
+  <p>
+    <%= label_tag :embargo_release_date, "Embargo release date" %>
+    <%= text_field_tag :embargo_release_date,
+                       (record.embargo_release_date || Time.zone.tomorrow.beginning_of_day),
+                       required: true %>
+  </p>
+
+  <p>
+    <%= label_tag :visibility_after_embargo_id, "Visibility after embargo" %>
+    <%= select_tag :visibility_after_embargo_id, options_for_select(@visibility_options, @future_vis) %>
+  </p>
+
+  <p><%= submit_tag 'Save', class: 'btn btn-primary' %></p>
+<% end %>
+
+<% if record.embargo %>
+  <div class="embargo-remove">
+    <%= form_tag controller: "access", action: "deactivate" do %>
+      <p><%= submit_tag "Deactivate Embargo", class: 'btn btn-warning' %></p>
+    <% end %>
+
+    <%= form_tag controller: "access", action: "destroy" do %>
+      <p><%= submit_tag "Delete Embargo", class: 'btn btn-danger' %></p>
+    <% end %>
+  </div>
+<% end %>

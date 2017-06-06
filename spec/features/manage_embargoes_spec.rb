@@ -2,13 +2,16 @@
 
 require "rails_helper"
 
-feature "Embargo management:" do
+feature "Embargo management" do
   before do
+    AdminPolicy.ensure_admin_policy_exists
     # To make it easier to interact with the form during the
     # specs, make sure we don't have other embargoed records
     # in the table.
     ETD.destroy_all
     Image.destroy_all
+
+    allow_any_instance_of(ETD).to receive(:ark).and_return "ark:/99999/awoo"
   end
 
   let(:collection) do
@@ -34,8 +37,7 @@ feature "Embargo management:" do
 
   # Make sure it still works if the ETD has a file attached.
   let!(:fs) do
-    fs = create(:file_set,
-                admin_policy_id: AdminPolicy::DISCOVERY_POLICY_ID)
+    fs = create(:file_set, admin_policy_id: AdminPolicy::DISCOVERY_POLICY_ID)
     Hydra::Works::AddFileToFileSet.call(fs, file, :original_file)
     EmbargoService.copy_embargo(etd, fs)
     etd.ordered_members << fs
@@ -50,7 +52,7 @@ feature "Embargo management:" do
       allow_any_instance_of(User).to receive(:groups).and_return([AdminPolicy::RIGHTS_ADMIN])
     end
 
-    context "for an active embargo:" do
+    context "for an active embargo" do
       scenario "edits the embargo" do
         # Navigate to the edit form for this embargo
         visit search_catalog_path
@@ -58,9 +60,9 @@ feature "Embargo management:" do
         click_link etd.title.first
 
         # Edit the embargo
-        fill_in "until", with: new_date
+        fill_in "Embargo release date", with: new_date
         select new_policy.title, from: "Visibility after embargo"
-        click_on "Save Changes"
+        click_on "Save"
 
         # Find the correct row in the table for this embargo,
         # and check for the expected new values.

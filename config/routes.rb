@@ -53,6 +53,11 @@ Rails.application.routes.draw do
   get "authorities/organizations/:id", to: "local_authorities#show", as: "organization"
   get "authorities/topics/:id",        to: "local_authorities#show", as: "topic"
 
+  get "access/:id/edit", to: "access#edit", as: :edit_access
+  post "access/:id/update", to: "access#update"
+  post "access/:id/destroy", to: "access#destroy"
+  post "access/:id/deactivate", to: "access#deactivate"
+
   concern :searchable, Blacklight::Routes::Searchable.new
   concern :range_searchable, BlacklightRangeLimit::Routes::RangeSearchable.new
   resource :catalog,
@@ -76,11 +81,7 @@ Rails.application.routes.draw do
 
   mount CurationConcerns::Engine, at: "/"
   curation_concerns_collections
-
-  curation_concerns_basic_routes do
-    resource :access, only: [:edit, :update, :destroy], controller: "access"
-    concerns :exportable
-  end
+  curation_concerns_basic_routes
 
   resources :embargoes, only: [:index, :edit, :destroy] do
     collection do

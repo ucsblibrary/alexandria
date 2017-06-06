@@ -2,12 +2,8 @@
 
 class ApplicationController < ActionController::Base
   helper Openseadragon::OpenseadragonHelper
-  include SessionsHelper
-
-  # Adds a few additional behaviors into the application controller
   include Blacklight::Controller
-  include Hydra::Controller::ControllerBehavior
-  include CurationConcerns::ApplicationControllerBehavior
+  include SessionsHelper
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -25,6 +21,11 @@ class ApplicationController < ActionController::Base
     else
       redirect_to :back
     end
+  end
+
+  rescue_from CanCan::AccessDenied do |e|
+    logger.error e.message
+    deny_access(e)
   end
 
   def on_campus?
