@@ -51,7 +51,7 @@ module Importer::Factory
     # @param [String] number
     # @param [Array] cylinders
     def attach_original(actor, number, cylinders)
-      if orig_path = cylinders.select { |c| c.include? "cusb-cyl#{number}a.wav" }.first
+      if (orig_path = cylinders.select { |c| c.include? "cusb-cyl#{number}a.wav" }.first)
         Rails.logger.debug "Attaching original #{orig_path}"
         actor.create_content(File.new(orig_path))
       else
@@ -63,7 +63,7 @@ module Importer::Factory
     # @param [String] number
     # @param [Array] cylinders
     def attach_restored(actor, number, cylinders)
-      if rest_path = cylinders.select { |c| c.include? "cusb-cyl#{number}b.wav" }.first
+      if (rest_path = cylinders.select { |c| c.include? "cusb-cyl#{number}b.wav" }.first)
         Rails.logger.debug "Attaching restored #{rest_path}"
         actor.create_content(File.new(rest_path), "restored")
       else

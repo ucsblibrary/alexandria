@@ -55,9 +55,9 @@ class ObjectForm
 
     if key == :contributor
       self[key] = multiplex_contributors
-    elsif reflection = model_class.reflect_on_association(key)
+    elsif (reflection = model_class.reflect_on_association(key))
       initialize_association(reflection, key)
-    elsif class_name = model_class.properties[key.to_s].class_name
+    elsif (class_name = model_class.properties[key.to_s].class_name)
       # Initialize linked properties such as language
       self[key] += [class_name.new]
     elsif self.class.multiple?(key)

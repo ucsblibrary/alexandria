@@ -230,7 +230,7 @@ module Importer::MODS
       property_name_for_uri = Metadata::MARCREL.invert
       name_nodes.each_with_object({}) do |node, relations|
         uri = node.attributes["valueURI"]
-        key = if value_uri = node.role.roleTerm.valueURI.first
+        key = if (value_uri = node.role.roleTerm.valueURI.first)
                 property_name_for_uri[RDF::URI(value_uri)]
               else
                 $stderr.puts "no role was specified for name #{node.namePart.text}"

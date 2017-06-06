@@ -16,9 +16,6 @@ Layout/IndentationConsistency:
 Layout/MultilineMethodCallIndentation:
   EnforcedStyle: indented
 
-Lint/AssignmentInCondition:
-  Enabled: false
-
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'

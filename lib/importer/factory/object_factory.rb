@@ -16,7 +16,7 @@ module Importer::Factory
     end
 
     def run
-      if @object = find
+      if (@object = find)
         update
       else
         create

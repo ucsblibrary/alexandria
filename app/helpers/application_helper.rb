@@ -87,7 +87,7 @@ module ApplicationHelper
   # @param [String] uri
   # @return [Array<String>]
   def rights_icons(uri)
-    if category = uri.match(%r{.*rightsstatements\.org\/vocab\/([a-z]+)}i)
+    if (category = uri.match(%r{.*rightsstatements\.org\/vocab\/([a-z]+)}i))
       [
         case category[1]
         when "InC"
@@ -99,8 +99,7 @@ module ApplicationHelper
         end,
       ].compact
 
-    elsif categories = uri.match(%r{.*creativecommons\.org\/(licenses|publicdomain)\/([a-z-]+)}i)
-
+    elsif (categories = uri.match(%r{.*creativecommons\.org\/(licenses|publicdomain)\/([a-z-]+)}i))
       categories[2].split("-").map do |cat|
         "creative-commons/#{cat}.png"
       end
