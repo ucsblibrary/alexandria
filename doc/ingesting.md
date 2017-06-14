@@ -1,9 +1,8 @@
 # Ingesting records into ADRL
 
-The descriptive metadata repository
-(https://stash.library.ucsb.edu/projects/CMS/repos/adrl-dm/browse) is
-automatically cloned to `/opt/ingest/metadata/adrl-dm` during
-provisioning.  Make sure it is up-to-date when running ingests.
+The descriptive metadata repository is automatically cloned to
+`/opt/ingest/metadata/adrl-dm` during provisioning.  Make sure it is
+up-to-date when running ingests.
 
 The remote fileshare with supporting images is automatically mounted
 to `/opt/ingest/data`.
