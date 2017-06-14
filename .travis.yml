@@ -20,5 +20,11 @@ cache:
 jdk:
   - oraclejdk8
 
+before_install:
+  - curl -sLO https://projects.iq.harvard.edu/files/fits/files/fits-0.8.6_1.zip
+  - unzip fits-0.8.6_1.zip
+  - chmod +x fits-0.8.6/fits.sh
+  - export PATH="$(pwd)/fits-0.8.6:$PATH"
+
 before_script:
   - cp config/secrets.yml.template config/secrets.yml
