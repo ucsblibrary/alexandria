@@ -1,8 +1,5 @@
 # Developing
 
-If you’re developing in a Vagrant VM, see the
-[provisioning](#provisioning) section below. Otherwise:
-
 1. Copy `config/secrets.yml.template` to `config/secrets.yml` and add
    the LDAP and Ezid passwords from
    [Secret Server](https://epm.ets.ucsb.edu/SS/login.aspx).
@@ -25,9 +22,9 @@ If you’re developing in a Vagrant VM, see the
    environment variable disables Marmotta, which we don’t need to run
    locally.)
 
-5. Start redis, then a Resque worker with `CI=1 VERBOSE=1 QUEUE='*' INTERVAL=5 bin/rake resque:work`.
+1. Start redis, then a Resque worker with `CI=1 VERBOSE=1 QUEUE='*' INTERVAL=5 bin/rake resque:work`.
 
-6. Start the Rails server with `CI=1 bin/rails s`.
+1. Start the Rails server with `CI=1 bin/rails s`.
 
 You can run tests with `make spec`, and HTML documentation by
 installing `yardoc` with `gem install yardoc` then running `make
@@ -55,21 +52,21 @@ Some parts of `lib/*vocabularies` and `spec/vocabularies` are licensed
 as follows:
 
 ```
-# Copyright 2013 Oregon Digital ( Oregon State University & University of
-# Oregon )
-# Copyright 2015 Data Curation Experts
-#
-# Additional copyright may be held by others, as reflected in the commit log
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
+Copyright 2013 Oregon Digital ( Oregon State University & University of
+Oregon )
+Copyright 2015 Data Curation Experts
+
+Additional copyright may be held by others, as reflected in the commit log
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
 ```
