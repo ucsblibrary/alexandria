@@ -45,7 +45,7 @@ The name "Local Membership" was chosen because the collection membership is stor
 
 ### How the models are indexed in Solr
 
-Both the old-style members and the new-style members are indexed identically in solr.  In the solr index, we don&apos;t care which style of membership the record has, we only care that it is a member of the collection somehow.  So, if you are looking at the solr document for a collection, the `member_ids_ssim` field will have both old-style and new-style members.  
+Both the old-style members and the new-style members are indexed identically in solr.  In the solr index, we don&apos;t care which style of membership the record has, we only care that it is a member of the collection somehow.  So, if you are looking at the solr document for a collection, the `member_ids_ssim` field will have both old-style and new-style members.
 
 Similarly, if you view the solr document for an AudioRecording record, the `collection_ssim` and `collection_label_ssim` fields will have the collections that this record belongs to, no matter which style of membership was used to add the record to the collection.
 
@@ -128,7 +128,6 @@ end
 
 # Then you can delete the collection itself:
 collection.destroy(eradicate: true)
-
 ```
 
 ## Caveats
@@ -174,6 +173,4 @@ image.local_collection_id # => ["collection_2"]
 # Notice that coll_2 returns an empty array for its member_ids, even though image_aaa is a member of that collection.
 coll_1.member_ids # => ["image_aaa"]
 coll_2.member_ids # => []
-
 ```
-
