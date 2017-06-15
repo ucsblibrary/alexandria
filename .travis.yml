@@ -2,23 +2,23 @@
 sudo: false
 language: ruby
 
-notifications:
-  email: false
-
-rvm:
-  - 2.3.1
-  - 2.4.1
+cache:
+  bundler: true
 
 env:
   global:
     - NOKOGIRI_USE_SYSTEM_LIBRARIES=1
     - CI=1
 
-cache:
-  bundler: true
+rvm:
+  - 2.3.1
+  - 2.4.1
 
 jdk:
   - oraclejdk8
+
+services:
+  - redis-server
 
 before_install:
   - curl -sLO https://projects.iq.harvard.edu/files/fits/files/fits-0.8.6_1.zip
@@ -28,3 +28,6 @@ before_install:
 
 before_script:
   - cp config/secrets.yml.template config/secrets.yml
+
+notifications:
+  email: false
