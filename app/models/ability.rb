@@ -97,7 +97,7 @@ class Ability
     groups = []
     policy_permissions = policy_permissions_doc(policy_id)
 
-    if policy_permissions.present?
+    if policy_permissions.to_h.present?
       field_name = Hydra.config.permissions.inheritable[access][:group]
       groups = read_groups_from_policy(policy_id) |
                policy_permissions.fetch(field_name, [])

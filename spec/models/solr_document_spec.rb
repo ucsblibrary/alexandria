@@ -71,7 +71,7 @@ describe SolrDocument do
       context "with file sets" do
         let(:file_set_document) { SolrDocument.new(id: "bf/74/27/75/bf742775-2a24-46dc-889e-cca03b27b5f3") }
         before do
-          etd_document["member_ids_ssim"] = [file_set_document.id]
+          etd_document.to_h["member_ids_ssim"] = [file_set_document.id]
           ActiveFedora::SolrService.add(file_set_document)
           ActiveFedora::SolrService.commit
         end
