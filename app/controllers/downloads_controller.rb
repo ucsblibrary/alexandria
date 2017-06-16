@@ -16,7 +16,14 @@ class DownloadsController < ApplicationController
 
     # set the disposition to attachment for downloading
     def derivative_download_options
-      return { type: mime_type_for(file), filename: file_name, disposition: "attachment" } if params[:dl].present?
+      if params[:dl].present?
+        return {
+          type: mime_type_for(file),
+          filename: file_name,
+          disposition: "attachment",
+        }
+      end
+
       super
     end
 

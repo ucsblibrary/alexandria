@@ -32,7 +32,10 @@ class ApplicationController < ActionController::Base
     return true if Rails.env.development?
 
     return false unless request.remote_ip
-    on_campus_network_prefixes.any? { |prefix| request.remote_ip.start_with?(prefix) }
+
+    on_campus_network_prefixes.any? do |prefix|
+      request.remote_ip.start_with?(prefix)
+    end
   end
   helper_method :on_campus?
 

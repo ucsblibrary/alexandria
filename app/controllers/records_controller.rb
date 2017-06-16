@@ -18,10 +18,14 @@ class RecordsController < ApplicationController
 
     references = Record.references_for(@record)
     if references.empty?
-      flash[:notice] = "Record \"#{@record.rdf_label.first}\" has been destroyed"
+      flash[:notice] = "Record \"#{@record.rdf_label.first}\" "\
+                       "has been destroyed."
       @record.destroy
     else
-      flash[:alert] = "Record \"#{@record.rdf_label.first}\" cannot be deleted because it is referenced by #{references.count} other #{"record".pluralize(references.count)}."
+      flash[:alert] = "Record \"#{@record.rdf_label.first}\" "\
+                      "cannot be deleted because "\
+                      "it is referenced by #{references.count} "\
+                      "other #{"record".pluralize(references.count)}."
     end
 
     redirect_to local_authorities_path
@@ -32,7 +36,8 @@ class RecordsController < ApplicationController
     if LocalAuthority.local_authority?(@record)
       new_merge_form
     else
-      flash[:alert] = "This record cannot be merged.  Only local authority records can be merged."
+      flash[:alert] = "This record cannot be merged.  "\
+                      "Only local authority records can be merged."
       redirect_to local_authorities_path
     end
   end
@@ -41,11 +46,16 @@ class RecordsController < ApplicationController
     uri = fetch_merge_target
     if uri.present?
       merge_target_id = ActiveFedora::Base.uri_to_id(uri)
-      MergeRecordsJob.perform_later(@record.id, merge_target_id, current_user.user_key)
+      MergeRecordsJob.perform_later(
+        @record.id,
+        merge_target_id,
+        current_user.user_key
+      )
       flash[:notice] = "A background job has been queued to merge the records."
       redirect_to local_authorities_path
     else
-      flash[:alert] = "Error:  Unable to queue merge job.  Please fill in all required fields."
+      flash[:alert] = "Error:  Unable to queue merge job.  "\
+                      "Please fill in all required fields."
       new_merge_form
       render :new_merge
     end
@@ -71,7 +81,8 @@ class RecordsController < ApplicationController
     def set_attributes
       super
       if resource.respond_to?(:record_origin) && resource.new_record?
-        resource.record_origin << "#{Time.now.utc.to_s(:iso8601)} Record originated in ADRL"
+        resource.record_origin << "#{Time.now.utc.to_s(:iso8601)} "\
+                                  "Record originated in ADRL"
       end
       resource.attributes
     end
@@ -82,7 +93,10 @@ class RecordsController < ApplicationController
     end
 
     def fetch_merge_target
-      attrs = params.select { |key| key.match(/^.*merge_target_attributes$/) }.values.first || {}
+      attrs = params.select do |key|
+        key.match(/^.*merge_target_attributes$/)
+      end.values.first || {}
+
       attrs.fetch("0", {}).fetch("id", nil)
     end
 end

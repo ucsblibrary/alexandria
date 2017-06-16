@@ -27,7 +27,10 @@ class EmbargoesController < ApplicationController
   # Deactivate a batch of embargos
   def update
     filter_docs_with_rights_access!
-    copy_visibility = params.fetch(:embargoes, {}).values.map { |h| h[:copy_visibility] }
+    copy_visibility = params.fetch(:embargoes, {}).values.map do |h|
+      h[:copy_visibility]
+    end
+
     ActiveFedora::Base.find(batch).each do |cc|
       CurationConcerns::Actors::EmbargoActor.new(cc).destroy
       cc.copy_admin_policy_to_files! if copy_visibility.include?(cc.id)

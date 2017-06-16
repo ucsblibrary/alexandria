@@ -19,6 +19,12 @@ class LocalNames
 
   def search(q)
     _, list = search_results(q: q)
-    list.map { |d| { id: ActiveFedora::Base.id_to_uri(d.id), label: d[:foaf_name_tesim].first } }
+
+    list.map do |d|
+      {
+        id: ActiveFedora::Base.id_to_uri(d.id),
+        label: d[:foaf_name_tesim].first,
+      }
+    end
   end
 end

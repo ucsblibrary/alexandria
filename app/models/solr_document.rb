@@ -79,7 +79,9 @@ class SolrDocument
     ids = self[Solrizer.solr_name("member_ids", :symbol)]
 
     @file_sets = if ids.present?
-                   query = ActiveFedora::SolrQueryBuilder.construct_query_for_ids(ids)
+                   query =
+                     ActiveFedora::SolrQueryBuilder
+                       .construct_query_for_ids(ids)
 
                    ActiveFedora::SolrService.query(
                      query, rows: FileSet.count
@@ -134,7 +136,10 @@ class SolrDocument
     end
 
     query = ActiveFedora::SolrQueryBuilder.construct_query(field_pairs, " OR ")
-    ActiveFedora::SolrService.query(query, rows: IndexMap.count).map { |hit| SolrDocument.new(hit) }
+
+    ActiveFedora::SolrService.query(
+      query, rows: IndexMap.count
+    ).map { |hit| SolrDocument.new(hit) }
   end
 
   # @return [Array<SolrDocument>]
@@ -147,7 +152,10 @@ class SolrDocument
 
     while ids.present?
       # Searching for too many IDs at once results in 414 URL Too Long errors
-      query = ActiveFedora::SolrQueryBuilder.construct_query_for_ids(ids.slice!(0, 250))
+      query = ActiveFedora::SolrQueryBuilder.construct_query_for_ids(
+        ids.slice!(0, 250)
+      )
+
       batches += ActiveFedora::SolrService.query(
         query,
         rows: ComponentMap.count

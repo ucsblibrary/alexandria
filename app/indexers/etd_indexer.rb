@@ -10,11 +10,15 @@ class ETDIndexer < ObjectIndexer
       end.join(" and ")
 
       if rights_holders.present?
-        solr_doc[Solrizer.solr_name("copyright", :displayable)] = "#{rights_holders}, #{object.date_copyrighted.first}"
+        solr_doc[Solrizer.solr_name("copyright", :displayable)] =
+          "#{rights_holders}, #{object.date_copyrighted.first}"
       end
 
-      solr_doc[Solrizer.solr_name("department", :facetable)] = department(solr_doc)
-      solr_doc[Solrizer.solr_name("dissertation", :displayable)] = dissertation
+      solr_doc[Solrizer.solr_name("department", :facetable)] =
+        department(solr_doc)
+
+      solr_doc[Solrizer.solr_name("dissertation", :displayable)] =
+        dissertation
     end
   end
 
@@ -24,7 +28,12 @@ class ETDIndexer < ObjectIndexer
       return if [object.dissertation_degree,
                  object.dissertation_institution,
                  object.dissertation_year,].any? { |f| f.first.blank? }
-      "#{object.dissertation_degree.first}--#{object.dissertation_institution.first}, #{object.dissertation_year.first}"
+
+      object.dissertation_degree.first +
+        "--" +
+        object.dissertation_institution.first +
+        ", " +
+        object.dissertation_year.first
     end
 
     # Derive department by stripping "UC, SB" from the degree grantor field
@@ -57,7 +66,9 @@ class ETDIndexer < ObjectIndexer
       if timespan?
         super
       else
-        key_date.sort { |a, b| DateUtil.extract_year(a) <=> DateUtil.extract_year(b) }
+        key_date.sort do |a, b|
+          DateUtil.extract_year(a) <=> DateUtil.extract_year(b)
+        end
       end
     end
 

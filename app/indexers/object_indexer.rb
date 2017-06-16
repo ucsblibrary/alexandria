@@ -19,8 +19,11 @@ class ObjectIndexer < CurationConcerns::WorkIndexer
   COLLECTION_LABEL = Solrizer.solr_name("collection_label", :symbol)
   COLLECTION = Solrizer.solr_name("collection", :symbol)
 
-  ALL_CONTRIBUTORS_FACET = Solrizer.solr_name("all_contributors_label", :facetable)
-  ALL_CONTRIBUTORS_LABEL = Solrizer.solr_name("all_contributors_label", :stored_searchable)
+  ALL_CONTRIBUTORS_FACET = Solrizer.solr_name("all_contributors_label",
+                                              :facetable)
+
+  ALL_CONTRIBUTORS_LABEL = Solrizer.solr_name("all_contributors_label",
+                                              :stored_searchable)
 
   SORTABLE_CREATOR = Solrizer.solr_name("creator_label", :sortable)
   CREATOR_MULTIPLE = Solrizer.solr_name("creator_label", :stored_searchable)
@@ -46,8 +49,12 @@ class ObjectIndexer < CurationConcerns::WorkIndexer
       # for collections' representative image thumbnail
       solr_doc["square_thumbnail_url_ssm"] = square_thumbnail_images
 
-      solr_doc["note_label_tesim"] = object.notes.map { |note| note.value.first }.flatten
-      solr_doc["rights_holder_label_tesim"] = object["rights_holder"].map(&:rdf_label).flatten
+      solr_doc["note_label_tesim"] = object.notes.map do |note|
+        note.value.first
+      end.flatten
+
+      solr_doc["rights_holder_label_tesim"] =
+        object["rights_holder"].map(&:rdf_label).flatten
 
       yield(solr_doc) if block_given?
     end
@@ -60,8 +67,10 @@ class ObjectIndexer < CurationConcerns::WorkIndexer
       solr_doc.fetch(CREATOR_MULTIPLE).first if solr_doc.key? CREATOR_MULTIPLE
     end
 
-    # @return [NilClass, Array] Union of all the MARC relators. If non exist, return nil
     # Returns the rdf label if it's a URI, otherwise the value itself.
+    #
+    # @return [NilClass, Array] Union of all the MARC relators. If non
+    #     exist, return nil
     def all_contributors_combined
       Metadata::RELATIONS.keys.map do |field|
         next if object[field].empty?
@@ -78,18 +87,26 @@ class ObjectIndexer < CurationConcerns::WorkIndexer
     # Returns two arrays, a list of ids and a list of titles.
     def collections
       results = (query_for_local_collections + query_for_hydra_collections).uniq
-      results.map { |coll| [coll["id"], coll["title_tesim"]] }.transpose.map(&:flatten)
+
+      results.map do |coll|
+        [coll["id"], coll["title_tesim"]]
+      end.transpose.map(&:flatten)
     end
 
     def query_for_local_collections
       return [] if object.local_collection_id.blank?
-      query = ActiveFedora::SolrQueryBuilder.construct_query_for_ids(object.local_collection_id)
+      query = ActiveFedora::SolrQueryBuilder.construct_query_for_ids(
+        object.local_collection_id
+      )
       ActiveFedora::SolrService.query(query, fl: "title_tesim id")
     end
 
     def query_for_hydra_collections
       return [] unless object.id
-      query = ActiveFedora::SolrQueryBuilder.construct_query_for_rel(member_ids: object.id, has_model: Collection.to_rdf_representation)
+      query = ActiveFedora::SolrQueryBuilder.construct_query_for_rel(
+        member_ids: object.id,
+        has_model: Collection.to_rdf_representation
+      )
       ActiveFedora::SolrService.query(query, fl: "title_tesim id")
     end
 
@@ -117,7 +134,13 @@ class ObjectIndexer < CurationConcerns::WorkIndexer
 
       # Look through all the dates in order of importance, and
       # find the first one that has a value assigned.
-      date_names = [:created, :issued, :date_copyrighted, :date_other, :date_valid]
+      date_names = [
+        :created,
+        :issued,
+        :date_copyrighted,
+        :date_other,
+        :date_valid,
+      ]
 
       date_names.each do |date_name|
         if object[date_name].present?

@@ -11,8 +11,12 @@ class LocalAuthoritiesController < ApplicationController
   before_action :add_view_path
 
   add_show_tools_partial(:edit, partial: "catalog/edit", if: :editor?)
-  add_show_tools_partial(:merge, partial: "catalog/merge_link", if: :show_merge_link?)
-  add_show_tools_partial(:delete, partial: "catalog/delete", if: :show_delete_link?)
+  add_show_tools_partial(:merge,
+                         partial: "catalog/merge_link",
+                         if: :show_merge_link?)
+  add_show_tools_partial(:delete,
+                         partial: "catalog/delete",
+                         if: :show_delete_link?)
 
   configure_blacklight do |config|
     config.search_builder_class = LocalAuthoritiesSearchBuilder
@@ -26,10 +30,17 @@ class LocalAuthoritiesController < ApplicationController
     config.add_results_collection_tool(:add_another)
 
     # Display the admin menu in the nav header if the user is an admin
-    config.add_nav_action(:local_authorities, partial: "shared/local_authorities", if: :can_read_authorities?)
-    config.add_nav_action(:new_record, partial: "shared/new_record", if: :can_destroy_authorities?)
+    config.add_nav_action(:local_authorities,
+                          partial: "shared/local_authorities",
+                          if: :can_read_authorities?)
 
-    config.add_nav_action(:embargos, partial: "shared/embargos", if: :embargo_manager?)
+    config.add_nav_action(:new_record,
+                          partial: "shared/new_record",
+                          if: :can_destroy_authorities?)
+
+    config.add_nav_action(:embargos,
+                          partial: "shared/embargos",
+                          if: :embargo_manager?)
 
     # solr fields to be displayed in the show (single result) view
     # The ordering of the field names is the order of the display
@@ -52,11 +63,15 @@ class LocalAuthoritiesController < ApplicationController
       }
     end
 
-    config.add_facet_field "has_model_ssim", label: "Type", sort: "index", collapse: false
+    config.add_facet_field "has_model_ssim",
+                           label: "Type",
+                           sort: "index",
+                           collapse: false
+
     config.add_facet_fields_to_solr_request!
 
+    # Index fields
     config.add_index_field "public_uri_ssim", label: "URI"
-
     config.index.title_field = %w[foaf_name_tesim label_tesim]
     config.add_index_field "active_fedora_model_ssi", label: "Type"
   end # configure_blacklight
