@@ -56,7 +56,9 @@ describe Ability do
       is_expected.not_to be_able_to(:new_merge, local_group)
       is_expected.not_to be_able_to(:merge, local_group)
 
-      is_expected.not_to be_able_to(:download_original, file_set_of_public_audio)
+      is_expected.not_to(
+        be_able_to(:download_original, file_set_of_public_audio)
+      )
       is_expected.to be_able_to(:download_original, file_set_of_public_image)
     end
   end
@@ -131,7 +133,9 @@ describe Ability do
 
       is_expected.to be_able_to(:discover, Hydra::AccessControls::Embargo)
       is_expected.to be_able_to(:update_rights, ActiveFedora::Base)
-      is_expected.to be_able_to(:update_rights, String) # Hydra-collections calls this on the id
+
+      # Hydra-collections calls this on the id
+      is_expected.to be_able_to(:update_rights, String)
     end
   end
 end

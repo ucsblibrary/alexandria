@@ -58,7 +58,9 @@ describe Importer::MODS do
         expect(coll.admin_policy_id).to eq AdminPolicy::PUBLIC_POLICY_ID
 
         solr_doc = ActiveFedora::SolrService.query("id:#{image.id}").first
-        expect(solr_doc["collection_label_ssim"]).to eq ["Santa Barbara picture postcards collection"]
+        expect(solr_doc["collection_label_ssim"]).to(
+          eq ["Santa Barbara picture postcards collection"]
+        )
       end
     end
 
@@ -68,10 +70,17 @@ describe Importer::MODS do
         Collection.all.each { |c| c.destroy(eradicate: true) }
 
         # skip creating files
-        allow_any_instance_of(Importer::Factory::ImageFactory).to receive(:after_create)
+        allow_any_instance_of(Importer::Factory::ImageFactory).to(
+          receive(:after_create)
+        )
       end
 
-      let!(:coll) { Collection.create!(accession_number: ["SBHC Mss 36"], title: ["Test Collection"]) }
+      let!(:coll) do
+        Collection.create!(
+          accession_number: ["SBHC Mss 36"],
+          title: ["Test Collection"]
+        )
+      end
 
       it "it adds image to existing collection" do
         expect do
@@ -88,7 +97,9 @@ describe Importer::MODS do
   end
 
   describe "#import a Collection" do
-    let(:metadata) { ["#{fixture_path}/mods/sbhcmss78_FlyingAStudios_collection.xml"] }
+    let(:metadata) do
+      ["#{fixture_path}/mods/sbhcmss78_FlyingAStudios_collection.xml"]
+    end
 
     context "when the collection does not exist" do
       before do
@@ -101,13 +112,19 @@ describe Importer::MODS do
           VCR.use_cassette("mods_importer") do
             Importer::MODS.import(metadata, data, skip: 0, verbose: false)
           end
-        end.to change { Collection.count }.by(1).and change { Person.count }.by(1)
+        end.to(
+          change { Collection.count }.by(1).and(
+            change { Person.count }.by(1)
+          )
+        )
 
         coll = Collection.first
 
         expect(coll.id).to match(/^fk4\w{7}$/)
         expect(coll.accession_number).to eq ["SBHC Mss 78"]
-        expect(coll.title).to eq ["Joel Conway / Flying A Studio photograph collection"]
+        expect(coll.title).to(
+          eq ["Joel Conway / Flying A Studio photograph collection"]
+        )
         expect(coll.admin_policy_id).to eq AdminPolicy::PUBLIC_POLICY_ID
 
         expect(coll.collector.count).to eq 1
@@ -123,7 +140,12 @@ describe Importer::MODS do
         Image.all.each { |i| i.destroy(eradicate: true) }
       end
 
-      let!(:existing) { Collection.create!(accession_number: ["SBHC Mss 78"], title: ["Test Collection"]) }
+      let!(:existing) do
+        Collection.create!(
+          accession_number: ["SBHC Mss 78"],
+          title: ["Test Collection"]
+        )
+      end
 
       it "it adds metadata to existing collection" do
         expect do
@@ -135,7 +157,9 @@ describe Importer::MODS do
         coll = Collection.first
         expect(coll.id).to eq existing.id
         expect(coll.accession_number).to eq ["SBHC Mss 78"]
-        expect(coll.title).to eq ["Joel Conway / Flying A Studio photograph collection"]
+        expect(coll.title).to(
+          eq ["Joel Conway / Flying A Studio photograph collection"]
+        )
       end
     end
 
@@ -151,7 +175,11 @@ describe Importer::MODS do
           VCR.use_cassette("mods_importer") do
             Importer::MODS.import(metadata, data, skip: 0, verbose: false)
           end
-        end.to change { Collection.count }.by(1).and change { Person.count }.by(0)
+        end.to(
+          change { Collection.count }.by(1).and(
+            change { Person.count }.by(0)
+          )
+        )
 
         coll = Collection.first
         expect(coll.collector.count).to eq 1
@@ -163,7 +191,9 @@ describe Importer::MODS do
   end
 
   describe "fields that have Strings instead of URIs" do
-    let(:metadata) { ["#{fixture_path}/mods/sbhcmss78_FlyingAStudios_collection.xml"] }
+    let(:metadata) do
+      ["#{fixture_path}/mods/sbhcmss78_FlyingAStudios_collection.xml"]
+    end
 
     let(:frodo) { "Frodo Baggins" }
     let(:bilbo) { "Bilbo Baggins" }
@@ -173,7 +203,9 @@ describe Importer::MODS do
       before do
         Agent.delete_all
         Agent.create(foaf_name: frodo) # existing rights holder
-        allow_any_instance_of(Importer::MODS::Parser).to receive(:rights_holder) { [frodo, bilbo, pippin] }
+        allow_any_instance_of(Importer::MODS::Parser).to(
+          receive(:rights_holder) { [frodo, bilbo, pippin] }
+        )
       end
 
       it "finds or creates the rights holders" do

@@ -5,7 +5,9 @@ require "rails_helper"
 describe MultiValueReadonlyInput, type: :input do
   let(:image) { Image.new(record_origin: ["value 1", "value 2"]) }
   let(:builder) { SimpleForm::FormBuilder.new(:image, image, view, {}) }
-  let(:input) { MultiValueReadonlyInput.new(builder, :record_origin, nil, :multi_value, {}) }
+  let(:input) do
+    MultiValueReadonlyInput.new(builder, :record_origin, nil, :multi_value, {})
+  end
 
   describe "#input" do
     subject do
@@ -13,7 +15,8 @@ describe MultiValueReadonlyInput, type: :input do
     end
 
     it "renders multi-value" do
-      # 'field-wrapper' is the class that causes the editor to be displayed. We don't want that.
+      # 'field-wrapper' is the class that causes the editor to be
+      # displayed. We don't want that.
       expect(subject).not_to match(/field-wrapper/)
     end
   end

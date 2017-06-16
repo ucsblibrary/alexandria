@@ -30,7 +30,9 @@ RSpec.describe ContactUsMailer, type: :mailer do
 
       it "generates an email with info from the form" do
         expect(ActionMailer::Base.deliveries).to_not be_empty
-        expect(email.to).to eq Array(Rails.application.secrets.contact_us_email_to)
+        expect(email.to).to(
+          eq Array(Rails.application.secrets.contact_us_email_to)
+        )
         expect(email.from).to eq Array(from)
         expect(email.subject).to eq "[ADRL Demo] There and Back Again"
         expect(email.body.to_s).to eq body

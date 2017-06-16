@@ -19,11 +19,19 @@ describe Importer::ETD do
       before do
         ETD.destroy_all
         # Don't fetch external records
-        allow_any_instance_of(RDF::DeepIndexingService).to receive(:fetch_external)
+        allow_any_instance_of(RDF::DeepIndexingService).to(
+          receive(:fetch_external)
+        )
       end
 
-      let(:meta) { ["#{fixture_path}/proquest/zipped/ETD_ucsb_0035D_13132_MARC.xml"] }
-      let(:data) { ["#{fixture_path}/proquest/zipped/ETD_ucsb_0035D_13132.zip"] }
+      let(:meta) do
+        ["#{fixture_path}/proquest/zipped/ETD_ucsb_0035D_13132_MARC.xml"]
+      end
+
+      let(:data) do
+        ["#{fixture_path}/proquest/zipped/ETD_ucsb_0035D_13132.zip"]
+      end
+
       let(:options) { { skip: 0 } }
 
       it "ingests the ETD and sets the permissions correctly" do
@@ -43,7 +51,9 @@ describe Importer::ETD do
         expect(costa.keywords).to contain_exactly("Frick", "It.", "Dang")
         expect(costa.local_collection_id).to eq ["etds"]
         expect(costa.place_of_publication).to eq ["[Santa Barbara, Calif.]"]
-        expect(costa.publisher).to eq ["University of California, Santa Barbara"]
+        expect(costa.publisher).to(
+          eq ["University of California, Santa Barbara"]
+        )
         expect(costa.title).to eq ["I don't ingest right : what is my deal"]
 
         costa_set = costa.file_sets.first
@@ -51,14 +61,18 @@ describe Importer::ETD do
 
         costa_set.admin_policy_id = AdminPolicy::RESTRICTED_POLICY_ID
         costa_set.save!
-        expect(costa_set.admin_policy_id).to eq AdminPolicy::RESTRICTED_POLICY_ID
+        expect(costa_set.admin_policy_id).to(
+          eq AdminPolicy::RESTRICTED_POLICY_ID
+        )
 
         VCR.use_cassette("etd_importer") do
           Importer::ETD.import(meta, data, options)
         end
 
         expect(ETD.count).to eq 1
-        expect(ETD.first.file_sets.first.admin_policy_id).to eq AdminPolicy::DISCOVERY_POLICY_ID
+        expect(ETD.first.file_sets.first.admin_policy_id).to(
+          eq AdminPolicy::DISCOVERY_POLICY_ID
+        )
       end
     end
   end
@@ -78,8 +92,14 @@ describe Importer::ETD do
       it "raises an exception" do
         expect do
           importer.run
-        end.to change { ETD.count }.by(0)
-          .and raise_error(CollectionNotFound, 'Not Found: Collection with accession number ["etds"]')
+        end.to(
+          change { ETD.count }.by(0).and(
+            raise_error(
+              CollectionNotFound,
+              "Not Found: Collection with accession number [\"etds\"]"
+            )
+          )
+        )
       end
     end
   end

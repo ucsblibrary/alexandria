@@ -18,14 +18,18 @@ describe ControlledVocabularies::RightsStatement do
 
   describe "#rdf_label" do
     context "with an opaquenamespace URI" do
-      let(:uri) { RDF::URI.new("http://opaquenamespace.org/ns/rights/educational/") }
+      let(:uri) do
+        RDF::URI.new("http://opaquenamespace.org/ns/rights/educational/")
+      end
 
       it "finds the label" do
         expect(subject.rdf_label).to eq ["Educational Use Permitted"]
       end
     end
     context "with an invalid opaquenamespace URI" do
-      let(:uri) { RDF::URI.new("http://opaquenamespace.org/rights/educational/") }
+      let(:uri) do
+        RDF::URI.new("http://opaquenamespace.org/rights/educational/")
+      end
 
       it "raises an error" do
         expect { subject.rdf_label }.to raise_error TermNotFound

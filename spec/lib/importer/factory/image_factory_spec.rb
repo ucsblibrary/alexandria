@@ -5,14 +5,25 @@ require "importer"
 
 describe Importer::Factory::ImageFactory do
   let(:files) { [] }
-  let(:collection_attrs) { { accession_number: ["SBHC Mss 36"], title: ["Test collection"] } }
+  let(:collection_attrs) do
+    { accession_number: ["SBHC Mss 36"], title: ["Test collection"] }
+  end
+
   let(:attributes) do
     {
       accession_number: ["123"],
       admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID,
       collection: collection_attrs,
       files: files,
-      issued_attributes: [{ start: ["1925"], finish: [], label: [], start_qualifier: [], finish_qualifier: [] }],
+      issued_attributes: [
+        {
+          start: ["1925"],
+          finish: [],
+          label: [],
+          start_qualifier: [],
+          finish_qualifier: [],
+        },
+      ],
       notes_attributes: [{ value: "Title from item." }],
       title: ["Test image"],
     }
@@ -22,7 +33,9 @@ describe Importer::Factory::ImageFactory do
 
   before do
     (Collection.all + Image.all).map(&:id).each do |id|
-      ActiveFedora::Base.find(id).destroy(eradicate: true) if ActiveFedora::Base.exists?(id)
+      if ActiveFedora::Base.exists?(id)
+        ActiveFedora::Base.find(id).destroy(eradicate: true)
+      end
     end
   end
 
@@ -43,7 +56,9 @@ describe Importer::Factory::ImageFactory do
         VCR.use_cassette("image_factory-1") do
           obj = factory.run
         end
-        expect(obj.file_sets.first.admin_policy_id).to eq AdminPolicy::PUBLIC_POLICY_ID
+        expect(obj.file_sets.first.admin_policy_id).to(
+          eq AdminPolicy::PUBLIC_POLICY_ID
+        )
       end
     end
 
@@ -57,7 +72,10 @@ describe Importer::Factory::ImageFactory do
           VCR.use_cassette("image_factory-2") do
             obj = factory.run
           end
-          expect(obj.file_sets.first.admin_policy_id).to eq AdminPolicy::PUBLIC_POLICY_ID
+
+          expect(obj.file_sets.first.admin_policy_id).to(
+            eq AdminPolicy::PUBLIC_POLICY_ID
+          )
         end.not_to(change { Image.count })
       end
     end
@@ -102,12 +120,16 @@ describe Importer::Factory::ImageFactory do
     end
 
     context 'when collection doesn\'t exist yet' do
-      let(:collection_id) { collection_attrs[:accession_number].first.delete(" ") }
+      let(:collection_id) do
+        collection_attrs[:accession_number].first.delete(" ")
+      end
 
       let(:ezid_ids) { [collection_id, attributes[:accession_number].first] }
 
       before do
-        Collection.where(accession_number: collection_attrs[:accession_number]).each { |c| c.destroy(eradicate: true) }
+        Collection.where(
+          accession_number: collection_attrs[:accession_number]
+        ).each { |c| c.destroy(eradicate: true) }
       end
 
       it "creates collection and adds image to it" do
@@ -120,7 +142,10 @@ describe Importer::Factory::ImageFactory do
     end
 
     context "without collection attributes" do
-      let(:factory) { described_class.new(attributes.except(:collection), files) }
+      let(:factory) do
+        described_class.new(attributes.except(:collection), files)
+      end
+
       before { Collection.destroy_all }
 
       it 'doesn\'t add the image to any collection' do

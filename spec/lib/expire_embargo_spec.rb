@@ -8,8 +8,13 @@ describe ExpireEmbargos do
     AdminPolicy.ensure_admin_policy_exists
   end
 
-  let(:visibility_during_embargo) { RDF::URI(ActiveFedora::Base.id_to_uri("authorities/policies/restricted")) }
-  let(:visibility_after_embargo) { RDF::URI(ActiveFedora::Base.id_to_uri("authorities/policies/public")) }
+  let(:visibility_during_embargo) do
+    RDF::URI(ActiveFedora::Base.id_to_uri("authorities/policies/restricted"))
+  end
+
+  let(:visibility_after_embargo) do
+    RDF::URI(ActiveFedora::Base.id_to_uri("authorities/policies/public"))
+  end
 
   let!(:work) do
     create(:etd,

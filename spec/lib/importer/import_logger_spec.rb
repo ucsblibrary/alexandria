@@ -7,7 +7,25 @@ describe Importer::ImportLogger do
   let(:dummy_class) { Class.new { include Importer::ImportLogger } }
   let(:logfile) { "#{fixture_path}/logs/import_logger_spec.log" }
   let(:logfile2) { "#{fixture_path}/logs/import_logger_spec2.log" }
-  let(:options) { { data: ["../data/objects-mcpeak/"], format: "csv", metadata: ["../data/mss292(McPeak)-objects-URIed.csv"], number: nil, skip: 0, verbose: false, logfile: logfile2, loglevel: "WARN", help: false, format_given: true, metadata_given: true, data_given: true, logfile_given: true, loglevel_given: true } }
+
+  let(:options) do
+    {
+      data: ["../data/objects-mcpeak/"],
+      data_given: true,
+      format: "csv",
+      format_given: true,
+      help: false,
+      logfile: logfile2,
+      logfile_given: true,
+      loglevel: "WARN",
+      loglevel_given: true,
+      metadata: ["../data/mss292(McPeak)-objects-URIed.csv"],
+      metadata_given: true,
+      number: nil,
+      skip: 0,
+      verbose: false,
+    }
+  end
 
   it "has a logger" do
     expect(dummy_class.logger).to be_instance_of(Logger)

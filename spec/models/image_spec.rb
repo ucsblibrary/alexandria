@@ -25,48 +25,62 @@ describe Image do
   describe "nested attributes" do
     context "for creator" do
       it "should ignore empty ids" do
-        subject.creator_attributes = { "0" => { "id" => "http://id.loc.gov/authorities/names/n87141298" },
-                                       "1" => { "id" => "" }, }
+        subject.creator_attributes = {
+          "0" => { "id" => "http://id.loc.gov/authorities/names/n87141298" },
+          "1" => { "id" => "" },
+        }
         expect(subject.creator.size).to eq 1
       end
     end
 
     context "for landscape_architect" do
       it "should ignore empty ids" do
-        subject.landscape_architect_attributes = { "0" => { "id" => "http://id.loc.gov/authorities/names/n87141298" },
-                                                   "1" => { "id" => "" }, }
+        subject.landscape_architect_attributes = {
+          "0" => { "id" => "http://id.loc.gov/authorities/names/n87141298" },
+          "1" => { "id" => "" },
+        }
         expect(subject.landscape_architect.size).to eq 1
       end
     end
 
     context "for performer" do
       it "should ignore empty ids" do
-        subject.performer_attributes = { "0" => { "id" => "http://id.loc.gov/authorities/names/n87141298" },
-                                         "1" => { "id" => "" }, }
+        subject.performer_attributes = {
+          "0" => { "id" => "http://id.loc.gov/authorities/names/n87141298" },
+          "1" => { "id" => "" },
+        }
         expect(subject.performer.size).to eq 1
       end
     end
 
     context "for location" do
       it "should ignore empty ids" do
-        subject.location_attributes = { "0" => { "id" => "http://id.loc.gov/authorities/names/n87141298" },
-                                        "1" => { "id" => "" }, }
+        subject.location_attributes = {
+          "0" => { "id" => "http://id.loc.gov/authorities/names/n87141298" },
+          "1" => { "id" => "" },
+        }
         expect(subject.location.size).to eq 1
       end
     end
 
     context "for lc_subject" do
       it "should ignore empty ids" do
-        subject.lc_subject_attributes = { "0" => { "id" => "http://id.loc.gov/authorities/subjects/sh85111007" },
-                                          "1" => { "id" => "" }, }
+        subject.lc_subject_attributes = {
+          "0" => {
+            "id" => "http://id.loc.gov/authorities/subjects/sh85111007",
+          },
+          "1" => { "id" => "" },
+        }
         expect(subject.lc_subject.size).to eq 1
       end
     end
 
     context "for form_of_work" do
       it "should ignore empty ids" do
-        subject.form_of_work_attributes = { "0" => { "id" => "http://vocab.getty.edu/aat/300026816" },
-                                            "1" => { "id" => "" }, }
+        subject.form_of_work_attributes = {
+          "0" => { "id" => "http://vocab.getty.edu/aat/300026816" },
+          "1" => { "id" => "" },
+        }
         expect(subject.form_of_work.size).to eq 1
       end
     end
@@ -96,7 +110,10 @@ describe Image do
       let(:notes) { [title_note, caption_note, cite_note] }
 
       let(:title_note) { { value: ["Title from item."] } }
-      let(:caption_note) { { value: ["Postcard caption: 25. Light-House Tower Sta. Barbara Earth Quake.\n6-29-25."] } }
+      let(:caption_note) do
+        { value: ["Postcard caption: 25. Light-House Tower Sta. Barbara Earth Quake.\n6-29-25."] }
+      end
+
       let(:cite_note) do
         { note_type: ["preferred citation"],
           value: ["[Identification of Item], Santa Barbara picture\npostcards collection. SBHC Mss 36. Department of Special Collections, UC Santa Barbara\nLibrary, University of California, Santa Barbara."], }
@@ -142,12 +159,16 @@ describe Image do
   describe "#to_solr" do
     let(:image) { Image.new }
     it "calls the ImageIndexer" do
-      expect_any_instance_of(ImageIndexer).to receive(:generate_solr_document).and_return({})
+      expect_any_instance_of(ImageIndexer).to(
+        receive(:generate_solr_document).and_return({})
+      )
       image.to_solr
     end
 
     describe "human_readable_type" do
-      subject { image.to_solr[Solrizer.solr_name("human_readable_type", :facetable)] }
+      subject do
+        image.to_solr[Solrizer.solr_name("human_readable_type", :facetable)]
+      end
       it { is_expected.to eq "Image" }
     end
   end
@@ -195,7 +216,9 @@ describe Image do
       let(:image) { Image.new(lc_subject: ["foo"]) }
       it "isn't valid" do
         expect(image).not_to be_valid
-        expect(image.errors[:base]).to eq ["`foo' for `lc_subject' property is expected to be a URI, but it is a String"]
+        expect(image.errors[:base]).to(
+          eq ["`foo' for `lc_subject' property is expected to be a URI, but it is a String"]
+        )
       end
     end
 
@@ -220,7 +243,9 @@ describe Image do
 
       it "isn't valid" do
         expect(image).not_to be_valid
-        expect(image.errors[:base]).to eq ["`foo' for `work_type' property is expected to be a URI, but it is a String"]
+        expect(image.errors[:base]).to(
+          eq ["`foo' for `work_type' property is expected to be a URI, but it is a String"]
+        )
       end
     end
   end
@@ -233,7 +258,15 @@ describe Image do
   # These are fields introduced for scanned maps. They would be better placed
   # in the map model tests, once those exist.
   context "spatial fields" do
-    let(:dcmi_encoded_string) { "northlimit=43.039; eastlimit=-69.856; southlimit=42.943; westlimit=-71.032; units=degrees; projection=EPSG:4326" }
+    let(:dcmi_encoded_string) do
+      "northlimit=43.039; "\
+      "eastlimit=-69.856; "\
+      "southlimit=42.943; "\
+      "westlimit=-71.032; "\
+      "units=degrees; "\
+      "projection=EPSG:4326"
+    end
+
     let(:scale) { ["1:30000"] }
     it "has a scale" do
       subject.scale = scale

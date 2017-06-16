@@ -26,9 +26,6 @@ Metrics/ClassLength:
   Exclude:
     - 'lib/vocabularies/*'
 
-Metrics/LineLength:
-  Enabled: false
-
 Metrics/ModuleLength:
   Enabled: false
 

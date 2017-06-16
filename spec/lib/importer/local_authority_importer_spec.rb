@@ -5,7 +5,9 @@ require "importer"
 
 describe Importer::LocalAuthorityImporter do
   let(:importer) { described_class.new(input_file) }
-  let(:input_file) { File.join(fixture_path, "local_authority_csv", "authorities.csv") }
+  let(:input_file) do
+    File.join(fixture_path, "local_authority_csv", "authorities.csv")
+  end
 
   it "takes a CSV input file" do
     expect(importer.input_file).to eq input_file
@@ -48,7 +50,10 @@ describe Importer::LocalAuthorityImporter do
   end  # run (create new records)
 
   describe "#run (update existing record)" do
-    let(:input_file) { File.join(fixture_path, "local_authority_csv", "justin.csv") }
+    let(:input_file) do
+      File.join(fixture_path, "local_authority_csv", "justin.csv")
+    end
+
     let(:justin) { { id: "person-1", name: "Justin" } }
     let(:old_name) { "Old name should get replaced" }
 
@@ -79,7 +84,9 @@ describe Importer::LocalAuthorityImporter do
       let(:attrs) { { type: "" } }
 
       it "raises an error" do
-        expect { importer.model(attrs) }.to raise_error '"type" column cannot be blank'
+        expect { importer.model(attrs) }.to(
+          raise_error '"type" column cannot be blank'
+        )
       end
     end
   end

@@ -6,9 +6,15 @@ require "importer"
 
 describe AuthService do
   before do
-    allow_any_instance_of(Riiif::ImagesController).to receive(:current_user).and_return(user)
-    allow_any_instance_of(Riiif::ImagesController).to receive(:params).and_return(params)
-    allow_any_instance_of(Riiif::ImagesController).to receive(:on_campus?).and_return(true)
+    allow_any_instance_of(Riiif::ImagesController).to(
+      receive(:current_user).and_return(user)
+    )
+    allow_any_instance_of(Riiif::ImagesController).to(
+      receive(:params).and_return(params)
+    )
+    allow_any_instance_of(Riiif::ImagesController).to(
+      receive(:on_campus?).and_return(true)
+    )
   end
 
   subject { AuthService.new(Riiif::ImagesController.new).can?(:show, fs) }

@@ -12,7 +12,9 @@ describe Importer::Factory::ObjectFactory do
       subject { importer.find }
 
       let(:a_num) { ["acc num 1", "acc num 2"] }
-      let(:image_attrs) { { title: ["Something Title"], accession_number: a_num } }
+      let(:image_attrs) do
+        { title: ["Something Title"], accession_number: a_num }
+      end
       let!(:image) { create(:image, image_attrs) }
 
       context "with an id" do
@@ -25,7 +27,9 @@ describe Importer::Factory::ObjectFactory do
       end
 
       context "with accession_number" do
-        let(:attributes) { { accession_number: [image.accession_number.first] } }
+        let(:attributes) do
+          { accession_number: [image.accession_number.first] }
+        end
 
         it "finds the exisiting object" do
           expect(subject.class).to eq Image
@@ -37,7 +41,9 @@ describe Importer::Factory::ObjectFactory do
         let(:attributes) { { accession_number: [] } }
 
         it "raises an error" do
-          expect { subject }.to raise_error "Missing identifier: Unable to search for existing object without either fedora ID or accession_number"
+          expect { subject }.to(
+            raise_error "Missing identifier: Unable to search for existing object without either fedora ID or accession_number"
+          )
         end
       end
     end
@@ -127,9 +133,16 @@ describe Importer::Factory::ObjectFactory do
 
       it "parses the notes attributes" do
         expect(subject[:note]).to be_nil
-        expect(subject[:notes_attributes][0]).to eq(note_type: nil, value: "an untyped note")
-        expect(subject[:notes_attributes][1]).to eq(note_type: "type 1", value: "note 1")
-        expect(subject[:notes_attributes][2]).to eq(note_type: "type 2", value: "note 2")
+
+        expect(subject[:notes_attributes][0]).to(
+          eq(note_type: nil, value: "an untyped note")
+        )
+        expect(subject[:notes_attributes][1]).to(
+          eq(note_type: "type 1", value: "note 1")
+        )
+        expect(subject[:notes_attributes][2]).to(
+          eq(note_type: "type 2", value: "note 2")
+        )
       end
     end
   end

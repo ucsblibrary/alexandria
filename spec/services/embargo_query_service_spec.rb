@@ -18,17 +18,30 @@ describe EmbargoQueryService do
     end
   end
 
-  let!(:work_with_embargo_in_effect) { create(:etd, embargo_release_date: future_date.to_s) }
+  let!(:work_with_embargo_in_effect) do
+    create(:etd, embargo_release_date: future_date.to_s)
+  end
+
   let!(:work_without_embargo) { create(:etd) }
 
-  let!(:file_with_embargo_in_effect) { create(:file_set, embargo_release_date: future_date.to_s) }
-  let!(:file_with_expired_embargo) { create(:file_set, embargo_release_date: past_date.to_s) }
+  let!(:file_with_embargo_in_effect) do
+    create(:file_set, embargo_release_date: future_date.to_s)
+  end
+
+  let!(:file_with_expired_embargo) do
+    create(:file_set, embargo_release_date: past_date.to_s)
+  end
 
   describe "#assets_with_expired_embargoes" do
     it "returns an array of assets with expired embargoes" do
       returned_pids = subject.assets_with_expired_embargoes.map(&:id)
-      expect(returned_pids).to include work_with_expired_embargo1.id, work_with_expired_embargo2.id
-      expect(returned_pids).to_not include work_with_embargo_in_effect.id, work_without_embargo.id
+
+      expect(returned_pids).to(
+        include(work_with_expired_embargo1.id, work_with_expired_embargo2.id)
+      )
+      expect(returned_pids).to_not(
+        include(work_with_embargo_in_effect.id, work_without_embargo.id)
+      )
     end
   end
 

@@ -6,9 +6,14 @@ require "importer"
 describe Importer::Factory::MapSetFactory do
   before(:all) do
     (Collection.all + MapSet.all).map(&:id).each do |id|
-      ActiveFedora::Base.find(id).destroy(eradicate: true) if ActiveFedora::Base.exists?(id)
+      if ActiveFedora::Base.exists?(id)
+        ActiveFedora::Base.find(id).destroy(eradicate: true)
+      end
     end
-    @collection_attrs = { accession_number: ["MAP 01 02 03"], title: ["Maps of the Moon"] }
+    @collection_attrs = {
+      accession_number: ["MAP 01 02 03"],
+      title: ["Maps of the Moon"],
+    }
     # A MapSet can contain many IndexMaps
     @index_map_id = %w[fk4057td1k fkx057td1x]
     @map_attrs =
@@ -17,15 +22,29 @@ describe Importer::Factory::MapSetFactory do
         admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID,
         collection: @collection_attrs,
         index_map_id: @index_map_id,
-        issued_attributes: [{ start: ["1925"], finish: [], label: [], start_qualifier: [], finish_qualifier: [] }],
+        issued_attributes: [
+          {
+            start: ["1925"],
+            finish: [],
+            label: [],
+            start_qualifier: [],
+            finish_qualifier: [],
+          },
+        ],
         notes_attributes: [{ value: "Title from item." }],
         title: ["Map Set of the Moon"],
       }
+
     VCR.use_cassette("collection_factory") do
-      @collection = Importer::Factory::CollectionFactory.new(@collection_attrs, []).run
+      @collection = Importer::Factory::CollectionFactory.new(
+        @collection_attrs, []
+      ).run
     end
+
     VCR.use_cassette("map_set_factory1") do
-      @map_set = Importer::Factory::MapSetFactory.new(@map_attrs).run
+      @map_set = Importer::Factory::MapSetFactory.new(
+        @map_attrs
+      ).run
     end
   end
   context "making a MapSet" do

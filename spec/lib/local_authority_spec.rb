@@ -65,19 +65,28 @@ describe LocalAuthority do
       before { Agent.destroy_all }
       let(:regents_uri) { "http://id.loc.gov/authorities/names/n85088322" }
       let(:regents_string) { "Regents of the Univ." }
-      let(:attributes) { { rights_holder: [RDF::URI.new(regents_uri), regents_string] } }
+
+      let(:attributes) do
+        { rights_holder: [RDF::URI.new(regents_uri), regents_string] }
+      end
 
       context "when local rights holder doesn't exist" do
         it "creates a rights holder" do
           expect(Agent.count).to eq 0
           rh = nil
           expect do
-            rh = LocalAuthority.find_or_create_rdf_attribute(:rights_holder, attributes)
+            rh = LocalAuthority.find_or_create_rdf_attribute(
+              :rights_holder, attributes
+            )
           end.to change { Agent.count }.by(1)
+
           expect(rh.fetch(:rights_holder).map(&:class).uniq).to eq [RDF::URI]
           local_rights_holder = Agent.first
           expect(local_rights_holder.foaf_name).to eq regents_string
-          expect(rh.fetch(:rights_holder)).to eq [regents_uri, local_rights_holder.public_uri]
+
+          expect(rh.fetch(:rights_holder)).to(
+            eq [regents_uri, local_rights_holder.public_uri]
+          )
         end
       end
 
@@ -87,10 +96,14 @@ describe LocalAuthority do
         it "finds the existing rights holder" do
           rh = nil
           expect do
-            rh = LocalAuthority.find_or_create_rdf_attribute(:rights_holder, attributes)
+            rh = LocalAuthority.find_or_create_rdf_attribute(
+              :rights_holder, attributes
+            )
           end.to change { Agent.exact_model.count }.by(0)
 
-          expect(rh.fetch(:rights_holder).map(&:to_s)).to eq [regents_uri, existing_rh.public_uri]
+          expect(rh.fetch(:rights_holder).map(&:to_s)).to(
+            eq [regents_uri, existing_rh.public_uri]
+          )
         end
       end
 
@@ -100,9 +113,14 @@ describe LocalAuthority do
 
         it "only finds exact name matches" do
           expect do
-            LocalAuthority.find_or_create_rdf_attribute(:rights_holder, attributes)
+            LocalAuthority.find_or_create_rdf_attribute(
+              :rights_holder, attributes
+            )
           end.to change { Agent.count }.by(1)
-          expect(Agent.all.map(&:foaf_name).sort).to eq ["Bilbo Baggins", "Frodo Baggins"]
+
+          expect(Agent.all.map(&:foaf_name).sort).to(
+            eq ["Bilbo Baggins", "Frodo Baggins"]
+          )
         end
       end
 
@@ -112,7 +130,9 @@ describe LocalAuthority do
 
         it "only matches exact model" do
           expect do
-            LocalAuthority.find_or_create_rdf_attribute(:rights_holder, attributes)
+            LocalAuthority.find_or_create_rdf_attribute(
+              :rights_holder, attributes
+            )
           end.to change { Agent.count }.by(1)
         end
       end
@@ -126,7 +146,9 @@ describe LocalAuthority do
         it "creates the local rights holder" do
           rh = nil
           expect do
-            rh = LocalAuthority.find_or_create_rdf_attribute(:rights_holder, attributes)
+            rh = LocalAuthority.find_or_create_rdf_attribute(
+              :rights_holder, attributes
+            )
           end.to change { Person.count }.by(1)
           expect(rh.fetch(:rights_holder).map(&:class)).to eq [RDF::URI]
         end
@@ -138,10 +160,14 @@ describe LocalAuthority do
       let(:afmc_uri) { RDF::URI.new(afmc) }
 
       let(:attributes) do
-        { lc_subject: [{ name: "Bilbo Baggins", type: "Person" },
-                       afmc_uri,
-                       { name: "A Local Subj", type: "Topic" },
-                       { name: "Loyal Order of Moose", type: "organization" },], }
+        {
+          lc_subject: [
+            { name: "Bilbo Baggins", type: "Person" },
+            afmc_uri,
+            { name: "A Local Subj", type: "Topic" },
+            { name: "Loyal Order of Moose", type: "organization" },
+          ],
+        }
       end
 
       context "local authorities don't exist yet" do
@@ -154,7 +180,9 @@ describe LocalAuthority do
         it "creates the missing local subjects" do
           attrs = nil
           expect do
-            attrs = LocalAuthority.find_or_create_rdf_attribute(:lc_subject, attributes)
+            attrs = LocalAuthority.find_or_create_rdf_attribute(
+              :lc_subject, attributes
+            )
           end.to(
             change { Person.count }.by(1).and(
               change { Topic.count }.by(1).and(
@@ -193,7 +221,9 @@ describe LocalAuthority do
         it "creates a new topic" do
           attrs = nil
           expect do
-            attrs = LocalAuthority.find_or_create_rdf_attribute(:location, attributes)
+            attrs = LocalAuthority.find_or_create_rdf_attribute(
+              :location, attributes
+            )
           end.to change { Topic.count }.by 1
 
           top = Topic.first
@@ -208,7 +238,9 @@ describe LocalAuthority do
         it "finds the existing topic" do
           attrs = nil
           expect do
-            attrs = LocalAuthority.find_or_create_rdf_attribute(:location, attributes)
+            attrs = LocalAuthority.find_or_create_rdf_attribute(
+              :location, attributes
+            )
           end.to change { Topic.count }.by 0
 
           expect(attrs[:location].map(&:to_s)).to eq [topic.public_uri]
@@ -237,7 +269,9 @@ describe LocalAuthority do
         contributors = nil
 
         expect do
-          contributors = LocalAuthority.find_or_create_contributors(fields, attributes)
+          contributors = LocalAuthority.find_or_create_contributors(
+            fields, attributes
+          )
         end.to change { Person.count }.by(1)
 
         expect(contributors.keys.sort).to eq [:contributor, :creator]
@@ -258,7 +292,9 @@ describe LocalAuthority do
       it "returns a hash of the contributors" do
         contributors = nil
         expect do
-          contributors = LocalAuthority.find_or_create_contributors(fields, attributes)
+          contributors = LocalAuthority.find_or_create_contributors(
+            fields, attributes
+          )
         end.to change { Person.count }.by(0)
 
         expect(contributors.keys.sort).to eq [:contributor, :creator]
@@ -273,13 +309,18 @@ describe LocalAuthority do
 
     context "when similar name" do
       let!(:frodo) { Person.create(foaf_name: "Frodo Baggins") }
-      let(:attributes) { { creator: [{ name: "Bilbo Baggins", type: "personal" }] } }
+      let(:attributes) do
+        { creator: [{ name: "Bilbo Baggins", type: "personal" }] }
+      end
 
       it "only finds exact name matches" do
         expect do
           LocalAuthority.find_or_create_contributors([:creator], attributes)
         end.to change { Person.count }.by(1)
-        expect(Person.all.map(&:foaf_name).sort).to eq ["Bilbo Baggins", "Frodo Baggins"]
+
+        expect(Person.all.map(&:foaf_name).sort).to(
+          eq ["Bilbo Baggins", "Frodo Baggins"]
+        )
       end
     end
 

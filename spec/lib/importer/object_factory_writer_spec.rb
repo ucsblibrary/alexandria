@@ -21,8 +21,15 @@ describe ObjectFactoryWriter do
       {
         "author" => ["Valerie"],
         "created_start" => ["2013"],
-        "degree_grantor" => ["University of California, Santa Barbara Mathematics"],
-        "description" => ['Marine mussels use a mixture of proteins...\n\nThe performance of strong adhesion...'],
+        "degree_grantor" => [
+          "University of California, Santa Barbara Mathematics",
+        ],
+        # Literal newline characters since that's how we store
+        # paragraphs, in order to preserve order despite RDF
+        "description" => [
+          "Marine mussels use a mixture of proteins...\n\n"\
+          "The performance of strong adhesion...",
+        ],
         "dissertation_degree" => [],
         "dissertation_institution" => [],
         "dissertation_year" => [],
@@ -38,7 +45,9 @@ describe ObjectFactoryWriter do
         "relators" => ["degree supervisor.", "adventurer", "Degree suPERvisor"],
         "system_number" => [],
         "title" => ["How to be awesome"],
-        "work_type" => [RDF::URI("http://id.loc.gov/vocabulary/resourceTypes/txt")],
+        "work_type" => [
+          RDF::URI("http://id.loc.gov/vocabulary/resourceTypes/txt"),
+        ],
       }
     end
 
@@ -49,9 +58,16 @@ describe ObjectFactoryWriter do
 
       etd = ETD.first
       expect(etd.author).to eq ["Valerie"]
-      expect(etd.degree_grantor).to eq ["University of California, Santa Barbara Mathematics"]
+      expect(etd.degree_grantor).to(
+        eq(["University of California, Santa Barbara Mathematics"])
+      )
       expect(etd.degree_supervisor).to contain_exactly("Paul", "Hector")
-      expect(etd.description).to eq ['Marine mussels use a mixture of proteins...\n\nThe performance of strong adhesion...']
+      expect(etd.description).to(
+        eq([
+             "Marine mussels use a mixture of proteins...\n\n"\
+             "The performance of strong adhesion...",
+           ])
+      )
       expect(etd.extent).to eq ["1 online resource (147 pages)"]
       expect(etd.fulltext_link).to eq []
       expect(etd.isbn).to eq ["1234"]
@@ -60,7 +76,9 @@ describe ObjectFactoryWriter do
       expect(etd.place_of_publication).to eq ["[Santa Barbara, Calif.]"]
       expect(etd.publisher).to eq ["University of California, Santa Barbara"]
       expect(etd.title).to eq ["How to be awesome"]
-      expect(etd.work_type.first.class).to eq ControlledVocabularies::ResourceType
+      expect(etd.work_type.first.class).to(
+        eq ControlledVocabularies::ResourceType
+      )
     end
   end
 
@@ -72,16 +90,22 @@ describe ObjectFactoryWriter do
 
     context "with ETDs" do
       let(:settings) do
-        { "etd" => { xml: "/var/folders/81/3r2q3gb16x710qjpdsdhc3c40000gn/T/d20160811-32702-18ce4a4/etdadmin_upload_114151.zip/Scholl_ucsb_0035D_10935_DATA.xml",
-                     pdf: "/var/folders/81/3r2q3gb16x710qjpdsdhc3c40000gn/T/d20160811-32702-18ce4a4/etdadmin_upload_114151.zip/Scholl_ucsb_0035D_10935.pdf",
-                     supplements: [], }, }
+        {
+          "etd" => {
+            xml: "/var/folders/81/3r2q3gb16x710qjpdsdhc3c40000gn/T/d20160811-32702-18ce4a4/etdadmin_upload_114151.zip/Scholl_ucsb_0035D_10935_DATA.xml",
+            pdf: "/var/folders/81/3r2q3gb16x710qjpdsdhc3c40000gn/T/d20160811-32702-18ce4a4/etdadmin_upload_114151.zip/Scholl_ucsb_0035D_10935.pdf",
+            supplements: [],
+          },
+        }
       end
 
       it "returns the correct hash" do
         expect(subject).to(
-          eq("xml" => "/var/folders/81/3r2q3gb16x710qjpdsdhc3c40000gn/T/d20160811-32702-18ce4a4/etdadmin_upload_114151.zip/Scholl_ucsb_0035D_10935_DATA.xml",
-             "pdf" => "/var/folders/81/3r2q3gb16x710qjpdsdhc3c40000gn/T/d20160811-32702-18ce4a4/etdadmin_upload_114151.zip/Scholl_ucsb_0035D_10935.pdf",
-             "supplements" => [])
+          eq(
+            "xml" => "/var/folders/81/3r2q3gb16x710qjpdsdhc3c40000gn/T/d20160811-32702-18ce4a4/etdadmin_upload_114151.zip/Scholl_ucsb_0035D_10935_DATA.xml",
+            "pdf" => "/var/folders/81/3r2q3gb16x710qjpdsdhc3c40000gn/T/d20160811-32702-18ce4a4/etdadmin_upload_114151.zip/Scholl_ucsb_0035D_10935.pdf",
+            "supplements" => []
+          )
         )
       end
     end
@@ -91,8 +115,10 @@ describe ObjectFactoryWriter do
 
       it "contains the correct files" do
         expect(subject.count).to eq 1 # It's an array of arrays
-        expect(subject.first).to include(File.join(files_dirs, "cusb-cyl0001a.wav"),
-                                         File.join(files_dirs, "cusb-cyl0001b.wav"))
+        expect(subject.first).to(
+          include(File.join(files_dirs, "cusb-cyl0001a.wav"),
+                  File.join(files_dirs, "cusb-cyl0001b.wav"))
+        )
       end
     end
 
@@ -107,11 +133,15 @@ describe ObjectFactoryWriter do
       it "contains the correct files, grouped by cylinder" do
         expect(subject.count).to eq 2
 
-        expect(subject[0]).to include(File.join(files_dirs.last, "cusb-cyl12783a.wav"),
-                                      File.join(files_dirs.last, "cusb-cyl12783b.wav"))
+        expect(subject[0]).to(
+          include(File.join(files_dirs.last, "cusb-cyl12783a.wav"),
+                  File.join(files_dirs.last, "cusb-cyl12783b.wav"))
+        )
 
-        expect(subject[1]).to include(File.join(files_dirs.first, "cusb-cyl0001a.wav"),
-                                      File.join(files_dirs.first, "cusb-cyl0001b.wav"))
+        expect(subject[1]).to(
+          include(File.join(files_dirs.first, "cusb-cyl0001a.wav"),
+                  File.join(files_dirs.first, "cusb-cyl0001b.wav"))
+        )
       end
     end
 

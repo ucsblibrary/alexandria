@@ -10,13 +10,21 @@ describe EmbargoService do
 
     context "when there is no embargo" do
       it "creates embargo" do
-        EmbargoService.create_or_update_embargo(work,
-                                                admin_policy_id: "authorities/policies/restricted",
-                                                embargo_release_date: "2099-07-29T00:00:00+00:00",
-                                                visibility_after_embargo_id: "authorities/policies/ucsb")
+        EmbargoService.create_or_update_embargo(
+          work,
+          admin_policy_id: "authorities/policies/restricted",
+          embargo_release_date: "2099-07-29T00:00:00+00:00",
+          visibility_after_embargo_id: "authorities/policies/ucsb"
+        )
 
-        expect(ActiveFedora::Base.uri_to_id(work.visibility_during_embargo.id)).to eq "authorities/policies/restricted"
-        expect(ActiveFedora::Base.uri_to_id(work.visibility_after_embargo.id)).to eq "authorities/policies/ucsb"
+        expect(
+          ActiveFedora::Base.uri_to_id(work.visibility_during_embargo.id)
+        ).to eq "authorities/policies/restricted"
+
+        expect(
+          ActiveFedora::Base.uri_to_id(work.visibility_after_embargo.id)
+        ).to eq "authorities/policies/ucsb"
+
         expect(work.embargo_release_date).to eq "2099-07-29T00:00:00+00:00"
       end
     end
@@ -29,15 +37,32 @@ describe EmbargoService do
                embargo_release_date: 10.days.from_now)
       end
 
-      let(:visibility_during_embargo) { RDF::URI(ActiveFedora::Base.id_to_uri("authorities/policies/restricted")) }
-      let(:visibility_after_embargo) { RDF::URI(ActiveFedora::Base.id_to_uri("authorities/policies/public")) }
+      let(:visibility_during_embargo) do
+        RDF::URI(
+          ActiveFedora::Base.id_to_uri("authorities/policies/restricted")
+        )
+      end
+
+      let(:visibility_after_embargo) do
+        RDF::URI(
+          ActiveFedora::Base.id_to_uri("authorities/policies/public")
+        )
+      end
 
       it "updates values" do
-        EmbargoService.create_or_update_embargo(work,
-                                                embargo_release_date: "2099-07-29T00:00:00+00:00",
-                                                visibility_after_embargo_id: "authorities/policies/ucsb")
-        expect(ActiveFedora::Base.uri_to_id(work.visibility_during_embargo.id)).to eq "authorities/policies/restricted"
-        expect(ActiveFedora::Base.uri_to_id(work.visibility_after_embargo.id)).to eq "authorities/policies/ucsb"
+        EmbargoService.create_or_update_embargo(
+          work,
+          embargo_release_date: "2099-07-29T00:00:00+00:00",
+          visibility_after_embargo_id: "authorities/policies/ucsb"
+        )
+        expect(
+          ActiveFedora::Base.uri_to_id(work.visibility_during_embargo.id)
+        ).to eq "authorities/policies/restricted"
+
+        expect(
+          ActiveFedora::Base.uri_to_id(work.visibility_after_embargo.id)
+        ).to eq "authorities/policies/ucsb"
+
         expect(work.embargo_release_date).to eq "2099-07-29T00:00:00+00:00"
       end
     end
@@ -51,8 +76,17 @@ describe EmbargoService do
              embargo_release_date: 10.days.from_now)
     end
 
-    let(:visibility_during_embargo) { RDF::URI(ActiveFedora::Base.id_to_uri("authorities/policies/restricted")) }
-    let(:visibility_after_embargo) { RDF::URI(ActiveFedora::Base.id_to_uri("authorities/policies/public")) }
+    let(:visibility_during_embargo) do
+      RDF::URI(
+        ActiveFedora::Base.id_to_uri("authorities/policies/restricted")
+      )
+    end
+
+    let(:visibility_after_embargo) do
+      RDF::URI(
+        ActiveFedora::Base.id_to_uri("authorities/policies/public")
+      )
+    end
 
     it "nullifies the embargo" do
       EmbargoService.remove_embargo(work)
@@ -61,8 +95,17 @@ describe EmbargoService do
   end
 
   describe ".deactivate_embargo" do
-    let(:vis_during_embargo) { RDF::URI(ActiveFedora::Base.id_to_uri(AdminPolicy::RESTRICTED_POLICY_ID)) }
-    let(:vis_after_embargo) { RDF::URI(ActiveFedora::Base.id_to_uri(AdminPolicy::PUBLIC_POLICY_ID)) }
+    let(:vis_during_embargo) do
+      RDF::URI(
+        ActiveFedora::Base.id_to_uri(AdminPolicy::RESTRICTED_POLICY_ID)
+      )
+    end
+
+    let(:vis_after_embargo) do
+      RDF::URI(
+        ActiveFedora::Base.id_to_uri(AdminPolicy::PUBLIC_POLICY_ID)
+      )
+    end
 
     let!(:work) do
       create(:etd,

@@ -10,8 +10,23 @@ describe MergeRecordsService do
     AdminPolicy.ensure_admin_policy_exists
   end
 
-  let(:image1) { create(:image, id: "image1", creator: [old_name.uri], lc_subject: [old_name.uri]) }
-  let(:image2) { create(:image, id: "image2", photographer: [old_name.uri], lc_subject: [old_name.uri, new_name.uri, other_name.uri]) }
+  let(:image1) do
+    create(
+      :image,
+      id: "image1",
+      creator: [old_name.uri],
+      lc_subject: [old_name.uri]
+    )
+  end
+
+  let(:image2) do
+    create(
+      :image,
+      id: "image2",
+      photographer: [old_name.uri],
+      lc_subject: [old_name.uri, new_name.uri, other_name.uri]
+    )
+  end
 
   let(:collection) { create(:collection, collector: [old_name, other_name]) }
 
@@ -33,7 +48,12 @@ describe MergeRecordsService do
       it "raises an error" do
         expect do
           described_class.new(old_name, image1)
-        end.to raise_error(IncompatibleMergeError, "Error: Cannot merge records that are not local authority records.")
+        end.to(
+          raise_error(
+            IncompatibleMergeError,
+            "Error: Cannot merge records that are not local authority records."
+          )
+        )
       end
     end
 
@@ -43,23 +63,56 @@ describe MergeRecordsService do
       it "raises an error" do
         expect do
           described_class.new(old_name, topic)
-        end.to raise_error(IncompatibleMergeError, "Error: Cannot merge records that are not the same type of local authority.")
+        end.to(
+          raise_error(
+            IncompatibleMergeError,
+            "Error: Cannot merge records that are not the same type of local authority."
+          )
+        )
       end
     end
 
     context "attempt to merge record with itself" do
       it "raises an error" do
-        expect { described_class.new(old_name, old_name) }.to raise_error(IncompatibleMergeError, "Error: Cannot merge a record with itself.")
+        expect do
+          described_class.new(old_name, old_name)
+        end.to(
+          raise_error(
+            IncompatibleMergeError,
+            "Error: Cannot merge a record with itself."
+          )
+        )
       end
     end
   end
 
   describe "#run" do
     subject { described_class.new(old_name, new_name) }
-    let!(:image1) { create(:image, id: "image1", creator: [old_name.uri], lc_subject: [old_name.uri]) }
-    let!(:image2) { create(:image, id: "image2", photographer: [old_name.uri], lc_subject: [old_name.uri, new_name.uri, other_name.uri]) }
 
-    let!(:collection) { create(:collection, collector: [old_name.uri, other_name.uri]) }
+    let!(:image1) do
+      create(
+        :image,
+        id: "image1",
+        creator: [old_name.uri],
+        lc_subject: [old_name.uri]
+      )
+    end
+
+    let!(:image2) do
+      create(
+        :image,
+        id: "image2",
+        photographer: [old_name.uri],
+        lc_subject: [old_name.uri, new_name.uri, other_name.uri]
+      )
+    end
+
+    let!(:collection) do
+      create(
+        :collection,
+        collector: [old_name.uri, other_name.uri]
+      )
+    end
 
     before do
       old_name.reload
@@ -84,12 +137,21 @@ describe MergeRecordsService do
 
       # It keeps other values and doesn't make duplicate values
       expect(image2.lc_subject.count).to eq 2
-      expect(image2.lc_subject.map(&:class).uniq).to eq [ControlledVocabularies::Subject]
-      expect(image2.lc_subject.map(&:rdf_subject).sort).to eq [other_name.rdf_subject, new_name.rdf_subject].sort
+      expect(image2.lc_subject.map(&:class).uniq).to(
+        eq [ControlledVocabularies::Subject]
+      )
+
+      expect(image2.lc_subject.map(&:rdf_subject).sort).to(
+        eq [other_name.rdf_subject, new_name.rdf_subject].sort
+      )
 
       expect(collection.collector.count).to eq 2
-      expect(collection.collector.map(&:class).uniq).to eq [ControlledVocabularies::Creator]
-      expect(collection.collector.map(&:rdf_subject).sort).to eq [other_name.rdf_subject, new_name.rdf_subject].sort
+      expect(collection.collector.map(&:class).uniq).to(
+        eq [ControlledVocabularies::Creator]
+      )
+      expect(collection.collector.map(&:rdf_subject).sort).to(
+        eq [other_name.rdf_subject, new_name.rdf_subject].sort
+      )
 
       # It deletes the old name
       expect(ActiveFedora::Base.exists?(old_name.id)).to be false

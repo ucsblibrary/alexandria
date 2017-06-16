@@ -69,7 +69,12 @@ describe SolrDocument do
     describe "file_sets" do
       subject { etd_document.file_sets }
       context "with file sets" do
-        let(:file_set_document) { SolrDocument.new(id: "bf/74/27/75/bf742775-2a24-46dc-889e-cca03b27b5f3") }
+        let(:file_set_document) do
+          SolrDocument.new(
+            id: "bf/74/27/75/bf742775-2a24-46dc-889e-cca03b27b5f3"
+          )
+        end
+
         before do
           etd_document["member_ids_ssim"] = [file_set_document.id]
           ActiveFedora::SolrService.add(file_set_document)
@@ -94,7 +99,9 @@ describe SolrDocument do
     subject { document.to_param }
 
     context "for an object with an ARK" do
-      let(:document) { SolrDocument.new(id: id, identifier_ssm: ["ark:/99999/#{noid}"]) }
+      let(:document) do
+        SolrDocument.new(id: id, identifier_ssm: ["ark:/99999/#{noid}"])
+      end
 
       it "converts the ark to a noid" do
         expect(subject).to eq noid
@@ -182,10 +189,12 @@ describe SolrDocument do
 
   describe "#component_maps" do
     let(:map_set) do
-      SolrDocument.new(id: "mapset",
-                       component_maps_ssim: (0..1500).map { |i| "componentmap_#{i}" },
-                       index_maps_ssim: ["indexmap"],
-                       has_model_ssim: ["MapSet"])
+      SolrDocument.new(
+        id: "mapset",
+        component_maps_ssim: (0..1500).map { |i| "componentmap_#{i}" },
+        index_maps_ssim: ["indexmap"],
+        has_model_ssim: ["MapSet"]
+      )
     end
 
     let(:component_maps) do

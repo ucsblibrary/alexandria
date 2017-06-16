@@ -6,7 +6,10 @@ describe "A controlled vocabulary" do
   subject { ControlledVocabularies::WorkType.new(uri) }
 
   context "when the uri is in LCSH" do
-    let(:uri) { RDF::URI.new("http://id.loc.gov/authorities/subjects/sh2010014379") }
+    let(:uri) do
+      RDF::URI.new("http://id.loc.gov/authorities/subjects/sh2010014379")
+    end
+
     it { is_expected.to be_valid }
   end
 
@@ -21,7 +24,10 @@ describe "A controlled vocabulary" do
   end
 
   describe "#solrize" do
-    let(:uri) { RDF::URI.new("http://id.loc.gov/authorities/subjects/sh2010014379") }
+    let(:uri) do
+      RDF::URI.new("http://id.loc.gov/authorities/subjects/sh2010014379")
+    end
+
     it { is_expected.to respond_to :solrize }
   end
 end

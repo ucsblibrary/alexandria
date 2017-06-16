@@ -9,10 +9,16 @@ describe "collections/show.html.erb", type: :view do
          SessionsHelper
 
   let(:blacklight_config) { CatalogController.blacklight_config }
-  let(:blacklight_configuration_context) { Blacklight::Configuration::Context.new(controller) }
   let(:member_docs) { [image1, image2] }
-  let(:presenter) { CurationConcerns::CollectionPresenter.new(solr_document, nil) }
   let(:response) { Blacklight::Solr::Response.new(sample_response, {}) }
+
+  let(:blacklight_configuration_context) do
+    Blacklight::Configuration::Context.new(controller)
+  end
+
+  let(:presenter) do
+    CurationConcerns::CollectionPresenter.new(solr_document, nil)
+  end
 
   let(:search_state) do
     double("SearchState",
@@ -54,7 +60,10 @@ describe "collections/show.html.erb", type: :view do
 
   before do
     allow(view).to receive(:blacklight_config).and_return(blacklight_config)
-    allow(view).to receive(:blacklight_configuration_context).and_return(blacklight_configuration_context)
+    allow(view).to(
+      receive(:blacklight_configuration_context)
+        .and_return(blacklight_configuration_context)
+    )
     allow(view).to receive(:search_state).and_return(search_state)
     allow(view).to receive(:search_session).and_return({})
     allow(view).to receive(:current_search_session).and_return nil

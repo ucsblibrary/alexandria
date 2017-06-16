@@ -20,7 +20,10 @@ describe ControlledVocabularyInput, type: :input do
   end
 
   describe "#input" do
-    before { allow(image).to receive(:[]).with(:creator).and_return([bar1, bar2]) }
+    before do
+      allow(image).to receive(:[]).with(:creator).and_return([bar1, bar2])
+    end
+
     it "renders multi-value" do
       expect(input).to receive(:build_field).with(bar1, 0)
       expect(input).to receive(:build_field).with(bar2, 1)
@@ -40,10 +43,20 @@ describe ControlledVocabularyInput, type: :input do
       end
 
       it "renders multi-value" do
-        expect(subject).to have_field("image[creator_attributes][0][hidden_label]", with: "")
+        expect(subject).to(
+          have_field("image[creator_attributes][0][hidden_label]", with: "")
+        )
         expect(subject).to have_selector("input.image_creator.multi_value")
-        expect(subject).to have_selector('input[name="image[creator_attributes][0][_destroy]"]', visible: false)
-        expect(subject).to have_selector('input[name="image[creator_attributes][0][id]"][value=""]', visible: false)
+        expect(subject).to(
+          have_selector('input[name="image[creator_attributes][0][_destroy]"]',
+                        visible: false)
+        )
+        expect(subject).to(
+          have_selector(
+            'input[name="image[creator_attributes][0][id]"][value=""]',
+            visible: false
+          )
+        )
       end
     end
 
@@ -57,14 +70,21 @@ describe ControlledVocabularyInput, type: :input do
 
       it "renders multi-value" do
         expect(subject).to have_selector("input.image_creator.multi_value")
-        expect(subject).to have_field("image[creator_attributes][0][hidden_label]", with: "Item 1")
         expect(subject).to(
-          have_selector('input[name="image[creator_attributes][0][id]"][value="http://example.org/1"]',
-                        visible: false)
+          have_field("image[creator_attributes][0][hidden_label]",
+                     with: "Item 1")
         )
         expect(subject).to(
-          have_selector('input[name="image[creator_attributes][0][_destroy]"][value=""][data-destroy]',
-                        visible: false)
+          have_selector(
+            'input[name="image[creator_attributes][0][id]"][value="http://example.org/1"]',
+            visible: false
+          )
+        )
+        expect(subject).to(
+          have_selector(
+            'input[name="image[creator_attributes][0][_destroy]"][value=""][data-destroy]',
+            visible: false
+          )
         )
       end
     end
@@ -74,14 +94,21 @@ describe ControlledVocabularyInput, type: :input do
 
       it "renders multi-value" do
         expect(subject).to have_selector("input.image_creator.multi_value")
-        expect(subject).to have_field("image[creator_attributes][0][hidden_label]", with: "Item 1")
         expect(subject).to(
-          have_selector("input[name=\"image[creator_attributes][0][id]\"][value=\"#{ActiveFedora.fedora.host}/test/ff/ff/ff/ffffff\"]",
-                        visible: false)
+          have_field("image[creator_attributes][0][hidden_label]",
+                     with: "Item 1")
         )
         expect(subject).to(
-          have_selector('input[name="image[creator_attributes][0][_destroy]"][value=""][data-destroy]',
-                        visible: false)
+          have_selector(
+            "input[name=\"image[creator_attributes][0][id]\"][value=\"#{ActiveFedora.fedora.host}/test/ff/ff/ff/ffffff\"]",
+            visible: false
+          )
+        )
+        expect(subject).to(
+          have_selector(
+            'input[name="image[creator_attributes][0][_destroy]"][value=""][data-destroy]',
+            visible: false
+          )
         )
       end
     end

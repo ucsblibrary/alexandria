@@ -31,8 +31,12 @@ describe Importer::Factory::ETDFactory do
 
     it "adds the default attributes" do
       expect(subject[:admin_policy_id]).to eq AdminPolicy::RESTRICTED_POLICY_ID
-      expect(subject[:copyright_status]).to eq [RDF::URI("http://id.loc.gov/vocabulary/preservation/copyrightStatus/cpr")]
-      expect(subject[:license]).to eq [RDF::URI("http://rightsstatements.org/vocab/InC/1.0/")]
+      expect(subject[:copyright_status]).to(
+        eq [RDF::URI("http://id.loc.gov/vocabulary/preservation/copyrightStatus/cpr")]
+      )
+      expect(subject[:license]).to(
+        eq [RDF::URI("http://rightsstatements.org/vocab/InC/1.0/")]
+      )
     end
   end
 
@@ -60,7 +64,10 @@ describe Importer::Factory::ETDFactory do
         VCR.use_cassette("etd_importer") do
           factory.run
         end
-        expect(ETD.find("f3gt5k61").file_sets.first.files.first.file_name).to eq(["sample.pdf"])
+
+        expect(ETD.find("f3gt5k61").file_sets.first.files.first.file_name).to(
+          eq(["sample.pdf"])
+        )
       end
     end
 
@@ -91,7 +98,9 @@ describe Importer::Factory::ETDFactory do
 
   describe "update an existing record" do
     let(:old_date) { 2222 }
-    let(:old_date_attrs) { { created_attributes: [{ start: [old_date] }] }.with_indifferent_access }
+    let(:old_date_attrs) do
+      { created_attributes: [{ start: [old_date] }] }.with_indifferent_access
+    end
 
     context "when the created date hasn't changed" do
       let!(:etd) { create(:etd, attributes.except(:files)) }
@@ -107,7 +116,9 @@ describe Importer::Factory::ETDFactory do
     end
 
     context "when the created date has changed" do
-      let!(:etd) { create(:etd, attributes.except(:files).merge(old_date_attrs)) }
+      let!(:etd) do
+        create(:etd, attributes.except(:files).merge(old_date_attrs))
+      end
 
       it "updates the existing date instead of adding a new one" do
         etd.reload
@@ -120,7 +131,9 @@ describe Importer::Factory::ETDFactory do
     end
 
     context "when the ETD doesn't have existing created date" do
-      let!(:etd) { create(:etd, attributes.except(:files, :created_attributes)) }
+      let!(:etd) do
+        create(:etd, attributes.except(:files, :created_attributes))
+      end
 
       it "adds the new date" do
         etd.reload
@@ -132,7 +145,7 @@ describe Importer::Factory::ETDFactory do
       end
     end
 
-    context "when the ETD has existing created date, but new attributes don't have a date" do
+    context "when ETD has a date, but new attributes don't" do
       let(:attributes) do
         { id: "f3gt5k61",
           system_number: ["123"],

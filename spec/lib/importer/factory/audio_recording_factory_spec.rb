@@ -24,14 +24,18 @@ describe Importer::Factory::AudioRecordingFactory do
 
   before do
     (Collection.all + AudioRecording.all).map(&:id).each do |id|
-      ActiveFedora::Base.find(id).destroy(eradicate: true) if ActiveFedora::Base.exists?(id)
+      if ActiveFedora::Base.exists?(id)
+        ActiveFedora::Base.find(id).destroy(eradicate: true)
+      end
     end
 
     # Don't fetch external records during specs
     allow_any_instance_of(RDF::DeepIndexingService).to receive(:fetch_external)
 
     # Don't run background jobs/derivatives during the specs
-    allow(CharacterizeJob).to receive_messages(perform_later: nil, perform_now: nil)
+    allow(CharacterizeJob).to(
+      receive_messages(perform_later: nil, perform_now: nil)
+    )
   end
 
   describe "#cylinder_number" do
@@ -43,7 +47,13 @@ describe Importer::Factory::AudioRecordingFactory do
     end
 
     context "with only the md5 for a correct file name" do
-      let(:filegroup) { [File.join(fixture_path, "cylinders", "cyl1-2", "cusb-cyl0001a.wav.md5")] }
+      let(:filegroup) do
+        [File.join(fixture_path,
+                   "cylinders",
+                   "cyl1-2",
+                   "cusb-cyl0001a.wav.md5"),]
+      end
+
       it { is_expected.to be_nil }
     end
 
@@ -85,7 +95,9 @@ describe Importer::Factory::AudioRecordingFactory do
           factory.attach_files(audio, files)
         end.to change { FileSet.count }.by(2)
 
-        expect(audio.file_sets.map(&:title)).to contain_exactly(["Cylinder0001"], ["Cylinder0002"])
+        expect(audio.file_sets.map(&:title)).to(
+          contain_exactly(["Cylinder0001"], ["Cylinder0002"])
+        )
         first_file = audio.file_sets.find { |fs| fs.title == ["Cylinder0001"] }
         expect(audio.representative).to eq first_file
       end
@@ -97,7 +109,9 @@ describe Importer::Factory::AudioRecordingFactory do
 
     it "adds the default attributes" do
       expect(subject[:admin_policy_id]).to eq AdminPolicy::PUBLIC_POLICY_ID
-      expect(subject[:restrictions].first).to match(/^MP3 files of the restored cylinders available for download are copyrighted by the Regents of the University of California/)
+      expect(subject[:restrictions].first).to(
+        match(/^MP3 files of the restored cylinders available for download are copyrighted by the Regents of the University of California/)
+      )
     end
   end
 
@@ -124,7 +138,9 @@ describe Importer::Factory::AudioRecordingFactory do
       indexer.settings(files_dirs: data)
 
       VCR.use_cassette("audio_recording_factory") do
-        indexer.writer.put indexer.map_record(MARC::XMLReader.new(metadata).first)
+        indexer.writer.put(
+          indexer.map_record(MARC::XMLReader.new(metadata).first)
+        )
       end
 
       expect(AudioRecording.count).to eq 1

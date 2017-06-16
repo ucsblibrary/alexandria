@@ -292,30 +292,44 @@ describe Proquest::Metadata do
     end
 
     context "for a normal import with no errors" do
-      let(:file)  { "#{fixture_path}/proquest/Johnson_ucsb_0035N_12164_DATA.xml" }
+      let(:file) do
+        "#{fixture_path}/proquest/Johnson_ucsb_0035N_12164_DATA.xml"
+      end
 
       it "imports metadata from proquest file" do
-        expect(reloaded.embargo_release_date).to eq(Date.parse("2020-06-11") + 2.years)
-        expect(reloaded.visibility_during_embargo.id).to eq ActiveFedora::Base.id_to_uri(AdminPolicy::DISCOVERY_POLICY_ID)
-        expect(reloaded.visibility_after_embargo.id).to eq ActiveFedora::Base.id_to_uri(AdminPolicy::PUBLIC_CAMPUS_POLICY_ID)
+        expect(reloaded.embargo_release_date).to(
+          eq(Date.parse("2020-06-11") + 2.years)
+        )
+        expect(reloaded.visibility_during_embargo.id).to(
+          eq ActiveFedora::Base.id_to_uri(AdminPolicy::DISCOVERY_POLICY_ID)
+        )
+        expect(reloaded.visibility_after_embargo.id).to(
+          eq ActiveFedora::Base.id_to_uri(AdminPolicy::PUBLIC_CAMPUS_POLICY_ID)
+        )
         expect(reloaded.admin_policy_id).to eq AdminPolicy::DISCOVERY_POLICY_ID
         expect(reloaded.under_embargo?).to eq true
       end
     end
 
     context "with embargo code 4 and an end date" do
-      let(:file)  { "#{fixture_path}/proquest/Button_ucsb_0035D_11990_DATA.xml" }
+      let(:file) do
+        "#{fixture_path}/proquest/Button_ucsb_0035D_11990_DATA.xml"
+      end
 
       it "imports metadata from proquest file" do
         expect(reloaded.embargo_release_date).to eq(Date.parse("2099-04-24"))
         expect(reloaded.admin_policy_id).to eq AdminPolicy::DISCOVERY_POLICY_ID
-        expect(reloaded.visibility_during_embargo.id).to eq ActiveFedora::Base.id_to_uri(AdminPolicy::DISCOVERY_POLICY_ID)
-        expect(reloaded.visibility_after_embargo.id).to eq ActiveFedora::Base.id_to_uri(AdminPolicy::PUBLIC_CAMPUS_POLICY_ID)
+        expect(reloaded.visibility_during_embargo.id).to(
+          eq ActiveFedora::Base.id_to_uri(AdminPolicy::DISCOVERY_POLICY_ID)
+        )
+        expect(reloaded.visibility_after_embargo.id).to(
+          eq ActiveFedora::Base.id_to_uri(AdminPolicy::PUBLIC_CAMPUS_POLICY_ID)
+        )
         expect(reloaded.under_embargo?).to eq true
       end
     end
 
-    context "when the embargo is in the past and descripive metadata are present" do
+    context "when the embargo is past and descripive metadata are present" do
       let(:file)  { "#{fixture_path}/proquest/Miggs_ucsb_0035D_12446_DATA.xml" }
 
       it "imports metadata from proquest file" do
@@ -323,15 +337,21 @@ describe Proquest::Metadata do
         # the embargo so that an admin user will have a chance
         # to review it before lifting the embargo.
         expect(reloaded.embargo_release_date).to eq Date.parse("2015-12-15")
-        expect(reloaded.visibility_during_embargo.id).to eq ActiveFedora::Base.id_to_uri(AdminPolicy::DISCOVERY_POLICY_ID)
-        expect(reloaded.visibility_after_embargo.id).to eq ActiveFedora::Base.id_to_uri(AdminPolicy::PUBLIC_CAMPUS_POLICY_ID)
+        expect(reloaded.visibility_during_embargo.id).to(
+          eq ActiveFedora::Base.id_to_uri(AdminPolicy::DISCOVERY_POLICY_ID)
+        )
+        expect(reloaded.visibility_after_embargo.id).to(
+          eq ActiveFedora::Base.id_to_uri(AdminPolicy::PUBLIC_CAMPUS_POLICY_ID)
+        )
         expect(reloaded.admin_policy_id).to eq AdminPolicy::DISCOVERY_POLICY_ID
       end
     end
 
     context "when there is no embargo release date" do
       context "with embargo_code = 4" do
-        let(:file)  { "#{fixture_path}/proquest/Costa_ucsb_0035D_11752_DATA.xml" }
+        let(:file) do
+          "#{fixture_path}/proquest/Costa_ucsb_0035D_11752_DATA.xml"
+        end
 
         it 'sets an "infinite embargo"' do
           # It's not really an embargo; it's a permanent state
@@ -342,12 +362,16 @@ describe Proquest::Metadata do
           expect(reloaded.visibility_during_embargo).to be_nil
           expect(reloaded.visibility_after_embargo).to be_nil
           expect(reloaded.under_embargo?).to eq false
-          expect(reloaded.admin_policy_id).to eq AdminPolicy::DISCOVERY_POLICY_ID
+          expect(reloaded.admin_policy_id).to(
+            eq AdminPolicy::DISCOVERY_POLICY_ID
+          )
         end
       end
 
       context "without ProQuest or ADRL embargo" do
-        let(:file) { "#{fixture_path}/proquest/Bones_ucsb_0035D_12540_DATA.xml" }
+        let(:file) do
+          "#{fixture_path}/proquest/Bones_ucsb_0035D_12540_DATA.xml"
+        end
 
         it "sets the access policy, no embargo" do
           expect(reloaded.admin_policy_id).to eq AdminPolicy::PUBLIC_POLICY_ID
@@ -359,10 +383,14 @@ describe Proquest::Metadata do
       end
 
       context "with ProQuest embargo but without ADRL embargo" do
-        let(:file)  { "#{fixture_path}/proquest/Huff_ucsb_0035D_12328_DATA.xml" }
+        let(:file) do
+          "#{fixture_path}/proquest/Huff_ucsb_0035D_12328_DATA.xml"
+        end
 
         it "sets the access policy, no embargo" do
-          expect(reloaded.admin_policy_id).to eq AdminPolicy::PUBLIC_CAMPUS_POLICY_ID
+          expect(reloaded.admin_policy_id).to(
+            eq AdminPolicy::PUBLIC_CAMPUS_POLICY_ID
+          )
           expect(reloaded.under_embargo?).to be_falsey
           expect(reloaded.embargo_release_date).to be_nil
           expect(reloaded.visibility_during_embargo).to be_nil
@@ -374,24 +402,34 @@ describe Proquest::Metadata do
         let(:file) { "#{fixture_path}/proquest/Rude_ucsb_0035D_12690_DATA.xml" }
 
         it "sets the access policy, no embargo" do
-          expect(reloaded.admin_policy_id).to eq AdminPolicy::DISCOVERY_POLICY_ID
+          expect(reloaded.admin_policy_id).to(
+            eq AdminPolicy::DISCOVERY_POLICY_ID
+          )
           expect(reloaded.under_embargo?).to eq true
           expect(reloaded.embargo_release_date).to eq Date.parse("2021-02-09")
-          expect(reloaded.visibility_during_embargo.id).to eq ActiveFedora::Base.id_to_uri(AdminPolicy::DISCOVERY_POLICY_ID)
-          expect(reloaded.visibility_after_embargo.id).to eq ActiveFedora::Base.id_to_uri(AdminPolicy::PUBLIC_POLICY_ID)
+          expect(reloaded.visibility_during_embargo.id).to(
+            eq ActiveFedora::Base.id_to_uri(AdminPolicy::DISCOVERY_POLICY_ID)
+          )
+          expect(reloaded.visibility_after_embargo.id).to(
+            eq ActiveFedora::Base.id_to_uri(AdminPolicy::PUBLIC_POLICY_ID)
+          )
         end
       end
 
       # JIRA: DIGREPO-710
       context "with a permanent embargo" do
-        let(:file) { "#{fixture_path}/proquest/Infinite_ucsb_0035D_12716_DATA.xml" }
+        let(:file) do
+          "#{fixture_path}/proquest/Infinite_ucsb_0035D_12716_DATA.xml"
+        end
 
         it 'sets an "infinite embargo"' do
           expect(reloaded.embargo_release_date).to be_nil
           expect(reloaded.visibility_during_embargo).to be_nil
           expect(reloaded.visibility_after_embargo).to be_nil
           expect(reloaded.under_embargo?).to eq false
-          expect(reloaded.admin_policy_id).to eq AdminPolicy::DISCOVERY_POLICY_ID
+          expect(reloaded.admin_policy_id).to(
+            eq AdminPolicy::DISCOVERY_POLICY_ID
+          )
         end
       end
     end
