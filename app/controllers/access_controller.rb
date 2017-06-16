@@ -12,12 +12,17 @@ class AccessController < ApplicationController
 
     @visibility_options = AdminPolicy.all.invert
     @current_vis = if record.embargo
-                     ActiveFedora::Base.uri_to_id(record.visibility_during_embargo.id)
+                     ActiveFedora::Base.uri_to_id(
+                       record.visibility_during_embargo.id
+                     )
                    else
                      record.admin_policy_id
                    end
+
     @future_vis = if record.embargo
-                    ActiveFedora::Base.uri_to_id(record.visibility_after_embargo.id)
+                    ActiveFedora::Base.uri_to_id(
+                      record.visibility_after_embargo.id
+                    )
                   else
                     record.admin_policy_id
                   end

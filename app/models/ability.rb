@@ -59,7 +59,10 @@ class Ability
       test_access(access: :discover, object_id: id)
     end
 
-    can :discover, ActiveFedora::Base.descendants - [Hydra::AccessControls::Embargo] do |obj|
+    can :discover,
+        (ActiveFedora::Base.descendants -
+         [Hydra::AccessControls::Embargo]) do |obj|
+
       test_access(access: :discover, object_id: obj.id)
     end
 
@@ -75,10 +78,14 @@ class Ability
     policy_id = policy_id_for(object_id)
     return false if policy_id.nil?
 
-    Rails.logger.debug("[CANCAN] -policy- Does the POLICY #{policy_id} provide #{access} permissions for #{current_user.user_key}?")
+    Rails.logger.debug("[CANCAN] -policy- Does the POLICY "\
+                       "#{policy_id} provide #{access} permissions "\
+                       "for #{current_user.user_key}?")
 
-    group_intersection = user_groups & groups_from_policy(access: access,
-                                                          policy_id: policy_id)
+    group_intersection =
+      user_groups & groups_from_policy(access: access,
+                                       policy_id: policy_id)
+
     result = group_intersection.present?
 
     Rails.logger.debug("[CANCAN] -policy- decision: #{result}")

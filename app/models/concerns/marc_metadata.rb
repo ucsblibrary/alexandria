@@ -9,11 +9,13 @@ module MarcMetadata
       index.as :stored_searchable, :facetable
     end
 
-    property :fulltext_link, predicate: ::RDF::Vocab::Bibframe.otherEdition do |index|
+    property :fulltext_link,
+             predicate: ::RDF::Vocab::Bibframe.otherEdition do |index|
       index.as :displayable
     end
 
-    property :system_number, predicate: ::RDF::Vocab::MODS.recordIdentifier do |index|
+    property :system_number,
+             predicate: ::RDF::Vocab::MODS.recordIdentifier do |index|
       index.as :symbol
     end
 

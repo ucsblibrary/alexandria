@@ -4,7 +4,9 @@ module WithAdminPolicy
   extend ActiveSupport::Concern
 
   included do
-    belongs_to :admin_policy, class_name: "Hydra::AdminPolicy", predicate: ActiveFedora::RDF::ProjectHydra.isGovernedBy
+    belongs_to :admin_policy,
+               class_name: "Hydra::AdminPolicy",
+               predicate: ActiveFedora::RDF::ProjectHydra.isGovernedBy
   end
 
   # Copy the policy of the parent work to its attached files

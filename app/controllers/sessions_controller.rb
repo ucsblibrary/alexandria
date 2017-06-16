@@ -18,12 +18,16 @@ class SessionsController < ApplicationController
 
   def create
     type = params[:session][:type]
-    username = params[:session][:user]
 
-    # Active Directory always uses @library.ucsb.edu
-    if type == "staff"
-      username = "#{username.sub(/@(library\.)?ucsb\.edu/, "")}@library.ucsb.edu"
-    end
+    username = if type == "ucsb"
+                 params[:session][:user]
+               else
+                 # Active Directory always uses @library.ucsb.edu, so
+                 # convert adunn and adunn@ucsb.edu to
+                 # adunn@library.ucsb.edu
+                 params[:session][:user].sub(/@(library\.)?ucsb\.edu/, "") +
+                   "@library.ucsb.edu"
+               end
 
     groups = auth_with_ldap(
       user: username,

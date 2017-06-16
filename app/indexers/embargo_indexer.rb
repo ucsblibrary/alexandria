@@ -7,8 +7,13 @@ class EmbargoIndexer
 
   def generate_solr_document
     {}.tap do |doc|
-      date_field_name = Hydra.config.permissions.embargo.release_date.sub(/_dtsi/, "")
-      Solrizer.insert_field(doc, date_field_name, @object.embargo_release_date, :stored_sortable)
+      Solrizer.insert_field(
+        doc,
+        Hydra.config.permissions.embargo.release_date.sub(/_dtsi/, ""),
+        @object.embargo_release_date,
+        :stored_sortable
+      )
+
       doc[visibility_during_key] = visibility_during_embargo_id
       doc[visibility_after_key] = visibility_after_embargo_id
       doc["embargo_history_ssim"] = @object.embargo_history

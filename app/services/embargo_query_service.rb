@@ -13,9 +13,10 @@ module EmbargoQueryService
     assets_with_expired_embargoes.where(only_works)
   end
 
-  # Returns all assets with embargo release date set
-  # (assumes that when embargo visibility is applied to assets
-  # whose embargoes have expired, the embargo expiration date will be removed from its metadata)
+  # Returns all assets with embargo release date set (assumes that
+  # when embargo visibility is applied to assets whose embargoes have
+  # expired, the embargo expiration date will be removed from its
+  # metadata)
   def self.assets_under_embargo
     ActiveFedora::Base.where("embargo_release_date_dtsi:*")
   end
@@ -32,7 +33,9 @@ module EmbargoQueryService
 
   # Scope a query to include only "works" (not FileSet or
   # Collection or any other models).
+  #
   # It should return a query string like this:
+  #
   # "has_model_ssim:AudioRecording OR has_model_ssim:Image OR has_model_ssim:ETD"
   def self.only_works
     work_types = CurationConcerns.config.registered_curation_concern_types

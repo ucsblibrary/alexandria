@@ -75,13 +75,17 @@ module SessionsHelper
                      end
 
     ldap_groups = if Rails.env.production?
-                    groups.first[:memberof].map { |m| m.split(",").first.sub(/^CN=/, "") }
+                    groups.first[:memberof].map do |m|
+                      m.split(",").first.sub(/^CN=/, "")
+                    end
                   else
                     default_groups + special_groups
                   end
 
-    user.update_attributes(
-      group_list: default_groups + (special_groups.select { |grp| ldap_groups.include? grp })
-    )
+    new_groups = special_groups.select do |group|
+      ldap_groups.include? group
+    end
+
+    user.update_attributes(group_list: new_groups + default_groups)
   end
 end

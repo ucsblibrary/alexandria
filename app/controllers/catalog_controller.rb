@@ -44,7 +44,9 @@ class CatalogController < ApplicationController
 
   add_show_tools_partial(:edit, partial: "catalog/edit", if: :editor?)
   add_show_tools_partial(:download, partial: "catalog/download")
-  add_show_tools_partial(:access, partial: "catalog/access", if: :show_embargos_link?)
+  add_show_tools_partial(:access,
+                         partial: "catalog/access",
+                         if: :show_embargos_link?)
 
   configure_blacklight do |config|
     config.search_builder_class = SearchBuilder
@@ -111,33 +113,67 @@ class CatalogController < ApplicationController
     #
     # :show may be set to false if you don't want the facet to be drawn in the
     # facet bar
-    config.add_facet_field solr_name("work_type_label", :facetable), label: "Format", limit: true
-    config.add_facet_field solr_name("collection_label", :symbol), label: "Collection", limit: true
-    config.add_facet_field ObjectIndexer::ALL_CONTRIBUTORS_FACET, label: "Contributor", limit: true
-    config.add_facet_field solr_name("lc_subject_label", :facetable), label: "Topic", limit: 20
-    config.add_facet_field solr_name("location_label", :facetable), label: "Place", limit: true
-    config.add_facet_field solr_name("form_of_work_label", :facetable), label: "Genre", limit: true
-    config.add_facet_field ObjectIndexer::FACETABLE_YEAR, label: "Date", range: true
-    config.add_facet_field solr_name("language", :facetable), label: "Language", limit: true
-    config.add_facet_field solr_name("department", :facetable), label: "Academic Department", limit: true
-    config.add_facet_field solr_name("sub_location", :facetable), label: "Library Location", limit: true
-    config.add_facet_field solr_name("license_label", :facetable), label: "Rights", limit: true
+    config.add_facet_field solr_name("work_type_label", :facetable),
+                           label: "Format", limit: true
+
+    config.add_facet_field solr_name("collection_label", :symbol),
+                           label: "Collection", limit: true
+
+    config.add_facet_field ObjectIndexer::ALL_CONTRIBUTORS_FACET,
+                           label: "Contributor", limit: true
+
+    config.add_facet_field solr_name("lc_subject_label", :facetable),
+                           label: "Topic", limit: 20
+
+    config.add_facet_field solr_name("location_label", :facetable),
+                           label: "Place", limit: true
+
+    config.add_facet_field solr_name("form_of_work_label", :facetable),
+                           label: "Genre", limit: true
+
+    config.add_facet_field ObjectIndexer::FACETABLE_YEAR,
+                           label: "Date", range: true
+
+    config.add_facet_field solr_name("language", :facetable),
+                           label: "Language", limit: true
+
+    config.add_facet_field solr_name("department", :facetable),
+                           label: "Academic Department", limit: true
+
+    config.add_facet_field solr_name("sub_location", :facetable),
+                           label: "Library Location", limit: true
+
+    config.add_facet_field solr_name("license_label", :facetable),
+                           label: "Rights", limit: true
 
     # Have BL send all facet field names to Solr, which has been the default
     # previously. Simply remove these lines if you'd rather use Solr request
     # handler defaults, or have no facets.
     config.add_facet_fields_to_solr_request!
     # use this instead if you don't want to query facets marked :show=>false
-    # config.default_solr_params[:'facet.field'] = config.facet_fields.select{ |k, v| v[:show] != false}.keys
+    # config.default_solr_params[:'facet.field'] =
+    #   config.facet_fields.select { |_k, v| v[:show] != false }.keys
 
     # solr fields to be displayed in the index (search results) view
     #   The ordering of the field names is the order of the display
-    config.add_index_field solr_name("work_type_label", :stored_searchable), label: "Format"
-    config.add_index_field solr_name("collection_label", :symbol), label: "Collection"
-    config.add_index_field ObjectIndexer::ALL_CONTRIBUTORS_LABEL, label: "Contributors", if: :show_contributors?
-    config.add_index_field solr_name("author", :stored_searchable), label: "Author", if: :show_author?
-    config.add_index_field solr_name("created", :displayable), label: "Creation Date"
-    config.add_index_field solr_name("issued", :displayable), label: "Issued Date"
+    config.add_index_field solr_name("work_type_label", :stored_searchable),
+                           label: "Format"
+
+    config.add_index_field solr_name("collection_label", :symbol),
+                           label: "Collection"
+
+    config.add_index_field ObjectIndexer::ALL_CONTRIBUTORS_LABEL,
+                           label: "Contributors",
+                           if: :show_contributors?
+
+    config.add_index_field solr_name("author", :stored_searchable),
+                           label: "Author", if: :show_author?
+
+    config.add_index_field solr_name("created", :displayable),
+                           label: "Creation Date"
+
+    config.add_index_field solr_name("issued", :displayable),
+                           label: "Issued Date"
 
     Metadata::RELATIONS.keys.each do |key|
       config.add_show_field solr_name("#{key}_label", :stored_searchable),
@@ -145,13 +181,27 @@ class CatalogController < ApplicationController
                             link_to_search: "all_contributors_label_sim"
     end
 
-    config.add_show_field solr_name("alternative", :stored_searchable), label: "Variant Title"
-    config.add_show_field solr_name("place_of_publication", :stored_searchable), label: "Place of Publication"
-    config.add_show_field solr_name("publisher", :stored_searchable), label: "Publisher"
-    config.add_show_field solr_name("created", :displayable), label: "Creation Date"
-    config.add_show_field solr_name("issued", :displayable), label: "Issued Date"
-    config.add_show_field solr_name("date_other", :displayable), label: "Other Date"
-    config.add_show_field solr_name("language", :stored_searchable), label: "Language"
+    config.add_show_field solr_name("alternative", :stored_searchable),
+                          label: "Variant Title"
+
+    config.add_show_field solr_name("place_of_publication", :stored_searchable),
+                          label: "Place of Publication"
+
+    config.add_show_field solr_name("publisher", :stored_searchable),
+                          label: "Publisher"
+
+    config.add_show_field solr_name("created", :displayable),
+                          label: "Creation Date"
+
+    config.add_show_field solr_name("issued", :displayable),
+                          label: "Issued Date"
+
+    config.add_show_field solr_name("date_other", :displayable),
+                          label: "Other Date"
+
+    config.add_show_field solr_name("language", :stored_searchable),
+                          label: "Language"
+
     config.add_show_field solr_name("lc_subject_label", :stored_searchable),
                           label: "Topics",
                           link_to_search: "lc_subject_label_sim"
@@ -164,60 +214,100 @@ class CatalogController < ApplicationController
                           label: "Places",
                           link_to_search: "location_label_sim"
 
-    config.add_show_field solr_name("keywords", :stored_searchable),
-                          label: "Keywords",
-                          separator_options: {
-                            words_connector: '<span class="invisible">,</span> <br />',
-                            two_words_connector: '<span class="invisible">,</span> <br />',
-                            last_word_connector: '<span class="invisible">, and</span> <br />',
-                          }
+    config.add_show_field(
+      solr_name("keywords", :stored_searchable),
+      label: "Keywords",
+      separator_options: {
+        words_connector: '<span class="invisible">,</span> <br />',
+        two_words_connector: '<span class="invisible">,</span> <br />',
+        last_word_connector: '<span class="invisible">, and</span> <br />',
+      }
+    )
 
     config.add_show_field solr_name("form_of_work_label", :stored_searchable),
                           label: "Genres",
                           link_to_search: "form_of_work_label_sim"
 
-    config.add_show_field solr_name("degree_grantor", :symbol), label: "Degree Grantor"
-    config.add_show_field solr_name("dissertation", :displayable), label: "Dissertation"
+    config.add_show_field solr_name("degree_grantor", :symbol),
+                          label: "Degree Grantor"
+
+    config.add_show_field solr_name("dissertation", :displayable),
+                          label: "Dissertation"
+
     config.add_show_field solr_name("note_label", :stored_searchable),
                           label: "Notes",
                           helper_method: "not_simple_format"
+
     config.add_show_field solr_name("citation", :displayable), label: "Citation"
+
     config.add_show_field solr_name("description", :stored_searchable),
                           label: "Summary",
                           helper_method: "not_simple_format"
-    config.add_show_field solr_name("extent", :displayable), label: "Physical Description"
+
+    config.add_show_field solr_name("extent", :displayable),
+                          label: "Physical Description"
+
     config.add_show_field solr_name("scale", :stored_searchable), label: "Scale"
+
     config.add_show_field solr_name("work_type_label", :stored_searchable),
                           label: "Format",
                           link_to_search: "work_type_label_sim"
+
     config.add_show_field solr_name("collection_label", :symbol),
                           label: "Collection(s)",
                           link_to_search: "collection_label_ssim"
+
     config.add_show_field solr_name("series_name", :displayable),
                           label: "Series",
                           link_to_search: "series_name_sim"
+
     config.add_show_field solr_name("folder_name", :stored_searchable),
                           label: "Folder",
                           link_to_search: "folder_name_sim"
-    config.add_show_field solr_name("finding_aid", :stored_searchable), label: "Finding Aid"
-    config.add_show_field solr_name("sub_location", :displayable, type: :string),
-                          label: "Library Location",
-                          link_to_search: "sub_location_sim"
+
+    config.add_show_field solr_name("finding_aid", :stored_searchable),
+                          label: "Finding Aid"
+
+    config.add_show_field(
+      solr_name("sub_location", :displayable, type: :string),
+      label: "Library Location",
+      link_to_search: "sub_location_sim"
+    )
+
     config.add_show_field solr_name("fulltext_link", :displayable),
                           label: "Other Versions",
                           helper_method: :display_link
-    config.add_show_field solr_name("identifier", :displayable), label: "ARK"
-    config.add_show_field solr_name("accession_number", :symbol), label: "Local Identifier"
+
+    config.add_show_field solr_name("identifier", :displayable),
+                          label: "ARK"
+
+    config.add_show_field solr_name("accession_number", :symbol),
+                          label: "Local Identifier"
+
     config.add_show_field "isbn_ssim", label: "ISBN"
-    config.add_show_field solr_name("matrix_number", :stored_searchable), label: "Matrix Number"
-    config.add_show_field solr_name("issue_number", :stored_searchable), label: "Issue Number"
-    config.add_show_field solr_name("system_number", :symbol), label: "Catalog System Number"
-    config.add_show_field solr_name("copyright", :displayable), label: "Copyright"
+
+    config.add_show_field solr_name("matrix_number", :stored_searchable),
+                          label: "Matrix Number"
+
+    config.add_show_field solr_name("issue_number", :stored_searchable),
+                          label: "Issue Number"
+
+    config.add_show_field solr_name("system_number", :symbol),
+                          label: "Catalog System Number"
+
+    config.add_show_field solr_name("copyright", :displayable),
+                          label: "Copyright"
+
     config.add_show_field solr_name("license_label", :stored_searchable),
                           label: "Rights",
                           helper_method: "show_license_icons"
-    config.add_show_field solr_name("rights_holder_label", :stored_searchable), label: "Copyright Holder"
-    config.add_show_field solr_name("date_copyrighted", :displayable), label: "Copyright Date"
+
+    config.add_show_field solr_name("rights_holder_label", :stored_searchable),
+                          label: "Copyright Holder"
+
+    config.add_show_field solr_name("date_copyrighted", :displayable),
+                          label: "Copyright Date"
+
     config.add_show_field solr_name("restrictions", :stored_searchable),
                           label: "Restrictions",
                           helper_method: "not_simple_format"
@@ -236,9 +326,10 @@ class CatalogController < ApplicationController
     # urls.  A display label will be automatically calculated from the :key,
     # or can be specified manually to be different.
 
-    # This one uses all the defaults set by the solr request handler. Which
-    # solr request handler? The one set in config[:default_solr_parameters][:qt],
-    # since we aren't specifying it otherwise.
+    # This one uses all the defaults set by the solr request
+    # handler. Which solr request handler? The one set in
+    # config[:default_solr_parameters][:qt], since we aren't
+    # specifying it otherwise.
     config.add_search_field "all_fields", label: "All Fields"
 
     # Now we see how to over-ride Solr request handler defaults, in this
@@ -269,11 +360,26 @@ class CatalogController < ApplicationController
     # label in pulldown is followed by the name of the SOLR field to sort by and
     # whether the sort is ascending or descending (it must be asc or desc
     # except in the relevancy case).
-    config.add_sort_field "score desc, #{ObjectIndexer::SORTABLE_DATE} desc, creator_label_si asc", label: "relevance"
-    config.add_sort_field "#{ObjectIndexer::SORTABLE_DATE} asc, creator_label_si asc", label: "year ascending"
-    config.add_sort_field "#{ObjectIndexer::SORTABLE_DATE} desc, creator_label_si asc", label: "year descending"
-    config.add_sort_field "creator_label_si asc, #{ObjectIndexer::SORTABLE_DATE} asc", label: "creator ascending"
-    config.add_sort_field "creator_label_si desc, #{ObjectIndexer::SORTABLE_DATE} asc", label: "creator descending"
+    config.add_sort_field(
+      "score desc, #{ObjectIndexer::SORTABLE_DATE} desc, creator_label_si asc",
+      label: "relevance"
+    )
+    config.add_sort_field(
+      "#{ObjectIndexer::SORTABLE_DATE} asc, creator_label_si asc",
+      label: "year ascending"
+    )
+    config.add_sort_field(
+      "#{ObjectIndexer::SORTABLE_DATE} desc, creator_label_si asc",
+      label: "year descending"
+    )
+    config.add_sort_field(
+      "creator_label_si asc, #{ObjectIndexer::SORTABLE_DATE} asc",
+      label: "creator ascending"
+    )
+    config.add_sort_field(
+      "creator_label_si desc, #{ObjectIndexer::SORTABLE_DATE} asc",
+      label: "creator descending"
+    )
 
     # If there are more than this many search results, no spelling ("did you
     # mean") suggestion is offered.
@@ -294,6 +400,8 @@ class CatalogController < ApplicationController
 
   # Overriding to permit parameters; see https://groups.google.com/d/msg/blacklight-development/Gr12dc1S4no/TQq3DQXABQAJ
   def search_state
-    @search_state ||= search_state_class.new(params.permit!, blacklight_config, self)
+    @search_state ||= search_state_class.new(
+      params.permit!, blacklight_config, self
+    )
   end
 end

@@ -14,7 +14,7 @@ module CurationConcernsHelper
     case Array.wrap(doc["has_model_ssim"]).first
     when "Collection"
       collection_path(doc)
-    when "Image", "ETD", "AudioRecording", "MapSet", "ComponentMap", "IndexMap", "ScannedMap"
+    when *CurationConcerns.config.registered_curation_concern_types
       if doc.ark
         ark_path(doc.ark)
       else
@@ -37,14 +37,16 @@ module CurationConcernsHelper
     solr_document_url(args)
   end
 
-  # we're using our own helper rather than the generated route helper because the
-  # default helper escapes slashes. https://github.com/rails/rails/issues/16058
+  # we're using our own helper rather than the generated route helper
+  # because the default helper escapes
+  # slashes. https://github.com/rails/rails/issues/16058
   def ark_path(ark)
     "/lib/#{ark}"
   end
 
   ##
-  # Get the URL for tracking search sessions across pages using polymorphic routing
+  # Get the URL for tracking search sessions across pages using
+  # polymorphic routing
   def session_tracking_path(document, params = {})
     return if document.nil?
     blacklight.track_search_context_path(document, params)

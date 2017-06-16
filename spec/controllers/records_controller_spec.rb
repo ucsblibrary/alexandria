@@ -217,7 +217,7 @@ describe RecordsController do
           expect(response).to redirect_to local_authorities_path
 
           expect(flash[:notice]).to(
-            eq "Record \"#{person.rdf_label.first}\" has been destroyed"
+            eq "Record \"#{person.rdf_label.first}\" has been destroyed."
           )
         end
       end

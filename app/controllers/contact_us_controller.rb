@@ -14,7 +14,8 @@ class ContactUsController < ApplicationController
       params.permit(:name, :email, :category, :message, :zipcode)
     ).deliver_now
 
-    flash[:notice] = "Thank you for the feedback.  Your submission has been successfully sent to the ADRL."
+    flash[:notice] = "Thank you for the feedback.  "\
+                     "Your submission has been successfully sent."
     redirect_to :back
   end
 end
