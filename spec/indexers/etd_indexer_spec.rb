@@ -8,12 +8,19 @@ describe ETDIndexer do
 
   context "with a file_set" do
     before do
-      allow(etd).to receive_messages(member_ids: ["bf/74/27/75/bf742775-2a24-46dc-889e-cca03b27b5f3"])
+      allow(etd).to(
+        receive_messages(
+          member_ids: ["bf/74/27/75/bf742775-2a24-46dc-889e-cca03b27b5f3"]
+        )
+      )
     end
+
     let(:etd) { ETD.new }
 
     it "has downloads" do
-      expect(subject["member_ids_ssim"]).to eq ["bf/74/27/75/bf742775-2a24-46dc-889e-cca03b27b5f3"]
+      expect(subject["member_ids_ssim"]).to(
+        eq ["bf/74/27/75/bf742775-2a24-46dc-889e-cca03b27b5f3"]
+      )
     end
   end
 
@@ -41,7 +48,9 @@ describe ETDIndexer do
 
   describe "Indexing dissertation" do
     let(:dissertation_degree) { ["Ph.D."] }
-    let(:dissertation_institution) { ["University of California, Santa Barbara"] }
+    let(:dissertation_institution) do
+      ["University of California, Santa Barbara"]
+    end
     let(:dissertation_year) { ["2014"] }
 
     let(:etd) do
@@ -51,7 +60,9 @@ describe ETDIndexer do
     end
     let(:subject) { document["dissertation_ssm"] }
 
-    it { is_expected.to eq "Ph.D.--University of California, Santa Barbara, 2014" }
+    it do
+      is_expected.to eq "Ph.D.--University of California, Santa Barbara, 2014"
+    end
   end
 
   describe "missing dissertation information" do
@@ -71,9 +82,12 @@ describe ETDIndexer do
 
   describe "indexing department as a facet" do
     let(:etd) do
-      ETD.new(degree_grantor: ["University of California, Santa Barbara. Mechanical Engineering"])
+      ETD.new(
+        degree_grantor: ["University of California, Santa Barbara. Mechanical Engineering"]
+      )
     end
-    let(:subject) { document["department_sim"] }
+
+    subject { document["department_sim"] }
     it { is_expected.to eq ["Mechanical Engineering"] }
   end
 
@@ -116,7 +130,9 @@ describe ETDIndexer do
       context "with both issued and created dates" do
         it "chooses 'created' date for sort/facet date" do
           expect(subject[ObjectIndexer::SORTABLE_DATE]).to eq created.first
-          expect(subject[ObjectIndexer::FACETABLE_YEAR]).to eq created.map(&:to_i)
+          expect(subject[ObjectIndexer::FACETABLE_YEAR]).to(
+            eq created.map(&:to_i)
+          )
         end
       end
 
@@ -125,7 +141,9 @@ describe ETDIndexer do
 
         it "chooses 'issued' date for sort/facet date" do
           expect(subject[ObjectIndexer::SORTABLE_DATE]).to eq issued.first
-          expect(subject[ObjectIndexer::FACETABLE_YEAR]).to eq issued.map(&:to_i)
+          expect(subject[ObjectIndexer::FACETABLE_YEAR]).to(
+            eq issued.map(&:to_i)
+          )
         end
       end
 
@@ -135,7 +153,9 @@ describe ETDIndexer do
 
         it "chooses 'copyrighted' date for sort/facet date" do
           expect(subject[ObjectIndexer::SORTABLE_DATE]).to eq copyrighted.first
-          expect(subject[ObjectIndexer::FACETABLE_YEAR]).to eq copyrighted.map(&:to_i)
+          expect(subject[ObjectIndexer::FACETABLE_YEAR]).to(
+            eq copyrighted.map(&:to_i)
+          )
         end
       end
 
@@ -146,7 +166,9 @@ describe ETDIndexer do
 
         it "chooses 'date_other' date for sort/facet date" do
           expect(subject[ObjectIndexer::SORTABLE_DATE]).to eq other.first
-          expect(subject[ObjectIndexer::FACETABLE_YEAR]).to eq other.map(&:to_i)
+          expect(subject[ObjectIndexer::FACETABLE_YEAR]).to(
+            eq other.map(&:to_i)
+          )
         end
       end
     end # context 'with multiple types of dates'

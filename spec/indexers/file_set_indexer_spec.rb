@@ -4,7 +4,10 @@ require "rails_helper"
 
 describe FileSetIndexer do
   before do
-    FileSet.find("bf742775-2a24-46dc-889e-cca03b27b5f3").destroy(eradicate: true) if FileSet.exists?("bf742775-2a24-46dc-889e-cca03b27b5f3")
+    if FileSet.exists?("bf742775-2a24-46dc-889e-cca03b27b5f3")
+      FileSet.find("bf742775-2a24-46dc-889e-cca03b27b5f3")
+        .destroy(eradicate: true)
+    end
     Hydra::Works::AddFileToFileSet.call(file_set, file, :original_file)
   end
 
@@ -25,7 +28,9 @@ describe FileSetIndexer do
         allow(file_set).to receive(:mime_type).and_return("audio/x-wave")
       end
       it "has a thumbnail" do
-        expect(subject[ObjectIndexer.thumbnail_field]).to match %r{^/assets/audio-.*\.png$}
+        expect(subject[ObjectIndexer.thumbnail_field]).to(
+          match %r{^/assets/audio-.*\.png$}
+        )
       end
     end
   end

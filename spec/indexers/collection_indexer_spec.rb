@@ -14,7 +14,9 @@ describe CollectionIndexer do
     it "has fields for collector" do
       VCR.use_cassette("collection_indexer") do
         expect(subject["collector_tesim"]).to eq [url]
-        expect(subject["collector_label_tesim"]).to eq ["Verne, Jules, 1828-1905"]
+        expect(subject["collector_label_tesim"]).to(
+          eq ["Verne, Jules, 1828-1905"]
+        )
 
         # Bytes field should be indexed long rather than int
         #

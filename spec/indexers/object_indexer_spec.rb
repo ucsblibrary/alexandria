@@ -21,21 +21,31 @@ describe ObjectIndexer do
     context "with issued.start and issued.finish" do
       let(:issued_start) { ["1917"] }
       let(:issued_end) { ["1923"] }
-      let(:image) { Image.new(issued_attributes: [{ start: issued_start, finish: issued_end }]) }
+      let(:image) do
+        Image.new(
+          issued_attributes: [{ start: issued_start, finish: issued_end }]
+        )
+      end
 
       it "makes a sortable date field" do
         expect(subject["date_si"]).to eq "1917"
       end
 
       it "makes a facetable year field" do
-        expect(subject["year_iim"]).to eq [1917, 1918, 1919, 1920, 1921, 1922, 1923]
+        expect(subject["year_iim"]).to(
+          eq [1917, 1918, 1919, 1920, 1921, 1922, 1923]
+        )
       end
     end
 
     context "with created.start and created.finish" do
       let(:created_start) { ["1917"] }
       let(:created_end) { ["1923"] }
-      let(:image) { Image.new(created_attributes: [{ start: created_start, finish: created_end }]) }
+      let(:image) do
+        Image.new(
+          created_attributes: [{ start: created_start, finish: created_end }]
+        )
+      end
 
       it "indexes dates for display" do
         expect(subject["created_ssm"]).to eq ["1917 - 1923"]
@@ -46,7 +56,9 @@ describe ObjectIndexer do
       end
 
       it "makes a facetable year field" do
-        expect(subject["year_iim"]).to eq [1917, 1918, 1919, 1920, 1921, 1922, 1923]
+        expect(subject["year_iim"]).to(
+          eq [1917, 1918, 1919, 1920, 1921, 1922, 1923]
+        )
       end
     end
 
@@ -73,7 +85,9 @@ describe ObjectIndexer do
       context "with both issued and created dates" do
         it "chooses 'created' date for sort/facet date" do
           expect(subject[ObjectIndexer::SORTABLE_DATE]).to eq created.first
-          expect(subject[ObjectIndexer::FACETABLE_YEAR]).to eq created.map(&:to_i)
+          expect(subject[ObjectIndexer::FACETABLE_YEAR]).to(
+            eq created.map(&:to_i)
+          )
         end
       end
 
@@ -82,7 +96,9 @@ describe ObjectIndexer do
 
         it "chooses 'issued' date for sort/facet date" do
           expect(subject[ObjectIndexer::SORTABLE_DATE]).to eq issued.first
-          expect(subject[ObjectIndexer::FACETABLE_YEAR]).to eq issued.map(&:to_i)
+          expect(subject[ObjectIndexer::FACETABLE_YEAR]).to(
+            eq issued.map(&:to_i)
+          )
         end
       end
 
@@ -92,7 +108,9 @@ describe ObjectIndexer do
 
         it "chooses 'copyrighted' date for sort/facet date" do
           expect(subject[ObjectIndexer::SORTABLE_DATE]).to eq copyrighted.first
-          expect(subject[ObjectIndexer::FACETABLE_YEAR]).to eq copyrighted.map(&:to_i)
+          expect(subject[ObjectIndexer::FACETABLE_YEAR]).to(
+            eq copyrighted.map(&:to_i)
+          )
         end
       end
 
@@ -132,9 +150,18 @@ describe ObjectIndexer do
   end # Indexing dates
 
   context "with rights" do
-    let(:pd_uri) { RDF::URI.new("http://creativecommons.org/publicdomain/mark/1.0/") }
-    let(:by_uri) { RDF::URI.new("http://creativecommons.org/licenses/by/4.0/") }
-    let(:edu_uri) { RDF::URI.new("http://opaquenamespace.org/ns/rights/educational/") }
+    let(:pd_uri) do
+      RDF::URI.new("http://creativecommons.org/publicdomain/mark/1.0/")
+    end
+
+    let(:by_uri) do
+      RDF::URI.new("http://creativecommons.org/licenses/by/4.0/")
+    end
+
+    let(:edu_uri) do
+      RDF::URI.new("http://opaquenamespace.org/ns/rights/educational/")
+    end
+
     let(:image) { Image.new(license: [pd_uri, by_uri, edu_uri]) }
 
     it "indexes with a label" do
@@ -154,11 +181,28 @@ describe ObjectIndexer do
   end
 
   context "with copyright_status" do
-    let(:public_domain_uri) { RDF::URI.new("http://id.loc.gov/vocabulary/preservation/copyrightStatus/pub") }
-    let(:copyright_uri) { RDF::URI.new("http://id.loc.gov/vocabulary/preservation/copyrightStatus/cpr") }
-    let(:unknown_uri) { RDF::URI.new("http://id.loc.gov/vocabulary/preservation/copyrightStatus/unk") }
+    let(:public_domain_uri) do
+      RDF::URI.new(
+        "http://id.loc.gov/vocabulary/preservation/copyrightStatus/pub"
+      )
+    end
+    let(:copyright_uri) do
+      RDF::URI.new(
+        "http://id.loc.gov/vocabulary/preservation/copyrightStatus/cpr"
+      )
+    end
 
-    let(:image) { Image.new(copyright_status: [public_domain_uri, copyright_uri, unknown_uri]) }
+    let(:unknown_uri) do
+      RDF::URI.new(
+        "http://id.loc.gov/vocabulary/preservation/copyrightStatus/unk"
+      )
+    end
+
+    let(:image) do
+      Image.new(
+        copyright_status: [public_domain_uri, copyright_uri, unknown_uri]
+      )
+    end
 
     it "indexes with a label" do
       VCR.use_cassette("copyright_status") do
@@ -192,32 +236,55 @@ describe ObjectIndexer do
   end
 
   context "with subject" do
-    let(:lc_subject) { [RDF::URI.new("http://id.loc.gov/authorities/subjects/sh85062487")] }
+    let(:lc_subject) do
+      [RDF::URI.new("http://id.loc.gov/authorities/subjects/sh85062487")]
+    end
+
     let(:image) { Image.new(lc_subject: lc_subject) }
 
     it "should have a subject" do
       VCR.use_cassette("lc_subject_hotels") do
-        expect(subject["lc_subject_tesim"]).to eq ["http://id.loc.gov/authorities/subjects/sh85062487"]
+        expect(subject["lc_subject_tesim"]).to(
+          eq ["http://id.loc.gov/authorities/subjects/sh85062487"]
+        )
         expect(subject["lc_subject_label_tesim"]).to eq ["Hotels"]
       end
     end
   end
 
   context "with many types of creator/contributors" do
-    let(:creator) { [RDF::URI.new("http://id.loc.gov/authorities/names/n87914041")] }
-    let(:singer) { [RDF::URI.new("http://id.loc.gov/authorities/names/n81053687")] }
     let(:person) { Person.create(foaf_name: "Valerie") }
     let(:author) { ["Frank"] }
     let(:photographer) { [RDF::URI.new(person.uri)] }
-    let(:image) { Image.new(author: author, creator: creator, singer: singer, photographer: photographer) }
+
+    let(:creator) do
+      [RDF::URI.new("http://id.loc.gov/authorities/names/n87914041")]
+    end
+
+    let(:singer) do
+      [RDF::URI.new("http://id.loc.gov/authorities/names/n81053687")]
+    end
+
+    let(:image) do
+      Image.new(
+        author: author,
+        creator: creator,
+        singer: singer,
+        photographer: photographer
+      )
+    end
 
     before { AdminPolicy.ensure_admin_policy_exists }
 
     it "has a creator" do
       VCR.use_cassette("lc_names_american_film") do
-        expect(subject["creator_tesim"]).to eq ["http://id.loc.gov/authorities/names/n87914041"]
+        expect(subject["creator_tesim"]).to(
+          eq ["http://id.loc.gov/authorities/names/n87914041"]
+        )
         # The *_label_tesim is the result of the DeepIndexer
-        expect(subject["creator_label_tesim"]).to eq ["American Film Manufacturing Company"]
+        expect(subject["creator_label_tesim"]).to(
+          eq ["American Film Manufacturing Company"]
+        )
         expect(subject["author_label_tesim"]).to eq ["Frank"]
       end
     end
@@ -225,12 +292,22 @@ describe ObjectIndexer do
 
   context "with collections" do
     let(:image) { create(:image) }
-    let!(:long_books) { Collection.create!(title: ["Long Books"], ordered_members: [image]) }
-    let!(:boring_books) { Collection.create!(title: ["Boring Books"], ordered_members: [image]) }
+
+    let!(:long_books) do
+      Collection.create!(title: ["Long Books"], ordered_members: [image])
+    end
+
+    let!(:boring_books) do
+      Collection.create!(title: ["Boring Books"], ordered_members: [image])
+    end
 
     it "has collections" do
-      expect(subject["collection_ssim"]).to match_array [boring_books.id, long_books.id]
-      expect(subject["collection_label_ssim"]).to include "Long Books", "Boring Books"
+      expect(subject["collection_ssim"]).to(
+        match_array([boring_books.id, long_books.id])
+      )
+      expect(subject["collection_label_ssim"]).to(
+        include("Long Books", "Boring Books")
+      )
     end
   end
 
@@ -296,9 +373,11 @@ describe ObjectIndexer do
 
   context "with notes" do
     let!(:acq_note) { { note_type: "acquisition", value: "Acq Note" } }
-    let!(:cit_note) { { note_type: "preferred citation", value: "Citation Note" } }
-
     let(:image) { Image.new(notes_attributes: [acq_note, cit_note]) }
+
+    let!(:cit_note) do
+      { note_type: "preferred citation", value: "Citation Note" }
+    end
 
     it "indexes with labels" do
       expect(subject["note_label_tesim"]).to(
