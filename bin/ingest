@@ -33,7 +33,11 @@ EOS
   opt :skip, "Skip the first N records", default: 0
   opt :verbose, "Provide additional output", default: false
   opt :logfile, "/full/path/to/logfile.log (CSV imports only)", type: :string
-  opt :loglevel, "Log level: DEBUG,INFO,WARN or ERROR (CSV imports only)", type: :string, default: "DEBUG", short: "-g"
+  opt :loglevel,
+      "Log level: DEBUG,INFO,WARN or ERROR (CSV imports only)",
+      type: :string,
+      default: "DEBUG",
+      short: "-g"
 end
 
 require File.expand_path("../../lib/importer", __FILE__)
@@ -127,15 +131,19 @@ begin
     rescue => e
       puts e
       puts e.backtrace
-      raise IngestError, reached: options[:skip] + importer.imported_records_count
+      raise IngestError,
+            reached: options[:skip] + importer.imported_records_count
     ensure
       ingests = importer.imported_records_count
     end
   end # case/when
 
   end_overall = Time.zone.now
-  puts "Ingested #{ingests} records in #{(end_overall - start_overall) / 60} minutes"
+
+  puts "Ingested #{ingests} records in "\
+       "#{(end_overall - start_overall) / 60} minutes"
 rescue IngestError => e
-  puts "To continue this ingest, re-run the command with `--skip #{e.reached}`"
+  puts "To continue this ingest, re-run the command with "\
+       "`--skip #{e.reached}`"
   exit 1
 end

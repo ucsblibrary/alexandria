@@ -2,8 +2,14 @@
 
 def for_model?(request, model)
   query = [
-    "_query_:\"#{ActiveFedora::SolrQueryBuilder.construct_query_for_ids([request.params[:id]])}\"",
-    ActiveFedora::SolrQueryBuilder.construct_query_for_rel([[:has_model, model.to_rdf_representation]]),
+    ("_query_:\"" +
+     ActiveFedora::SolrQueryBuilder
+       .construct_query_for_ids([request.params[:id]]) +
+     "\""),
+
+    ActiveFedora::SolrQueryBuilder.construct_query_for_rel(
+      [[:has_model, model.to_rdf_representation]]
+    ),
   ].join(" AND ")
   results = ActiveFedora::SolrService.query query, fl: "has_model_ssim"
   results.present?
@@ -47,11 +53,25 @@ Rails.application.routes.draw do
 
   resources :local_authorities, only: :index
 
-  get "authorities/agents/:id",        to: "local_authorities#show", as: "agent"
-  get "authorities/people/:id",        to: "local_authorities#show", as: "person"
-  get "authorities/groups/:id",        to: "local_authorities#show", as: "group"
-  get "authorities/organizations/:id", to: "local_authorities#show", as: "organization"
-  get "authorities/topics/:id",        to: "local_authorities#show", as: "topic"
+  get "authorities/agents/:id",
+      to: "local_authorities#show",
+      as: "agent"
+
+  get "authorities/people/:id",
+      to: "local_authorities#show",
+      as: "person"
+
+  get "authorities/groups/:id",
+      to: "local_authorities#show",
+      as: "group"
+
+  get "authorities/organizations/:id",
+      to: "local_authorities#show",
+      as: "organization"
+
+  get "authorities/topics/:id",
+      to: "local_authorities#show",
+      as: "topic"
 
   get "access/:id/edit", to: "access#edit", as: :edit_access
   post "access/:id/update", to: "access#update"

@@ -23,7 +23,8 @@ CurationConcerns.configure do |config|
   # Specify a date you wish to start collecting Google Analytic statistics for.
   # config.analytic_start_date = DateTime.new(2014,9,10)
 
-  # Where to store tempfiles, leave blank for the system temp directory (e.g. /tmp)
+  # Where to store tempfiles, leave blank for the system temp
+  # directory (e.g. /tmp)
   # config.temp_file_base = '/home/developer1'
 
   # Specify the form of hostpath to be used in Endnote exports
@@ -37,12 +38,14 @@ CurationConcerns.configure do |config|
   # If you use a multi-server architecture, this MUST be a shared volume.
   config.working_path = Settings.uploads_dir
 
-  # If you have ffmpeg installed and want to transcode audio and video uncomment this line
+  # If you have ffmpeg installed and want to transcode audio and video
+  # uncomment this line
   config.enable_ffmpeg = true
   config.ffmpeg_path = Settings.ffmpeg_path
 
-  # CurationConcerns uses NOIDs for files and collections instead of Fedora UUIDs
-  # where NOID = 10-character string and UUID = 32-character string w/ hyphens
+  # CurationConcerns uses NOIDs for files and collections instead of
+  # Fedora UUIDs where NOID = 10-character string and UUID =
+  # 32-character string w/ hyphens
   # config.enable_noids = true
 
   # Specify a different template for your repository's NOID IDs
@@ -57,9 +60,12 @@ CurationConcerns.configure do |config|
   # Specify the path to the file characterization tool:
   config.fits_path = "fits.sh"
 
-  # Specify a date you wish to start collecting Google Analytic statistics for.
-  # Leaving it blank will set the start date to when ever the file was uploaded by
-  # NOTE: if you have always sent analytics to GA for downloads and page views leave this commented out
+  # Specify a date you wish to start collecting Google Analytic
+  # statistics for.  Leaving it blank will set the start date to when
+  # ever the file was uploaded by
+  #
+  # NOTE: if you have always sent analytics to GA for downloads and
+  # page views leave this commented out
   # config.analytic_start_date = DateTime.new(2014,9,10)
 
   # Must match the queue in config/resque-pool.yml

@@ -13,7 +13,9 @@ require File.expand_path("../../config/environment", __FILE__)
 
 # Find or create the right collection:
 require "importer"
-collection = Importer::Factory::CollectionFactory.new(Importer::Cylinder::COLLECTION_ATTRIBUTES).find_or_create
+collection = Importer::Factory::CollectionFactory.new(
+  Importer::Cylinder::COLLECTION_ATTRIBUTES
+).find_or_create
 
 puts "Adding cylinder records to: #{collection.title}"
 puts "Number of cylinder records: #{AudioRecording.count}"

@@ -29,7 +29,8 @@ Riiif::Image.info_service = lambda do |id, _file|
   { height: doc["height_is"], width: doc["width_is"] }
 end
 
-### ActiveSupport::Benchmarkable (used in Blacklight::SolrHelper) depends on a logger method
+# ActiveSupport::Benchmarkable (used in Blacklight::SolrHelper)
+# depends on a logger method
 def logger
   Rails.logger
 end

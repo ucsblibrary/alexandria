@@ -17,7 +17,11 @@ if defined?(PhusionPassenger)
       # The important two lines
       $redis.client.disconnect if $redis
       $redis = begin
-                 Redis.new(host: config[:host], port: config[:port], thread_safe: true)
+                 Redis.new(
+                   host: config[:host],
+                   port: config[:port],
+                   thread_safe: true
+                 )
                rescue
                  nil
                end
@@ -28,7 +32,11 @@ if defined?(PhusionPassenger)
   end
 else
   $redis = begin
-             Redis.new(host: config[:host], port: config[:port], thread_safe: true)
+             Redis.new(
+               host: config[:host],
+               port: config[:port],
+               thread_safe: true
+             )
            rescue
              nil
            end

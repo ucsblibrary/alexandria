@@ -34,8 +34,12 @@ ControlledVocabularies::Creator.use_vocabulary(
   :lcnames, class: Vocabularies::LCNAMES
 )
 
-ControlledVocabularies::Creator.use_vocabulary :local, class: Vocabularies::LOCAL
-ControlledVocabularies::Subject.use_vocabulary :local, class: Vocabularies::LOCAL
+ControlledVocabularies::Creator.use_vocabulary(
+  :local, class: Vocabularies::LOCAL
+)
+ControlledVocabularies::Subject.use_vocabulary(
+  :local, class: Vocabularies::LOCAL
+)
 
 # During some specs we turn off the DeepIndexingService so URI labels
 # don't get converted to strings; as a result the validation fails
@@ -47,6 +51,10 @@ ControlledVocabularies::Subject.use_vocabulary :local, class: Vocabularies::LOCA
 if Rails.env.test?
   LinkedVocabs.add_vocabulary("fedora", "#{ActiveFedora.fedora.host}/")
 
-  ControlledVocabularies::Creator.use_vocabulary :fedora, class: Vocabularies::FEDORA
-  ControlledVocabularies::Subject.use_vocabulary :fedora, class: Vocabularies::FEDORA
+  ControlledVocabularies::Creator.use_vocabulary(
+    :fedora, class: Vocabularies::FEDORA
+  )
+  ControlledVocabularies::Subject.use_vocabulary(
+    :fedora, class: Vocabularies::FEDORA
+  )
 end

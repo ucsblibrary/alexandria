@@ -7,7 +7,10 @@
 # property set.  Don't declare `role :all`, it's a meta role.
 set :stage, :aws
 set :rails_env, "production"
-server "ucsb.curationexperts.com", user: "deploy", roles: [:web, :app, :db, :resque_pool]
+
+server "ucsb.curationexperts.com",
+       user: "deploy",
+       roles: [:web, :app, :db, :resque_pool]
 
 set :linked_files, %w[
   config/application.yml

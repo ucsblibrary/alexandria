@@ -24,7 +24,10 @@ fields = %w[
 model = ARGV[0]
 solr = RSolr.connect(url: ARGV[1])
 
-doc_count = solr.get("select", params: { q: "has_model_ssim:#{model}" })["response"]["numFound"]
+doc_count = solr.get(
+  "select",
+  params: { q: "has_model_ssim:#{model}" }
+)["response"]["numFound"]
 
 objects = solr.get(
   "select",

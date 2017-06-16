@@ -8,6 +8,11 @@ config = YAML.safe_load(
   [], [], true
 )[Rails.env].with_indifferent_access
 
-Resque.redis = Redis.new(host: config[:host], port: config[:port], thread_safe: true)
+Resque.redis = Redis.new(
+  host: config[:host],
+  port: config[:port],
+  thread_safe: true
+)
+
 Resque.inline = Rails.env.test?
 Resque.redis.namespace = "curation_concerns:#{Rails.env}"
