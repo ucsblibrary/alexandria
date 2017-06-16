@@ -7,7 +7,11 @@ module EmbargoService
       work.visibility_during_embargo = resource_for(params[:admin_policy_id])
       work.admin_policy_id = params[:admin_policy_id]
     end
-    work.visibility_after_embargo = resource_for(params[:visibility_after_embargo_id])
+
+    work.visibility_after_embargo = resource_for(
+      params[:visibility_after_embargo_id]
+    )
+
     work.embargo_release_date = params[:embargo_release_date]
     work.embargo.save!
   end
@@ -35,7 +39,8 @@ module EmbargoService
   end
 
   def self.deactivate_embargo(work)
-    work.embargo_visibility! # If the embargo has lapsed, update the current visibility.
+    # If the embargo has lapsed, update the current visibility.
+    work.embargo_visibility!
     work.deactivate_embargo!
     work.embargo.save!
     work.save

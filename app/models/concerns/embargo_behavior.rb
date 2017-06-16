@@ -12,7 +12,13 @@ module EmbargoBehavior
   # Set the current visibility to match what is described in the embargo.
   def embargo_visibility!
     return unless embargo_release_date
-    uri = under_embargo? ? embargo.visibility_during_embargo : embargo.visibility_after_embargo
+
+    uri = if under_embargo?
+            embargo.visibility_during_embargo
+          else
+            embargo.visibility_after_embargo
+          end
+
     self.admin_policy_id = ActiveFedora::Base.uri_to_id(uri.id)
   end
 

@@ -8,8 +8,13 @@ class TimeSpan < ActiveTriples::Resource
   configure type: ::RDF::Vocab::EDM.TimeSpan
   property :start, predicate: ::RDF::Vocab::EDM.begin
   property :finish, predicate: ::RDF::Vocab::EDM.end
-  property :start_qualifier, predicate: ::RDF::Vocab::CRM.P79_beginning_is_qualified_by
-  property :finish_qualifier, predicate: ::RDF::Vocab::CRM.P80_end_is_qualified_by
+
+  property :start_qualifier,
+           predicate: ::RDF::Vocab::CRM.P79_beginning_is_qualified_by
+
+  property :finish_qualifier,
+           predicate: ::RDF::Vocab::CRM.P80_end_is_qualified_by
+
   property :label, predicate: ::RDF::Vocab::SKOS.prefLabel
   property :note, predicate: ::RDF::Vocab::SKOS.note
 
@@ -62,7 +67,9 @@ class TimeSpan < ActiveTriples::Resource
   end
 
   def earliest_year
-    start.reject(&:blank?).sort { |a, b| extract_year(a) <=> extract_year(b) }.first
+    start.reject(&:blank?).sort do |a, b|
+      extract_year(a) <=> extract_year(b)
+    end.first
   end
 
   private

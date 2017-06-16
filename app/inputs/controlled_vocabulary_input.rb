@@ -34,7 +34,10 @@ class ControlledVocabularyInput < MultiValueInput
                    else
                      @builder.text_field(attribute_name, options)
                    end
-      text_field + hidden_id_field(value, index) + destroy_widget(attribute_name, index)
+
+      text_field +
+        hidden_id_field(value, index) +
+        destroy_widget(attribute_name, index)
     end
 
     def id_for_hidden_label(index)
@@ -62,7 +65,13 @@ class ControlledVocabularyInput < MultiValueInput
                      value
                    end
 
-      @builder.hidden_field(attribute_name, name: name, id: id, value: form_value, data: { id: "remote" })
+      @builder.hidden_field(
+        attribute_name,
+        name: name,
+        id: id,
+        value: form_value,
+        data: { id: "remote" }
+      )
     end
 
     def build_options_for_new_row(_attribute_name, _index, options)
@@ -75,14 +84,22 @@ class ControlledVocabularyInput < MultiValueInput
     end
 
     def name_for(attribute_name, index, field)
-      "#{@builder.object_name}[#{attribute_name}_attributes][#{index}][#{field}]"
+      "#{@builder.object_name}[#{attribute_name}_attributes]"\
+      "[#{index}][#{field}]"
     end
 
     def id_for(attribute_name, index, field)
-      [@builder.object_name, "#{attribute_name}_attributes", index, field].join("_")
+      [
+        @builder.object_name,
+        "#{attribute_name}_attributes",
+        index,
+        field,
+      ].join("_")
     end
 
     def collection
-      @collection ||= Array.wrap(object[attribute_name]).reject { |value| value.to_s.strip.blank? }
+      @collection ||= Array.wrap(object[attribute_name]).reject do |value|
+        value.to_s.strip.blank?
+      end
     end
 end

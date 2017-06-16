@@ -40,65 +40,92 @@ module AdminPolicy
 
   def self.ensure_admin_policy_exists
     unless Hydra::AdminPolicy.exists?(RESTRICTED_POLICY_ID)
-      policy = Hydra::AdminPolicy.create(id: RESTRICTED_POLICY_ID, title: ["Restricted access"])
-      policy.default_permissions.build([
-                                         { type: "group", name: META_ADMIN, access: "edit" },
-                                         { type: "group", name: RIGHTS_ADMIN, access: "read" },
-                                       ])
+      policy = Hydra::AdminPolicy.create(
+        id: RESTRICTED_POLICY_ID, title: ["Restricted access"]
+      )
+
+      policy.default_permissions.build(
+        [
+          { type: "group", name: META_ADMIN, access: "edit" },
+          { type: "group", name: RIGHTS_ADMIN, access: "read" },
+        ]
+      )
       policy.save!
     end
 
     unless Hydra::AdminPolicy.exists?(DISCOVERY_POLICY_ID)
-      policy = Hydra::AdminPolicy.create(id: DISCOVERY_POLICY_ID, title: ["Discovery access only"])
-      policy.default_permissions.build([
-                                         { type: "group", name: META_ADMIN, access: "edit" },
-                                         { type: "group", name: RIGHTS_ADMIN, access: "read" },
-                                         { type: "group", name: PUBLIC_GROUP, access: "discover" },
-                                       ])
+      policy = Hydra::AdminPolicy.create(
+        id: DISCOVERY_POLICY_ID, title: ["Discovery access only"]
+      )
+      policy.default_permissions.build(
+        [
+          { type: "group", name: META_ADMIN, access: "edit" },
+          { type: "group", name: RIGHTS_ADMIN, access: "read" },
+          { type: "group", name: PUBLIC_GROUP, access: "discover" },
+        ]
+      )
       policy.save!
     end
 
     # TODO: Is this policy actually needed?
     unless Hydra::AdminPolicy.exists?(UCSB_CAMPUS_POLICY_ID)
-      policy = Hydra::AdminPolicy.create(id: UCSB_CAMPUS_POLICY_ID, title: ["Campus use only, requires UCSB login"])
-      policy.default_permissions.build([
-                                         { type: "group", name: META_ADMIN, access: "edit" },
-                                         { type: "group", name: RIGHTS_ADMIN, access: "read" },
-                                         { type: "group", name: UCSB_CAMPUS_GROUP, access: "read" },
-                                         { type: "group", name: PUBLIC_GROUP, access: "discover" },
-                                       ])
+      policy = Hydra::AdminPolicy.create(
+        id: UCSB_CAMPUS_POLICY_ID,
+        title: ["Campus use only, requires UCSB login"]
+      )
+      policy.default_permissions.build(
+        [
+          { type: "group", name: META_ADMIN, access: "edit" },
+          { type: "group", name: RIGHTS_ADMIN, access: "read" },
+          { type: "group", name: UCSB_CAMPUS_GROUP, access: "read" },
+          { type: "group", name: PUBLIC_GROUP, access: "discover" },
+        ]
+      )
       policy.save!
     end
 
     unless Hydra::AdminPolicy.exists?(UCSB_POLICY_ID)
-      policy = Hydra::AdminPolicy.create(id: UCSB_POLICY_ID, title: ["UCSB users only"])
-      policy.default_permissions.build([
-                                         { type: "group", name: META_ADMIN, access: "edit" },
-                                         { type: "group", name: RIGHTS_ADMIN, access: "read" },
-                                         { type: "group", name: UCSB_GROUP, access: "read" },
-                                         { type: "group", name: PUBLIC_GROUP, access: "discover" },
-                                       ])
+      policy = Hydra::AdminPolicy.create(
+        id: UCSB_POLICY_ID, title: ["UCSB users only"]
+      )
+      policy.default_permissions.build(
+        [
+          { type: "group", name: META_ADMIN, access: "edit" },
+          { type: "group", name: RIGHTS_ADMIN, access: "read" },
+          { type: "group", name: UCSB_GROUP, access: "read" },
+          { type: "group", name: PUBLIC_GROUP, access: "discover" },
+        ]
+      )
       policy.save!
     end
 
     unless Hydra::AdminPolicy.exists?(PUBLIC_CAMPUS_POLICY_ID)
-      policy = Hydra::AdminPolicy.create(id: PUBLIC_CAMPUS_POLICY_ID, title: ["Public Access, Campus use only"])
-      policy.default_permissions.build([
-                                         { type: "group", name: META_ADMIN, access: "edit" },
-                                         { type: "group", name: RIGHTS_ADMIN, access: "read" },
-                                         { type: "group", name: PUBLIC_CAMPUS_GROUP, access: "read" },
-                                         { type: "group", name: PUBLIC_GROUP, access: "discover" },
-                                       ])
+      policy = Hydra::AdminPolicy.create(
+        id: PUBLIC_CAMPUS_POLICY_ID,
+        title: ["Public Access, Campus use only"]
+      )
+      policy.default_permissions.build(
+        [
+          { type: "group", name: META_ADMIN, access: "edit" },
+          { type: "group", name: RIGHTS_ADMIN, access: "read" },
+          { type: "group", name: PUBLIC_CAMPUS_GROUP, access: "read" },
+          { type: "group", name: PUBLIC_GROUP, access: "discover" },
+        ]
+      )
       policy.save!
     end
 
     return if Hydra::AdminPolicy.exists?(PUBLIC_POLICY_ID)
-    policy = Hydra::AdminPolicy.create(id: PUBLIC_POLICY_ID, title: ["Public access"])
-    policy.default_permissions.build([
-                                       { type: "group", name: META_ADMIN, access: "edit" },
-                                       { type: "group", name: RIGHTS_ADMIN, access: "read" },
-                                       { type: "group", name: PUBLIC_GROUP, access: "read" },
-                                     ])
+    policy = Hydra::AdminPolicy.create(
+      id: PUBLIC_POLICY_ID, title: ["Public access"]
+    )
+    policy.default_permissions.build(
+      [
+        { type: "group", name: META_ADMIN, access: "edit" },
+        { type: "group", name: RIGHTS_ADMIN, access: "read" },
+        { type: "group", name: PUBLIC_GROUP, access: "read" },
+      ]
+    )
     policy.save!
   end
 end

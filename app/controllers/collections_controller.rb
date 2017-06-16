@@ -4,7 +4,9 @@
 # it provides display and search within collections.
 class CollectionsController < ApplicationController
   include CurationConcerns::CollectionsControllerBehavior
-  # FIXME: remove once https://github.com/projecthydra/curation_concerns/issues/616 is closed
+  # FIXME: remove once
+  # https://github.com/projecthydra/curation_concerns/issues/616 is
+  # closed
   include CurationConcerns::ThemedLayoutController
 
   # Overridden to use our local search builders with Admin Policies
@@ -14,7 +16,9 @@ class CollectionsController < ApplicationController
 
   configure_blacklight do |config|
     # Fields for the Collection show page
-    config.show_fields.delete(Solrizer.solr_name("description", :stored_searchable))
+    config.show_fields.delete(
+      Solrizer.solr_name("description", :stored_searchable)
+    )
   end
 
   def edit

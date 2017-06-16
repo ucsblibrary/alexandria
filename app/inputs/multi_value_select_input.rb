@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class MultiValueSelectInput < MultiValueInput
-  # Overriding this so that the class is correct and the javascript for multivalue will work on this.
+  # Overriding this so that the class is correct and the javascript
+  # for multivalue will work on this.
   def input_type
     "multi_value"
   end
@@ -16,10 +17,16 @@ class MultiValueSelectInput < MultiValueInput
   private
 
     def select_options
-      @select_options ||= begin
-        collection = options.delete(:collection) || self.class.boolean_collection
-        collection.respond_to?(:call) ? collection.call : collection.to_a
-      end
+      return @select_options if @select_options.present?
+
+      collection = options.delete(:collection) ||
+                   self.class.boolean_collection
+
+      @select_options = if collection.respond_to?(:call)
+                          collection.call
+                        else
+                          collection.to_a
+                        end
     end
 
     def build_field(value, _index)
@@ -46,6 +53,11 @@ class MultiValueSelectInput < MultiValueInput
                         end
 
       html_options[:prompt] = "" if selected_option.blank?
-      template.select_tag(attribute_name, template.options_for_select(select_options, selected_option), html_options)
+
+      template.select_tag(
+        attribute_name,
+        template.options_for_select(select_options, selected_option),
+        html_options
+      )
     end
 end

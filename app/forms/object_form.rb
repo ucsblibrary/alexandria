@@ -40,7 +40,13 @@ class ObjectForm
   # ARK and record_origin are read-only values on the form.
   delegate :ark, :record_origin, to: :model
 
-  NESTED_ASSOCIATIONS = [:created, :issued, :date_valid, :date_other, :date_copyrighted].freeze
+  NESTED_ASSOCIATIONS = [
+    :created,
+    :issued,
+    :date_valid,
+    :date_other,
+    :date_copyrighted,
+  ].freeze
 
   def initialize_fields
     # we're making a local copy of the attributes that we can modify.
@@ -48,10 +54,15 @@ class ObjectForm
     terms.each { |key| initialize_field(key) }
   end
 
-  # Refactor this to call super when this PR is merged: https://github.com/projecthydra-labs/hydra-editor/pull/60
+  # Refactor this to call super when this PR is merged:
+  # https://github.com/projecthydra-labs/hydra-editor/pull/60
   def initialize_field(key)
     # Don't initialize fields that use the SubjectManager
-    return if [:lc_subject, :form_of_work, :rights_holder, :institution, :work_type].include?(key)
+    return if [:lc_subject,
+               :form_of_work,
+               :rights_holder,
+               :institution,
+               :work_type,].include?(key)
 
     if key == :contributor
       self[key] = multiplex_contributors
@@ -61,7 +72,8 @@ class ObjectForm
       # Initialize linked properties such as language
       self[key] += [class_name.new]
     elsif self.class.multiple?(key)
-      # pull the values out of the ActiveTriples::Relation into an ordinary array
+      # pull the values out of the ActiveTriples::Relation into an
+      # ordinary array
       self[key] = self[key].map { |val| val }
     elsif self[key].blank?
       self[key] = ""
@@ -79,7 +91,10 @@ class ObjectForm
                   end
     else
       self[key] = model.send(key)
-      self[key] = AdminPolicy::PUBLIC_POLICY_ID if key == :admin_policy_id && !self[key]
+
+      if key == :admin_policy_id && !self[key]
+        self[key] = AdminPolicy::PUBLIC_POLICY_ID
+      end
     end
   end
 
@@ -135,7 +150,9 @@ class ObjectForm
   end
 
   def self.fedora_url_prefix
-    "#{active_fedora_config.fetch(:url)}#{active_fedora_config.fetch(:base_path)}\/"
+    active_fedora_config.fetch(:url) +
+      active_fedora_config.fetch(:base_path) +
+      "\/"
   end
 
   def self.active_fedora_config
