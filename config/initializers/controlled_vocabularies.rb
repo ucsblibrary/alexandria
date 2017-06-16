@@ -5,21 +5,27 @@ require "vocabularies"
 
 require_relative "settings"
 
-LinkedVocabs.add_vocabulary("aat", "http://vocab.getty.edu/aat/")
-LinkedVocabs.add_vocabulary("cclicenses", "http://creativecommons.org/licenses/")
-LinkedVocabs.add_vocabulary("ccpublic", "http://creativecommons.org/publicdomain/")
-LinkedVocabs.add_vocabulary("eurights", "http://www.europeana.eu/rights/")
-LinkedVocabs.add_vocabulary("iso_639_2", "http://id.loc.gov/vocabulary/iso639-2/")
-LinkedVocabs.add_vocabulary("lc_orgs", "http://id.loc.gov/vocabulary/organizations/")
-LinkedVocabs.add_vocabulary("lccs", "http://id.loc.gov/vocabulary/preservation/copyrightStatus")
-LinkedVocabs.add_vocabulary("lcnames", "http://id.loc.gov/authorities/names/")
-LinkedVocabs.add_vocabulary("lcrt", "http://id.loc.gov/vocabulary/resourceTypes")
-LinkedVocabs.add_vocabulary("lcsh", "http://id.loc.gov/authorities/subjects/")
-LinkedVocabs.add_vocabulary("ldp", "http://www.w3.org/ns/ldp#")
-LinkedVocabs.add_vocabulary("local", Settings.internal_local_vocab_root)
-LinkedVocabs.add_vocabulary("rights", "http://opaquenamespace.org/ns/rights/")
-LinkedVocabs.add_vocabulary("rs", "http://rightsstatements.org/vocab/")
-LinkedVocabs.add_vocabulary("tgm", "http://id.loc.gov/vocabulary/graphicMaterials")
+VOCAB_MAP = {
+  "aat" => "http://vocab.getty.edu/aat/",
+  "cclicenses" => "http://creativecommons.org/licenses/",
+  "ccpublic" => "http://creativecommons.org/publicdomain/",
+  "eurights" => "http://www.europeana.eu/rights/",
+  "iso_639_2" => "http://id.loc.gov/vocabulary/iso639-2/",
+  "lc_orgs" => "http://id.loc.gov/vocabulary/organizations/",
+  "lccs" => "http://id.loc.gov/vocabulary/preservation/copyrightStatus",
+  "lcnames" => "http://id.loc.gov/authorities/names/",
+  "lcrt" => "http://id.loc.gov/vocabulary/resourceTypes",
+  "lcsh" => "http://id.loc.gov/authorities/subjects/",
+  "ldp" => "http://www.w3.org/ns/ldp#",
+  "local" => Settings.internal_local_vocab_root,
+  "rights" => "http://opaquenamespace.org/ns/rights/",
+  "rs" => "http://rightsstatements.org/vocab/",
+  "tgm" => "http://id.loc.gov/vocabulary/graphicMaterials",
+}.freeze
+
+VOCAB_MAP.each do |label, uri|
+  LinkedVocabs.add_vocabulary(label, uri)
+end
 
 ControlledVocabularies::RightsStatement.use_vocabulary(
   :rs, class: Vocabularies::RS
