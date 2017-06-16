@@ -76,7 +76,7 @@ describe SolrDocument do
         end
 
         before do
-          etd_document["member_ids_ssim"] = [file_set_document.id]
+          etd_document.to_h["member_ids_ssim"] = [file_set_document.id]
           ActiveFedora::SolrService.add(file_set_document)
           ActiveFedora::SolrService.commit
         end
