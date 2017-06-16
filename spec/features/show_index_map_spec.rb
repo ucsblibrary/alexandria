@@ -3,10 +3,16 @@
 require "rails_helper"
 
 feature "IndexMap show page:" do
-  let(:creator_uri) { RDF::URI.new("http://id.loc.gov/authorities/names/n81038526") }
-  let(:title) { ["Region around the North Pole : giving the records of the most important explorations"] }
   let(:extent) { ["1 map : color ; 27 x 38 cm"] }
   let(:scale) { ["1:18,374,400"] }
+
+  let(:creator_uri) do
+    RDF::URI.new("http://id.loc.gov/authorities/names/n81038526")
+  end
+
+  let(:title) do
+    ["Region around the North Pole : giving the records of the most important explorations"]
+  end
 
   let(:collection) do
     create(:public_collection,
@@ -52,7 +58,11 @@ feature "IndexMap show page:" do
   let(:file_path) { File.join(fixture_path, "maps", "7070s_250_u54_index.jpg") }
   let(:file_set) do
     FileSet.new(admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID) do |fs|
-      Hydra::Works::AddFileToFileSet.call(fs, File.new(file_path), :original_file)
+      Hydra::Works::AddFileToFileSet.call(
+        fs,
+        File.new(file_path),
+        :original_file
+      )
     end
   end
 

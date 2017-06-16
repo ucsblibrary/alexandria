@@ -7,13 +7,19 @@ feature "file_set iiif manifest" do
   let(:policy_id) { AdminPolicy::PUBLIC_POLICY_ID }
   let(:file_set) do
     FileSet.new(admin_policy_id: policy_id) do |fs|
-      Hydra::Works::AddFileToFileSet.call(fs, File.new(file_path), :original_file)
+      Hydra::Works::AddFileToFileSet.call(
+        fs,
+        File.new(file_path),
+        :original_file
+      )
     end
   end
 
   scenario "visit the iiif manifest" do
     visit Riiif::Engine.routes.url_helpers.info_path(file_set.id)
-    expect(JSON.parse(body)["@context"]).to eql("http://iiif.io/api/image/2/context.json")
+    expect(JSON.parse(body)["@context"]).to(
+      eql("http://iiif.io/api/image/2/context.json")
+    )
     expect(JSON.parse(body)["width"]).to eql(256)
     expect(JSON.parse(body)["height"]).to eql(223)
   end

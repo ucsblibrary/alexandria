@@ -30,7 +30,13 @@ RSpec.describe ContactUsController, type: :controller do
 
   describe "GET create" do
     before do
-      post :create, params: { name: frodo, email: frodo_email, category: category, message: message }
+      post(
+        :create,
+        params: { name: frodo,
+                  email: frodo_email,
+                  category: category,
+                  message: message, }
+      )
     end
 
     it "generates an email" do
@@ -39,7 +45,9 @@ RSpec.describe ContactUsController, type: :controller do
       expect(ActionMailer::Base.deliveries.count).to eq 1
       email = ActionMailer::Base.deliveries.first
 
-      expect(email.to).to eq Array(Rails.application.secrets.contact_us_email_to)
+      expect(email.to).to(
+        eq Array(Rails.application.secrets.contact_us_email_to)
+      )
       expect(email.to_s).to match(from)
       expect(email.from).to eq Array(frodo_email)
       expect(email.body.to_s).to eq message
@@ -51,7 +59,14 @@ RSpec.describe ContactUsController, type: :controller do
     before do
       # If the invisible zipcode field is filled in,
       # we suspect it is spam.
-      post :create, params: { name: frodo, email: frodo_email, category: category, message: message, zipcode: "55402" }
+      post(
+        :create,
+        params: { name: frodo,
+                  email: frodo_email,
+                  category: category,
+                  message: message,
+                  zipcode: "55402", }
+      )
     end
 
     it "generates an email, but flags it as spam" do

@@ -5,7 +5,14 @@ require "rails_helper"
 describe OptionsHelper do
   describe "#digital_origin_options" do
     subject { helper.digital_origin_options }
-    it { is_expected.to eq ["digitized other analog", "born digital", "reformatted digital", "digitized microfilm"] }
+    it do
+      is_expected.to(
+        eq ["digitized other analog",
+            "born digital",
+            "reformatted digital",
+            "digitized microfilm",]
+      )
+    end
   end
 
   describe "#description_standard_options" do
@@ -15,7 +22,13 @@ describe OptionsHelper do
 
   describe "#sub_location_options" do
     subject { helper.sub_location_options }
-    it { is_expected.to include Qa::Authorities::Local.subauthority_for("sub_location").all.sample[:label] }
+    it do
+      is_expected.to(
+        include(Qa::Authorities::Local.subauthority_for("sub_location")
+                  .all
+                  .sample[:label])
+      )
+    end
   end
 
   describe "#license_options" do
@@ -57,9 +70,11 @@ describe OptionsHelper do
   describe "#copyright_status_options" do
     subject { helper.copyright_status_options }
     it do
-      is_expected.to eq("public domain" => "http://id.loc.gov/vocabulary/preservation/copyrightStatus/pub",
-                        "copyrighted" => "http://id.loc.gov/vocabulary/preservation/copyrightStatus/cpr",
-                        "unknown" => "http://id.loc.gov/vocabulary/preservation/copyrightStatus/unk")
+      is_expected.to(
+        eq("public domain" => "http://id.loc.gov/vocabulary/preservation/copyrightStatus/pub",
+           "copyrighted" => "http://id.loc.gov/vocabulary/preservation/copyrightStatus/cpr",
+           "unknown" => "http://id.loc.gov/vocabulary/preservation/copyrightStatus/unk")
+      )
     end
   end
 
@@ -67,7 +82,9 @@ describe OptionsHelper do
     subject { helper.relators_json }
     it { is_expected.to be_html_safe }
     it "begins with creator and contributor" do
-      expect(subject).to start_with '{"creator":"Creator","contributor":"Contributor"'
+      expect(subject).to(
+        start_with '{"creator":"Creator","contributor":"Contributor"'
+      )
     end
   end
 end

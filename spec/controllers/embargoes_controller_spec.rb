@@ -42,8 +42,12 @@ describe EmbargoesController do
       before do
         AdminPolicy.ensure_admin_policy_exists
         work.admin_policy_id = AdminPolicy::UCSB_CAMPUS_POLICY_ID
-        work.visibility_during_embargo = RDF::URI(ActiveFedora::Base.id_to_uri(AdminPolicy::UCSB_CAMPUS_POLICY_ID))
-        work.visibility_after_embargo = RDF::URI(ActiveFedora::Base.id_to_uri(AdminPolicy::PUBLIC_POLICY_ID))
+        work.visibility_during_embargo = RDF::URI(
+          ActiveFedora::Base.id_to_uri(AdminPolicy::UCSB_CAMPUS_POLICY_ID)
+        )
+        work.visibility_after_embargo = RDF::URI(
+          ActiveFedora::Base.id_to_uri(AdminPolicy::PUBLIC_POLICY_ID)
+        )
         work.embargo_release_date = release_date.to_s
         work.save(validate: false)
         get :destroy, params: { id: work }
@@ -53,7 +57,7 @@ describe EmbargoesController do
       context "with an active embargo" do
         let(:release_date) { Time.zone.today + 2 }
 
-        it "deactivates embargo without updating admin_policy_id and redirects" do
+        it "deactivates embargo without updating admin_policy_id" do
           expect(work.admin_policy_id).to eq AdminPolicy::UCSB_CAMPUS_POLICY_ID
           expect(response).to redirect_to solr_document_path(work)
         end
@@ -78,8 +82,12 @@ describe EmbargoesController do
       before do
         AdminPolicy.ensure_admin_policy_exists
         work.admin_policy_id = AdminPolicy::UCSB_CAMPUS_POLICY_ID
-        work.visibility_during_embargo = RDF::URI(ActiveFedora::Base.id_to_uri(AdminPolicy::UCSB_CAMPUS_POLICY_ID))
-        work.visibility_after_embargo = RDF::URI(ActiveFedora::Base.id_to_uri(AdminPolicy::PUBLIC_POLICY_ID))
+        work.visibility_during_embargo = RDF::URI(
+          ActiveFedora::Base.id_to_uri(AdminPolicy::UCSB_CAMPUS_POLICY_ID)
+        )
+        work.visibility_after_embargo = RDF::URI(
+          ActiveFedora::Base.id_to_uri(AdminPolicy::PUBLIC_POLICY_ID)
+        )
         work.embargo_release_date = release_date.to_s
         work.embargo.save(validate: false)
         work.save(validate: false)
@@ -89,7 +97,9 @@ describe EmbargoesController do
         let(:release_date) { Time.zone.today - 2 }
         it "deactivates embargo, update the visibility and redirect" do
           patch :update, params: { batch_document_ids: [work.id] }
-          expect(work.reload.admin_policy_id).to eq AdminPolicy::PUBLIC_POLICY_ID
+          expect(work.reload.admin_policy_id).to(
+            eq AdminPolicy::PUBLIC_POLICY_ID
+          )
           expect(response).to redirect_to embargoes_path
         end
       end

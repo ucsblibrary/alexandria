@@ -9,7 +9,9 @@ feature "Merge Record: " do
   context "an admin user" do
     before do
       AdminPolicy.ensure_admin_policy_exists
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+      allow_any_instance_of(ApplicationController).to(
+        receive(:current_user).and_return(user)
+      )
       allow_any_instance_of(User).to receive(:user_key).and_return("testkey")
     end
 
@@ -36,10 +38,14 @@ feature "Merge Record: " do
       end
 
       # A merge job should get queued when we submit the form
-      expect(MergeRecordsJob).to receive(:perform_later).with(old.id, new.id, "testkey")
+      expect(MergeRecordsJob).to(
+        receive(:perform_later).with(old.id, new.id, "testkey")
+      )
 
       click_button "Merge"
-      expect(page).to have_content "A background job has been queued to merge the records."
+      expect(page).to(
+        have_content("A background job has been queued to merge the records.")
+      )
     end
   end
 end

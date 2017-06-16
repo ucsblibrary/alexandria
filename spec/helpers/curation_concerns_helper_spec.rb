@@ -6,7 +6,13 @@ describe CurationConcernsHelper do
   describe "#url_for_document" do
     subject { helper.url_for_document(document) }
 
-    let(:document) { SolrDocument.new(has_model_ssim: [model], id: "fk4v989d9j", identifier_ssm: ["ark:/99999/fk4v989d9j"]) }
+    let(:document) do
+      SolrDocument.new(
+        has_model_ssim: [model],
+        id: "fk4v989d9j",
+        identifier_ssm: ["ark:/99999/fk4v989d9j"]
+      )
+    end
 
     context "with an image" do
       let(:model) { Image.to_rdf_representation }
@@ -22,8 +28,14 @@ describe CurationConcernsHelper do
 
       context "without an ark" do
         let(:search_state) { double("SearchState", url_for_document: document) }
-        before { allow(helper).to receive(:search_state).and_return(search_state) }
-        let(:document) { SolrDocument.new(has_model_ssim: [model], id: "fk4v989d9j") }
+        let(:document) do
+          SolrDocument.new(has_model_ssim: [model], id: "fk4v989d9j")
+        end
+
+        before do
+          allow(helper).to receive(:search_state).and_return(search_state)
+        end
+
         it { is_expected.to eq "/catalog/fk4v989d9j" }
       end
     end
@@ -36,7 +48,15 @@ describe CurationConcernsHelper do
     context "a local authoritiy with a public URI" do
       let(:model) { Person.to_rdf_representation }
       let(:uri) { "http://example.com/authorities/person/fk4v989d9j" }
-      let(:document) { SolrDocument.new(has_model_ssim: [model], id: "fk4v989d9j", identifier_ssm: ["ark:/99999/fk4v989d9j"], public_uri_ssim: [uri]) }
+      let(:document) do
+        SolrDocument.new(
+          has_model_ssim: [model],
+          id: "fk4v989d9j",
+          identifier_ssm: ["ark:/99999/fk4v989d9j"],
+          public_uri_ssim: [uri]
+        )
+      end
+
       it { is_expected.to eq uri }
     end
   end

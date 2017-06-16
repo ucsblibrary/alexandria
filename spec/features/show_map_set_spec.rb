@@ -4,8 +4,13 @@ require "rails_helper"
 
 feature "MapSet show page:" do
   before do
-    [index_map_west_id, index_map_east_id, component_map_river_id, component_map_city_id].each do |id|
-      ActiveFedora::Base.find(id).destroy(eradicate: true) if ActiveFedora::Base.exists?(id)
+    [index_map_west_id,
+     index_map_east_id,
+     component_map_river_id,
+     component_map_city_id,].each do |id|
+      if ActiveFedora::Base.exists?(id)
+        ActiveFedora::Base.find(id).destroy(eradicate: true)
+      end
     end
 
     VCR.use_cassette("show_map_set_feature_spec") do
@@ -26,12 +31,19 @@ feature "MapSet show page:" do
   let(:title) { ["Japan 1:250,000"] }
   let(:scale) { ["approximately 1:300,000"] }
   let(:extent) { ["maps : color ; 47 x 71 cm or smaller"] }
-  let(:creator_uri) { RDF::URI.new("http://id.loc.gov/authorities/names/n79122611") }
   let(:file_path) { File.join(fixture_path, "maps", "7070s_250_u54_index.jpg") }
+
+  let(:creator_uri) do
+    RDF::URI.new("http://id.loc.gov/authorities/names/n79122611")
+  end
 
   let(:file_set) do
     FileSet.new(admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID) do |fs|
-      Hydra::Works::AddFileToFileSet.call(fs, File.new(file_path), :original_file)
+      Hydra::Works::AddFileToFileSet.call(
+        fs,
+        File.new(file_path),
+        :original_file
+      )
     end
   end
 
@@ -118,16 +130,30 @@ feature "MapSet show page:" do
     visit catalog_ark_path("ark:", "99999", map_set.id)
     expect(page).to have_content title.first
     expect(page).to have_content extent.first
-    expect(page).to have_content "United States. Army Map Service" # de-referenced creator
+    # de-referenced creator
+    expect(page).to have_content "United States. Army Map Service"
     expect(page).to have_content scale.first
 
     expect(page).to have_content "Index Maps"
-    expect(page).to have_link("Index Map, East Side", href: catalog_ark_path("ark:", "99999", index_map_east.id))
-    expect(page).to have_link("Index Map, West Side", href: catalog_ark_path("ark:", "99999", index_map_west.id))
+    expect(page).to(
+      have_link("Index Map, East Side",
+                href: catalog_ark_path("ark:", "99999", index_map_east.id))
+    )
+
+    expect(page).to(
+      have_link("Index Map, West Side",
+                href: catalog_ark_path("ark:", "99999", index_map_west.id))
+    )
 
     expect(page).to have_content "Map Sheets"
-    expect(page).to have_link("city", href: catalog_ark_path("ark:", "99999", component_map_city.id))
-    expect(page).to have_link("river", href: catalog_ark_path("ark:", "99999", component_map_river.id))
+    expect(page).to(
+      have_link("city",
+                href: catalog_ark_path("ark:", "99999", component_map_city.id))
+    )
+    expect(page).to(
+      have_link("river",
+                href: catalog_ark_path("ark:", "99999", component_map_river.id))
+    )
 
     # The thumbnail should be a link to the show page for that
     # record.

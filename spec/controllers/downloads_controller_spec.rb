@@ -11,11 +11,17 @@ describe DownloadsController do
 
   describe "#asset" do
     before do
-      allow(controller).to receive(:params).and_return(id: "ca%2Fc0%2Ff3%2Ff4%2Fcac0f3f4-ea8f-414d-a7a5-3253ef003b1a")
+      allow(controller).to(
+        receive(:params).and_return(
+          id: "ca%2Fc0%2Ff3%2Ff4%2Fcac0f3f4-ea8f-414d-a7a5-3253ef003b1a"
+        )
+      )
     end
 
     it "decodes the id" do
-      expect(ActiveFedora::Base).to receive(:find).with("ca/c0/f3/f4/cac0f3f4-ea8f-414d-a7a5-3253ef003b1a")
+      expect(ActiveFedora::Base).to(
+        receive(:find).with("ca/c0/f3/f4/cac0f3f4-ea8f-414d-a7a5-3253ef003b1a")
+      )
       controller.send(:asset)
     end
   end
@@ -39,11 +45,13 @@ describe DownloadsController do
           get :show, params: { id: file_set }
           expect(response).to be_successful
           # expect(response.headers['Content-Type']).to eq 'application/pdf'
-          expect(response.headers["Content-Disposition"]).to eq 'inline; filename="sample.pdf"'
+          expect(response.headers["Content-Disposition"]).to(
+            eq 'inline; filename="sample.pdf"'
+          )
         end
       end
 
-      context "downloading a derivative of a restored copy (used for link to download an mp3)" do
+      context "downloading a derivative of a restored copy (e.g. an mp3)" do
         let(:file_set) do
           mock_model(FileSet, admin_policy_id: policy_id, restored: file)
         end
@@ -57,7 +65,9 @@ describe DownloadsController do
         it "returns attachment as the disposition" do
           get :show, params: { id: file_set, file: "mp3", dl: true }
           expect(response).to be_successful
-          expect(response.headers["Content-Disposition"]).to eq 'attachment; filename="real-name.mp3"'
+          expect(response.headers["Content-Disposition"]).to(
+            eq 'attachment; filename="real-name.mp3"'
+          )
         end
       end
     end

@@ -3,7 +3,13 @@
 require "rails_helper"
 
 describe ImageForm do
-  let(:image) { Image.new(identifier: ["ark:/99999/fk4f76j320"], record_origin: ["This is the origin"]) }
+  let(:image) do
+    Image.new(
+      identifier: ["ark:/99999/fk4f76j320"],
+      record_origin: ["This is the origin"]
+    )
+  end
+
   let(:instance) { described_class.new image }
 
   describe "#ark" do
@@ -48,7 +54,9 @@ describe ImageForm do
       expect(subject).to include(date_valid_attributes: time_span_params)
       expect(subject).to include(date_copyrighted_attributes: time_span_params)
 
-      expect(subject).to include(contributor_attributes: [:id, :predicate, :_destroy])
+      expect(subject).to(
+        include(contributor_attributes: [:id, :predicate, :_destroy])
+      )
       # expect(subject).to include(creator_attributes: [:id, :_destroy])
     end
 
@@ -92,7 +100,9 @@ describe ImageForm do
       it "has the full URI as the id" do
         created_attributes = model_attributes.fetch(:created_attributes)
 
-        expect(created_attributes.fetch("0").fetch(:id)).to eq("#{ActiveFedora.fedora.host}/test/de/ad/be/ef/deadbeef")
+        expect(created_attributes.fetch("0").fetch(:id)).to(
+          eq("#{ActiveFedora.fedora.host}/test/de/ad/be/ef/deadbeef")
+        )
       end
     end
 
@@ -112,12 +122,18 @@ describe ImageForm do
         }.with_indifferent_access
       end
 
-      let(:photographer_attributes) { model_attributes.fetch(:photographer_attributes) }
+      let(:photographer_attributes) do
+        model_attributes.fetch(:photographer_attributes)
+      end
       let(:creator_attributes) { model_attributes.fetch(:creator_attributes) }
 
       it "demultiplexes the contributor field" do
-        expect(photographer_attributes).to eq [{ "id" => "#{ActiveFedora.fedora.host}/test/de/ad/be/ef/deadbeef" }]
-        expect(creator_attributes).to eq [{ "id" => "http://id.loc.gov/authorities/names/n87914041" }]
+        expect(photographer_attributes).to(
+          eq [{ "id" => "#{ActiveFedora.fedora.host}/test/de/ad/be/ef/deadbeef" }]
+        )
+        expect(creator_attributes).to(
+          eq [{ "id" => "http://id.loc.gov/authorities/names/n87914041" }]
+        )
         expect(model_attributes[:contributor_attributes]).to be_nil
       end
     end
@@ -128,7 +144,12 @@ describe ImageForm do
     let(:form) { described_class.new(model) }
     let(:model) { Image.new(attributes) }
     let(:attributes) do
-      { photographer: [RDF::URI.new("http://id.loc.gov/authorities/names/n87914041"), Agent.create] }
+      {
+        photographer: [
+          RDF::URI.new("http://id.loc.gov/authorities/names/n87914041"),
+          Agent.create,
+        ],
+      }
     end
 
     subject { form.send :multiplex_contributors }

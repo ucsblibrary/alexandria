@@ -22,7 +22,9 @@ describe CollectionsController do
       it "shows a list of public collections" do
         get :index
         expect(response).to be_successful
-        expect(assigns[:document_list].map(&:id)).to contain_exactly(collection1.id, collection2.id)
+        expect(assigns[:document_list].map(&:id)).to(
+          contain_exactly(collection1.id, collection2.id)
+        )
       end
     end
 
@@ -32,13 +34,23 @@ describe CollectionsController do
       it "shows a list of collections accessible to me" do
         get :index
         expect(response).to be_successful
-        expect(assigns[:document_list].map(&:id)).to contain_exactly(collection1.id, collection2.id)
+        expect(assigns[:document_list].map(&:id)).to(
+          contain_exactly(collection1.id, collection2.id)
+        )
       end
     end
   end
 
   describe "#show" do
-    let(:collection) { create :public_collection, id: "fk4v989d9j", members: [image, private_image], identifier: ["ark:/99999/fk4v989d9j"] }
+    let(:collection) do
+      create(
+        :public_collection,
+        id: "fk4v989d9j",
+        members: [image, private_image],
+        identifier: ["ark:/99999/fk4v989d9j"]
+      )
+    end
+
     let(:private_image) { create :image }
     let(:image) { create :public_image }
 

@@ -21,12 +21,18 @@ feature "Embargo management" do
   end
 
   let(:etd) do
-    create(:etd,
-           admin_policy_id: AdminPolicy::DISCOVERY_POLICY_ID,
-           embargo_release_date: old_date,
-           local_collection_id: [collection.id],
-           visibility_after_embargo: RDF::URI(ActiveFedora::Base.id_to_uri(old_policy_id)),
-           visibility_during_embargo: RDF::URI(ActiveFedora::Base.id_to_uri(AdminPolicy::DISCOVERY_POLICY_ID)))
+    create(
+      :etd,
+      admin_policy_id: AdminPolicy::DISCOVERY_POLICY_ID,
+      embargo_release_date: old_date,
+      local_collection_id: [collection.id],
+      visibility_after_embargo: RDF::URI(
+        ActiveFedora::Base.id_to_uri(old_policy_id)
+      ),
+      visibility_during_embargo: RDF::URI(
+        ActiveFedora::Base.id_to_uri(AdminPolicy::DISCOVERY_POLICY_ID)
+      )
+    )
   end
 
   let(:old_date) { Time.zone.today + 7.days }
@@ -49,7 +55,9 @@ feature "Embargo management" do
 
   context "a rights-admin user" do
     before do
-      allow_any_instance_of(User).to receive(:groups).and_return([AdminPolicy::RIGHTS_ADMIN])
+      allow_any_instance_of(User).to(
+        receive(:groups).and_return([AdminPolicy::RIGHTS_ADMIN])
+      )
     end
 
     context "for an active embargo" do
@@ -68,8 +76,12 @@ feature "Embargo management" do
         # and check for the expected new values.
         click_link "Embargoes"
         within(:xpath, ".//tr[td[a[contains(., etd.title.first)]]]") do
-          expect(page).to have_css "td.embargo-release-date", text: new_date.to_s
-          expect(page).to have_css "td.visibility-after-embargo", text: new_policy.title
+          expect(page).to(
+            have_css("td.embargo-release-date", text: new_date.to_s)
+          )
+          expect(page).to(
+            have_css("td.visibility-after-embargo", text: new_policy.title)
+          )
         end
       end
     end
@@ -77,7 +89,7 @@ feature "Embargo management" do
     context "for an active embargo that has expired:" do
       let(:old_date) { Time.zone.today - 3.days }
 
-      scenario "deactivates the embargo for the ETD, but not for the attached file" do
+      scenario "deactivates the embargo for ETD, but not for attached file" do
         # The ETD starts with "Discovery" access
         visit catalog_ark_path("ark:", "99999", etd.id)
         expect(page).to have_content "Access: Discovery access only"
@@ -89,7 +101,10 @@ feature "Embargo management" do
         find(:css, "#batch_document_#{etd.id}").set(true)
 
         # Find the checkbox for attached files, and uncheck it
-        files_checkbox = find(:xpath, ".//td[contains(., 'Change all files')]/input")
+        files_checkbox = find(
+          :xpath,
+          ".//td[contains(., 'Change all files')]/input"
+        )
         files_checkbox.set(false)
 
         click_button "Deactivate Embargo"
@@ -102,7 +117,7 @@ feature "Embargo management" do
         expect(fs.reload.admin_policy_id).to eq AdminPolicy::DISCOVERY_POLICY_ID
       end
 
-      scenario "deactivates the embargo for both the ETD and the attached file" do
+      scenario "deactivates embargo for both the ETD and the attached file" do
         visit embargoes_path
         click_link "Expired Active Embargoes"
 
@@ -110,7 +125,10 @@ feature "Embargo management" do
         find(:css, "#batch_document_#{etd.id}").set(true)
 
         # Find the checkbox for attached files, and check it
-        files_checkbox = find(:xpath, ".//td[contains(., 'Change all files')]/input")
+        files_checkbox = find(
+          :xpath,
+          ".//td[contains(., 'Change all files')]/input"
+        )
         files_checkbox.set(true)
 
         click_button "Deactivate Embargo"
@@ -124,8 +142,16 @@ feature "Embargo management" do
 
         visit embargoes_path
         click_link "Deactivated Embargoes"
-        expect(page).to have_content "#{etd.title.first} Public access An expired embargo was deactivated"
-        expect(page).to have_content "Visibility during embargo was Discovery access only and intended visibility after embargo was Public access"
+        expect(page).to(
+          have_content("#{etd.title.first} Public access "\
+                       "An expired embargo was deactivated")
+        )
+        expect(page).to(
+          have_content(
+            "Visibility during embargo was Discovery access only "\
+            "and intended visibility after embargo was Public access"
+          )
+        )
       end
     end # context "for an active embargo that has expired:"
   end # context "a rights-admin user"

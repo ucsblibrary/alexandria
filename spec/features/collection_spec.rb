@@ -25,7 +25,9 @@ feature "Collection show page:" do
     AdminPolicy.ensure_admin_policy_exists
   end
 
-  let(:colors) { create_collection_with_images(colors_attrs, [red_attrs, pink_attrs]) }
+  let(:colors) do
+    create_collection_with_images(colors_attrs, [red_attrs, pink_attrs])
+  end
 
   scenario "Use facets to browse collection members" do
     visit collection_path(colors)

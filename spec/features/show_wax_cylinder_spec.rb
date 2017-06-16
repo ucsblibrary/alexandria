@@ -10,10 +10,12 @@ feature "Collection show page:" do
   end
 
   let(:recording) do
-    AudioRecording.create(title: ["Any rags"],
-                          description: ["Baritone solo with orchestra accompaniment."],
-                          local_collection_id: [collection.id],
-                          admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID)
+    AudioRecording.create(
+      title: ["Any rags"],
+      description: ["Baritone solo with orchestra accompaniment."],
+      local_collection_id: [collection.id],
+      admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID
+    )
   end
 
   scenario "show the page" do

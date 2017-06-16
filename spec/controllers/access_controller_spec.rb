@@ -13,12 +13,18 @@ describe AccessController do
   let(:user) { nil }
 
   let!(:etd) do
-    create(:etd,
-           embargo_release_date: Date.parse("2010-10-10"),
-           id: "123",
-           title: ["mock"],
-           visibility_after_embargo: RDF::URI(ActiveFedora::Base.id_to_uri(AdminPolicy::PUBLIC_POLICY_ID)),
-           visibility_during_embargo: RDF::URI(ActiveFedora::Base.id_to_uri(AdminPolicy::UCSB_CAMPUS_POLICY_ID)))
+    create(
+      :etd,
+      embargo_release_date: Date.parse("2010-10-10"),
+      id: "123",
+      title: ["mock"],
+      visibility_after_embargo: RDF::URI(
+        ActiveFedora::Base.id_to_uri(AdminPolicy::PUBLIC_POLICY_ID)
+      ),
+      visibility_during_embargo: RDF::URI(
+        ActiveFedora::Base.id_to_uri(AdminPolicy::UCSB_CAMPUS_POLICY_ID)
+      )
+    )
   end
 
   describe "#edit" do
@@ -75,7 +81,9 @@ describe AccessController do
                  visibility_after_embargo_id: "authorities/policies/ucsb",
                }
 
-          expect(etd.reload.admin_policy_id).to eq "authorities/policies/restricted"
+          expect(etd.reload.admin_policy_id).to(
+            eq "authorities/policies/restricted"
+          )
         end
       end
 
@@ -89,7 +97,9 @@ describe AccessController do
                  visibility_after_embargo_id: "authorities/policies/ucsb",
                }
 
-          expect(etd.reload.admin_policy_id).to eq "authorities/policies/discovery"
+          expect(etd.reload.admin_policy_id).to(
+            eq "authorities/policies/discovery"
+          )
         end
       end
     end

@@ -37,9 +37,15 @@ feature "Accessing records:" do
   end
 
   before do
-    allow_any_instance_of(CollectionsController).to receive(:current_user).and_return(user)
-    allow_any_instance_of(CatalogController).to receive(:current_user).and_return(user)
-    allow_any_instance_of(RecordsController).to receive(:current_user).and_return(user)
+    allow_any_instance_of(CollectionsController).to(
+      receive(:current_user).and_return(user)
+    )
+    allow_any_instance_of(CatalogController).to(
+      receive(:current_user).and_return(user)
+    )
+    allow_any_instance_of(RecordsController).to(
+      receive(:current_user).and_return(user)
+    )
 
     collection.update_index
   end
@@ -55,7 +61,11 @@ feature "Accessing records:" do
       expect(page).to have_link restricted_image[:title].first
 
       click_link restricted_image[:title].first
-      expect(page).to have_current_path(catalog_ark_path("ark:", "99999", restricted_image.id))
+      expect(page).to(
+        have_current_path(
+          catalog_ark_path("ark:", "99999", restricted_image.id)
+        )
+      )
       expect(page).to have_content(restricted_image.title.first)
 
       expect(page).to have_link("Edit Metadata")

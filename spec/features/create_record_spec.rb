@@ -6,7 +6,9 @@ feature "Group creation" do
   context "a metadata admin" do
     before do
       AdminPolicy.ensure_admin_policy_exists
-      allow_any_instance_of(User).to receive(:groups).and_return([AdminPolicy::META_ADMIN])
+      allow_any_instance_of(User).to(
+        receive(:groups).and_return([AdminPolicy::META_ADMIN])
+      )
     end
 
     scenario "creates a new record" do

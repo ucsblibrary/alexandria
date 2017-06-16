@@ -6,9 +6,12 @@ feature "Image show page:" do
   # TODO: Add test that ensures URIs are being dereferenced before display
   # let(:creator) { ['http://id.loc.gov/authorities/names/n81038526'] }
   let(:creator) { ["Century Company"] }
-  let(:title) { ["Region around the North Pole : giving the records of the most important explorations"] }
   let(:extent) { ["1 map : color ; 27 x 38 cm"] }
   let(:scale) { ["1:18,374,400"] }
+
+  let(:title) do
+    ["Region around the North Pole : giving the records of the most important explorations"]
+  end
 
   let(:collection) do
     create(:collection,

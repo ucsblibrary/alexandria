@@ -71,7 +71,9 @@ describe Exporter::LocalAuthorityExporter do
       expect(line3).to eq ["Person", person.id, person.foaf_name]
 
       expect(contents[4].split(",")).to eq ["Group", devs.id, devs.foaf_name]
-      expect(contents[5].split(",")).to eq ["Organization", dce.id, dce.foaf_name]
+      expect(contents[5].split(",")).to(
+        eq ["Organization", dce.id, dce.foaf_name]
+      )
 
       line6 = contents[6].split(",")
       line7 = contents[7].split(",")

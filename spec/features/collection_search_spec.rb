@@ -35,15 +35,40 @@ feature "Collection search page", js: true do
   end
 
   context "collections with images" do
-    let(:pink)   { { title: ["Pink"], identifier: ["pink"], admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID } }
-    let(:orange) { { title: ["Orange"], identifier: ["orange"], admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID } }
-    let(:banana) { { title: ["Banana"], identifier: ["banana"], admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID } }
+    let(:pink) do
+      {
+        title: ["Pink"],
+        identifier: ["pink"],
+        admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID,
+      }
+    end
+
+    let(:orange) do
+      {
+        title: ["Orange"],
+        identifier: ["orange"],
+        admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID,
+      }
+    end
+
+    let(:banana) do
+      {
+        title: ["Banana"],
+        identifier: ["banana"],
+        admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID,
+      }
+    end
 
     let(:colors_attrs) { { title: ["Colors"] } }
     let(:fruits_attrs) { { title: ["Fruits"] } }
 
-    let!(:colors) { create_collection_with_images(colors_attrs, [pink, orange]) }
-    let!(:fruits) { create_collection_with_images(fruits_attrs, [orange, banana]) }
+    let!(:colors) do
+      create_collection_with_images(colors_attrs, [pink, orange])
+    end
+
+    let!(:fruits) do
+      create_collection_with_images(fruits_attrs, [orange, banana])
+    end
 
     scenario "Search within a collection" do
       visit collection_path(colors)
@@ -67,7 +92,7 @@ feature "Collection search page", js: true do
       expect(page).to_not have_link("Banana", href: "/lib/banana")
     end
 
-    scenario "Search with the main search bar instead of within the collection" do
+    scenario "Search with main search bar instead of within the collection" do
       visit collection_path(colors)
 
       expect(page).to have_link("Pink", href: "/lib/pink")

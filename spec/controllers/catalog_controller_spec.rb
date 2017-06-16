@@ -24,11 +24,15 @@ describe CatalogController do
 
   describe "show tools" do
     it "includes the edit link" do
-      expect(CatalogController.blacklight_config.show.document_actions.keys).to include :edit
+      expect(CatalogController.blacklight_config.show.document_actions.keys).to(
+        include(:edit)
+      )
     end
 
     it "includes the access and embargo link" do
-      expect(CatalogController.blacklight_config.show.document_actions.keys).to include :access
+      expect(CatalogController.blacklight_config.show.document_actions.keys).to(
+        include(:access)
+      )
     end
   end
 
@@ -60,7 +64,9 @@ describe CatalogController do
         let(:record) { create :public_image, identifier: nil }
 
         it "shows public urls (not fedora urls)" do
-          expect(response.body).to include "<http://test.host/catalog/#{record.id}>"
+          expect(response.body).to(
+            include("<http://test.host/catalog/#{record.id}>")
+          )
         end
       end
     end
@@ -90,7 +96,9 @@ describe CatalogController do
 
         it "access is denied" do
           expect(response).to redirect_to root_url
-          expect(flash[:alert]).to match(/You do not have sufficient access privileges/)
+          expect(flash[:alert]).to(
+            match(/You do not have sufficient access privileges/)
+          )
         end
       end
     end

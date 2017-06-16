@@ -13,12 +13,16 @@ feature "Editing Records", js: true do
 
   let!(:record) do
     VCR.use_cassette("image_factory") do
-      create(:public_image,
-             created_attributes: [{ start: ["2000"], finish: ["2010"] }],
-             local_collection_id: ["blahbhbhbh"],
-             id: "bork",
-             lc_subject: [RDF::URI("http://id.loc.gov/authorities/subjects/sh90003868")],
-             title: ["I am real and not fake"])
+      create(
+        :public_image,
+        created_attributes: [{ start: ["2000"], finish: ["2010"] }],
+        local_collection_id: ["blahbhbhbh"],
+        id: "bork",
+        lc_subject: [
+          RDF::URI("http://id.loc.gov/authorities/subjects/sh90003868"),
+        ],
+        title: ["I am real and not fake"]
+      )
     end
   end
 
@@ -26,9 +30,15 @@ feature "Editing Records", js: true do
 
   context "as an admin user" do
     before do
-      allow_any_instance_of(CollectionsController).to receive(:current_user).and_return(user)
-      allow_any_instance_of(CatalogController).to receive(:current_user).and_return(user)
-      allow_any_instance_of(RecordsController).to receive(:current_user).and_return(user)
+      allow_any_instance_of(CollectionsController).to(
+        receive(:current_user).and_return(user)
+      )
+      allow_any_instance_of(CatalogController).to(
+        receive(:current_user).and_return(user)
+      )
+      allow_any_instance_of(RecordsController).to(
+        receive(:current_user).and_return(user)
+      )
     end
 
     scenario "edits a record" do
@@ -43,7 +53,9 @@ feature "Editing Records", js: true do
 
         expect(page).to have_selector("input[value='I am real and not fake']")
         expect(page).to(
-          have_selector("input[value='http://id.loc.gov/authorities/subjects/sh90003868']")
+          have_selector(
+            "input[value='http://id.loc.gov/authorities/subjects/sh90003868']"
+          )
         )
 
         fill_in "Title", with: "OK I'm fake"

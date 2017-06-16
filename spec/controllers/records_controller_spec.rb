@@ -17,7 +17,11 @@ describe RecordsController do
     context "of a local authority" do
       it "is successful" do
         post :create, params: { type: "Person", person: { foaf_name: "Kylo Ren" } }
-        expect(response).to redirect_to Rails.application.routes.url_helpers.person_path(assigns[:record])
+        expect(response).to(
+          redirect_to(
+            Rails.application.routes.url_helpers.person_path(assigns[:record])
+          )
+        )
         expect(assigns[:record].foaf_name).to eq "Kylo Ren"
       end
     end
@@ -27,11 +31,16 @@ describe RecordsController do
     let(:image) { create(:image, creator_attributes: initial_creators) }
 
     context "Adding new creators" do
-      let(:initial_creators) { [{ id: "http://id.loc.gov/authorities/names/n87914041" }] }
+      let(:initial_creators) do
+        [{ id: "http://id.loc.gov/authorities/names/n87914041" }]
+      end
+
       let(:contributor_attributes) do
         {
-          "0" => { "id" => "http://id.loc.gov/authorities/names/n87914041",
-                   "hidden_label" => "http://id.loc.gov/authorities/names/n87914041", },
+          "0" => {
+            "id" => "http://id.loc.gov/authorities/names/n87914041",
+            "hidden_label" => "http://id.loc.gov/authorities/names/n87914041",
+          },
 
           "1" => { "id" => "http://id.loc.gov/authorities/names/n87141298",
                    "predicate" => "creator",
@@ -52,7 +61,11 @@ describe RecordsController do
           contain_exactly("http://id.loc.gov/authorities/names/n87914041",
                           "http://id.loc.gov/authorities/names/n87141298")
         )
-        expect(response).to redirect_to(Rails.application.routes.url_helpers.solr_document_path(image.id))
+        expect(response).to(
+          redirect_to(
+            Rails.application.routes.url_helpers.solr_document_path(image.id)
+          )
+        )
       end
     end
 
@@ -80,7 +93,9 @@ describe RecordsController do
                 id: image,
                 image: { contributor_attributes: contributor_attributes },
               }
-        expect(image.reload.creator_ids).to eq ["http://id.loc.gov/authorities/names/n87914041"]
+        expect(image.reload.creator_ids).to(
+          eq ["http://id.loc.gov/authorities/names/n87914041"]
+        )
       end
     end
 
@@ -96,7 +111,9 @@ describe RecordsController do
         }
       end
 
-      let(:initial_creators) { [{ id: "http://id.loc.gov/authorities/names/n87914041" }] }
+      let(:initial_creators) do
+        [{ id: "http://id.loc.gov/authorities/names/n87914041" }]
+      end
 
       context "created" do
         context "creating a new date" do
@@ -146,7 +163,11 @@ describe RecordsController do
           it "allows updating the existing timespan" do
             patch :update, params: { id: image, image: {
               created_attributes: {
-                "0" => { id: image.created.first.id, start: ["1337"], start_qualifier: ["approximate"] },
+                "0" => {
+                  id: image.created.first.id,
+                  start: ["1337"],
+                  start_qualifier: ["approximate"],
+                },
               },
               creator_attributes: initial_creators,
             }, }
@@ -179,7 +200,11 @@ describe RecordsController do
           expect do
             delete :destroy, params: { id: person }
           end.to change { Person.count }.by(0)
-          expect(flash[:alert]).to eq "Record \"#{person.rdf_label.first}\" cannot be deleted because it is referenced by 1 other record."
+
+          expect(flash[:alert]).to(
+            eq "Record \"#{person.rdf_label.first}\" cannot be deleted "\
+               "because it is referenced by 1 other record."
+          )
         end
       end
 
@@ -188,8 +213,12 @@ describe RecordsController do
           expect do
             delete :destroy, params: { id: person }
           end.to change { Person.count }.by(-1)
+
           expect(response).to redirect_to local_authorities_path
-          expect(flash[:notice]).to eq "Record \"#{person.rdf_label.first}\" has been destroyed"
+
+          expect(flash[:notice]).to(
+            eq "Record \"#{person.rdf_label.first}\" has been destroyed"
+          )
         end
       end
 
@@ -224,7 +253,12 @@ describe RecordsController do
 
       it "returns message that record cannot be merged" do
         get :new_merge, params: { id: image }
-        expect(flash[:alert]).to eq "This record cannot be merged.  Only local authority records can be merged."
+
+        expect(flash[:alert]).to(
+          eq "This record cannot be merged.  "\
+             "Only local authority records can be merged."
+        )
+
         expect(response).to redirect_to local_authorities_path
       end
     end
@@ -251,30 +285,49 @@ describe RecordsController do
 
     let!(:person) { create(:person) }
     let(:target_id) { "92208543-9840-4f8b-8e97-561ba46cfd6f" }
-    let(:fedora_path) { ActiveFedora.config.credentials[:url] + ActiveFedora.config.credentials[:base_path] }
     let(:target_url) { "#{fedora_path}/92/20/85/43/#{target_id}" }
+
+    let(:fedora_path) do
+      ActiveFedora.config.credentials[:url] +
+        ActiveFedora.config.credentials[:base_path]
+    end
 
     let(:form_params) do
       # This is how it looks when the javascript adds the data to the form.
-      { "subject_merge_target_attributes" => { "0" => { "hidden_label" => "Topic 3", "id" => target_url } } }
+      {
+        "subject_merge_target_attributes" => {
+          "0" => { "hidden_label" => "Topic 3",
+                   "id" => target_url, },
+        },
+      }
     end
 
     it "queues a job to merge the records" do
-      expect(MergeRecordsJob).to receive(:perform_later).with(person.id, target_id, "testkey")
+      expect(MergeRecordsJob).to(
+        receive(:perform_later).with(person.id, target_id, "testkey")
+      )
       post :merge, params: { id: person }.merge(form_params)
       expect(response).to redirect_to local_authorities_path
     end
 
     context "missing arguments" do
       let(:form_params) do
-        { "subject_merge_target_attributes" => { "0" => { "hidden_label" => "", "id" => "" } } }
+        {
+          "subject_merge_target_attributes" => {
+            "0" => { "hidden_label" => "", "id" => "" },
+          },
+        }
       end
 
       it "displays an error message" do
         expect(MergeRecordsJob).to_not receive(:perform_later)
         post :merge, params: { id: person }.merge(form_params)
+
         expect(response).to render_template(:new_merge)
-        expect(flash[:alert]).to match(/Error:  Unable to queue merge job\.  Please fill in all required fields\./)
+
+        expect(flash[:alert]).to(
+          match(/Error:  Unable to queue merge job\.  Please fill in all required fields\./)
+        )
       end
     end
 

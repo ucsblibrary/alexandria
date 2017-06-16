@@ -14,7 +14,9 @@ feature "Local Authorities", js: true do
     end
 
     AdminPolicy.ensure_admin_policy_exists
-    allow_any_instance_of(User).to receive(:groups).and_return([AdminPolicy::META_ADMIN])
+    allow_any_instance_of(User).to(
+      receive(:groups).and_return([AdminPolicy::META_ADMIN])
+    )
   end
 
   context "with some records" do
