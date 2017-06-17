@@ -74,7 +74,8 @@ module Importer::Factory
     # Overridden in classes that inherit from ObjectFactory
     #
     # @param [Hash] object
-    # @param [String, Hash] files Either the path to the file or a hash with file metadata
+    # @param [String, Hash] files Either the path to the file or a
+    #     hash with file metadata
     def attach_files(_object, _files)
       raise NotImplementedError, "#attach_files is not defined for #{self.class}"
     end
@@ -83,9 +84,15 @@ module Importer::Factory
       if attributes[:id]
         klass.find(attributes[:id]) if klass.exists?(attributes[:id])
       elsif attributes[system_identifier_field].present?
-        klass.where(Solrizer.solr_name(system_identifier_field, :symbol) => attributes[system_identifier_field]).first
+        klass.where(
+          # TODO: replace with literal field name
+          Solrizer.solr_name(
+            system_identifier_field, :symbol
+          ) => attributes[system_identifier_field]
+        ).first
       else
-        raise "Missing identifier: Unable to search for existing object without either fedora ID or #{system_identifier_field}"
+        raise "Missing identifier: Unable to search for existing object "\
+              "without either fedora ID or #{system_identifier_field}"
       end
     end
 
@@ -105,7 +112,8 @@ module Importer::Factory
       # habtm <-> has_many associations, where they won't all get saved.
       # https://github.com/projecthydra/active_fedora/issues/874
       #
-      # TODO: what does the above comment mean, and how does it relate to this code
+      # TODO: what does the above comment mean, and how does it relate
+      # to this code
 
       @object = klass.new(attrs)
 
@@ -156,11 +164,13 @@ module Importer::Factory
     end
 
     def log_created(obj)
-      Rails.logger.debug "Created #{klass.model_name.human} #{obj.id} (#{Array(attributes[system_identifier_field]).first})"
+      Rails.logger.debug "Created #{klass.model_name.human} #{obj.id} "\
+                         "(#{Array(attributes[system_identifier_field]).first})"
     end
 
     def log_updated(obj)
-      Rails.logger.debug "Updated #{klass.model_name.human} #{obj.id} (#{Array(attributes[system_identifier_field]).first})"
+      Rails.logger.debug "Updated #{klass.model_name.human} #{obj.id} "\
+                         "(#{Array(attributes[system_identifier_field]).first})"
     end
 
     private
@@ -200,8 +210,12 @@ module Importer::Factory
         )
 
         notes = extract_notes(attributes)
-        description = { description: [join_paragraphs(attributes[:description])] }
-        restrictions = { restrictions: [join_paragraphs(attributes[:restrictions])] }
+        description = {
+          description: [join_paragraphs(attributes[:description])],
+        }
+        restrictions = {
+          restrictions: [join_paragraphs(attributes[:restrictions])],
+        }
 
         attributes.merge(contributors)
           .merge(description)

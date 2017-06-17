@@ -6,7 +6,9 @@ module Importer::Factory
     self.system_identifier_field = :accession_number
 
     def find
-      klass.where(accession_number_ssim: attributes[:accession_number].first).first
+      klass.where(
+        accession_number_ssim: attributes[:accession_number].first
+      ).first
     end
 
     def find_or_create
@@ -15,8 +17,6 @@ module Importer::Factory
       run(&:save!)
     end
 
-    def attach_files(_, _)
-      # noop
-    end
+    def attach_files(_, _); end
   end
 end

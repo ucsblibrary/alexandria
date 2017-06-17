@@ -4,7 +4,8 @@ class Importer::Cylinder
   # Array of MARC record files to import.
   attr_reader :metadata_files
 
-  # The directories that contains the binary (audio) files to attach to the cylinder records.
+  # The directories that contains the binary (audio) files to attach
+  # to the cylinder records.
   attr_reader :files_dirs
 
   # The command line options that were passed in
@@ -17,12 +18,17 @@ class Importer::Cylinder
   COLLECTION_ATTRIBUTES = { accession_number: ["Cylinders"] }.freeze
 
   def initialize(metadata_files, files_dirs, options = {})
-    $stdout.sync = true # flush output immediately
+    # flush output immediately
+    $stdout.sync = true
+
     @metadata_files = metadata_files
     @files_dirs = files_dirs
     @options = options
     @imported_records_count = 0
-    @collection = Importer::Factory::CollectionFactory.new(COLLECTION_ATTRIBUTES).find
+
+    @collection = Importer::Factory::CollectionFactory.new(
+      COLLECTION_ATTRIBUTES
+    ).find
   end
 
   def indexer
@@ -44,7 +50,9 @@ class Importer::Cylinder
     cylinders = marcs.length
 
     if options[:skip] && options[:skip] >= cylinders
-      raise ArgumentError, "Number of records skipped (#{options[:skip]}) greater than total records to ingest"
+      raise ArgumentError,
+            "Number of records skipped (#{options[:skip]}) "\
+            "greater than total records to ingest"
     end
 
     print_files_dirs
@@ -95,10 +103,15 @@ class Importer::Cylinder
 
     def abort_import
       puts
-      puts "ABORTING IMPORT:  Before you can import cylinder records, the cylinders collection must exist.  Please import the cylinders collection record first, then re-try this import."
+      puts "ABORTING IMPORT:  Before you can import cylinder records, "\
+           "the cylinders collection must exist.  "\
+           "Please import the cylinders collection record first, "\
+           "then re-try this import."
       puts
 
-      raise CollectionNotFound, "Not Found: Collection with accession number #{COLLECTION_ATTRIBUTES[:accession_number]}"
+      raise CollectionNotFound,
+            "Not Found: Collection with accession number " +
+            COLLECTION_ATTRIBUTES[:accession_number]
     end
 
     def print_attributes(record, item_number)

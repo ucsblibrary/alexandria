@@ -9,9 +9,18 @@ module ExtractNotes
 
     lambda do |record, accumulator|
       accumulator << basic_ext.extract(record).compact
-      accumulator << (performer_ext.extract(record).map { |performer| { type: :performer, name: performer } })
-      accumulator << (venue_ext.extract(record).map { |venue| { type: :venue, name: venue } })
-      accumulator << (owner_ext.extract(record).map { |owner| { type: :ownership, name: owner } })
+
+      accumulator << (performer_ext.extract(record).map do |performer|
+                        { type: :performer, name: performer }
+                      end)
+
+      accumulator << (venue_ext.extract(record).map do |venue|
+                        { type: :venue, name: venue }
+                      end)
+
+      accumulator << (owner_ext.extract(record).map do |owner|
+                        { type: :ownership, name: owner }
+                      end)
 
       accumulator.flatten!
     end

@@ -12,12 +12,17 @@ class Importer::LocalAuthorityImporter
   def run
     puts "Importing local authorities from: #{input_file}"
 
-    ::CSV.foreach(input_file, headers: true, header_converters: [:downcase, :symbol]) do |row|
+    ::CSV.foreach(
+      input_file,
+      headers: true,
+      header_converters: [:downcase, :symbol]
+    ) do |row|
       create_or_update_fedora_object(row)
     end
   end
 
-  # TODO: Is ID a required field?  If no id, error? or allow fedora to create id?
+  # TODO: Is ID a required field?  If no id, error? or allow fedora to
+  # create id?
   def create_or_update_fedora_object(attributes)
     klass = model(attributes)
     attrs = transform_attributes(attributes, klass)
@@ -41,12 +46,16 @@ class Importer::LocalAuthorityImporter
   def transform_attributes(attrs, model)
     attributes = { id: attrs[:id] }
 
-    list_of_names = Array(attrs).flat_map { |a| a.first == :name ? a - [a[0]] : nil }.compact
+    list_of_names = Array(attrs).flat_map do |a|
+      a - [a[0]] if a.first == :name
+    end.compact
+
     names = if model.attribute_names.include?("foaf_name")
               { foaf_name: list_of_names.first }
             else
               { label: list_of_names }
             end
+
     attributes.merge(names)
   end
 

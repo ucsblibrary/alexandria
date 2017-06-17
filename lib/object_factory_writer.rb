@@ -4,9 +4,14 @@ require "importer"
 require "traject"
 
 class ObjectFactoryWriter
-  AUDIO_TYPES = [RDF::URI("http://id.loc.gov/vocabulary/resourceTypes/aum"),
-                 RDF::URI("http://id.loc.gov/vocabulary/resourceTypes/aun"),].freeze
-  ETD_TYPES   = [RDF::URI("http://id.loc.gov/vocabulary/resourceTypes/txt")].freeze
+  AUDIO_TYPES = [
+    RDF::URI("http://id.loc.gov/vocabulary/resourceTypes/aum"),
+    RDF::URI("http://id.loc.gov/vocabulary/resourceTypes/aun"),
+  ].freeze
+
+  ETD_TYPES = [
+    RDF::URI("http://id.loc.gov/vocabulary/resourceTypes/txt"),
+  ].freeze
 
   def initialize(arg_settings)
     @settings = Traject::Indexer::Settings.new(arg_settings)
@@ -29,12 +34,14 @@ class ObjectFactoryWriter
     contrib = Array(attributes.delete("contributors")).first
     attributes.merge!(contrib) if contrib.present?
 
-    relators = parse_relators(attributes.delete("names"), attributes.delete("relators"))
+    relators = parse_relators(attributes.delete("names"),
+                              attributes.delete("relators"))
 
     if relators
       attributes.merge!(relators)
     else
-      $stderr.puts "Skipping #{attributes[:identifier]} : ERROR: Names in field 720a don't match relators in field 720e"
+      $stderr.puts "Skipping #{attributes[:identifier]} : ERROR: "\
+                   "Names in field 720a don't match relators in field 720e"
       return
     end
 
@@ -104,12 +111,18 @@ class ObjectFactoryWriter
     # This ensures that if a field isn't in a MARC record, but it is in Fedora,
     # then it will be overwritten with blank.
     def defaults
-      overwrite_fields.each_with_object(HashWithIndifferentAccess.new) { |k, h| h[k] = [] }
+      overwrite_fields.each_with_object(
+        HashWithIndifferentAccess.new
+      ) { |k, h| h[k] = [] }
     end
 
     def build_object(attributes, metadata)
       work_type = attributes.fetch("work_type").first
-      attributes[:local_collection_id] = Array(@local_collection_id) if @local_collection_id.present?
+
+      if @local_collection_id.present?
+        attributes[:local_collection_id] = Array(@local_collection_id)
+      end
+
       factory(work_type).new(attributes, metadata).run
     end
 
@@ -138,7 +151,11 @@ class ObjectFactoryWriter
       return nil unless names.count == relators.count
 
       fields = {}
-      ds = names.find_all.with_index { |_, index| relators[index].match(/degree supervisor/i) }
+
+      ds = names.find_all.with_index do |_, index|
+        relators[index].match(/degree supervisor/i)
+      end
+
       fields[:degree_supervisor] = ds
       fields
     end

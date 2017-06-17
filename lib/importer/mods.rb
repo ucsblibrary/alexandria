@@ -8,7 +8,8 @@ module Importer::MODS
   def self.import(meta, data, options)
     if options[:skip] >= meta.length
       raise ArgumentError,
-            "Number of records skipped (#{options[:skip]}) greater than total records to ingest"
+            "Number of records skipped (#{options[:skip]}) "\
+            "greater than total records to ingest"
     end
     ingests = 0
 
@@ -47,7 +48,8 @@ module Importer::MODS
       ).run
 
       end_record = Time.zone.now
-      puts "Ingested record #{ingests + 1} of #{meta.length} in #{end_record - start_record} seconds"
+      puts "Ingested record #{ingests + 1} of #{meta.length} "\
+           "in #{end_record - start_record} seconds"
       ingests += 1
     end
     ingests
@@ -92,19 +94,27 @@ module Importer::MODS
                               MODS_RESOURCE_MAP["collection"].merge(
                                 uri: [
                                   MODS_RESOURCE_MAP["collection"][:uri],
-                                  *mods.typeOfResource.content.map { |t| MODS_RESOURCE_MAP[t][:uri] },
+                                  *mods.typeOfResource.content.map do |t|
+                                    MODS_RESOURCE_MAP[t][:uri]
+                                  end,
                                 ].flatten
                               )
                             else
-                              # return an empty hash in the case of XML fragments
-                              MODS_RESOURCE_MAP[mods.typeOfResource.content.first] || {}
+                              # return an empty hash in the case of
+                              # XML fragments
+                              MODS_RESOURCE_MAP[
+                                mods.typeOfResource.content.first
+                              ] || {}
                             end
     end
 
     def collection?
       type_keys = mods.typeOfResource.attributes.map(&:keys).flatten
       return false unless type_keys.include?("collection")
-      mods.typeOfResource.attributes.any? { |hash| hash.fetch("collection").value == "yes" }
+
+      mods.typeOfResource.attributes.any? do |hash|
+        hash.fetch("collection").value == "yes"
+      end
     end
 
     def image?
@@ -123,7 +133,10 @@ module Importer::MODS
       common_attributes.merge(
         files: mods.extension.xpath("./fileName").map(&:text),
         collection: collection,
-        series_name: mods.xpath("//mods:relatedItem[@type='series']", NAMESPACES).titleInfo.title.map(&:text)
+        series_name: mods.xpath(
+          "//mods:relatedItem[@type='series']",
+          NAMESPACES
+        ).titleInfo.title.map(&:text)
       )
     end
 
@@ -147,8 +160,12 @@ module Importer::MODS
         alternative: alt_title,
         description: mods_description,
         lc_subject: subject,
-        extent: mods.physical_description.extent.map { |node| strip_whitespace(node.text) },
-        language: mods.language.languageTerm.valueURI.map { |uri| RDF::URI.new(uri) },
+        extent: mods.physical_description.extent.map do |node|
+          strip_whitespace(node.text)
+        end,
+        language: mods.language.languageTerm.valueURI.map do |uri|
+          RDF::URI.new(uri)
+        end,
         digital_origin: mods.physical_description.digitalOrigin.map(&:text),
         publisher: mods.origin_info.publisher.map(&:text),
         form_of_work: mods.genre.valueURI.map { |uri| RDF::URI.new(uri) },
@@ -162,18 +179,39 @@ module Importer::MODS
 
     def rights
       {
-        restrictions: mods.xpath('/mods:mods/mods:accessCondition[@type="use and reproduction"]', NAMESPACES).map { |node| strip_whitespace(node.text) },
+        restrictions: mods.xpath(
+          '/mods:mods/mods:accessCondition[@type="use and reproduction"]',
+          NAMESPACES
+        ).map { |node| strip_whitespace(node.text) },
+
         rights_holder: rights_holder,
-        copyright_status: mods.xpath("//mods:extension/copyrightStatus/@valueURI", NAMESPACES).map { |uri| RDF::URI.new(uri.value) },
-        license: mods.xpath("//mods:extension/copyrightStatement/@valueURI", NAMESPACES).map { |uri| RDF::URI.new(uri.value) },
+        copyright_status: mods.xpath(
+          "//mods:extension/copyrightStatus/@valueURI",
+          NAMESPACES
+        ).map { |uri| RDF::URI.new(uri.value) },
+
+        license: mods.xpath(
+          "//mods:extension/copyrightStatement/@valueURI",
+          NAMESPACES
+        ).map { |uri| RDF::URI.new(uri.value) },
       }
     end
 
     def locations
       {
-        location: mods.subject.geographic.valueURI.map { |uri| RDF::URI.new(uri) },
-        sub_location: mods.location.holdingSimple.xpath("./mods:copyInformation/mods:subLocation", NAMESPACES).map(&:text),
-        institution: mods.location.physicalLocation.valueURI.map { |uri| RDF::URI.new(uri) },
+        location: mods.subject.geographic.valueURI.map do |uri|
+          RDF::URI.new(uri)
+        end,
+
+        sub_location: mods.location.holdingSimple.xpath(
+          "./mods:copyInformation/mods:subLocation",
+          NAMESPACES
+        ).map(&:text),
+
+        institution: mods.location.physicalLocation.valueURI.map do |uri|
+          RDF::URI.new(uri)
+        end,
+
         place_of_publication: mods.origin_info.place.placeTerm.map(&:text),
       }.merge(coordinates)
     end
@@ -204,7 +242,9 @@ module Importer::MODS
     def record_origin
       ro = []
       if mods.record_info && mods.record_info.respond_to?(:recordOrigin)
-        ro += mods.record_info.recordOrigin.map { |node| prepend_timestamp(strip_whitespace(node.text)) }
+        ro += mods.record_info.recordOrigin.map do |node|
+          prepend_timestamp(strip_whitespace(node.text))
+        end
       end
       ro << prepend_timestamp(ORIGIN_TEXT)
     end
@@ -233,12 +273,14 @@ module Importer::MODS
         key = if (value_uri = node.role.roleTerm.valueURI.first)
                 property_name_for_uri[RDF::URI(value_uri)]
               else
-                $stderr.puts "no role was specified for name #{node.namePart.text}"
+                $stderr.puts "no role was specified "\
+                             "for name #{node.namePart.text}"
                 :contributor
               end
         unless key
           key = :contributor
-          $stderr.puts "the specified role for name #{node.namePart.text} in not a valid marcrelator role"
+          $stderr.puts "the specified role for name #{node.namePart.text} "\
+                       "is not a valid marcrelator role"
         end
         relations[key] ||= []
         val = if uri.blank?
@@ -272,23 +314,27 @@ module Importer::MODS
     end
 
     def human_readable_id
-      node_set = mods.related_item.at_xpath('mods:identifier[@type="local"]', NAMESPACES)
+      node_set = mods.related_item.at_xpath('mods:identifier[@type="local"]',
+                                            NAMESPACES)
       return [] unless node_set
       Array(node_set.text)
     end
 
     # Remove multiple whitespace
     def citation
-      mods.xpath('//mods:note[@type="preferred citation"]', NAMESPACES).map do |node|
-        node.text.gsub(/\n\s+/, "\n")
-      end
+      mods.xpath(
+        '//mods:note[@type="preferred citation"]',
+        NAMESPACES
+      ).map { |node| node.text.gsub(/\n\s+/, "\n") }
     end
 
     def notes
       preferred_citation = "preferred citation"
 
       mods.note.map do |note|
-        next if note.attributes.key?("type") && note.attributes["type"].value == preferred_citation
+        next if note.attributes.key?("type") &&
+                note.attributes["type"].value == preferred_citation
+
         hash = { value: note.text.gsub(/\n\s+/, "\n") }
         type_attr = note.attributes["type"].try(:text)
         hash[:note_type] = type_attr if type_attr
@@ -303,8 +349,11 @@ module Importer::MODS
         start = start_point(node)
         dates = [
           {
-            start: start.map(&:text), finish: finish.map(&:text), label: date_label(node),
-            start_qualifier: qualifier(start), finish_qualifier: qualifier(finish),
+            start: start.map(&:text),
+            finish: finish.map(&:text),
+            label: date_label(node),
+            start_qualifier: qualifier(start),
+            finish_qualifier: qualifier(finish),
           },
         ]
         dates.delete_if { |date| date.values.all?(&:blank?) }
@@ -328,18 +377,26 @@ module Importer::MODS
       end
 
       def untyped_title
-        mods.xpath("/mods:mods/mods:titleInfo[not(@type)]/mods:title", NAMESPACES).map(&:text)
+        mods.xpath(
+          "/mods:mods/mods:titleInfo[not(@type)]/mods:title",
+          NAMESPACES
+        ).map(&:text)
       end
 
       def alt_title
-        Array(mods.xpath("//mods:titleInfo[@type]", NAMESPACES)).flat_map do |node|
+        Array(mods.xpath("//mods:titleInfo[@type]",
+                         NAMESPACES)).flat_map do |node|
+
           type = node.attributes["type"].text
           alternative = "alternative"
 
           node.title.map do |title|
             value = title.text
             unless type == alternative
-              Rails.logger.debug "Transformation: \"#{type} title\" will be stored as \"#{alternative} title\": #{value}"
+              Rails.logger.debug(
+                "Transformation: \"#{type} title\" "\
+                "will be stored as \"#{alternative} title\": #{value}"
+              )
             end
             value
           end
@@ -364,7 +421,10 @@ module Importer::MODS
       end
 
       def subject
-        mods.xpath("//mods:subject/mods:name/@valueURI|//mods:subject/mods:topic/@valueURI", NAMESPACES).map { |uri| RDF::URI.new(uri) }
+        mods.xpath(
+          "//mods:subject/mods:name/@valueURI|//mods:subject/mods:topic/@valueURI",
+          NAMESPACES
+        ).map { |uri| RDF::URI.new(uri) }
       end
   end
 end

@@ -57,7 +57,11 @@ module Importer::Factory
       # ProQuest metadata gets imported.
       super.merge(
         admin_policy_id: AdminPolicy::RESTRICTED_POLICY_ID,
-        copyright_status: [RDF::URI("http://id.loc.gov/vocabulary/preservation/copyrightStatus/cpr")],
+        copyright_status: [
+          RDF::URI(
+            "http://id.loc.gov/vocabulary/preservation/copyrightStatus/cpr"
+          ),
+        ],
         license: [RDF::URI("http://rightsstatements.org/vocab/InC/1.0/")]
       )
     end

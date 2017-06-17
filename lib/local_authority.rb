@@ -59,7 +59,8 @@ module LocalAuthority
     item.respond_to?(:rdf_subject) &&
       item.rdf_subject.is_a?(RDF::URI) &&
       item.rdf_subject.start_with?(ActiveFedora.fedora.host) &&
-      # item.class.include?(LinkedVocabs::Controlled) # TODO this could replace the last term
+      # TODO: `item.class.include?(LinkedVocabs::Controlled)` could
+      # replace the last term
       (item.is_a?(ControlledVocabularies::Creator) ||
        item.is_a?(ControlledVocabularies::Subject))
   end
@@ -115,7 +116,9 @@ module LocalAuthority
     type = attrs.fetch(:type).downcase
     name = attrs.fetch(:name)
     klass = CONTRIBUTOR_CLASSES[type]
-    contributor = klass.where(foaf_name_ssim: name).first || klass.create(foaf_name: name)
+    contributor = klass.where(foaf_name_ssim: name).first ||
+                  klass.create(foaf_name: name)
+
     RDF::URI.new(contributor.public_uri)
   end
 
@@ -143,7 +146,9 @@ module LocalAuthority
     else
       klass = TOPIC_CLASSES[type]
       name = value.fetch(:name)
-      subj = klass.where(label_ssim: name).first || klass.create(label: Array(name))
+      subj = klass.where(label_ssim: name).first ||
+             klass.create(label: Array(name))
+
       RDF::URI.new(subj.public_uri)
     end
   end

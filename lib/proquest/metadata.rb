@@ -62,8 +62,15 @@ class Proquest::Metadata
 
       etd.embargo_release_date = embargo_release_date
 
-      etd.visibility_during_embargo = RDF::URI(ActiveFedora::Base.id_to_uri(policy_during_embargo))
-      etd.visibility_after_embargo  = RDF::URI(ActiveFedora::Base.id_to_uri(policy_after_embargo)) if policy_after_embargo
+      etd.visibility_during_embargo = RDF::URI(
+        ActiveFedora::Base.id_to_uri(policy_during_embargo)
+      )
+
+      if policy_after_embargo
+        etd.visibility_after_embargo = RDF::URI(
+          ActiveFedora::Base.id_to_uri(policy_after_embargo)
+        )
+      end
 
       etd.embargo.save!
     end

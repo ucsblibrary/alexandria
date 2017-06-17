@@ -20,7 +20,9 @@ namespace :marc do
   task :ark, [:pid] => :environment do |_, args|
     marc = Pegasus.by_ark(args[:pid])
     if marc
-      File.open(File.join(Settings.marc_directory, "#{args[:pid]}.xml"), "w") do |f|
+      File.open(
+        File.join(Settings.marc_directory, "#{args[:pid]}.xml"), "w"
+      ) do |f|
         f.write marc
       end
     else
@@ -37,7 +39,12 @@ namespace :marc do
     all_marc = []
     next_record = 1
     while next_record < marc_count
-      marc = Pegasus.batch(type: record_type, max: BATCH_SIZE, start: next_record)
+      marc = Pegasus.batch(
+        type: record_type,
+        max: BATCH_SIZE,
+        start: next_record
+      )
+
       File.open(batch_name(next_record, record_type), "w") do |f|
         f.write marc
         puts "Wrote records #{next_record}-#{next_record + BATCH_SIZE - 1}.xml"
@@ -46,13 +53,21 @@ namespace :marc do
       next_record += BATCH_SIZE
     end
 
-    File.open(File.join(Settings.marc_directory, "#{record_type}-metadata.xml"), "a") do |f|
+    File.open(File.join(Settings.marc_directory,
+                        "#{record_type}-metadata.xml"), "a") do |f|
+
       f.write Pegasus.wrap(all_marc)
       puts "Wrote #{record_type}-metadata.xml"
     end
   end
 
   def batch_name(start, type_of_record)
-    File.join(Settings.marc_directory, format("%s-%05d-%05d.xml", type_of_record, start, (start + BATCH_SIZE - 1)))
+    File.join(
+      Settings.marc_directory,
+      format("%s-%05d-%05d.xml",
+             type_of_record,
+             start,
+             (start + BATCH_SIZE - 1))
+    )
   end
 end

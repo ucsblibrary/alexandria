@@ -60,7 +60,10 @@ class Exporter::LocalAuthorityExporter < Exporter::BaseExporter
               # for the label property has changed since the
               # previous release, so we need to look for the
               # old predicate.
-              label = object.resource.query([nil, RDF::Vocab::SKOS.prefLabel, nil]).to_a.first
+              label = object.resource.query(
+                [nil, RDF::Vocab::SKOS.prefLabel, nil]
+              ).to_a.first
+
               label.blank? ? object.label : label.object.to_s
             end
     names = Array(names)

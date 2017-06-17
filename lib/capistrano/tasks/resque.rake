@@ -5,9 +5,12 @@ namespace :resque do
     desc "Stop resque pool"
     task :stop do
       on roles(:resque_pool), in: :sequence, wait: 5 do
-        # Shuts down resque_pool master if pid exists
-        if test("[ -f #{shared_path}/tmp/pids/resque-pool.pid ]")
-          execute "export master_pid=$(cat #{shared_path}/tmp/pids/resque-pool.pid) && kill -QUIT $master_pid"
+        pidfile = "#{shared_path}/tmp/pids/resque-pool.pid"
+
+        # Shut down resque_pool master if pidfile exists
+        if test("[ -f #{pidfile} ]")
+          execute "export master_pid=$(cat #{pidfile}) && "\
+                  "kill -QUIT $master_pid"
         else
           warn "No resque-pool pid found"
         end
@@ -18,7 +21,13 @@ namespace :resque do
     task :start do
       on roles(:resque_pool), in: :sequence, wait: 10 do
         # Starts a new resque_pool master
-        execute "cd #{release_path} && bundle exec resque-pool -d -E #{fetch(:rails_env)} -c config/resque-pool.yml -p #{shared_path}/tmp/pids/resque-pool.pid -e #{fetch(:resque_stderr_log)} -o #{fetch(:resque_stdout_log)}"
+        execute "cd #{release_path} && "\
+                "bundle exec resque-pool -d "\
+                "-E #{fetch(:rails_env)} "\
+                "-c config/resque-pool.yml "\
+                "-p #{shared_path}/tmp/pids/resque-pool.pid "\
+                "-e #{fetch(:resque_stderr_log)} "\
+                "-o #{fetch(:resque_stdout_log)}"
       end
     end
 

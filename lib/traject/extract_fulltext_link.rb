@@ -9,7 +9,10 @@ module ExtractFulltextLink
   def extract_fulltext_link
     extract856u = Traject::MarcExtractor.new("856u", separator: nil)
     lambda do |record, accumulator|
-      extract856u.extract(record).grep_v(%r{^http://alexandria\.ucsb\.edu/lib/}).each do |val|
+      extract856u
+        .extract(record)
+        .grep_v(%r{^http://alexandria\.ucsb\.edu/lib/}).each do |val|
+
         accumulator << val
       end
     end

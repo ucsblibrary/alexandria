@@ -2,8 +2,10 @@
 
 require "logger"
 
-# Add a common logging system to any part of the Importer module.
-# See http://ruby-doc.org/stdlib-2.2.3/libdoc/logger/rdoc/Logger.html for more documentation.
+# Add a common logging system to any part of the Importer module.  See
+# http://ruby-doc.org/stdlib-2.2.3/libdoc/logger/rdoc/Logger.html for
+# more documentation.
+#
 # Logs should be compatible with splunk indexing. See also http://dev.splunk.com/view/logging-best-practices/SP-CAAADP6.
 # NOTE: If log location isn't set, it defaults to $stdout
 # @example
@@ -30,7 +32,11 @@ module Importer::ImportLogger
   def self.log_location(logfile)
     pathname = Pathname.new(logfile)
     FileUtils.touch logfile
-    raise ArgumentError, "Can't write to logfile #{logfile}" unless pathname.writable?
+
+    unless pathname.writable?
+      raise ArgumentError, "Can't write to logfile #{logfile}"
+    end
+
     @logger = Logger.new(logfile)
     true # return true if everything worked out okay
   end
@@ -54,7 +60,8 @@ module Importer::ImportLogger
     when "ERROR"
       @logger.level = Logger::ERROR
     else
-      @logger.warn "#{options[:loglevel]} isn't a valid log level. Defaulting to DEBUG."
+      @logger.warn "#{options[:loglevel]} isn't a valid log level. "\
+                   "Defaulting to DEBUG."
       @logger.level = Logger::DEBUG
     end
   end

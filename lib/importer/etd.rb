@@ -8,7 +8,9 @@ class Importer::ETD
   attr_reader :collection
 
   def initialize
-    @collection = Importer::Factory::CollectionFactory.new(COLLECTION_ATTRIBUTES).find
+    @collection = Importer::Factory::CollectionFactory.new(
+      COLLECTION_ATTRIBUTES
+    ).find
   end
 
   def run
@@ -46,7 +48,9 @@ class Importer::ETD
       end.compact
 
       if etds.empty?
-        raise ArgumentError, "Number of records skipped (#{options[:skip]}) greater than total records to ingest"
+        raise ArgumentError,
+              "Number of records skipped (#{options[:skip]}) "\
+              "greater than total records to ingest"
       end
 
       marc = if meta.empty?
@@ -93,7 +97,11 @@ class Importer::ETD
         proquest_data = etds.select do |etd|
           etd[:pdf].include? record["956"]["f"]
         end.first
-        indexer.settings(etd: proquest_data, local_collection_id: importer.collection.id)
+
+        indexer.settings(
+          etd: proquest_data,
+          local_collection_id: importer.collection.id
+        )
 
         if options[:verbose]
           puts
@@ -112,7 +120,8 @@ class Importer::ETD
           # need, the array of records to iterate over is smaller, so
           # we modify the numbers here so that we still get the
           # correct "Ingested X of out Y records" readout.
-          puts "Ingested record #{count + 1 + options[:skip]} of #{etds.length + options[:skip]} "\
+          puts "Ingested record #{count + 1 + options[:skip]} "\
+               "of #{etds.length + options[:skip]} "\
                "in #{end_record - start_record} seconds"
           ingests += 1
         rescue => e
@@ -139,9 +148,14 @@ class Importer::ETD
 
     def abort_import
       puts
-      puts "ABORTING IMPORT:  Before you can import ETD records, the ETD collection must exist.  Please import the ETD collection record first, then re-try this import."
+      puts "ABORTING IMPORT:  Before you can import ETD records, "\
+           "the ETD collection must exist.  "\
+           "Please import the ETD collection record first, "\
+           "then re-try this import."
       puts
 
-      raise CollectionNotFound, "Not Found: Collection with accession number #{COLLECTION_ATTRIBUTES[:accession_number]}"
+      raise CollectionNotFound,
+            "Not Found: Collection with accession number " +
+            COLLECTION_ATTRIBUTES[:accession_number]
     end
 end

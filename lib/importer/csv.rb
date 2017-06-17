@@ -26,13 +26,17 @@ module Importer::CSV
 
       if options[:skip] >= tail.length
         raise ArgumentError,
-              "Number of records skipped (#{options[:skip]}) greater than total records to ingest"
+              "Number of records skipped (#{options[:skip]}) "\
+              "greater than total records to ingest"
       end
 
       logger.info "Ingesting file #{m}: #{tail.length} records"
 
       begin
-        ingested += ingest_sheet(head: head, tail: tail, data: data, options: options)
+        ingested += ingest_sheet(head: head,
+                                 tail: tail,
+                                 data: data,
+                                 options: options)
       rescue IngestError => e
         raise IngestError, reached: (options[:skip] + ingested + e.reached)
       end
@@ -41,7 +45,10 @@ module Importer::CSV
     ingested
   end
 
-  def self.ingest_sheet(head:, tail:, data: [], options: { verbose: false, skip: 0 })
+  def self.ingest_sheet(head:,
+                        tail:,
+                        data: [],
+                        options: { verbose: false, skip: 0 })
     ingested = 0
 
     tail.drop(options[:skip]).each_with_index do |row, i|
@@ -50,10 +57,12 @@ module Importer::CSV
       begin
         logger.info "Ingesting record #{ingested + 1} "\
                     "of #{options[:number] || (tail.length - options[:skip])}"
+
         ingest_row(head: head,
                    row: row,
                    data: data,
                    verbose: options[:verbose])
+
         ingested += 1
       rescue Interrupt
         raise IngestError, reached: i
@@ -104,10 +113,12 @@ module Importer::CSV
     end_time = Time.zone.now
 
     accession_string = if attrs[:accession_number].present?
-                         " with accession number #{attrs[:accession_number].first}"
+                         " with accession number " +
+                           attrs[:accession_number].first
                        end
-    logger.info "#{model}#{accession_string} ingested as #{record.id} in #{end_time - start_time} seconds"
 
+    logger.info "#{model}#{accession_string} ingested as "\
+                "#{record.id} in #{end_time - start_time} seconds"
     record
   end
 
@@ -126,8 +137,11 @@ module Importer::CSV
     csv = nil
     begin
       csv = ::CSV.read(metadata, encoding: "bom|UTF-8")
-    rescue ArgumentError => e # Most likely this is "invalid byte sequence in UTF-8"
-      logger.error "The file #{metadata} could not be read in UTF-8. The error was: #{e}. Trying ISO-8859-1"
+    # Most likely this is "invalid byte sequence in UTF-8"
+    rescue ArgumentError => e
+      logger.error "The file #{metadata} could not be read in UTF-8. "\
+                   "The error was: #{e}. Trying ISO-8859-1"
+
       csv = ::CSV.read(metadata, encoding: "ISO-8859-1")
     rescue => e
       logger.error "Couldn't process file #{metadata}. The error was: #{e}."
@@ -144,7 +158,9 @@ module Importer::CSV
     # Allow headers with the pattern *_type to specify the record type
     # for a local authority.  e.g. For an author, author_type might be
     # 'Person'.
-    difference = (row - valid_headers).reject { |h| h.match(TYPE_HEADER_PATTERN) }
+    difference = (row - valid_headers).reject do |h|
+      h.match(TYPE_HEADER_PATTERN)
+    end
 
     raise "Invalid headers: #{difference.join(", ")}" if difference.present?
 
@@ -163,8 +179,10 @@ module Importer::CSV
       next unless header.match(TYPE_HEADER_PATTERN)
       next_header = row[i + 1]
       field_name = header.gsub("_type", "")
+
       if next_header != field_name
-        errors << "Invalid headers: '#{header}' column must be immediately followed by '#{field_name}' column."
+        errors << "Invalid headers: '#{header}' column "\
+                  "must be immediately followed by '#{field_name}' column."
       end
     end
     raise errors.join(", ") if errors.present?
@@ -249,9 +267,10 @@ module Importer::CSV
     nil
   end
 
-  # Given a row of data from a spreadsheet, check that all the URIs are well formed
-  # If we wait until we create the object to detect errors, it's much more difficult
-  # to raise a helpful error message.
+  # Given a row of data from a spreadsheet, check that all the URIs
+  # are well formed If we wait until we create the object to detect
+  # errors, it's much more difficult to raise a helpful error message.
+  #
   # @param [Array] row
   def self.check_uris(row)
     row.each do |x|
@@ -262,28 +281,43 @@ module Importer::CSV
     end
   end
 
-  # Transform coordinates as provided in CSV spreadsheet into dcmi-box formatting
-  # Output should look like 'northlimit=43.039; eastlimit=-69.856; southlimit=42.943; westlimit=-71.032; units=degrees; projection=EPSG:4326'
-  # TODO: The transform_coordinates_to_dcmi_box method should invoke a DCMIBox.new method
-  # DCMI behaviors should be encapsulated there and it should have a .to_s method
+  # Transform coordinates as provided in CSV spreadsheet into dcmi-box
+  # formatting
+  #
+  # Output should look like 'northlimit=43.039; eastlimit=-69.856;
+  # southlimit=42.943; westlimit=-71.032; units=degrees;
+  # projection=EPSG:4326'
+  #
+  # TODO: The transform_coordinates_to_dcmi_box method should invoke a
+  # DCMIBox.new method DCMI behaviors should be encapsulated there and
+  # it should have a .to_s method
+  #
   # @param [Hash] attrs A hash of attributes that will become a fedora object
   # @return [Hash]
   def self.transform_coordinates_to_dcmi_box(attrs)
-    return attrs unless attrs[:north_bound_latitude] || attrs[:east_bound_longitude] || attrs[:south_bound_latitude] || attrs[:west_bound_longitude]
+    return attrs unless attrs[:north_bound_latitude] ||
+                        attrs[:east_bound_longitude] ||
+                        attrs[:south_bound_latitude] ||
+                        attrs[:west_bound_longitude]
 
     if attrs[:north_bound_latitude]
       north = "northlimit=#{attrs.delete(:north_bound_latitude).first}; "
     end
+
     if attrs[:east_bound_longitude]
       east = "eastlimit=#{attrs.delete(:east_bound_longitude).first}; "
     end
+
     if attrs[:south_bound_latitude]
       south = "southlimit=#{attrs.delete(:south_bound_latitude).first}; "
     end
+
     if attrs[:west_bound_longitude]
       west = "westlimit=#{attrs.delete(:west_bound_longitude).first}; "
     end
-    attrs[:coverage] = "#{north}#{east}#{south}#{west}units=degrees; projection=EPSG:4326"
+
+    attrs[:coverage] = "#{north}#{east}#{south}#{west}units=degrees; "\
+                       "projection=EPSG:4326"
     attrs
   end
 
@@ -356,8 +390,10 @@ module Importer::CSV
 
   # Sometimes spaces or punctuation make their way into CSV field names.
   # When they do, clean it up.
+  #
   # @param [Hash] attrs A hash of attributes that will become a fedora object
-  # @return [Hash] the same hash, but with spaces stripped off all the field names
+  # @return [Hash] the same hash, but with spaces stripped off all the
+  #     field names
   def self.strip_extra_spaces(attrs)
     new_h = {}
     attrs.each_pair do |k, v|
@@ -368,7 +404,8 @@ module Importer::CSV
   end
 
   # Given a shorthand string for an access policy,
-  # assign the right AccessPolicy object
+  # assign the right AccessPolicy object.
+  #
   # @param [Hash] attrs A hash of attributes that will become a fedora object
   # @return [Hash]
   def self.assign_access_policy(attrs)

@@ -31,7 +31,12 @@ module Importer::Factory::WithAssociatedCollection
     end
 
     def collection
-      collection_attrs = attributes.fetch(:collection).merge(admin_policy_id: attributes[:admin_policy_id])
-      ::Importer::Factory::CollectionFactory.new(collection_attrs).find_or_create
+      collection_attrs = attributes.fetch(:collection).merge(
+        admin_policy_id: attributes[:admin_policy_id]
+      )
+
+      ::Importer::Factory::CollectionFactory.new(
+        collection_attrs
+      ).find_or_create
     end
 end
