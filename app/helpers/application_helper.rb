@@ -99,12 +99,16 @@ module ApplicationHelper
         end,
       ].compact
 
-    elsif (categories = uri.match(%r{.*creativecommons\.org\/(licenses|publicdomain)\/([a-z-]+)}i))
+    else
+      categories = uri.match(
+        %r{.*creativecommons\.org\/(licenses|publicdomain)\/([a-z-]+)}i
+      )
+
+      return [] if categories.blank?
+
       categories[2].split("-").map do |cat|
         "creative-commons/#{cat}.png"
       end
-    else
-      []
     end
   end
 
