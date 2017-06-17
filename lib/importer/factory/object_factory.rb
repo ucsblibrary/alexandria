@@ -77,7 +77,8 @@ module Importer::Factory
     # @param [String, Hash] files Either the path to the file or a
     #     hash with file metadata
     def attach_files(_object, _files)
-      raise NotImplementedError, "#attach_files is not defined for #{self.class}"
+      raise NotImplementedError,
+            "#attach_files is not defined for #{self.class}"
     end
 
     def find

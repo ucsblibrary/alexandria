@@ -6,7 +6,9 @@ def configure_repositories
   vocab_repo = if ENV["CI"]
                  RDF::Repository.new
                else
+                 # rubocop:disable Metrics/LineLength
                  RDF::Marmotta.new("http://#{Rails.application.secrets.marmotta_host}:8080/marmotta")
+                 # rubocop:enable Metrics/LineLength
                end
   ActiveTriples::Repositories.add_repository :vocabs, vocab_repo
 end

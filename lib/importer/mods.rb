@@ -421,10 +421,11 @@ module Importer::MODS
       end
 
       def subject
-        mods.xpath(
-          "//mods:subject/mods:name/@valueURI|//mods:subject/mods:topic/@valueURI",
-          NAMESPACES
-        ).map { |uri| RDF::URI.new(uri) }
+        # rubocop:disable Metrics/LineLength
+        mods.xpath("//mods:subject/mods:name/@valueURI|//mods:subject/mods:topic/@valueURI", NAMESPACES).map do |uri|
+          RDF::URI.new(uri)
+        end
+        # rubocop:enable Metrics/LineLength
       end
   end
 end
