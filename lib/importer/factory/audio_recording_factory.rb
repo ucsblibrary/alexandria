@@ -53,13 +53,18 @@ module Importer::Factory
         f.match(/.*cusb-cyl(\d+)a.wav$/)
       end.compact.first
 
+      if original.nil?
+        $stderr.puts "Could not extract cylinder number "\
+                     "from: #{filegroup.join(", ")}"
+        return nil
+      end
+
       restored = filegroup.detect do |f|
         f.match(/.*cusb-cyl#{original[1]}b.wav$/)
       end
 
-      unless original && restored
-        $stderr.puts "Could not extract cylinder number "\
-                     "from: #{filegroup.join(", ")}"
+      if restored.nil?
+        $stderr.puts "Missing restored WAV in #{filegroup.join(", ")}"
         return nil
       end
 
