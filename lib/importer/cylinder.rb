@@ -111,7 +111,7 @@ class Importer::Cylinder
 
       raise CollectionNotFound,
             "Not Found: Collection with accession number " +
-            COLLECTION_ATTRIBUTES[:accession_number]
+            COLLECTION_ATTRIBUTES[:accession_number].to_s
     end
 
     def print_attributes(record, item_number)
