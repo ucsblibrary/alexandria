@@ -99,15 +99,7 @@ module Importer::Factory
 
     def create
       attrs = create_attributes
-      # Don't mint arks for records that already have them (e.g. ETDs)
-      if attrs[:identifier].blank?
-        identifier = Ezid::Identifier.mint(
-          profile: :erc,
-          erc_what: attrs[:title].first
-        )
-        attrs[:identifier] = [identifier.id]
-        attrs[:id] = identifier.id.split("/").last
-      end
+      identifier = mint_ark_if_new!(attrs)
 
       # There's a bug in ActiveFedora when there are many
       # habtm <-> has_many associations, where they won't all get saved.
@@ -133,35 +125,54 @@ module Importer::Factory
           object.save!
         end
       end
+
       # The fields used for erc_when and erc_who are set during the
       # object creation, so we have to update the ARK metadata
       # afterwards
-      if identifier
-        identifier[:target] = path_for(object)
-        # Arrays of TimeSpans
-        erc_date = object.created.first || object.issued.first
-        date_arr = erc_date.to_a
-        # Some TimeSpan arrays aren't arrays, what a world
-        identifier[:erc_when] = if date_arr.respond_to?(:first)
-                                  # if the array has multiple
-                                  # elements, format it as a range
-                                  # for Ezid
-                                  if date_arr.length > 1
-                                    "#{date_arr.first}-#{date_arr.last}"
-                                  else
-                                    date_arr.first
-                                  end
-                                else
-                                  date_arr
-                                end
+      hydrate_ark!(identifier) if identifier
 
-        # Use the combination of all authorial roles
-        contributors = object.to_solr[ObjectIndexer::ALL_CONTRIBUTORS_LABEL]
-        identifier[:erc_who] = contributors.join("; ") if contributors.present?
-
-        identifier.save
-      end
       log_created(object)
+    end
+
+    # @param [Hash] attrs
+    def mint_ark_if_new!(attrs)
+      # Don't mint arks for records that already have them (e.g. ETDs)
+      return if attrs[:identifier].present?
+
+      identifier = Ezid::Identifier.mint(
+        profile: :erc,
+        erc_what: attrs[:title].first
+      )
+      attrs[:identifier] = [identifier.id]
+      attrs[:id] = identifier.id.split("/").last
+
+      identifier
+    end
+
+    def hydrate_ark!(identifier)
+      identifier[:target] = path_for(object)
+      # Arrays of TimeSpans
+      erc_date = object.created.first || object.issued.first
+      date_arr = erc_date.to_a
+      # Some TimeSpan arrays aren't arrays, what a world
+      identifier[:erc_when] = if date_arr.respond_to?(:first)
+                                # if the array has multiple
+                                # elements, format it as a range
+                                # for Ezid
+                                if date_arr.length > 1
+                                  "#{date_arr.first}-#{date_arr.last}"
+                                else
+                                  date_arr.first
+                                end
+                              else
+                                date_arr
+                              end
+
+      # Use the combination of all authorial roles
+      contributors = object.to_solr[ObjectIndexer::ALL_CONTRIBUTORS_LABEL]
+      identifier[:erc_who] = contributors.join("; ") if contributors.present?
+
+      identifier.save
     end
 
     def log_created(obj)
