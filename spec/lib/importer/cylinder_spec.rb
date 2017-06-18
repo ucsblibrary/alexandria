@@ -6,12 +6,13 @@ require "importer"
 
 describe Importer::Cylinder do
   let(:files_dir) { File.join(fixture_path, "cylinders") }
+  let(:importer) { described_class.new(meta_files, files_dir, options) }
+  let(:options) { { number: 3, skip: 0 } }
+
   let(:meta_files) do
     [File.join(fixture_path, "cylinders", "cylinder_bit_of_everything.xml"),
      File.join(fixture_path, "cylinders", "cylinders-objects.xml"),]
   end
-  let(:options) { { skip: 0 } }
-  let(:importer) { described_class.new(meta_files, files_dir, options) }
 
   # Give it an identifier so it doesn't try to mint a new ark
   # during the specs.  Also needs a title to be a valid record.
@@ -169,11 +170,14 @@ describe Importer::Cylinder do
         VCR.use_cassette("cylinder_import") do
           importer.run
         end
-      end.to change { AudioRecording.count }.by(11)
-        .and(change { FileSet.count }.by(3))
+      end.to(
+        change { AudioRecording.count }.by(3).and(
+          change { FileSet.count }.by(2)
+        )
+      )
 
       # Make sure the importer reports the correct number
-      expect(importer.imported_records_count).to eq 11
+      expect(importer.imported_records_count).to eq 3
 
       # The new cylinder records
       record1 = AudioRecording.where(
@@ -366,6 +370,7 @@ describe Importer::Cylinder do
       solr = Blacklight.default_index.connection
       res = solr.select(params: { id: collection.id, qt: "document" })
       doc = res["response"]["docs"].first
+
       expect(doc["member_ids_ssim"]).to(
         include(record1.id, record2.id, record3.id)
       )
