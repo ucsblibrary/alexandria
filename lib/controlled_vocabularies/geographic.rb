@@ -53,27 +53,19 @@ class ControlledVocabularies::Geographic < ActiveTriples::Resource
   # when available.
   def rdf_label
     label = super
-    unless parentFeature.empty? || RDF::URI(label.first).valid?
-      # TODO: Identify more featureCodes that should cause us to
-      # terminate the sequence
-      return label if top_level_element?
 
-      parent_label = if parentFeature.first.is_a? ActiveTriples::Resource
-                       parentFeature.first.rdf_label.first
-                     else
-                       []
-                     end
+    # TODO: Identify more featureCodes that should cause us to
+    # terminate the sequence
+    return label if top_level_element?
+    return label if RDF::URI(label.first).valid?
 
-      if parent_label.empty? ||
-         RDF::URI(parent_label).valid? ||
-         parent_label.starts_with?("_:")
+    return label unless parentFeature.first.is_a? ActiveTriples::Resource
+    parent_label = parentFeature.first.rdf_label.first
 
-        return label
-      end
+    return label if parent_label.starts_with?("_:")
+    return label if RDF::URI(parent_label).valid?
 
-      label = "#{label.first} >> #{parent_label}"
-    end
-    Array(label)
+    ["#{label.first} >> #{parent_label}"]
   end
 
   # Fetch parent features if they exist. Necessary for automatic
