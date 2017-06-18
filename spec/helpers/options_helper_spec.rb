@@ -33,6 +33,8 @@ describe OptionsHelper do
 
   describe "#license_options" do
     subject { helper.license_options }
+
+    # rubocop:disable Metrics/LineLength
     it do
       is_expected.to(
         eq(
@@ -65,10 +67,13 @@ describe OptionsHelper do
         )
       )
     end
+    # rubocop:enable Metrics/LineLength
   end
 
   describe "#copyright_status_options" do
     subject { helper.copyright_status_options }
+
+    # rubocop:disable Metrics/LineLength
     it do
       is_expected.to(
         eq("public domain" => "http://id.loc.gov/vocabulary/preservation/copyrightStatus/pub",
@@ -76,6 +81,7 @@ describe OptionsHelper do
            "unknown" => "http://id.loc.gov/vocabulary/preservation/copyrightStatus/unk")
       )
     end
+    # rubocop:enable Metrics/LineLength
   end
 
   describe "#relators_json" do

@@ -129,7 +129,8 @@ describe ImageForm do
 
       it "demultiplexes the contributor field" do
         expect(photographer_attributes).to(
-          eq [{ "id" => "#{ActiveFedora.fedora.host}/test/de/ad/be/ef/deadbeef" }]
+          eq [{ "id" =>
+                "#{ActiveFedora.fedora.host}/test/de/ad/be/ef/deadbeef", },]
         )
         expect(creator_attributes).to(
           eq [{ "id" => "http://id.loc.gov/authorities/names/n87914041" }]

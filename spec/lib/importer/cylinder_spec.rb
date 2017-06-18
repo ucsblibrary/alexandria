@@ -106,11 +106,20 @@ describe Importer::Cylinder do
       )
       expect(subject["note"]).to(
         eq ["Edison Gold Moulded Record: 8525.",
-            'Year of release and descriptor from "The Edison Phonograph Monthly," v.1 (1903/1904).',
+
+            "Year of release and descriptor from "\
+            "\"The Edison Phonograph Monthly,\" v.1 (1903/1904).",
+
             '"Coon song."',
+
             "Copies 2, 3 are possible alternate takes.",
+
             { type: :performer, name: "Arthur Collins." },
-            { type: :venue, name: 'Issue number from "Edison Cylinder Records, 1889-1912" / Koenigsberg, c1969.' },
+
+            { type: :venue,
+              name: "Issue number from \"Edison Cylinder Records, "\
+                    "1889-1912\" / Koenigsberg, c1969.", },
+
             { type: :ownership, name: "Todd collection." },]
       )
       expect(subject["publisher"]).to eq ["Edison Gold Moulded Record"]
@@ -214,14 +223,19 @@ describe Importer::Cylinder do
         eq RDF::URI("http://id.loc.gov/vocabulary/iso639-2/eng")
       )
       expect(record1.lc_subject.count).to eq 12
+
       expect(record1.lc_subject.first.class).to(
         eq ControlledVocabularies::Subject
       )
+
       record1.lc_subject.map(&:solrize).flatten.each do |uri|
+        # rubocop:disable Metrics/LineLength
         expect(uri).to(
           match(%r{(http://test.host/authorities/topics/.{8}-.{4}-.{4}-.{4}-.{12})|(http://test.host/authorities/people/.{8}-.{4}-.{4}-.{4}-.{12})|(http://test.host/authorities/organizations/.{8}-.{4}-.{4}-.{4}-.{12})})
         )
+        # rubocop:enable Metrics/LineLength
       end
+
       expect(record1.license.map(&:class)).to(
         eq [ControlledVocabularies::RightsStatement]
       )
@@ -257,9 +271,14 @@ describe Importer::Cylinder do
           ['"Coon song."'],
           ["Copies 2, 3 are possible alternate takes."],
           ["Edison Gold Moulded Record: 8525."],
-          ['Issue number from "Edison Cylinder Records, 1889-1912" / Koenigsberg, c1969.'],
+
+          ["Issue number from \"Edison Cylinder Records, "\
+           "1889-1912\" / Koenigsberg, c1969.",],
+
           ["Todd collection."],
-          ['Year of release and descriptor from "The Edison Phonograph Monthly," v.1 (1903/1904).']
+
+          ["Year of release and descriptor from "\
+           "\"The Edison Phonograph Monthly,\" v.1 (1903/1904).",]
         )
       )
       expect(record1.publisher).to eq ["Edison Gold Moulded Record"]
@@ -304,7 +323,10 @@ describe Importer::Cylinder do
       expect(person.foaf_name).to eq "Milner, David"
 
       # Check local authorities were created for singers
-      ids = record1.singer.map { |s| s.rdf_label.first.gsub(Regexp.new('^.*\/'), "") }
+      ids = record1.singer.map do |s|
+        s.rdf_label.first.gsub(Regexp.new('^.*\/'), "")
+      end
+
       singers = ids.map { |id| ActiveFedora::Base.find(id) }
 
       org, person = singers.partition do |obj|

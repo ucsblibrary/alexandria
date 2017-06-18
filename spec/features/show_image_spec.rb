@@ -10,7 +10,8 @@ feature "Image show page:" do
   let(:scale) { ["1:18,374,400"] }
 
   let(:title) do
-    ["Region around the North Pole : giving the records of the most important explorations"]
+    ["Region around the North Pole : "\
+     "giving the records of the most important explorations",]
   end
 
   let(:collection) do

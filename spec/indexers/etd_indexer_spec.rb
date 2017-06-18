@@ -82,9 +82,8 @@ describe ETDIndexer do
 
   describe "indexing department as a facet" do
     let(:etd) do
-      ETD.new(
-        degree_grantor: ["University of California, Santa Barbara. Mechanical Engineering"]
-      )
+      ETD.new(degree_grantor: ["University of California, Santa Barbara. "\
+                               "Mechanical Engineering",])
     end
 
     subject { document["department_sim"] }

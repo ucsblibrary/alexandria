@@ -89,6 +89,7 @@ describe RelatorInput, type: :input do
 
         expect(subject).to have_selector("input.image_creator.multi_value")
 
+        # rubocop:disable Metrics/LineLength
         expect(subject).to(
           have_selector(
             'input[name="image[creator_attributes][0][_destroy]"][value=""][data-destroy]',
@@ -101,6 +102,7 @@ describe RelatorInput, type: :input do
             visible: false
           )
         )
+        # rubocop:enable Metrics/LineLength
       end
     end
 
@@ -116,12 +118,14 @@ describe RelatorInput, type: :input do
         expect(subject).to have_selector(".role .predicate", text: "Actor")
         expect(subject).to have_selector("input.image_creator.multi_value")
 
+        # rubocop:disable Metrics/LineLength
         expect(subject).to(
           have_selector(
             "input[name=\"image[creator_attributes][0][id]\"][value=\"#{ActiveFedora.fedora.host}/test/ff/ff/ff/ffffff\"]",
             visible: false
           )
         )
+
         expect(subject).to(
           have_selector(
             'input[name="image[creator_attributes][0][_destroy]"][value=""][data-destroy]',
@@ -134,6 +138,7 @@ describe RelatorInput, type: :input do
             visible: false
           )
         )
+        # rubocop:enable Metrics/LineLength
       end
     end
   end

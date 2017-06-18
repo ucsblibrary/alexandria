@@ -16,7 +16,11 @@ describe RecordsController do
   describe "#create" do
     context "of a local authority" do
       it "is successful" do
-        post :create, params: { type: "Person", person: { foaf_name: "Kylo Ren" } }
+        post(
+          :create,
+          params: { type: "Person",
+                    person: { foaf_name: "Kylo Ren" }, }
+        )
         expect(response).to(
           redirect_to(
             Rails.application.routes.url_helpers.person_path(assigns[:record])
@@ -325,9 +329,8 @@ describe RecordsController do
 
         expect(response).to render_template(:new_merge)
 
-        expect(flash[:alert]).to(
-          match(/Error:  Unable to queue merge job\.  Please fill in all required fields\./)
-        )
+        expect(flash[:alert]).to eq "Error:  Unable to queue merge job.  "\
+                                    "Please fill in all required fields."
       end
     end
 

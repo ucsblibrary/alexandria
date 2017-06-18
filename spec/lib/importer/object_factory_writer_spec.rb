@@ -42,6 +42,7 @@ describe ObjectFactoryWriter do
         "names" => ["Paul", "Frodo Baggins", "Hector"],
         "place_of_publication" => ["[Santa Barbara, Calif.]"],
         "publisher" => ["University of California, Santa Barbara"],
+        # intentionally weird capitalization
         "relators" => ["degree supervisor.", "adventurer", "Degree suPERvisor"],
         "system_number" => [],
         "title" => ["How to be awesome"],
@@ -89,6 +90,7 @@ describe ObjectFactoryWriter do
     subject { writer.find_files_to_attach(attrs) }
 
     context "with ETDs" do
+      # rubocop:disable Metrics/LineLength
       let(:settings) do
         {
           "etd" => {
@@ -108,6 +110,7 @@ describe ObjectFactoryWriter do
           )
         )
       end
+      # rubocop:enable Metrics/LineLength
     end
 
     context "with a single directory" do

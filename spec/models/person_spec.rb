@@ -34,8 +34,10 @@ describe Person do
 
     it "has the uri" do
       expect(subject["uri_ssim"]).not_to be_blank
+
       expect(subject["public_uri_ssim"]).to(
-        eq "http://#{Rails.application.config.host_name}/authorities/people/#{person.id}"
+        eq "http://#{Rails.application.config.host_name}"\
+           "/authorities/people/#{person.id}"
       )
     end
   end

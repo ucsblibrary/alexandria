@@ -109,8 +109,11 @@ describe Importer::Factory::AudioRecordingFactory do
 
     it "adds the default attributes" do
       expect(subject[:admin_policy_id]).to eq AdminPolicy::PUBLIC_POLICY_ID
+
       expect(subject[:restrictions].first).to(
-        match(/^MP3 files of the restored cylinders available for download are copyrighted by the Regents of the University of California/)
+        start_with("MP3 files of the restored cylinders "\
+                   "available for download are copyrighted "\
+                   "by the Regents of the University of California")
       )
     end
   end

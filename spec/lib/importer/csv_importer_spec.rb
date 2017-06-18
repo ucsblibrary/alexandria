@@ -94,7 +94,8 @@ describe Importer::CSV do
       )
     end
 
-    # Per DIGREPO-728: If no access policy is specified in the CSV file, raise an error
+    # Per DIGREPO-728: If no access policy is specified in the CSV
+    # file, raise an error
     it "raises an error if there is no policy specified" do
       expect { Importer::CSV.assign_access_policy({}) }.to(
         raise_error(RuntimeError, "No access policy defined")

@@ -37,10 +37,13 @@ describe Qa::TermsController do
                   q: "image", }
       )
       expect(response).to be_success
+
+      # rubocop:disable Metrics/LineLength
       expect(response.body).to(
         eq '[{"id":"http://id.loc.gov/vocabulary/resourceTypes/img","label":"Still image"},'\
            '{"id":"http://id.loc.gov/vocabulary/resourceTypes/mov","label":"Moving image"}]'
       )
+      # rubocop:enable Metrics/LineLength
     end
   end
 

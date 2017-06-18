@@ -31,9 +31,13 @@ describe Importer::Factory::ETDFactory do
 
     it "adds the default attributes" do
       expect(subject[:admin_policy_id]).to eq AdminPolicy::RESTRICTED_POLICY_ID
+
+      # rubocop:disable Metrics/LineLength
       expect(subject[:copyright_status]).to(
         eq [RDF::URI("http://id.loc.gov/vocabulary/preservation/copyrightStatus/cpr")]
       )
+      # rubocop:enable Metrics/LineLength
+
       expect(subject[:license]).to(
         eq [RDF::URI("http://rightsstatements.org/vocab/InC/1.0/")]
       )

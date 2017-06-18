@@ -27,6 +27,7 @@ describe IndexMapIndexer do
 
     it "has images" do
       VCR.use_cassette("index_map_indexer") do
+        # rubocop:disable Metrics/LineLength
         expect(subject["square_thumbnail_url_ssm"]).to(
           eq ["/image-service/s1%2F78%2F4k%2F72%2Fs1784k724%2Ffiles%2F6185235a-79b2-4c29-8c24-4d6ad9b11470/square/100,/0/default.jpg"]
         )
@@ -46,6 +47,7 @@ describe IndexMapIndexer do
         expect(subject["file_set_iiif_manifest_ssm"]).to(
           eq ["/image-service/s1%2F78%2F4k%2F72%2Fs1784k724%2Ffiles%2F6185235a-79b2-4c29-8c24-4d6ad9b11470/info.json"]
         )
+        # rubocop:enable Metrics/LineLength
       end
     end
   end

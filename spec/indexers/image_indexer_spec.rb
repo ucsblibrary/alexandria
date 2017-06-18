@@ -28,6 +28,7 @@ describe ImageIndexer do
 
     it "has images" do
       VCR.use_cassette("image_indexer") do
+        # rubocop:disable Metrics/LineLength
         expect(subject[ObjectIndexer.thumbnail_field]).to(
           eq ["/image-service/s1%2F78%2F4k%2F72%2Fs1784k724%2Ffiles%2F6185235a-79b2-4c29-8c24-4d6ad9b11470/full/300,/0/default.jpg"]
         )
@@ -39,6 +40,7 @@ describe ImageIndexer do
         expect(subject["large_image_url_ssm"]).to(
           eq ["/image-service/s1%2F78%2F4k%2F72%2Fs1784k724%2Ffiles%2F6185235a-79b2-4c29-8c24-4d6ad9b11470/full/1000,/0/default.jpg"]
         )
+        # rubocop:enable Metrics/LineLength
       end
     end
   end

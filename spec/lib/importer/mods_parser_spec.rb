@@ -56,24 +56,34 @@ describe Importer::MODS::Parser do
         eq ["Department of Special Collections"]
       )
       expect(attributes[:citation]).to(
-        eq ["[Identification of Item], Joel Conway / Flying A Studio Photograph Collection. SBHC Mss 78. Department of Special Collections, UC Santa Barbara Library, University of California, Santa Barbara."]
+        eq ["[Identification of Item], Joel Conway "\
+            "/ Flying A Studio Photograph Collection. SBHC Mss 78. "\
+            "Department of Special Collections, UC Santa Barbara Library, "\
+            "University of California, Santa Barbara.",]
       )
       acquisition_note = attributes[:notes_attributes].first
       expect(acquisition_note[:note_type]).to eq "acquisition"
+
       expect(acquisition_note[:value]).to(
-        eq "Gift from Pat Eagle-Schnetzer and Ronald Conway, and purchase from Joan Cota (Conway children), 2009."
+        eq "Gift from Pat Eagle-Schnetzer and Ronald Conway, "\
+           "and purchase from Joan Cota (Conway children), 2009."
       )
+
       expect(attributes[:description_standard]).to eq ["local"]
       expect(attributes[:series_name]).to eq ["Series 4: Glass Negatives"]
+
       expect(attributes[:restrictions]).to(
         eq ["Use governed by the UCSB Special Collections policy."]
       )
+
       expect(attributes[:copyright_status]).to(
         eq ["http://id.loc.gov/vocabulary/preservation/copyrightStatus/unk"]
       )
+
       expect(attributes[:license]).to(
         eq ["http://www.europeana.eu/rights/unknown/"]
       )
+
       expect(attributes[:institution]).to(
         eq ["http://id.loc.gov/vocabulary/organizations/cusb"]
       )
@@ -86,10 +96,10 @@ describe Importer::MODS::Parser do
 
         Timecop.freeze(date) do
           expect(attributes[:record_origin]).to(
-            eq([
-                 "#{formatted_date} Converted from CSV to MODS 3.4 using local mapping.",
-                 "#{formatted_date} #{Importer::MODS::Parser::ORIGIN_TEXT}",
-               ])
+            # rubocop:disable Metrics/LineLength
+            eq ["#{formatted_date} Converted from CSV to MODS 3.4 using local mapping.",
+                "#{formatted_date} #{Importer::MODS::Parser::ORIGIN_TEXT}",]
+            # rubocop:enable Metrics/LineLength
           )
         end
       end
@@ -329,31 +339,41 @@ describe Importer::MODS::Parser do
         )
       )
       expect(attributes[:creator]).to be_nil
+
       expect(attributes[:description]).to(
-        eq ["Black and white photographs relating to the Flying A Studios (aka American Film Manufacturing Company), a film company that operated in Santa Barbara (1912-1920)."]
+        eq ["Black and white photographs relating to the Flying A Studios "\
+            "(aka American Film Manufacturing Company), "\
+            "a film company that operated in Santa Barbara (1912-1920).",]
       )
       expect(attributes[:extent]).to eq ["702 digital objects"]
+
       expect(attributes[:finding_aid]).to(
         eq ["http://www.oac.cdlib.org/findaid/ark:/13030/kt1j49r67t"]
       )
+
       expect(attributes[:form_of_work]).to(
         eq ["http://vocab.getty.edu/aat/300046300",
             "http://vocab.getty.edu/aat/300128343",]
       )
+
       expect(attributes[:language]).to(
         eq ["http://id.loc.gov/vocabulary/iso639-2/zxx"]
       )
+
       expect(attributes[:lc_subject]).to(
         eq ["http://id.loc.gov/authorities/names/n87914041",
             "http://id.loc.gov/authorities/subjects/sh85088047",
             "http://id.loc.gov/authorities/subjects/sh99005024",]
       )
+
       expect(attributes[:sub_location]).to(
         eq ["Department of Special Collections"]
       )
+
       expect(attributes[:title]).to(
         eq ["Joel Conway / Flying A Studio photograph collection"]
       )
+
       expect(attributes[:work_type].map(&:value)).to(
         eq ["http://id.loc.gov/vocabulary/resourceTypes/col",
             "http://id.loc.gov/vocabulary/resourceTypes/img",]

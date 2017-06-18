@@ -111,12 +111,23 @@ describe Image do
 
       let(:title_note) { { value: ["Title from item."] } }
       let(:caption_note) do
-        { value: ["Postcard caption: 25. Light-House Tower Sta. Barbara Earth Quake.\n6-29-25."] }
+        {
+          value: [
+            "Postcard caption: 25. Light-House Tower "\
+            "Sta. Barbara Earth Quake.\n6-29-25.",
+          ],
+        }
       end
 
       let(:cite_note) do
         { note_type: ["preferred citation"],
-          value: ["[Identification of Item], Santa Barbara picture\npostcards collection. SBHC Mss 36. Department of Special Collections, UC Santa Barbara\nLibrary, University of California, Santa Barbara."], }
+          value: [
+            "[Identification of Item], "\
+            "Santa Barbara picture\npostcards collection. "\
+            "SBHC Mss 36. Department of Special Collections, "\
+            "UC Santa Barbara\nLibrary, University of California, "\
+            "Santa Barbara.",
+          ], }
       end
 
       before do
@@ -216,8 +227,10 @@ describe Image do
       let(:image) { Image.new(lc_subject: ["foo"]) }
       it "isn't valid" do
         expect(image).not_to be_valid
+
         expect(image.errors[:base]).to(
-          eq ["`foo' for `lc_subject' property is expected to be a URI, but it is a String"]
+          eq ["`foo' for `lc_subject' property "\
+              "is expected to be a URI, but it is a String",]
         )
       end
     end
@@ -244,7 +257,8 @@ describe Image do
       it "isn't valid" do
         expect(image).not_to be_valid
         expect(image.errors[:base]).to(
-          eq ["`foo' for `work_type' property is expected to be a URI, but it is a String"]
+          eq ["`foo' for `work_type' property is "\
+              "expected to be a URI, but it is a String",]
         )
       end
     end
@@ -255,8 +269,8 @@ describe Image do
     it { is_expected.to eq "catalog/document" }
   end
 
-  # These are fields introduced for scanned maps. They would be better placed
-  # in the map model tests, once those exist.
+  # These are fields introduced for scanned maps. They would be better
+  # placed in the map model tests, once those exist.
   context "spatial fields" do
     let(:dcmi_encoded_string) do
       "northlimit=43.039; "\

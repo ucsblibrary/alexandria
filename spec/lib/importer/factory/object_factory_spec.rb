@@ -42,7 +42,10 @@ describe Importer::Factory::ObjectFactory do
 
         it "raises an error" do
           expect { subject }.to(
-            raise_error "Missing identifier: Unable to search for existing object without either fedora ID or accession_number"
+            raise_error(
+              "Missing identifier: Unable to search for existing object "\
+              "without either fedora ID or accession_number"
+            )
           )
         end
       end

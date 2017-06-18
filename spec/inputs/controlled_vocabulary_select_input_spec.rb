@@ -66,8 +66,10 @@ describe "ControlledVocabularySelectInput", type: :input do
                         visible: false)
         )
         expect(subject).to(
-          have_selector('input[name="image[creator_attributes][0][id]"][value=""]',
-                        visible: false)
+          have_selector(
+            'input[name="image[creator_attributes][0][id]"][value=""]',
+            visible: false
+          )
         )
       end
     end
@@ -88,6 +90,8 @@ describe "ControlledVocabularySelectInput", type: :input do
                      with: "Item 1")
         )
         expect(subject).to have_selector("input.image_creator.multi_value")
+
+        # rubocop:disable Metrics/LineLength
         expect(subject).to(
           have_selector(
             'input[name="image[creator_attributes][0][_destroy]"][value=""][data-destroy]',
@@ -100,6 +104,7 @@ describe "ControlledVocabularySelectInput", type: :input do
             visible: false
           )
         )
+        # rubocop:enable Metrics/LineLength
       end
     end
 
@@ -112,6 +117,8 @@ describe "ControlledVocabularySelectInput", type: :input do
                      with: "Item 1")
         )
         expect(subject).to have_selector("input.image_creator.multi_value")
+
+        # rubocop:disable Metrics/LineLength
         expect(subject).to(
           have_selector(
             "input[name=\"image[creator_attributes][0][id]\"][value=\"#{ActiveFedora.fedora.host}/test/ff/ff/ff/ffffff\"]",
@@ -124,6 +131,7 @@ describe "ControlledVocabularySelectInput", type: :input do
             visible: false
           )
         )
+        # rubocop:enable Metrics/LineLength
       end
     end
   end

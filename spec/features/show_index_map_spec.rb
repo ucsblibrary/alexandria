@@ -11,7 +11,8 @@ feature "IndexMap show page:" do
   end
 
   let(:title) do
-    ["Region around the North Pole : giving the records of the most important explorations"]
+    ["Region around the North Pole : "\
+     "giving the records of the most important explorations",]
   end
 
   let(:collection) do

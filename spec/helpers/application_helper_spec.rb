@@ -21,9 +21,8 @@ describe ApplicationHelper do
       let(:url_string) { "http://alexandria.ucsb.edu" }
 
       it do
-        is_expected.to(
-          eq '<a href="http://alexandria.ucsb.edu">http://alexandria.ucsb.edu</a>'
-        )
+        is_expected.to eq '<a href="http://alexandria.ucsb.edu">'\
+                          "http://alexandria.ucsb.edu</a>"
       end
     end
 
@@ -31,9 +30,8 @@ describe ApplicationHelper do
       let(:url_string) { "https://alexandria.ucsb.edu" }
 
       it do
-        is_expected.to(
-          eq '<a href="https://alexandria.ucsb.edu">https://alexandria.ucsb.edu</a>'
-        )
+        is_expected.to eq '<a href="https://alexandria.ucsb.edu">'\
+                          "https://alexandria.ucsb.edu</a>"
       end
     end
 
@@ -43,11 +41,11 @@ describe ApplicationHelper do
         "as well as https://alexandria.ucsb.edu"
       end
 
+      # rubocop:disable Metrics/LineLength
       it do
-        is_expected.to(
-          eq 'we have cylinders on <a href="http://cylinders.library.ucsb.edu">http://cylinders.library.ucsb.edu</a> as well as <a href="https://alexandria.ucsb.edu">https://alexandria.ucsb.edu</a>'
-        )
+        is_expected.to eq 'we have cylinders on <a href="http://cylinders.library.ucsb.edu">http://cylinders.library.ucsb.edu</a> as well as <a href="https://alexandria.ucsb.edu">https://alexandria.ucsb.edu</a>'
       end
+      # rubocop:enable Metrics/LineLength
     end
 
     context "an ARK" do

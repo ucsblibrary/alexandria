@@ -64,10 +64,9 @@ describe MergeRecordsService do
         expect do
           described_class.new(old_name, topic)
         end.to(
-          raise_error(
-            IncompatibleMergeError,
-            "Error: Cannot merge records that are not the same type of local authority."
-          )
+          raise_error(IncompatibleMergeError,
+                      "Error: Cannot merge records that are not "\
+                      "the same type of local authority.")
         )
       end
     end

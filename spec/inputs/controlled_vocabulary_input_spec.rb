@@ -74,6 +74,8 @@ describe ControlledVocabularyInput, type: :input do
           have_field("image[creator_attributes][0][hidden_label]",
                      with: "Item 1")
         )
+
+        # rubocop:disable Metrics/LineLength
         expect(subject).to(
           have_selector(
             'input[name="image[creator_attributes][0][id]"][value="http://example.org/1"]',
@@ -86,6 +88,7 @@ describe ControlledVocabularyInput, type: :input do
             visible: false
           )
         )
+        # rubocop:enable Metrics/LineLength
       end
     end
 
@@ -98,6 +101,8 @@ describe ControlledVocabularyInput, type: :input do
           have_field("image[creator_attributes][0][hidden_label]",
                      with: "Item 1")
         )
+
+        # rubocop:disable Metrics/LineLength
         expect(subject).to(
           have_selector(
             "input[name=\"image[creator_attributes][0][id]\"][value=\"#{ActiveFedora.fedora.host}/test/ff/ff/ff/ffffff\"]",
@@ -110,6 +115,7 @@ describe ControlledVocabularyInput, type: :input do
             visible: false
           )
         )
+        # rubocop:enable Metrics/LineLength
       end
     end
   end

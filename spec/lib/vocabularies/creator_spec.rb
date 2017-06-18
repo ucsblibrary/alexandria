@@ -23,8 +23,10 @@ describe "A controlled vocabulary" do
     let(:creator) { ControlledVocabularies::Creator.new(name) }
     it "should be a problem" do
       expect(creator).not_to be_valid
+
       expect(creator.errors[:base].first).to(
-        start_with "http://foo.bar/authorities/names/n79081574 is not a term in a controlled vocabulary"
+        start_with "http://foo.bar/authorities/names/n79081574 "\
+                   "is not a term in a controlled vocabulary"
       )
     end
   end
