@@ -145,36 +145,42 @@ class Proquest::Metadata
     #   :no_embargo or :infinite_embargo if no release date
     def parse_embargo
       if attributes[:DISS_agreement_decision_date].blank?
-        case attributes[:embargo_code]
-        when "1"
-          six_month_embargo
-        when "2"
-          one_year_embargo
-        when "3"
-          two_year_embargo
-        when "4"
-          return :infinite_embargo if attributes[:embargo_remove_date].nil?
-          Date.parse(attributes[:embargo_remove_date])
-        else
-          :no_embargo
-        end
-
+        parse_pre_spring_2014(attributes)
       else
-        case attributes[:DISS_delayed_release]
-        when lambda { |release| release.blank? }
-          :no_embargo
-        when "never deliver"
-          :infinite_embargo
-        when /^.*2\s*year.*\Z/i
-          two_year_embargo
-        when /^.*1\s*year.*\Z/i
-          one_year_embargo
-        when /^.*6\s*month.*\Z/i
-          six_month_embargo
-        else
-          Date.parse(attributes[:DISS_delayed_release])
-        end
+        parse_delayed_release(attributes[:DISS_delayed_release])
+      end
+    end
 
+    def parse_delayed_release(release_date)
+      case release_date
+      when lambda { |release| release.blank? }
+        :no_embargo
+      when "never deliver"
+        :infinite_embargo
+      when /^.*2\s*year.*\Z/i
+        two_year_embargo
+      when /^.*1\s*year.*\Z/i
+        one_year_embargo
+      when /^.*6\s*month.*\Z/i
+        six_month_embargo
+      else
+        Date.parse(release_date)
+      end
+    end
+
+    def parse_pre_spring_2014(attributes)
+      case attributes[:embargo_code]
+      when "1"
+        six_month_embargo
+      when "2"
+        one_year_embargo
+      when "3"
+        two_year_embargo
+      when "4"
+        return :infinite_embargo if attributes[:embargo_remove_date].nil?
+        Date.parse(attributes[:embargo_remove_date])
+      else
+        :no_embargo
       end
     end
 
