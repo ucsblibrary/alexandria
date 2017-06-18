@@ -149,7 +149,7 @@ describe Importer::Factory::AudioRecordingFactory do
       expect(AudioRecording.count).to eq 1
       audio = AudioRecording.first
       expect(audio.file_sets).to_not eq []
-      expect(audio.issued.first.start).to eq [1912]
+      expect(audio.issued.first.start).to eq [1905]
     end
   end
 end
