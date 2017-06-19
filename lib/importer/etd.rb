@@ -31,15 +31,7 @@ class Importer::ETD
     raise_error = false
 
     Dir.mktmpdir do |temp|
-      # Don't unzip ETDs we won't use
-      etds = data.drop(options[:skip]).map.with_index do |zip, i|
-        next unless File.extname(zip) == ".zip"
-
-        # i starts at zero, so use greater-than instead of >=
-        if !options[:number] || options[:number] > i
-          Proquest.extract(zip, "#{temp}/#{File.basename(zip)}")
-        end
-      end.compact
+      etds = unpack(data, options, temp)
 
       if etds.empty?
         raise ArgumentError,
@@ -47,30 +39,7 @@ class Importer::ETD
               "greater than total records to ingest"
       end
 
-      marc = if meta.empty?
-               puts "No metadata provided; fetching from Pegasus"
-               etds.map { |e| e[:xml] }.map do |x|
-                 if x.nil?
-                   $stderr.puts "Bad zipfile source: #{e}"
-                   raise IngestError
-                 end
-                 MARC::XMLReader.new(
-                   StringIO.new(
-                     Importer::ETDParser.parse_file(x)
-                   )
-                 ).map { |o| o }
-               end
-             else
-               meta.map do |m|
-                 # Enumerable methods on XMLReaders are destructive,
-                 # so pull the individual records into a regular
-                 # Array; see
-                 # https://github.com/ruby-marc/ruby-marc/pull/47
-                 MARC::XMLReader.new(m).map { |o| o }
-               end
-             end.flatten
-
-      marc.each_with_index do |record, count|
+      extract_marc(meta, etds).each_with_index do |record, count|
         next if options[:number] && options[:number] <= ingests
         next if raise_error
 
@@ -136,6 +105,43 @@ class Importer::ETD
 
     raise IngestError, reached: ingests - 1 if raise_error
     ingests
+  end
+
+  def unpack(data, options, destination)
+    # Don't unzip ETDs we won't use
+    data.drop(options[:skip]).map.with_index do |zip, i|
+      next unless File.extname(zip) == ".zip"
+
+      # i starts at zero, so use greater-than instead of >=
+      if !options[:number] || options[:number] > i
+        Proquest.extract(zip, "#{destination}/#{File.basename(zip)}")
+      end
+    end.compact
+  end
+
+  def extract_marc(metadata, etds)
+    if metadata.empty?
+      puts "No metadata provided; fetching from Pegasus"
+      etds.map { |e| e[:xml] }.map do |x|
+        if x.nil?
+          $stderr.puts "Bad zipfile source: #{e}"
+          raise IngestError
+        end
+        MARC::XMLReader.new(
+          StringIO.new(
+            Importer::ETDParser.parse_file(x)
+          )
+        ).map { |o| o }
+      end
+    else
+      metadata.map do |m|
+        # Enumerable methods on XMLReaders are destructive,
+        # so pull the individual records into a regular
+        # Array; see
+        # https://github.com/ruby-marc/ruby-marc/pull/47
+        MARC::XMLReader.new(m).map { |o| o }
+      end
+    end.flatten
   end
 
   private
