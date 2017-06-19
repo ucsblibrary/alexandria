@@ -20,12 +20,6 @@ class Importer::ETD
   def self.import(meta, data, options)
     ingests = 0
 
-    [Settings.download_root,
-     Settings.marc_directory,
-     Settings.proquest_directory,].each do |dir|
-      FileUtils.mkdir_p dir unless Pathname.new(dir).exist?
-    end
-
     if data.empty?
       $stderr.puts "Nothing found in the data path you specified."
       return ingests
