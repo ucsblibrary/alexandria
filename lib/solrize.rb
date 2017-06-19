@@ -4,12 +4,13 @@ module Solrize
   def solrize
     return super if node?
 
-    if rdf_label.first.to_s.blank? ||
-       rdf_label.first.to_s == rdf_subject.to_s
+    label = rdf_label.first.to_s
+    subject = rdf_subject.to_s
 
-      return [rdf_subject.to_s]
-    end
-
-    [rdf_subject.to_s, { label: "#{rdf_label.first}$#{rdf_subject}" }]
+    [
+      subject,
+      ({ label: "#{label}$#{subject}" } unless label.blank? ||
+                                               label == subject),
+    ].compact
   end
 end
