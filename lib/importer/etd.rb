@@ -2,33 +2,15 @@
 
 require "proquest"
 
-class Importer::ETD
+module Importer::ETD
   # Attributes for the ETD collection
   COLLECTION_ATTRIBUTES = { accession_number: ["etds"] }.freeze
-  attr_reader :collection
-
-  def initialize
-    @collection = Importer::Factory::CollectionFactory.new(
-      COLLECTION_ATTRIBUTES
-    ).find
-  end
-
-  def run
-    abort_import unless @collection
-  end
 
   def self.import(meta, data, options)
+    raise ArgumentError, "Nothing found in #{data}" if data.empty?
+
+    collection = ensure_collection_exists
     ingests = 0
-
-    if data.empty?
-      $stderr.puts "Nothing found in the data path you specified."
-      return ingests
-    end
-
-    importer = new
-    importer.run
-
-    raise_error = false
 
     Dir.mktmpdir do |temp|
       etds = unpack(data, options, temp)
@@ -39,75 +21,23 @@ class Importer::ETD
               "greater than total records to ingest"
       end
 
-      extract_marc(meta, etds).each_with_index do |record, count|
-        next if options[:number] && options[:number] <= ingests
-        next if raise_error
-
-        # The 956$f MARC field holds the name of the PDF from
-        # ProQuest; we need this field to match data with metadata
-        if record["956"].nil? || record["956"]["f"].nil?
-          $stderr.puts record
-          $stderr.puts
-          $stderr.puts "MARC is missing 956$f field; cannot process this record"
-          next
-        end
-
-        start_record = Time.zone.now
-
-        indexer = Traject::Indexer.new
-        indexer.load_config_file("lib/traject/etd_config.rb")
-
-        proquest_data = etds.select do |etd|
-          etd[:pdf].include? record["956"]["f"]
-        end.first
-
-        indexer.settings(
-          etd: proquest_data,
-          local_collection_id: importer.collection.id
-        )
-
-        if options[:verbose]
-          puts
-          puts "Object attributes for item #{count + 1}:"
-          puts record
-          puts
-          puts "Associated data for item #{count + 1}:"
-          puts proquest_data
-        end
-
-        begin
-          indexer.writer.put indexer.map_record(record)
-          indexer.writer.close
-          end_record = Time.zone.now
-          # Since earlier we skipped the unzip operations we don't
-          # need, the array of records to iterate over is smaller, so
-          # we modify the numbers here so that we still get the
-          # correct "Ingested X of out Y records" readout.
-          puts "Ingested record #{count + 1 + options[:skip]} "\
-               "of #{etds.length + options[:skip]} "\
-               "in #{end_record - start_record} seconds"
-          ingests += 1
-        rescue => e
-          $stderr.puts e
-          $stderr.puts e.backtrace
-          raise_error = true
-        rescue Interrupt
-          puts "\nIngest stopped, cleaning up..."
-          raise_error = true
-        end
+      begin
+        ingests += ingest_batch(metadata: meta,
+                                data: etds,
+                                collection: collection.id,
+                                options: options)
+      rescue IngestError => e
+        raise IngestError, reached: (ingests + e.reached)
+      ensure
+        puts "Updating collection index"
+        collection.update_index
       end
     end
 
-    if ingests.positive?
-      puts "Updating collection index"
-      importer.collection.update_index
-    end
-
-    raise IngestError, reached: ingests - 1 if raise_error
     ingests
   end
 
-  def unpack(data, options, destination)
+  def self.unpack(data, options, destination)
     # Don't unzip ETDs we won't use
     data.drop(options[:skip]).map.with_index do |zip, i|
       next unless File.extname(zip) == ".zip"
@@ -119,7 +49,7 @@ class Importer::ETD
     end.compact
   end
 
-  def extract_marc(metadata, etds)
+  def self.extract_marc(metadata, etds)
     if metadata.empty?
       puts "No metadata provided; fetching from Pegasus"
       etds.map { |e| e[:xml] }.map do |x|
@@ -144,18 +74,93 @@ class Importer::ETD
     end.flatten
   end
 
-  private
+  def self.ingest_batch(metadata:, data:, collection:, options: {})
+    ingests = 0
 
-    def abort_import
-      puts
-      puts "ABORTING IMPORT:  Before you can import ETD records, "\
-           "the ETD collection must exist.  "\
-           "Please import the ETD collection record first, "\
-           "then re-try this import."
-      puts
+    extract_marc(metadata, data).each_with_index do |record, count|
+      break if options[:number] && options[:number] <= ingests
 
-      raise CollectionNotFound,
-            "Not Found: Collection with accession number " +
-            COLLECTION_ATTRIBUTES[:accession_number].to_s
+      files = data.select do |etd|
+        etd[:pdf].include? record["956"]["f"]
+      end.first
+
+      start_record = Time.zone.now
+
+      begin
+        ingest_etd(record: record,
+                   data: files,
+                   collection: collection,
+                   options: options)
+      rescue => e
+        $stderr.puts e.message
+        $stderr.puts e.backtrace
+        raise IngestError, reached: ingests
+      rescue Interrupt
+        $stderr.puts "\nIngest stopped, cleaning up..."
+        raise IngestError, reached: ingests
+      end
+
+      end_record = Time.zone.now
+      ingests += 1
+
+      # Since earlier we skipped the unzip operations we don't
+      # need, the array of records to iterate over is smaller, so
+      # we modify the numbers here so that we still get the
+      # correct "Ingested X of out Y records" readout.
+      puts "Ingested record #{count + 1 + options[:skip]} "\
+           "of #{data.length + options[:skip]} "\
+           "in #{end_record - start_record} seconds"
     end
+
+    ingests
+  end
+
+  def self.ingest_etd(record:, data:, collection:, options: {})
+    # The 956$f MARC field holds the name of the PDF from
+    # ProQuest; we need this field to match data with metadata
+    if record["956"].nil? || record["956"]["f"].nil?
+      $stderr.puts record
+      $stderr.puts
+      $stderr.puts "MARC is missing 956$f field; cannot process this record"
+      return
+    end
+
+    if options[:verbose]
+      puts
+      puts "Object attributes:"
+      puts record
+      puts
+      puts "Associated data for item:"
+      puts data
+    end
+
+    indexer = Traject::Indexer.new
+    indexer.load_config_file("lib/traject/etd_config.rb")
+
+    indexer.settings(
+      etd: data,
+      local_collection_id: collection
+    )
+
+    indexer.writer.put indexer.map_record(record)
+    indexer.writer.close
+  end
+
+  def self.ensure_collection_exists
+    collection = Importer::Factory::CollectionFactory.new(
+      COLLECTION_ATTRIBUTES
+    ).find
+
+    return collection if collection.present?
+
+    puts "ABORTING IMPORT:  Before you can import ETD records, "\
+         "the ETD collection must exist."
+
+    puts "Please import the ETD collection record first, "\
+         "then re-try this import."
+
+    raise CollectionNotFound,
+          "Not Found: Collection with accession number " +
+          COLLECTION_ATTRIBUTES[:accession_number].to_s
+  end
 end

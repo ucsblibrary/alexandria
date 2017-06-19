@@ -369,10 +369,6 @@ GEM
     kaminari (0.17.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
-    kaminari-actionview (1.0.1)
-      actionview
-      kaminari-core (= 1.0.1)
-    kaminari-core (1.0.1)
     kaminari_route_prefix (0.0.2)
       kaminari (~> 0.16)
     ld-patch (0.3.1)

@@ -4,8 +4,6 @@ require "rails_helper"
 require "importer"
 
 describe Importer::ETD do
-  let(:importer) { described_class.new }
-
   let!(:collection) do
     create(:collection,
            id: "etds",
@@ -77,12 +75,13 @@ describe Importer::ETD do
     end
   end
 
-  describe "#collection" do
+  describe "#ensure_collection_exists" do
     context "when ETD collection already exists" do
-      before { collection } # create existing collection
+      # create existing collection
+      before { collection }
 
       it "finds existing collection" do
-        expect(importer.collection).to eq collection
+        expect(Importer::ETD.ensure_collection_exists).to eq collection
       end
     end
 
@@ -91,7 +90,7 @@ describe Importer::ETD do
 
       it "raises an exception" do
         expect do
-          importer.run
+          Importer::ETD.ensure_collection_exists
         end.to(
           change { ETD.count }.by(0).and(
             raise_error(
