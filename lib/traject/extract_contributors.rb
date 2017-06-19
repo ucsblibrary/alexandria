@@ -60,18 +60,20 @@ module ExtractContributors
     end
   end
 
-  def roles_for(field)
-    sub4 = field.subfields.select { |s| s.code == "4" }
-      .map { |role| Traject::Macros::Marc21.trim_punctuation(role.value) }
-    sub_e = field.subfields.select { |s| s.code == "e" }
-      .map { |role| Traject::Macros::Marc21.trim_punctuation(role.value) }
-    roles = sub4 + sub_e
+  def trim_subfield(field, code)
+    field.subfields.select do |s|
+      s.code == code
+    end.map { |role| Traject::Macros::Marc21.trim_punctuation(role.value) }
+  end
 
-    if roles.blank?
-      [:performer]
-    else
-      roles.map { |r| ROLE_MAP.fetch(r.strip.downcase) }
-    end
+  def roles_for(field)
+    roles = %w[4 e].map do |code|
+      trim_subfield(field, code)
+    end.compact.flatten
+
+    return [:performer] if roles.blank?
+
+    roles.map { |r| ROLE_MAP.fetch(r.strip.downcase) }
   end
 
   def data_for(field)
