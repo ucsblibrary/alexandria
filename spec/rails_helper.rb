@@ -74,7 +74,6 @@ RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
   config.include CollectionSupport, type: :feature
   config.include FixtureFileUpload
-  config.include EzidHelper
 end
 
 def user_with_groups(groups)

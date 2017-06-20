@@ -96,18 +96,16 @@ describe Importer::Factory::ImageFactory do
   end
 
   describe "collections:" do
-    let(:ezid_ids) { attributes[:accession_number].first }
-
-    # Don't try to mint ARKs during specs
-    before { stub_out_ezid(ezid_ids) }
-
     context "when a collection already exists" do
       let!(:coll) { Collection.create!(collection_attrs) }
 
       it "adds the image to existing collection" do
         image = nil
-        expect { image = factory.run }
-          .to change { Collection.count }.by(0)
+        expect do
+          VCR.use_cassette("image_factory") do
+            image = factory.run
+          end
+        end.to change { Collection.count }.by(0)
 
         expect(image.local_collection_id).to include(coll.id)
 
@@ -120,12 +118,6 @@ describe Importer::Factory::ImageFactory do
     end
 
     context 'when collection doesn\'t exist yet' do
-      let(:collection_id) do
-        collection_attrs[:accession_number].first.delete(" ")
-      end
-
-      let(:ezid_ids) { [collection_id, attributes[:accession_number].first] }
-
       before do
         Collection.where(
           accession_number: collection_attrs[:accession_number]
@@ -134,10 +126,11 @@ describe Importer::Factory::ImageFactory do
 
       it "creates collection and adds image to it" do
         image = nil
-        expect { image = factory.run }
-          .to change { Collection.count }.by(1)
-
-        expect(image.local_collection_id).to include(collection_id)
+        expect do
+          VCR.use_cassette("image_factory") do
+            image = factory.run
+          end
+        end.to change { Collection.count }.by(1)
       end
     end
 
@@ -146,14 +139,13 @@ describe Importer::Factory::ImageFactory do
         described_class.new(attributes.except(:collection), files)
       end
 
-      before { Collection.destroy_all }
-
       it 'doesn\'t add the image to any collection' do
-        image = nil
-        expect { image = factory.run }
-          .to change { Collection.count }.by(0)
-
-        expect(image.local_collection_id).to eq []
+        VCR.use_cassette("image_factory") do
+          expect(Collection.count).to eq 0
+          image = factory.run
+          expect(Collection.count).to eq 0
+          expect(image.local_collection_id).to eq []
+        end
       end
     end
   end
