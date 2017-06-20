@@ -19,6 +19,71 @@ module AdminPolicy
   UCSB_CAMPUS_GROUP   = "ucsb_on_campus"
   UCSB_GROUP          = "ucsb"
 
+  POLICY_DEFINITIONS = {
+    restricted: {
+      id: RESTRICTED_POLICY_ID,
+      title: ["Restricted access"],
+      permissions:
+        [
+          { type: "group", name: META_ADMIN, access: "edit" },
+          { type: "group", name: RIGHTS_ADMIN, access: "read" },
+        ],
+    },
+    discovery: {
+      id: DISCOVERY_POLICY_ID,
+      title: ["Discovery access only"],
+      permissions:
+        [
+          { type: "group", name: META_ADMIN, access: "edit" },
+          { type: "group", name: RIGHTS_ADMIN, access: "read" },
+          { type: "group", name: PUBLIC_GROUP, access: "discover" },
+        ],
+    },
+    ucsb_campus: {
+      id: UCSB_CAMPUS_POLICY_ID,
+      title: ["Campus use only, requires UCSB login"],
+      permissions:
+        [
+          { type: "group", name: META_ADMIN, access: "edit" },
+          { type: "group", name: RIGHTS_ADMIN, access: "read" },
+          { type: "group", name: UCSB_CAMPUS_GROUP, access: "read" },
+          { type: "group", name: PUBLIC_GROUP, access: "discover" },
+        ],
+    },
+    ucsb: {
+      id: UCSB_POLICY_ID,
+      title: ["UCSB users only"],
+      permissions:
+        [
+          { type: "group", name: META_ADMIN, access: "edit" },
+          { type: "group", name: RIGHTS_ADMIN, access: "read" },
+          { type: "group", name: UCSB_GROUP, access: "read" },
+          { type: "group", name: PUBLIC_GROUP, access: "discover" },
+        ],
+    },
+    public_campus: {
+      id: PUBLIC_CAMPUS_POLICY_ID,
+      title: ["Public Access, Campus use only"],
+      permissions:
+        [
+          { type: "group", name: META_ADMIN, access: "edit" },
+          { type: "group", name: RIGHTS_ADMIN, access: "read" },
+          { type: "group", name: PUBLIC_CAMPUS_GROUP, access: "read" },
+          { type: "group", name: PUBLIC_GROUP, access: "discover" },
+        ],
+    },
+    public: {
+      id: PUBLIC_POLICY_ID,
+      title: ["Public access"],
+      permissions:
+        [
+          { type: "group", name: META_ADMIN, access: "edit" },
+          { type: "group", name: RIGHTS_ADMIN, access: "read" },
+          { type: "group", name: PUBLIC_GROUP, access: "read" },
+        ],
+    },
+  }.freeze
+
   # @return [Hash]
   def self.all
     Rails.cache.fetch("admin_policies", expires_in: 1.year) do
@@ -39,93 +104,14 @@ module AdminPolicy
   end
 
   def self.ensure_admin_policy_exists
-    unless Hydra::AdminPolicy.exists?(RESTRICTED_POLICY_ID)
-      policy = Hydra::AdminPolicy.create(
-        id: RESTRICTED_POLICY_ID, title: ["Restricted access"]
-      )
+    POLICY_DEFINITIONS.values.each do |defn|
+      next if Hydra::AdminPolicy.exists?(defn[:id])
 
-      policy.default_permissions.build(
-        [
-          { type: "group", name: META_ADMIN, access: "edit" },
-          { type: "group", name: RIGHTS_ADMIN, access: "read" },
-        ]
+      policy = Hydra::AdminPolicy.create(
+        id: defn[:id], title: defn[:title]
       )
+      policy.default_permissions.build(defn[:permissions])
       policy.save!
     end
-
-    unless Hydra::AdminPolicy.exists?(DISCOVERY_POLICY_ID)
-      policy = Hydra::AdminPolicy.create(
-        id: DISCOVERY_POLICY_ID, title: ["Discovery access only"]
-      )
-      policy.default_permissions.build(
-        [
-          { type: "group", name: META_ADMIN, access: "edit" },
-          { type: "group", name: RIGHTS_ADMIN, access: "read" },
-          { type: "group", name: PUBLIC_GROUP, access: "discover" },
-        ]
-      )
-      policy.save!
-    end
-
-    # TODO: Is this policy actually needed?
-    unless Hydra::AdminPolicy.exists?(UCSB_CAMPUS_POLICY_ID)
-      policy = Hydra::AdminPolicy.create(
-        id: UCSB_CAMPUS_POLICY_ID,
-        title: ["Campus use only, requires UCSB login"]
-      )
-      policy.default_permissions.build(
-        [
-          { type: "group", name: META_ADMIN, access: "edit" },
-          { type: "group", name: RIGHTS_ADMIN, access: "read" },
-          { type: "group", name: UCSB_CAMPUS_GROUP, access: "read" },
-          { type: "group", name: PUBLIC_GROUP, access: "discover" },
-        ]
-      )
-      policy.save!
-    end
-
-    unless Hydra::AdminPolicy.exists?(UCSB_POLICY_ID)
-      policy = Hydra::AdminPolicy.create(
-        id: UCSB_POLICY_ID, title: ["UCSB users only"]
-      )
-      policy.default_permissions.build(
-        [
-          { type: "group", name: META_ADMIN, access: "edit" },
-          { type: "group", name: RIGHTS_ADMIN, access: "read" },
-          { type: "group", name: UCSB_GROUP, access: "read" },
-          { type: "group", name: PUBLIC_GROUP, access: "discover" },
-        ]
-      )
-      policy.save!
-    end
-
-    unless Hydra::AdminPolicy.exists?(PUBLIC_CAMPUS_POLICY_ID)
-      policy = Hydra::AdminPolicy.create(
-        id: PUBLIC_CAMPUS_POLICY_ID,
-        title: ["Public Access, Campus use only"]
-      )
-      policy.default_permissions.build(
-        [
-          { type: "group", name: META_ADMIN, access: "edit" },
-          { type: "group", name: RIGHTS_ADMIN, access: "read" },
-          { type: "group", name: PUBLIC_CAMPUS_GROUP, access: "read" },
-          { type: "group", name: PUBLIC_GROUP, access: "discover" },
-        ]
-      )
-      policy.save!
-    end
-
-    return if Hydra::AdminPolicy.exists?(PUBLIC_POLICY_ID)
-    policy = Hydra::AdminPolicy.create(
-      id: PUBLIC_POLICY_ID, title: ["Public access"]
-    )
-    policy.default_permissions.build(
-      [
-        { type: "group", name: META_ADMIN, access: "edit" },
-        { type: "group", name: RIGHTS_ADMIN, access: "read" },
-        { type: "group", name: PUBLIC_GROUP, access: "read" },
-      ]
-    )
-    policy.save!
   end
 end
