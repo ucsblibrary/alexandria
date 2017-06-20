@@ -20,49 +20,64 @@ class ObjectFactoryWriter
     @local_collection_id = @settings["local_collection_id"]
   end
 
-  def serialize(context); end
+  def serialize(_context); end
 
   def close; end
 
   # Add a single context to fedora
   def put(context)
-    from_traject = context.with_indifferent_access
-
-    # Attributes are assembled by Traject's MARC parser
-    attributes = defaults.merge(from_traject)
-
-    contrib = Array(attributes.delete("contributors")).first
-    attributes.merge!(contrib) if contrib.present?
-
-    relators = parse_relators(attributes.delete("names"),
-                              attributes.delete("relators"))
-
-    if relators
-      attributes.merge!(relators)
-    else
-      $stderr.puts "Skipping #{attributes[:identifier]} : ERROR: "\
+    relators = parse_relators(context.delete("names"),
+                              context.delete("relators"))
+    if relators.blank?
+      $stderr.puts "Skipping #{context["identifier"]} : ERROR: "\
                    "Names in field 720a don't match relators in field 720e"
       return
     end
 
-    # created date is a TimeSpan
-    created = attributes.delete("created_start")
-    attributes[:created_attributes] = [{ start: created }] if created
+    attributes = base_attributes(
+      context.with_indifferent_access,
+      relators
+    ).with_indifferent_access
 
-    # id must be singular
-    attributes[:id] = attributes[:id].first
+    build_object(
+      attributes,
+      find_files_to_attach(attributes)
+    )
+  end
 
-    files = find_files_to_attach(attributes)
-    attributes[:files] = attributes.delete("filename")
+  def base_attributes(traject_context, relators)
+    # These defaults ensure that if a field isn't in a MARC record,
+    # but it is in Fedora, then it will be overwritten with blank.
+    {
+      language: [],
+      created_start: [],
+      fulltext_link: [],
+    }.merge(traject_context)
+      .merge(transform_traject_attrs(traject_context))
+      .merge(etd_attributes)
+      .merge(relators)
+  end
 
+  def transform_traject_attrs(attrs)
+    if attrs["created_start"]
+      { created_attributes: [{ start: attrs["created_start"] }] }
+    else
+      {}
+    end.merge(
+      # ID value must be singular
+      id: attrs["id"].first
+    ).merge(attrs["contributors"]&.first || {})
+  end
+
+  def etd_attributes
     if @etd.present?
       xml = Nokogiri::XML(File.read(@etd["xml"]))
 
-      attributes[:rights_holder] = Proquest::XML.rights_holder(xml)
-      attributes[:date_copyrighted] = Proquest::XML.date_copyrighted(xml)
+      { rights_holder: Proquest::XML.rights_holder(xml),
+        date_copyrighted: Proquest::XML.date_copyrighted(xml), }
+    else
+      {}
     end
-
-    build_object(attributes, files)
   end
 
   # Extract the cylinder numbers from names like these:
@@ -75,21 +90,17 @@ class ObjectFactoryWriter
   # ]
   def find_files_to_attach(attributes)
     return @etd if @etd
-    return [] unless @settings[:files_dirs]
+    return [] if @settings[:files_dirs].blank?
 
-    dirs = [@settings[:files_dirs]].flatten
-    file_groups = []
-
-    attributes[:filename].each do |name|
+    file_groups = attributes[:filename].map do |name|
       match = name.match('Cylinder\ (\d+)')
       next if match.blank?
       cylinder_number = match[1]
-      files = []
-      dirs.each do |dir| # Look in all the dirs
-        files += Dir.glob(File.join(dir, "**", "cusb-cyl#{cylinder_number}*"))
-      end
-      file_groups << files if files.present?
-    end
+
+      @settings[:files_dirs].map do |dir| # Look in all the dirs
+        Dir.glob(File.join(dir, "**", "cusb-cyl#{cylinder_number}*"))
+      end.flatten
+    end.reject(&:blank?)
 
     print_file_names(file_groups)
     file_groups
@@ -103,27 +114,18 @@ class ObjectFactoryWriter
       file_groups.flatten.each { |f| puts f.inspect }
     end
 
-    # Traject doesn't have a mechanism for supplying defaults to these fields
-    def overwrite_fields
-      @overwrite_fields ||= %w[language created_start fulltext_link]
-    end
+    def build_object(metadata, data)
+      metadata.delete("created_start")
+      metadata.delete("contributors")
+      metadata.delete("filename")
 
-    # This ensures that if a field isn't in a MARC record, but it is in Fedora,
-    # then it will be overwritten with blank.
-    def defaults
-      overwrite_fields.each_with_object(
-        HashWithIndifferentAccess.new
-      ) { |k, h| h[k] = [] }
-    end
-
-    def build_object(attributes, metadata)
-      work_type = attributes.fetch("work_type").first
+      work_type = metadata["work_type"].first
 
       if @local_collection_id.present?
-        attributes[:local_collection_id] = Array(@local_collection_id)
+        metadata[:local_collection_id] = [@local_collection_id]
       end
 
-      factory(work_type).new(attributes, metadata).run
+      factory(work_type).new(metadata, data).run
     end
 
     def factory(work_type)

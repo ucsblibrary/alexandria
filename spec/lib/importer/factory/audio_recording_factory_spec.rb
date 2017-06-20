@@ -5,7 +5,7 @@ require "importer"
 require "active_fedora/cleaner"
 
 describe Importer::Factory::AudioRecordingFactory do
-  let(:data) { File.join(fixture_path, "cylinders") }
+  let(:data) { [File.join(fixture_path, "cylinders")] }
   let(:metadata) { "#{fixture_path}/cylinders/cylinders-objects.xml" }
 
   let(:attributes) do

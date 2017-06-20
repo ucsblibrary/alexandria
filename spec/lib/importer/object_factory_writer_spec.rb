@@ -4,7 +4,8 @@ require "rails_helper"
 require "object_factory_writer"
 
 describe ObjectFactoryWriter do
-  let(:settings) { {} }
+  let(:files_dirs) { [] }
+  let(:settings) { { files_dirs: files_dirs } }
   let(:writer) { described_class.new(settings) }
 
   before do
@@ -84,7 +85,6 @@ describe ObjectFactoryWriter do
   end
 
   describe "#find_files_to_attach" do
-    let(:settings) { { files_dirs: files_dirs } }
     let(:attrs) { { filename: ["Cylinder 12783", "Cylinder 0001"] } }
 
     subject { writer.find_files_to_attach(attrs) }
@@ -114,7 +114,7 @@ describe ObjectFactoryWriter do
     end
 
     context "with a single directory" do
-      let(:files_dirs) { File.join(fixture_path, "cylinders", "cyl1-2") }
+      let(:files_dirs) { [File.join(fixture_path, "cylinders", "cyl1-2")] }
 
       it "contains the correct files" do
         expect(subject.count).to eq 1 # It's an array of arrays
@@ -150,7 +150,7 @@ describe ObjectFactoryWriter do
 
     context "with a bad cylinder name" do
       let(:attrs) { { filename: ["PA Mss 42"] } }
-      let(:files_dirs) { File.join(fixture_path, "cylinders") }
+      let(:files_dirs) { [File.join(fixture_path, "cylinders")] }
 
       it "continues without an error" do
         expect(subject.count).to eq 0

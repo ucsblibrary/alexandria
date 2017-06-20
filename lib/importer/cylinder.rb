@@ -22,7 +22,7 @@ class Importer::Cylinder
     $stdout.sync = true
 
     @metadata_files = metadata_files
-    @files_dirs = files_dirs
+    @files_dirs = Array(files_dirs)
     @options = options
     @imported_records_count = 0
 
