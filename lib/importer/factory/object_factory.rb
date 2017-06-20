@@ -99,16 +99,18 @@ module Importer::Factory
 
     def create
       attrs = create_attributes
-      identifier = mint_ark_if_new!(attrs)
+      identifier = mint_ark_if_new!(attrs.with_indifferent_access)
 
-      # There's a bug in ActiveFedora when there are many
-      # habtm <-> has_many associations, where they won't all get saved.
-      # https://github.com/projecthydra/active_fedora/issues/874
-      #
-      # TODO: what does the above comment mean, and how does it relate
-      # to this code
-
-      @object = klass.new(attrs)
+      @object = klass.new(
+        attrs.merge(
+          if identifier.present?
+            { identifier: [identifier.id],
+              id: identifier.id.split("/").last, }
+          else
+            {}
+          end
+        )
+      )
 
       # TODO: #attach_files needs to always run for ETD ingests, since
       # it triggers {Proquest::Metadata#run} which updates the
@@ -129,24 +131,21 @@ module Importer::Factory
       # The fields used for erc_when and erc_who are set during the
       # object creation, so we have to update the ARK metadata
       # afterwards
-      hydrate_ark!(identifier) if identifier
+      hydrate_ark!(identifier) if identifier.present?
 
       log_created(object)
     end
 
     # @param [Hash] attrs
+    # @return [Nil, Ezid::Identifier]
     def mint_ark_if_new!(attrs)
       # Don't mint arks for records that already have them (e.g. ETDs)
       return if attrs[:identifier].present?
 
-      identifier = Ezid::Identifier.mint(
+      Ezid::Identifier.mint(
         profile: :erc,
         erc_what: attrs[:title].first
       )
-      attrs[:identifier] = [identifier.id]
-      attrs[:id] = identifier.id.split("/").last
-
-      identifier
     end
 
     def hydrate_ark!(identifier)
