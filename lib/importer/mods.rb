@@ -22,36 +22,15 @@ module Importer::MODS
       next if options[:number] && options[:number] <= ingests
 
       start_record = Time.zone.now
-
-      selected_data = data.select do |f|
-        # FIXME: find a more reliable test
-        meta_base = File.basename(metadatum, ".xml")
-        data_base = File.basename(f, File.extname(f))
-        data_base.include?(meta_base) || meta_base.include?(data_base)
-      end
-
-      if options[:verbose]
-        puts
-        puts "Object metadata for item #{ingests + 1}:"
-        puts metadatum
-        puts
-        puts "Associated files for item #{ingests + 1}:"
-        selected_data.each { |f| puts f }
-      end
-
-      Rails.logger.debug "Importing: #{meta}"
-      parser = Parser.new(metadatum)
-
-      ::Importer::Factory.for(parser.model.to_s).new(
-        parser.attributes.merge(admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID),
-        selected_data
-      ).run
-
+      ingest_mod(metadata: metadatum, data: data, options: options)
       end_record = Time.zone.now
+
       puts "Ingested record #{ingests + 1} of #{meta.length} "\
            "in #{end_record - start_record} seconds"
+
       ingests += 1
     end
+
     ingests
   rescue => e
     puts e
@@ -60,6 +39,31 @@ module Importer::MODS
   rescue Interrupt
     puts "\nIngest stopped, cleaning up..."
     raise IngestError, reached: ingests
+  end
+
+  def ingest_mod(metadata:, data:, options: {})
+    selected_data = data.select do |f|
+      # FIXME: find a more reliable test
+      meta_base = File.basename(metadata, ".xml")
+      data_base = File.basename(f, File.extname(f))
+      data_base.include?(meta_base) || meta_base.include?(data_base)
+    end
+
+    if options[:verbose]
+      puts
+      puts "Object metadata:"
+      puts metadata
+      puts
+      puts "Associated files:"
+      selected_data.each { |f| puts f }
+    end
+
+    parser = Parser.new(metadata)
+
+    ::Importer::Factory.for(parser.model.to_s).new(
+      parser.attributes.merge(admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID),
+      selected_data
+    ).run
   end
 
   class Parser

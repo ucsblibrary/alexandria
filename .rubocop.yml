@@ -18,6 +18,19 @@ Layout/MultilineMethodCallIndentation:
 
 Metrics/BlockLength:
   Exclude:
+    # `configure_blacklight` blocks are always going to be a nightmare
+    - 'app/controllers/catalog_controller.rb'
+    - 'app/controllers/local_authorities_controller.rb'
+    #
+    # config blocks can be very large
+    - 'config/initializers/*'
+    - 'config/routes.rb'
+    #
+    # rake namespace blocks are big too
+    - 'lib/capistrano/tasks/*'
+    - 'lib/tasks/*'
+    #
+    # describe do ...
     - 'spec/**/*'
 
 Metrics/ClassLength:
