@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe "FileSet routes" do
+describe "FileSet routes", type: :routing do
   let(:id) { "fk41234567" }
 
   before do

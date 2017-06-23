@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe "routes to Collection" do
+describe "routes to Collection", type: :routing do
   let(:collection) do
     Collection.create!(title: ["Lil' Collect"],
                        admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID)

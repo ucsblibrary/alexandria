@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe "map routes" do
+describe "map routes", type: :routing do
   let(:id) { "fk41234567" }
 
   before do

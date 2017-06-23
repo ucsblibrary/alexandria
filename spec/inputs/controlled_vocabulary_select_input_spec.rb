@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe "ControlledVocabularySelectInput", type: :input do
+describe ControlledVocabularySelectInput, type: :input do
   let(:image) { Image.new }
   let(:bar1) do
     double(

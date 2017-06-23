@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe "MultiValueSelectInput", type: :input do
+describe MultiValueSelectInput, type: :input do
   subject { input.input(nil) }
 
   let(:image) { Image.new(digital_origin: values) }

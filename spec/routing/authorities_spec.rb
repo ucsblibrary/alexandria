@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe "routes for local authorities" do
+describe "routes for local authorities", type: :routing do
   it "has show routes for all types of local authorities" do
     LocalAuthority::LOCAL_AUTHORITY_MODELS.each do |model|
       expect(

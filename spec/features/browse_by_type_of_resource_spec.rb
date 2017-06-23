@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe "Browsing by Type of Resource" do
+feature "Browsing by Type of Resource" do
   before do
     VCR.use_cassette("browse_by_type_of_resource") do
       create(
