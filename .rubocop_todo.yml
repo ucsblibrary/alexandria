@@ -69,17 +69,6 @@ RSpec/DescribeClass:
 RSpec/ExampleLength:
   Enabled: false
 
-# Offense count: 6
-# Configuration parameters: CustomTransform, IgnoreMethods.
-RSpec/FilePath:
-  Exclude:
-    - 'spec/lib/expire_embargo_spec.rb'
-    - 'spec/lib/importer/mods_parser_spec.rb'
-    - 'spec/lib/vocabularies/language_spec.rb'
-    - 'spec/lib/vocabularies/organization_spec.rb'
-    - 'spec/lib/vocabularies/rights_statement_spec.rb'
-    - 'spec/lib/vocabularies/subject_spec.rb'
-
 # Offense count: 89
 # Configuration parameters: AssignmentOnly.
 RSpec/InstanceVariable:

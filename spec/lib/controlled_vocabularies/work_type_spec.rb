@@ -2,8 +2,8 @@
 
 require "rails_helper"
 
-describe "A controlled vocabulary" do
-  subject { ControlledVocabularies::WorkType.new(uri) }
+describe ControlledVocabularies::WorkType do
+  subject { described_class.new(uri) }
 
   context "when the uri is in LCSH" do
     let(:uri) do

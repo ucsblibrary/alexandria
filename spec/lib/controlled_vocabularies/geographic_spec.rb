@@ -2,8 +2,8 @@
 
 require "rails_helper"
 
-describe "A controlled vocabulary" do
-  subject { ControlledVocabularies::Geographic.new(location) }
+describe ControlledVocabularies::Geographic do
+  subject { described_class.new(location) }
 
   context "when the location is in LCSH" do
     let(:location) do

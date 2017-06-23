@@ -2,9 +2,9 @@
 
 require "rails_helper"
 
-describe "A controlled vocabulary" do
+describe ControlledVocabularies::Creator do
   before do
-    ControlledVocabularies::Creator.use_vocabulary(
+    described_class.use_vocabulary(
       :lcnames, class: Vocabularies::LCNAMES
     )
   end
@@ -14,14 +14,14 @@ describe "A controlled vocabulary" do
 
     it "creates an object" do
       expect do
-        ControlledVocabularies::Creator.new(name)
+        described_class.new(name)
       end.not_to raise_error
     end
   end
 
   context "when the name is not in the vocabulary" do
     let(:name) { RDF::URI.new("http://foo.bar/authorities/names/n79081574") }
-    let(:creator) { ControlledVocabularies::Creator.new(name) }
+    let(:creator) { described_class.new(name) }
 
     it "is a problem" do
       expect(creator).not_to be_valid
@@ -34,7 +34,7 @@ describe "A controlled vocabulary" do
   end
 
   context "when initialized without an argument" do
-    subject { ControlledVocabularies::Creator.new }
+    subject { described_class.new }
 
     it { is_expected.to be_a_node }
   end
