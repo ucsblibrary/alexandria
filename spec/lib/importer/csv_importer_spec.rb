@@ -217,38 +217,22 @@ describe Importer::CSV do
   end
 
   context "map parent data" do
-    before do
-      @map_set_accession_number = ["4450s 250 b7"]
-      @index_map_accession_number = ["4450s 250 b7 index"]
-      @structural_metadata = {
-        parent_accession_number: @map_set_accession_number,
-        index_map_accession_number: @index_map_accession_number,
-      }
-      @map_set_attrs = {
-        accession_number: @map_set_accession_number,
-        title: ["Carta do Brasil"],
-      }
+    let(:map_set_accession_number) { ["4450s 250 b7"] }
+    let(:index_map_accession_number) { ["4450s 250 b7 index"] }
 
-      VCR.use_cassette("map_set_factory2") do
-        @map_set = Importer::Factory::MapSetFactory.new(@map_set_attrs).run
-      end
+    let!(:map_set_attrs) do
+      { accession_number: map_set_accession_number,
+        title: ["Carta do Brasil"], }
+    end
 
-      @index_map_attrs = {
-        accession_number: @index_map_accession_number,
-        title: ["Index Map do Brasil"],
-      }
-      VCR.use_cassette("index_map_factory2") do
-        @index_map = Importer::Factory::IndexMapFactory.new(
-          @index_map_attrs
-        ).run
-      end
+    let!(:index_map_attrs) do
+      { accession_number: index_map_accession_number,
+        title: ["Index Map do Brasil"], }
+    end
 
-      @goal_state = {
-        parent_id: @map_set.id,
-        # a map set can contain many index maps, so index_map_id must
-        # be an Array because of the way the field is defined
-        index_map_id: @index_map_accession_number,
-      }
+    let(:structural_metadata) do
+      { parent_accession_number: map_set_accession_number,
+        index_map_accession_number: index_map_accession_number, }
     end
 
     it "doesn't throw any errors if these fields don't exist" do
@@ -256,19 +240,27 @@ describe Importer::CSV do
     end
 
     it "can return a map set's id when given an accession_number" do
-      expect(
-        described_class.get_id_for_accession_number(
-          @map_set_attrs[:accession_number]
-        )
-      ).to eql(@map_set.id)
+      VCR.use_cassette("csv_importer") do
+        map_set = Importer::Factory::MapSetFactory.new(map_set_attrs).run
+
+        expect(
+          described_class.get_id_for_accession_number(
+            map_set_attrs[:accession_number]
+          )
+        ).to eql(map_set.id)
+      end
     end
 
     it "can return an index map's id when given an accession_number" do
-      expect(
-        described_class.get_id_for_accession_number(
-          @index_map_attrs[:accession_number]
-        )
-      ).to eql(@index_map.id)
+      VCR.use_cassette("csv_importer") do
+        index_map = Importer::Factory::IndexMapFactory.new(index_map_attrs).run
+
+        expect(
+          described_class.get_id_for_accession_number(
+            index_map_attrs[:accession_number]
+          )
+        ).to eql(index_map.id)
+      end
     end
 
     it "returns nil when it can't find an id for a given accession_number" do
@@ -276,19 +268,23 @@ describe Importer::CSV do
     end
 
     it "attaches an index map to its map set" do
-      expect(
-        described_class.handle_structural_metadata(
-          @structural_metadata
-        )[:parent_id]
-      ).to eql(@goal_state[:parent_id])
+      VCR.use_cassette("csv_importer") do
+        map_set = Importer::Factory::MapSetFactory.new(map_set_attrs).run
+
+        expect(
+          described_class.handle_structural_metadata(
+            structural_metadata
+          )[:parent_id]
+        ).to eql(map_set.id)
+      end
     end
 
     it "attaches a component map to its index map" do
       expect(
         described_class.handle_structural_metadata(
-          @structural_metadata
+          structural_metadata
         )[:index_map_id]
-      ).to eql(@goal_state[:index_map_id])
+      ).to eql(index_map_accession_number)
     end
   end
 
