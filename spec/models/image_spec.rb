@@ -5,6 +5,7 @@ require "rails_helper"
 describe Image do
   describe "::_to_partial_path" do
     subject { described_class._to_partial_path }
+
     it { is_expected.to eq "catalog/document" }
   end
 
@@ -24,7 +25,7 @@ describe Image do
 
   describe "nested attributes" do
     context "for creator" do
-      it "should ignore empty ids" do
+      it "ignores empty ids" do
         subject.creator_attributes = {
           "0" => { "id" => "http://id.loc.gov/authorities/names/n87141298" },
           "1" => { "id" => "" },
@@ -34,7 +35,7 @@ describe Image do
     end
 
     context "for landscape_architect" do
-      it "should ignore empty ids" do
+      it "ignores empty ids" do
         subject.landscape_architect_attributes = {
           "0" => { "id" => "http://id.loc.gov/authorities/names/n87141298" },
           "1" => { "id" => "" },
@@ -44,7 +45,7 @@ describe Image do
     end
 
     context "for performer" do
-      it "should ignore empty ids" do
+      it "ignores empty ids" do
         subject.performer_attributes = {
           "0" => { "id" => "http://id.loc.gov/authorities/names/n87141298" },
           "1" => { "id" => "" },
@@ -54,7 +55,7 @@ describe Image do
     end
 
     context "for location" do
-      it "should ignore empty ids" do
+      it "ignores empty ids" do
         subject.location_attributes = {
           "0" => { "id" => "http://id.loc.gov/authorities/names/n87141298" },
           "1" => { "id" => "" },
@@ -64,7 +65,7 @@ describe Image do
     end
 
     context "for lc_subject" do
-      it "should ignore empty ids" do
+      it "ignores empty ids" do
         subject.lc_subject_attributes = {
           "0" => {
             "id" => "http://id.loc.gov/authorities/subjects/sh85111007",
@@ -76,7 +77,7 @@ describe Image do
     end
 
     context "for form_of_work" do
-      it "should ignore empty ids" do
+      it "ignores empty ids" do
         subject.form_of_work_attributes = {
           "0" => { "id" => "http://vocab.getty.edu/aat/300026816" },
           "1" => { "id" => "" },
@@ -168,7 +169,8 @@ describe Image do
   end
 
   describe "#to_solr" do
-    let(:image) { Image.new }
+    let(:image) { described_class.new }
+
     it "calls the ImageIndexer" do
       expect_any_instance_of(ImageIndexer).to(
         receive(:generate_solr_document).and_return({})
@@ -180,6 +182,7 @@ describe Image do
       subject do
         image.to_solr[Solrizer.solr_name("human_readable_type", :facetable)]
       end
+
       it { is_expected.to eq "Image" }
     end
   end
@@ -224,7 +227,8 @@ describe Image do
 
   describe "lc_subject" do
     context "with a literal value" do
-      let(:image) { Image.new(lc_subject: ["foo"]) }
+      let(:image) { described_class.new(lc_subject: ["foo"]) }
+
       it "isn't valid" do
         expect(image).not_to be_valid
 
@@ -252,7 +256,7 @@ describe Image do
 
   describe "work_type" do
     context "with a literal value" do
-      let(:image) { Image.new(work_type: ["foo"]) }
+      let(:image) { described_class.new(work_type: ["foo"]) }
 
       it "isn't valid" do
         expect(image).not_to be_valid
@@ -266,6 +270,7 @@ describe Image do
 
   describe "#to_partial_path" do
     subject { described_class.new.to_partial_path }
+
     it { is_expected.to eq "catalog/document" }
   end
 
@@ -282,6 +287,7 @@ describe Image do
     end
 
     let(:scale) { ["1:30000"] }
+
     it "has a scale" do
       subject.scale = scale
       expect(subject.scale).to eq scale

@@ -11,6 +11,7 @@ describe LocalAuthoritiesController do
 
   describe "#show" do
     let(:topic) { Topic.create!(label: ["A Local Subject"]) }
+
     it "shows public urls" do
       get :show, params: { id: topic, format: :ttl }
       expect(response.body).to(
@@ -53,18 +54,20 @@ describe LocalAuthoritiesController do
         expect(doc_ids).to include(group.id)
         expect(doc_ids).to include(org.id)
         expect(doc_ids).to include(agent.id)
-        expect(doc_ids).to_not include(image.id)
+        expect(doc_ids).not_to include(image.id)
         expect(doc_ids).to include(topic.id)
       end
     end # logged in as admin
   end
 
   describe "#show_delete_link?" do
-    let(:doc) { SolrDocument.new("has_model_ssim" => "Person") }
     subject { controller.send(:show_delete_link?, nil, document: doc) }
+
+    let(:doc) { SolrDocument.new("has_model_ssim" => "Person") }
 
     context "for a metadata admin" do
       let(:user) { user_with_groups [AdminPolicy::META_ADMIN] }
+
       it { is_expected.to be true }
     end
 
@@ -74,8 +77,9 @@ describe LocalAuthoritiesController do
   end
 
   describe "#show_merge_link?" do
-    let(:doc) { SolrDocument.new("has_model_ssim" => "Person") }
     subject { controller.send(:show_merge_link?, nil, document: doc) }
+
+    let(:doc) { SolrDocument.new("has_model_ssim" => "Person") }
 
     context "for a non-admin user" do
       it { is_expected.to be false }
@@ -83,6 +87,7 @@ describe LocalAuthoritiesController do
 
     context "for a metadata admin" do
       let(:user) { user_with_groups [AdminPolicy::META_ADMIN] }
+
       it { is_expected.to be true }
     end
   end

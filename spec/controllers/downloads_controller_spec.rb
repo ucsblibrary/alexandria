@@ -56,6 +56,7 @@ describe DownloadsController do
           mock_model(FileSet, admin_policy_id: policy_id, restored: file)
         end
         let(:file) { double("restored file", original_name: "real-name.wav") }
+
         before do
           allow(controller).to receive_messages(authorize_download!: true,
                                                 asset: file_set,

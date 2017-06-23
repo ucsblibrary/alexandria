@@ -85,7 +85,7 @@ feature "Accessing records:" do
       visit collection_path(collection)
       expect(page).to     have_link public_image[:title].first
       expect(page).to     have_link discovery_image[:title].first
-      expect(page).to_not have_link restricted_image[:title].first
+      expect(page).not_to have_link restricted_image[:title].first
     end
   end
 end

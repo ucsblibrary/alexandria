@@ -39,7 +39,7 @@ describe EmbargoQueryService do
       expect(returned_pids).to(
         include(work_with_expired_embargo1.id, work_with_expired_embargo2.id)
       )
-      expect(returned_pids).to_not(
+      expect(returned_pids).not_to(
         include(work_with_embargo_in_effect.id, work_without_embargo.id)
       )
     end
@@ -53,7 +53,7 @@ describe EmbargoQueryService do
         work_with_expired_embargo1.id,
         work_with_expired_embargo2.id
       )
-      expect(returned_pids).to_not include(
+      expect(returned_pids).not_to include(
         work_with_embargo_in_effect.id,
         work_without_embargo.id,
         file_with_expired_embargo.id,
@@ -71,7 +71,7 @@ describe EmbargoQueryService do
         work_with_embargo_in_effect.id,
         file_with_embargo_in_effect.id
       )
-      expect(returned_pids).to_not include work_without_embargo.id
+      expect(returned_pids).not_to include work_without_embargo.id
     end
   end
 
@@ -84,7 +84,7 @@ describe EmbargoQueryService do
         work_with_expired_embargo2.id,
         work_with_embargo_in_effect.id
       )
-      expect(returned_pids).to_not include(
+      expect(returned_pids).not_to include(
         work_without_embargo.id,
         file_with_embargo_in_effect.id
       )

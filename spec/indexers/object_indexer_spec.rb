@@ -222,6 +222,7 @@ describe ObjectIndexer do
 
   context "with an ark" do
     let(:image) { Image.new(identifier: ["ark:/99999/fk4123456"]) }
+
     it "indexes ark for display" do
       expect(subject["identifier_ssm"]).to eq ["ark:/99999/fk4123456"]
     end
@@ -230,7 +231,7 @@ describe ObjectIndexer do
   context "with a title" do
     let(:image) { Image.new(title: ["War and Peace"]) }
 
-    it "should have a title" do
+    it "has a title" do
       expect(subject["title_tesim"]).to eq ["War and Peace"]
     end
   end
@@ -242,7 +243,7 @@ describe ObjectIndexer do
 
     let(:image) { Image.new(lc_subject: lc_subject) }
 
-    it "should have a subject" do
+    it "has a subject" do
       VCR.use_cassette("lc_subject_hotels") do
         expect(subject["lc_subject_tesim"]).to(
           eq ["http://id.loc.gov/authorities/subjects/sh85062487"]

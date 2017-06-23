@@ -14,11 +14,13 @@ describe ImageForm do
 
   describe "#ark" do
     subject { instance.ark }
+
     it { is_expected.to eq "ark:/99999/fk4f76j320" }
   end
 
   describe "#record_origin" do
     subject { instance.record_origin }
+
     it { is_expected.to eq ["This is the origin"] }
   end
 
@@ -142,6 +144,8 @@ describe ImageForm do
 
   describe "#multiplex_contributors" do
     before { AdminPolicy.ensure_admin_policy_exists }
+    subject { form.send :multiplex_contributors }
+
     let(:form) { described_class.new(model) }
     let(:model) { Image.new(attributes) }
     let(:attributes) do
@@ -152,8 +156,6 @@ describe ImageForm do
         ],
       }
     end
-
-    subject { form.send :multiplex_contributors }
 
     it "has one element" do
       expect(subject.size).to eq 2
@@ -184,8 +186,10 @@ describe ImageForm do
     end
 
     describe "#admin_policy_id" do
-      let(:field) { :admin_policy_id }
       subject { form.admin_policy_id }
+
+      let(:field) { :admin_policy_id }
+
       it { is_expected.to eq "authorities/policies/public" }
     end
   end

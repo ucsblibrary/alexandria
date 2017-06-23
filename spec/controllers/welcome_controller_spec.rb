@@ -22,7 +22,7 @@ RSpec.describe WelcomeController, type: :controller do
 
     it "uses the normal CC layout" do
       expect(response).to render_template(:curation_concerns)
-      expect(response).to_not render_template(:welcome)
+      expect(response).not_to render_template(:welcome)
     end
   end
 end

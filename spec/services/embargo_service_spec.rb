@@ -10,7 +10,7 @@ describe EmbargoService do
 
     context "when there is no embargo" do
       it "creates embargo" do
-        EmbargoService.create_or_update_embargo(
+        described_class.create_or_update_embargo(
           work,
           admin_policy_id: "authorities/policies/restricted",
           embargo_release_date: "2099-07-29T00:00:00+00:00",
@@ -50,7 +50,7 @@ describe EmbargoService do
       end
 
       it "updates values" do
-        EmbargoService.create_or_update_embargo(
+        described_class.create_or_update_embargo(
           work,
           embargo_release_date: "2099-07-29T00:00:00+00:00",
           visibility_after_embargo_id: "authorities/policies/ucsb"
@@ -89,7 +89,7 @@ describe EmbargoService do
     end
 
     it "nullifies the embargo" do
-      EmbargoService.remove_embargo(work)
+      described_class.remove_embargo(work)
       expect(work.embargo).to be_nil
     end
   end
@@ -116,7 +116,7 @@ describe EmbargoService do
     end
 
     before do
-      EmbargoService.deactivate_embargo(work)
+      described_class.deactivate_embargo(work)
       work.reload
     end
 
@@ -125,7 +125,7 @@ describe EmbargoService do
 
       it "deactivates embargo & updates ETD visibility" do
         expect(work.embargo_release_date).to be_nil
-        expect(work.embargo_history).to_not be_nil
+        expect(work.embargo_history).not_to be_nil
         expect(work.admin_policy_id).to eq AdminPolicy::PUBLIC_POLICY_ID
       end
     end
@@ -135,7 +135,7 @@ describe EmbargoService do
 
       it "deactivates embargo, but keeps old ETD visibility" do
         expect(work.embargo_release_date).to be_nil
-        expect(work.embargo_history).to_not be_nil
+        expect(work.embargo_history).not_to be_nil
         expect(work.admin_policy_id).to eq AdminPolicy::RESTRICTED_POLICY_ID
       end
     end

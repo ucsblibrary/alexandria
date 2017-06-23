@@ -10,11 +10,11 @@ describe Importer::CSV do
     ActiveFedora::Cleaner.clean!
     AdminPolicy.ensure_admin_policy_exists
     logfile = "#{fixture_path}/logs/csv_map_set_import.log"
-    Importer::CSV.log_location(logfile)
+    described_class.log_location(logfile)
     metadata = ["#{fixture_path}/csv/fake_brazil_data.csv"]
     data = Dir["#{fixture_path}/maps/*"]
     VCR.use_cassette("csv_map_set_importer") do
-      Importer::CSV.import(
+      described_class.import(
         metadata, data, skip: 0
       )
     end
@@ -28,13 +28,13 @@ describe Importer::CSV do
       expect(ComponentMap.count).to eq(2)
     end
     it "attaches objects as expected" do
-      expect(@m.index_maps.size).to eql(1)
-      expect(@m.component_maps.size).to eql(2)
+      expect(@m.index_maps.size).to be(1)
+      expect(@m.component_maps.size).to be(2)
     end
     it "reindexes the map set after its members are imported" do
       r = ActiveFedora::SolrService.query("id:#{@m.id}")
-      expect(r.first["index_maps_ssim"].size).to eql(1)
-      expect(r.first["component_maps_ssim"].size).to eql(2)
+      expect(r.first["index_maps_ssim"].size).to be(1)
+      expect(r.first["component_maps_ssim"].size).to be(2)
     end
   end
 end

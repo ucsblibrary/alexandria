@@ -75,7 +75,7 @@ feature "Collection search page", js: true do
 
       expect(page).to have_link("Pink", href: "/lib/pink")
       expect(page).to have_link("Orange", href: "/lib/orange")
-      expect(page).to_not have_link("Banana", href: "/lib/banana")
+      expect(page).not_to have_link("Banana", href: "/lib/banana")
 
       # Search for something that's not in this collection
       fill_in "collection_search", with: banana[:title].first
@@ -87,9 +87,9 @@ feature "Collection search page", js: true do
       fill_in "collection_search", with: orange[:title].first
       click_button "collection_submit"
 
-      expect(page).to_not have_link("Pink", href: "/lib/pink")
+      expect(page).not_to have_link("Pink", href: "/lib/pink")
       expect(page).to have_link("Orange", href: "/lib/orange")
-      expect(page).to_not have_link("Banana", href: "/lib/banana")
+      expect(page).not_to have_link("Banana", href: "/lib/banana")
     end
 
     scenario "Search with main search bar instead of within the collection" do
@@ -97,14 +97,14 @@ feature "Collection search page", js: true do
 
       expect(page).to have_link("Pink", href: "/lib/pink")
       expect(page).to have_link("Orange", href: "/lib/orange")
-      expect(page).to_not have_link("Banana", href: "/lib/banana")
+      expect(page).not_to have_link("Banana", href: "/lib/banana")
 
       # Search for something that's not in this collection
       fill_in "q", with: banana[:title].first
       click_button "Search"
 
-      expect(page).to_not have_link("Pink", href: "/lib/pink")
-      expect(page).to_not have_link("Orange", href: "/lib/orange")
+      expect(page).not_to have_link("Pink", href: "/lib/pink")
+      expect(page).not_to have_link("Orange", href: "/lib/orange")
       expect(page).to have_link("Banana", href: "/lib/banana")
     end
   end

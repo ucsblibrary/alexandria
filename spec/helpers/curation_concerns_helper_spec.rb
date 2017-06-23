@@ -16,6 +16,7 @@ describe CurationConcernsHelper do
 
     context "with an image" do
       let(:model) { Image.to_rdf_representation }
+
       it { is_expected.to eq "/lib/ark:/99999/fk4v989d9j" }
     end
 
@@ -42,6 +43,7 @@ describe CurationConcernsHelper do
 
     context "with a collection" do
       let(:model) { Collection.to_rdf_representation }
+
       it { is_expected.to eq "/collections/fk4v989d9j" }
     end
 
@@ -65,6 +67,7 @@ describe CurationConcernsHelper do
   # in render_link_rel_alternates
   describe "#etd_url" do
     subject { helper.etd_url("123") }
+
     it { is_expected.to eq solr_document_url("123") }
   end
 
@@ -72,6 +75,7 @@ describe CurationConcernsHelper do
   # in render_link_rel_alternates
   describe "#image_url" do
     subject { helper.image_url("123") }
+
     it { is_expected.to eq solr_document_url("123") }
   end
 end

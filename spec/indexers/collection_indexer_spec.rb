@@ -3,8 +3,9 @@
 require "rails_helper"
 
 describe CollectionIndexer do
-  let(:document) { described_class.new(collection).generate_solr_document }
   subject { document }
+
+  let(:document) { described_class.new(collection).generate_solr_document }
   let(:collection) { Collection.new(attributes) }
 
   context "collector with a URI" do
@@ -72,8 +73,10 @@ describe CollectionIndexer do
   end
 
   context "with a finding aid" do
-    let(:attributes) { { finding_aid: ["In a box on the shelf"] } }
     subject { document["finding_aid_tesim"] }
+
+    let(:attributes) { { finding_aid: ["In a box on the shelf"] } }
+
     it { is_expected.to eq ["In a box on the shelf"] }
   end
 end

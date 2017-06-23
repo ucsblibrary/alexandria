@@ -12,6 +12,7 @@ describe EmbargoHelper do
 
   describe "after_visibility" do
     subject { helper.after_visibility(etd) }
+
     it { is_expected.to eq "Restricted access" }
   end
 end

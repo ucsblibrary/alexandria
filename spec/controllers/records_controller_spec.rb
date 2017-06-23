@@ -324,7 +324,7 @@ describe RecordsController do
       end
 
       it "displays an error message" do
-        expect(MergeRecordsJob).to_not receive(:perform_later)
+        expect(MergeRecordsJob).not_to receive(:perform_later)
         post :merge, params: { id: person }.merge(form_params)
 
         expect(response).to render_template(:new_merge)

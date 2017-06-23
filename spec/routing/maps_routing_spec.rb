@@ -4,6 +4,7 @@ require "rails_helper"
 
 describe "map routes" do
   let(:id) { "fk41234567" }
+
   before do
     if ActiveFedora::Base.exists? id
       ActiveFedora::Base.find(id).destroy(eradicate: true)

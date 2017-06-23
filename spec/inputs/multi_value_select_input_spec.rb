@@ -3,6 +3,8 @@
 require "rails_helper"
 
 describe "MultiValueSelectInput", type: :input do
+  subject { input.input(nil) }
+
   let(:image) { Image.new(digital_origin: values) }
   let(:builder) { SimpleForm::FormBuilder.new(:image, image, view, {}) }
   let(:input) do
@@ -21,9 +23,9 @@ describe "MultiValueSelectInput", type: :input do
 
   let(:options) { base_options }
 
-  subject { input.input(nil) }
   context "when nothing is selected" do
     let(:values) { [""] }
+
     it "renders a blank option" do
       expect(subject).to have_selector 'select option[value=""]'
     end
@@ -31,6 +33,7 @@ describe "MultiValueSelectInput", type: :input do
 
   context "when something is selected" do
     let(:values) { ["one"] }
+
     it "has no blanks" do
       expect(subject).to have_selector "select option:first-child", text: "one"
     end

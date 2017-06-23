@@ -9,12 +9,15 @@ describe ETD do
 
   describe "::_to_partial_path" do
     subject { described_class._to_partial_path }
+
     it { is_expected.to eq "catalog/document" }
   end
 
   describe "#to_solr" do
-    let(:etd) { described_class.new(system_number: ["004092515"]) }
     subject { etd.to_solr }
+
+    let(:etd) { described_class.new(system_number: ["004092515"]) }
+
     it "has fields" do
       expect(subject["system_number_ssim"]).to eq ["004092515"]
     end
@@ -39,7 +42,7 @@ describe ETD do
           ),
         }
       end
-      let(:etd) { ETD.new(attrs) }
+      let(:etd) { described_class.new(attrs) }
 
       it "has the fields" do
         expect(subject["visibility_during_embargo_ssim"]).to(
@@ -57,11 +60,13 @@ describe ETD do
 
   describe "#human_readable_type" do
     subject { described_class.new.human_readable_type }
+
     it { is_expected.to eq "Thesis or dissertation" }
   end
 
   describe "#to_partial_path" do
     subject { described_class.new.to_partial_path }
+
     it { is_expected.to eq "catalog/document" }
   end
 end

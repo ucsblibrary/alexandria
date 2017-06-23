@@ -6,11 +6,12 @@ describe ApplicationHelper do
   describe "#policy_title" do
     before { AdminPolicy.ensure_admin_policy_exists }
 
+    subject { helper.policy_title(document) }
+
     let(:document) do
       SolrDocument.new(isGovernedBy_ssim: [AdminPolicy::DISCOVERY_POLICY_ID])
     end
 
-    subject { helper.policy_title(document) }
     it { is_expected.to eq "Discovery access only" }
   end
 
@@ -50,6 +51,7 @@ describe ApplicationHelper do
 
     context "an ARK" do
       subject { helper.linkify("ark:/99999/fk4gx4hm1c") }
+
       it { is_expected.to eq "ark:/99999/fk4gx4hm1c" }
     end
   end
@@ -59,6 +61,7 @@ describe ApplicationHelper do
       subject do
         helper.rights_icons("http://rightsstatements.org/vocab/InC/1.0/")
       end
+
       it { is_expected.to eq ["rights-statements/InC.Icon-Only.dark.png"] }
     end
 
@@ -66,6 +69,7 @@ describe ApplicationHelper do
       subject do
         helper.rights_icons("http://rightsstatements.org/vocab/NoC-CR/1.0/")
       end
+
       it { is_expected.to eq ["rights-statements/NoC.Icon-Only.dark.png"] }
     end
 
@@ -73,6 +77,7 @@ describe ApplicationHelper do
       subject do
         helper.rights_icons("http://rightsstatements.org/vocab/CNE/1.0/")
       end
+
       it { is_expected.to eq ["rights-statements/Other.Icon-Only.dark.png"] }
     end
 
@@ -80,6 +85,7 @@ describe ApplicationHelper do
       subject do
         helper.rights_icons("http://rightsstatements.org/vocab/UND/1.0/")
       end
+
       it { is_expected.to eq ["rights-statements/Other.Icon-Only.dark.png"] }
     end
 
@@ -87,6 +93,7 @@ describe ApplicationHelper do
       subject do
         helper.rights_icons("http://rightsstatements.org/vocab/NKE/1.0/")
       end
+
       it { is_expected.to eq ["rights-statements/Other.Icon-Only.dark.png"] }
     end
 
@@ -94,6 +101,7 @@ describe ApplicationHelper do
       subject do
         helper.rights_icons("http://creativecommons.org/licenses/by-nc-sa/2.5/")
       end
+
       it do
         is_expected.to(
           contain_exactly("creative-commons/by.png",
@@ -107,6 +115,7 @@ describe ApplicationHelper do
       subject do
         helper.rights_icons("http://creativecommons.org/publicdomain/zero/1.0/")
       end
+
       it { is_expected.to eq ["creative-commons/zero.png"] }
     end
   end

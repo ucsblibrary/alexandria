@@ -13,6 +13,7 @@ describe ControlledVocabularies::RightsStatement do
 
   context "when the rights statement is not in the vocabulary" do
     let(:uri) { RDF::URI.new("http://foo.bar/rights/rr-f/") }
+
     it { is_expected.not_to be_valid }
   end
 

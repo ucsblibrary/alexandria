@@ -3,8 +3,9 @@
 require "rails_helper"
 
 describe ETDIndexer do
-  let(:document) { described_class.new(etd).generate_solr_document }
   subject { document }
+
+  let(:document) { described_class.new(etd).generate_solr_document }
 
   context "with a file_set" do
     before do
@@ -25,23 +26,24 @@ describe ETDIndexer do
   end
 
   describe "Indexing copyright" do
+    subject { document["copyright_ssm"] }
+
     let(:etd) do
       ETD.new(
         date_copyrighted: ["2014"],
         rights_holder: [Agent.create(foaf_name: "Samantha Lauren").uri]
       )
     end
-    subject { document["copyright_ssm"] }
 
     it { is_expected.to eq "Samantha Lauren, 2014" }
   end
 
   describe "Indexing author (as contributor facet)" do
+    subject { document["all_contributors_label_sim"] }
+
     let(:etd) do
       ETD.new(author: [Agent.create(foaf_name: "Kfir Lazare Sargent").uri])
     end
-
-    subject { document["all_contributors_label_sim"] }
 
     it { is_expected.to eq ["Kfir Lazare Sargent"] }
   end
@@ -81,12 +83,13 @@ describe ETDIndexer do
   end
 
   describe "indexing department as a facet" do
+    subject { document["department_sim"] }
+
     let(:etd) do
       ETD.new(degree_grantor: ["University of California, Santa Barbara. "\
                                "Mechanical Engineering",])
     end
 
-    subject { document["department_sim"] }
     it { is_expected.to eq ["Mechanical Engineering"] }
   end
 

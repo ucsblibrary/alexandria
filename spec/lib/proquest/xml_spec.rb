@@ -5,7 +5,7 @@ require "proquest"
 
 describe Proquest::XML do
   let(:attributes) do
-    Proquest::XML.attributes(Nokogiri::XML(File.read(file)))
+    described_class.attributes(Nokogiri::XML(File.read(file)))
   end
 
   describe "#attributes" do
@@ -38,6 +38,7 @@ describe Proquest::XML do
 
     describe "copyright fields" do
       let(:file) { "#{fixture_path}/proquest/Miggs_ucsb_0035D_12446_DATA.xml" }
+
       it "collects attributes for the ETD record" do
         expect(attributes[:rights_holder]).to eq ["Martin Miggs"]
         expect(attributes[:date_copyrighted]).to eq [2014]

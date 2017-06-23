@@ -95,6 +95,7 @@ describe EmbargoesController do
 
       context "with an expired embargo" do
         let(:release_date) { Time.zone.today - 2 }
+
         it "deactivates embargo, update the visibility and redirect" do
           patch :update, params: { batch_document_ids: [work.id] }
           expect(work.reload.admin_policy_id).to(

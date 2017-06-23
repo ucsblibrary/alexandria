@@ -39,6 +39,8 @@ describe Importer::Cylinder do
   describe "#attributes" do
     before { collection } # Make sure collection exists
 
+    subject { importer.attributes(marc_record, indexer) }
+
     let(:meta_files) do
       [File.join(fixture_path, "cylinders", "cylinder_bit_of_everything.xml")]
     end
@@ -49,8 +51,6 @@ describe Importer::Cylinder do
     end
 
     let(:indexer) { importer.indexer }
-
-    subject { importer.attributes(marc_record, indexer) }
 
     it "parses the attributs from the MARC file" do
       expect(subject["marc_subjects"]).to contain_exactly(

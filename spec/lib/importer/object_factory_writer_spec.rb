@@ -85,9 +85,9 @@ describe ObjectFactoryWriter do
   end
 
   describe "#find_files_to_attach" do
-    let(:attrs) { { filename: ["Cylinder 12783", "Cylinder 0001"] } }
-
     subject { writer.find_files_to_attach(attrs) }
+
+    let(:attrs) { { filename: ["Cylinder 12783", "Cylinder 0001"] } }
 
     context "with ETDs" do
       # rubocop:disable Metrics/LineLength

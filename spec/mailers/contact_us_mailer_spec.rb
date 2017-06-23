@@ -29,7 +29,7 @@ RSpec.describe ContactUsMailer, type: :mailer do
       end
 
       it "generates an email with info from the form" do
-        expect(ActionMailer::Base.deliveries).to_not be_empty
+        expect(ActionMailer::Base.deliveries).not_to be_empty
         expect(email.to).to(
           eq Array(Rails.application.secrets.contact_us_email_to)
         )
@@ -40,12 +40,12 @@ RSpec.describe ContactUsMailer, type: :mailer do
     end
 
     describe "with a suspected spam message" do
-      let(:zipcode) { "93106" }
-
       subject(:email) do
         msg = ContactUsMailer.web_inquiry(params)
         msg.deliver_now
       end
+
+      let(:zipcode) { "93106" }
 
       it "the generated email has a special subject line" do
         expect(email.subject).to eq "[ADRL Demo SPAMBOT?] There and Back Again"

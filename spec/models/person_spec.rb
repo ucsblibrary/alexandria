@@ -18,19 +18,22 @@ describe Person do
 
   describe "#rdf_label" do
     subject { person.rdf_label }
+
     it { is_expected.to eq ["Justin"] }
   end
 
   describe "::_to_partial_path" do
     subject { described_class._to_partial_path }
+
     it { is_expected.to eq "catalog/document" }
   end
 
   describe "#to_solr" do
     before { AdminPolicy.ensure_admin_policy_exists }
 
-    let(:person) { described_class.create(foaf_name: "Justin") }
     subject { person.to_solr }
+
+    let(:person) { described_class.create(foaf_name: "Justin") }
 
     it "has the uri" do
       expect(subject["uri_ssim"]).not_to be_blank

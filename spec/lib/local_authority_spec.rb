@@ -5,16 +5,18 @@ require "local_authority"
 
 describe LocalAuthority do
   describe "::local_authority?" do
-    subject { LocalAuthority.local_authority?(record) }
+    subject { described_class.local_authority?(record) }
 
     context "for a fedora object" do
       context "that is a local authority" do
         let(:record) { Person.new }
+
         it { is_expected.to eq true }
       end
 
       context "that isnt a local authority" do
         let(:record) { Image.new }
+
         it { is_expected.to eq false }
       end
     end
@@ -22,40 +24,46 @@ describe LocalAuthority do
     context "for a solr document" do
       context "that is a local authority" do
         let(:record) { SolrDocument.new("has_model_ssim" => "Topic") }
+
         it { is_expected.to eq true }
       end
 
       context "that isnt a local authority" do
         let(:record) { SolrDocument.new("has_model_ssim" => "Image") }
+
         it { is_expected.to eq false }
       end
     end
   end
 
   describe "::local_name_authority?" do
-    subject { LocalAuthority.local_name_authority?(record) }
+    subject { described_class.local_name_authority?(record) }
 
     context "a record that is a local name" do
       let(:record) { SolrDocument.new("has_model_ssim" => "Group") }
+
       it { is_expected.to eq true }
     end
 
     context "a record that isnt a local name" do
       let(:record) { SolrDocument.new("has_model_ssim" => "Topic") }
+
       it { is_expected.to eq false }
     end
   end
 
   describe "::local_subject_authority?" do
-    subject { LocalAuthority.local_subject_authority?(record) }
+    subject { described_class.local_subject_authority?(record) }
 
     context "a record that is a local subject" do
       let(:record) { SolrDocument.new("has_model_ssim" => "Topic") }
+
       it { is_expected.to eq true }
     end
 
     context "a record that isnt a local subject" do
       let(:record) { SolrDocument.new("has_model_ssim" => "Agent") }
+
       it { is_expected.to eq false }
     end
   end
@@ -75,7 +83,7 @@ describe LocalAuthority do
           expect(Agent.count).to eq 0
           rh = nil
           expect do
-            rh = LocalAuthority.find_or_create_rdf_attribute(
+            rh = described_class.find_or_create_rdf_attribute(
               :rights_holder, attributes
             )
           end.to change { Agent.count }.by(1)
@@ -96,7 +104,7 @@ describe LocalAuthority do
         it "finds the existing rights holder" do
           rh = nil
           expect do
-            rh = LocalAuthority.find_or_create_rdf_attribute(
+            rh = described_class.find_or_create_rdf_attribute(
               :rights_holder, attributes
             )
           end.to change { Agent.exact_model.count }.by(0)
@@ -113,7 +121,7 @@ describe LocalAuthority do
 
         it "only finds exact name matches" do
           expect do
-            LocalAuthority.find_or_create_rdf_attribute(
+            described_class.find_or_create_rdf_attribute(
               :rights_holder, attributes
             )
           end.to change { Agent.count }.by(1)
@@ -130,7 +138,7 @@ describe LocalAuthority do
 
         it "only matches exact model" do
           expect do
-            LocalAuthority.find_or_create_rdf_attribute(
+            described_class.find_or_create_rdf_attribute(
               :rights_holder, attributes
             )
           end.to change { Agent.count }.by(1)
@@ -146,7 +154,7 @@ describe LocalAuthority do
         it "creates the local rights holder" do
           rh = nil
           expect do
-            rh = LocalAuthority.find_or_create_rdf_attribute(
+            rh = described_class.find_or_create_rdf_attribute(
               :rights_holder, attributes
             )
           end.to change { Person.count }.by(1)
@@ -180,7 +188,7 @@ describe LocalAuthority do
         it "creates the missing local subjects" do
           attrs = nil
           expect do
-            attrs = LocalAuthority.find_or_create_rdf_attribute(
+            attrs = described_class.find_or_create_rdf_attribute(
               :lc_subject, attributes
             )
           end.to(
@@ -221,7 +229,7 @@ describe LocalAuthority do
         it "creates a new topic" do
           attrs = nil
           expect do
-            attrs = LocalAuthority.find_or_create_rdf_attribute(
+            attrs = described_class.find_or_create_rdf_attribute(
               :location, attributes
             )
           end.to change { Topic.count }.by 1
@@ -238,7 +246,7 @@ describe LocalAuthority do
         it "finds the existing topic" do
           attrs = nil
           expect do
-            attrs = LocalAuthority.find_or_create_rdf_attribute(
+            attrs = described_class.find_or_create_rdf_attribute(
               :location, attributes
             )
           end.to change { Topic.count }.by 0
@@ -269,7 +277,7 @@ describe LocalAuthority do
         contributors = nil
 
         expect do
-          contributors = LocalAuthority.find_or_create_contributors(
+          contributors = described_class.find_or_create_contributors(
             fields, attributes
           )
         end.to change { Person.count }.by(1)
@@ -292,7 +300,7 @@ describe LocalAuthority do
       it "returns a hash of the contributors" do
         contributors = nil
         expect do
-          contributors = LocalAuthority.find_or_create_contributors(
+          contributors = described_class.find_or_create_contributors(
             fields, attributes
           )
         end.to change { Person.count }.by(0)
@@ -315,7 +323,7 @@ describe LocalAuthority do
 
       it "only finds exact name matches" do
         expect do
-          LocalAuthority.find_or_create_contributors([:creator], attributes)
+          described_class.find_or_create_contributors([:creator], attributes)
         end.to change { Person.count }.by(1)
 
         expect(Person.all.map(&:foaf_name).sort).to(
@@ -334,7 +342,7 @@ describe LocalAuthority do
 
       it "creates the local authorities" do
         expect do
-          LocalAuthority.find_or_create_contributors(fields, attributes)
+          described_class.find_or_create_contributors(fields, attributes)
         end.to change { Person.count }.by(1)
           .and change { Group.count }.by(1)
       end

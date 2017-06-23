@@ -5,6 +5,7 @@ require "rails_helper"
 describe OptionsHelper do
   describe "#digital_origin_options" do
     subject { helper.digital_origin_options }
+
     it do
       is_expected.to(
         eq ["digitized other analog",
@@ -17,11 +18,13 @@ describe OptionsHelper do
 
   describe "#description_standard_options" do
     subject { helper.description_standard_options }
+
     it { is_expected.to eq %w[aacr rda dacs dcrmg fgdc iso19115 local none] }
   end
 
   describe "#sub_location_options" do
     subject { helper.sub_location_options }
+
     it do
       is_expected.to(
         include(Qa::Authorities::Local.subauthority_for("sub_location")
@@ -86,6 +89,7 @@ describe OptionsHelper do
 
   describe "#relators_json" do
     subject { helper.relators_json }
+
     it { is_expected.to be_html_safe }
     it "begins with creator and contributor" do
       expect(subject).to(

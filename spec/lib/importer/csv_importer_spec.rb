@@ -11,8 +11,8 @@ describe Importer::CSV do
     AdminPolicy.ensure_admin_policy_exists
   end
 
-  before(:example) do
-    Importer::CSV.log_location(logfile)
+  before do
+    described_class.log_location(logfile)
   end
 
   let(:logfile) { "#{fixture_path}/logs/csv_import.log" }
@@ -23,7 +23,7 @@ describe Importer::CSV do
 
     it "creates a new image" do
       VCR.use_cassette("csv_importer") do
-        Importer::CSV.import(
+        described_class.import(
           metadata, data, skip: 0
         )
       end
@@ -54,42 +54,42 @@ describe Importer::CSV do
   context "set access policy" do
     let(:public_data) { { access_policy: ["public"] } }
     it "assigns the public access policy if public is specified" do
-      expect(Importer::CSV.assign_access_policy(public_data)).to(
+      expect(described_class.assign_access_policy(public_data)).to(
         eql(admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID)
       )
     end
 
     let(:ucsb_restricted_data) { { access_policy: ["ucsb"] } }
     it "assigns the UCSB restricted access policy" do
-      expect(Importer::CSV.assign_access_policy(ucsb_restricted_data)).to(
+      expect(described_class.assign_access_policy(ucsb_restricted_data)).to(
         eql(admin_policy_id: AdminPolicy::UCSB_POLICY_ID)
       )
     end
 
     let(:discovery) { { access_policy: ["discovery"] } }
     it "assigns the discovery access policy" do
-      expect(Importer::CSV.assign_access_policy(discovery)).to(
+      expect(described_class.assign_access_policy(discovery)).to(
         eql(admin_policy_id: AdminPolicy::DISCOVERY_POLICY_ID)
       )
     end
 
     let(:public_campus) { { access_policy: ["public_campus"] } }
     it "assigns the public_campus policy" do
-      expect(Importer::CSV.assign_access_policy(public_campus)).to(
+      expect(described_class.assign_access_policy(public_campus)).to(
         eql(admin_policy_id: AdminPolicy::PUBLIC_CAMPUS_POLICY_ID)
       )
     end
 
     let(:restricted) { { access_policy: ["restricted"] } }
     it "assigns the restricted policy" do
-      expect(Importer::CSV.assign_access_policy(restricted)).to(
+      expect(described_class.assign_access_policy(restricted)).to(
         eql(admin_policy_id: AdminPolicy::RESTRICTED_POLICY_ID)
       )
     end
 
     let(:ucsb_campus) { { access_policy: ["ucsb_campus"] } }
     it "assigns the ucsb_campus policy" do
-      expect(Importer::CSV.assign_access_policy(ucsb_campus)).to(
+      expect(described_class.assign_access_policy(ucsb_campus)).to(
         eql(admin_policy_id: AdminPolicy::UCSB_CAMPUS_POLICY_ID)
       )
     end
@@ -97,14 +97,15 @@ describe Importer::CSV do
     # Per DIGREPO-728: If no access policy is specified in the CSV
     # file, raise an error
     it "raises an error if there is no policy specified" do
-      expect { Importer::CSV.assign_access_policy({}) }.to(
+      expect { described_class.assign_access_policy({}) }.to(
         raise_error(RuntimeError, "No access policy defined")
       )
     end
 
     let(:nonsense) { { access_policy: ["nonsense"] } }
+
     it "raises an error for an unrecognized value" do
-      expect { Importer::CSV.assign_access_policy(nonsense) }.to(
+      expect { described_class.assign_access_policy(nonsense) }.to(
         raise_error(RuntimeError, /Invalid access policy:/)
       )
     end
@@ -129,14 +130,15 @@ describe Importer::CSV do
                   "projection=EPSG:4326",
       }
     end
+
     it "takes coordinate data and turns it into a DCMI box" do
       expect(
-        Importer::CSV.transform_coordinates_to_dcmi_box(in_process_data)
+        described_class.transform_coordinates_to_dcmi_box(in_process_data)
       ).to eql(dcmi_formatted_data)
     end
 
     it "does not error out if the file has no coordinates" do
-      expect(Importer::CSV.transform_coordinates_to_dcmi_box({})).to eql({})
+      expect(described_class.transform_coordinates_to_dcmi_box({})).to eql({})
     end
 
     context "all components are optional" do
@@ -157,7 +159,7 @@ describe Importer::CSV do
 
       it "turns coordinate data into a DCMI box for only two values" do
         expect(
-          Importer::CSV.transform_coordinates_to_dcmi_box(
+          described_class.transform_coordinates_to_dcmi_box(
             western_hemisphere_coordinates
           )
         ).to eql(western_hemisphere_dcmi_formatted)
@@ -168,46 +170,49 @@ describe Importer::CSV do
   context "character encoding checks" do
     let(:csvfile) { "#{fixture_path}/csv/pamss045.csv" }
     it "reads in a known CSV file" do
-      expect(Importer::CSV.split(csvfile)).to be_instance_of(Array)
+      expect(described_class.split(csvfile)).to be_instance_of(Array)
     end
 
     let(:utf8problemfile) { "#{fixture_path}/csv/mcpeak-utf8problems.csv" }
     it "reads in a CSV file with UTF-8 problems" do
-      expect(Importer::CSV.split(utf8problemfile)).to be_instance_of(Array)
+      expect(described_class.split(utf8problemfile)).to be_instance_of(Array)
     end
 
     # Sometimes we encounter CSV input files with BOM characters
     # See https://en.wikipedia.org/wiki/Byte_order_mark for more info
     # You have to read in BOM files with encoding: "bom|UTF-8"
     let(:bomproblemfile) { "#{fixture_path}/csv/bom_encoded_file.csv" }
-    let(:split) { Importer::CSV.split(bomproblemfile) }
-    let(:attrs) { Importer::CSV.csv_attributes(split[0], split[1][0]) }
+    let(:split) { described_class.split(bomproblemfile) }
+    let(:attrs) { described_class.csv_attributes(split[0], split[1][0]) }
     it "handles bom encoding" do
       expect(attrs[:type]).to eql("Map set")
     end
 
     let(:brazilmap) { "#{fixture_path}/csv/brazil.csv" }
+
     # DIGREPO-676 Row 4 title should read as "Rio Xixé" with an accent
     # over the final e.
     it "reads in diacritics properly" do
-      expect(Importer::CSV.split(brazilmap)).to be_instance_of(Array)
-      a = Importer::CSV.split(brazilmap)
+      expect(described_class.split(brazilmap)).to be_instance_of(Array)
+      a = described_class.split(brazilmap)
       expect(a[1][2][3]).to eql("Rio Xixé")
     end
   end
 
   context "determine model" do
     it "returns ScannedMap when the model value is 'Scanned map'" do
-      expect(Importer::CSV.determine_model("Scanned map")).to eql("ScannedMap")
+      expect(described_class.determine_model("Scanned map")).to(
+        eql("ScannedMap")
+      )
     end
     it "returns ScannedMap when the model value is 'ScannedMap'" do
-      expect(Importer::CSV.determine_model("ScannedMap")).to eql("ScannedMap")
+      expect(described_class.determine_model("ScannedMap")).to eql("ScannedMap")
     end
     it "returns Image when the model value is 'image'" do
-      expect(Importer::CSV.determine_model("image")).to eql("Image")
+      expect(described_class.determine_model("image")).to eql("Image")
     end
     it "returns IndexMap when the model value is 'index Map'" do
-      expect(Importer::CSV.determine_model("index Map")).to eql("IndexMap")
+      expect(described_class.determine_model("index Map")).to eql("IndexMap")
     end
   end
 
@@ -247,12 +252,12 @@ describe Importer::CSV do
     end
 
     it "doesn't throw any errors if these fields don't exist" do
-      expect(Importer::CSV.handle_structural_metadata({})).to eql({})
+      expect(described_class.handle_structural_metadata({})).to eql({})
     end
 
     it "can return a map set's id when given an accession_number" do
       expect(
-        Importer::CSV.get_id_for_accession_number(
+        described_class.get_id_for_accession_number(
           @map_set_attrs[:accession_number]
         )
       ).to eql(@map_set.id)
@@ -260,19 +265,19 @@ describe Importer::CSV do
 
     it "can return an index map's id when given an accession_number" do
       expect(
-        Importer::CSV.get_id_for_accession_number(
+        described_class.get_id_for_accession_number(
           @index_map_attrs[:accession_number]
         )
       ).to eql(@index_map.id)
     end
 
     it "returns nil when it can't find an id for a given accession_number" do
-      expect(Importer::CSV.get_id_for_accession_number("foobar")).to eql(nil)
+      expect(described_class.get_id_for_accession_number("foobar")).to be(nil)
     end
 
     it "attaches an index map to its map set" do
       expect(
-        Importer::CSV.handle_structural_metadata(
+        described_class.handle_structural_metadata(
           @structural_metadata
         )[:parent_id]
       ).to eql(@goal_state[:parent_id])
@@ -280,7 +285,7 @@ describe Importer::CSV do
 
     it "attaches a component map to its index map" do
       expect(
-        Importer::CSV.handle_structural_metadata(
+        described_class.handle_structural_metadata(
           @structural_metadata
         )[:index_map_id]
       ).to eql(@goal_state[:index_map_id])
@@ -294,7 +299,8 @@ describe Importer::CSV do
         parent_title: ["Carta do Brasil"], }
     end
 
-    let(:stripped) { Importer::CSV.strip_extra_spaces(import_metdata) }
+    let(:stripped) { described_class.strip_extra_spaces(import_metdata) }
+
     it "strips any extra spaces off of field names" do
       expect(stripped.keys.first.to_s).to eq "license"
     end
@@ -303,12 +309,12 @@ describe Importer::CSV do
   # 9507-n2446_h8_1970_s8.csv won't import because of a malformed URI
   context "invalid URIs in CSV" do
     let(:problemfile) { "#{fixture_path}/csv/malformed_uri.csv" }
-    let(:split) { Importer::CSV.split(problemfile) }
+    let(:split) { described_class.split(problemfile) }
     let(:head) { split[0] }
     let(:row) { split[1][0] }
 
     it "has a method to check for well-formed URIs" do
-      expect { Importer::CSV.check_uris(row) }.to(
+      expect { described_class.check_uris(row) }.to(
         raise_error(RuntimeError, /Invalid URI/)
       )
     end
@@ -319,14 +325,14 @@ describe Importer::CSV do
         "http://vocab.getty.edu/aat/300028142",
         "[Just a string]",
       ]
-      expect { Importer::CSV.check_uris(goodrow) }.not_to raise_error
+      expect { described_class.check_uris(goodrow) }.not_to raise_error
     end
 
     it "raises a meaningful error for a malformed URI" do
       VCR.use_cassette("invalid_uri_bug") do
-        expect { Importer::CSV.ingest_row(head: head, row: row, data: []) }.to(
-          raise_error(RuntimeError, /Invalid URI/)
-        )
+        expect do
+          described_class.ingest_row(head: head, row: row, data: [])
+        end.to raise_error(RuntimeError, /Invalid URI/)
       end
     end
   end

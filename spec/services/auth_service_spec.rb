@@ -17,7 +17,7 @@ describe AuthService do
     )
   end
 
-  subject { AuthService.new(Riiif::ImagesController.new).can?(:show, fs) }
+  subject { described_class.new(Riiif::ImagesController.new).can?(:show, fs) }
 
   describe "#can?" do
     context "public image" do
@@ -30,11 +30,13 @@ describe AuthService do
 
         context "accessed by ucsb user" do
           let(:user) { user_with_groups [AdminPolicy::UCSB_GROUP] }
+
           it { is_expected.to be true }
         end
 
         context "accessed by admin" do
           let(:user) { user_with_groups [AdminPolicy::META_ADMIN] }
+
           it { is_expected.to be true }
         end
       end
@@ -44,11 +46,13 @@ describe AuthService do
 
         context "accessed by ucsb user" do
           let(:user) { user_with_groups [AdminPolicy::UCSB_GROUP] }
+
           it { is_expected.to be true }
         end
 
         context "accessed by admin" do
           let(:user) { user_with_groups [AdminPolicy::META_ADMIN] }
+
           it { is_expected.to be true }
         end
       end
@@ -64,11 +68,13 @@ describe AuthService do
 
         context "accessed by ucsb user" do
           let(:user) { user_with_groups [AdminPolicy::PUBLIC_GROUP] }
+
           it { is_expected.to be true }
         end
 
         context "accessed by admin" do
           let(:user) { user_with_groups [AdminPolicy::META_ADMIN] }
+
           it { is_expected.to be true }
         end
       end
@@ -78,11 +84,13 @@ describe AuthService do
 
         context "accessed by ucsb user" do
           let(:user) { user_with_groups [AdminPolicy::PUBLIC_GROUP] }
+
           it { is_expected.to be false }
         end
 
         context "accessed by admin" do
           let(:user) { user_with_groups [AdminPolicy::META_ADMIN] }
+
           it { is_expected.to be true }
         end
       end
@@ -98,11 +106,13 @@ describe AuthService do
 
         context "accessed by ucsb user" do
           let(:user) { user_with_groups [AdminPolicy::UCSB_GROUP] }
+
           it { is_expected.to be true }
         end
 
         context "accessed by admin" do
           let(:user) { user_with_groups [AdminPolicy::META_ADMIN] }
+
           it { is_expected.to be true }
         end
       end
@@ -112,11 +122,13 @@ describe AuthService do
 
         context "accessed by ucsb user" do
           let(:user) { user_with_groups [AdminPolicy::UCSB_GROUP] }
+
           it { is_expected.to be false }
         end
 
         context "accessed by admin" do
           let(:user) { user_with_groups [AdminPolicy::META_ADMIN] }
+
           it { is_expected.to be true }
         end
       end

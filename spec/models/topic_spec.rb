@@ -3,7 +3,7 @@
 require "rails_helper"
 
 describe Topic do
-  let(:topic) { Topic.new(label: ["Birds of California"]) }
+  let(:topic) { described_class.new(label: ["Birds of California"]) }
 
   describe "#rdf_label" do
     it "has a label" do
@@ -13,6 +13,7 @@ describe Topic do
 
   describe "#in_vocab?" do
     subject { topic.in_vocab? }
+
     it { is_expected.to be true }
   end
 end

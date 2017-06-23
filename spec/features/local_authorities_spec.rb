@@ -39,7 +39,7 @@ feature "Local Authorities", js: true do
       end
 
       expect(page).to have_link(frodo.foaf_name)
-      expect(page).to_not have_link(fellows.foaf_name)
+      expect(page).not_to have_link(fellows.foaf_name)
 
       # Remove the previous facet selection
       within "#facets" do
@@ -53,7 +53,7 @@ feature "Local Authorities", js: true do
         click_link "Group"
       end
 
-      expect(page).to_not have_link(frodo.foaf_name)
+      expect(page).not_to have_link(frodo.foaf_name)
       expect(page).to have_link(fellows.foaf_name)
     end
 

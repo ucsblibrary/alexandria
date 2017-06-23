@@ -5,7 +5,8 @@ require "record"
 
 describe Record do
   describe "::references_for" do
-    subject { Record.references_for(record) }
+    subject { described_class.references_for(record) }
+
     let!(:record) { ActiveFedora::Base.create }
 
     context "when record isnt referenced by any other record" do
@@ -16,6 +17,7 @@ describe Record do
 
     context "when record is referenced by another record" do
       let!(:image) { create(:image, creator: [record.uri]) }
+
       before { record.reload }
 
       it "returns list of object IDs" do

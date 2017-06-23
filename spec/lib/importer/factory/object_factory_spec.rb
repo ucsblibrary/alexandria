@@ -8,9 +8,9 @@ describe Importer::Factory::ObjectFactory do
 
   describe "#find" do
     context "existing object" do
-      let(:importer) { Importer::Factory::ImageFactory.new(attributes, []) }
       subject { importer.find }
 
+      let(:importer) { Importer::Factory::ImageFactory.new(attributes, []) }
       let(:a_num) { ["acc num 1", "acc num 2"] }
       let(:image_attrs) do
         { title: ["Something Title"], accession_number: a_num }
@@ -124,8 +124,9 @@ describe Importer::Factory::ObjectFactory do
   end
 
   describe "#transform_attributes" do
-    let(:importer) { Importer::Factory::ImageFactory.new(attributes, []) }
     subject { importer.send(:transform_attributes) }
+
+    let(:importer) { Importer::Factory::ImageFactory.new(attributes, []) }
 
     context "with notes" do
       let(:attributes) do

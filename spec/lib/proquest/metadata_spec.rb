@@ -5,8 +5,9 @@ require "proquest"
 
 describe Proquest::Metadata do
   describe "#embargo_start_date" do
-    let(:etd) { double }
     subject { described_class.new(etd).embargo_start_date }
+
+    let(:etd) { double }
 
     before do
       allow_any_instance_of(described_class).to receive(:attributes) { attrs }
@@ -18,6 +19,7 @@ describe Proquest::Metadata do
           DISS_accept_date: "01/01/2013", }
       end
       let(:date) { Date.parse("2014-08-13") }
+
       it { is_expected.to eq date }
     end
 
@@ -26,19 +28,22 @@ describe Proquest::Metadata do
         { DISS_accept_date: "06/01/2014",
           DISS_agreement_decision_date: nil, }
       end
+
       it { is_expected.to eq Date.parse("2014-06-01") }
     end
 
     context "with DISS_accept_date of Jan 1" do
       let(:attrs) { { DISS_accept_date: "01/01/2018" } }
       let(:transformed_date) { Date.parse("2018-12-31") }
+
       it { is_expected.to eq transformed_date }
     end
   end # describe "#embargo_start_date"
 
   describe "#embargo_release_date" do
-    let(:etd) { double }
     subject { described_class.new(etd).embargo_release_date }
+
+    let(:etd) { double }
 
     before do
       allow_any_instance_of(described_class).to receive(:attributes) { attrs }
@@ -53,6 +58,7 @@ describe Proquest::Metadata do
           DISS_access_option: "Open access",
           embargo_remove_date: "10/24/2015", }
       end
+
       it { is_expected.to eq(Date.parse("2015-10-24")) }
     end
 
@@ -65,6 +71,7 @@ describe Proquest::Metadata do
           DISS_access_option: "Open access",
           embargo_remove_date: nil, }
       end
+
       it { is_expected.to eq :no_embargo }
     end
 
@@ -77,6 +84,7 @@ describe Proquest::Metadata do
           DISS_access_option: "Campus use only",
           embargo_remove_date: nil, }
       end
+
       it { is_expected.to eq(Date.parse("2016-06-11")) }
     end
 
@@ -89,6 +97,7 @@ describe Proquest::Metadata do
           DISS_access_option: "Campus use only",
           embargo_remove_date: nil, }
       end
+
       it { is_expected.to eq(Date.parse("2014-12-15")) }
     end
 
@@ -101,6 +110,7 @@ describe Proquest::Metadata do
           DISS_access_option: "Open access",
           embargo_remove_date: nil, }
       end
+
       it { is_expected.to eq(Date.parse("2015-02-13")) }
     end
 
@@ -113,6 +123,7 @@ describe Proquest::Metadata do
           DISS_access_option: nil,
           embargo_remove_date: nil, }
       end
+
       it { is_expected.to eq :no_embargo }
     end
 
@@ -125,6 +136,7 @@ describe Proquest::Metadata do
           DISS_access_option: nil,
           embargo_remove_date: nil, }
       end
+
       it { is_expected.to eq(Date.parse("2014-06-30")) }
     end
 
@@ -137,6 +149,7 @@ describe Proquest::Metadata do
           DISS_access_option: nil,
           embargo_remove_date: nil, }
       end
+
       it { is_expected.to eq(Date.parse("2015-12-31")) }
     end
 
@@ -149,6 +162,7 @@ describe Proquest::Metadata do
           DISS_access_option: nil,
           embargo_remove_date: nil, }
       end
+
       it { is_expected.to eq(Date.parse("2016-12-31")) }
     end
 
@@ -161,6 +175,7 @@ describe Proquest::Metadata do
           DISS_access_option: "Campus use only",
           embargo_remove_date: "2017-04-24 00:00:00", }
       end
+
       it { is_expected.to eq(Date.parse("2017-04-24")) }
     end
 
@@ -173,20 +188,23 @@ describe Proquest::Metadata do
           DISS_access_option: nil,
           embargo_remove_date: nil, }
       end
+
       it { is_expected.to eq :infinite_embargo }
     end
   end  # describe "#embargo_release_date"
 
   describe "#policy_during_embargo" do
+    subject { described_class.new(etd).policy_during_embargo }
+
     let(:etd) { double }
 
-    subject { described_class.new(etd).policy_during_embargo }
     it { is_expected.to eq(AdminPolicy::DISCOVERY_POLICY_ID) }
   end  # describe "#policy_during_embargo"
 
   describe "#policy_after_embargo" do
-    let(:etd) { double }
     subject { described_class.new(etd).policy_after_embargo }
+
+    let(:etd) { double }
 
     before do
       allow_any_instance_of(described_class).to receive(:attributes) { attrs }
@@ -202,6 +220,7 @@ describe Proquest::Metadata do
             DISS_access_option: "Open access",
             embargo_remove_date: nil, }
         end
+
         it { is_expected.to eq(AdminPolicy::PUBLIC_POLICY_ID) }
       end
 
@@ -214,21 +233,25 @@ describe Proquest::Metadata do
             DISS_access_option: "Campus use only",
             embargo_remove_date: nil, }
         end
+
         it { is_expected.to eq(AdminPolicy::PUBLIC_CAMPUS_POLICY_ID) }
       end
 
       context "with slightly different 'Open access' string" do
         let(:attrs) { { DISS_access_option: "OPEN aCCess." } }
+
         it { is_expected.to eq(AdminPolicy::PUBLIC_POLICY_ID) }
       end
 
       context "with slightly different 'Campus use' string" do
         let(:attrs) { { DISS_access_option: " campus Use." } }
+
         it { is_expected.to eq(AdminPolicy::PUBLIC_CAMPUS_POLICY_ID) }
       end
 
       context "with text that doesn't match known policies" do
         let(:attrs) { { DISS_access_option: "something unknown" } }
+
         it { is_expected.to eq(AdminPolicy::RESTRICTED_POLICY_ID) }
       end
     end
@@ -242,6 +265,7 @@ describe Proquest::Metadata do
           DISS_access_option: nil,
           embargo_remove_date: nil, }
       end
+
       it { is_expected.to eq(AdminPolicy::PUBLIC_CAMPUS_POLICY_ID) }
     end
   end  # describe "#policy_after_embargo"

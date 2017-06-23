@@ -11,7 +11,7 @@ describe SolrDocument do
   let(:image) { create(:image) }
 
   let(:document) do
-    SolrDocument.new(
+    described_class.new(
       id: image.id,
       identifier_ssm: ["ark:/99999/fk4v989d9j"],
       has_model_ssim: [Image.to_rdf_representation]
@@ -19,43 +19,47 @@ describe SolrDocument do
   end
 
   let(:etd_document) do
-    SolrDocument.new(id: "foobar", has_model_ssim: [ETD.to_rdf_representation])
+    described_class.new(id: "foobar",
+                        has_model_ssim: [ETD.to_rdf_representation])
   end
 
   let(:map_set) do
-    SolrDocument.new(id: "mapset",
-                     component_maps_ssim: ["componentmap"],
-                     index_maps_ssim: ["indexmap"],
-                     has_model_ssim: ["MapSet"])
+    described_class.new(id: "mapset",
+                        component_maps_ssim: ["componentmap"],
+                        index_maps_ssim: ["indexmap"],
+                        has_model_ssim: ["MapSet"])
   end
 
   let(:index_map) do
-    SolrDocument.new(id: "indexmap",
-                     accession_number_ssim: ["indexmap"],
-                     has_model_ssim: ["IndexMap"])
+    described_class.new(id: "indexmap",
+                        accession_number_ssim: ["indexmap"],
+                        has_model_ssim: ["IndexMap"])
   end
 
   let(:component_map) do
-    SolrDocument.new(id: "componentmap",
-                     accession_number_ssim: ["componentmap"],
-                     index_maps_ssim: ["indexmap"],
-                     parent_id_ssim: ["mapset"],
-                     has_model_ssim: ["ComponentMap"])
+    described_class.new(id: "componentmap",
+                        accession_number_ssim: ["componentmap"],
+                        index_maps_ssim: ["indexmap"],
+                        parent_id_ssim: ["mapset"],
+                        has_model_ssim: ["ComponentMap"])
   end
 
   context "for an image" do
     describe "#ark" do
       subject { document.ark }
+
       it { is_expected.to eq "ark:/99999/fk4v989d9j" }
     end
 
     describe "#etd?" do
       subject { document.etd? }
+
       it { is_expected.to be false }
     end
 
     describe "#public_uri" do
       subject { document.public_uri }
+
       it { is_expected.to be nil }
     end
   end
@@ -63,14 +67,16 @@ describe SolrDocument do
   context "for an etd" do
     describe "#etd?" do
       subject { etd_document.etd? }
+
       it { is_expected.to be true }
     end
 
     describe "file_sets" do
       subject { etd_document.file_sets }
+
       context "with file sets" do
         let(:file_set_document) do
-          SolrDocument.new(
+          described_class.new(
             id: "bf/74/27/75/bf742775-2a24-46dc-889e-cca03b27b5f3"
           )
         end
@@ -93,14 +99,14 @@ describe SolrDocument do
   end
 
   describe "#to_param" do
+    subject { document.to_param }
+
     let(:noid) { "f123456789" }
     let(:id)   { "f123456789" }
 
-    subject { document.to_param }
-
     context "for an object with an ARK" do
       let(:document) do
-        SolrDocument.new(id: id, identifier_ssm: ["ark:/99999/#{noid}"])
+        described_class.new(id: id, identifier_ssm: ["ark:/99999/#{noid}"])
       end
 
       it "converts the ark to a noid" do
@@ -109,7 +115,8 @@ describe SolrDocument do
     end
 
     context "for an object without an ARK" do
-      let(:document) { SolrDocument.new(id: id, identifier_ssm: nil) }
+      let(:document) { described_class.new(id: id, identifier_ssm: nil) }
+
       it "converts the id to a noid" do
         expect(subject).to eq noid
       end
@@ -118,24 +125,26 @@ describe SolrDocument do
 
   describe "#after_embargo_status" do
     before { AdminPolicy.ensure_admin_policy_exists }
+    subject { document.after_embargo_status }
+
     let(:document) do
-      SolrDocument.new(
+      described_class.new(
         visibility_during_embargo_ssim: ["authorities/policies/ucsb_on_campus"],
         visibility_after_embargo_ssim: ["authorities/policies/public"],
         embargo_release_date_dtsi: "2010-10-10T00:00:00Z"
       )
     end
-    subject { document.after_embargo_status }
+
     it { is_expected.to eq " - Becomes Public access on 10/10/2010" }
   end
 
   describe "#curation_concern?" do
     let(:collection) do
-      SolrDocument.new(has_model_ssim: ["Collection"])
+      described_class.new(has_model_ssim: ["Collection"])
     end
 
     it "identifies correctly" do
-      expect(SolrDocument.new.curation_concern?).to eq false
+      expect(described_class.new.curation_concern?).to eq false
       expect(collection.curation_concern?).to eq false
       expect(component_map.curation_concern?).to eq true
       expect(document.curation_concern?).to eq true
@@ -189,7 +198,7 @@ describe SolrDocument do
 
   describe "#component_maps" do
     let(:map_set) do
-      SolrDocument.new(
+      described_class.new(
         id: "mapset",
         component_maps_ssim: (0..1500).map { |i| "componentmap_#{i}" },
         index_maps_ssim: ["indexmap"],
@@ -199,10 +208,10 @@ describe SolrDocument do
 
     let(:component_maps) do
       (0..1500).map do |i|
-        SolrDocument.new(id: "componentmap_#{i}",
-                         accession_number_ssim: "componentmap_#{i}",
-                         parent_id_ssim: ["mapset"],
-                         has_model_ssim: ["ComponentMap"])
+        described_class.new(id: "componentmap_#{i}",
+                            accession_number_ssim: "componentmap_#{i}",
+                            parent_id_ssim: ["mapset"],
+                            has_model_ssim: ["ComponentMap"])
       end
     end
 

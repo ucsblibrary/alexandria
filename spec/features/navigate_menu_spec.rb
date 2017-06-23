@@ -16,7 +16,7 @@ feature "Navigation menu:" do
       # The nav menu
       expect(page).to     have_link("Local Authorities")
       expect(page).to     have_link("Add Record")
-      expect(page).to_not have_link("Embargos")
+      expect(page).not_to have_link("Embargos")
 
       # Make sure the links works
       click_link "Local Authorities"
@@ -34,8 +34,8 @@ feature "Navigation menu:" do
       visit search_catalog_path
 
       # The nav menu
-      expect(page).to_not have_link("Local Authorities")
-      expect(page).to_not have_link("Add Record")
+      expect(page).not_to have_link("Local Authorities")
+      expect(page).not_to have_link("Add Record")
       expect(page).to     have_link("Embargoes")
 
       # Make sure the link works
@@ -51,9 +51,9 @@ feature "Navigation menu:" do
       visit search_catalog_path
 
       # Shouldn't see admin links
-      expect(page).to_not have_link("Local Authorities")
-      expect(page).to_not have_link("Add Record")
-      expect(page).to_not have_link("Embargos")
+      expect(page).not_to have_link("Local Authorities")
+      expect(page).not_to have_link("Add Record")
+      expect(page).not_to have_link("Embargos")
     end
   end
 
@@ -64,9 +64,9 @@ feature "Navigation menu:" do
       visit search_catalog_path
 
       # Shouldn't be able to see the admin menu items
-      expect(page).to_not have_link("Local Authorities")
-      expect(page).to_not have_link("Add Record")
-      expect(page).to_not have_link("Embargos")
+      expect(page).not_to have_link("Local Authorities")
+      expect(page).not_to have_link("Add Record")
+      expect(page).not_to have_link("Embargos")
     end
   end
 end

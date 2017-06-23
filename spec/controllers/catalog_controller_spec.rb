@@ -18,19 +18,19 @@ describe CatalogController do
       get :index
       found = assigns[:document_list].map(&:id)
       expect(found).to include(image.id)
-      expect(found).to_not include(file_set.id)
+      expect(found).not_to include(file_set.id)
     end
   end
 
   describe "show tools" do
     it "includes the edit link" do
-      expect(CatalogController.blacklight_config.show.document_actions.keys).to(
+      expect(described_class.blacklight_config.show.document_actions.keys).to(
         include(:edit)
       )
     end
 
     it "includes the access and embargo link" do
-      expect(CatalogController.blacklight_config.show.document_actions.keys).to(
+      expect(described_class.blacklight_config.show.document_actions.keys).to(
         include(:access)
       )
     end
@@ -117,6 +117,7 @@ describe CatalogController do
 
     context "for an admin" do
       let(:user) { user_with_groups [AdminPolicy::META_ADMIN] }
+
       it { is_expected.to be true }
     end
 

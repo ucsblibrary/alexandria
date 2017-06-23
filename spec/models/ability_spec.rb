@@ -16,7 +16,7 @@ describe Ability do
     Image
   end
 
-  let(:ability) { Ability.new(user) }
+  let(:ability) { described_class.new(user) }
   let(:local_group) { create(:group) }
 
   let(:public_file_set) { create(:public_file_set) }

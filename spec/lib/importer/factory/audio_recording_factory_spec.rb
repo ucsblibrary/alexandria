@@ -43,6 +43,7 @@ describe Importer::Factory::AudioRecordingFactory do
 
     context "with a correct file name" do
       let(:filegroup) { Dir["#{fixture_path}/cylinders/cyl1-2/cusb-cyl0001*"] }
+
       it { is_expected.to eq "0001" }
     end
 
@@ -59,6 +60,7 @@ describe Importer::Factory::AudioRecordingFactory do
 
     context "with only a bad file name" do
       let(:filegroup) { ["some_bad_name"] }
+
       it { is_expected.to be_nil }
     end
   end
@@ -148,7 +150,7 @@ describe Importer::Factory::AudioRecordingFactory do
 
       expect(AudioRecording.count).to eq 1
       audio = AudioRecording.first
-      expect(audio.file_sets).to_not eq []
+      expect(audio.file_sets).not_to eq []
       expect(audio.issued.first.start).to eq [1905]
     end
   end

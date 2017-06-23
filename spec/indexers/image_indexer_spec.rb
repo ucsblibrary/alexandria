@@ -140,6 +140,7 @@ describe ImageIndexer do
         license: [RDF::URI("http://rightsstatements.org/vocab/InC/1.0/")]
       )
     end
+
     it "indexes the license label" do
       VCR.use_cassette("image_indexer") do
         expect(subject["license_label_tesim"]).to eq ["In Copyright"]

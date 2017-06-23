@@ -41,7 +41,7 @@ module Importer::MODS
     raise IngestError, reached: ingests
   end
 
-  def ingest_mod(metadata:, data:, options: {})
+  def self.ingest_mod(metadata:, data:, options: {})
     selected_data = data.select do |f|
       # FIXME: find a more reliable test
       meta_base = File.basename(metadata, ".xml")

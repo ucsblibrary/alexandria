@@ -76,7 +76,9 @@ describe Importer::LocalAuthorityImporter do
   describe "#model" do
     context "when the model name is lowercase" do
       subject { importer.model(attrs) }
+
       let(:attrs) { { type: "person" } }
+
       it { is_expected.to eq Person }
     end
 

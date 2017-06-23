@@ -36,7 +36,7 @@ describe Importer::ETD do
         expect(ETD.count).to eq 0
 
         VCR.use_cassette("etd_importer") do
-          Importer::ETD.import(meta, data, options)
+          described_class.import(meta, data, options)
         end
 
         expect(ETD.count).to eq 1
@@ -64,7 +64,7 @@ describe Importer::ETD do
         )
 
         VCR.use_cassette("etd_importer") do
-          Importer::ETD.import(meta, data, options)
+          described_class.import(meta, data, options)
         end
 
         expect(ETD.count).to eq 1
@@ -81,7 +81,7 @@ describe Importer::ETD do
       before { collection }
 
       it "finds existing collection" do
-        expect(Importer::ETD.ensure_collection_exists).to eq collection
+        expect(described_class.ensure_collection_exists).to eq collection
       end
     end
 
@@ -90,7 +90,7 @@ describe Importer::ETD do
 
       it "raises an exception" do
         expect do
-          Importer::ETD.ensure_collection_exists
+          described_class.ensure_collection_exists
         end.to(
           change { ETD.count }.by(0).and(
             raise_error(

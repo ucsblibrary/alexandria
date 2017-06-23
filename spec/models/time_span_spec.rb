@@ -133,7 +133,9 @@ describe TimeSpan do
 
   describe "TimeSpan.qualifiers" do
     it "has the expected qualifiers in order" do
-      expect(TimeSpan.qualifiers).to eq(%w[approximate inferred questionable])
+      expect(described_class.qualifiers).to(
+        eq(%w[approximate inferred questionable])
+      )
     end
   end
 end

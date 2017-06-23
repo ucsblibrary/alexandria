@@ -20,7 +20,7 @@ feature "file_set iiif manifest" do
     expect(JSON.parse(body)["@context"]).to(
       eql("http://iiif.io/api/image/2/context.json")
     )
-    expect(JSON.parse(body)["width"]).to eql(256)
-    expect(JSON.parse(body)["height"]).to eql(223)
+    expect(JSON.parse(body)["width"]).to be(256)
+    expect(JSON.parse(body)["height"]).to be(223)
   end
 end

@@ -42,7 +42,7 @@ describe Importer::Factory::MapSetFactory do
     end
 
     VCR.use_cassette("map_set_factory1") do
-      @map_set = Importer::Factory::MapSetFactory.new(
+      @map_set = described_class.new(
         @map_attrs
       ).run
     end

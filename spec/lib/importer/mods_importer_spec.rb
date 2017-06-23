@@ -31,7 +31,7 @@ describe Importer::MODS do
 
       it "creates a new image, files, and a collection" do
         VCR.use_cassette("mods_importer") do
-          Importer::MODS.import(metadata, data, skip: 0, verbose: false)
+          described_class.import(metadata, data, skip: 0, verbose: false)
         end
 
         expect(Image.count).to eq 1
@@ -82,10 +82,10 @@ describe Importer::MODS do
         )
       end
 
-      it "it adds image to existing collection" do
+      it "adds image to existing collection" do
         expect do
           VCR.use_cassette("mods_importer") do
-            Importer::MODS.import(metadata, data, skip: 0, verbose: false)
+            described_class.import(metadata, data, skip: 0, verbose: false)
           end
         end.to change { Collection.count }.by(0)
 
@@ -110,7 +110,7 @@ describe Importer::MODS do
       it "creates a collection" do
         expect do
           VCR.use_cassette("mods_importer") do
-            Importer::MODS.import(metadata, data, skip: 0, verbose: false)
+            described_class.import(metadata, data, skip: 0, verbose: false)
           end
         end.to(
           change { Collection.count }.by(1).and(
@@ -147,10 +147,10 @@ describe Importer::MODS do
         )
       end
 
-      it "it adds metadata to existing collection" do
+      it "adds metadata to existing collection" do
         expect do
           VCR.use_cassette("mods_importer") do
-            Importer::MODS.import(metadata, data, skip: 0, verbose: false)
+            described_class.import(metadata, data, skip: 0, verbose: false)
           end
         end.to change { Collection.count }.by(0)
 
@@ -173,7 +173,7 @@ describe Importer::MODS do
       it "doesn't create another person" do
         expect do
           VCR.use_cassette("mods_importer") do
-            Importer::MODS.import(metadata, data, skip: 0, verbose: false)
+            described_class.import(metadata, data, skip: 0, verbose: false)
           end
         end.to(
           change { Collection.count }.by(1).and(
@@ -211,7 +211,7 @@ describe Importer::MODS do
       it "finds or creates the rights holders" do
         expect do
           VCR.use_cassette("mods_importer") do
-            Importer::MODS.import(metadata, data, skip: 0, verbose: false)
+            described_class.import(metadata, data, skip: 0, verbose: false)
           end
         end.to change { Agent.exact_model.count }.by(1)
 

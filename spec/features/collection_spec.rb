@@ -43,7 +43,7 @@ feature "Collection show page:" do
     within("#facets #facet-all_contributors_label_sim") do
       click_link "Pinko"
     end
-    expect(page).to_not have_content red_attrs[:title].first
+    expect(page).not_to have_content red_attrs[:title].first
     expect(page).to have_content pink_attrs[:title].first
   end
 end

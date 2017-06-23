@@ -107,6 +107,7 @@ describe Importer::MODS::Parser do
 
     context "with a file that has a general (untyped) note" do
       let(:file) { "#{fixture_path}/mods/cusbspcmss36_110108.xml" }
+
       it "imports notes" do
         expect(attributes[:notes_attributes].first[:value]).to(
           eq "Title from item."
@@ -161,6 +162,7 @@ describe Importer::MODS::Parser do
 
     context "with a file that has coordinates" do
       let(:file) { "#{fixture_path}/mods/cusbspcmss36_110089.xml" }
+
       it "imports coordinates" do
         expect(attributes[:latitude]).to eq ["34.442982"]
         expect(attributes[:longitude]).to eq ["-119.657362"]
@@ -189,7 +191,7 @@ describe Importer::MODS::Parser do
     end
 
     context "without date_created" do
-      let(:parser) { Importer::MODS::Parser.new(nil) }
+      let(:parser) { described_class.new(nil) }
       let(:xml) do
         "<mods #{ns_decl}><originInfo>"\
         "<dateValid encoding=\"w3cdtf\">1989-12-01</dateValid>"\
@@ -209,6 +211,7 @@ describe Importer::MODS::Parser do
 
     context "with a file that has a range of dateIssued" do
       let(:file) { "#{fixture_path}/mods/cusbspcmss36_110089.xml" }
+
       it "imports issued" do
         expect(attributes[:issued_attributes]).to(
           eq(
@@ -224,6 +227,7 @@ describe Importer::MODS::Parser do
 
     context "with a file that has a single dateIssued" do
       let(:file) { "#{fixture_path}/mods/cusbspcmss36_110108.xml" }
+
       it "imports issued" do
         expect(attributes[:issued_attributes]).to(
           eq(
@@ -238,7 +242,7 @@ describe Importer::MODS::Parser do
     end
 
     context "with date_copyrighted" do
-      let(:parser) { Importer::MODS::Parser.new(nil) }
+      let(:parser) { described_class.new(nil) }
       let(:xml) do
         "<mods #{ns_decl}><originInfo>"\
         "<copyrightDate encoding=\"w3cdtf\">1985-12-01</copyrightDate>"\
@@ -265,7 +269,7 @@ describe Importer::MODS::Parser do
     end
 
     context "with dateValid" do
-      let(:parser) { Importer::MODS::Parser.new(nil) }
+      let(:parser) { described_class.new(nil) }
       let(:xml) do
         "<mods #{ns_decl}><originInfo>"\
         "<dateValid encoding=\"w3cdtf\">1989-12-01</dateValid>"\
@@ -293,6 +297,7 @@ describe Importer::MODS::Parser do
 
     context "with a file that has an alternative title" do
       let(:file) { "#{fixture_path}/mods/cusbspcmss36_110089.xml" }
+
       it "distinguishes between title and alternative title" do
         expect(attributes[:title]).to eq ["Patio, Gavit residence"]
         expect(attributes[:alternative]).to eq ["Lotusland"]
@@ -311,6 +316,7 @@ describe Importer::MODS::Parser do
 
     context "with a file that has placeTerm" do
       let(:file) { "#{fixture_path}/mods/cusbspcmss36_110089.xml" }
+
       it "reads the place" do
         expect(attributes[:place_of_publication]).to(
           eq ["Santa Barbara, California"]
