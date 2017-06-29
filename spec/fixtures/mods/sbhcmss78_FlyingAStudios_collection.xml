@@ -14,8 +14,8 @@
   <mods:genre authority="aat" authorityURI="http://vocab.getty.edu/aat" valueURI="http://vocab.getty.edu/aat/300128343">Black-and-white negatives</mods:genre>
   <mods:originInfo>
     <mods:dateCreated>circa 1910s</mods:dateCreated>
-    <mods:dateCreated encoding="iso8601" point="start" qualifier="approximate" keyDate="yes">1910</mods:dateCreated>
-    <mods:dateCreated encoding="iso8601" point="end" qualifier="approximate">1919</mods:dateCreated>
+    <mods:dateCreated encoding="w3cdtf" point="start" qualifier="approximate" keyDate="yes">1910</mods:dateCreated>
+    <mods:dateCreated encoding="w3cdtf" point="end" qualifier="approximate">1919</mods:dateCreated>
   </mods:originInfo>
   <mods:identifier type="local">SBHC Mss 78</mods:identifier>
   <mods:language>
