@@ -4,13 +4,14 @@ set -e
 
 cd "$(dirname "${BASH_SOURCE[0]}")/../"
 
+RAILS_ENV=${RAILS_ENV:-"development"}
+
 for service in solr fcrepo; do
-  if [[ ! -f "$service".pid ]]; then
-    pid=$(cat "$service".pid)
-    echo "ERROR: ${service}_wrapper is not running" >&2
+  if [[ ! -f "${service}-${RAILS_ENV}.pid" ]]; then
+    echo "ERROR: no ${RAILS_ENV} instance of ${service}_wrapper is running" >&2
     exit 1
   fi
 
-  kill -15 "$(cat "$service".pid)" || true
-  rm "$service".pid
+  kill -15 "$(cat ${service}-${RAILS_ENV}.pid)" || true
+  rm "${service}-${RAILS_ENV}.pid"
 done
