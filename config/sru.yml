@@ -7,4 +7,7 @@ default_params:
   - "operation=searchRetrieve"
   - "alma.mms_tagSuppressed=false"
 id_field: alma.standard_number
-all_cylinders: "(alma.all_for_ui=http://www.library.ucsb.edu/OBJID/Cylinder*)"
+binary_query: "(marc.956.f=%<binary>s)"
+ark_query: "(%<id_field>s=%<ark_shoulder>s/%<ark>s)"
+etd_query: "(marc.947.a=pqd)"
+cylinder_query: "(alma.all_for_ui=*OBJID/Cylinder%<number>s)"
