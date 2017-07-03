@@ -51,7 +51,7 @@ namespace :marc do
     end
 
     File.open(
-      File.join(Settings.marc_directory, "etd-metadata.xml"), "a"
+      File.join(Settings.marc_directory, "etd-metadata.xml"), "w"
     ) do |f|
       f.write SRU.wrap(all_marc)
       puts "Wrote etd-metadata.xml"
@@ -88,7 +88,7 @@ namespace :marc do
     end
 
     File.open(
-      File.join(Settings.marc_directory, "cylinder-metadata.xml"), "a"
+      File.join(Settings.marc_directory, "cylinder-metadata.xml"), "w"
     ) do |f|
       f.write SRU.wrap(all_marc.uniq)
       puts "Wrote cylinder-metadata.xml"
