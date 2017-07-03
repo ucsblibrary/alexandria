@@ -8,37 +8,22 @@ module SRU
   PAYLOAD_HEADER = /<\?xml\ version="1\.0"\ .*<records>/m
   PAYLOAD_FOOTER = %r{<\/records>.*<\/searchRetrieveResponse>}m
 
+  def self.config
+    @config ||= SRU_CONF.with_indifferent_access
+  end
+
   # @param [String] binary
   def self.by_binary(binary)
-    fetch(query: "(marc.956.f=#{binary})")
+    fetch(query: format(config[:binary_query],
+                        binary: binary))
   end
 
   # @param [String] ark
   def self.by_ark(ark)
-    fetch(query: "(#{SRU_CONF["id_field"]}=#{SRU_CONF["ark_shoulder"]}/#{ark})")
-  end
-
-  # @param [Hash] options
-  # @option options [Symbol] :type
-  # @option options [Int] :max
-  # @option options [Int] start
-  #
-  # @return [String]
-  def self.batch(options)
-    query = case options.fetch(:type)
-            when :cylinder
-              SRU_CONF["all_cylinders"]
-            when :etd
-              "(marc.947.a=pqd)"
-            else
-              raise ArgumentError,
-                    "Bad :type #{options.fetch(:type)} for SRU.batch (should be :cylinder or :etd)"
-            end
-    fetch(
-      query: query,
-      max: options.fetch(:max, 1),
-      start: options.fetch(:start, 1)
-    )
+    fetch(query: format(config[:ark_query],
+                        id_field: config[:id_field],
+                        ark_shoulder: config[:ark_shoulder],
+                        ark: ark))
   end
 
   # @param [Hash] options
@@ -49,9 +34,9 @@ module SRU
   # @return [String]
   def self.fetch(options)
     query = %W[
-      #{SRU_CONF["host"]}
+      #{config["host"]}
       ?
-      #{SRU_CONF["default_params"].join("&")}
+      #{config["default_params"].join("&")}
       &maximumRecords=#{options.fetch(:max, 1)}
       &startRecord=#{options.fetch(:start, 1)}
       &query=#{options.fetch(:query)}
@@ -60,6 +45,7 @@ module SRU
     client = HTTPClient.new
 
     begin
+      $stderr.puts "==> #{query}"
       search = client.get(query)
     rescue => e
       $stderr.puts "Error for query #{query}: #{e.message}"
@@ -72,7 +58,6 @@ module SRU
       raise "Error for query #{query}: \"#{message}\""
     elsif result.include? "numberOfRecords>0<"
       $stderr.puts "Nothing found for #{query}"
-      return ""
     end
     result
   end
