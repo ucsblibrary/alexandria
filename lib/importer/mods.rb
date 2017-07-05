@@ -271,7 +271,7 @@ module Importer::MODS
 
     def relations
       name_nodes = mods.xpath("//mods:mods/mods:name", NAMESPACES)
-      property_name_for_uri = Metadata::MARCREL.invert
+      property_name_for_uri = Marcrel.all.invert
       name_nodes.each_with_object({}) do |node, relations|
         uri = node.attributes["valueURI"]
         key = if (value_uri = node.role.roleTerm.valueURI.first)

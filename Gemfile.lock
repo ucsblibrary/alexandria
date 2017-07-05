@@ -9,6 +9,13 @@ GIT
       sparql
       sparql-client
 
+GIT
+  remote: https://github.com/ucsblibrary/marcrel.git
+  revision: 9352b12dc478858b4b57e03dbed4ecacfa65fdbb
+  ref: 9352b12dc478858b4b57e03dbed4ecacfa65fdbb
+  specs:
+    marcrel (0.0.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -800,6 +807,7 @@ DEPENDENCIES
   kaminari_route_prefix
   linked_vocabs!
   marc
+  marcrel!
   method_source
   mods (~> 2.0.3)
   net-ldap (~> 0.14)

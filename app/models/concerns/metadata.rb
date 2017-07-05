@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require "concerns/relators"
 # Metadata fields common to all objects
 module Metadata
   extend ActiveSupport::Concern
@@ -8,7 +7,7 @@ module Metadata
   RELATIONS = {
     contributor: RDF::Vocab::DC.contributor,
     creator:     RDF::Vocab::DC.creator,
-  }.merge(MARCREL)
+  }.merge(Marcrel.all)
 
   included do
     # For info about how local_collection_id is used, @see

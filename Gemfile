@@ -27,6 +27,9 @@ gem "hydra-role-management"
 gem "linked_vocabs",
     git: "https://github.com/projecthydra-labs/linked_vocabs.git"
 gem "marc"
+gem "marcrel",
+    git: "https://github.com/ucsblibrary/marcrel.git",
+    ref: "9352b12dc478858b4b57e03dbed4ecacfa65fdbb"
 gem "mods", "~> 2.0.3"
 gem "openseadragon"
 gem "qa", "~> 0.11.0"
