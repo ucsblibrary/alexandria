@@ -21,7 +21,6 @@ module SRU
   # @param [String] ark
   def self.by_ark(ark)
     fetch(query: format(config[:ark_query],
-                        id_field: config[:id_field],
                         ark_shoulder: config[:ark_shoulder],
                         ark: ark))
   end
