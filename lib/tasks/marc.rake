@@ -4,7 +4,7 @@ require "httpclient"
 require "sru"
 
 namespace :marc do
-  BATCH_SIZE = 100
+  BATCH_SIZE = 50
 
   desc "Download Wax Cylinder MARC records from SRU"
   task download_cylinders: :environment do
@@ -44,7 +44,12 @@ namespace :marc do
 
       File.open(batch_name(next_record, "etd"), "w") do |f|
         f.write marc
-        puts "Wrote records #{next_record}-#{next_record + BATCH_SIZE - 1}.xml"
+        num_written = MARC::XMLReader.new(
+          StringIO.new(marc)
+        ).map { |r| r }.count
+
+        puts "Wrote #{num_written} records to "\
+             "#{next_record}-#{next_record + BATCH_SIZE - 1}.xml"
       end
       all_marc << SRU.strip(marc)
       next_record += BATCH_SIZE
