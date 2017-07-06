@@ -20,10 +20,9 @@ module ExtractWorkType
   # Transfer leader field 006 into a LOC Resource Type URI
   def extract_work_type
     lambda do |record, accumulator|
-      # example:
-      #   LEADER 01488njm a2200385 a 4500
+      # example: njm a2200385 a 4500
       # we want "j" from that leader field
-      accumulator << WORK_TYPE_MAP[record.leader.slice(6)]
+      accumulator << WORK_TYPE_MAP[record.leader.sub(/^[0-9]*/, "").slice(1)]
     end
   end
 end

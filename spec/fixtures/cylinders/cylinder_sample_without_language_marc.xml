@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <zs:searchRetrieveResponse xmlns:zs="http://www.loc.gov/zing/srw/"><zs:version>1.1</zs:version><zs:numberOfRecords>1</zs:numberOfRecords><zs:records><zs:record><zs:recordSchema>info:srw/schema/1/marcxml-v1.1</zs:recordSchema><zs:recordPacking>xml</zs:recordPacking><zs:recordData><record xmlns="http://www.loc.gov/MARC21/slim">
 <!-- Length implementation at offset 22 should hold a digit. Assuming 0 -->
-  <leader>01282cjm a2200349 a 4500</leader>
+  <leader>cjm a2200349 a 4500</leader>
   <controlfield tag="001">002559341</controlfield>
   <controlfield tag="005">20131221203113.0</controlfield>
   <controlfield tag="007">se imsznnmwhna</controlfield>
