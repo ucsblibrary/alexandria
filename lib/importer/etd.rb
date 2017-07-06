@@ -69,7 +69,10 @@ module Importer::ETD
         # so pull the individual records into a regular
         # Array; see
         # https://github.com/ruby-marc/ruby-marc/pull/47
-        MARC::XMLReader.new(m).map { |o| o }
+        MARC::XMLReader.new(m).map { |o| o }.select do |record|
+          # only keep records for which we've provided data
+          etds.any? { |etd| etd[:pdf].include? record["956"]["f"] }
+        end
       end
     end.flatten
   end
