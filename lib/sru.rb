@@ -44,7 +44,7 @@ module SRU
     client = HTTPClient.new
 
     begin
-      $stderr.puts "==> #{query}"
+      # $stderr.puts "==> #{query}"
       search = client.get(query)
     rescue => e
       $stderr.puts "Error for query #{query}: #{e.message}"
