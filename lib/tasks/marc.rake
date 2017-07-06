@@ -42,7 +42,7 @@ namespace :marc do
                        max: BATCH_SIZE,
                        start: next_record)
 
-      File.open(batch_name(next_record, record_type), "w") do |f|
+      File.open(batch_name(next_record, "etd"), "w") do |f|
         f.write marc
         puts "Wrote records #{next_record}-#{next_record + BATCH_SIZE - 1}.xml"
       end
@@ -96,7 +96,7 @@ namespace :marc do
   end
 
   # @param [Int] start
-  # @param [Symbol] type_of_record Either :etd or :cylinder
+  # @param [String] type_of_record
   def batch_name(start, type_of_record)
     File.join(
       Settings.marc_directory,

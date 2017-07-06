@@ -8,5 +8,5 @@ default_params:
   - "alma.mms_tagSuppressed=false"
 binary_query: "(marc.956.f=%<binary>s)"
 ark_query: "(alma.standard_number=%<ark_shoulder>s/%<ark>s)"
-etd_query: "(marc.947.a=pqd)"
+etd_query: "(alma.local_field_947=pqd)"
 cylinder_query: "(alma.all_for_ui=*OBJID/Cylinder%<number>s)"
