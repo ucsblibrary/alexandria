@@ -80,4 +80,77 @@ module SRU
       </searchRetrieveResponse>
     EOS
   end
+
+  def download_cylinders
+    start_doc = fetch(
+      query: "(alma.all_for_ui=http://www.library.ucsb.edu/OBJID/Cylinder*)"
+    )
+
+    marc_count = Nokogiri::XML(start_doc).css("numberOfRecords").text.to_i
+    Rails.logger.info "Downloading #{marc_count} cylinders (this is slow)"
+
+    all_marc = []
+    marc_count.times do |i|
+      marc = fetch(
+        # left-pad the cylinder number with zeros when smaller than 4
+        # digits
+        query: format(config[:cylinder_query], number: i.to_s.rjust(4, "0"))
+      )
+
+      next if Nokogiri::XML(marc).css("numberOfRecords").text == "0"
+
+      dest = File.join(Settings.marc_directory, "cylinder-#{i}.xml")
+
+      File.open(dest, "w") do |f|
+        f.write marc
+        Rails.logger.info "Wrote #{dest}"
+      end
+      all_marc << strip(marc)
+    end
+
+    output = File.join(Settings.marc_directory, "cylinder-metadata.xml")
+    File.open(output, "w") do |f|
+      f.write wrap(all_marc.uniq)
+      Rails.logger.info "Wrote cylinder-metadata.xml"
+    end
+  end
+
+  def self.download_etds
+    start_doc = fetch(query: config[:etd_query])
+    marc_count = Nokogiri::XML(start_doc).css("numberOfRecords").text.to_i
+    Rails.logger.info "Downloading #{marc_count} ETDs"
+
+    all_marc = []
+    next_record = 1
+    while next_record < marc_count
+      marc = fetch(query: config[:etd_query],
+                   max: config[:batch_size],
+                   start: next_record)
+
+      output = File.join(
+        Settings.marc_directory,
+        format("etd-%05d-%05d.xml",
+               next_record,
+               (next_record + config[:batch_size] - 1))
+      )
+
+      File.open(output, "w") do |f|
+        f.write marc
+
+        num_written =
+          MARC::XMLReader.new(StringIO.new(marc)).map { |r| r }.count
+
+        Rails.logger.info "Wrote #{num_written} records to #{output}"
+      end
+      all_marc << strip(marc)
+      next_record += config[:batch_size]
+    end
+
+    File.open(
+      File.join(Settings.marc_directory, "etd-metadata.xml"), "w"
+    ) do |f|
+      f.write wrap(all_marc)
+      Rails.logger.info "Wrote etd-metadata.xml"
+    end
+  end
 end
