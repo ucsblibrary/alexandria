@@ -11,8 +11,4 @@ class Settings < Settingslogic
   def marc_directory
     File.join(download_root, "marc")
   end
-
-  def pegasus_path
-    pegasus_sru_endpoint
-  end
 end

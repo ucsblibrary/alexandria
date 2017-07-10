@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "pegasus"
+require "sru"
 
 module Importer::ETDParser
   # @param [String] xml_file_name The path to a ProQuest XML file
@@ -15,6 +15,6 @@ module Importer::ETDParser
   # @return [String]
   def self.parse_file(xml_file_name)
     binary_filename = extract_binary_filename(xml_file_name)
-    ::Pegasus.by_binary(binary_filename)
+    SRU.by_binary(binary_filename)
   end
 end
