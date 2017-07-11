@@ -14,17 +14,16 @@ namespace :marc do
     SRU.download_all(:etd)
   end
 
-  desc "Download the MARC record for a PID"
+  desc "Download the MARC record for an ARK (e.g., '48907/f3cv4hxn')"
   task :ark, [:pid] => :environment do |_, args|
     marc = SRU.by_ark(args[:pid])
-    if marc
-      File.open(
-        File.join(Settings.marc_directory, "#{args[:pid]}.xml"), "w"
-      ) do |f|
-        f.write marc
-      end
-    else
-      $stderr.puts "ERROR: nothing found for #{args[:pid]}"
+    output = File.join(Settings.marc_directory,
+                       "#{args[:pid].split("/").last}.xml")
+
+    return $stderr.puts "ERROR: nothing found for #{args[:pid]}" if marc.nil?
+
+    File.open(output, "w") do |f|
+      f.write marc
     end
   end
 end

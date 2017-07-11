@@ -20,9 +20,7 @@ module SRU
 
   # @param [String] ark
   def self.by_ark(ark)
-    fetch(query: format(config[:ark_query],
-                        ark_shoulder: config[:ark_shoulder],
-                        ark: ark))
+    fetch(query: format(config[:ark_query], ark: ark))
   end
 
   # @param [Hash] options

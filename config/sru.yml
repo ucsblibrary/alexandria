@@ -1,5 +1,4 @@
 ---
-ark_shoulder: <%= Rails.application.secrets.ezid_default_shoulder %>
 # How many records can be fetched at once
 batch_size: 50
 host: <%= Rails.application.secrets.sru_host %>
@@ -8,7 +7,7 @@ default_params:
   - "version=1.2"
   - "operation=searchRetrieve"
   - "alma.mms_tagSuppressed=false"
-ark_query: "(alma.standard_number=%<ark_shoulder>s/%<ark>s)"
+ark_query: <%= "(alma.standard_number=%<ark>s)" %>
 binary_query: "(alma.local_field_956=%<binary>s)"
 cylinder_query: "(alma.all_for_ui=http://www.library.ucsb.edu/OBJID/Cylinder*)"
 cylinder_query_single: "(alma.all_for_ui=*OBJID/Cylinder%<number>s)"
