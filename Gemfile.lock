@@ -10,11 +10,12 @@ GIT
       sparql-client
 
 GIT
-  remote: https://github.com/ucsblibrary/marcrel.git
-  revision: 9352b12dc478858b4b57e03dbed4ecacfa65fdbb
-  ref: 9352b12dc478858b4b57e03dbed4ecacfa65fdbb
+  remote: https://github.com/ucsblibrary/metadata-fields.git
+  revision: ca7129307acb727d75d232836ba3ced974b20362
+  ref: ca7129307acb727d75d232836ba3ced974b20362
   specs:
-    marcrel (0.0.1)
+    metadata-fields (0.0.1)
+      rdf-vocab (>= 2.0)
 
 GEM
   remote: https://rubygems.org/
@@ -807,7 +808,7 @@ DEPENDENCIES
   kaminari_route_prefix
   linked_vocabs!
   marc
-  marcrel!
+  metadata-fields!
   method_source
   mods (~> 2.0.3)
   net-ldap (~> 0.14)
