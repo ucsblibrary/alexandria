@@ -14,8 +14,6 @@ describe Importer::MODS::Parser do
       end
 
       it "knows it is a Collection" do
-        expect(parser.collection?).to eq true
-        expect(parser.image?).to eq false
         expect(parser.model).to eq Collection
       end
     end
@@ -24,8 +22,6 @@ describe Importer::MODS::Parser do
       let(:file) { "#{fixture_path}/mods/cusbspcsbhc78_100239.xml" }
 
       it "knows it is an Image" do
-        expect(parser.image?).to eq true
-        expect(parser.collection?).to eq false
         expect(parser.model).to eq Image
       end
     end
@@ -199,6 +195,7 @@ describe Importer::MODS::Parser do
       end
 
       before do
+        allow(parser).to receive(:model).and_return(Image)
         allow(parser).to(
           receive(:mods).and_return(Mods::Record.new.from_str(xml))
         )
@@ -250,6 +247,7 @@ describe Importer::MODS::Parser do
       end
 
       before do
+        allow(parser).to receive(:model).and_return(Image)
         allow(parser).to(
           receive(:mods).and_return(Mods::Record.new.from_str(xml))
         )
@@ -277,6 +275,7 @@ describe Importer::MODS::Parser do
       end
 
       before do
+        allow(parser).to receive(:model).and_return(Image)
         allow(parser).to(
           receive(:mods).and_return(Mods::Record.new.from_str(xml))
         )
