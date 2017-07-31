@@ -11,8 +11,8 @@ GIT
 
 GIT
   remote: https://github.com/ucsblibrary/metadata-fields.git
-  revision: ca7129307acb727d75d232836ba3ced974b20362
-  ref: ca7129307acb727d75d232836ba3ced974b20362
+  revision: e7e7e04fe3fbe04f9580a0f7008a64b4ff3df1b6
+  ref: e7e7e04fe3fbe04f9580a0f7008a64b4ff3df1b6
   specs:
     metadata-fields (0.0.1)
       rdf-vocab (>= 2.0)
