@@ -29,7 +29,7 @@ gem "linked_vocabs",
 gem "marc"
 gem "metadata-fields",
     git: "https://github.com/ucsblibrary/metadata-fields.git",
-    ref: "ca7129307acb727d75d232836ba3ced974b20362"
+    ref: "e7e7e04fe3fbe04f9580a0f7008a64b4ff3df1b6"
 gem "mods", "~> 2.0.3"
 gem "openseadragon"
 gem "qa", "~> 0.11.0"
