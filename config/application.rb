@@ -21,9 +21,6 @@ class Alexandria::Application < Rails::Application
   # Handle exceptions manually
   config.exceptions_app = routes
 
-  # Do not swallow errors in after_commit/after_rollback callbacks.
-  config.active_record.raise_in_transactional_callbacks = true
-
   config.action_mailer.smtp_settings =
     YAML.safe_load(
       File.read(Rails.root.join("config", "smtp.yml")),
