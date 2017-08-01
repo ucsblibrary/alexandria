@@ -77,7 +77,7 @@ module Importer::CSV
 
   def self.ingest_row(head:, row:, data: [], verbose: false)
     # Check that all URIs are well formed
-    Importer::CSV.check_uris(row)
+    row.each { |field| Fields::URI.check_uri(field) }
 
     attrs = csv_attributes(head, row)
 
@@ -267,20 +267,6 @@ module Importer::CSV
     nil
   end
 
-  # Given a row of data from a spreadsheet, check that all the URIs
-  # are well formed If we wait until we create the object to detect
-  # errors, it's much more difficult to raise a helpful error message.
-  #
-  # @param [Array] row
-  def self.check_uris(row)
-    row.each do |x|
-      next if x.nil? || !Importer::CSV.looks_like_uri?(x)
-      next if x.strip =~ /\A#{URI.regexp}\z/
-
-      raise "Invalid URI: #{x}"
-    end
-  end
-
   # Transform coordinates as provided in CSV spreadsheet into dcmi-box
   # formatting
   #
@@ -351,12 +337,7 @@ module Importer::CSV
     key ||= header.to_sym
     processed[key] ||= []
     val = val.strip
-    processed[key] << (looks_like_uri?(val) ? RDF::URI(val) : val)
-  end
-
-  # @param [String] str
-  def self.looks_like_uri?(str)
-    str =~ %r{^https?:\/\/}
+    processed[key] << (Fields::URI.looks_like_uri?(val) ? RDF::URI(val) : val)
   end
 
   # Fields that have an associated *_type column

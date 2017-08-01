@@ -302,6 +302,7 @@ describe Importer::CSV do
     end
   end
 
+  # TODO: Move these tests into https://github.com/ucsblibrary/metadata-fields
   # 9507-n2446_h8_1970_s8.csv won't import because of a malformed URI
   context "invalid URIs in CSV" do
     let(:problemfile) { "#{fixture_path}/csv/malformed_uri.csv" }
@@ -310,9 +311,9 @@ describe Importer::CSV do
     let(:row) { split[1][0] }
 
     it "has a method to check for well-formed URIs" do
-      expect { described_class.check_uris(row) }.to(
-        raise_error(RuntimeError, /Invalid URI/)
-      )
+      expect do
+        row.each { |f| Fields::URI.check_uri(f) }
+      end.to raise_error(ArgumentError, /Invalid URI/)
     end
 
     it "does not raise an error if all uris are well formed" do
@@ -321,14 +322,16 @@ describe Importer::CSV do
         "http://vocab.getty.edu/aat/300028142",
         "[Just a string]",
       ]
-      expect { described_class.check_uris(goodrow) }.not_to raise_error
+      expect do
+        goodrow.each { |f| Fields::URI.check_uri(f) }
+      end.not_to raise_error
     end
 
     it "raises a meaningful error for a malformed URI" do
       VCR.use_cassette("invalid_uri_bug") do
         expect do
           described_class.ingest_row(head: head, row: row, data: [])
-        end.to raise_error(RuntimeError, /Invalid URI/)
+        end.to raise_error(ArgumentError, /Invalid URI/)
       end
     end
   end
