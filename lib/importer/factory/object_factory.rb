@@ -25,62 +25,6 @@ module Importer::Factory
       object
     end
 
-    def update
-      raise "Object doesn't exist" unless object
-
-      %w[created issued notes].each do |prop|
-        clear_attribute!(object, prop)
-      end
-
-      object.attributes = update_attributes
-
-      # TODO: #attach_files needs to always run for ETD ingests, since
-      # it triggers {Proquest::Metadata#run} which updates the
-      # {AdminPolicy} of the ETD itself. Currently on ETD ingests,
-      # `files' is never empty, so for now this is OK.
-      if files.empty?
-        $stderr.puts "No files provided for #{object.id}"
-      else
-        attach_files(object, files)
-      end
-
-      run_callbacks(:save) do
-        object.save!
-      end
-      log_updated(object)
-    end
-
-    def create_attributes
-      transform_attributes.except(:files)
-    end
-
-    def update_attributes
-      transform_attributes.except(:id, :files)
-    end
-
-    # Remove any existing FileSets via the FileSetActor Actor
-    # This will also remove any derivatives etc that the FileSet created, and
-    # it will remove it from membership in the given object.
-    # @param [ActiveFedora::Base] object
-    def remove_existing_file_sets(object)
-      return if object.file_sets.blank?
-      object.file_sets.each do |f|
-        CurationConcerns::Actors::FileSetActor.new(f, nil).destroy
-      end
-      object.save
-      object.reload.file_sets
-    end
-
-    # Overridden in classes that inherit from ObjectFactory
-    #
-    # @param [Hash] object
-    # @param [String, Hash] files Either the path to the file or a
-    #     hash with file metadata
-    def attach_files(_object, _files)
-      raise NotImplementedError,
-            "#attach_files is not defined for #{self.class}"
-    end
-
     def find
       if attributes[:id]
         klass.find(attributes[:id]) if klass.exists?(attributes[:id])
@@ -120,6 +64,7 @@ module Importer::Factory
         $stderr.puts "No files provided for #{object.id}"
       else
         attach_files(object, files)
+        render_thumbnails(object)
       end
 
       run_callbacks :save do
@@ -134,6 +79,85 @@ module Importer::Factory
       hydrate_ark!(identifier) if identifier.present?
 
       log_created(object)
+    end
+
+    def update
+      raise "Object doesn't exist" unless object
+
+      %w[created issued notes].each do |prop|
+        clear_attribute!(object, prop)
+      end
+
+      object.attributes = update_attributes
+
+      # TODO: #attach_files needs to always run for ETD ingests, since
+      # it triggers {Proquest::Metadata#run} which updates the
+      # {AdminPolicy} of the ETD itself. Currently on ETD ingests,
+      # `files' is never empty, so for now this is OK.
+      if files.empty?
+        $stderr.puts "No files provided for #{object.id}"
+      else
+        attach_files(object, files)
+        render_thumbnails(object)
+      end
+
+      run_callbacks(:save) do
+        object.save!
+      end
+      log_updated(object)
+    end
+
+    # Overridden in classes that inherit from ObjectFactory
+    #
+    # @param [Hash] object
+    # @param [String, Hash] files Either the path to the file or a
+    #     hash with file metadata
+    def attach_files(_object, _files)
+      raise NotImplementedError,
+            "#attach_files is not defined for #{self.class}"
+    end
+
+    def render_thumbnails(object)
+      unless [Image, ComponentMap, IndexMap, ScannedMap].include?(object.class)
+        return
+      end
+
+      object.file_sets.map(&:files).flatten.each do |f|
+        Settings.thumbnails.keys.each do |k|
+          options = {
+            size: Settings.thumbnails[k]["size"],
+            rotation: "0",
+            region: Settings.thumbnails[k].fetch("region", "full"),
+            quality: "default",
+            format: "jpg",
+          }.with_indifferent_access
+
+          Riiif::Image.new(f.id).render(options)
+        end
+      end
+
+      FileUtils.rm_rf Settings.riiif_fedora_cache
+    end
+
+    def create_attributes
+      transform_attributes.except(:files)
+    end
+
+    def update_attributes
+      transform_attributes.except(:id, :files)
+    end
+
+    # Remove any existing FileSets via the FileSetActor Actor
+    # This will also remove any derivatives etc that the FileSet created, and
+    # it will remove it from membership in the given object.
+    # @param [ActiveFedora::Base] object
+    def remove_existing_file_sets(object)
+      return if object.file_sets.blank?
+      object.file_sets.each do |f|
+        CurationConcerns::Actors::FileSetActor.new(f, nil).destroy
+      end
+      object.save
+      object.reload.file_sets
     end
 
     # @param [Hash] attrs

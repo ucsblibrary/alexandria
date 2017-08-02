@@ -167,18 +167,22 @@ class ObjectIndexer < CurationConcerns::WorkIndexer
 
     # Called by the CurationConcerns::WorkIndexer
     def square_thumbnail_images
-      file_set_images("100,", "square")
+      file_set_images(
+        size: Settings.thumbnails["square"]["size"],
+        region: Settings.thumbnails["square"]["region"]
+      )
     end
 
     def thumbnail_path
-      file_set_images("300,")
+      file_set_images(size: Settings.thumbnails["search"]["size"])
     end
 
     def file_set_large_images
-      file_set_images("1000,")
+      file_set_images(size: Settings.thumbnails["large"]["size"])
     end
 
-    def file_set_images(size = "400,", region = "full")
+    def file_set_images(size: Settings.thumbnails["basic"]["size"],
+                        region: "full")
       object.file_sets.map do |file_set|
         file = file_set.files.first
         next unless file

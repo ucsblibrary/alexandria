@@ -4,7 +4,8 @@ require "uri"
 
 Riiif::Image.authorization_service = AuthService
 Riiif::Engine.config.cache_duration_in_days = 365
-Riiif::Image.file_resolver = Riiif::HTTPFileResolver.new
+Riiif::Image.file_resolver =
+  Riiif::HTTPFileResolver.new(cache_path: Settings.riiif_fedora_cache)
 
 Riiif::Image.file_resolver.id_to_uri = lambda do |id|
   ActiveFedora::Base.id_to_uri(CGI.unescape(id)).tap do |url|
