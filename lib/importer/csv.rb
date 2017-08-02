@@ -88,7 +88,9 @@ module Importer::CSV
     files = if attrs[:files].nil?
               []
             else
-              data.select { |d| attrs[:files].include? File.basename(d) }
+              data.select do |d|
+                attrs[:files].any? { |f| f.include? File.basename(d) }
+              end
             end
 
     if verbose
