@@ -5,6 +5,8 @@ class CollectionIndexer < CurationConcerns::CollectionIndexer
     RDF::DeepIndexingService
   end
 
+  self.thumbnail_field = ObjectIndexer.thumbnail_field
+
   # Override behavior from Hydra::PCDM::CollectionIndexer.
   # When we index the members of this collection in the
   # "member_ids_ssim" field, in addition to the normal hydra
