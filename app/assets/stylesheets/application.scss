@@ -502,7 +502,7 @@ footer {
 
 .document-thumbnail img {
   float: right;
-  max-height: 200px;
+  max-height: 100px;
   margin-top: 0;
 }
 
@@ -571,6 +571,24 @@ table#downloads {
 // ----------
 // Blacklight
 // ----------
+
+// override blacklight-gallery
+// JIRA: DIGREPO-807
+#documents .grid .document .thumbnail {
+  border: 0;
+  max-height: 100px;
+  max-width: 100px;
+  position: unset;
+  width: unset;
+
+  a > img {
+    height: auto;
+    left: initial;
+    position: unset;
+    top: initial;
+    width: 100px;
+  }
+}
 
 #search-navbar .input-group-addon.for-search-field {
   background-color: inherit;

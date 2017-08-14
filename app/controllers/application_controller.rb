@@ -62,6 +62,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def collection?(_config, document)
+    document.collection?
+  end
+
   def show_contributors?(_config, document)
     !document.etd?
   end

@@ -174,7 +174,7 @@ class ObjectIndexer < CurationConcerns::WorkIndexer
     end
 
     def thumbnail_path
-      file_set_images(size: Settings.thumbnails["search"]["size"])
+      square_thumbnail_images
     end
 
     def file_set_large_images

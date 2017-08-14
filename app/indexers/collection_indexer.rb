@@ -5,6 +5,11 @@ class CollectionIndexer < CurationConcerns::CollectionIndexer
     RDF::DeepIndexingService
   end
 
+  def thumbnail_path
+    ActionController::Base.helpers.image_path(
+      "fontawesome/black/png/256/archive.png"
+    )
+  end
   self.thumbnail_field = ObjectIndexer.thumbnail_field
 
   # Override behavior from Hydra::PCDM::CollectionIndexer.

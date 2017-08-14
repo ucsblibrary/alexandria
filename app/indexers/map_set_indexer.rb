@@ -3,6 +3,12 @@
 class MapSetIndexer < ObjectIndexer
   MAP_SORT_FIELD = "accession_number_si asc"
 
+  def thumbnail_path
+    ActionController::Base.helpers.image_path(
+      "fontawesome/black/png/256/map.png"
+    )
+  end
+
   def generate_solr_document
     super do |solr_doc|
       query = ActiveFedora::SolrQueryBuilder.construct_query(

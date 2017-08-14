@@ -154,7 +154,7 @@ class CatalogController < ApplicationController
     # config.default_solr_params[:'facet.field'] =
     #   config.facet_fields.select { |_k, v| v[:show] != false }.keys
 
-    # solr fields to be displayed in the index (search results) view
+    # Solr fields to be displayed in the index (search results) view
     #   The ordering of the field names is the order of the display
     config.add_index_field solr_name("work_type_label", :stored_searchable),
                            label: "Format"
@@ -175,6 +175,12 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name("issued", :displayable),
                            label: "Issued Date"
 
+    config.add_index_field solr_name("description", :stored_searchable),
+                           label: "Summary",
+                           if: :collection?
+
+    # Solr fields to be displayed in the show (item-level) view
+    #   The ordering of the field names is the order of the display
     Metadata::RELATIONS.keys.each do |key|
       config.add_show_field solr_name("#{key}_label", :stored_searchable),
                             label: key.to_s.titleize,

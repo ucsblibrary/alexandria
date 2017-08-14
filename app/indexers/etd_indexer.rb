@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 class ETDIndexer < ObjectIndexer
+  def thumbnail_path
+    ActionController::Base.helpers.image_path(
+      "fontawesome/black/png/256/file-text.png"
+    )
+  end
+
   def generate_solr_document
     super.tap do |solr_doc|
       solr_doc[Solrizer.solr_name("member_ids", :symbol)] = object.member_ids
