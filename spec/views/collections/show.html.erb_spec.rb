@@ -70,7 +70,7 @@ describe "collections/show.html.erb", type: :view do
     allow(view).to receive(:render_index_doc_actions).and_return nil
     allow(controller). to receive(:show_contributors?).and_return false
     allow(controller). to receive(:show_author?).and_return false
-    # allow(controller).to receive(:show_type?).and_return(false)
+    allow(controller).to receive(:collection?).and_return(true)
     view.lookup_context.prefixes += ["catalog"]
     assign(:response, response)
     assign(:presenter, presenter)
