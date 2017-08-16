@@ -1,7 +1,7 @@
 GIT
-  remote: https://github.com/dunn/riiif.git
-  revision: a6b7f2e320c3f1703ea590fdc40dd26c96b3753b
-  ref: a6b7f2e320c3f1703ea590fdc40dd26c96b3753b
+  remote: https://github.com/curationexperts/riiif.git
+  revision: 3cab3a2b8b54e76b74b73f18637211f76dc66b92
+  ref: 3cab3a2b8b54e76b74b73f18637211f76dc66b92
   specs:
     riiif (1.5.1)
       deprecation (>= 1.0.0)

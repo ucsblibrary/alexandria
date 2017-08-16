@@ -35,8 +35,8 @@ gem "openseadragon"
 gem "qa", "~> 0.11.0"
 gem "rdf-marmotta", "~> 0.1.1"
 gem "riiif",
-    git: "https://github.com/dunn/riiif.git",
-    ref: "a6b7f2e320c3f1703ea590fdc40dd26c96b3753b"
+    git: "https://github.com/curationexperts/riiif.git",
+    ref: "3cab3a2b8b54e76b74b73f18637211f76dc66b92"
 gem "rsolr"
 gem "traject", "~> 2.3.2"
 
