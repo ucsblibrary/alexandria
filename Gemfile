@@ -7,7 +7,7 @@ group :production, :development do
 end
 
 gem "puma"
-gem "rails", "~> 5.0.1"
+gem "rails", "~> 5.1.1"
 
 gem "font-awesome-sass"
 gem "jquery-rails", "~> 4.0"

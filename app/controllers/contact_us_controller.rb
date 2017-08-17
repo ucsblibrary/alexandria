@@ -16,6 +16,6 @@ class ContactUsController < ApplicationController
 
     flash[:notice] = "Thank you for the feedback.  "\
                      "Your submission has been successfully sent."
-    redirect_to :back
+    redirect_back(fallback_location: main_app.root_path)
   end
 end
