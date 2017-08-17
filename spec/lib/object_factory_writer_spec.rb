@@ -87,7 +87,14 @@ describe ObjectFactoryWriter do
   describe "#find_files_to_attach" do
     subject { writer.find_files_to_attach(attrs) }
 
-    let(:attrs) { { filename: ["Cylinder 12783", "Cylinder 0001"] } }
+    let(:attrs) do
+      {
+        fulltext_link: [
+          "http://library.ucsb.edu/OBJID/Cylinder12783",
+          "http://library.ucsb.edu/OBJID/Cylinder0001",
+        ],
+      }
+    end
 
     context "with ETDs" do
       # rubocop:disable Metrics/LineLength
@@ -149,7 +156,7 @@ describe ObjectFactoryWriter do
     end
 
     context "with a bad cylinder name" do
-      let(:attrs) { { filename: ["PA Mss 42"] } }
+      let(:attrs) { { fulltext_link: ["PA Mss 42"] } }
       let(:files_dirs) { [File.join(fixture_path, "cylinders")] }
 
       it "continues without an error" do

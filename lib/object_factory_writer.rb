@@ -51,7 +51,7 @@ class ObjectFactoryWriter
     {
       language: [],
       created_start: [],
-      fulltext_link: [],
+      fulltext_link: (traject_context[:fulltext_link] || []),
     }.merge(traject_context)
       .merge(transform_traject_attrs(traject_context))
       .merge(etd_attributes)
@@ -92,8 +92,8 @@ class ObjectFactoryWriter
     return @etd if @etd
     return [] if @settings[:files_dirs].blank?
 
-    file_groups = attributes[:filename].map do |name|
-      match = name.match('Cylinder\ (\d+)')
+    file_groups = attributes[:fulltext_link].map do |name|
+      match = name.match(/.*Cylinder(\d+)$/)
       next if match.blank?
       cylinder_number = match[1]
 

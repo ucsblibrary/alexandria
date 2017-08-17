@@ -78,6 +78,3 @@ to_field "system_number", extract_marc("001")
 to_field "table_of_contents", extract_marc("505agrtu68")
 to_field "title", extract_marc("245abnp", trim_punctuation: true)
 to_field "work_type", extract_work_type
-
-# This is the cylinder name
-to_field "filename", extract_marc("852j")
