@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
   def destroy
     log_out
     begin
-      redirect_to :back
+      redirect_back(fallback_location: main_app.root_path)
     rescue ActionController::RedirectBackError
       redirect_to root_url
     end

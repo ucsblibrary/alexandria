@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
     if params[:redirect]
       redirect_to params[:redirect]
     else
-      redirect_to :back
+      redirect_back(fallback_location: main_app.root_path)
     end
   end
 
@@ -52,11 +52,8 @@ class ApplicationController < ActionController::Base
 
   def deny_access(exception)
     if logged_in?
-      begin
-        redirect_to :back, alert: exception.message
-      rescue ActionController::RedirectBackError
-        redirect_to main_app.root_path
-      end
+      redirect_back(alert: exception.message,
+                    fallback_location: main_app.root_path)
     else
       redirect_to main_app.new_user_session_path, alert: exception.message
     end
