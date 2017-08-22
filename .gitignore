@@ -38,7 +38,6 @@ public/assets
 /uploads
 
 # Ignore all logfiles and tempfiles.
-*.pid
 *.log
 /logs
 /log/*

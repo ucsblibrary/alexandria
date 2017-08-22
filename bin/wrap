@@ -7,8 +7,10 @@ cd "$(dirname "${BASH_SOURCE[0]}")/../"
 RAILS_ENV=${RAILS_ENV:-"development"}
 
 for service in solr fcrepo; do
-  if [[ -f "${service}-${RAILS_ENV}.pid" ]]; then
-    pid=$(cat "${service}-${RAILS_ENV}.pid")
+  pidfile="tmp/pids/${service}-${RAILS_ENV}.pid"
+
+  if [[ -f "${pidfile}" ]]; then
+    pid=$(cat "${pidfile}")
     echo "ERROR: a ${RAILS_ENV} instance of ${service}_wrapper is already running (Process ID $pid)" >&2
     exit 1
   fi
@@ -17,5 +19,5 @@ for service in solr fcrepo; do
   pid="$!"
   echo "Running ${service}_wrapper with Process ID $pid"
   echo "Logging to log/${service}-${RAILS_ENV}.log"
-  echo "$pid" > "${service}-${RAILS_ENV}.pid"
+  echo "$pid" > "${pidfile}"
 done
