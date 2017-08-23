@@ -1,17 +1,30 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-$stdout.sync = true # flush output immediately
+def find_paths(params, extension = nil)
+  return [] if params.blank?
 
-# If there are no options given, invoke help
-ARGV << "-h" if ARGV.empty?
+  params.map do |arg|
+    next arg if File.file?(arg)
+
+    next unless Dir.exist?(arg)
+
+    Find.find(arg).map do |path|
+      next if File.directory?(path)
+      next if extension.present? && File.extname(path) != extension
+      path
+    end
+  end.flatten.compact
+end
+
+$stdout.sync = true # flush output immediately
 
 puts "Loading environment..."
 require File.expand_path("../../config/environment", __FILE__)
-
 puts "Running in #{Rails.env} mode..."
 
-require "trollop"
+# If there are no options given, invoke help
+ARGV << "-h" if ARGV.empty?
 
 options = Trollop.options do
   banner <<~EOS
@@ -55,43 +68,18 @@ metadata_ext = case options[:format]
                  ".xml"
                end
 
-# For each argument passed to --metadata, if it's a file, add it
-# to the array, otherwise drill down and add each file within to
-# the array
-meta = (options[:metadata] || []).map do |arg|
-  if File.file?(arg)
-    arg
-  else
-    next unless Dir.exist?(arg)
-    files = []
-    Find.find(arg) do |path|
-      next unless File.extname(path) == metadata_ext
-      files << path
-    end
-    files
-  end
-end.flatten
+# For each argument passed to --metadata, if it's a file with the
+# correct extension, add it to the array, otherwise drill down and add
+# each file within to the array
+meta = find_paths(options[:metadata], metadata_ext)
 
-# For each argument passed to --data, if it's a file, add it to
-# the array, otherwise drill down and add each file within to the
-# array
 data = if options[:format] == "cyl"
-         options[:data] # Just pass the options through
+         # Just pass the options through, the {ObjectFactoryWriter}
+         # currently does the path processing
+         options[:data]
+       else
+         find_paths(options[:data])
        end
-
-data ||= (options[:data] || []).map do |arg|
-  if File.file?(arg)
-    arg
-  else
-    next unless Dir.exist?(arg)
-    datas = []
-    Find.find(arg) do |path|
-      next if File.directory?(path)
-      datas << path
-    end
-    datas
-  end
-end.flatten.compact
 
 if data.empty?
   puts
