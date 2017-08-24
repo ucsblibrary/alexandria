@@ -20,7 +20,6 @@ class ObjectFactoryWriter
     @etd = @settings["etd"]
     @local_collection_id = @settings["local_collection_id"]
     @logger = @settings["logger"]
-    @verbose = @settings["verbose"]
   end
 
   def serialize(_context); end
@@ -105,17 +104,13 @@ class ObjectFactoryWriter
       end.flatten
     end.reject(&:blank?)
 
-    print_file_names(file_groups)
+    logger.debug "Files to attach:"
+    file_groups.flatten.each { |f| logger.debug f.inspect }
+
     file_groups
   end
 
   private
-
-    def print_file_names(file_groups)
-      return unless @verbose
-      logger.debug "Files to attach:"
-      file_groups.flatten.each { |f| logger.debug f.inspect }
-    end
 
     def build_object(metadata, data)
       metadata.delete("created_start")

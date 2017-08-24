@@ -49,9 +49,7 @@ class Importer::Cylinder
     @indexer = Traject::Indexer.new
     @indexer.load_config_file("lib/traject/audio_config.rb")
     @indexer.settings(local_collection_id: @collection.id) if @collection
-    @indexer.settings(files_dirs: files_dirs,
-                      logger: logger,
-                      verbose: options[:verbose])
+    @indexer.settings(files_dirs: files_dirs, logger: logger)
     @indexer
   end
 
@@ -67,7 +65,8 @@ class Importer::Cylinder
             "greater than total records to ingest"
     end
 
-    print_files_dirs
+    logger.debug "Audio files directories:"
+    files_dirs.each { |d| logger.debug d }
 
     marcs.each_with_index do |record, count|
       next if options[:skip] && options[:skip] > count
@@ -78,7 +77,9 @@ class Importer::Cylinder
         next
       end
 
-      print_attributes(record, count + 1)
+      logger.debug "Object attributes for item #{count + 1}:"
+      logger.debug record.class
+      logger.debug record
 
       start_record = Time.zone.now
       indexer.writer.put attributes(record, indexer)
@@ -121,18 +122,5 @@ class Importer::Cylinder
       raise CollectionNotFound,
             "Not Found: Collection with accession number " +
             COLLECTION_ATTRIBUTES[:accession_number].to_s
-    end
-
-    def print_attributes(record, item_number)
-      return unless options[:verbose]
-      logger.debug "Object attributes for item #{item_number}:"
-      logger.debug record.class
-      logger.debug record
-    end
-
-    def print_files_dirs
-      return unless options[:verbose]
-      logger.debug "Audio files directories:"
-      files_dirs.each { |d| logger.debug d }
     end
 end

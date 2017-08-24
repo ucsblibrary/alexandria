@@ -19,20 +19,29 @@ module Importer::CLI
     end.flatten.compact
   end
 
-  def self.make_logger(logfile)
-    logger = Logger.new(logfile)
-    $stderr.reopen(logfile, "a")
+  def self.make_logger(output:, level: "INFO")
+    logger = Logger.new(output)
+    logger.level = begin
+                     "Logger::#{level.upcase}".constantize
+                   rescue NameError
+                     logger.warn "#{level} isn't a valid log level. "\
+                                 "Defaulting to INFO."
+                     Logger::INFO
+                   end
 
     ActiveSupport::Deprecation.behavior = lambda do |message, backtrace|
       logger.warn message
       logger.warn backtrace
     end
 
+    # For deprecation warnings from gems
+    $stderr.reopen(output, "a")
+
     logger
   end
 
   def self.run(options)
-    logger = make_logger(options[:logfile])
+    logger = make_logger(output: options[:logfile], level: options[:verbosity])
 
     # For each argument passed to --metadata, if it's a file with the
     # correct extension, add it to the array, otherwise drill down and add
@@ -50,12 +59,10 @@ module Importer::CLI
 
     logger.warn "No data sources specified." if data.empty?
 
-    if options[:verbose]
-      logger.debug "Metadata inputs:"
-      meta.each { |m| logger.debug m }
-      logger.debug "Data inputs:"
-      data.each { |d| logger.debug d }
-    end
+    logger.debug "Metadata inputs:"
+    meta.each { |m| logger.debug m }
+    logger.debug "Data inputs:"
+    data.each { |d| logger.debug d }
 
     ######################
     # Begin ingest process

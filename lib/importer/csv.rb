@@ -45,7 +45,7 @@ module Importer::CSV
   def self.ingest_sheet(head:,
                         tail:,
                         data: [],
-                        options: { verbose: false, skip: 0 },
+                        options: { skip: 0 },
                         logger: Logger.new(STDOUT))
     ingested = 0
 
@@ -59,7 +59,6 @@ module Importer::CSV
         ingest_row(head: head,
                    row: row,
                    data: data,
-                   verbose: options[:verbose],
                    logger: logger)
 
         ingested += 1
@@ -77,7 +76,6 @@ module Importer::CSV
   def self.ingest_row(head:,
                       row:,
                       data: [],
-                      verbose: false,
                       logger: Logger.new(STDOUT))
     # Check that all URIs are well formed
     row.each { |field| ::Fields::URI.check_uri(field) }
@@ -96,12 +94,10 @@ module Importer::CSV
               end
             end
 
-    if verbose
-      logger.debug "Object attributes:"
-      attrs.each { |k, v| logger.debug "#{k}: #{v}" }
-      logger.debug "Associated files:"
-      files.each { |f| logger.debug f }
-    end
+    logger.debug "Object attributes:"
+    attrs.each { |k, v| logger.debug "#{k}: #{v}" }
+    logger.debug "Associated files:"
+    files.each { |f| logger.debug f }
 
     start_time = Time.zone.now
 

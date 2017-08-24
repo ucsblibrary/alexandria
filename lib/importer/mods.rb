@@ -23,10 +23,7 @@ module Importer::MODS
       next if options[:number] && options[:number] <= ingests
 
       start_record = Time.zone.now
-      ingest_mod(metadata: metadatum,
-                 data: data,
-                 options: options,
-                 logger: logger)
+      ingest_mod(metadata: metadatum, data: data, logger: logger)
       end_record = Time.zone.now
 
       logger.info "Ingested record #{ingests + 1} of #{meta.length} "\
@@ -45,10 +42,7 @@ module Importer::MODS
     raise IngestError, reached: ingests
   end
 
-  def self.ingest_mod(metadata:,
-                      data:,
-                      options: {},
-                      logger: Logger.new(STDOUT))
+  def self.ingest_mod(metadata:, data:, logger: Logger.new(STDOUT))
     selected_data = data.select do |f|
       # FIXME: find a more reliable test
       meta_base = File.basename(metadata, ".xml")
@@ -56,12 +50,10 @@ module Importer::MODS
       data_base.include?(meta_base) || meta_base.include?(data_base)
     end
 
-    if options[:verbose]
-      logger.debug "Object metadata:"
-      logger.debug metadata
-      logger.debug "Associated files:"
-      selected_data.each { |f| logger.debug f }
-    end
+    logger.debug "Object metadata:"
+    logger.debug metadata
+    logger.debug "Associated files:"
+    selected_data.each { |f| logger.debug f }
 
     parser = Parser.new(metadata, logger)
 

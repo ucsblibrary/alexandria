@@ -29,13 +29,11 @@ EOS
   opt :metadata, "Metadata file(s)/directory", type: :strings
   opt :number, "Only ingest N records", type: :integer
   opt :skip, "Skip the first N records", default: 0
-  opt :verbose, "Provide additional output", default: false
-  opt :logfile, "/full/path/to/logfile.log (CSV imports only)", type: :string
-  opt :loglevel,
-      "Log level: DEBUG,INFO,WARN or ERROR (CSV imports only)",
+  opt :verbosity,
+      "Log verbosity: DEBUG, INFO, WARN, ERROR",
       type: :string,
-      default: "DEBUG",
-      short: "-g"
+      default: "INFO",
+      short: "-v"
 end
 
 FileUtils.mkdir_p Settings.log_dir

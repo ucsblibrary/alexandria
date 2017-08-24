@@ -100,7 +100,6 @@ module Importer::ETD
         ingest_etd(record: record,
                    data: files,
                    collection: collection,
-                   options: options,
                    logger: Logger.new(STDOUT))
       rescue => e
         logger.error e.message
@@ -129,7 +128,6 @@ module Importer::ETD
   def self.ingest_etd(record:,
                       data:,
                       collection:,
-                      options: {},
                       logger: Logger.new(STDOUT))
     # The 956$f MARC field holds the name of the PDF from
     # ProQuest; we need this field to match data with metadata
@@ -139,12 +137,10 @@ module Importer::ETD
       return
     end
 
-    if options[:verbose]
-      logger.debug "Object attributes:"
-      logger.debug record
-      logger.debug "Associated data for item:"
-      logger.debug data
-    end
+    logger.debug "Object attributes:"
+    logger.debug record
+    logger.debug "Associated data for item:"
+    logger.debug data
 
     indexer = Traject::Indexer.new
     indexer.load_config_file("lib/traject/etd_config.rb")
