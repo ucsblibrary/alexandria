@@ -22,7 +22,7 @@ module Proquest
 
     # -j: flatten directory structure in `dest'
     # -o: overwrite existing files in `dest'
-    system "unzip", "-j", "-o", zipfile, "-d", dest
+    system "unzip", "-qq", "-j", "-o", zipfile, "-d", dest
 
     # https://github.library.ucsb.edu/ADRL/alexandria/issues/45#issuecomment-101
     {
