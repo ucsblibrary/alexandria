@@ -1,27 +1,12 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-def find_paths(params, extension = nil)
-  return [] if params.blank?
-
-  params.map do |arg|
-    next arg if File.file?(arg)
-
-    next unless Dir.exist?(arg)
-
-    Find.find(arg).map do |path|
-      next if File.directory?(path)
-      next if extension.present? && File.extname(path) != extension
-      path
-    end
-  end.flatten.compact
-end
-
 $stdout.sync = true # flush output immediately
 
 puts "Loading environment..."
 require File.expand_path("../../config/environment", __FILE__)
 puts "Running in #{Rails.env} mode..."
+require File.expand_path("../../lib/importer", __FILE__)
 
 # If there are no options given, invoke help
 ARGV << "-h" if ARGV.empty?
@@ -53,85 +38,16 @@ EOS
       short: "-g"
 end
 
-require File.expand_path("../../lib/importer", __FILE__)
-AdminPolicy.ensure_admin_policy_exists
+FileUtils.mkdir_p Settings.log_dir
+logfile = Pathname.new(Settings.log_dir).join(
+  "#{options[:format]}-#{Time.zone.now.strftime("%Y-%m-%d_%H.%M.%S")}.log"
+)
 
-require "fileutils"
-require "find"
-require "json"
-require "traject"
-
-metadata_ext = case options[:format]
-               when "csv"
-                 ".csv"
-               else
-                 ".xml"
-               end
-
-# For each argument passed to --metadata, if it's a file with the
-# correct extension, add it to the array, otherwise drill down and add
-# each file within to the array
-meta = find_paths(options[:metadata], metadata_ext)
-
-data = if options[:format] == "cyl"
-         # Just pass the options through, the {ObjectFactoryWriter}
-         # currently does the path processing
-         options[:data]
-       else
-         find_paths(options[:data])
-       end
-
-if data.empty?
-  puts
-  puts "\033[1;39mWarning: no data sources specified.\033[0m"
-  puts
+pid = fork do
+  Importer::CLI.run(options.merge(logfile: logfile))
 end
 
-if options[:verbose]
-  puts
-  puts "Metadata inputs:"
-  meta.each { |m| puts m }
-  puts
-  puts "Data inputs:"
-  data.each { |d| puts d }
-end
+puts "Ingesting in the background with PID #{pid}"
+puts "Logging to #{logfile}"
 
-######################
-# Begin ingest process
-######################
-start_overall = Time.zone.now
-ingests = 0
-
-puts "Import start time: #{start_overall.strftime("%Y-%m-%d %H:%M:%S")}"
-
-begin
-  case options[:format]
-  when "csv"
-    ingests = Importer::CSV.import(meta, data, options)
-  when "mods"
-    ingests = Importer::MODS.import(meta, data, options)
-  when "etd"
-    ingests = Importer::ETD.import(meta, data, options)
-  when "cyl"
-    begin
-      importer = Importer::Cylinder.new(meta, data, options)
-      importer.run
-    rescue => e
-      puts e
-      puts e.backtrace
-      raise IngestError,
-            reached: options[:skip] + importer.imported_records_count
-    ensure
-      ingests = importer.imported_records_count
-    end
-  end # case/when
-
-  end_overall = Time.zone.now
-
-  puts "Ingested #{ingests} records in "\
-       "#{(end_overall - start_overall) / 60} minutes"
-rescue IngestError => e
-  puts "To continue this ingest, re-run the command with "\
-       "`--skip #{e.reached}`"
-  exit 1
-end
+Process.detach pid

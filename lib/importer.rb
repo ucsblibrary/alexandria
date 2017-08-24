@@ -8,6 +8,8 @@ end
 
 module Importer
   extend ActiveSupport::Autoload
+
+  autoload :CLI
   autoload :CSV
   autoload :Cylinder
   autoload :ETD

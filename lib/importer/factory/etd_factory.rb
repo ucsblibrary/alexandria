@@ -39,7 +39,7 @@ module Importer::Factory
         end
 
         file_set = FileSet.new(admin_policy_id: object.admin_policy_id)
-        Rails.logger.debug "Attaching binary #{path}"
+        logger.info "Attaching binary #{path}"
         Hydra::Works::AddFileToFileSet.call(file_set,
                                             File.new(path),
                                             :original_file)

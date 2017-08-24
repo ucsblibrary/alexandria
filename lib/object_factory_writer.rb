@@ -13,11 +13,14 @@ class ObjectFactoryWriter
     RDF::URI("http://id.loc.gov/vocabulary/resourceTypes/txt"),
   ].freeze
 
+  attr_reader :logger
+
   def initialize(arg_settings)
     @settings = Traject::Indexer::Settings.new(arg_settings)
     @etd = @settings["etd"]
-    @verbose = @settings["verbose"]
     @local_collection_id = @settings["local_collection_id"]
+    @logger = @settings["logger"]
+    @verbose = @settings["verbose"]
   end
 
   def serialize(_context); end
@@ -29,8 +32,8 @@ class ObjectFactoryWriter
     relators = parse_relators(context.delete("names"),
                               context.delete("relators"))
     if relators.blank?
-      $stderr.puts "Skipping #{context["identifier"]} : ERROR: "\
-                   "Names in field 720a don't match relators in field 720e"
+      logger.warn "Skipping #{context["identifier"]}: "\
+                  "Names in field 720a don't match relators in field 720e"
       return
     end
 
@@ -110,8 +113,8 @@ class ObjectFactoryWriter
 
     def print_file_names(file_groups)
       return unless @verbose
-      puts "Files to attach:"
-      file_groups.flatten.each { |f| puts f.inspect }
+      logger.debug "Files to attach:"
+      file_groups.flatten.each { |f| logger.debug f.inspect }
     end
 
     def build_object(metadata, data)
@@ -125,7 +128,7 @@ class ObjectFactoryWriter
         metadata[:local_collection_id] = [@local_collection_id]
       end
 
-      factory(work_type).new(metadata, data).run
+      factory(work_type).new(metadata, data, logger).run
     end
 
     def factory(work_type)

@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 module Importer::MODS
-  # @param [String] meta
+  # @param [Array<String>] meta
   # @param [Array<String>] data
   # @param [Hash] options See the options specified with Trollop in {bin/ingest}
-  # @return [Image, Collection]
-  def self.import(meta, data, options)
+  # @param [Logger] logger
+  # @return [Integer]
+  def self.import(meta:, data:, options:, logger: Logger.new(STDOUT))
     if options[:skip] >= meta.length
       raise ArgumentError,
             "Number of records skipped (#{options[:skip]}) "\
@@ -22,26 +23,32 @@ module Importer::MODS
       next if options[:number] && options[:number] <= ingests
 
       start_record = Time.zone.now
-      ingest_mod(metadata: metadatum, data: data, options: options)
+      ingest_mod(metadata: metadatum,
+                 data: data,
+                 options: options,
+                 logger: logger)
       end_record = Time.zone.now
 
-      puts "Ingested record #{ingests + 1} of #{meta.length} "\
-           "in #{end_record - start_record} seconds"
+      logger.info "Ingested record #{ingests + 1} of #{meta.length} "\
+                  "in #{end_record - start_record} seconds"
 
       ingests += 1
     end
 
     ingests
   rescue => e
-    puts e
-    puts e.backtrace
+    logger.error e
+    logger.error e.backtrace
     raise IngestError, reached: ingests
   rescue Interrupt
-    puts "\nIngest stopped, cleaning up..."
+    logger.error "\nIngest stopped, cleaning up..."
     raise IngestError, reached: ingests
   end
 
-  def self.ingest_mod(metadata:, data:, options: {})
+  def self.ingest_mod(metadata:,
+                      data:,
+                      options: {},
+                      logger: Logger.new(STDOUT))
     selected_data = data.select do |f|
       # FIXME: find a more reliable test
       meta_base = File.basename(metadata, ".xml")
@@ -50,19 +57,18 @@ module Importer::MODS
     end
 
     if options[:verbose]
-      puts
-      puts "Object metadata:"
-      puts metadata
-      puts
-      puts "Associated files:"
-      selected_data.each { |f| puts f }
+      logger.debug "Object metadata:"
+      logger.debug metadata
+      logger.debug "Associated files:"
+      selected_data.each { |f| logger.debug f }
     end
 
-    parser = Parser.new(metadata)
+    parser = Parser.new(metadata, logger)
 
     ::Importer::Factory.for(parser.model.to_s).new(
       parser.attributes.merge(admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID),
-      selected_data
+      selected_data,
+      logger
     ).run
   end
 
@@ -71,8 +77,11 @@ module Importer::MODS
 
     NAMESPACES = { "mods" => Mods::MODS_NS }.freeze
 
-    def initialize(file)
+    attr_reader :logger
+
+    def initialize(file, logger)
       @file = file
+      @logger = logger
     end
 
     def mods
@@ -235,14 +244,14 @@ module Importer::MODS
         key = if (value_uri = node.role.roleTerm.valueURI.first)
                 property_name_for_uri[RDF::URI(value_uri)]
               else
-                $stderr.puts "no role was specified "\
-                             "for name #{node.namePart.text}"
+                logger.info "No role was specified "\
+                            "for name #{node.namePart.text}"
                 :contributor
               end
         unless key
           key = :contributor
-          $stderr.puts "the specified role for name #{node.namePart.text} "\
-                       "is not a valid marcrelator role"
+          logger.warn "The specified role for name #{node.namePart.text} "\
+                         "is not a valid marcrelator role"
         end
         relations[key] ||= []
         val = if uri.blank?
@@ -355,7 +364,7 @@ module Importer::MODS
           node.title.map do |title|
             value = title.text
             unless type == alternative
-              Rails.logger.debug(
+              logger.info(
                 "Transformation: \"#{type} title\" "\
                 "will be stored as \"#{alternative} title\": #{value}"
               )

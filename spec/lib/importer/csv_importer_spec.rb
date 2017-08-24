@@ -11,11 +11,6 @@ describe Importer::CSV do
     AdminPolicy.ensure_admin_policy_exists
   end
 
-  before do
-    described_class.log_location(logfile)
-  end
-
-  let(:logfile) { "#{fixture_path}/logs/csv_import.log" }
   let(:data) { Dir["#{fixture_path}/images/*"] }
 
   context "when the model is specified" do

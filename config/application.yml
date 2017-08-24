@@ -5,6 +5,7 @@ defaults: &defaults
   ezid_port: 443
   ffmpeg_path: <%= ENV['FFMPEG_PATH'] || "ffmpeg" %>
   internal_local_vocab_root: http://<%= Rails.application.config.host_name %>
+  log_dir: <%= Rails.root.join("log") %>
   minter_state: <%= ENV['ADRL_MINTER_STATE'] || "#{Rails.root}/tmp/minter-state" %>
   riiif_fedora_cache: <%= Rails.root.join "tmp", "network_files" %>
   thumbnails:
@@ -32,6 +33,7 @@ production:
   <<: *defaults
   derivatives_dir: /opt/alexandria/derivatives
   download_root: /opt/download_root
+  ffmpeg_path: /usr/local/bin/ffmpeg
+  log_dir: /var/log/samvera
   minter_state: /opt/alexandria/shared/minter-state
   uploads_dir: /opt/alexandria/uploads
-  ffmpeg_path: /usr/local/bin/ffmpeg

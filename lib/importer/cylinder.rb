@@ -14,20 +14,31 @@ class Importer::Cylinder
   # Keep track of how many cylinder records we have imported.
   attr_reader :imported_records_count
 
+  attr_reader :logger
+
   # Attributes for the cylinders collection
   COLLECTION_ATTRIBUTES = { accession_number: ["Cylinders"] }.freeze
 
-  def initialize(metadata_files, files_dirs, options = {})
+  # @param [Array<String>] metadata_files
+  # @param [Array<String>] files_dirs
+  # @param [Hash] options See the options specified with Trollop in {bin/ingest}
+  # @param [Logger] logger
+  # @return [Collection]
+  def initialize(meta:,
+                 data:,
+                 options: {},
+                 logger: Logger.new(STDOUT))
     # flush output immediately
     $stdout.sync = true
 
-    @metadata_files = metadata_files
-    @files_dirs = Array(files_dirs)
-    @options = options
+    @files_dirs = Array(data)
     @imported_records_count = 0
+    @logger = logger
+    @metadata_files = meta
+    @options = options
 
     @collection = Importer::Factory::CollectionFactory.new(
-      COLLECTION_ATTRIBUTES
+      COLLECTION_ATTRIBUTES, [], logger
     ).find
   end
 
@@ -37,9 +48,10 @@ class Importer::Cylinder
     # https://github.com/traject/traject/blob/master/lib/traject/indexer.rb#L101
     @indexer = Traject::Indexer.new
     @indexer.load_config_file("lib/traject/audio_config.rb")
-    @indexer.settings(files_dirs: files_dirs)
-    @indexer.settings(verbose: options[:verbose])
     @indexer.settings(local_collection_id: @collection.id) if @collection
+    @indexer.settings(files_dirs: files_dirs,
+                      logger: logger,
+                      verbose: options[:verbose])
     @indexer
   end
 
@@ -62,7 +74,7 @@ class Importer::Cylinder
       break if options[:number] && options[:number] <= imported_records_count
 
       if record["024"].blank? || record["024"]["a"].blank?
-        puts "Skipping record #{count + 1}: No ARK found"
+        logger.info "Skipping record #{count + 1}: No ARK found"
         next
       end
 
@@ -74,13 +86,13 @@ class Importer::Cylinder
 
       @imported_records_count += 1
 
-      puts "Ingested record #{count + 1} of #{cylinders} "\
-           "in #{end_record - start_record} seconds"
+      logger.info "Ingested record #{count + 1} of #{cylinders} "\
+                  "in #{end_record - start_record} seconds"
     end # marcs.each_with_index
   ensure
     indexer.writer.close if indexer && indexer.writer
     if @collection
-      puts "Updating collection index"
+      logger.info "Updating collection index"
       @collection.update_index
     end
   end
@@ -102,13 +114,10 @@ class Importer::Cylinder
   private
 
     def abort_import
-      puts
-      puts "ABORTING IMPORT:  Before you can import cylinder records, "\
-           "the cylinders collection must exist.  "\
-           "Please import the cylinders collection record first, "\
-           "then re-try this import."
-      puts
-
+      logger.error "ABORTING IMPORT:  Before you can import cylinder records, "\
+                   "the cylinders collection must exist.  "\
+                   "Please import the cylinders collection record first, "\
+                   "then re-try this import."
       raise CollectionNotFound,
             "Not Found: Collection with accession number " +
             COLLECTION_ATTRIBUTES[:accession_number].to_s
@@ -116,18 +125,14 @@ class Importer::Cylinder
 
     def print_attributes(record, item_number)
       return unless options[:verbose]
-      puts
-      puts "Object attributes for item #{item_number}:"
-      puts record.class
-      puts record
-      puts
+      logger.debug "Object attributes for item #{item_number}:"
+      logger.debug record.class
+      logger.debug record
     end
 
     def print_files_dirs
       return unless options[:verbose]
-      puts
-      puts "Audio files directories:"
-      files_dirs.each { |d| puts d }
-      puts
+      logger.debug "Audio files directories:"
+      files_dirs.each { |d| logger.debug d }
     end
 end

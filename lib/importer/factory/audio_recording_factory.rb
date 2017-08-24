@@ -54,8 +54,8 @@ module Importer::Factory
       end.compact.first
 
       if original.nil?
-        $stderr.puts "Could not extract cylinder number "\
-                     "from: #{filegroup.join(", ")}"
+        logger.warn "Could not extract cylinder number "\
+                       "from: #{filegroup.join(", ")}"
         return nil
       end
 
@@ -64,7 +64,7 @@ module Importer::Factory
       end
 
       if restored.nil?
-        $stderr.puts "Missing restored WAV in #{filegroup.join(", ")}"
+        logger.warn "Missing restored WAV in #{filegroup.join(", ")}"
         return nil
       end
 
@@ -80,10 +80,10 @@ module Importer::Factory
       end.first
 
       if orig_path
-        Rails.logger.debug "Attaching original #{orig_path}"
+        logger.info "Attaching original #{orig_path}"
         actor.create_content(File.new(orig_path))
       else
-        $stderr.puts "No original file provided for Cylinder #{number}"
+        logger.warn "No original file provided for Cylinder #{number}"
       end
     end
 
@@ -96,10 +96,10 @@ module Importer::Factory
       end.first
 
       if rest_path
-        Rails.logger.debug "Attaching restored #{rest_path}"
+        logger.info "Attaching restored #{rest_path}"
         actor.create_content(File.new(rest_path), "restored")
       else
-        $stderr.puts "No restored file provided for Cylinder #{number}"
+        logger.warn "No restored file provided for Cylinder #{number}"
       end
     end
 

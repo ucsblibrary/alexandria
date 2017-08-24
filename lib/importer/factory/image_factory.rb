@@ -12,11 +12,11 @@ module Importer::Factory
 
       files.each do |f|
         unless File.file?(f)
-          $stderr.puts "No file exists at #{f}"
+          logger.error "No file exists at #{f}"
           raise IngestError
         end
         file_set = FileSet.new(admin_policy_id: object.admin_policy_id)
-        Rails.logger.debug "Attaching binary #{File.basename(f)}"
+        logger.info "Attaching binary #{File.basename(f)}"
         Hydra::Works::AddFileToFileSet.call(file_set,
                                             File.new(f),
                                             :original_file)

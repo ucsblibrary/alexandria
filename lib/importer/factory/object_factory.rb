@@ -8,11 +8,12 @@ module Importer::Factory
     define_model_callbacks :save, :create
     class_attribute :klass, :system_identifier_field
 
-    attr_reader :attributes, :files, :object
+    attr_reader :attributes, :files, :object, :logger
 
-    def initialize(attributes, files = [])
+    def initialize(attributes, files = [], logger = Logger.new(STDOUT))
       @attributes = attributes
       @files = files
+      @logger = logger
     end
 
     def run
@@ -61,7 +62,7 @@ module Importer::Factory
       # {AdminPolicy} of the ETD itself. Currently on ETD ingests,
       # `files' is never empty, so for now this is OK.
       if files.empty?
-        $stderr.puts "No files provided for #{object.id}"
+        logger.debug "No files provided for #{object.id}"
       else
         attach_files(object, files)
         render_thumbnails(object)
@@ -78,7 +79,8 @@ module Importer::Factory
       # afterwards
       hydrate_ark!(identifier) if identifier.present?
 
-      log_created(object)
+      logger.info "Created #{klass.model_name.human} #{object.id} "\
+                  "(#{Array(attributes[system_identifier_field]).first})"
     end
 
     def update
@@ -95,7 +97,7 @@ module Importer::Factory
       # {AdminPolicy} of the ETD itself. Currently on ETD ingests,
       # `files' is never empty, so for now this is OK.
       if files.empty?
-        $stderr.puts "No files provided for #{object.id}"
+        logger.debug "No files provided for #{object.id}"
       else
         attach_files(object, files)
         render_thumbnails(object)
@@ -104,7 +106,9 @@ module Importer::Factory
       run_callbacks(:save) do
         object.save!
       end
-      log_updated(object)
+
+      logger.info "Updated #{klass.model_name.human} #{object.id} "\
+                  "(#{Array(attributes[system_identifier_field]).first})"
     end
 
     # Overridden in classes that inherit from ObjectFactory
@@ -196,16 +200,6 @@ module Importer::Factory
       identifier[:erc_who] = contributors.join("; ") if contributors.present?
 
       identifier.save
-    end
-
-    def log_created(obj)
-      Rails.logger.debug "Created #{klass.model_name.human} #{obj.id} "\
-                         "(#{Array(attributes[system_identifier_field]).first})"
-    end
-
-    def log_updated(obj)
-      Rails.logger.debug "Updated #{klass.model_name.human} #{obj.id} "\
-                         "(#{Array(attributes[system_identifier_field]).first})"
     end
 
     private

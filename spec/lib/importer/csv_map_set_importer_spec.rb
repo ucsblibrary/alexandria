@@ -10,8 +10,6 @@ describe Importer::CSV do
     ActiveFedora::Cleaner.clean!
     AdminPolicy.ensure_admin_policy_exists
 
-    described_class.log_location("#{fixture_path}/logs/csv_map_set_import.log")
-
     VCR.use_cassette("csv_map_set_importer") do
       described_class.import(
         ["#{fixture_path}/csv/fake_brazil_data.csv"],

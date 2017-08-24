@@ -2,22 +2,18 @@
 
 require File.expand_path("../factory", __FILE__)
 
-# Import CSV files
+# Import objects from CSV metadata files
 module Importer::CSV
-  include Importer::ImportLogger
-
   # Match headers like "lc_subject_type"
   TYPE_HEADER_PATTERN = /\A.*_type\Z/
 
-  # The method called by bin/ingest
-  # @param [Array] meta
-  # @param [Array] data
+  # @param [Array<String>] meta
+  # @param [Array<String>] data
   # @param [Hash] options See the options specified with Trollop in {bin/ingest}
-  # @return [Int] The number of records ingested
-  def self.import(meta, data, options)
-    parse_log_options(options)
-
-    logger.debug "Starting ingest with options #{options.inspect}"
+  # @param [Logger] log
+  # @return [Integer] The number of records ingested
+  def self.import(meta:, data:, options:, logger: Logger.new(STDOUT))
+    logger.info "Starting ingest with options #{options.inspect}"
 
     ingested = 0
 
@@ -36,7 +32,8 @@ module Importer::CSV
         ingested += ingest_sheet(head: head,
                                  tail: tail,
                                  data: data,
-                                 options: options)
+                                 options: options,
+                                 logger: logger)
       rescue IngestError => e
         raise IngestError, reached: (options[:skip] + ingested + e.reached)
       end
@@ -48,7 +45,8 @@ module Importer::CSV
   def self.ingest_sheet(head:,
                         tail:,
                         data: [],
-                        options: { verbose: false, skip: 0 })
+                        options: { verbose: false, skip: 0 },
+                        logger: Logger.new(STDOUT))
     ingested = 0
 
     tail.drop(options[:skip]).each_with_index do |row, i|
@@ -61,7 +59,8 @@ module Importer::CSV
         ingest_row(head: head,
                    row: row,
                    data: data,
-                   verbose: options[:verbose])
+                   verbose: options[:verbose],
+                   logger: logger)
 
         ingested += 1
       rescue Interrupt
@@ -75,7 +74,11 @@ module Importer::CSV
     ingested
   end
 
-  def self.ingest_row(head:, row:, data: [], verbose: false)
+  def self.ingest_row(head:,
+                      row:,
+                      data: [],
+                      verbose: false,
+                      logger: Logger.new(STDOUT))
     # Check that all URIs are well formed
     row.each { |field| ::Fields::URI.check_uri(field) }
 
@@ -94,10 +97,10 @@ module Importer::CSV
             end
 
     if verbose
-      puts "Object attributes:"
-      attrs.each { |k, v| puts "#{k}: #{v}" }
-      puts "Associated files:"
-      files.each { |f| puts f }
+      logger.debug "Object attributes:"
+      attrs.each { |k, v| logger.debug "#{k}: #{v}" }
+      logger.debug "Associated files:"
+      files.each { |f| logger.debug f }
     end
 
     start_time = Time.zone.now
@@ -110,7 +113,7 @@ module Importer::CSV
     model = determine_model(attrs.delete(:type))
     raise NoModelError if model.blank?
 
-    record = ::Importer::Factory.for(model).new(attrs, files).run
+    record = ::Importer::Factory.for(model).new(attrs, files, logger).run
 
     end_time = Time.zone.now
 
