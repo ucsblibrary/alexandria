@@ -6,8 +6,13 @@ require "importer"
 
 describe Importer::Cylinder do
   let(:files_dir) { File.join(fixture_path, "cylinders") }
-  let(:importer) { described_class.new(meta_files, files_dir, options) }
   let(:options) { { number: 3, skip: 0 } }
+
+  let(:importer) do
+    described_class.new(meta: meta_files,
+                        data: files_dir,
+                        options: options)
+  end
 
   let(:meta_files) do
     [File.join(fixture_path, "cylinders", "cylinder_bit_of_everything.xml"),

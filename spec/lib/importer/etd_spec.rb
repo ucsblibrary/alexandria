@@ -36,7 +36,7 @@ describe Importer::ETD do
         expect(ETD.count).to eq 0
 
         VCR.use_cassette("etd_importer") do
-          described_class.import(meta, data, options)
+          described_class.import(meta: meta, data: data, options: options)
         end
 
         expect(ETD.count).to eq 1
@@ -64,7 +64,9 @@ describe Importer::ETD do
         )
 
         VCR.use_cassette("etd_importer") do
-          described_class.import(meta, data, options)
+          described_class.import(meta: meta,
+                                 data: data,
+                                 options: options)
         end
 
         expect(ETD.count).to eq 1

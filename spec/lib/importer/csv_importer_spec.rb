@@ -12,6 +12,7 @@ describe Importer::CSV do
   end
 
   let(:data) { Dir["#{fixture_path}/images/*"] }
+  let(:logger) { Logger.new(STDOUT) }
 
   context "when the model is specified" do
     let(:metadata) { ["#{fixture_path}/csv/pamss045.csv"] }
@@ -19,7 +20,10 @@ describe Importer::CSV do
     it "creates a new image" do
       VCR.use_cassette("csv_importer") do
         described_class.import(
-          metadata, data, skip: 0
+          meta: metadata,
+          data: data,
+          options: { skip: 0 },
+          logger: logger
         )
       end
       expect(Image.count).to eq(1)

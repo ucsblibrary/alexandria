@@ -5,7 +5,8 @@ require "object_factory_writer"
 
 describe ObjectFactoryWriter do
   let(:files_dirs) { [] }
-  let(:settings) { { files_dirs: files_dirs } }
+  let(:logger) { Logger.new(STDOUT) }
+  let(:settings) { { files_dirs: files_dirs, logger: logger } }
   let(:writer) { described_class.new(settings) }
 
   before do

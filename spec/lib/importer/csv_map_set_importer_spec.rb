@@ -12,9 +12,9 @@ describe Importer::CSV do
 
     VCR.use_cassette("csv_map_set_importer") do
       described_class.import(
-        ["#{fixture_path}/csv/fake_brazil_data.csv"],
-        Dir["#{fixture_path}/maps/*"],
-        skip: 0
+        meta: ["#{fixture_path}/csv/fake_brazil_data.csv"],
+        data: Dir["#{fixture_path}/maps/*"],
+        options: { skip: 0 }
       )
     end
   end
