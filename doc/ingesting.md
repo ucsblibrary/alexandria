@@ -26,39 +26,38 @@ Most ingests can be performed with the `bin/ingest` script:
 
 ```
 $ bin/ingest -h
-Options:
+Command line object ingest for the UCSB Alexandria Digital Library
+
+Example:
+      RAILS_ENV=development ./bin/ingest -f csv -m /data/mss292.csv -d
+/data/mss292-objects
+Usage:
+      RAILS_ENV=[development|test|production] ./bin/ingest [options]
+where [options] are:
   -d, --data=<s+>        Data file(s)/directory
   -f, --format=<s>       Metadata format (csv, mods, etd, cyl)
   -m, --metadata=<s+>    Metadata file(s)/directory
   -n, --number=<i>       Only ingest N records
   -s, --skip=<i>         Skip the first N records (default: 0)
-  -v, --verbose          Provide additional output
+  -v, --verbosity=<s>    Log verbosity: DEBUG, INFO, WARN, ERROR
+                         (default: INFO)
   -h, --help             Show this message
 ```
 
 Multiple files and file globs (e.g., `/path/to/files*`) can be passed
-to the `--data` and `--metadata` arguments.
-
-For large ingests, you’ll need to connect to ADRL from a machine
-that’s always running, or detach the ingest process so you can log out
-of the remote server.  The easiest way is with `nohup`; here’s how
-you’d ingest the sample ETDs on the test server:
+to the `--data` and `--metadata` arguments:
 
 ```shell
 ssh adrl@hostname
 cd /opt/alexandria/current
-RAILS_ENV=production nohup bin/ingest -f etd -d /opt/download_root/proquest/etdadmin_upload_* >> log/ingest-$(date "+%Y.%m.%d").log 2>&1 &
+RAILS_ENV=production bin/ingest -f etd -d /opt/download_root/proquest/etdadmin_upload_*
 ```
 
-That will allow you to log out of the machine, and write the output of
-the ingest script to a file in `/opt/alexandria/current/log/` with
-the date of the ingest.
-
-If you start an ingest with `bin/ingest` that fails or is stopped, it
-will tell you how many records it managed to ingest.  You can begin
-the ingest where it stopped by running `bin/ingest` again and adding
-`--skip N`, where _N_ is the number of records that have already been
-successfully ingested.
+If you start an ingest with `bin/ingest` that fails or is stopped, the
+logs will tell you how many records it managed to ingest.  You can
+begin the ingest where it stopped by running `bin/ingest` again and
+adding `--skip N`, where _N_ is the number of records that have
+already been successfully ingested.
 
 ### Ingesting ETDs
 

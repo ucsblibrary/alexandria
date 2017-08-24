@@ -13,11 +13,10 @@ ARGV << "-h" if ARGV.empty?
 
 options = Trollop.options do
   banner <<~EOS
-
     Command line object ingest for the UCSB Alexandria Digital Library
 
     Example:
-          RAILS_ENV=development ./bin/ingest -f csv -m /data/mss292.csv -d /data/mss292-objects/ -v
+          RAILS_ENV=development ./bin/ingest -f csv -m /data/mss292.csv -d /data/mss292-objects
     Usage:
           RAILS_ENV=[development|test|production] ./bin/ingest [options]
     where [options] are:
