@@ -71,7 +71,7 @@ module Importer::MODS
 
     attr_reader :logger
 
-    def initialize(file, logger)
+    def initialize(file, logger = Logger.new(STDOUT))
       @file = file
       @logger = logger
     end
