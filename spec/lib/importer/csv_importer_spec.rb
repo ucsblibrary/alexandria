@@ -312,7 +312,7 @@ describe Importer::CSV do
 
     it "has a method to check for well-formed URIs" do
       expect do
-        row.each { |f| Fields::URI.check_uri(f) }
+        row.each { |f| ::Fields::URI.check_uri(f) }
       end.to raise_error(ArgumentError, /Invalid URI/)
     end
 
@@ -323,7 +323,7 @@ describe Importer::CSV do
         "[Just a string]",
       ]
       expect do
-        goodrow.each { |f| Fields::URI.check_uri(f) }
+        goodrow.each { |f| ::Fields::URI.check_uri(f) }
       end.not_to raise_error
     end
 

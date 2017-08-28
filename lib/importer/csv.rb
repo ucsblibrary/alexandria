@@ -77,7 +77,7 @@ module Importer::CSV
 
   def self.ingest_row(head:, row:, data: [], verbose: false)
     # Check that all URIs are well formed
-    row.each { |field| Fields::URI.check_uri(field) }
+    row.each { |field| ::Fields::URI.check_uri(field) }
 
     attrs = csv_attributes(head, row)
 
@@ -339,7 +339,7 @@ module Importer::CSV
     key ||= header.to_sym
     processed[key] ||= []
     val = val.strip
-    processed[key] << (Fields::URI.looks_like_uri?(val) ? RDF::URI(val) : val)
+    processed[key] << (::Fields::URI.looks_like_uri?(val) ? RDF::URI(val) : val)
   end
 
   # Fields that have an associated *_type column

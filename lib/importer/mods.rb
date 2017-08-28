@@ -80,7 +80,7 @@ module Importer::MODS
     end
 
     def model
-      @model ||= Fields::MODS.model(mods).constantize
+      @model ||= ::Fields::MODS.model(mods).constantize
     end
 
     def attributes
@@ -131,7 +131,7 @@ module Importer::MODS
         digital_origin: mods.physical_description.digitalOrigin.map(&:text),
         publisher: mods.origin_info.publisher.map(&:text),
         form_of_work: mods.genre.valueURI.map { |uri| RDF::URI.new(uri) },
-        work_type: Fields::MODS.resource_type(mods)[:uri],
+        work_type: ::Fields::MODS.resource_type(mods)[:uri],
         citation: citation,
         notes_attributes: notes,
         record_origin: record_origin,
@@ -229,7 +229,7 @@ module Importer::MODS
 
     def relations
       name_nodes = mods.xpath("//mods:mods/mods:name", NAMESPACES)
-      property_name_for_uri = Fields::MARCREL.invert
+      property_name_for_uri = ::Fields::MARCREL.invert
       name_nodes.each_with_object({}) do |node, relations|
         uri = node.attributes["valueURI"]
         key = if (value_uri = node.role.roleTerm.valueURI.first)

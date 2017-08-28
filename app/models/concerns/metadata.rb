@@ -7,7 +7,7 @@ module Metadata
   RELATIONS = {
     contributor: RDF::Vocab::DC.contributor,
     creator:     RDF::Vocab::DC.creator,
-  }.merge(Fields::MARCREL)
+  }.merge(::Fields::MARCREL)
 
   included do
     # For info about how local_collection_id is used, @see

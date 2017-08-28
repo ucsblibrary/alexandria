@@ -25,7 +25,7 @@ module OptionsHelper
   # @return Hash of relators in JSON with creator and contributor at the top.
   def relators_json
     rels = { creator: "Creator", contributor: "Contributor" }
-    keys = Fields::MARCREL.keys - [:creator, :contributor]
+    keys = ::Fields::MARCREL.keys - [:creator, :contributor]
 
     keys.each_with_object(rels) do |key, h|
       h[key] = key.to_s.humanize
