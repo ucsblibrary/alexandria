@@ -27,9 +27,9 @@ gem "hydra-role-management"
 gem "linked_vocabs",
     git: "https://github.com/projecthydra-labs/linked_vocabs.git"
 gem "marc"
-gem "metadata-ci",
+gem "metadata_ci",
     git: "https://github.com/ucsblibrary/metadata-ci.git",
-    ref: "39817d4e6e3fc76054b7ee14348e6833a9c4492f"
+    ref: "c3c9b4b6cb7434809717183632e53772b914d2e7"
 gem "mods", "~> 2.0.3"
 gem "openseadragon"
 gem "qa", "~> 0.11.0"

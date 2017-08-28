@@ -20,10 +20,10 @@ GIT
 
 GIT
   remote: https://github.com/ucsblibrary/metadata-ci.git
-  revision: 39817d4e6e3fc76054b7ee14348e6833a9c4492f
-  ref: 39817d4e6e3fc76054b7ee14348e6833a9c4492f
+  revision: c3c9b4b6cb7434809717183632e53772b914d2e7
+  ref: c3c9b4b6cb7434809717183632e53772b914d2e7
   specs:
-    metadata-ci (0.0.1)
+    metadata_ci (0.0.1)
       htmlentities
       mods
       nokogiri
@@ -832,7 +832,7 @@ DEPENDENCIES
   kaminari_route_prefix
   linked_vocabs!
   marc
-  metadata-ci!
+  metadata_ci!
   method_source
   mods (~> 2.0.3)
   net-ldap (~> 0.14)
