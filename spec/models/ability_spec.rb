@@ -9,6 +9,7 @@ describe Ability do
 
   before do
     AdminPolicy.ensure_admin_policy_exists
+    allow(embargoed_fs).to receive(:parent).and_return(embargoed_etd)
 
     # Load Image class or else it won't be returned in
     # ActiveFedora::Base.descendants, which is used to
@@ -17,17 +18,32 @@ describe Ability do
   end
 
   let(:ability) { described_class.new(user) }
+  let(:discovery_image) { create(:image, :discovery) }
   let(:local_group) { create(:group) }
-
   let(:public_file_set) { create(:public_file_set) }
   let(:public_image) { create(:public_image) }
-  let(:discovery_image) { create(:image, :discovery) }
   let(:restricted_image) { create(:image, :restricted) }
+
+  let(:embargoed_etd) do
+    ETD.create!(
+      title: ["weh"],
+      admin_policy_id: AdminPolicy::DISCOVERY_POLICY_ID
+    )
+  end
+
+  let(:embargoed_fs) do
+    FileSet.create!(
+      title: ["woh"],
+      admin_policy_id: AdminPolicy::DISCOVERY_POLICY_ID
+    )
+  end
+
   let(:file_set_of_public_audio) do
     create(:public_file_set).tap do |fs|
       create(:public_audio, ordered_members: [fs])
     end
   end
+
   let(:file_set_of_public_image) do
     create(:public_file_set).tap do |fs|
       create(:public_image, ordered_members: [fs])
@@ -105,6 +121,13 @@ describe Ability do
       is_expected.to be_able_to(:merge, local_group)
       is_expected.to be_able_to(:merge, SolrDocument.new(local_group.to_solr))
 
+      is_expected.to be_able_to(:discover, embargoed_etd)
+      is_expected.to be_able_to(:read, embargoed_etd)
+      is_expected.to be_able_to(:edit, embargoed_etd)
+      is_expected.to be_able_to(:discover, embargoed_fs)
+      is_expected.not_to be_able_to(:read, embargoed_fs)
+      is_expected.not_to be_able_to(:edit, embargoed_fs)
+
       is_expected.not_to be_able_to(:discover, Hydra::AccessControls::Embargo)
       is_expected.not_to be_able_to(:edit_rights, ActiveFedora::Base)
 
@@ -130,6 +153,13 @@ describe Ability do
 
       is_expected.not_to be_able_to(:new_merge, local_group)
       is_expected.not_to be_able_to(:merge, local_group)
+
+      is_expected.to be_able_to(:discover, embargoed_etd)
+      is_expected.to be_able_to(:read, embargoed_etd)
+      is_expected.not_to be_able_to(:edit, embargoed_etd)
+      is_expected.to be_able_to(:discover, embargoed_fs)
+      is_expected.to be_able_to(:read, embargoed_fs)
+      is_expected.not_to be_able_to(:edit, embargoed_fs)
 
       is_expected.to be_able_to(:discover, Hydra::AccessControls::Embargo)
       is_expected.to be_able_to(:update_rights, ActiveFedora::Base)
