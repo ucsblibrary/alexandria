@@ -3,7 +3,7 @@
 class Ability
   # For fedora objects that have an admin policy assigned to
   # them, some of the rights that a user will be granted are
-  # defined in the policy file:  app/models/admin_policy.rb
+  # defined in the policy file: app/models/admin_policy.rb
   include Hydra::PolicyAwareAbility
 
   attr_reader :on_campus
@@ -42,6 +42,11 @@ class Ability
 
     # Allow admins to download originals of AudioRecordings
     can :download_original, FileSet
+
+    cannot [:read, :edit], FileSet do |fs|
+      fs.parent.is_a?(ETD) &&
+        fs.parent.admin_policy_id == AdminPolicy::DISCOVERY_POLICY_ID
+    end
   end
 
   def rights_admin_permissions
