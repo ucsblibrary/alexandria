@@ -6,7 +6,7 @@
     </tr>
   </thead>
   <tbody>
-    <% files = document.file_sets %>
+    <% files = document.file_sets.select { |fs| fs["original_filename_ss"].present? }  %>
 
     <% # FIXME: right now we're assuming the first file is the ETD.  Once we upgrade to RDF there may not be guaranteed ordering. %>
     <% file_set = files.shift %>
