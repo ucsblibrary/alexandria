@@ -30,7 +30,9 @@
     </tr>
 
 
-    <% files.sort { |a, b| a.fetch('original_filename_ss') <=> b.fetch('original_filename_ss') }.each do |file_set| %>
+    <% files.sort do |a, b|
+         a.fetch('original_filename_ss', 'unnamed cylinder') <=> b.fetch('original_filename_ss', 'unnamed cylinder')
+       end.each do |file_set| %>
     <tr>
       <td class="col_1">
         <span class="fa <%= icon_class(file_set) %>"> </span>
