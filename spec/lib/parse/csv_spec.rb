@@ -121,38 +121,6 @@ describe Parse::CSV do
     end
   end
 
-  context "character encoding checks" do
-    let(:csvfile) { "#{fixture_path}/csv/pamss045.csv" }
-    it "reads in a known CSV file" do
-      expect(described_class.split(csvfile)).to be_instance_of(Array)
-    end
-
-    let(:utf8problemfile) { "#{fixture_path}/csv/mcpeak-utf8problems.csv" }
-    it "reads in a CSV file with UTF-8 problems" do
-      expect(described_class.split(utf8problemfile)).to be_instance_of(Array)
-    end
-
-    # Sometimes we encounter CSV input files with BOM characters
-    # See https://en.wikipedia.org/wiki/Byte_order_mark for more info
-    # You have to read in BOM files with encoding: "bom|UTF-8"
-    let(:bomproblemfile) { "#{fixture_path}/csv/bom_encoded_file.csv" }
-    let(:split) { described_class.split(bomproblemfile) }
-    let(:attrs) { described_class.csv_attributes(split[0], split[1][0]) }
-    it "handles bom encoding" do
-      expect(attrs[:type]).to eql("Map set")
-    end
-
-    let(:brazilmap) { "#{fixture_path}/csv/brazil.csv" }
-
-    # DIGREPO-676 Row 4 title should read as "Rio Xixé" with an accent
-    # over the final e.
-    it "reads in diacritics properly" do
-      expect(described_class.split(brazilmap)).to be_instance_of(Array)
-      a = described_class.split(brazilmap)
-      expect(a[1][2][3]).to eql("Rio Xixé")
-    end
-  end
-
   context "determine model" do
     it "returns ScannedMap when the model value is 'Scanned map'" do
       expect(described_class.determine_model("Scanned map")).to(

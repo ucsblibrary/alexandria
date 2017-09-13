@@ -12,6 +12,9 @@ describe Importer::CSV do
     AdminPolicy.ensure_admin_policy_exists
   end
 
+  let(:data) { Dir["#{fixture_path}/images/*"] }
+  let(:logger) { Logger.new(STDOUT) }
+
   context "map parent data" do
     let(:map_set_accession_number) { ["4450s 250 b7"] }
     let(:index_map_accession_number) { ["4450s 250 b7 index"] }
@@ -98,9 +101,6 @@ describe Importer::CSV do
       expect(r.first["component_maps_ssim"].size).to be(2)
     end
   end
-
-  let(:data) { Dir["#{fixture_path}/images/*"] }
-  let(:logger) { Logger.new(STDOUT) }
 
   context "when the model is specified" do
     let(:metadata) { ["#{fixture_path}/csv/pamss045.csv"] }

@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "metadata_ci"
+
 module Parse::CSV
   # Match headers like "lc_subject_type"
   TYPE_HEADER_PATTERN = /\A.*_type\Z/
@@ -11,37 +13,17 @@ module Parse::CSV
     csv_type_field.titleize.gsub(/\s+/, "")
   end
 
-  # Read in a CSV file and split it into nested arrays.
-  # Check for character encoding problems.
-  # @param [String, Pathname] metadata
-  # @return [Array]
-  def self.split(metadata)
-    csv = nil
-    begin
-      csv = ::CSV.read(metadata, encoding: "bom|UTF-8")
-    # Most likely this is "invalid byte sequence in UTF-8"
-    rescue ArgumentError => e
-      logger.error "The file #{metadata} could not be read in UTF-8. "\
-                   "The error was: #{e}. Trying ISO-8859-1"
-
-      csv = ::CSV.read(metadata, encoding: "ISO-8859-1")
-    rescue => e
-      logger.error "Couldn't process file #{metadata}. The error was: #{e}."
-      raise e
-    end
-    [csv.first, csv.slice(1, csv.length)]
-  end
-
   # Maps a row of CSV metadata to the CSV headers
   #
-  # @param [Array] headers
-  # @param [Array] row
-  #
+  # @param [CSV::Row] row
   # @return [Hash]
-  def self.csv_attributes(headers, row)
+  def self.csv_attributes(row)
     {}.tap do |processed|
-      headers.each_with_index do |header, index|
-        extract_field(header, row[index], processed)
+      # we use #with_index and pass the indices to the field instead
+      # of the header because there may be multiple instances of the
+      # same header, e.g., :files
+      row.headers.map.with_index do |header, i|
+        extract_field(header.to_s, row.field(i).to_s, processed)
       end
     end
   end
@@ -50,8 +32,8 @@ module Parse::CSV
   # @param [String] val the associated value
   # @param [Hash] processed
   def self.extract_field(header, val, processed)
-    return unless val
-    raise "No header corresponds to value '#{val}'" if header.nil?
+    return if val.blank?
+    raise "No header corresponds to value '#{val}'" if header.blank?
 
     case header
     when "type", "id"

@@ -15,19 +15,18 @@ module Importer::CSV
     ingested = 0
 
     meta.each do |m|
-      head, tail = Parse::CSV.split(m)
+      table = ::CSV.table(m, encoding: "bom|UTF-8")
 
-      if options[:skip] >= tail.length
+      if options[:skip] >= table.length
         raise ArgumentError,
               "Number of records skipped (#{options[:skip]}) "\
               "greater than total records to ingest"
       end
 
-      logger.info "Ingesting file #{m}: #{tail.length} records"
+      logger.info "Ingesting file #{m}: #{table.length} records"
 
       begin
-        ingested += ingest_sheet(head: head,
-                                 tail: tail,
+        ingested += ingest_sheet(meta: table,
                                  data: data,
                                  options: options,
                                  logger: logger)
@@ -39,22 +38,20 @@ module Importer::CSV
     ingested
   end
 
-  def self.ingest_sheet(head:,
-                        tail:,
+  def self.ingest_sheet(meta:,
                         data: [],
                         options: { skip: 0 },
                         logger: Logger.new(STDOUT))
     ingested = 0
 
-    tail.drop(options[:skip]).each_with_index do |row, i|
+    meta.drop(options[:skip]).each_with_index do |row, i|
       next if options[:number] && options[:number] <= ingested
 
       begin
         logger.info "Ingesting record #{ingested + 1} "\
-                    "of #{options[:number] || (tail.length - options[:skip])}"
+                    "of #{options[:number] || (meta.length - options[:skip])}"
 
-        ingest_row(head: head,
-                   row: row,
+        ingest_row(row: row,
                    data: data,
                    logger: logger)
 
@@ -70,14 +67,13 @@ module Importer::CSV
     ingested
   end
 
-  def self.ingest_row(head:,
-                      row:,
+  def self.ingest_row(row:,
                       data: [],
                       logger: Logger.new(STDOUT))
     # Check that all URIs are well formed
-    row.each { |field| ::Fields::URI.check_uri(field) }
+    row.fields.each { |field| ::Fields::URI.check_uri(field) }
 
-    attrs = Parse::CSV.csv_attributes(head, row)
+    attrs = Parse::CSV.csv_attributes(row)
 
     if attrs[:accession_number].present?
       logger.info "Ingesting accession number #{attrs[:accession_number].first}"
