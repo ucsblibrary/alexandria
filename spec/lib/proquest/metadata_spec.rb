@@ -399,7 +399,7 @@ describe Proquest::Metadata do
 
         it "sets the access policy, no embargo" do
           expect(reloaded.admin_policy_id).to eq AdminPolicy::PUBLIC_POLICY_ID
-          expect(reloaded.under_embargo?).to be_falsey
+          expect(reloaded).not_to be_under_embargo
           expect(reloaded.embargo_release_date).to be_nil
           expect(reloaded.visibility_during_embargo).to be_nil
           expect(reloaded.visibility_after_embargo).to be_nil
@@ -415,7 +415,7 @@ describe Proquest::Metadata do
           expect(reloaded.admin_policy_id).to(
             eq AdminPolicy::PUBLIC_CAMPUS_POLICY_ID
           )
-          expect(reloaded.under_embargo?).to be_falsey
+          expect(reloaded).not_to be_under_embargo
           expect(reloaded.embargo_release_date).to be_nil
           expect(reloaded.visibility_during_embargo).to be_nil
           expect(reloaded.visibility_after_embargo).to be_nil

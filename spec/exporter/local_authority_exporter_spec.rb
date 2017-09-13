@@ -22,9 +22,9 @@ describe Exporter::LocalAuthorityExporter do
     after  { FileUtils.rm_rf(dir, secure: true) }
 
     it "creates the directory" do
-      expect(File.exist?(dir)).to be_falsey
+      expect(File).not_to be_exist(dir)
       exporter.make_export_dir
-      expect(File.exist?(dir)).to be_truthy
+      expect(File).to be_exist(dir)
     end
   end
 

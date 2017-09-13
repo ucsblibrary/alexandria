@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Parse::MODS
   ORIGIN_TEXT = "Converted from MODS 3.4 to local RDF profile by ADRL"
 
@@ -241,87 +243,87 @@ class Parse::MODS
 
   private
 
-  def build_date(node)
-    finish = finish_point(node)
-    start = start_point(node)
-    dates = [
-      {
-        start: start.map(&:text),
-        finish: finish.map(&:text),
-        label: date_label(node),
-        start_qualifier: qualifier(start),
-        finish_qualifier: qualifier(finish),
-      },
-    ]
-    dates.delete_if { |date| date.values.all?(&:blank?) }
-    dates
-  end
+    def build_date(node)
+      finish = finish_point(node)
+      start = start_point(node)
+      dates = [
+        {
+          start: start.map(&:text),
+          finish: finish.map(&:text),
+          label: date_label(node),
+          start_qualifier: qualifier(start),
+          finish_qualifier: qualifier(finish),
+        },
+      ]
+      dates.delete_if { |date| date.values.all?(&:blank?) }
+      dates
+    end
 
-  def qualifier(nodes)
-    nodes.map { |node| node.attributes["qualifier"].try(:value) }.compact
-  end
+    def qualifier(nodes)
+      nodes.map { |node| node.attributes["qualifier"].try(:value) }.compact
+    end
 
-  def finish_point(node)
-    node.css('[point="end"]')
-  end
+    def finish_point(node)
+      node.css('[point="end"]')
+    end
 
-  def start_point(node)
-    node.css("[encoding]:not([point='end'])")
-  end
+    def start_point(node)
+      node.css("[encoding]:not([point='end'])")
+    end
 
-  def date_label(node)
-    node.css(":not([encoding])").map(&:text)
-  end
+    def date_label(node)
+      node.css(":not([encoding])").map(&:text)
+    end
 
-  def untyped_title
-    mods.xpath(
-      "/mods:mods/mods:titleInfo[not(@type)]/mods:title",
-      NAMESPACES
-    ).map(&:text)
-  end
+    def untyped_title
+      mods.xpath(
+        "/mods:mods/mods:titleInfo[not(@type)]/mods:title",
+        NAMESPACES
+      ).map(&:text)
+    end
 
-  def alt_title
-    Array(mods.xpath("//mods:titleInfo[@type]",
-                     NAMESPACES)).flat_map do |node|
+    def alt_title
+      Array(mods.xpath("//mods:titleInfo[@type]",
+                       NAMESPACES)).flat_map do |node|
 
-      type = node.attributes["type"].text
-      alternative = "alternative"
+        type = node.attributes["type"].text
+        alternative = "alternative"
 
-      node.title.map do |title|
-        value = title.text
-        unless type == alternative
-          logger.info(
-            "Transformation: \"#{type} title\" "\
-            "will be stored as \"#{alternative} title\": #{value}"
-          )
+        node.title.map do |title|
+          value = title.text
+          unless type == alternative
+            logger.info(
+              "Transformation: \"#{type} title\" "\
+              "will be stored as \"#{alternative} title\": #{value}"
+            )
+          end
+          value
         end
-        value
       end
     end
-  end
 
-  def rights_holder
-    nodes = mods.extension.xpath("./copyrightHolder")
-    nodes.map do |node|
-      uri = node.attributes["valueURI"]
-      text = node.text
-      uri.blank? ? strip_whitespace(text) : RDF::URI.new(uri)
+    def rights_holder
+      nodes = mods.extension.xpath("./copyrightHolder")
+      nodes.map do |node|
+        uri = node.attributes["valueURI"]
+        text = node.text
+        uri.blank? ? strip_whitespace(text) : RDF::URI.new(uri)
+      end
     end
-  end
 
-  def prepend_timestamp(text)
-    "#{Time.now.utc.to_s(:iso8601)} #{text}"
-  end
-
-  def strip_whitespace(text)
-    text.tr("\n", " ").delete("\t")
-  end
-
-  def subject
-    # rubocop:disable Metrics/LineLength
-    mods.xpath("//mods:subject/mods:name/@valueURI|//mods:subject/mods:topic/@valueURI", NAMESPACES).map do |uri|
-      RDF::URI.new(uri)
+    def prepend_timestamp(text)
+      "#{Time.now.utc.to_s(:iso8601)} #{text}"
     end
-    # rubocop:enable Metrics/LineLength
-  end
+
+    def strip_whitespace(text)
+      text.tr("\n", " ").delete("\t")
+    end
+
+    def subject
+      # rubocop:disable Metrics/LineLength
+      mods.xpath("//mods:subject/mods:name/@valueURI|//mods:subject/mods:topic/@valueURI", NAMESPACES).map do |uri|
+        RDF::URI.new(uri)
+      end
+      # rubocop:enable Metrics/LineLength
+    end
 end

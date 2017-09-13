@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Parse::CSV
   # Match headers like "lc_subject_type"
   TYPE_HEADER_PATTERN = /\A.*_type\Z/
