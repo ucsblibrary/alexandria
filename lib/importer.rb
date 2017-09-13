@@ -13,9 +13,7 @@ module Importer
   autoload :CSV
   autoload :Cylinder
   autoload :ETD
-  autoload :ETDParser
   autoload :Factory
   autoload :LocalAuthorityImporter
   autoload :MODS
-  autoload :ImportLogger
 end

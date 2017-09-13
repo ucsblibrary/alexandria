@@ -61,7 +61,7 @@ module Importer::ETD
         raise IngestError, "Bad zipfile source: #{e}" if x.nil?
         MARC::XMLReader.new(
           StringIO.new(
-            Importer::ETDParser.parse_file(x)
+            Parse::ETD.parse_file(x)
           )
         ).map { |o| o }
       end

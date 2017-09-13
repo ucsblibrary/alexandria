@@ -2,7 +2,7 @@
 
 require "sru"
 
-module Importer::ETDParser
+module Parse::ETD
   # @param [String] xml_file_name The path to a ProQuest XML file
   # @return [String]
   def self.extract_binary_filename(xml_file_name)
