@@ -223,7 +223,7 @@ describe Importer::MODS do
       before do
         Agent.delete_all
         Agent.create(foaf_name: frodo) # existing rights holder
-        allow_any_instance_of(Importer::MODS::Parser).to(
+        allow_any_instance_of(Parse::MODS).to(
           receive(:rights_holder) { [frodo, bilbo, pippin] }
         )
       end

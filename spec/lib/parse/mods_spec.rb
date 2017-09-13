@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 require "rails_helper"
-require "importer"
+require "parse"
 
-describe Importer::MODS::Parser do
+describe Parse::MODS do
   let(:parser) { described_class.new(file, Logger.new(STDOUT)) }
   let(:attributes) { parser.attributes }
 
@@ -94,7 +94,7 @@ describe Importer::MODS::Parser do
           expect(attributes[:record_origin]).to(
             # rubocop:disable Metrics/LineLength
             eq ["#{formatted_date} Converted from CSV to MODS 3.4 using local mapping.",
-                "#{formatted_date} #{Importer::MODS::Parser::ORIGIN_TEXT}",]
+                "#{formatted_date} #{Parse::MODS::ORIGIN_TEXT}",]
             # rubocop:enable Metrics/LineLength
           )
         end
@@ -400,7 +400,7 @@ describe Importer::MODS::Parser do
         Timecop.freeze(date) do
           expect(attributes[:record_origin]).to(
             eq ["#{formatted_date} Human created",
-                "#{formatted_date} #{Importer::MODS::Parser::ORIGIN_TEXT}",]
+                "#{formatted_date} #{Parse::MODS::ORIGIN_TEXT}",]
           )
         end
       end
