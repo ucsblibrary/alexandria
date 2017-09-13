@@ -32,62 +32,6 @@ module Parse::CSV
     [csv.first, csv.slice(1, csv.length)]
   end
 
-  # @param [Array] row
-  # @return [Array]
-  def self.validate_headers(row)
-    row.compact!
-
-    # Allow headers with the pattern *_type to specify the record type
-    # for a local authority.  e.g. For an author, author_type might be
-    # 'Person'.
-    difference = (row - valid_headers).reject do |h|
-      h.match(TYPE_HEADER_PATTERN)
-    end
-
-    raise "Invalid headers: #{difference.join(", ")}" if difference.present?
-
-    validate_header_pairs(row)
-    row
-  end
-
-  # If you have a header like lc_subject_type, the next
-  # header must be the corresponding field (e.g. lc_subject)
-  #
-  # @param [Array] row
-  def self.validate_header_pairs(row)
-    errors = []
-    row.each_with_index do |header, i|
-      next if header == "work_type"
-      next unless header.match(TYPE_HEADER_PATTERN)
-      next_header = row[i + 1]
-      field_name = header.gsub("_type", "")
-
-      if next_header != field_name
-        errors << "Invalid headers: '#{header}' column "\
-                  "must be immediately followed by '#{field_name}' column."
-      end
-    end
-    raise errors.join(", ") if errors.present?
-  end
-
-  # @return [Array]
-  def self.valid_headers
-    Image.attribute_names + %w[id type note_type note files] +
-      time_span_headers + collection_headers
-  end
-
-  # @return [Array]
-  def self.time_span_headers
-    %w[created issued date_copyrighted date_valid].flat_map do |prefix|
-      TimeSpan.properties.keys.map { |attribute| "#{prefix}_#{attribute}" }
-    end
-  end
-
-  # @return [Array]
-  def self.collection_headers
-    %w[collection_id collection_title collection_accession_number]
-  end
-
   # Maps a row of CSV metadata to the CSV headers
   #
   # @param [Array] headers
