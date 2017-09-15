@@ -53,8 +53,9 @@ class ObjectIndexer < CurationConcerns::WorkIndexer
         note.value.first
       end.flatten
 
-      solr_doc["rights_holder_label_tesim"] =
-        object["rights_holder"].map(&:rdf_label).flatten
+      solr_doc["rights_holder_label_tesim"] = object["rights_holder"].map do |s|
+        s.respond_to?(:rdf_label) ? s.rdf_label : s
+      end.flatten
 
       yield(solr_doc) if block_given?
     end
