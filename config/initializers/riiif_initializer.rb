@@ -2,10 +2,20 @@
 
 require "uri"
 
-Riiif::Image.authorization_service = AuthService
-Riiif::Engine.config.cache_duration_in_days = 365
+# Override default, which uses #days and so errors when nil
+class Riiif::Image
+  def self.expires_in; end
+end
+
 Riiif::Image.file_resolver =
   Riiif::HTTPFileResolver.new(cache_path: Settings.riiif_fedora_cache)
+
+Riiif::Image.authorization_service = AuthService
+Riiif::Image.cache = if Rails.env.production?
+                       ActiveSupport::Cache::FileStore.new(Settings.riiif_thumbnails)
+                     else
+                       Rails.cache
+                     end
 
 Riiif::Image.file_resolver.id_to_uri = lambda do |id|
   ActiveFedora::Base.id_to_uri(CGI.unescape(id)).tap do |url|
