@@ -73,7 +73,7 @@ module Importer::CSV
     # Check that all URIs are well formed
     row.fields.each { |field| ::Fields::URI.check_uri(field) }
 
-    attrs = Parse::CSV.csv_attributes(row)
+    attrs = ::Parse::CSV.csv_attributes(row)
 
     if attrs[:accession_number].present?
       logger.info "Ingesting accession number #{attrs[:accession_number].first}"
@@ -94,12 +94,12 @@ module Importer::CSV
 
     start_time = Time.zone.now
 
-    attrs = Parse::CSV.strip_extra_spaces(attrs)
-    attrs = Parse::CSV.handle_structural_metadata(attrs)
-    attrs = Parse::CSV.transform_coordinates_to_dcmi_box(attrs)
-    attrs = Parse::CSV.assign_access_policy(attrs)
+    attrs = ::Parse::CSV.strip_extra_spaces(attrs)
+    attrs = ::Parse::CSV.handle_structural_metadata(attrs)
+    attrs = ::Parse::CSV.transform_coordinates_to_dcmi_box(attrs)
+    attrs = ::Parse::CSV.assign_access_policy(attrs)
 
-    model = Parse::CSV.determine_model(attrs.delete(:type))
+    model = ::Parse::CSV.determine_model(attrs.delete(:type))
     raise NoModelError if model.blank?
 
     record = ::Importer::Factory.for(model).new(attrs, files, logger).run
