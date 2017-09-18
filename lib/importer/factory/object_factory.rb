@@ -139,7 +139,7 @@ module Importer::Factory
           Riiif::Image.new(f.id).render(options)
         end
       end
-
+    ensure
       FileUtils.rm_rf Settings.riiif_fedora_cache
     end
 
