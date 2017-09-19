@@ -12,7 +12,7 @@ class ETDIndexer < ObjectIndexer
       solr_doc[Solrizer.solr_name("member_ids", :symbol)] = object.member_ids
 
       rights_holders = object.rights_holder.map do |holder|
-        holder.rdf_label.first
+        (holder.respond_to?(:rdf_label) ? holder.rdf_label.first : holder)
       end.join(" and ")
 
       if rights_holders.present?
