@@ -29,9 +29,6 @@ class MapSetIndexer < ObjectIndexer
 
       solr_doc["index_maps_ssim"] = object.index_map_id.sort
 
-      solr_doc["rights_holder_label_tesim"] =
-        object["rights_holder"].flat_map(&:rdf_label)
-
       solr_doc[COPYRIGHTED] = display_date("date_copyrighted")
       solr_doc[ISSUED] = issued
     end
