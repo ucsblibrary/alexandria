@@ -11,7 +11,7 @@ class AccessController < ApplicationController
     authorize! :update_rights, record
 
     @visibility_options = AdminPolicy.all.invert
-    @current_vis = if record.embargo
+    @current_vis = if record.embargo&.visibility_during_embargo.present?
                      ActiveFedora::Base.uri_to_id(
                        record.visibility_during_embargo.id
                      )
@@ -19,7 +19,7 @@ class AccessController < ApplicationController
                      record.admin_policy_id
                    end
 
-    @future_vis = if record.embargo
+    @future_vis = if record.embargo&.visibility_after_embargo.present?
                     ActiveFedora::Base.uri_to_id(
                       record.visibility_after_embargo.id
                     )
