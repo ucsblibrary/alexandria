@@ -4,7 +4,9 @@ require "rails_helper"
 
 describe AccessController do
   before do
-    ETD.where(id: "123").each { |etd| etd.destroy(eradicate: true) }
+    %w[123 no_embargo infinity].each do |id|
+      ETD.find(id).destroy(eradicate: true) if ETD.exists?(id)
+    end
 
     AdminPolicy.ensure_admin_policy_exists
     allow(controller).to receive(:current_user).and_return(user)
@@ -12,9 +14,9 @@ describe AccessController do
 
   let(:user) { nil }
 
-  let!(:etd) do
-    create(
-      :etd,
+  let(:etd) do
+    ETD.create(
+      admin_policy_id: AdminPolicy::UCSB_CAMPUS_POLICY_ID,
       embargo_release_date: Date.parse("2010-10-10"),
       id: "123",
       title: ["mock"],
@@ -24,6 +26,28 @@ describe AccessController do
       visibility_during_embargo: RDF::URI(
         ActiveFedora::Base.id_to_uri(AdminPolicy::UCSB_CAMPUS_POLICY_ID)
       )
+    )
+  end
+
+  let(:no_embargo) do
+    ETD.create(
+      admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID,
+      embargo_release_date: nil,
+      id: "no_embargo",
+      title: ["no_embargo"],
+      visibility_after_embargo: nil,
+      visibility_during_embargo: nil
+    )
+  end
+
+  let(:infinite_embargo) do
+    ETD.create(
+      admin_policy_id: AdminPolicy::DISCOVERY_POLICY_ID,
+      embargo_release_date: nil,
+      id: "infinity",
+      title: ["infinite_embargo"],
+      visibility_after_embargo: nil,
+      visibility_during_embargo: nil
     )
   end
 
@@ -38,12 +62,32 @@ describe AccessController do
     context "when I have permission to edit the object" do
       let(:user) { user_with_groups [AdminPolicy::META_ADMIN] }
 
-      context "with an etd" do
+      context "with a regular ETD" do
         it "shows me the page" do
           expect(controller).to(
             receive(:authorize!).with(:update_rights, etd)
           )
           get :edit, params: { id: etd.id }
+          expect(response).to be_success
+        end
+      end
+
+      context "with a never-embargoed ETD" do
+        it "shows me the page" do
+          expect(controller).to(
+            receive(:authorize!).with(:update_rights, no_embargo)
+          )
+          get :edit, params: { id: no_embargo.id }
+          expect(response).to be_success
+        end
+      end
+
+      context "with an infinitely-embargoed ETD" do
+        it "shows me the page" do
+          expect(controller).to(
+            receive(:authorize!).with(:update_rights, infinite_embargo)
+          )
+          get :edit, params: { id: infinite_embargo.id }
           expect(response).to be_success
         end
       end
