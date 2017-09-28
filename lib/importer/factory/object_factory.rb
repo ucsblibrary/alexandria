@@ -126,7 +126,7 @@ module Importer::Factory
         return
       end
 
-      object.file_sets.map(&:files).flatten.each do |f|
+      object.file_sets.select(&:image?).map(&:files).flatten.each do |f|
         Settings.thumbnails.keys.each do |k|
           options = {
             size: Settings.thumbnails[k]["size"],

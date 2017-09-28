@@ -175,7 +175,14 @@ class ObjectIndexer < CurationConcerns::WorkIndexer
     end
 
     def thumbnail_path
-      square_thumbnail_images
+      if object.file_sets.any?(&:image?)
+        square_thumbnail_images
+      # for e.g., scanned newspapers
+      else
+        ActionController::Base.helpers.image_path(
+          "fontawesome/black/png/256/file-text.png"
+        )
+      end
     end
 
     def file_set_large_images
