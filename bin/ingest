@@ -40,11 +40,15 @@ logfile = Pathname.new(Settings.log_dir).join(
   "#{options[:format]}-#{Time.zone.now.strftime("%Y-%m-%d_%H.%M.%S")}.log"
 )
 
-pid = fork do
+if ENV["INGEST_DEBUG"]
   Importer::CLI.run(options.merge(logfile: logfile))
+else
+  pid = fork do
+    Importer::CLI.run(options.merge(logfile: logfile))
+  end
+
+  puts "Ingesting in the background with PID #{pid}"
+  puts "Logging to #{logfile}"
+
+  Process.detach pid
 end
-
-puts "Ingesting in the background with PID #{pid}"
-puts "Logging to #{logfile}"
-
-Process.detach pid
