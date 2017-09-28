@@ -60,6 +60,7 @@ module Importer::CSV
         raise IngestError, reached: i
       rescue => e
         logger.error e.message
+        logger.error e.backtrace
         raise IngestError, reached: i
       end
     end
