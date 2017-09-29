@@ -27,7 +27,12 @@ Riiif::Image.info_service = lambda do |id, _file|
   resp = ActiveFedora::SolrService.get("id:#{fs_id}")
   doc = resp["response"]["docs"].first
   raise "Unable to find solr document with id:#{fs_id}" unless doc
-  { height: doc["height_is"], width: doc["width_is"] }
+
+  # Add default values for when we make square thumbnails of PDFs
+  {
+    height: doc["height_is"] || 100,
+    width: doc["width_is"] || 100,
+  }
 end
 
 # ActiveSupport::Benchmarkable (used in Blacklight::SolrHelper)
