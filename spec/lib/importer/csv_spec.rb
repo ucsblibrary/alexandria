@@ -91,14 +91,14 @@ describe Importer::CSV do
     end
 
     it "attaches objects as expected" do
-      expect(m.index_maps.size).to be(1)
-      expect(m.component_maps.size).to be(2)
+      expect(m.index_maps.size).to eq(1)
+      expect(m.component_maps.size).to eq(2)
     end
 
     it "reindexes the map set after its members are imported" do
       r = ActiveFedora::SolrService.query("id:#{m.id}")
-      expect(r.first["index_maps_ssim"].size).to be(1)
-      expect(r.first["component_maps_ssim"].size).to be(2)
+      expect(r.first["index_maps_ssim"].size).to eq(1)
+      expect(r.first["component_maps_ssim"].size).to eq(2)
     end
   end
 

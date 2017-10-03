@@ -49,7 +49,7 @@ describe Importer::Factory::ScannedMapFactory do
   context "creating a ScannedMap" do
     it "can make a ScannedMap" do
       expect(@scanned_map).to be_instance_of(ScannedMap)
-      expect(ScannedMap.count).to be(1)
+      expect(ScannedMap.count).to eq(1)
     end
 
     it "attaches a ScannedMap to its Collection" do
@@ -57,7 +57,7 @@ describe Importer::Factory::ScannedMapFactory do
     end
 
     it "has only one FileSet even if you ingest the object again" do
-      expect(@scanned_map.file_sets.size).to be(1)
+      expect(@scanned_map.file_sets.size).to eq(1)
 
       VCR.use_cassette("map_factory1") do
         @scanned_map = described_class.new(
@@ -65,11 +65,11 @@ describe Importer::Factory::ScannedMapFactory do
         ).run
       end
 
-      expect(@scanned_map.file_sets.size).to be(1)
+      expect(@scanned_map.file_sets.size).to eq(1)
     end
 
     it "doesn't delete FileSets if you do a metadata-only re-import" do
-      expect(@scanned_map.file_sets.size).to be(1)
+      expect(@scanned_map.file_sets.size).to eq(1)
 
       VCR.use_cassette("map_factory1") do
         @scanned_map = described_class.new(
@@ -77,7 +77,7 @@ describe Importer::Factory::ScannedMapFactory do
         ).run
       end
 
-      expect(@scanned_map.file_sets.size).to be(1)
+      expect(@scanned_map.file_sets.size).to eq(1)
     end
   end
 end

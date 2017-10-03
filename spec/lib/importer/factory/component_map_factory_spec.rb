@@ -54,7 +54,7 @@ describe Importer::Factory::ComponentMapFactory do
   context "make a ComponentMap" do
     it "can make a ComponentMap" do
       expect(@component_map).to be_instance_of(ComponentMap)
-      expect(ComponentMap.count).to be(1)
+      expect(ComponentMap.count).to eq(1)
     end
 
     it "attaches a ComponentMap to its Collection" do
@@ -70,7 +70,7 @@ describe Importer::Factory::ComponentMapFactory do
     end
 
     it "has only one FileSet even if you ingest the object again" do
-      expect(@component_map.file_sets.size).to be(1)
+      expect(@component_map.file_sets.size).to eq(1)
 
       VCR.use_cassette("component_map_factory") do
         @component_map = described_class.new(
@@ -78,11 +78,11 @@ describe Importer::Factory::ComponentMapFactory do
         ).run
       end
 
-      expect(@component_map.file_sets.size).to be(1)
+      expect(@component_map.file_sets.size).to eq(1)
     end
 
     it "doesn't delete FileSets if you do a metadata-only re-import" do
-      expect(@component_map.file_sets.size).to be(1)
+      expect(@component_map.file_sets.size).to eq(1)
 
       VCR.use_cassette("component_map_factory") do
         @component_map = described_class.new(
@@ -90,7 +90,7 @@ describe Importer::Factory::ComponentMapFactory do
         ).run
       end
 
-      expect(@component_map.file_sets.size).to be(1)
+      expect(@component_map.file_sets.size).to eq(1)
     end
   end
 end

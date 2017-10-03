@@ -151,7 +151,7 @@ describe Parse::CSV do
     end
 
     it "returns nil when it can't find an id for a given accession_number" do
-      expect(described_class.get_id_for_accession_number("foobar")).to be(nil)
+      expect(described_class.get_id_for_accession_number("foobar")).to eq(nil)
     end
 
     it "attaches a component map to its index map" do

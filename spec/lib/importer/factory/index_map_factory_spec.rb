@@ -52,7 +52,7 @@ describe Importer::Factory::IndexMapFactory do
   context "Making an IndexMap" do
     it "can make an IndexMap" do
       expect(@index_map).to be_instance_of(IndexMap)
-      expect(IndexMap.count).to be(1)
+      expect(IndexMap.count).to eq(1)
     end
     it "attaches an IndexMap to its Collection" do
       expect(@index_map.local_collection_id.first).to eql(@collection.id)
@@ -61,7 +61,7 @@ describe Importer::Factory::IndexMapFactory do
       expect(@index_map.parent_id).to eql(@parent_id)
     end
     it "creates only one FileSet even if you ingest the object again" do
-      expect(@index_map.file_sets.size).to be(1)
+      expect(@index_map.file_sets.size).to eq(1)
 
       VCR.use_cassette("index_map_factory1") do
         @index_map = described_class.new(
@@ -69,11 +69,11 @@ describe Importer::Factory::IndexMapFactory do
         ).run
       end
 
-      expect(@index_map.file_sets.size).to be(1)
+      expect(@index_map.file_sets.size).to eq(1)
     end
     it "doesn't delete FileSets if you do a metadata-only re-import" do
       @index_map.reload.file_sets # Just in case file_sets is cached
-      expect(@index_map.file_sets.size).to be(1)
+      expect(@index_map.file_sets.size).to eq(1)
 
       object_id = @index_map.id
       fs_id = @index_map.file_sets.first.id
@@ -102,7 +102,7 @@ describe Importer::Factory::IndexMapFactory do
         ).run
       end
 
-      expect(@index_map.file_sets.size).to be(1)
+      expect(@index_map.file_sets.size).to eq(1)
       expect(@index_map.id).to eql(object_id) # same object id
 
       # same file_set id == file_set didn't change
