@@ -5,7 +5,7 @@ require "local_authority"
 require "active_fedora/cleaner"
 
 describe MergeRecordsService do
-  before(:all) do
+  before do
     ActiveFedora::Cleaner.clean!
     AdminPolicy.ensure_admin_policy_exists
   end

@@ -2,13 +2,14 @@
 
 require "rails_helper"
 require "importer"
-require "active_fedora/cleaner"
 
 describe Importer::Factory::ScannedMapFactory do
   before(:all) do
-    ActiveFedora::Cleaner.clean!
-    AdminPolicy.ensure_admin_policy_exists
-
+    (Collection.all + ScannedMap.all).map(&:id).each do |id|
+      if ActiveFedora::Base.exists?(id)
+        ActiveFedora::Base.find(id).destroy(eradicate: true)
+      end
+    end
     @files = Dir["#{fixture_path}/maps/*.tif"]
     @collection_attrs = {
       accession_number: ["SBHC Mss 36"],

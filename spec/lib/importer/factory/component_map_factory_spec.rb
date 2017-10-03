@@ -2,12 +2,14 @@
 
 require "rails_helper"
 require "importer"
-require "active_fedora/cleaner"
 
 describe Importer::Factory::ComponentMapFactory do
   before(:all) do
-    ActiveFedora::Cleaner.clean!
-    AdminPolicy.ensure_admin_policy_exists
+    (Collection.all + ComponentMap.all).map(&:id).each do |id|
+      if ActiveFedora::Base.exists?(id)
+        ActiveFedora::Base.find(id).destroy(eradicate: true)
+      end
+    end
 
     @files = Dir["#{fixture_path}/maps/*.tif"]
     @parent_id = "fk44q85873"
@@ -49,7 +51,6 @@ describe Importer::Factory::ComponentMapFactory do
       ).run
     end
   end
-
   context "make a ComponentMap" do
     it "can make a ComponentMap" do
       expect(@component_map).to be_instance_of(ComponentMap)

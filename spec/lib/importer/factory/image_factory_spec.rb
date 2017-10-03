@@ -2,14 +2,8 @@
 
 require "rails_helper"
 require "importer"
-require "active_fedora/cleaner"
 
 describe Importer::Factory::ImageFactory do
-  before(:all) do
-    ActiveFedora::Cleaner.clean!
-    AdminPolicy.ensure_admin_policy_exists
-  end
-
   let(:files) { [] }
   let(:collection_attrs) do
     { accession_number: ["SBHC Mss 36"], title: ["Test collection"] }
@@ -36,6 +30,14 @@ describe Importer::Factory::ImageFactory do
   end
 
   let(:factory) { described_class.new(attributes, files) }
+
+  before do
+    (Collection.all + Image.all).map(&:id).each do |id|
+      if ActiveFedora::Base.exists?(id)
+        ActiveFedora::Base.find(id).destroy(eradicate: true)
+      end
+    end
+  end
 
   context "with files" do
     let(:files) { Dir["#{fixture_path}/images/dirge*"] }
