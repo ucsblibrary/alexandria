@@ -2,14 +2,13 @@
 
 require "rails_helper"
 require "importer"
+require "active_fedora/cleaner"
 
 describe Importer::Factory::MapSetFactory do
   before(:all) do
-    (Collection.all + MapSet.all).map(&:id).each do |id|
-      if ActiveFedora::Base.exists?(id)
-        ActiveFedora::Base.find(id).destroy(eradicate: true)
-      end
-    end
+    ActiveFedora::Cleaner.clean!
+    AdminPolicy.ensure_admin_policy_exists
+
     @collection_attrs = {
       accession_number: ["MAP 01 02 03"],
       title: ["Maps of the Moon"],

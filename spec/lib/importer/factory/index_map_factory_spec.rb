@@ -2,14 +2,13 @@
 
 require "rails_helper"
 require "importer"
+require "active_fedora/cleaner"
 
 describe Importer::Factory::IndexMapFactory do
   before(:all) do
-    (Collection.all + IndexMap.all).map(&:id).each do |id|
-      if ActiveFedora::Base.exists?(id)
-        ActiveFedora::Base.find(id).destroy(eradicate: true)
-      end
-    end
+    ActiveFedora::Cleaner.clean!
+    AdminPolicy.ensure_admin_policy_exists
+
     @files = Dir["#{fixture_path}/maps/*.tif"]
     @collection_attrs = {
       accession_number: ["MAP 01 02 03"],

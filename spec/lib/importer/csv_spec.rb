@@ -7,7 +7,7 @@ require "importer"
 require "parse"
 
 describe Importer::CSV do
-  before do
+  before(:all) do
     ActiveFedora::Cleaner.clean!
     AdminPolicy.ensure_admin_policy_exists
   end
