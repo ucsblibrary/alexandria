@@ -17,7 +17,7 @@ describe ScannedMapIndexer do
       allow(scanned_map).to receive_messages(file_sets: [file_set])
     end
 
-    let(:file_set) { double(files: [file]) }
+    let(:file_set) { double(files: [file], image?: true) }
     let(:scanned_map) { ScannedMap.new }
 
     let(:file) do

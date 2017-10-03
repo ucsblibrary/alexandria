@@ -18,7 +18,7 @@ describe IndexMapIndexer do
         id: "s1/78/4k/72/s1784k724/files/6185235a-79b2-4c29-8c24-4d6ad9b11470"
       )
     end
-    let(:file_set) { double(files: [file]) }
+    let(:file_set) { double(files: [file], image?: true) }
 
     before do
       allow(index_map).to receive_messages(file_sets: [file_set])
