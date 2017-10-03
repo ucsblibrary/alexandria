@@ -160,8 +160,8 @@ module Importer::Factory
       object.file_sets.each do |f|
         CurationConcerns::Actors::FileSetActor.new(f, nil).destroy
       end
-      object.save
       object.reload.file_sets
+      object.save
     end
 
     # @param [Hash] attrs
