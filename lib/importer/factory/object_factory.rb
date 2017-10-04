@@ -61,11 +61,19 @@ module Importer::Factory
       # it triggers {Proquest::Metadata#run} which updates the
       # {AdminPolicy} of the ETD itself. Currently on ETD ingests,
       # `files' is never empty, so for now this is OK.
-      if files.empty?
-        logger.debug "No files provided for #{object.id}"
-      else
-        attach_files(object, files)
-        render_thumbnails(object)
+      unless files.empty?
+        # Nicked from https://github.com/samvera-labs/hyku/commit/788dd8bbe7c894b2e13ccda53f4b46d1d61454a4
+        begin
+          retries ||= 0
+          attach_files(object, files)
+          render_thumbnails(object)
+        rescue Ldp::Conflict => e
+          # Another process has likely beat us to the punch. Wait a
+          # bit and try again.
+          sleep(3)
+          retry if (retries += 1) < 3
+          raise e
+        end
       end
 
       run_callbacks :save do
@@ -96,11 +104,19 @@ module Importer::Factory
       # it triggers {Proquest::Metadata#run} which updates the
       # {AdminPolicy} of the ETD itself. Currently on ETD ingests,
       # `files' is never empty, so for now this is OK.
-      if files.empty?
-        logger.debug "No files provided for #{object.id}"
-      else
-        attach_files(object, files)
-        render_thumbnails(object)
+      unless files.empty?
+        # Nicked from https://github.com/samvera-labs/hyku/commit/788dd8bbe7c894b2e13ccda53f4b46d1d61454a4
+        begin
+          retries ||= 0
+          attach_files(object, files)
+          render_thumbnails(object)
+        rescue Ldp::Conflict => e
+          # Another process has likely beat us to the punch. Wait a
+          # bit and try again.
+          sleep(3)
+          retry if (retries += 1) < 3
+          raise e
+        end
       end
 
       run_callbacks(:save) do
