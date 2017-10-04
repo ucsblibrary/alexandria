@@ -57,24 +57,7 @@ module Importer::Factory
         )
       )
 
-      # TODO: #attach_files needs to always run for ETD ingests, since
-      # it triggers {Proquest::Metadata#run} which updates the
-      # {AdminPolicy} of the ETD itself. Currently on ETD ingests,
-      # `files' is never empty, so for now this is OK.
-      unless files.empty?
-        # Nicked from https://github.com/samvera-labs/hyku/commit/788dd8bbe7c894b2e13ccda53f4b46d1d61454a4
-        begin
-          retries ||= 0
-          attach_files(object, files)
-          render_thumbnails(object)
-        rescue Ldp::Conflict => e
-          # Another process has likely beat us to the punch. Wait a
-          # bit and try again.
-          sleep(3)
-          retry if (retries += 1) < 3
-          raise e
-        end
-      end
+      process_binaries(object, files) unless files.empty?
 
       run_callbacks :save do
         run_callbacks :create do
@@ -99,32 +82,30 @@ module Importer::Factory
       end
 
       object.attributes = update_attributes
-
-      # TODO: #attach_files needs to always run for ETD ingests, since
-      # it triggers {Proquest::Metadata#run} which updates the
-      # {AdminPolicy} of the ETD itself. Currently on ETD ingests,
-      # `files' is never empty, so for now this is OK.
-      unless files.empty?
-        # Nicked from https://github.com/samvera-labs/hyku/commit/788dd8bbe7c894b2e13ccda53f4b46d1d61454a4
-        begin
-          retries ||= 0
-          attach_files(object, files)
-          render_thumbnails(object)
-        rescue Ldp::Conflict => e
-          # Another process has likely beat us to the punch. Wait a
-          # bit and try again.
-          sleep(3)
-          retry if (retries += 1) < 3
-          raise e
-        end
-      end
+      process_binaries(object, files) unless files.empty?
 
       run_callbacks(:save) do
         object.save!
       end
+    end
 
-      logger.info "Updated #{klass.model_name.human} #{object.id} "\
-                  "(#{Array(attributes[system_identifier_field]).first})"
+    def process_binaries(object, files)
+      retries ||= 0
+      # TODO: #attach_files needs to always run for ETD ingests, since
+      # it triggers {Proquest::Metadata#run} which updates the
+      # {AdminPolicy} of the ETD itself. Currently on ETD ingests,
+      # `files' is never empty, so for now this is OK.
+      attach_files(object, files)
+      render_thumbnails(object)
+    rescue Ldp::Conflict => e
+      # Nicked from
+      # https://github.com/samvera-labs/hyku/commit/788dd8bbe7c894b2e13ccda53f4b46d1d61454a4
+      #
+      # Another process has likely beat us to the punch. Wait a
+      # bit and try again.
+      sleep(3)
+      retry if (retries += 1) < 3
+      raise e
     end
 
     # Overridden in classes that inherit from ObjectFactory
