@@ -1,5 +1,5 @@
 defaults: &defaults
-  'ingest': 4
+  'ingest': 2
 
 development:
   <<: *defaults
@@ -9,3 +9,4 @@ test:
 
 production:
   <<: *defaults
+  'ingest': 5
