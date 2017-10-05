@@ -67,11 +67,10 @@ module Importer::CLI
     ######################
     # Begin ingest process
     ######################
-    start_overall = Time.zone.now
     ingests = 0
 
     logger.info(
-      "Import start time: #{start_overall.strftime("%Y-%m-%d %H:%M:%S")}"
+      "Import start time: #{Time.zone.now.strftime("%Y-%m-%d %H:%M:%S")}"
     )
 
     cli_opts = { meta: meta,
@@ -103,10 +102,7 @@ module Importer::CLI
         end
       end # case/when
 
-      end_overall = Time.zone.now
-
-      logger.info "Ingested #{ingests} records in "\
-                  "#{(end_overall - start_overall) / 60} minutes"
+      logger.info "Queued #{ingests} ingests."
     rescue IngestError => e
       logger.info "To continue this ingest, re-run the command with "\
                    "`--skip #{e.reached}`"
