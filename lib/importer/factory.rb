@@ -6,12 +6,13 @@ module Importer::Factory
   eager_autoload do
     autoload :AudioRecordingFactory
     autoload :CollectionFactory
+    autoload :ComponentMapFactory
     autoload :ETDFactory
     autoload :ImageFactory
-    autoload :ObjectFactory
-    autoload :MapSetFactory
-    autoload :ComponentMapFactory
     autoload :IndexMapFactory
+    autoload :Job
+    autoload :MapSetFactory
+    autoload :ObjectFactory
     autoload :ScannedMapFactory
     autoload :WithAssociatedCollection
   end

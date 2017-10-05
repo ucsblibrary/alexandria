@@ -6,6 +6,7 @@
 
 require File.expand_path("../config/application", __FILE__)
 
+require "importer"
 require "resque/tasks"
 require "resque/pool/tasks"
 
