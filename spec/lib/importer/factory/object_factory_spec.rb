@@ -139,13 +139,13 @@ describe Importer::Factory::ObjectFactory do
         expect(subject[:note]).to be_nil
 
         expect(subject[:notes_attributes][0]).to(
-          eq(note_type: nil, value: "an untyped note")
+          eq("note_type" => nil, "value" => "an untyped note")
         )
         expect(subject[:notes_attributes][1]).to(
-          eq(note_type: "type 1", value: "note 1")
+          eq("note_type" => "type 1", "value" => "note 1")
         )
         expect(subject[:notes_attributes][2]).to(
-          eq(note_type: "type 2", value: "note 2")
+          eq("note_type" => "type 2", "value" => "note 2")
         )
       end
     end

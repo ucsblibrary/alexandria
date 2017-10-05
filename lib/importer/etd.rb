@@ -33,9 +33,6 @@ module Importer::ETD
                                 logger: logger)
       rescue IngestError => e
         raise IngestError, reached: (ingests + e.reached)
-      ensure
-        logger.info "Updating collection index"
-        collection.update_index
       end
     end
 
@@ -94,13 +91,11 @@ module Importer::ETD
         etd[:pdf].include? record["956"]["f"]
       end.first
 
-      start_record = Time.zone.now
-
       begin
         ingest_etd(record: record,
                    data: files,
                    collection: collection,
-                   logger: Logger.new(STDOUT))
+                   logger: logger)
       rescue => e
         logger.error e.message
         logger.error e.backtrace
@@ -110,16 +105,14 @@ module Importer::ETD
         raise IngestError, reached: ingests
       end
 
-      end_record = Time.zone.now
       ingests += 1
 
       # Since earlier we skipped the unzip operations we don't
       # need, the array of records to iterate over is smaller, so
       # we modify the numbers here so that we still get the
       # correct "Ingested X of out Y records" readout.
-      logger.info "Ingested record #{count + 1 + options[:skip]} "\
-                  "of #{data.length + options[:skip]} "\
-                  "in #{end_record - start_record} seconds"
+      logger.info "Queued record #{count + 1 + options[:skip]} "\
+                  "of #{data.length + options[:skip]}."
     end
 
     ingests

@@ -117,24 +117,25 @@ class ObjectFactoryWriter
       metadata.delete("contributors")
       metadata.delete("filename")
 
-      work_type = metadata["work_type"].first
+      work_type = case metadata["work_type"].first
+                  when *ETD_TYPES
+                    "ETD"
+                  when *AUDIO_TYPES
+                    "AudioRecording"
+                  else
+                    raise ArgumentError, "Unknown work type #{work_type}"
+                  end
 
       if @local_collection_id.present?
         metadata[:local_collection_id] = [@local_collection_id]
       end
 
-      factory(work_type).new(metadata, data, logger).run
-    end
-
-    def factory(work_type)
-      case work_type
-      when *ETD_TYPES
-        Importer::Factory.for("ETD")
-      when *AUDIO_TYPES
-        Importer::Factory.for("AudioRecording")
-      else
-        raise ArgumentError, "Unknown work type #{work_type}"
-      end
+      Resque.enqueue(
+        ::Importer::Factory::Job,
+        model: work_type,
+        attrs: metadata,
+        files: data
+      )
     end
 
     # @param [Array] names : a list of names

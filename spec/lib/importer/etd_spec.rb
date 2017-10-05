@@ -39,9 +39,13 @@ describe Importer::ETD do
           described_class.import(meta: meta, data: data, options: options)
         end
 
+        # Since #import queues a background job
+        collection.update_index
+
         expect(ETD.count).to eq 1
 
         costa = ETD.first
+        expect(costa.file_sets.count).to eq 1
 
         expect(costa.admin_policy_id).to eq AdminPolicy::DISCOVERY_POLICY_ID
         expect(costa.author).to eq ["ETD, New"]

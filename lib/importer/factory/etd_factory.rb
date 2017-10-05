@@ -8,6 +8,8 @@ module Importer::Factory
     self.system_identifier_field = :system_number
 
     def attach_files(object, files)
+      files = files.with_indifferent_access
+
       return unless files[:xml]
       object.proquest.mime_type = "application/xml"
       object.proquest.original_name = File.basename(files[:xml])
