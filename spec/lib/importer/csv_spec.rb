@@ -85,6 +85,7 @@ describe Importer::CSV do
     let(:m) { MapSet.first }
 
     it "creates all expected objects" do
+      expect(Collection.count).to eq(1)
       expect(MapSet.count).to eq(1)
       expect(IndexMap.count).to eq(1)
       expect(ComponentMap.count).to eq(2)

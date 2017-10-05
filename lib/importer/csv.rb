@@ -93,8 +93,6 @@ module Importer::CSV
     logger.debug "Associated files:"
     files.each { |f| logger.debug f }
 
-    start_time = Time.zone.now
-
     attrs = ::Parse::CSV.strip_extra_spaces(attrs)
     attrs = ::Parse::CSV.handle_structural_metadata(attrs)
     attrs = ::Parse::CSV.transform_coordinates_to_dcmi_box(attrs)
@@ -103,17 +101,24 @@ module Importer::CSV
     model = ::Parse::CSV.determine_model(attrs.delete(:type))
     raise NoModelError if model.blank?
 
-    record = ::Importer::Factory.for(model).new(attrs, files, logger).run
+    # Don't send Collections to the background, since they need to
+    # complete before the objects they contain are ingested; see
+    # https://github.com/ucsblibrary/alexandria/pull/62#issuecomment-334261568
+    if model == "Collection"
+      record = ::Importer::Factory.for(model).new(attrs, files, logger).run
 
-    end_time = Time.zone.now
+      accession_string = if attrs[:accession_number].present?
+                           " with accession number " +
+                             attrs[:accession_number].first
+                         end
 
-    accession_string = if attrs[:accession_number].present?
-                         " with accession number " +
-                           attrs[:accession_number].first
-                       end
-
-    logger.info "#{model}#{accession_string} ingested as "\
-                "#{record.id} in #{end_time - start_time} seconds"
-    record
+      logger.info "#{model}#{accession_string} ingested as #{record.id}."
+      record
+    else
+      Resque.enqueue(
+        ::Importer::Factory::Job,
+        model: model, attrs: attrs, files: files
+      )
+    end
   end
 end # End of module
