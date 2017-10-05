@@ -57,10 +57,15 @@ module Importer::MODS
 
     parser = Parse::MODS.new(metadata, logger)
 
-    ::Importer::Factory.for(parser.model.to_s).new(
-      parser.attributes.merge(admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID),
-      selected_data,
-      logger
-    ).run
+    attrs = parser.attributes.merge(
+      admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID
+    )
+
+    Resque.enqueue(
+      ::Importer::Factory::Job,
+      model: parser.model.to_s,
+      attrs: attrs,
+      files: selected_data
+    )
   end
 end
