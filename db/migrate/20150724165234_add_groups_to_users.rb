@@ -1,4 +1,4 @@
-class AddGroupsToUsers < ActiveRecord::Migration
+class AddGroupsToUsers < ActiveRecord::Migration[4.2]
   def change
     add_column :users, :group_list, :text
     add_column :users, :groups_list_expires_at, :datetime
