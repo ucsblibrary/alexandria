@@ -1,4 +1,4 @@
-class AddUsernameToUsers < ActiveRecord::Migration
+class AddUsernameToUsers < ActiveRecord::Migration[4.2]
   def change
     rename_index :users, 'index_users_on_email', 'index_users_on_username'
     rename_column :users, :email, :username
