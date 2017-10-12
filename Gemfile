@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-group :production, :development do
+group :production do
   gem "pg", "~> 0.18.4"
 end
 
@@ -74,6 +74,7 @@ group :development, :test do
   gem "rubocop-rspec", require: false
   gem "spring"
   gem "spring-commands-rspec", group: :development
+  gem "sqlite3"
 end
 
 group :test do
@@ -81,7 +82,6 @@ group :test do
   gem "ci_reporter"
   gem "database_cleaner"
   gem "rails-controller-testing"
-  gem "sqlite3"
   gem "timecop"
   gem "vcr"
   gem "webmock", require: false

@@ -1,11 +1,8 @@
 defaults: &defaults
-  adapter: postgresql
-  database: <%= Rails.application.secrets.hydra_postgres_db %>
-  encoding: unicode
-  host: 127.0.0.1
-  password: <%= Rails.application.secrets.hydra_postgres_pass %>
+  adapter: sqlite3
   pool: 5
-  username: <%= Rails.application.secrets.hydra_postgres_user %>
+  timeout: 5000
+  database: db/development.sqlite3
 
 development:
   <<: *defaults
