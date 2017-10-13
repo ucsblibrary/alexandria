@@ -1,1 +1,6 @@
-<%= media_display(document.file_sets.first) if document.file_sets.present? %>
+<% document.file_sets.each do |fs| %>
+  <div class="audio-player">
+    <h3><%= fs.title.first %></h3>
+    <%= media_display(fs) %>
+  </div>
+<% end %>
