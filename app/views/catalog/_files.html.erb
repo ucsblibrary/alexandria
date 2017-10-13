@@ -6,41 +6,19 @@
     </tr>
   </thead>
   <tbody>
-    <% files = document.file_sets.select { |fs| fs["original_filename_ss"].present? }  %>
-
-    <% # FIXME: right now we're assuming the first file is the ETD.  Once we upgrade to RDF there may not be guaranteed ordering. %>
-    <% file_set = files.shift %>
     <tr>
       <td class="access-row allowed" colspan="2">Access: <%= policy_title(document) %><%= document.after_embargo_status%></td>
     </tr>
-    <tr>
-      <td class="col_1">
-        <span class="fa <%= icon_class(file_set) %>"> </span>
-        <%= link_to_file(file_set) %>
-      </td>
-      <td class="col_2">
-        <%= if file_set.pdf?
-              "Full-text thesis or dissertation"
-            else
-              # TODO: this is the format of the original, rather than
-              # the derivative
-              file_set["file_format_tesim"].first
-            end %>
-      </td>
-    </tr>
-
-
-    <% files.sort { |a, b| a.fetch('original_filename_ss') <=> b.fetch('original_filename_ss') }.each do |file_set| %>
-    <tr>
-      <td class="col_1">
-        <span class="fa <%= icon_class(file_set) %>"> </span>
-        <%= link_to_file(file_set) %>
-      </td>
-      <td class="col_2">
-        <% # TODO: this is the format of the original, rather than the derivative %>
-        <%= file_set["file_format_tesim"].first %>
-      </td>
-    </tr>
+    <% document.file_sets.sort { |a, b| a.fetch('original_filename_ss') <=> b.fetch('original_filename_ss') }.each do |fs| %>
+      <tr>
+        <td class="col_1">
+          <span class="fa <%= icon_class(fs) %>"> </span>
+          <%= link_to_file(fs) %>
+        </td>
+        <td class="col_2">
+          <%= fs["file_format_tesim"].first %>
+        </td>
+      </tr>
     <% end %>
   </tbody>
 </table>
