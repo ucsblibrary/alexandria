@@ -1,0 +1,7 @@
+<% if document.file_sets.present? && document.file_sets.any? { |fs| fs["original_filename_ss"].present? } %>
+  <% if can?(:read, document) %>
+    <%= render 'files', document: document %>
+  <% else %>
+    <%= render 'access_denied', document: document %>
+  <% end %>
+<% end %>
