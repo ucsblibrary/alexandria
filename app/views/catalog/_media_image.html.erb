@@ -1,32 +1,40 @@
+<% carousel = document["image_url_ssm"].present? && document["image_url_ssm"].count > 1 %>
+
 <div class="row">
   <div class="col-md-6">
-    <div class="stage-wrapper clearfix">
-      <div class="stage clearfix">
-        <div class="stage-container">
-          <div class="jcarousel-wrapper">
-            <div class="jcarousel">
-              <ul class="clearfix">
+    <% if carousel %>
+      <div class="stage-wrapper clearfix">
+        <div class="stage clearfix">
+          <div class="stage-container">
+            <div class="jcarousel-wrapper">
+              <div class="jcarousel">
+                <ul class="clearfix">
+    <% end %>
 
-                <% Array(document['image_url_ssm']).each do |img| %>
-                  <li>
-                    <% if document.file_sets.all?(&:pdf?) %>
-                      <% fs_id = URI.decode(img.sub(%r{\/image-service\/([^\/]+).*}, '\1')).sub(%r{\A([^\/]*)\/.*}, '\1') %>
-                      <%= link_to(image_tag(img, style: 'width: 100%'), download_url(fs_id, only_path: true)) %>
-                    <% else %>
-                      <%= image_tag(img, style: 'width: 100%') %>
-                    <% end %>
-                  </li>
-                <% end %>
-              </ul>
+  <% Array(document['image_url_ssm']).each do |img| %>
+    <% if carousel %><li><% end %>
+      <% fs_id = URI.decode(img.sub(%r{\/image-service\/([^\/]+).*}, '\1')).sub(%r{\A([^\/]*)\/.*}, '\1') %>
+
+      <% if document.file_sets.find { |fs| fs.id == fs_id }.pdf? %>
+        <%= link_to(image_tag(img, style: 'width: 100%'), download_url(fs_id, only_path: true)) %>
+      <% else %>
+        <%= image_tag(img, style: 'width: 100%') %>
+      <% end %>
+
+      <% if carousel %></li><% end %>
+  <% end %>
+
+  <% if carousel %>
+                </ul>
+              </div>
+              <a href="#" class="jcarousel-control-prev">&lsaquo;</a>
+              <a href="#" class="jcarousel-control-next">&rsaquo;</a>
+
+              <p class="jcarousel-pagination"></p>
             </div>
-
-            <a href="#" class="jcarousel-control-prev">&lsaquo;</a>
-            <a href="#" class="jcarousel-control-next">&rsaquo;</a>
-
-            <p class="jcarousel-pagination"></p>
           </div>
         </div>
       </div>
-    </div>
+  <% end %>
   </div>
 </div>
