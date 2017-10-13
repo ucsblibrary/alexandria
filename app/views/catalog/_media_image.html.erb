@@ -6,15 +6,17 @@
           <div class="jcarousel-wrapper">
             <div class="jcarousel">
               <ul class="clearfix">
-                <%=
-                r = ''
-                Array(document['image_url_ssm']).each do |img|
-                  r << '<li>'
-                  r << image_tag(img, style: 'width: 100%')
-                  r << '</li>'
-                end
-                r.html_safe
-                %>
+
+                <% Array(document['image_url_ssm']).each do |img| %>
+                  <li>
+                    <% if document.file_sets.all?(&:pdf?) %>
+                      <% fs_id = URI.decode(img.sub(%r{\/image-service\/([^\/]+).*}, '\1')).sub(%r{\A([^\/]*)\/.*}, '\1') %>
+                      <%= link_to(image_tag(img, style: 'width: 100%'), download_url(fs_id, only_path: true)) %>
+                    <% else %>
+                      <%= image_tag(img, style: 'width: 100%') %>
+                    <% end %>
+                  </li>
+                <% end %>
               </ul>
             </div>
 
