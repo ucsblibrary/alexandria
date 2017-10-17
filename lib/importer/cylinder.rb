@@ -81,21 +81,14 @@ class Importer::Cylinder
       logger.debug record.class
       logger.debug record
 
-      start_record = Time.zone.now
       indexer.writer.put attributes(record, indexer)
-      end_record = Time.zone.now
 
       @imported_records_count += 1
 
-      logger.info "Ingested record #{count + 1} of #{cylinders} "\
-                  "in #{end_record - start_record} seconds"
+      logger.info "Queued record #{count + 1} of #{cylinders}."
     end # marcs.each_with_index
   ensure
-    indexer.writer.close if indexer && indexer.writer
-    if @collection
-      logger.info "Updating collection index"
-      @collection.update_index
-    end
+    indexer.writer.close if indexer&.writer
   end
 
   # XMLReader's Enumerable methods are destructive, so move the

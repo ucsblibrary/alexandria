@@ -368,6 +368,10 @@ describe Importer::Cylinder do
         expect(contributor_id).to eq person.id
       end
 
+      # We have to do this manually since Cylinders are ingested in
+      # the background
+      collection.update_index
+
       # Check the collection membership
       expect(record1.local_collection_id).to eq [collection.id]
 

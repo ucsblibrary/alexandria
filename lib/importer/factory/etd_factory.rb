@@ -51,7 +51,9 @@ module Importer::Factory
           object.ordered_members << file_set
         end
       ensure
-        FileUtils.rm [files[:xml], files[:pdf], files[:supplements]]
+        unless Rails.env.test?
+          FileUtils.rm [files[:xml], files[:pdf], files[:supplements]]
+        end
       end
     end
 
