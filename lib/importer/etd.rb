@@ -15,25 +15,22 @@ module Importer::ETD
     raise ArgumentError, "Nothing found in #{data}" if data.empty?
     collection = ensure_collection_exists(logger: logger)
     ingests = 0
+    etds = unpack(data, options, Dir.mktmpdir)
 
-    Dir.mktmpdir do |temp|
-      etds = unpack(data, options, temp)
+    if etds.empty?
+      raise ArgumentError,
+            "Number of records skipped (#{options[:skip]}) "\
+            "greater than total records to ingest"
+    end
 
-      if etds.empty?
-        raise ArgumentError,
-              "Number of records skipped (#{options[:skip]}) "\
-              "greater than total records to ingest"
-      end
-
-      begin
-        ingests += ingest_batch(metadata: meta,
-                                data: etds,
-                                collection: collection.id,
-                                options: options,
-                                logger: logger)
-      rescue IngestError => e
-        raise IngestError, reached: (ingests + e.reached)
-      end
+    begin
+      ingests += ingest_batch(metadata: meta,
+                              data: etds,
+                              collection: collection.id,
+                              options: options,
+                              logger: logger)
+    rescue IngestError => e
+      raise IngestError, reached: (ingests + e.reached)
     end
 
     ingests
