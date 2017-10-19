@@ -127,7 +127,7 @@ module Importer::Factory
       end
 
       object.file_sets.select(&:image?).map(&:files).flatten.each do |f|
-        Settings.thumbnails.keys.each do |k|
+        Settings.thumbnails.each_key do |k|
           options = {
             size: Settings.thumbnails[k]["size"],
             rotation: "0",
@@ -140,7 +140,7 @@ module Importer::Factory
         end
       end
     ensure
-      FileUtils.rm_rf Settings.riiif_fedora_cache
+      FileUtils.rm_rf Dir["#{Settings.riiif_fedora_cache}/*"]
     end
 
     def create_attributes
