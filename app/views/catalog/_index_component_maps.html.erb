@@ -1,8 +1,9 @@
 <% component_maps = document.component_maps %>
 <% index_maps = document.index_maps.reject { |i| i["square_thumbnail_url_ssm"].nil? } %>
 
+<div class="map-tray">
 <% if index_maps.present? %>
-  <div class="col-md-3 map-tray">
+  <div class="col-md-3">
     <h3>Index Maps</h3>
     <ul>
     <% index_maps.each_with_index do |map, i| %>
@@ -28,10 +29,10 @@
 <% if component_maps.present? %>
   <% # If there are no index maps, take up the whole width of the screen
     if index_maps.count == 0 %>
-      <div class="col-md-12 map-tray">
+      <div class="col-md-12">
   <% # If there is a single index map, split it 3/9
     elsif index_maps.count == 1 %>
-      <div class="col-md-9 map-tray">
+      <div class="col-md-9">
   <% end %>
   <%
      self_index = component_maps.index { |cm| cm.id == document.id }
@@ -70,3 +71,4 @@
     <% end %>
   </ul></div>
 <% end %>
+</div>

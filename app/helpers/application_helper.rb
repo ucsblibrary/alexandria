@@ -114,6 +114,10 @@ module ApplicationHelper
     end
   end
 
+  def can_view_full_image?(id)
+    current_ability.test_access(access: :read, object_id: id)
+  end
+
   def embargo_manager?
     can?(:discover, Hydra::AccessControls::Embargo)
   end

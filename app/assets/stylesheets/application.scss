@@ -868,6 +868,8 @@ label.remove_time_span {
 // ---------
 
 .map-tray {
+  clear: both;
+
   ul {
     align-items: center;
     display: flex;
