@@ -44,31 +44,51 @@ module Importer::CSV
                         logger: Logger.new(STDOUT))
     ingested = 0
 
-    meta.drop(options[:skip]).each_with_index do |row, i|
-      next if options[:number] && options[:number] <= ingested
+    rows_to_ingest = meta.drop(options[:skip])
+    return 0 if rows_to_ingest.blank?
 
-      begin
-        logger.info "Ingesting record #{ingested + 1} "\
-                    "of #{options[:number] || (meta.length - options[:skip])}"
+    collections = rows_to_ingest.select { |row| row[:type] == "Collection" }
+    map_sets = rows_to_ingest.select { |row| row[:type] == "Map set" }
+    index_maps = rows_to_ingest.select { |row| row[:type] == "Index map" }
 
-        ingest_row(row: row,
-                   data: data,
-                   logger: logger)
+    member_objects = rows_to_ingest.reject do |row|
+      ["Collection", "Map set", "Index map"].include? row[:type]
+    end
 
-        ingested += 1
-      rescue Interrupt
-        raise IngestError, reached: i
-      rescue => e
-        logger.error e.message
-        logger.error e.backtrace
-        raise IngestError, reached: i
+    [collections, map_sets, index_maps, member_objects].each do |set|
+      # Don't send Collections or MapSets to the background, since
+      # they need to complete before the objects they contain are
+      # ingested; see
+      # https://github.com/ucsblibrary/alexandria/pull/62#issuecomment-334261568
+      bg = (set == member_objects)
+
+      set.each_with_index do |row, i|
+        next if options[:number] && options[:number] <= ingested
+
+        begin
+          ingest_row(
+            background: bg,
+            data: data,
+            logger: logger,
+            row: row
+          )
+
+          ingested += 1
+        rescue Interrupt
+          raise IngestError, reached: i
+        rescue => e
+          logger.error e.message
+          logger.error e.backtrace
+          raise IngestError, reached: i
+        end
       end
     end
 
     ingested
   end
 
-  def self.ingest_row(row:,
+  def self.ingest_row(background: true,
+                      row:,
                       data: [],
                       logger: Logger.new(STDOUT))
     # Check that all URIs are well formed
@@ -101,10 +121,12 @@ module Importer::CSV
     model = ::Parse::CSV.determine_model(attrs.delete(:type))
     raise NoModelError if model.blank?
 
-    # Don't send Collections to the background, since they need to
-    # complete before the objects they contain are ingested; see
-    # https://github.com/ucsblibrary/alexandria/pull/62#issuecomment-334261568
-    if model == "Collection"
+    if background
+      Resque.enqueue(
+        ::Importer::Factory::Job,
+        model: model, attrs: attrs, files: files
+      )
+    else
       record = ::Importer::Factory.for(model).new(attrs, files, logger).run
 
       accession_string = if attrs[:accession_number].present?
@@ -114,11 +136,6 @@ module Importer::CSV
 
       logger.info "#{model}#{accession_string} ingested as #{record.id}."
       record
-    else
-      Resque.enqueue(
-        ::Importer::Factory::Job,
-        model: model, attrs: attrs, files: files
-      )
     end
   end
 end # End of module
