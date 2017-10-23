@@ -61,21 +61,48 @@ already been successfully ingested.
 
 ### Ingesting ETDs
 
-```
-RAILS_ENV=production bin/ingest -f etd -d /opt/ingest/data/etds/2adrl_ready/*.zip
-```
-
-After you import the individual ETDs, you need to add the
+Before you can import individual ETDs, you need to add the
 collection-level record to the repository:
 
 ```
 RAILS_ENV=production bin/ingest -f mods -m /opt/ingest/metadata/adrl-dm/ingest-ready/etds/
 ```
 
+Then ingest ETDs:
+
+```
+RAILS_ENV=production bin/ingest -f etd -d /opt/ingest/data/etds/2adrl_ready/*.zip
+```
+
+Currently, because we’re using a local modification to collection
+membership (see {file:local_collections.md}), we need to update the
+ETD collection after ingesting members:
+
+```
+irb> etd_collection.update_index
+```
+
 ### Ingesting Wax Cylinders
+
+Before you can import individual Cylinders, you need to add the
+collection-level record to the repository:
+
+```
+RAILS_ENV=production bin/ingest -f csv -m /opt/ingest/metadata/adrl-dm/ingest-ready/cylinders/cylinders-collection.csv
+```
+
+Then ingest Cylinders:
 
 ```
 RAILS_ENV=production bin/ingest -f cyl -m spec/fixtures/marcxml/cylinder_sample_marc.xml -d /data/objects-cylinders
+```
+
+Currently, because we’re using a local modification to collection
+membership (see {file:local_collections.md}), we need to update the
+Cylinder collection after ingesting members:
+
+```
+irb> cylinder_collection.update_index
 ```
 
 ### Ingesting MODS records
