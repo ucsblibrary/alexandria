@@ -53,6 +53,10 @@ cd /opt/alexandria/current
 RAILS_ENV=production bin/ingest -f etd -d /opt/download_root/proquest/etdadmin_upload_*
 ```
 
+By default, the ingest process will run in the background, and print output to a
+log file.  Set the environment variable `INGEST_DEBUG` if you need to keep the
+process in the foreground (e.g., for when using a step debugger).
+
 If you start an ingest with `bin/ingest` that fails or is stopped, the
 logs will tell you how many records it managed to ingest.  You can
 begin the ingest where it stopped by running `bin/ingest` again and
