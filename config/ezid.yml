@@ -1,0 +1,15 @@
+default: &default
+  shoulder: ark:/99999/fk4
+  password: "<%= Rails.application.secrets.ezid_test_pass %>"
+  username: apitest
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  shoulder: ark:/48907/f3
+  password: "<%= Dir.chdir('/opt/secret-server') { `java -jar secretserver-jconsole.jar -s 391 Password`.strip } %>"
+  username: "<%= Dir.chdir('/opt/secret-server') { `java -jar secretserver-jconsole.jar -s 391 Username`.strip } %>"
