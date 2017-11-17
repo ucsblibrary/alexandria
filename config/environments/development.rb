@@ -37,4 +37,6 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   config.host_name = ENV["DEV_HOST_NAME"] || "localhost:3000"
+
+  config.auth_method = Auth::YAML.auth
 end

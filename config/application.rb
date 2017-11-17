@@ -18,6 +18,8 @@ class Alexandria::Application < Rails::Application
     g.test_framework :rspec, spec: true
   end
 
+  config.autoload_paths << Rails.root.join("lib")
+
   # Handle exceptions manually
   config.exceptions_app = routes
 

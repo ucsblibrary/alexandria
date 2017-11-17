@@ -29,7 +29,7 @@ class SessionsController < ApplicationController
                    "@library.ucsb.edu"
                end
 
-    groups = auth_with_ldap(
+    groups = Rails.application.config.auth_method.call(
       user: username,
       password: params[:session][:password],
       type: type
