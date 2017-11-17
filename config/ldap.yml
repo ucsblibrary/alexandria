@@ -1,51 +1,20 @@
 ucsb:
-  defaults: &defaults
-    admin_pass: <%= Rails.application.secrets.ldap_campus_admin_pass %>
-    admin_user: <%= Rails.application.secrets.ldap_campus_admin_user %>
+  production:
+    admin_pass: "<%= Dir.chdir('/opt/secret-server') { `java -jar secretserver-jconsole.jar -s 49 Password`.strip } %>"
+    admin_user: "<%= Dir.chdir('/opt/secret-server') { `java -jar secretserver-jconsole.jar -s 49 Username`.strip } %>"
     attribute: uid
     filter: uid
-    group_base: <%= Rails.application.secrets.ldap_campus_group_base %>
-    host: <%= Rails.application.secrets.ldap_campus_host %>
+    group_base: "ou=People,o=ucsb"
+    host: "<%= Dir.chdir('/opt/secret-server') { `java -jar secretserver-jconsole.jar -s 49 Resource`.strip } %>"
     port: 636
     ssl: true
-
-  development:
-    <<: *defaults
-
-  production:
-    <<: *defaults
-
-  test:
-    <<: *defaults
-    admin_password:
-    admin_user:
-    base:
-    group_base:
-    host:
-    port: 389
-    ssl: false
 
 staff:
-  defaults: &defaults
-    admin_pass: <%= Rails.application.secrets.ldap_ad_admin_pass %>
-    admin_user: <%= Rails.application.secrets.ldap_ad_admin_user %>
-    group_base: <%= Rails.application.secrets.ldap_ad_group_base %>
+  production:
+    admin_pass: "<%= Dir.chdir('/opt/secret-server') { `java -jar secretserver-jconsole.jar -s 1331 Password`.strip } %>"
+    admin_user: "<%= Dir.chdir('/opt/secret-server') { `java -jar secretserver-jconsole.jar -s 1331 Username`.strip } %>"
     filter: userprincipalname
-    host: <%= Rails.application.secrets.ldap_ad_host %>
+    group_base: "dc=library,dc=ucsb,dc=edu"
+    host: "<%= Dir.chdir('/opt/secret-server') { `java -jar secretserver-jconsole.jar -s 1331 Domain`.strip } %>"
     port: 636
     ssl: true
-
-  development:
-    <<: *defaults
-
-  production:
-    <<: *defaults
-
-  test:
-    <<: *defaults
-    admin_password:
-    admin_user:
-    attribute: uid
-    base:
-    group_base:
-    host:
