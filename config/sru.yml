@@ -1,7 +1,7 @@
 ---
 # How many records can be fetched at once
 batch_size: 50
-host: <%= Rails.application.secrets.sru_host %>
+host: https://ucsb.alma.exlibrisgroup.com/view/sru/01UCSB_INST
 default_params:
   # https://developers.exlibrisgroup.com/alma/integrations/SRU
   - "version=1.2"
