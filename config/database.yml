@@ -15,7 +15,7 @@ test:
 production:
   <<: *defaults
   adapter: postgresql
-  database: "<%= Dir.chdir('/opt/secret-server') { `java -jar secretserver-jconsole.jar -s #{PSQL_SECRET_ID} Resource`.strip } %>"
+  database: "<%= SS.get_secret(SS::PSQL_SECRET_ID, 'Resource') %>"
   host: <%= Rails.application.secrets.psql_host %>
-  password: "<%= Dir.chdir('/opt/secret-server') { `java -jar secretserver-jconsole.jar -s #{PSQL_SECRET_ID} Password`.strip } %>"
-  username: "<%= Dir.chdir('/opt/secret-server') { `java -jar secretserver-jconsole.jar -s #{PSQL_SECRET_ID} Username`.strip } %>"
+  password: "<%= SS.get_secret(SS::PSQL_SECRET_ID, 'Password') %>"
+  username: "<%= SS.get_secret(SS::PSQL_SECRET_ID, 'Username') %>"

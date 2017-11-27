@@ -1,20 +1,20 @@
 ucsb:
   production:
-    admin_pass: "<%= Dir.chdir('/opt/secret-server') { `java -jar secretserver-jconsole.jar -s 49 Password`.strip } %>"
-    admin_user: "<%= Dir.chdir('/opt/secret-server') { `java -jar secretserver-jconsole.jar -s 49 Username`.strip } %>"
+    admin_pass: "<%= SS.get_secret(49, 'Password') %>"
+    admin_user: "<%= SS.get_secret(49, 'Username') %>"
     attribute: uid
     filter: uid
     group_base: "ou=People,o=ucsb"
-    host: "<%= Dir.chdir('/opt/secret-server') { `java -jar secretserver-jconsole.jar -s 49 Resource`.strip } %>"
+    host: "<%= SS.get_secret(49, 'Resource') %>"
     port: 636
     ssl: true
 
 staff:
   production:
-    admin_pass: "<%= Dir.chdir('/opt/secret-server') { `java -jar secretserver-jconsole.jar -s 1331 Password`.strip } %>"
-    admin_user: "<%= Dir.chdir('/opt/secret-server') { `java -jar secretserver-jconsole.jar -s 1331 Username`.strip } %>"
+    admin_pass: "<%= SS.get_secret(1331, 'Password') %>"
+    admin_user: "<%= SS.get_secret(1331, 'Username') %>"
     filter: userprincipalname
     group_base: "dc=library,dc=ucsb,dc=edu"
-    host: "<%= Dir.chdir('/opt/secret-server') { `java -jar secretserver-jconsole.jar -s 1331 Domain`.strip } %>"
+    host: "<%= SS.get_secret(1331, 'Domain') %>"
     port: 636
     ssl: true

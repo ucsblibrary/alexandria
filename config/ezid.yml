@@ -11,5 +11,5 @@ test:
 
 production:
   shoulder: ark:/48907/f3
-  password: "<%= Dir.chdir('/opt/secret-server') { `java -jar secretserver-jconsole.jar -s 391 Password`.strip } %>"
-  username: "<%= Dir.chdir('/opt/secret-server') { `java -jar secretserver-jconsole.jar -s 391 Username`.strip } %>"
+  password: "<%= SS.get_secret(391, 'Password') %>"
+  username: "<%= SS.get_secret(391, 'Username') %>"
