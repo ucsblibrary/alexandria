@@ -15,7 +15,7 @@ test:
 production:
   <<: *defaults
   adapter: postgresql
-  database: <%= Rails.application.secrets.hydra_postgres_db %>
+  database: "<%= Dir.chdir('/opt/secret-server') { `java -jar secretserver-jconsole.jar -s #{PSQL_SECRET_ID} Resource`.strip } %>"
   host: <%= Rails.application.secrets.psql_host %>
-  password: <%= Rails.application.secrets.hydra_postgres_pass %>
-  username: <%= Rails.application.secrets.hydra_postgres_user %>
+  password: "<%= Dir.chdir('/opt/secret-server') { `java -jar secretserver-jconsole.jar -s #{PSQL_SECRET_ID} Password`.strip } %>"
+  username: "<%= Dir.chdir('/opt/secret-server') { `java -jar secretserver-jconsole.jar -s #{PSQL_SECRET_ID} Username`.strip } %>"
