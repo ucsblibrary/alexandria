@@ -11,5 +11,5 @@ test:
 
 production:
   shoulder: ark:/48907/f3
-  password: "<%= SS.get_secret(391, 'Password') %>"
-  username: "<%= SS.get_secret(391, 'Username') %>"
+  password: "<%= SS.get_secret(SS::EZID_SECRET_ID, 'Password') %>"
+  username: "<%= SS.get_secret(SS::EZID_SECRET_ID, 'Username') %>"

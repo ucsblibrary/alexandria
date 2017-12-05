@@ -9,6 +9,12 @@ module SS
                      "1443"
                    end
 
+  EZID_SECRET_ID = if Rails.application.config.host_name == "alexandria.ucsb.edu"
+                     "391"
+                   else
+                     "1435"
+                   end
+
   # @param id [String, Integer] the secret ID
   # @param field [String] the field (Password, Username, etc.)
   def self.get_secret(id, field)
