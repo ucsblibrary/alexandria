@@ -7,7 +7,7 @@ module Importer::Factory
 
     def find
       klass.where(
-        accession_number_ssim: attributes[:accession_number].first
+        accession_number: attributes[:accession_number].first
       ).first
     end
 
