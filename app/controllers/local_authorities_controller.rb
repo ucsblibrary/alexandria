@@ -5,7 +5,7 @@ class LocalAuthoritiesController < ApplicationController
   include Hydra::Catalog
   include Hydra::Controller::ControllerBehavior
 
-  layout "curation_concerns"
+  layout "alexandria"
 
   before_action :auth, only: :index
   before_action :add_view_path

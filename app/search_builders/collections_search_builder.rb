@@ -1,4 +1,4 @@
 # frozen_string_literal: true
 
-class CollectionsSearchBuilder < CurationConcerns::CollectionSearchBuilder
+class CollectionsSearchBuilder < Hyrax::CollectionSearchBuilder
 end

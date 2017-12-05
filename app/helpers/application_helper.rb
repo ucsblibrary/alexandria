@@ -2,7 +2,11 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
-  include CurationConcerns::CatalogHelper
+  include SessionsHelper
+
+  def user_signed_in?
+    current_user.present?
+  end
 
   # @param [String] string
   # @return [String]

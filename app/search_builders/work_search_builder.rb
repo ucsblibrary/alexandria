@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-class WorkSearchBuilder < CurationConcerns::WorkSearchBuilder
+class WorkSearchBuilder < Hyrax::WorkSearchBuilder
   include Hydra::PolicyAwareAccessControlsEnforcement
 end

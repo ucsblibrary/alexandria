@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
-module CurationConcernsHelper
+module HyraxHelper
   include ::BlacklightHelper
-  include CurationConcerns::MainAppHelpers
+  include Hyrax::BlacklightOverride
+  include Hyrax::HyraxHelperBehavior
 
-  # @param [SolrDocument, CurationConcerns::FileSetPresenter] doc
+  # @param [SolrDocument, Hyrax::FileSetPresenter] doc
   def url_for_document(doc, options = {})
     return unless doc
     # Pull the wrapped solr_doc out of FileSetPresenter
@@ -14,7 +15,7 @@ module CurationConcernsHelper
     case Array.wrap(doc["has_model_ssim"]).first
     when "Collection"
       collection_path(doc)
-    when *CurationConcerns.config.registered_curation_concern_types
+    when *Hyrax.config.registered_curation_concern_types
       if doc.ark
         ark_path(doc.ark)
       else

@@ -259,7 +259,7 @@ module Metadata
     end
   end
 
-  # Override of CurationConcerns. Since we have admin_policy rather
+  # Override of Hyrax. Since we have admin_policy rather
   # than users with edit permission
   def paranoid_permissions
     true

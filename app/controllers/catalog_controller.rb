@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
 class CatalogController < ApplicationController
-  include BlacklightRangeLimit::ControllerOverride
-  include CurationConcerns::CatalogController
+  include Hydra::Catalog
   include Hydra::Controller::ControllerBehavior
+  include BlacklightRangeLimit::ControllerOverride
+
+  layout "alexandria"
 
   # enforce_show_permissions is from hydra-access-controls gem
   before_action :enforce_show_permissions, only: :show

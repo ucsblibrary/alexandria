@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Collection < ActiveFedora::Base
-  include CurationConcerns::CollectionBehavior
+  include Hyrax::CollectionBehavior
   include Metadata
   include WithAdminPolicy
 

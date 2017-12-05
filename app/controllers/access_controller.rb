@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class AccessController < ApplicationController
-  layout "curation_concerns"
+  layout "alexandria"
 
   before_action :load_record
   attr_accessor :record

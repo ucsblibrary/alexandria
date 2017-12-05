@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class FileSet < ActiveFedora::Base
-  include CurationConcerns::FileSetBehavior
+  include Hyrax::FileSetBehavior
   include WithAdminPolicy
   include EmbargoBehavior
 
@@ -12,7 +12,7 @@ class FileSet < ActiveFedora::Base
     class_name: "Hydra::PCDM::File"
   )
 
-  # Override of CurationConcerns. Since we have admin_policy rather
+  # Override of Hyrax. Since we have admin_policy rather
   # than users with edit permission
   def paranoid_permissions
     true

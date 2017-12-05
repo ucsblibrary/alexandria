@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class WelcomeController < ApplicationController
-  layout "curation_concerns", except: :index
+  layout "alexandria", except: :index
 
   def index
     @background = images.sample

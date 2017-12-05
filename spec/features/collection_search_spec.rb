@@ -21,7 +21,7 @@ feature "Collection search page", js: true do
     end
 
     scenario "Search for a collection" do
-      visit collections_path
+      visit collection_path
 
       fill_in "q", with: "Pink"
       click_button "Search"

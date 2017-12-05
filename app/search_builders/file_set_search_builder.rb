@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-class FileSetSearchBuilder < CurationConcerns::FileSetSearchBuilder
+class FileSetSearchBuilder < Hyrax::FileSetSearchBuilder
   include Hydra::PolicyAwareAccessControlsEnforcement
 end

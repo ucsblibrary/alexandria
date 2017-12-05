@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ETD < ActiveFedora::Base
-  include CurationConcerns::WorkBehavior
+  include Hyrax::WorkBehavior
   include WithAdminPolicy
   include Metadata
   include MarcMetadata

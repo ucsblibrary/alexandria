@@ -4,12 +4,11 @@ require "local_authority"
 
 # Extends and customizes the RecordsController in hydra-editor
 class RecordsController < ApplicationController
+  include RecordsControllerBehavior
+  layout "alexandria"
+
   load_resource only: [:destroy]
   load_and_authorize_resource only: [:new_merge, :merge]
-
-  layout "curation_concerns"
-
-  include RecordsControllerBehavior
 
   def destroy
     # Assume for now that the only type of records we can

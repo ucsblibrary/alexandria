@@ -23,8 +23,8 @@ end
 
 Rails.application.routes.draw do
   mount Blacklight::Engine => "/"
-  mount Hydra::RoleManagement::Engine => "/"
   mount HydraEditor::Engine => "/"
+  mount Hydra::RoleManagement::Engine => "/"
   mount Qa::Engine => "/qa"
   mount Riiif::Engine => "/image-service", as: "riiif"
 
@@ -36,6 +36,9 @@ Rails.application.routes.draw do
 
   post "contact_us" => "contact_us#create", as: :contact_us
   get "contact_us" => "contact_us#new", as: :contact_us_form
+
+  mount Hyrax::Engine, at: "/"
+  curation_concerns_basic_routes
 
   # new_user_session_path is hardcoded everywhere in Blacklight
   get "sign_in", to: "sessions#new", as: :new_user_session
@@ -98,10 +101,6 @@ Rails.application.routes.draw do
             controller: "catalog" do
     concerns :exportable
   end
-
-  mount CurationConcerns::Engine, at: "/"
-  curation_concerns_collections
-  curation_concerns_basic_routes
 
   resources :embargoes, only: [:index, :edit, :destroy] do
     collection do

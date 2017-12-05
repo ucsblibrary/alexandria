@@ -25,7 +25,7 @@ module Importer::Factory
         number = cylinder_number(filegroup)
         next unless number
 
-        now = CurationConcerns::TimeService.time_in_utc
+        now = Time.now.utc
 
         file_set = FileSet.create!(
           label: "Cylinder#{number}",
@@ -34,7 +34,7 @@ module Importer::Factory
           date_modified: now
         )
 
-        actor = CurationConcerns::Actors::FileSetActor.new(
+        actor = Hyrax::Actors::FileSetActor.new(
           file_set, User.batchuser
         )
 
@@ -71,7 +71,7 @@ module Importer::Factory
       original[1]
     end
 
-    # @param [CurationConcerns::FileSetActor] actor
+    # @param [Hyrax::FileSetActor] actor
     # @param [String] number
     # @param [Array] cylinders
     def attach_original(actor, number, cylinders)
@@ -87,7 +87,7 @@ module Importer::Factory
       end
     end
 
-    # @param [CurationConcerns::FileSetActor] actor
+    # @param [Hyrax::FileSetActor] actor
     # @param [String] number
     # @param [Array] cylinders
     def attach_restored(actor, number, cylinders)

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class AudioRecording < ActiveFedora::Base
-  include CurationConcerns::WorkBehavior
+  include Hyrax::WorkBehavior
   include Metadata
   include MarcMetadata
   include WithAdminPolicy

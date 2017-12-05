@@ -3,7 +3,7 @@
 require_relative "inflections"
 require_relative "settings"
 
-CurationConcerns.configure do |config|
+Hyrax.config do |config|
   config.register_curation_concern :audio_recording
   config.register_curation_concern :component_map
   config.register_curation_concern :etd
@@ -43,7 +43,7 @@ CurationConcerns.configure do |config|
   config.enable_ffmpeg = true
   config.ffmpeg_path = Settings.ffmpeg_path
 
-  # CurationConcerns uses NOIDs for files and collections instead of
+  # Hyrax uses NOIDs for files and collections instead of
   # Fedora UUIDs where NOID = 10-character string and UUID =
   # 32-character string w/ hyphens
   # config.enable_noids = true

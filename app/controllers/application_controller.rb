@@ -3,10 +3,11 @@
 class ApplicationController < ActionController::Base
   helper Openseadragon::OpenseadragonHelper
   include Blacklight::Controller
+  include Hydra::Controller::ControllerBehavior
+  include Hyrax::Controller
+  include Hyrax::ThemedLayoutController
   include SessionsHelper
 
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
   rescue_from Net::LDAP::BindingInformationInvalidError do |exception|
@@ -39,6 +40,7 @@ class ApplicationController < ActionController::Base
   end
   helper_method :on_campus?
 
+  # TODO: put these in a YAML config file
   def on_campus_network_prefixes
     %w[
       128.111

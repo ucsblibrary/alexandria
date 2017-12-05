@@ -18,7 +18,7 @@ namespace :fedora do
 
   desc "Print fedora object counts"
   task count: [:environment] do
-    models = CurationConcerns.config.curation_concerns +
+    models = Hyrax.config.curation_concerns +
              [Collection, FileSet] +
              LocalAuthority::LOCAL_AUTHORITY_MODELS - [Agent]
 

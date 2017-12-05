@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ErrorController < ApplicationController
-  layout "curation_concerns"
+  layout "alexandria"
 
   # see http://blog.grepruby.com/2015/04/custom-error-pages-with-rails-4.html
   def not_found

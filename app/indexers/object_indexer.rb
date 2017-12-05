@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-class ObjectIndexer < CurationConcerns::WorkIndexer
+class ObjectIndexer < Hyrax::WorkIndexer
   def rdf_service
-    RDF::DeepIndexingService
+    Hyrax::DeepIndexingService
   end
 
   self.thumbnail_field = "thumbnail_url_ssm"
@@ -166,7 +166,7 @@ class ObjectIndexer < CurationConcerns::WorkIndexer
     # For objects with image attachments
     #
 
-    # Called by the CurationConcerns::WorkIndexer
+    # Called by the Hyrax::WorkIndexer
     def square_thumbnail_images
       file_set_images(
         size: Settings.thumbnails["square"]["size"],

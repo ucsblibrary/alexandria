@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CollectionIndexer < CurationConcerns::CollectionIndexer
+class CollectionIndexer < Hyrax::CollectionIndexer
   def rdf_service
     RDF::DeepIndexingService
   end

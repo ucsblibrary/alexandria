@@ -52,7 +52,7 @@ module EmbargoQueryService
   #
   # @return [String]
   def self.only_works
-    work_types = CurationConcerns.config.registered_curation_concern_types
+    work_types = Hyrax.config.registered_curation_concern_types
 
     work_types.map do |class_name|
       "has_model_ssim:#{class_name}"

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Image < ActiveFedora::Base
-  include CurationConcerns::WorkBehavior
+  include Hyrax::WorkBehavior
   include Metadata
   include WithAdminPolicy
   include EmbargoBehavior

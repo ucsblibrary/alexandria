@@ -13,6 +13,7 @@ module SessionsHelper
   def logged_in?
     current_user
   end
+  alias signed_in? logged_in?
 
   def log_out
     session.delete(:user)

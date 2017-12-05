@@ -1,14 +1,9 @@
 # frozen_string_literal: true
 
 class User < ActiveRecord::Base
-  # Connects this user object to Hydra behaviors.
   include Hydra::User
-  # Connects this user object to Curation Concerns behaviors.
-  include CurationConcerns::User
-
-  # Connects this user object to Blacklights Bookmarks.
+  include Hyrax::User
   include Blacklight::User
-  include CurationConcerns::User
 
   serialize :group_list, Array
 
