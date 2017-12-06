@@ -10,7 +10,7 @@ module SS
                    end
 
   EZID_SECRET_ID = if Rails.application.config.host_name == "alexandria.ucsb.edu"
-                     "391"
+                     "1449"
                    else
                      "1435"
                    end
