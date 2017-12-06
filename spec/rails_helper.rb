@@ -71,7 +71,7 @@ RSpec.configure do |config|
 
   config.include Capybara::RSpecMatchers, type: :input
   config.include InputSupport, type: :input
-  config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
   config.include CollectionSupport, type: :feature
   config.include FixtureFileUpload
 end

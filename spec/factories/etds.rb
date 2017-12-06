@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-require "factory_girl"
-
-FactoryGirl.define do
+FactoryBot.define do
   factory :etd, class: ETD do
     sequence(:title) { |n| ["Test Thesis #{n}"] }
 
