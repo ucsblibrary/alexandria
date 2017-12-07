@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-require "factory_girl"
-FactoryGirl.define do
+FactoryBot.define do
   factory :scanned_map do
     sequence(:title) { |n| ["Scanned Map #{n}"] }
     factory :public_scanned_map do

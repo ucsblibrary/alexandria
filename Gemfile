@@ -59,7 +59,7 @@ gem "american_date", "~> 1.1.0"
 group :development, :test do
   gem "awesome_print"
   gem "byebug"
-  gem "factory_girl_rails", "~> 4.8"
+  gem "factory_bot_rails"
 
   # Used exact gem versions for solr_wrapper and fcrepo_wrapper
   # because they aren't careful about making breaking changes on
