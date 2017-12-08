@@ -55,14 +55,17 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.3)
-    active-fedora (11.0.1)
-      active-triples (~> 0.11.0)
+    active-fedora (11.5.2)
+      active-triples (>= 0.11.0, < 2.0.0)
       activemodel (>= 4.2, < 6)
       activesupport (>= 4.2.4, < 6)
       deprecation
-      ldp (~> 0.6.0)
-      rsolr (~> 1.1, >= 1.1.2)
-      solrizer (~> 3.4)
+      faraday (~> 0.12.1)
+      faraday-encoding (= 0.0.4)
+      ldp (~> 0.7.0)
+      rsolr (>= 1.1.2, < 3)
+      ruby-progressbar (~> 1.0)
+      solrizer (>= 3.4, < 5)
     active-triples (0.11.0)
       activemodel (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -71,6 +74,8 @@ GEM
     active_attr (0.10.2)
       activemodel (>= 3.0.2, < 5.2)
       activesupport (>= 3.0.2, < 5.2)
+    active_encode (0.1.1)
+      activesupport
     active_fedora-noid (2.0.2)
       active-fedora (>= 9.7, < 12)
       noid (~> 0.9)
@@ -281,8 +286,10 @@ GEM
     factory_bot_rails (4.8.2)
       factory_bot (~> 4.8.2)
       railties (>= 3.0.0)
-    faraday (0.13.1)
+    faraday (0.12.2)
       multipart-post (>= 1.2, < 3)
+    faraday-encoding (0.0.4)
+      faraday
     fcrepo_wrapper (0.7.0)
       ruby-progressbar
     ffi (1.9.18)
@@ -339,9 +346,11 @@ GEM
     hydra-core (10.5.0)
       hydra-access-controls (= 10.5.0)
       railties (>= 4.0.0, < 6)
-    hydra-derivatives (3.2.2)
-      active-fedora (>= 9.0, < 12)
+    hydra-derivatives (3.3.2)
+      active-fedora (>= 11.3.1, < 12)
+      active_encode (~> 0.1)
       activesupport (>= 4.0, < 6)
+      addressable (~> 2.5)
       deprecation
       mime-types (> 2.0, < 4.0)
       mini_magick (>= 3.2, < 5)
@@ -410,7 +419,7 @@ GEM
       rdf-xsd (~> 2.0)
       sparql (~> 2.0)
       sxp (~> 1.0)
-    ldp (0.6.4)
+    ldp (0.7.0)
       deprecation
       faraday
       http_logger
@@ -643,8 +652,9 @@ GEM
     resque-status (0.5.0)
       resque (~> 1.19)
     retriable (3.1.1)
-    rsolr (1.1.2)
+    rsolr (2.1.0)
       builder (>= 2.1.2)
+      faraday (>= 0.9.0)
     rspec-activemodel-mocks (1.0.3)
       activemodel (>= 3.0)
       activesupport (>= 3.0)
@@ -804,7 +814,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  active-fedora (~> 11.0.0)
   active-triples (~> 0.11.0)
   american_date (~> 1.1.0)
   awesome_print
@@ -825,6 +834,7 @@ DEPENDENCIES
   font-awesome-sass
   highline
   http_logger
+  hydra-derivatives (~> 3.3.2)
   hydra-role-management
   jbuilder (~> 2.0)
   jquery-rails (~> 4.0)

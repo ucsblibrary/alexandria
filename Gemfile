@@ -17,12 +17,12 @@ gem "uglifier", "~> 3.1"
 gem "jbuilder", "~> 2.0"
 gem "therubyracer", "~> 0.12.3", platforms: :ruby
 
-gem "active-fedora", "~> 11.0.0"
 gem "active-triples", "~> 0.11.0"
 gem "blacklight-gallery", "~> 0.8.0"
 gem "blacklight_range_limit", "~> 6.2.1"
 gem "curation_concerns", "~> 1.7.7"
 gem "ezid-client", "~> 1.2"
+gem "hydra-derivatives", "~> 3.3.2"
 gem "hydra-role-management"
 gem "linked_vocabs",
     git: "https://github.com/projecthydra-labs/linked_vocabs.git"
