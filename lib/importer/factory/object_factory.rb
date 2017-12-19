@@ -254,11 +254,17 @@ module Importer::Factory
         )
 
         notes = extract_notes(attributes)
+
         description = {
-          description: [join_paragraphs(attributes[:description])],
+          description: [
+            join_paragraphs(attributes[:description]),
+          ].reject(&:blank?),
         }
+
         restrictions = {
-          restrictions: [join_paragraphs(attributes[:restrictions])],
+          restrictions: [
+            join_paragraphs(attributes[:restrictions]),
+          ].reject(&:blank?),
         }
 
         attributes.merge(contributors)
