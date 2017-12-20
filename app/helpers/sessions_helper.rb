@@ -24,8 +24,6 @@ module SessionsHelper
   # @param [Array] groups
   # @param [type] string
   def update_groups_for!(user, groups, type)
-    return if groups.empty?
-
     default_groups = [AdminPolicy::UCSB_GROUP]
     special_groups = case type
                      when "staff"
