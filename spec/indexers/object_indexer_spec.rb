@@ -362,7 +362,7 @@ describe ObjectIndexer do
       image.save!
     end
 
-    it 'doesn\'t list the collection twice' do
+    it "doesn't list the collection twice" do
       # Make sure this test is set up correctly
       expect(image.in_collection_ids).to eq [red.id]
       expect(image.local_collection_id).to eq [red.id]
@@ -385,6 +385,14 @@ describe ObjectIndexer do
         contain_exactly(acq_note[:value],
                         cit_note[:value])
       )
+    end
+  end
+
+  context "with no restrictions" do
+    let(:image) { Image.create(restrictions: []) }
+
+    it "doesn't index the empty string" do
+      expect(subject["restrictions_tesim"]).to be_nil
     end
   end
 

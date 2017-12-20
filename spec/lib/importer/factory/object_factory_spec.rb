@@ -149,5 +149,15 @@ describe Importer::Factory::ObjectFactory do
         )
       end
     end
+
+    context "with no restrictions" do
+      let(:attributes) do
+        { restrictions: [""] }
+      end
+
+      it "discards the empty field" do
+        expect(subject[:restrictions]).to eq []
+      end
+    end
   end
 end
