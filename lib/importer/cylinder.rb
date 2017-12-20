@@ -54,6 +54,8 @@ class Importer::Cylinder
   end
 
   def run
+    logger.info "Starting ingest with options #{options.inspect}"
+
     abort_import unless @collection
 
     marcs = parse_marc_files(metadata_files)
