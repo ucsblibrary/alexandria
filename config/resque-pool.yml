@@ -9,4 +9,4 @@ test:
 
 production:
   <<: *defaults
-  'ingest': 10
+  'ingest': 15
