@@ -88,7 +88,7 @@ class Parse::MODS
         NAMESPACES
       ).map { |node| strip_whitespace(node.text) },
 
-      rights_holder: rights_holder.map(&:value),
+      rights_holder: rights_holder,
       copyright_status: mods.xpath(
         "//mods:extension/copyrightStatus/@valueURI",
         NAMESPACES
