@@ -144,8 +144,7 @@ module Parse::CSV
   def self.extract_multi_value_field(header, val, processed, key = nil)
     key ||= header.to_sym
     processed[key] ||= []
-    val = val.strip
-    processed[key] << (::Fields::URI.looks_like_uri?(val) ? RDF::URI(val) : val)
+    processed[key] << val.strip
   end
 
   # Fields that have an associated *_type column

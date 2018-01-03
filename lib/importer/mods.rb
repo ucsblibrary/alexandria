@@ -61,8 +61,7 @@ module Importer::MODS
       admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID
     )
 
-    Resque.enqueue(
-      ::Importer::Factory::Job,
+    IngestJob.perform_later(
       model: parser.model.to_s,
       attrs: attrs,
       files: selected_data

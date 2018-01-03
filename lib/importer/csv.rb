@@ -122,10 +122,7 @@ module Importer::CSV
     raise NoModelError if model.blank?
 
     if background
-      Resque.enqueue(
-        ::Importer::Factory::Job,
-        model: model, attrs: attrs, files: files
-      )
+      IngestJob.perform_later(model: model, attrs: attrs, files: files)
     else
       record = ::Importer::Factory.for(model).new(attrs, files, logger).run
 
@@ -138,4 +135,4 @@ module Importer::CSV
       record
     end
   end
-end # End of module
+end

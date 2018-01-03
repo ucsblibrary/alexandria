@@ -10,7 +10,6 @@ module Importer::Factory
     autoload :ETDFactory
     autoload :ImageFactory
     autoload :IndexMapFactory
-    autoload :Job
     autoload :MapSetFactory
     autoload :ObjectFactory
     autoload :ScannedMapFactory

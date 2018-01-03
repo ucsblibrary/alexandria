@@ -130,8 +130,7 @@ class ObjectFactoryWriter
         metadata[:local_collection_id] = [@local_collection_id]
       end
 
-      Resque.enqueue(
-        ::Importer::Factory::Job,
+      IngestJob.perform_later(
         model: work_type,
         attrs: metadata,
         files: data

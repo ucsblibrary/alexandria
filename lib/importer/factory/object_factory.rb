@@ -11,23 +11,19 @@ module Importer::Factory
     attr_reader :attributes, :files, :object, :logger
 
     def initialize(attributes, files = [], logger = Logger.new(STDOUT))
-      # Resque mangles RDF::URIs when serializing them to JSON, so we
-      # have to reconstruct them here
+      # ActiveJob doesn't know how to serialize {RDF::URI} so we have to intern
+      # them here
       @attributes = attributes.with_indifferent_access.map do |key, value|
-        # If the top-level value is itself a hash, we can assume it's
-        # a real hash; mangled RDF::URIs will be contained in Arrays
-        values = if value.is_a? Array
-                   value.map do |v|
-                     if v.is_a?(Hash) && v.key?("hash")
-                       RDF::URI.intern(v["value"])
-                     else
-                       v
-                     end
-                   end
-                 else
-                   value
+        vals = case value
+               when Array
+                 value.map do |v|
+                   ::Fields::URI.looks_like_uri?(v) ? RDF::URI(v) : v
                  end
-        { key => values }
+               else
+                 value
+               end
+
+        { key => vals }
       end.reduce(&:merge).with_indifferent_access
 
       @files = files

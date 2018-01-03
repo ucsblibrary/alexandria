@@ -38,6 +38,12 @@ Rails.application.configure do
 
   config.log_level = :warn
 
+  # Should make Resque clean up tempfiles more aggressively
+  # https://groups.google.com/d/msg/hydra-tech/muk1eLjycXE/m0ejQl1lCAAJ
+  # https://github.com/resque/resque/blob/105a54017fe2eb12cb09fa3241afce06581cf586/HISTORY.md#1240-2013-3-21p
+  config.before_configuration { ENV["RUN_AT_EXIT_HOOKS"] = "1" }
+  config.active_job.queue_adapter = :resque
+
   # Prepend all log lines with the following tags.
   # config.log_tags = [ :subdomain, :uuid ]
 
