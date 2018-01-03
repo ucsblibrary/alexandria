@@ -1,19 +1,19 @@
 # frozen_string_literal: true
 
 WORK_TYPE_MAP = {
-  "a" => RDF::URI("http://id.loc.gov/vocabulary/resourceTypes/txt"),
-  "t" => RDF::URI("http://id.loc.gov/vocabulary/resourceTypes/txt"),
-  "e" => RDF::URI("http://id.loc.gov/vocabulary/resourceTypes/car"),
-  "f" => RDF::URI("http://id.loc.gov/vocabulary/resourceTypes/car"),
-  "c" => RDF::URI("http://id.loc.gov/vocabulary/resourceTypes/not"),
-  "d" => RDF::URI("http://id.loc.gov/vocabulary/resourceTypes/not"),
-  "i" => RDF::URI("http://id.loc.gov/vocabulary/resourceTypes/aun"),
-  "j" => RDF::URI("http://id.loc.gov/vocabulary/resourceTypes/aum"),
-  "k" => RDF::URI("http://id.loc.gov/vocabulary/resourceTypes/img"),
-  "g" => RDF::URI("http://id.loc.gov/vocabulary/resourceTypes/mov"),
-  "r" => RDF::URI("http://id.loc.gov/vocabulary/resourceTypes/art"),
-  "m" => RDF::URI("http://id.loc.gov/vocabulary/resourceTypes/mul"),
-  "p" => RDF::URI("http://id.loc.gov/vocabulary/resourceTypes/mix"),
+  "a" => "http://id.loc.gov/vocabulary/resourceTypes/txt",
+  "t" => "http://id.loc.gov/vocabulary/resourceTypes/txt",
+  "e" => "http://id.loc.gov/vocabulary/resourceTypes/car",
+  "f" => "http://id.loc.gov/vocabulary/resourceTypes/car",
+  "c" => "http://id.loc.gov/vocabulary/resourceTypes/not",
+  "d" => "http://id.loc.gov/vocabulary/resourceTypes/not",
+  "i" => "http://id.loc.gov/vocabulary/resourceTypes/aun",
+  "j" => "http://id.loc.gov/vocabulary/resourceTypes/aum",
+  "k" => "http://id.loc.gov/vocabulary/resourceTypes/img",
+  "g" => "http://id.loc.gov/vocabulary/resourceTypes/mov",
+  "r" => "http://id.loc.gov/vocabulary/resourceTypes/art",
+  "m" => "http://id.loc.gov/vocabulary/resourceTypes/mul",
+  "p" => "http://id.loc.gov/vocabulary/resourceTypes/mix",
 }.freeze
 
 module ExtractWorkType

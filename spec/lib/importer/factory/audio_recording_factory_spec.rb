@@ -120,7 +120,7 @@ describe Importer::Factory::AudioRecordingFactory do
     end
   end
 
-  context "updating existing records" do
+  context "with existing records" do
     it "attaches files and updates metadata" do
       expect(AudioRecording.count).to eq 0
 

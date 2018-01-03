@@ -13,7 +13,7 @@ module Importer::Factory
     def initialize(attributes, files = [], logger = Logger.new(STDOUT))
       # ActiveJob doesn't know how to serialize {RDF::URI} so we have to intern
       # them here
-      @attributes = attributes.with_indifferent_access.map do |key, value|
+      @attributes = JSON.parse(attributes).map do |key, value|
         vals = case value
                when Array
                  value.map do |v|

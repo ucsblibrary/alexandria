@@ -53,22 +53,27 @@ class Parse::MODS
       .merge(finding_aid)
   end
 
+  def work_type
+    uri = ::Fields::MODS.resource_type(mods)[:uri]
+    return [] if uri.blank?
+
+    uri.map(&:to_s)
+  end
+
   def description
     {
       title: untyped_title,
       alternative: alt_title,
       description: mods_description,
-      lc_subject: subject,
+      lc_subject: subject.map(&:value),
       extent: mods.physical_description.extent.map do |node|
         strip_whitespace(node.text)
       end,
-      language: mods.language.languageTerm.valueURI.map do |uri|
-        RDF::URI.new(uri)
-      end,
+      language: mods.language.languageTerm.valueURI,
       digital_origin: mods.physical_description.digitalOrigin.map(&:text),
       publisher: mods.origin_info.publisher.map(&:text),
-      form_of_work: mods.genre.valueURI.map { |uri| RDF::URI.new(uri) },
-      work_type: ::Fields::MODS.resource_type(mods)[:uri],
+      form_of_work: mods.genre.valueURI,
+      work_type: work_type,
       citation: citation,
       notes_attributes: notes,
       record_origin: record_origin,
@@ -83,35 +88,29 @@ class Parse::MODS
         NAMESPACES
       ).map { |node| strip_whitespace(node.text) },
 
-      rights_holder: rights_holder,
+      rights_holder: rights_holder.map(&:value),
       copyright_status: mods.xpath(
         "//mods:extension/copyrightStatus/@valueURI",
         NAMESPACES
-      ).map { |uri| RDF::URI.new(uri.value) },
+      ).map(&:value),
 
       license: mods.xpath(
         "//mods:extension/copyrightStatement/@valueURI",
         NAMESPACES
-      ).map { |uri| RDF::URI.new(uri.value) },
+      ).map(&:value),
     }
   end
 
   def locations
     {
-      location: mods.subject.geographic.valueURI.map do |uri|
-        RDF::URI.new(uri)
-      end,
+      institution: mods.location.physicalLocation.valueURI,
+      location: mods.subject.geographic.valueURI,
+      place_of_publication: mods.origin_info.place.placeTerm.map(&:text),
 
       sub_location: mods.location.holdingSimple.xpath(
         "./mods:copyInformation/mods:subLocation",
         NAMESPACES
       ).map(&:text),
-
-      institution: mods.location.physicalLocation.valueURI.map do |uri|
-        RDF::URI.new(uri)
-      end,
-
-      place_of_publication: mods.origin_info.place.placeTerm.map(&:text),
     }.merge(coordinates)
   end
 
@@ -134,7 +133,7 @@ class Parse::MODS
       finding_aid: mods.xpath(
         "//mods:url[@note='Finding aid']",
         NAMESPACES
-      ).map { |url| RDF::URI.new(url.text) },
+      ).map(&:text),
     }
   end
 
@@ -170,12 +169,13 @@ class Parse::MODS
     name_nodes.each_with_object({}) do |node, relations|
       uri = node.attributes["valueURI"]
       key = if (value_uri = node.role.roleTerm.valueURI.first)
-              property_name_for_uri[RDF::URI(value_uri)]
+              property_name_for_uri[RDF::URI.intern(value_uri)]
             else
               logger.info "No role was specified "\
                           "for name #{node.namePart.text}"
               :contributor
             end
+
       unless key
         key = :contributor
         logger.warn "The specified role for name #{node.namePart.text} "\
@@ -188,7 +188,7 @@ class Parse::MODS
                 type: node.attributes["type"].value,
               }
             else
-              RDF::URI.new(uri)
+              uri.value
             end
       relations[key] << val
     end
@@ -307,7 +307,7 @@ class Parse::MODS
       nodes.map do |node|
         uri = node.attributes["valueURI"]
         text = node.text
-        uri.blank? ? strip_whitespace(text) : RDF::URI.new(uri)
+        uri.blank? ? strip_whitespace(text) : uri.value
       end
     end
 
@@ -320,10 +320,9 @@ class Parse::MODS
     end
 
     def subject
-      # rubocop:disable Metrics/LineLength
-      mods.xpath("//mods:subject/mods:name/@valueURI|//mods:subject/mods:topic/@valueURI", NAMESPACES).map do |uri|
-        RDF::URI.new(uri)
-      end
-      # rubocop:enable Metrics/LineLength
+      mods.xpath(
+        "//mods:subject/mods:name/@valueURI|//mods:subject/mods:topic/@valueURI",
+        NAMESPACES
+      )
     end
 end

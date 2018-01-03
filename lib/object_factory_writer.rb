@@ -5,12 +5,12 @@ require "traject"
 
 class ObjectFactoryWriter
   AUDIO_TYPES = [
-    RDF::URI("http://id.loc.gov/vocabulary/resourceTypes/aum"),
-    RDF::URI("http://id.loc.gov/vocabulary/resourceTypes/aun"),
+    "http://id.loc.gov/vocabulary/resourceTypes/aum",
+    "http://id.loc.gov/vocabulary/resourceTypes/aun",
   ].freeze
 
   ETD_TYPES = [
-    RDF::URI("http://id.loc.gov/vocabulary/resourceTypes/txt"),
+    "http://id.loc.gov/vocabulary/resourceTypes/txt",
   ].freeze
 
   attr_reader :logger
@@ -132,7 +132,7 @@ class ObjectFactoryWriter
 
       IngestJob.perform_later(
         model: work_type,
-        attrs: metadata,
+        attrs: metadata.to_json,
         files: data
       )
     end

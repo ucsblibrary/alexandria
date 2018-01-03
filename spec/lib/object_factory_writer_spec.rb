@@ -48,9 +48,7 @@ describe ObjectFactoryWriter do
         "relators" => ["degree supervisor.", "adventurer", "Degree suPERvisor"],
         "system_number" => [],
         "title" => ["How to be awesome"],
-        "work_type" => [
-          RDF::URI("http://id.loc.gov/vocabulary/resourceTypes/txt"),
-        ],
+        "work_type" => ["http://id.loc.gov/vocabulary/resourceTypes/txt"],
       }
     end
 

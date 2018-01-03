@@ -379,7 +379,7 @@ describe Parse::MODS do
         eq ["Joel Conway / Flying A Studio photograph collection"]
       )
 
-      expect(attributes[:work_type].map(&:value)).to(
+      expect(attributes[:work_type]).to(
         eq ["http://id.loc.gov/vocabulary/resourceTypes/col",
             "http://id.loc.gov/vocabulary/resourceTypes/img",]
       )

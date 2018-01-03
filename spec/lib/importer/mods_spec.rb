@@ -217,7 +217,7 @@ describe Importer::MODS do
 
     let(:frodo) { "Frodo Baggins" }
     let(:bilbo) { "Bilbo Baggins" }
-    let(:pippin) { RDF::URI.new("http://id.loc.gov/authorities/names/pippin") }
+    let(:pippin) { "http://id.loc.gov/authorities/names/pippin" }
 
     context "when rights_holder has strings or uris" do
       before do
