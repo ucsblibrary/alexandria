@@ -17,7 +17,7 @@ module Importer::Factory
         vals = case value
                when Array
                  value.map do |v|
-                   ::Fields::URI.looks_like_uri?(v) ? RDF::URI(v) : v
+                   ::Fields::URI.looks_like_uri?(v) ? RDF::URI.intern(v) : v
                  end
                else
                  value
