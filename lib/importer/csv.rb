@@ -122,7 +122,7 @@ module Importer::CSV
     raise NoModelError if model.blank?
 
     if background
-      IngestJob.perform_later(model: model, attrs: attrs, files: files)
+      IngestJob.perform_later(model: model, attrs: attrs.to_json, files: files)
     else
       record = ::Importer::Factory.for(model).new(attrs, files, logger).run
 

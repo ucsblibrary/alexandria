@@ -63,7 +63,7 @@ module Importer::MODS
 
     IngestJob.perform_later(
       model: parser.model.to_s,
-      attrs: attrs,
+      attrs: attrs.to_json,
       files: selected_data
     )
   end

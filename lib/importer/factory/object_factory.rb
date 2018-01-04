@@ -11,6 +11,10 @@ module Importer::Factory
     attr_reader :attributes, :files, :object, :logger
 
     def initialize(attributes, files = [], logger = Logger.new(STDOUT))
+      # Sometimes ObjectFactory is called directly instead of through
+      # ActiveJob, so we need to normalize the attributes parameter
+      attributes = attributes.to_json if attributes.is_a? Hash
+
       # ActiveJob doesn't know how to serialize {RDF::URI} so we have to intern
       # them here
       @attributes = JSON.parse(attributes).map do |key, value|
