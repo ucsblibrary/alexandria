@@ -32,5 +32,5 @@ class Alexandria::Application < Rails::Application
     )[Rails.env] || {}
 
   # Set the backend for running background jobs
-  config.active_job.queue_adapter = :inline
+  config.active_job.queue_adapter = ENV["RAILS_QUEUE"]&.to_sym || :inline
 end
