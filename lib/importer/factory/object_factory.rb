@@ -18,13 +18,10 @@ module Importer::Factory
       # ActiveJob doesn't know how to serialize {RDF::URI} so we have to intern
       # them here
       @attributes = JSON.parse(attributes).map do |key, value|
-        vals = case value
-               when Array
-                 value.map do |v|
-                   ::Fields::URI.looks_like_uri?(v) ? RDF::URI.intern(v) : v
-                 end
+        vals = if value.is_a? Array
+                 value.map { |v| maybe_intern(v) }.flatten
                else
-                 value
+                 maybe_intern(value)
                end
 
         { key => vals }
@@ -32,6 +29,14 @@ module Importer::Factory
 
       @files = files
       @logger = logger
+    end
+
+    # @param value [Array, Hash]
+    # @return [Array]
+    def maybe_intern(value)
+      return value unless value.respond_to?(:key?) && value.key?("_rdf")
+
+      value["_rdf"].map { |url| RDF::URI.intern(url) }
     end
 
     def run

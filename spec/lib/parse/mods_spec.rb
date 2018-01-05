@@ -36,10 +36,10 @@ describe Parse::MODS do
         eq ["Another description", "Man with a smile eyes to camera."]
       )
       expect(attributes[:location]).to(
-        eq ["http://id.loc.gov/authorities/names/n79081574"]
+        eq(_rdf: ["http://id.loc.gov/authorities/names/n79081574"])
       )
       expect(attributes[:form_of_work]).to(
-        eq([
+        eq(_rdf: [
              "http://vocab.getty.edu/aat/300134920",
              "http://vocab.getty.edu/aat/300046300",
            ])
@@ -73,15 +73,15 @@ describe Parse::MODS do
       )
 
       expect(attributes[:copyright_status]).to(
-        eq ["http://id.loc.gov/vocabulary/preservation/copyrightStatus/unk"]
+        eq(_rdf: ["http://id.loc.gov/vocabulary/preservation/copyrightStatus/unk"])
       )
 
       expect(attributes[:license]).to(
-        eq ["http://www.europeana.eu/rights/unknown/"]
+        eq(_rdf: ["http://www.europeana.eu/rights/unknown/"])
       )
 
       expect(attributes[:institution]).to(
-        eq ["http://id.loc.gov/vocabulary/organizations/cusb"]
+        eq(_rdf: ["http://id.loc.gov/vocabulary/organizations/cusb"])
       )
     end
 
@@ -129,26 +129,26 @@ describe Parse::MODS do
 
       it "imports photographer" do
         expect(attributes[:photographer]).to(
-          eq ["http://id.loc.gov/authorities/names/n97003180"]
+          eq([{ _rdf: ["http://id.loc.gov/authorities/names/n97003180"] }])
         )
       end
     end
 
     it "imports creator" do
       expect(attributes[:creator]).to(
-        eq ["http://id.loc.gov/authorities/names/n87914041"]
+        eq([{ _rdf: ["http://id.loc.gov/authorities/names/n87914041"] }])
       )
     end
 
     it "imports language" do
       expect(attributes[:language]).to(
-        eq ["http://id.loc.gov/vocabulary/iso639-2/zxx"]
+        eq(_rdf: ["http://id.loc.gov/vocabulary/iso639-2/zxx"])
       )
     end
 
     it "imports work_type" do
       expect(attributes[:work_type]).to(
-        eq ["http://id.loc.gov/vocabulary/resourceTypes/img"]
+        eq([{ _rdf: ["http://id.loc.gov/vocabulary/resourceTypes/img"] }])
       )
     end
 
@@ -308,7 +308,7 @@ describe Parse::MODS do
 
       it "finds the rights holder" do
         expect(attributes[:rights_holder]).to(
-          eq ["http://id.loc.gov/authorities/names/n85088322"]
+          eq([{ _rdf: ["http://id.loc.gov/authorities/names/n85088322"] }])
         )
       end
     end
@@ -353,22 +353,22 @@ describe Parse::MODS do
       expect(attributes[:extent]).to eq ["702 digital objects"]
 
       expect(attributes[:finding_aid]).to(
-        eq ["http://www.oac.cdlib.org/findaid/ark:/13030/kt1j49r67t"]
+        eq(_rdf: ["http://www.oac.cdlib.org/findaid/ark:/13030/kt1j49r67t"])
       )
 
       expect(attributes[:form_of_work]).to(
-        eq ["http://vocab.getty.edu/aat/300046300",
-            "http://vocab.getty.edu/aat/300128343",]
+        eq(_rdf: ["http://vocab.getty.edu/aat/300046300",
+                  "http://vocab.getty.edu/aat/300128343",])
       )
 
       expect(attributes[:language]).to(
-        eq ["http://id.loc.gov/vocabulary/iso639-2/zxx"]
+        eq(_rdf: ["http://id.loc.gov/vocabulary/iso639-2/zxx"])
       )
 
       expect(attributes[:lc_subject]).to(
-        eq ["http://id.loc.gov/authorities/names/n87914041",
-            "http://id.loc.gov/authorities/subjects/sh85088047",
-            "http://id.loc.gov/authorities/subjects/sh99005024",]
+        eq(_rdf: ["http://id.loc.gov/authorities/names/n87914041",
+                  "http://id.loc.gov/authorities/subjects/sh85088047",
+                  "http://id.loc.gov/authorities/subjects/sh99005024",])
       )
 
       expect(attributes[:sub_location]).to(
@@ -380,15 +380,15 @@ describe Parse::MODS do
       )
 
       expect(attributes[:work_type]).to(
-        eq ["http://id.loc.gov/vocabulary/resourceTypes/col",
-            "http://id.loc.gov/vocabulary/resourceTypes/img",]
+        eq([{ _rdf: ["http://id.loc.gov/vocabulary/resourceTypes/col",
+                     "http://id.loc.gov/vocabulary/resourceTypes/img",], },])
       )
 
       # TODO: There is another location in the fixture file
       # that doesn't have a valueURI.  How should that be
       # handled?
       expect(attributes[:location]).to(
-        eq ["http://id.loc.gov/authorities/names/n79041717"]
+        eq(_rdf: ["http://id.loc.gov/authorities/names/n79041717"])
       )
     end
 

@@ -117,7 +117,7 @@ class ObjectFactoryWriter
       metadata.delete("contributors")
       metadata.delete("filename")
 
-      work_type = case metadata["work_type"].first
+      work_type = case metadata["work_type"].first["_rdf"].first
                   when *ETD_TYPES
                     "ETD"
                   when *AUDIO_TYPES

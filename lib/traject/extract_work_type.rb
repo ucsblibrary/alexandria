@@ -1,19 +1,19 @@
 # frozen_string_literal: true
 
 WORK_TYPE_MAP = {
-  "a" => "http://id.loc.gov/vocabulary/resourceTypes/txt",
-  "t" => "http://id.loc.gov/vocabulary/resourceTypes/txt",
-  "e" => "http://id.loc.gov/vocabulary/resourceTypes/car",
-  "f" => "http://id.loc.gov/vocabulary/resourceTypes/car",
-  "c" => "http://id.loc.gov/vocabulary/resourceTypes/not",
-  "d" => "http://id.loc.gov/vocabulary/resourceTypes/not",
-  "i" => "http://id.loc.gov/vocabulary/resourceTypes/aun",
-  "j" => "http://id.loc.gov/vocabulary/resourceTypes/aum",
-  "k" => "http://id.loc.gov/vocabulary/resourceTypes/img",
-  "g" => "http://id.loc.gov/vocabulary/resourceTypes/mov",
-  "r" => "http://id.loc.gov/vocabulary/resourceTypes/art",
-  "m" => "http://id.loc.gov/vocabulary/resourceTypes/mul",
-  "p" => "http://id.loc.gov/vocabulary/resourceTypes/mix",
+  "a" => { _rdf: ["http://id.loc.gov/vocabulary/resourceTypes/txt"] },
+  "t" => { _rdf: ["http://id.loc.gov/vocabulary/resourceTypes/txt"] },
+  "e" => { _rdf: ["http://id.loc.gov/vocabulary/resourceTypes/car"] },
+  "f" => { _rdf: ["http://id.loc.gov/vocabulary/resourceTypes/car"] },
+  "c" => { _rdf: ["http://id.loc.gov/vocabulary/resourceTypes/not"] },
+  "d" => { _rdf: ["http://id.loc.gov/vocabulary/resourceTypes/not"] },
+  "i" => { _rdf: ["http://id.loc.gov/vocabulary/resourceTypes/aun"] },
+  "j" => { _rdf: ["http://id.loc.gov/vocabulary/resourceTypes/aum"] },
+  "k" => { _rdf: ["http://id.loc.gov/vocabulary/resourceTypes/img"] },
+  "g" => { _rdf: ["http://id.loc.gov/vocabulary/resourceTypes/mov"] },
+  "r" => { _rdf: ["http://id.loc.gov/vocabulary/resourceTypes/art"] },
+  "m" => { _rdf: ["http://id.loc.gov/vocabulary/resourceTypes/mul"] },
+  "p" => { _rdf: ["http://id.loc.gov/vocabulary/resourceTypes/mix"] },
 }.freeze
 
 module ExtractWorkType

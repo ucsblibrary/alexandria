@@ -269,7 +269,7 @@ describe Importer::Cylinder do
         )
       )
 
-      expect(record1.fulltext_link.map(&:rdf_subject).map(&:to_s)).to(
+      expect(record1.fulltext_link).to(
         contain_exactly("http://www.library.ucsb.edu/OBJID/Cylinder4373",
                         "http://www.library.ucsb.edu/OBJID/Cylinder4374",
                         "http://www.library.ucsb.edu/OBJID/Cylinder4377")

@@ -57,7 +57,8 @@ class Parse::MODS
     uri = ::Fields::MODS.resource_type(mods)[:uri]
     return [] if uri.blank?
 
-    uri.map(&:to_s)
+    # wrap in an Array to be consistent with CSV parser
+    [{ _rdf: uri.map(&:to_s) }]
   end
 
   def description
@@ -65,14 +66,14 @@ class Parse::MODS
       title: untyped_title,
       alternative: alt_title,
       description: mods_description,
-      lc_subject: subject.map(&:value),
+      lc_subject: subject,
       extent: mods.physical_description.extent.map do |node|
         strip_whitespace(node.text)
       end,
-      language: mods.language.languageTerm.valueURI,
+      language: { _rdf: mods.language.languageTerm.valueURI },
       digital_origin: mods.physical_description.digitalOrigin.map(&:text),
       publisher: mods.origin_info.publisher.map(&:text),
-      form_of_work: mods.genre.valueURI,
+      form_of_work: { _rdf: mods.genre.valueURI },
       work_type: work_type,
       citation: citation,
       notes_attributes: notes,
@@ -89,22 +90,27 @@ class Parse::MODS
       ).map { |node| strip_whitespace(node.text) },
 
       rights_holder: rights_holder,
-      copyright_status: mods.xpath(
-        "//mods:extension/copyrightStatus/@valueURI",
-        NAMESPACES
-      ).map(&:value),
 
-      license: mods.xpath(
-        "//mods:extension/copyrightStatement/@valueURI",
-        NAMESPACES
-      ).map(&:value),
+      copyright_status: {
+        _rdf: mods.xpath(
+          "//mods:extension/copyrightStatus/@valueURI",
+          NAMESPACES
+        ).map(&:value),
+      },
+
+      license: {
+        _rdf: mods.xpath(
+          "//mods:extension/copyrightStatement/@valueURI",
+          NAMESPACES
+        ).map(&:value),
+      },
     }
   end
 
   def locations
     {
-      institution: mods.location.physicalLocation.valueURI,
-      location: mods.subject.geographic.valueURI,
+      institution: { _rdf: mods.location.physicalLocation.valueURI },
+      location: { _rdf: mods.subject.geographic.valueURI },
       place_of_publication: mods.origin_info.place.placeTerm.map(&:text),
 
       sub_location: mods.location.holdingSimple.xpath(
@@ -130,10 +136,9 @@ class Parse::MODS
 
   def finding_aid
     {
-      finding_aid: mods.xpath(
-        "//mods:url[@note='Finding aid']",
-        NAMESPACES
-      ).map(&:text),
+      finding_aid: {
+        _rdf: mods.xpath("//mods:url[@note='Finding aid']", NAMESPACES).map(&:text),
+      },
     }
   end
 
@@ -188,7 +193,7 @@ class Parse::MODS
                 type: node.attributes["type"].value,
               }
             else
-              uri.value
+              { _rdf: [uri.value] }
             end
       relations[key] << val
     end
@@ -307,7 +312,12 @@ class Parse::MODS
       nodes.map do |node|
         uri = node.attributes["valueURI"]
         text = node.text
-        uri.blank? ? strip_whitespace(text) : uri.value
+
+        if uri.blank?
+          strip_whitespace(text)
+        else
+          { _rdf: [uri.value] }
+        end
       end
     end
 
@@ -320,9 +330,11 @@ class Parse::MODS
     end
 
     def subject
-      mods.xpath(
-        "//mods:subject/mods:name/@valueURI|//mods:subject/mods:topic/@valueURI",
-        NAMESPACES
-      )
+      {
+        _rdf: mods.xpath(
+          "//mods:subject/mods:name/@valueURI|//mods:subject/mods:topic/@valueURI",
+          NAMESPACES
+        ).map(&:value),
+      }
     end
 end

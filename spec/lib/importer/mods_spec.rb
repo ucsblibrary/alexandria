@@ -217,7 +217,9 @@ describe Importer::MODS do
 
     let(:frodo) { "Frodo Baggins" }
     let(:bilbo) { "Bilbo Baggins" }
-    let(:pippin) { "http://id.loc.gov/authorities/names/pippin" }
+    let(:pippin) do
+      { _rdf: ["http://id.loc.gov/authorities/names/pippin"] }
+    end
 
     context "when rights_holder has strings or uris" do
       before do
