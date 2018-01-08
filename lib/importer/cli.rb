@@ -35,7 +35,7 @@ module Importer::CLI
     end
 
     # For deprecation warnings from gems
-    $stderr.reopen(output, "a")
+    $stderr.reopen(output, "a") if output.is_a? Pathname
 
     logger
   end

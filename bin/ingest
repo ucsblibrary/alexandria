@@ -40,9 +40,7 @@ logfile = Pathname.new(Settings.log_dir).join(
   "#{options[:format]}-#{Time.zone.now.strftime("%Y-%m-%d_%H.%M.%S")}.log"
 )
 
-if ENV["INGEST_DEBUG"]
-  Importer::CLI.run(options.merge(logfile: logfile))
-else
+if Rails.application.config.active_job.queue_adapter == :resque
   pid = fork do
     Importer::CLI.run(options.merge(logfile: logfile))
   end
@@ -51,4 +49,6 @@ else
   puts "Logging to #{logfile}"
 
   Process.detach pid
+else
+  Importer::CLI.run(options.merge(logfile: $stdout))
 end
