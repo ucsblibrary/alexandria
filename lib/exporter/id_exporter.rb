@@ -50,7 +50,7 @@ class Exporter::IdExporter < Exporter::BaseExporter
       object.accession_number.first,
       object.ark,
       Array(object.title).first,
-      object.admin_policy.id.sub("authorities/policies/", "").sub("_on_", "_"),
+      object.admin_policy&.id&.sub("authorities/policies/", "")&.sub("_on_", "_"),
     ]
   end
 end
