@@ -47,6 +47,7 @@ gem "settingslogic"
 
 gem "resque-pool"
 gem "resque-status"
+gem "resque-web"
 
 # for bin/ingest
 gem "trollop"
