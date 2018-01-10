@@ -53,9 +53,12 @@ cd /opt/alexandria/current
 RAILS_ENV=production bin/ingest -f csv -m /opt/ingest/metadata/adrl-dm/ingest-ready/mss228/mss228.csv -d /opt/ingest/repository/images/mss228/*.tif
 ```
 
-By default, the ingest process will run in the background, and print output to a
-log file.  Set the environment variable `INGEST_DEBUG` if you need to keep the
-process in the foreground (e.g., for when using a step debugger).
+By default, the ingest process will run in the background using Resque, and print output to a
+log file.
+
+It is possible to change what job runner is used by setting the `RAILS_QUEUE`
+environment variable (e.g., to `inline` or `async`).  However, those adapters
+currently fail to ingest cylinders correctly.
 
 If you start an ingest with `bin/ingest` that fails or is stopped, the
 logs will tell you how many records it managed to ingest.  You can
