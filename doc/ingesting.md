@@ -191,10 +191,41 @@ script use `RAILS_ENV=production bin/ingest-authorities <csv_file>`
 
 # How ingesting works
 
+## General notes
+
+The code that handles ingests is primarily in the {Importer} module, with some helper
+methods defined in {Parse}, {SRU}, {Proquest}, {LocalAuthority}, and
+{ObjectFactoryWriter}.  In the future some or all of these modules should be
+extracted into a standalone gem.
+
+The basic ingest flow is as follows:
+
+1. CLI arguments are passed to {Importer::CLI}, which invokes the appropriate
+   import submodule: {Importer::CSV}, {Importer::ETD}, {Importer::MODS}, or
+   {Importer::Cylinder}.
+
+2. The import submodule parses the provided metadata file(s) and creates a
+   normalized hash of attributes (sometimes via {ObjectFactoryWriter}).  This
+   hash must be converted to JSON and passed through ActiveJob, so we have to
+   ensure that everything is serialized correctly.  Notably, ActiveJob does not
+   know how to serialize `RDF::URI` objects, so we instead pass a special hash
+   that is later used to generate an `RDF::URI`.  They look like this:
+
+    ```ruby
+    { _rdf: "http://rdf.me/please" }
+    ```
+
+3. The normalized attributes hash is then passed to the appropriate
+   {ObjectFactory} subclass – {AudioRecordingFactory}, {ETDFactory}, etc.  There
+   the object is created in Fedora, and associated binaries (PDFs, TIFF images,
+   WAV files) are processed.
+
+## Object types
+
 Cylinders, ETDs, MODS records and CSV records can all be ingested by
 `bin/ingest`, but the way it ingests each is slightly different.
 
-## How ETDs are ingested
+### How ETDs are ingested
 
 ETDs (Electronic Dissertations and Theses) are provided to us as
 zipfiles by ProQuest.  In each zipfile (named something like
@@ -264,7 +295,7 @@ What happens when you run `bin/ingest -f etd /path/to/etds/etdadmin_upload*`, th
    {Importer::Factory::ObjectFactory#update} updates the metadata in
    Fedora.
 
-## How Cylinders are ingested
+### How Cylinders are ingested
 
 The ETD and Cylinders ingest processes are similar in that both use
 MARC as the metadata format instead of CSV or MODS, but the details
@@ -302,7 +333,7 @@ the following operations:
    the naming schema of <accession number>a.wav, and the restored
    <accession number>b.wav).
 
-## How CSVs are ingested
+### How CSVs are ingested
 
 CSV (comma-separated value) metadata can be used for any object model
 (any type of record); currently we are using it for some of our image
@@ -371,7 +402,7 @@ When `bin/ingest` is run on CSV records, what happens is this:
    {Importer::Factory::ObjectFactory}, so the same comments apply as
    above in the section on ETD ingests.
 
-## How MODS records are ingested
+### How MODS records are ingested
 
 MODS (Metadata Object Description Schema) is an XML-based metadata
 schema.  The object models currently using it are, like our CSV
