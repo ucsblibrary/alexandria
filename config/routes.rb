@@ -21,12 +21,24 @@ class CollectionRoutingConcern
   end
 end
 
+resque_web_constraint = lambda do |request|
+  return false if request.remote_ip.blank?
+
+  request.remote_ip.start_with?(Rails.application.secrets.private_ip_prefix,
+                                "127.0.0.1")
+end
+
 Rails.application.routes.draw do
   mount Blacklight::Engine => "/"
   mount Hydra::RoleManagement::Engine => "/"
   mount HydraEditor::Engine => "/"
   mount Qa::Engine => "/qa"
   mount Riiif::Engine => "/image-service", as: "riiif"
+  mount ResqueWeb::Engine => "/resque"
+
+  constraints resque_web_constraint do
+    mount ResqueWeb::Engine => "/resque"
+  end
 
   root "welcome#index"
 

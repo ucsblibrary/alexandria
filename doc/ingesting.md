@@ -8,10 +8,8 @@ The remote fileshare with supporting images is automatically mounted
 to `/opt/ingest/data`.
 
 Some ingests trigger background jobs, which are handled by Resque.
-The web interface for Resque can be started with the following:
-```
-RAILS_ENV=production bundle exec resque-web -N curation_concerns:production
-```
+The web interface for Resque is available at `/resque`; ensure that it is only
+available to authorized users.
 
 ## From the web interface
 

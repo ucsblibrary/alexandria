@@ -46,8 +46,7 @@ gem "net-ldap", "~> 0.14"
 gem "settingslogic"
 
 gem "resque-pool"
-gem "resque-status"
-gem "resque-web"
+gem "resque-web", require: "resque_web"
 
 # for bin/ingest
 gem "trollop"
