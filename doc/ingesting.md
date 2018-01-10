@@ -50,7 +50,7 @@ to the `--data` and `--metadata` arguments:
 ```shell
 ssh adrl@hostname
 cd /opt/alexandria/current
-RAILS_ENV=production bin/ingest -f etd -d /opt/download_root/proquest/etdadmin_upload_*
+RAILS_ENV=production bin/ingest -f csv -m /opt/ingest/metadata/adrl-dm/ingest-ready/mss228/mss228.csv -d /opt/ingest/repository/images/mss228/*.tif
 ```
 
 By default, the ingest process will run in the background, and print output to a
