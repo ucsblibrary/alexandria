@@ -152,14 +152,14 @@ Usage Notes:
 
 * If the value of the column is a URI (for external authorities or
   pre-existing local authorities), then don't use the matching
-  ```*_type``` column.
+  `*_type` column.
 
 * If the value of the column is a String (for new local authorities),
-  add a matching ```*_type``` column.  The columns must be in pairs
-  (e.g. "composer_type" and "composer"), and the ```*_type``` column
+  add a matching `*_type` column.  The columns must be in pairs
+  (e.g. "composer_type" and "composer"), and the `*_type` column
   must come first.
 
-* The possible values for the ```*_type``` fields are: Person, Group,
+* The possible values for the `*_type` fields are: Person, Group,
   Organization, and Topic.
 
 For example, see the "lc_subject", "composer", and "rights_holder"
