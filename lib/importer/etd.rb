@@ -15,7 +15,12 @@ module Importer::ETD
     raise ArgumentError, "Nothing found in #{data}" if data.empty?
     collection = ensure_collection_exists(logger: logger)
     ingests = 0
-    etds = unpack(data, options, Dir.mktmpdir)
+
+    etds = unpack(
+      Parse.find_paths(data),
+      options,
+      Dir.mktmpdir
+    )
 
     if etds.empty?
       raise ArgumentError,

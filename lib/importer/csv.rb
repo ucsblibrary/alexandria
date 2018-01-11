@@ -100,13 +100,7 @@ module Importer::CSV
       logger.info "Ingesting accession number #{attrs[:accession_number].first}"
     end
 
-    files = if attrs[:files].nil?
-              []
-            else
-              data.select do |d|
-                attrs[:files].any? { |f| f.include? File.basename(d) }
-              end
-            end
+    files = Parse::CSV.get_binary_paths(attrs[:files], data)
 
     logger.debug "Object attributes:"
     attrs.each { |k, v| logger.debug "#{k}: #{v}" }

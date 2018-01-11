@@ -45,13 +45,7 @@ where [options] are:
 ```
 
 Multiple files and file globs (e.g., `/path/to/files*`) can be passed
-to the `--data` and `--metadata` arguments:
-
-```shell
-ssh adrl@hostname
-cd /opt/alexandria/current
-RAILS_ENV=production bin/ingest -f csv -m /opt/ingest/metadata/adrl-dm/ingest-ready/mss228/mss228.csv -d /opt/ingest/repository/images/mss228/*.tif
-```
+to the `--data` and `--metadata` arguments.
 
 By default, the ingest process will run in the background using Resque, and print output to a
 log file.
@@ -131,6 +125,13 @@ RAILS_ENV=production bin/ingest -f mods -m /opt/data/ingest/metadata/adrl-dm/ing
 ```
 RAILS_ENV=production bin/ingest -f csv -m /path/to/metadata.csv [-d /path/to/files]
 ```
+
+{Importer::CSV} will use the `files` column from the CSV to determine where the
+associated binaries are located.  First it checks if the files specified exist
+in the directory specified as `binary_source_root` in `application.yml` (which
+can be overridden with the `ADRL_BINARY_ROOT` environment variable).  If the
+files are not there, it will use any directories specified on the command-line
+with the `-d` flag.
 
 #### How to specify the type of a local authority for CSV ingest
 

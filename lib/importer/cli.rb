@@ -3,22 +3,6 @@
 require "find"
 
 module Importer::CLI
-  def self.find_paths(params, extension = nil)
-    return [] if params.blank?
-
-    params.map do |arg|
-      next arg if File.file?(arg)
-
-      next unless Dir.exist?(arg)
-
-      Find.find(arg).map do |path|
-        next if File.directory?(path)
-        next if extension.present? && File.extname(path) != extension
-        path
-      end
-    end.flatten.compact
-  end
-
   def self.make_logger(output:, level: "INFO")
     logger = Logger.new(output)
     logger.level = begin
@@ -47,22 +31,17 @@ module Importer::CLI
     # correct extension, add it to the array, otherwise drill down and add
     # each file within to the array
     metadata_ext = options[:format] == "csv" ? ".csv" : ".xml"
-    meta = find_paths(options[:metadata], metadata_ext)
-
-    data = if options[:format] == "cyl"
-             # Just pass the options through, the {ObjectFactoryWriter}
-             # currently does the path processing
-             options[:data]
-           else
-             find_paths(options[:data])
-           end
-
-    logger.warn "No data sources specified." if data.empty?
+    meta = Parse.find_paths(options[:metadata], metadata_ext)
 
     logger.debug "Metadata inputs:"
     meta.each { |m| logger.debug m }
-    logger.debug "Data inputs:"
-    data.each { |d| logger.debug d }
+
+    if options[:data].blank?
+      logger.warn "No data sources specified."
+    else
+      logger.debug "Data inputs:"
+      options[:data].each { |d| logger.debug d }
+    end
 
     ######################
     # Begin ingest process
@@ -74,7 +53,7 @@ module Importer::CLI
     )
 
     cli_opts = { meta: meta,
-                 data: data,
+                 data: options[:data],
                  options: options,
                  logger: logger, }
 
@@ -100,7 +79,7 @@ module Importer::CLI
         ensure
           ingests = importer.imported_records_count
         end
-      end # case/when
+      end
 
       logger.info "Queued #{ingests} ingests."
     rescue IngestError => e

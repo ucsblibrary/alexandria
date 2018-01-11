@@ -23,7 +23,13 @@ module Importer::MODS
       next if options[:number] && options[:number] <= ingests
 
       start_record = Time.zone.now
-      ingest_mod(metadata: metadatum, data: data, logger: logger)
+
+      ingest_mod(
+        metadata: metadatum,
+        data: Parse.find_paths(data),
+        logger: logger
+      )
+
       end_record = Time.zone.now
 
       logger.info "Ingested record #{ingests + 1} of #{meta.length} "\

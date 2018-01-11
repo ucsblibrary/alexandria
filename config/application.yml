@@ -1,4 +1,5 @@
 defaults: &defaults
+  binary_source_root: <%= ENV['ADRL_BINARY_ROOT'] || "/opt/ingest" %>
   derivatives_dir: <%= ENV['ADRL_DERIVATIVES'] || "#{Rails.root}/tmp/derivatives" %>
   download_root: <%= ENV['ADRL_DOWNLOAD_ROOT'] || "#{Rails.root}/tmp/download_root" %>
   ezid_host: ezid.cdlib.org
