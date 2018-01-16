@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe CurationConcerns::FileSetsController do
+describe Hyrax::FileSetsController do
   describe "#show" do
     let(:file_set) do
       FileSet.create!(

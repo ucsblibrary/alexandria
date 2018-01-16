@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe CurationConcernsHelper do
+describe HyraxHelper do
   describe "#url_for_document" do
     subject { helper.url_for_document(document) }
 
