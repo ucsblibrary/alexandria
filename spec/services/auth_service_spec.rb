@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 
 require "rails_helper"
-require "active_fedora/cleaner"
 require "importer"
 
 describe AuthService do
   before do
+    ActiveFedora::Cleaner.clean!
+    AdminPolicy.ensure_admin_policy_exists
+
     allow_any_instance_of(Riiif::ImagesController).to(
       receive(:current_user).and_return(user)
     )
