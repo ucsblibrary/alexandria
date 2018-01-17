@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class MergeRecordsJob < ActiveJob::Base
+class MergeRecordsJob < ApplicationJob
   queue_as :merge
 
   def perform(record_id, merge_target_id, _user_id = nil)
