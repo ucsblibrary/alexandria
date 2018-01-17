@@ -4,6 +4,9 @@ require "rails_helper"
 
 describe SolrDocument do
   before do
+    ActiveFedora::Cleaner.clean!
+    AdminPolicy.ensure_admin_policy_exists
+
     ActiveFedora::SolrService.add([map_set, index_map, component_map])
     ActiveFedora::SolrService.commit
   end
