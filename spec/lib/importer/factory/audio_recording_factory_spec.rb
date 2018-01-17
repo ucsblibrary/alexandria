@@ -2,7 +2,6 @@
 
 require "rails_helper"
 require "importer"
-require "active_fedora/cleaner"
 
 describe Importer::Factory::AudioRecordingFactory do
   let(:data) { [File.join(fixture_path, "cylinders")] }

@@ -2,7 +2,6 @@
 
 require "rails_helper"
 require "local_authority"
-require "active_fedora/cleaner"
 
 describe MergeRecordsService do
   before do
