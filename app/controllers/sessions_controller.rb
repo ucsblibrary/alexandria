@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class SessionsController < ApplicationController
-  layout "curation_concerns"
+  layout "alexandria"
 
   def new
     @page_title = "Log in"
