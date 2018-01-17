@@ -29,7 +29,9 @@ gem "traject"
 gem "trollop"
 gem "uglifier"
 
-gem "hyrax", path: "/home/cat/clones/hyrax"
+gem "hyrax",
+    git: "https://github.com/dunn/hyrax.git",
+    branch: "deep-indexer"
 gem "linked_vocabs",
     git: "https://github.com/projecthydra-labs/linked_vocabs.git"
 gem "metadata_ci",
