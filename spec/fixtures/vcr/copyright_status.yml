@@ -8,13 +8,14 @@ http_interactions:
       string: ''
     headers:
       Accept:
-      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
-        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
-        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
-        application/rdf+xml, application/trig, application/x-trig, application/trix,
-        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, */*;q=0.1
+      - application/n-triples, text/plain;q=0.2, text/turtle, text/rdf+turtle, application/turtle;q=0.2,
+        application/x-turtle;q=0.2, application/ld+json, application/x-ld+json, application/n-quads,
+        text/x-nquads;q=0.2, application/rdf+json, text/html;q=0.5, application/xhtml+xml;q=0.7,
+        image/svg+xml;q=0.4, text/n3, text/rdf+n3;q=0.2, application/rdf+n3;q=0.2,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        application/trig, application/x-trig;q=0.2, application/trix
       Accept-Encoding:
-      - gzip, deflate
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       User-Agent:
       - Ruby
   response:
@@ -30,27 +31,29 @@ http_interactions:
       - http://id.loc.gov/vocabulary/preservation/copyrightStatus/pub
       X-Preflabel:
       - public domain
-      Server:
-      - Apache
       Content-Length:
       - '0'
-      Accept-Ranges:
-      - bytes
       Date:
-      - Fri, 10 Apr 2015 15:31:31 GMT
+      - Tue, 16 Jan 2018 23:24:21 GMT
+      Server:
+      - Apache
       X-Varnish:
-      - '673125288'
+      - '57128124'
       Age:
       - '0'
       Via:
-      - 1.1 varnish
+      - 1.1 varnish-v4
+      X-Cache:
+      - MISS
+      X-Cache-Hits:
+      - '0'
       Connection:
       - keep-alive
     body:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Fri, 10 Apr 2015 15:31:35 GMT
+  recorded_at: Tue, 16 Jan 2018 23:24:21 GMT
 - request:
     method: get
     uri: http://id.loc.gov/vocabulary/preservation/copyrightStatus/pub.jsonld
@@ -59,15 +62,14 @@ http_interactions:
       string: ''
     headers:
       Accept:
-      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
-        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
-        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
-        application/rdf+xml, application/trig, application/x-trig, application/trix,
-        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, */*;q=0.1
+      - application/n-triples, text/plain;q=0.2, text/turtle, text/rdf+turtle, application/turtle;q=0.2,
+        application/x-turtle;q=0.2, application/ld+json, application/x-ld+json, application/n-quads,
+        text/x-nquads;q=0.2, application/rdf+json, text/html;q=0.5, application/xhtml+xml;q=0.7,
+        image/svg+xml;q=0.4, text/n3, text/rdf+n3;q=0.2, application/rdf+n3;q=0.2,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        application/trig, application/x-trig;q=0.2, application/trix
       Accept-Encoding:
-      - gzip, deflate
-      Cookie:
-      - ''
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       User-Agent:
       - Ruby
   response:
@@ -78,39 +80,43 @@ http_interactions:
       Content-Type:
       - application/ld+json
       Cache-Control:
-      - public, max-age=43200
+      - public, max-age=1209600
       Etag:
-      - 6e96f27c562abe7a97b8cacd21eb1030
+      - 91ccaeaf97b77c8816183138745d2ddb
       X-Uri:
       - http://id.loc.gov/vocabulary/preservation/copyrightStatus/pub
+      Content-Length:
+      - '2782'
+      Date:
+      - Wed, 20 Dec 2017 16:25:51 GMT
       Server:
       - Apache
-      Content-Length:
-      - '2739'
+      X-Varnish:
+      - 57128126 29629061
+      Age:
+      - '2357910'
+      Via:
+      - 1.1 varnish-v4
+      X-Cache:
+      - HIT
+      X-Cache-Hits:
+      - '7260'
       Accept-Ranges:
       - bytes
-      Date:
-      - Fri, 10 Apr 2015 15:31:31 GMT
-      X-Varnish:
-      - '673125291'
-      Age:
-      - '0'
-      Via:
-      - 1.1 varnish
       Connection:
       - keep-alive
     body:
       encoding: UTF-8
       string: |-
-        [  { "@id": "_:b44vocabularypreservationcopyrightStatuspub", "@type": [ "http://purl.org/vocab/changeset/schema#ChangeSet" ], "http://purl.org/vocab/changeset/schema#subjectOfChange": [ { "@id": "http://id.loc.gov/vocabulary/preservation/copyrightStatus/pub" } ], "http://purl.org/vocab/changeset/schema#creatorName": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlcmrc" } ], "http://purl.org/vocab/changeset/schema#createdDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-        "@value": "2012-08-01T00:00:00" } ], "http://purl.org/vocab/changeset/schema#changeReason": [ { "@value": "new" } ] },  { "@id": "_:b23vocabularypreservationcopyrightStatuspub", "@type": [ "http://id.loc.gov/ontologies/RecordInfo#RecordInfo" ], "http://id.loc.gov/ontologies/RecordInfo#recordChangeDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        [  { "@id": "_:b15idlocgovvocabularypreservationcopyrightStatuspub", "@type": [ "http://id.loc.gov/ontologies/RecordInfo#RecordInfo" ], "http://id.loc.gov/ontologies/RecordInfo#recordChangeDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
         "@value": "2012-08-01T00:00:00" } ], "http://id.loc.gov/ontologies/RecordInfo#recordStatus": [ { "@value": "new" } ], "http://id.loc.gov/ontologies/RecordInfo#recordContentSource": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlcmrc" } ] },  { "@id": "http://id.loc.gov/vocabulary/preservation/copyrightStatus/pub", "@type": [ "http://www.loc.gov/mads/rdf/v1#Topic", "http://www.loc.gov/mads/rdf/v1#Authority", "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@language": "en",
-        "@value": "public domain" } ], "http://www.loc.gov/mads/rdf/v1#definitionNote": [ { "@language": "en",
-        "@value": "In the public domain and may used without copyright     restriction." } ], "http://www.loc.gov/mads/rdf/v1#code": [ { "@value": "pub" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSScheme": [ { "@id": "http://id.loc.gov/vocabulary/preservation/copyrightStatus" }, { "@id": "http://id.loc.gov/vocabulary/preservation" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSCollection": [ { "@id": "http://id.loc.gov/vocabulary/preservation/copyrightStatus/collection_PREMIS" } ], "http://www.loc.gov/mads/rdf/v1#adminMetadata": [ { "@id": "_:b23vocabularypreservationcopyrightStatuspub" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "en",
+        "@value": "public domain" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSCollection": [ { "@id": "http://id.loc.gov/vocabulary/preservation/copyrightStatus/collection_PREMIS" } ], "http://www.loc.gov/mads/rdf/v1#definitionNote": [ { "@language": "en",
+        "@value": "In the public domain and may used without copyright\r\n            restriction." } ], "http://www.loc.gov/mads/rdf/v1#code": [ { "@value": "pub" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSScheme": [ { "@id": "http://id.loc.gov/vocabulary/preservation/copyrightStatus" }, { "@id": "http://id.loc.gov/vocabulary/preservation" } ], "http://www.loc.gov/mads/rdf/v1#adminMetadata": [ { "@id": "_:b15idlocgovvocabularypreservationcopyrightStatuspub" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "en",
         "@value": "public domain" } ], "http://www.w3.org/2004/02/skos/core#definition": [ { "@language": "en",
-        "@value": "In the public domain and may used without copyright restriction." } ], "http://www.w3.org/2004/02/skos/core#notation": [ { "@value": "pub" } ], "http://www.w3.org/2004/02/skos/core#inScheme": [ { "@id": "http://id.loc.gov/vocabulary/preservation/copyrightStatus" }, { "@id": "http://id.loc.gov/vocabulary/preservation" } ], "http://www.w3.org/2004/02/skos/core#changeNote": [ { "@id": "_:b44vocabularypreservationcopyrightStatuspub" } ] } ]
+        "@value": "In the public domain and may used without copyright restriction." } ], "http://www.w3.org/2004/02/skos/core#notation": [ { "@value": "pub" } ], "http://www.w3.org/2004/02/skos/core#inScheme": [ { "@id": "http://id.loc.gov/vocabulary/preservation/copyrightStatus" }, { "@id": "http://id.loc.gov/vocabulary/preservation" } ], "http://www.w3.org/2004/02/skos/core#changeNote": [ { "@id": "_:b36idlocgovvocabularypreservationcopyrightStatuspub" } ] },  { "@id": "_:b36idlocgovvocabularypreservationcopyrightStatuspub", "@type": [ "http://purl.org/vocab/changeset/schema#ChangeSet" ], "http://purl.org/vocab/changeset/schema#subjectOfChange": [ { "@id": "http://id.loc.gov/vocabulary/preservation/copyrightStatus/pub" } ], "http://purl.org/vocab/changeset/schema#creatorName": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlcmrc" } ], "http://purl.org/vocab/changeset/schema#createdDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2012-08-01T00:00:00" } ], "http://purl.org/vocab/changeset/schema#changeReason": [ { "@value": "new" } ] } ]
     http_version: 
-  recorded_at: Fri, 10 Apr 2015 15:31:35 GMT
+  recorded_at: Tue, 16 Jan 2018 23:24:21 GMT
 - request:
     method: get
     uri: http://id.loc.gov/vocabulary/preservation/copyrightStatus/cpr
@@ -119,13 +125,14 @@ http_interactions:
       string: ''
     headers:
       Accept:
-      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
-        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
-        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
-        application/rdf+xml, application/trig, application/x-trig, application/trix,
-        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, */*;q=0.1
+      - application/n-triples, text/plain;q=0.2, text/turtle, text/rdf+turtle, application/turtle;q=0.2,
+        application/x-turtle;q=0.2, application/ld+json, application/x-ld+json, application/n-quads,
+        text/x-nquads;q=0.2, application/rdf+json, text/html;q=0.5, application/xhtml+xml;q=0.7,
+        image/svg+xml;q=0.4, text/n3, text/rdf+n3;q=0.2, application/rdf+n3;q=0.2,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        application/trig, application/x-trig;q=0.2, application/trix
       Accept-Encoding:
-      - gzip, deflate
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       User-Agent:
       - Ruby
   response:
@@ -141,27 +148,29 @@ http_interactions:
       - http://id.loc.gov/vocabulary/preservation/copyrightStatus/cpr
       X-Preflabel:
       - copyrighted
-      Server:
-      - Apache
       Content-Length:
       - '0'
-      Accept-Ranges:
-      - bytes
       Date:
-      - Fri, 10 Apr 2015 15:31:31 GMT
+      - Tue, 16 Jan 2018 21:31:30 GMT
+      Server:
+      - Apache
       X-Varnish:
-      - '673125295'
+      - 57193896 56917268
       Age:
-      - '0'
+      - '6771'
       Via:
-      - 1.1 varnish
+      - 1.1 varnish-v4
+      X-Cache:
+      - HIT
+      X-Cache-Hits:
+      - '9'
       Connection:
       - keep-alive
     body:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Fri, 10 Apr 2015 15:31:36 GMT
+  recorded_at: Tue, 16 Jan 2018 23:24:21 GMT
 - request:
     method: get
     uri: http://id.loc.gov/vocabulary/preservation/copyrightStatus/cpr.jsonld
@@ -170,15 +179,14 @@ http_interactions:
       string: ''
     headers:
       Accept:
-      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
-        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
-        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
-        application/rdf+xml, application/trig, application/x-trig, application/trix,
-        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, */*;q=0.1
+      - application/n-triples, text/plain;q=0.2, text/turtle, text/rdf+turtle, application/turtle;q=0.2,
+        application/x-turtle;q=0.2, application/ld+json, application/x-ld+json, application/n-quads,
+        text/x-nquads;q=0.2, application/rdf+json, text/html;q=0.5, application/xhtml+xml;q=0.7,
+        image/svg+xml;q=0.4, text/n3, text/rdf+n3;q=0.2, application/rdf+n3;q=0.2,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        application/trig, application/x-trig;q=0.2, application/trix
       Accept-Encoding:
-      - gzip, deflate
-      Cookie:
-      - ''
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       User-Agent:
       - Ruby
   response:
@@ -189,39 +197,43 @@ http_interactions:
       Content-Type:
       - application/ld+json
       Cache-Control:
-      - public, max-age=43200
+      - public, max-age=1209600
       Etag:
-      - a0c597012c5a6d3450b3a8b5c26bf6fe
+      - b47b59044745c26f00153caf18fe4e96
       X-Uri:
       - http://id.loc.gov/vocabulary/preservation/copyrightStatus/cpr
+      Content-Length:
+      - '2667'
+      Date:
+      - Tue, 16 Jan 2018 17:35:20 GMT
       Server:
       - Apache
-      Content-Length:
-      - '2635'
+      X-Varnish:
+      - 57128127 56908681
+      Age:
+      - '20941'
+      Via:
+      - 1.1 varnish-v4
+      X-Cache:
+      - HIT
+      X-Cache-Hits:
+      - '8'
       Accept-Ranges:
       - bytes
-      Date:
-      - Fri, 10 Apr 2015 15:31:31 GMT
-      X-Varnish:
-      - '673125299'
-      Age:
-      - '0'
-      Via:
-      - 1.1 varnish
       Connection:
       - keep-alive
     body:
       encoding: UTF-8
       string: |-
         [  { "@id": "http://id.loc.gov/vocabulary/preservation/copyrightStatus/cpr", "@type": [ "http://www.loc.gov/mads/rdf/v1#Topic", "http://www.loc.gov/mads/rdf/v1#Authority", "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@language": "en",
-        "@value": "copyrighted" } ], "http://www.loc.gov/mads/rdf/v1#definitionNote": [ { "@language": "en",
-        "@value": "Under copyright." } ], "http://www.loc.gov/mads/rdf/v1#code": [ { "@value": "cpr" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSScheme": [ { "@id": "http://id.loc.gov/vocabulary/preservation/copyrightStatus" }, { "@id": "http://id.loc.gov/vocabulary/preservation" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSCollection": [ { "@id": "http://id.loc.gov/vocabulary/preservation/copyrightStatus/collection_PREMIS" } ], "http://www.loc.gov/mads/rdf/v1#adminMetadata": [ { "@id": "_:b23vocabularypreservationcopyrightStatuscpr" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "en",
+        "@value": "copyrighted" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSCollection": [ { "@id": "http://id.loc.gov/vocabulary/preservation/copyrightStatus/collection_PREMIS" } ], "http://www.loc.gov/mads/rdf/v1#definitionNote": [ { "@language": "en",
+        "@value": "Under copyright." } ], "http://www.loc.gov/mads/rdf/v1#code": [ { "@value": "cpr" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSScheme": [ { "@id": "http://id.loc.gov/vocabulary/preservation/copyrightStatus" }, { "@id": "http://id.loc.gov/vocabulary/preservation" } ], "http://www.loc.gov/mads/rdf/v1#adminMetadata": [ { "@id": "_:b15idlocgovvocabularypreservationcopyrightStatuscpr" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "en",
         "@value": "copyrighted" } ], "http://www.w3.org/2004/02/skos/core#definition": [ { "@language": "en",
-        "@value": "Under copyright." } ], "http://www.w3.org/2004/02/skos/core#notation": [ { "@value": "cpr" } ], "http://www.w3.org/2004/02/skos/core#inScheme": [ { "@id": "http://id.loc.gov/vocabulary/preservation/copyrightStatus" }, { "@id": "http://id.loc.gov/vocabulary/preservation" } ], "http://www.w3.org/2004/02/skos/core#changeNote": [ { "@id": "_:b44vocabularypreservationcopyrightStatuscpr" } ] },  { "@id": "_:b44vocabularypreservationcopyrightStatuscpr", "@type": [ "http://purl.org/vocab/changeset/schema#ChangeSet" ], "http://purl.org/vocab/changeset/schema#subjectOfChange": [ { "@id": "http://id.loc.gov/vocabulary/preservation/copyrightStatus/cpr" } ], "http://purl.org/vocab/changeset/schema#creatorName": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlcmrc" } ], "http://purl.org/vocab/changeset/schema#createdDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-        "@value": "2012-08-01T00:00:00" } ], "http://purl.org/vocab/changeset/schema#changeReason": [ { "@value": "new" } ] },  { "@id": "_:b23vocabularypreservationcopyrightStatuscpr", "@type": [ "http://id.loc.gov/ontologies/RecordInfo#RecordInfo" ], "http://id.loc.gov/ontologies/RecordInfo#recordChangeDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "Under copyright." } ], "http://www.w3.org/2004/02/skos/core#notation": [ { "@value": "cpr" } ], "http://www.w3.org/2004/02/skos/core#inScheme": [ { "@id": "http://id.loc.gov/vocabulary/preservation/copyrightStatus" }, { "@id": "http://id.loc.gov/vocabulary/preservation" } ], "http://www.w3.org/2004/02/skos/core#changeNote": [ { "@id": "_:b36idlocgovvocabularypreservationcopyrightStatuscpr" } ] },  { "@id": "_:b36idlocgovvocabularypreservationcopyrightStatuscpr", "@type": [ "http://purl.org/vocab/changeset/schema#ChangeSet" ], "http://purl.org/vocab/changeset/schema#subjectOfChange": [ { "@id": "http://id.loc.gov/vocabulary/preservation/copyrightStatus/cpr" } ], "http://purl.org/vocab/changeset/schema#creatorName": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlcmrc" } ], "http://purl.org/vocab/changeset/schema#createdDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2012-08-01T00:00:00" } ], "http://purl.org/vocab/changeset/schema#changeReason": [ { "@value": "new" } ] },  { "@id": "_:b15idlocgovvocabularypreservationcopyrightStatuscpr", "@type": [ "http://id.loc.gov/ontologies/RecordInfo#RecordInfo" ], "http://id.loc.gov/ontologies/RecordInfo#recordChangeDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
         "@value": "2012-08-01T00:00:00" } ], "http://id.loc.gov/ontologies/RecordInfo#recordStatus": [ { "@value": "new" } ], "http://id.loc.gov/ontologies/RecordInfo#recordContentSource": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlcmrc" } ] } ]
     http_version: 
-  recorded_at: Fri, 10 Apr 2015 15:31:36 GMT
+  recorded_at: Tue, 16 Jan 2018 23:24:21 GMT
 - request:
     method: get
     uri: http://id.loc.gov/vocabulary/preservation/copyrightStatus/unk
@@ -230,13 +242,14 @@ http_interactions:
       string: ''
     headers:
       Accept:
-      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
-        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
-        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
-        application/rdf+xml, application/trig, application/x-trig, application/trix,
-        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, */*;q=0.1
+      - application/n-triples, text/plain;q=0.2, text/turtle, text/rdf+turtle, application/turtle;q=0.2,
+        application/x-turtle;q=0.2, application/ld+json, application/x-ld+json, application/n-quads,
+        text/x-nquads;q=0.2, application/rdf+json, text/html;q=0.5, application/xhtml+xml;q=0.7,
+        image/svg+xml;q=0.4, text/n3, text/rdf+n3;q=0.2, application/rdf+n3;q=0.2,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        application/trig, application/x-trig;q=0.2, application/trix
       Accept-Encoding:
-      - gzip, deflate
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       User-Agent:
       - Ruby
   response:
@@ -252,27 +265,29 @@ http_interactions:
       - http://id.loc.gov/vocabulary/preservation/copyrightStatus/unk
       X-Preflabel:
       - unknown
-      Server:
-      - Apache
       Content-Length:
       - '0'
-      Accept-Ranges:
-      - bytes
       Date:
-      - Fri, 10 Apr 2015 15:31:31 GMT
+      - Tue, 16 Jan 2018 23:24:22 GMT
+      Server:
+      - Apache
       X-Varnish:
-      - '673125304'
+      - '57128128'
       Age:
       - '0'
       Via:
-      - 1.1 varnish
+      - 1.1 varnish-v4
+      X-Cache:
+      - MISS
+      X-Cache-Hits:
+      - '0'
       Connection:
       - keep-alive
     body:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Fri, 10 Apr 2015 15:31:36 GMT
+  recorded_at: Tue, 16 Jan 2018 23:24:22 GMT
 - request:
     method: get
     uri: http://id.loc.gov/vocabulary/preservation/copyrightStatus/unk.jsonld
@@ -281,15 +296,14 @@ http_interactions:
       string: ''
     headers:
       Accept:
-      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
-        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
-        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
-        application/rdf+xml, application/trig, application/x-trig, application/trix,
-        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, */*;q=0.1
+      - application/n-triples, text/plain;q=0.2, text/turtle, text/rdf+turtle, application/turtle;q=0.2,
+        application/x-turtle;q=0.2, application/ld+json, application/x-ld+json, application/n-quads,
+        text/x-nquads;q=0.2, application/rdf+json, text/html;q=0.5, application/xhtml+xml;q=0.7,
+        image/svg+xml;q=0.4, text/n3, text/rdf+n3;q=0.2, application/rdf+n3;q=0.2,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        application/trig, application/x-trig;q=0.2, application/trix
       Accept-Encoding:
-      - gzip, deflate
-      Cookie:
-      - ''
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       User-Agent:
       - Ruby
   response:
@@ -300,38 +314,41 @@ http_interactions:
       Content-Type:
       - application/ld+json
       Cache-Control:
-      - public, max-age=43200
+      - public, max-age=1209600
       Etag:
-      - c838788574e1e7a4b0cef05a3f975fb5
+      - 802f21f1fc3ca47dfb8431f92a9a2edf
       X-Uri:
       - http://id.loc.gov/vocabulary/preservation/copyrightStatus/unk
+      Content-Length:
+      - '2730'
+      Date:
+      - Thu, 21 Dec 2017 18:26:38 GMT
       Server:
       - Apache
-      Content-Length:
-      - '2687'
+      X-Varnish:
+      - 57073378 29489281
+      Age:
+      - '2264263'
+      Via:
+      - 1.1 varnish-v4
+      X-Cache:
+      - HIT
+      X-Cache-Hits:
+      - '8348'
       Accept-Ranges:
       - bytes
-      Date:
-      - Fri, 10 Apr 2015 15:31:32 GMT
-      X-Varnish:
-      - '673125306'
-      Age:
-      - '0'
-      Via:
-      - 1.1 varnish
       Connection:
       - keep-alive
     body:
       encoding: UTF-8
       string: |-
-        [  { "@id": "_:b44vocabularypreservationcopyrightStatusunk", "@type": [ "http://purl.org/vocab/changeset/schema#ChangeSet" ], "http://purl.org/vocab/changeset/schema#subjectOfChange": [ { "@id": "http://id.loc.gov/vocabulary/preservation/copyrightStatus/unk" } ], "http://purl.org/vocab/changeset/schema#creatorName": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlcmrc" } ], "http://purl.org/vocab/changeset/schema#createdDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        [  { "@id": "_:b15idlocgovvocabularypreservationcopyrightStatusunk", "@type": [ "http://id.loc.gov/ontologies/RecordInfo#RecordInfo" ], "http://id.loc.gov/ontologies/RecordInfo#recordChangeDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2012-08-01T00:00:00" } ], "http://id.loc.gov/ontologies/RecordInfo#recordStatus": [ { "@value": "new" } ], "http://id.loc.gov/ontologies/RecordInfo#recordContentSource": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlcmrc" } ] },  { "@id": "_:b36idlocgovvocabularypreservationcopyrightStatusunk", "@type": [ "http://purl.org/vocab/changeset/schema#ChangeSet" ], "http://purl.org/vocab/changeset/schema#subjectOfChange": [ { "@id": "http://id.loc.gov/vocabulary/preservation/copyrightStatus/unk" } ], "http://purl.org/vocab/changeset/schema#creatorName": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlcmrc" } ], "http://purl.org/vocab/changeset/schema#createdDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
         "@value": "2012-08-01T00:00:00" } ], "http://purl.org/vocab/changeset/schema#changeReason": [ { "@value": "new" } ] },  { "@id": "http://id.loc.gov/vocabulary/preservation/copyrightStatus/unk", "@type": [ "http://www.loc.gov/mads/rdf/v1#Topic", "http://www.loc.gov/mads/rdf/v1#Authority", "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@language": "en",
-        "@value": "unknown" } ], "http://www.loc.gov/mads/rdf/v1#definitionNote": [ { "@language": "en",
-        "@value": "Copyright status of the resource is     unknown." } ], "http://www.loc.gov/mads/rdf/v1#code": [ { "@value": "unk" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSScheme": [ { "@id": "http://id.loc.gov/vocabulary/preservation/copyrightStatus" }, { "@id": "http://id.loc.gov/vocabulary/preservation" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSCollection": [ { "@id": "http://id.loc.gov/vocabulary/preservation/copyrightStatus/collection_PREMIS" } ], "http://www.loc.gov/mads/rdf/v1#adminMetadata": [ { "@id": "_:b23vocabularypreservationcopyrightStatusunk" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "en",
+        "@value": "unknown" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSCollection": [ { "@id": "http://id.loc.gov/vocabulary/preservation/copyrightStatus/collection_PREMIS" } ], "http://www.loc.gov/mads/rdf/v1#definitionNote": [ { "@language": "en",
+        "@value": "Copyright status of the resource is\r\n            unknown." } ], "http://www.loc.gov/mads/rdf/v1#code": [ { "@value": "unk" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSScheme": [ { "@id": "http://id.loc.gov/vocabulary/preservation/copyrightStatus" }, { "@id": "http://id.loc.gov/vocabulary/preservation" } ], "http://www.loc.gov/mads/rdf/v1#adminMetadata": [ { "@id": "_:b15idlocgovvocabularypreservationcopyrightStatusunk" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "en",
         "@value": "unknown" } ], "http://www.w3.org/2004/02/skos/core#definition": [ { "@language": "en",
-        "@value": "Copyright status of the resource is unknown." } ], "http://www.w3.org/2004/02/skos/core#notation": [ { "@value": "unk" } ], "http://www.w3.org/2004/02/skos/core#inScheme": [ { "@id": "http://id.loc.gov/vocabulary/preservation/copyrightStatus" }, { "@id": "http://id.loc.gov/vocabulary/preservation" } ], "http://www.w3.org/2004/02/skos/core#changeNote": [ { "@id": "_:b44vocabularypreservationcopyrightStatusunk" } ] },  { "@id": "_:b23vocabularypreservationcopyrightStatusunk", "@type": [ "http://id.loc.gov/ontologies/RecordInfo#RecordInfo" ], "http://id.loc.gov/ontologies/RecordInfo#recordChangeDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-        "@value": "2012-08-01T00:00:00" } ], "http://id.loc.gov/ontologies/RecordInfo#recordStatus": [ { "@value": "new" } ], "http://id.loc.gov/ontologies/RecordInfo#recordContentSource": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlcmrc" } ] } ]
+        "@value": "Copyright status of the resource is unknown." } ], "http://www.w3.org/2004/02/skos/core#notation": [ { "@value": "unk" } ], "http://www.w3.org/2004/02/skos/core#inScheme": [ { "@id": "http://id.loc.gov/vocabulary/preservation/copyrightStatus" }, { "@id": "http://id.loc.gov/vocabulary/preservation" } ], "http://www.w3.org/2004/02/skos/core#changeNote": [ { "@id": "_:b36idlocgovvocabularypreservationcopyrightStatusunk" } ] } ]
     http_version: 
-  recorded_at: Fri, 10 Apr 2015 15:31:36 GMT
-recorded_with: VCR 2.9.3
-
+  recorded_at: Tue, 16 Jan 2018 23:24:22 GMT
+recorded_with: VCR 4.0.0

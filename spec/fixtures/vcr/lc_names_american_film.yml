@@ -8,13 +8,14 @@ http_interactions:
       string: ''
     headers:
       Accept:
-      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
-        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
-        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
-        application/rdf+xml, application/trig, application/x-trig, application/trix,
-        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, */*;q=0.1
+      - application/n-triples, text/plain;q=0.2, text/turtle, text/rdf+turtle, application/turtle;q=0.2,
+        application/x-turtle;q=0.2, application/ld+json, application/x-ld+json, application/n-quads,
+        text/x-nquads;q=0.2, application/rdf+json, text/html;q=0.5, application/xhtml+xml;q=0.7,
+        image/svg+xml;q=0.4, text/n3, text/rdf+n3;q=0.2, application/rdf+n3;q=0.2,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        application/trig, application/x-trig;q=0.2, application/trix
       Accept-Encoding:
-      - gzip, deflate
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       User-Agent:
       - Ruby
   response:
@@ -30,27 +31,29 @@ http_interactions:
       - http://id.loc.gov/authorities/names/n87914041
       X-Preflabel:
       - American Film Manufacturing Company
-      Server:
-      - Apache
       Content-Length:
       - '0'
-      Accept-Ranges:
-      - bytes
       Date:
-      - Fri, 10 Apr 2015 15:31:38 GMT
+      - Tue, 16 Jan 2018 21:31:31 GMT
+      Server:
+      - Apache
       X-Varnish:
-      - '673125387'
+      - 57073380 56972976
       Age:
-      - '0'
+      - '6771'
       Via:
-      - 1.1 varnish
+      - 1.1 varnish-v4
+      X-Cache:
+      - HIT
+      X-Cache-Hits:
+      - '1'
       Connection:
       - keep-alive
     body:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Fri, 10 Apr 2015 15:31:43 GMT
+  recorded_at: Tue, 16 Jan 2018 23:24:23 GMT
 - request:
     method: get
     uri: http://id.loc.gov/authorities/names/n87914041.jsonld
@@ -59,15 +62,14 @@ http_interactions:
       string: ''
     headers:
       Accept:
-      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
-        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
-        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
-        application/rdf+xml, application/trig, application/x-trig, application/trix,
-        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, */*;q=0.1
+      - application/n-triples, text/plain;q=0.2, text/turtle, text/rdf+turtle, application/turtle;q=0.2,
+        application/x-turtle;q=0.2, application/ld+json, application/x-ld+json, application/n-quads,
+        text/x-nquads;q=0.2, application/rdf+json, text/html;q=0.5, application/xhtml+xml;q=0.7,
+        image/svg+xml;q=0.4, text/n3, text/rdf+n3;q=0.2, application/rdf+n3;q=0.2,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        application/trig, application/x-trig;q=0.2, application/trix
       Accept-Encoding:
-      - gzip, deflate
-      Cookie:
-      - ''
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       User-Agent:
       - Ruby
   response:
@@ -78,59 +80,63 @@ http_interactions:
       Content-Type:
       - application/ld+json
       Cache-Control:
-      - public, max-age=43200
+      - public, max-age=1209600
       Etag:
-      - 28946a4be0d5ab54c3e485c71f2e77a6
+      - 03a9e5866d990fe10cb2e2953fc8a3d1
       X-Uri:
       - http://id.loc.gov/authorities/names/n87914041
+      Content-Length:
+      - '11214'
+      Date:
+      - Tue, 16 Jan 2018 21:31:32 GMT
       Server:
       - Apache
-      Content-Length:
-      - '10407'
+      X-Varnish:
+      - 57098033 56972978
+      Age:
+      - '6770'
+      Via:
+      - 1.1 varnish-v4
+      X-Cache:
+      - HIT
+      X-Cache-Hits:
+      - '1'
       Accept-Ranges:
       - bytes
-      Date:
-      - Fri, 10 Apr 2015 15:31:39 GMT
-      X-Varnish:
-      - '673125389'
-      Age:
-      - '0'
-      Via:
-      - 1.1 varnish
       Connection:
       - keep-alive
     body:
       encoding: UTF-8
       string: |-
-        [  { "@id": "_:b97authoritiesnamesn87914041", "@type": [ "http://www.w3.org/2008/05/skos-xl#Label" ], "http://www.w3.org/2008/05/skos-xl#literalForm": [ { "@language": "en",
-        "@value": "American Film Company" } ] },  { "@id": "_:b26authoritiesnamesn87914041", "@type": [ "http://www.loc.gov/mads/rdf/v1#CorporateName", "http://www.loc.gov/mads/rdf/v1#Variant" ], "http://www.loc.gov/mads/rdf/v1#variantLabel": [ { "@language": "en",
-        "@value": "North American Film Corporation" } ], "http://www.loc.gov/mads/rdf/v1#elementList": [ { "@id": "_:b31authoritiesnamesn87914041" } ] },  { "@id": "_:b44authoritiesnamesn87914041", "@type": [ "http://www.loc.gov/mads/rdf/v1#Source" ], "http://www.loc.gov/mads/rdf/v1#citation-source": [ { "@value": "The Rose of San Juan [MP] 1913:" } ], "http://www.loc.gov/mads/rdf/v1#citation-note": [ { "@language": "en",
-        "@value": "credits (American Film Manufacturing Company)" } ], "http://www.loc.gov/mads/rdf/v1#citation-status": [ { "@value": "found" } ] },  { "@id": "_:b40authoritiesnamesn87914041", "http://www.w3.org/1999/02/22-rdf-syntax-ns#first": [ { "@id": "_:b41authoritiesnamesn87914041" } ], "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest": [ { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#nil" } ] },  { "@id": "_:b14authoritiesnamesn87914041", "@type": [ "http://www.loc.gov/mads/rdf/v1#RWO", "http://xmlns.com/foaf/0.1/Organization" ] },  { "@id": "_:b78authoritiesnamesn87914041", "@type": [ "http://id.loc.gov/ontologies/RecordInfo#RecordInfo" ], "http://id.loc.gov/ontologies/RecordInfo#recordChangeDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        [  { "@id": "_:b35idlocgovauthoritiesnamesn87914041", "@type": [ "http://www.loc.gov/mads/rdf/v1#NameElement" ], "http://www.loc.gov/mads/rdf/v1#elementValue": [ { "@language": "en",
+        "@value": "Flying A Studio" } ] },  { "@id": "_:b50idlocgovauthoritiesnamesn87914041", "@type": [ "http://www.loc.gov/mads/rdf/v1#Source" ], "http://www.loc.gov/mads/rdf/v1#citation-source": [ { "@value": "The Rose of San Juan [MP] 1913:" } ], "http://www.loc.gov/mads/rdf/v1#citation-note": [ { "@language": "en",
+        "@value": "credits (American Film Manufacturing Company)" } ], "http://www.loc.gov/mads/rdf/v1#citation-status": [ { "@value": "found" } ] },  { "@id": "_:b58idlocgovauthoritiesnamesn87914041", "@type": [ "http://www.loc.gov/mads/rdf/v1#Source" ], "http://www.loc.gov/mads/rdf/v1#citation-source": [ { "@value": "LC data base, 9-16-87" } ], "http://www.loc.gov/mads/rdf/v1#citation-note": [ { "@language": "en",
+        "@value": "(hdg.: American Film Manufacturing Company)" } ], "http://www.loc.gov/mads/rdf/v1#citation-status": [ { "@value": "found" } ] },  { "@id": "_:b8idlocgovauthoritiesnamesn87914041", "@type": [ "http://www.loc.gov/mads/rdf/v1#NameElement" ], "http://www.loc.gov/mads/rdf/v1#elementValue": [ { "@language": "en",
+        "@value": "American Film Manufacturing Company" } ] },  { "@id": "_:b34idlocgovauthoritiesnamesn87914041", "http://www.w3.org/1999/02/22-rdf-syntax-ns#first": [ { "@id": "_:b35idlocgovauthoritiesnamesn87914041" } ], "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest": [ { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#nil" } ] },  { "@id": "_:b66idlocgovauthoritiesnamesn87914041", "@type": [ "http://www.loc.gov/mads/rdf/v1#Source" ], "http://www.loc.gov/mads/rdf/v1#citation-source": [ { "@value": "The Great Stanley secret. Chapter 1, The gipsy's trust [MP] 1917 (produced by American Film Company; North American Film Corporation presents)" } ], "http://www.loc.gov/mads/rdf/v1#citation-status": [ { "@value": "found" } ] },  { "@id": "http://id.loc.gov/rwo/agents/n87914041", "@type": [ "http://www.loc.gov/mads/rdf/v1#RWO", "http://id.loc.gov/ontologies/bibframe/Organization", "http://xmlns.com/foaf/0.1/Organization" ] },  { "@id": "_:b26idlocgovauthoritiesnamesn87914041", "@type": [ "http://www.loc.gov/mads/rdf/v1#NameElement" ], "http://www.loc.gov/mads/rdf/v1#elementValue": [ { "@language": "en",
+        "@value": "North American Film Corporation" } ] },  { "@id": "_:b80idlocgovauthoritiesnamesn87914041", "@type": [ "http://id.loc.gov/ontologies/RecordInfo#RecordInfo" ], "http://id.loc.gov/ontologies/RecordInfo#recordChangeDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
         "@value": "1988-04-25T00:00:00" } ], "http://id.loc.gov/ontologies/RecordInfo#recordStatus": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
-        "@value": "new" } ], "http://id.loc.gov/ontologies/RecordInfo#recordContentSource": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlc" } ], "http://id.loc.gov/ontologies/RecordInfo#languageOfCataloging": [ { "@id": "http://id.loc.gov/vocabulary/iso639-2/eng" } ] },  { "@id": "_:b22authoritiesnamesn87914041", "http://www.w3.org/1999/02/22-rdf-syntax-ns#first": [ { "@id": "_:b23authoritiesnamesn87914041" } ], "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest": [ { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#nil" } ] },  { "@id": "_:b102authoritiesnamesn87914041", "@type": [ "http://www.w3.org/2008/05/skos-xl#Label" ], "http://www.w3.org/2008/05/skos-xl#literalForm": [ { "@language": "en",
-        "@value": "North American Film Corporation" } ] },  { "@id": "_:b127authoritiesnamesn87914041", "@type": [ "http://purl.org/vocab/changeset/schema#ChangeSet" ], "http://purl.org/vocab/changeset/schema#subjectOfChange": [ { "@id": "http://id.loc.gov/authorities/names/n87914041" } ], "http://purl.org/vocab/changeset/schema#creatorName": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlc" } ], "http://purl.org/vocab/changeset/schema#createdDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-        "@value": "2008-03-05T05:30:10" } ], "http://purl.org/vocab/changeset/schema#changeReason": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
-        "@value": "revised" } ] },  { "@id": "_:b52authoritiesnamesn87914041", "@type": [ "http://www.loc.gov/mads/rdf/v1#Source" ], "http://www.loc.gov/mads/rdf/v1#citation-source": [ { "@value": "LC data base, 9-16-87" } ], "http://www.loc.gov/mads/rdf/v1#citation-note": [ { "@language": "en",
-        "@value": "(hdg.: American Film Manufacturing Company)" } ], "http://www.loc.gov/mads/rdf/v1#citation-status": [ { "@value": "found" } ] },  { "@id": "_:b86authoritiesnamesn87914041", "@type": [ "http://id.loc.gov/ontologies/RecordInfo#RecordInfo" ], "http://id.loc.gov/ontologies/RecordInfo#recordChangeDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-        "@value": "2008-03-05T05:30:10" } ], "http://id.loc.gov/ontologies/RecordInfo#recordStatus": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
-        "@value": "revised" } ], "http://id.loc.gov/ontologies/RecordInfo#recordContentSource": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlc" } ], "http://id.loc.gov/ontologies/RecordInfo#languageOfCataloging": [ { "@id": "http://id.loc.gov/vocabulary/iso639-2/eng" } ] },  { "@id": "_:b17authoritiesnamesn87914041", "@type": [ "http://www.loc.gov/mads/rdf/v1#CorporateName", "http://www.loc.gov/mads/rdf/v1#Variant" ], "http://www.loc.gov/mads/rdf/v1#variantLabel": [ { "@language": "en",
-        "@value": "American Film Company" } ], "http://www.loc.gov/mads/rdf/v1#elementList": [ { "@id": "_:b22authoritiesnamesn87914041" } ] },  { "@id": "_:b23authoritiesnamesn87914041", "@type": [ "http://www.loc.gov/mads/rdf/v1#NameElement" ], "http://www.loc.gov/mads/rdf/v1#elementValue": [ { "@language": "en",
-        "@value": "American Film Company" } ] },  { "@id": "_:b32authoritiesnamesn87914041", "@type": [ "http://www.loc.gov/mads/rdf/v1#NameElement" ], "http://www.loc.gov/mads/rdf/v1#elementValue": [ { "@language": "en",
-        "@value": "North American Film Corporation" } ] },  { "@id": "_:b119authoritiesnamesn87914041", "@type": [ "http://purl.org/vocab/changeset/schema#ChangeSet" ], "http://purl.org/vocab/changeset/schema#subjectOfChange": [ { "@id": "http://id.loc.gov/authorities/names/n87914041" } ], "http://purl.org/vocab/changeset/schema#creatorName": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlc" } ], "http://purl.org/vocab/changeset/schema#createdDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "new" } ], "http://id.loc.gov/ontologies/RecordInfo#recordContentSource": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlc" } ], "http://id.loc.gov/ontologies/RecordInfo#languageOfCataloging": [ { "@id": "http://id.loc.gov/vocabulary/iso639-2/eng" } ] },  { "@id": "_:b88idlocgovauthoritiesnamesn87914041", "@type": [ "http://id.loc.gov/ontologies/RecordInfo#RecordInfo" ], "http://id.loc.gov/ontologies/RecordInfo#recordChangeDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2008-03-06T07:52:29" } ], "http://id.loc.gov/ontologies/RecordInfo#recordStatus": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "revised" } ], "http://id.loc.gov/ontologies/RecordInfo#recordContentSource": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlc" } ], "http://id.loc.gov/ontologies/RecordInfo#languageOfCataloging": [ { "@id": "http://id.loc.gov/vocabulary/iso639-2/eng" } ] },  { "@id": "_:b99idlocgovauthoritiesnamesn87914041", "@type": [ "http://www.w3.org/2008/05/skos-xl#Label" ], "http://www.w3.org/2008/05/skos-xl#literalForm": [ { "@language": "en",
+        "@value": "American Film Company" } ] },  { "@id": "_:b29idlocgovauthoritiesnamesn87914041", "@type": [ "http://www.loc.gov/mads/rdf/v1#CorporateName", "http://www.loc.gov/mads/rdf/v1#Variant" ], "http://www.loc.gov/mads/rdf/v1#variantLabel": [ { "@language": "en",
+        "@value": "Flying A Studio" } ], "http://www.loc.gov/mads/rdf/v1#elementList": [ { "@id": "_:b34idlocgovauthoritiesnamesn87914041" } ] },  { "@id": "_:b25idlocgovauthoritiesnamesn87914041", "http://www.w3.org/1999/02/22-rdf-syntax-ns#first": [ { "@id": "_:b26idlocgovauthoritiesnamesn87914041" } ], "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest": [ { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#nil" } ] },  { "@id": "_:b72idlocgovauthoritiesnamesn87914041", "@type": [ "http://www.loc.gov/mads/rdf/v1#Source" ], "http://www.loc.gov/mads/rdf/v1#citation-source": [ { "@value": "Lawton, S. Santa Barbara's Flying A Studio, 1997:" } ], "http://www.loc.gov/mads/rdf/v1#citation-note": [ { "@language": "en",
+        "@value": "CIP galley (American Film Manufacturing Co. was popularly known as the Flying A Studio)" } ], "http://www.loc.gov/mads/rdf/v1#citation-status": [ { "@value": "found" } ] },  { "@id": "_:b106idlocgovauthoritiesnamesn87914041", "@type": [ "http://www.w3.org/2008/05/skos-xl#Label" ], "http://www.w3.org/2008/05/skos-xl#literalForm": [ { "@language": "en",
+        "@value": "North American Film Corporation" } ] },  { "@id": "_:b113idlocgovauthoritiesnamesn87914041", "@type": [ "http://www.w3.org/2008/05/skos-xl#Label" ], "http://www.w3.org/2008/05/skos-xl#literalForm": [ { "@language": "en",
+        "@value": "Flying A Studio" } ] },  { "@id": "_:b128idlocgovauthoritiesnamesn87914041", "@type": [ "http://purl.org/vocab/changeset/schema#ChangeSet" ], "http://purl.org/vocab/changeset/schema#subjectOfChange": [ { "@id": "http://id.loc.gov/authorities/names/n87914041" } ], "http://purl.org/vocab/changeset/schema#creatorName": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlc" } ], "http://purl.org/vocab/changeset/schema#createdDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
         "@value": "1988-04-25T00:00:00" } ], "http://purl.org/vocab/changeset/schema#changeReason": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
-        "@value": "new" } ] },  { "@id": "_:b35authoritiesnamesn87914041", "@type": [ "http://www.loc.gov/mads/rdf/v1#CorporateName", "http://www.loc.gov/mads/rdf/v1#Variant" ], "http://www.loc.gov/mads/rdf/v1#variantLabel": [ { "@language": "en",
-        "@value": "Flying A Studio" } ], "http://www.loc.gov/mads/rdf/v1#elementList": [ { "@id": "_:b40authoritiesnamesn87914041" } ] },  { "@id": "_:b7authoritiesnamesn87914041", "http://www.w3.org/1999/02/22-rdf-syntax-ns#first": [ { "@id": "_:b8authoritiesnamesn87914041" } ], "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest": [ { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#nil" } ] },  { "@id": "_:b41authoritiesnamesn87914041", "@type": [ "http://www.loc.gov/mads/rdf/v1#NameElement" ], "http://www.loc.gov/mads/rdf/v1#elementValue": [ { "@language": "en",
-        "@value": "Flying A Studio" } ] },  { "@id": "_:b60authoritiesnamesn87914041", "@type": [ "http://www.loc.gov/mads/rdf/v1#Source" ], "http://www.loc.gov/mads/rdf/v1#citation-source": [ { "@value": "The Great Stanley secret. Chapter 1, The gipsy's trust [MP] 1917 (produced by American Film Company; North American Film Corporation presents)" } ], "http://www.loc.gov/mads/rdf/v1#citation-status": [ { "@value": "found" } ] },  { "@id": "_:b107authoritiesnamesn87914041", "@type": [ "http://www.w3.org/2008/05/skos-xl#Label" ], "http://www.w3.org/2008/05/skos-xl#literalForm": [ { "@language": "en",
-        "@value": "Flying A Studio" } ] },  { "@id": "_:b8authoritiesnamesn87914041", "@type": [ "http://www.loc.gov/mads/rdf/v1#NameElement" ], "http://www.loc.gov/mads/rdf/v1#elementValue": [ { "@language": "en",
-        "@value": "American Film Manufacturing Company" } ] },  { "@id": "_:b31authoritiesnamesn87914041", "http://www.w3.org/1999/02/22-rdf-syntax-ns#first": [ { "@id": "_:b32authoritiesnamesn87914041" } ], "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest": [ { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#nil" } ] },  { "@id": "http://id.loc.gov/authorities/names/n87914041", "@type": [ "http://www.loc.gov/mads/rdf/v1#CorporateName", "http://www.loc.gov/mads/rdf/v1#Authority", "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@language": "en",
-        "@value": "American Film Manufacturing Company" } ], "http://www.loc.gov/mads/rdf/v1#elementList": [ { "@id": "_:b7authoritiesnamesn87914041" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSCollection": [ { "@id": "http://id.loc.gov/authorities/names/collection_NamesAuthorizedHeadings" }, { "@id": "http://id.loc.gov/authorities/names/collection_LCNAF" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSScheme": [ { "@id": "http://id.loc.gov/authorities/names" } ], "http://www.loc.gov/mads/rdf/v1#identifiesRWO": [ { "@id": "_:b14authoritiesnamesn87914041" } ], "http://www.loc.gov/mads/rdf/v1#hasVariant": [ { "@id": "_:b17authoritiesnamesn87914041" }, { "@id": "_:b26authoritiesnamesn87914041" }, { "@id": "_:b35authoritiesnamesn87914041" } ], "http://www.loc.gov/mads/rdf/v1#hasSource": [ { "@id": "_:b44authoritiesnamesn87914041" }, { "@id": "_:b52authoritiesnamesn87914041" }, { "@id": "_:b60authoritiesnamesn87914041" }, { "@id": "_:b66authoritiesnamesn87914041" } ], "http://id.loc.gov/vocabulary/identifiers/lccn": [ { "@value": "n 87914041" } ], "http://id.loc.gov/vocabulary/identifiers/local": [ { "@value": "(OCoLC)oca02258986" } ], "http://www.loc.gov/mads/rdf/v1#adminMetadata": [ { "@id": "_:b78authoritiesnamesn87914041" }, { "@id": "_:b86authoritiesnamesn87914041" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "en",
-        "@value": "American Film Manufacturing Company" } ], "http://www.w3.org/2008/05/skos-xl#altLabel": [ { "@id": "_:b97authoritiesnamesn87914041" }, { "@id": "_:b102authoritiesnamesn87914041" }, { "@id": "_:b107authoritiesnamesn87914041" } ], "http://www.w3.org/2004/02/skos/core#inScheme": [ { "@id": "http://id.loc.gov/authorities/names" } ], "http://www.w3.org/2004/02/skos/core#altLabel": [ { "@language": "en",
+        "@value": "new" } ] },  { "@id": "_:b16idlocgovauthoritiesnamesn87914041", "http://www.w3.org/1999/02/22-rdf-syntax-ns#first": [ { "@id": "_:b17idlocgovauthoritiesnamesn87914041" } ], "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest": [ { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#nil" } ] },  { "@id": "_:b7idlocgovauthoritiesnamesn87914041", "http://www.w3.org/1999/02/22-rdf-syntax-ns#first": [ { "@id": "_:b8idlocgovauthoritiesnamesn87914041" } ], "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest": [ { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#nil" } ] },  { "@id": "_:b136idlocgovauthoritiesnamesn87914041", "@type": [ "http://purl.org/vocab/changeset/schema#ChangeSet" ], "http://purl.org/vocab/changeset/schema#subjectOfChange": [ { "@id": "http://id.loc.gov/authorities/names/n87914041" } ], "http://purl.org/vocab/changeset/schema#creatorName": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlc" } ], "http://purl.org/vocab/changeset/schema#createdDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2008-03-06T07:52:29" } ], "http://purl.org/vocab/changeset/schema#changeReason": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "revised" } ] },  { "@id": "http://id.loc.gov/authorities/names/n87914041", "@type": [ "http://www.loc.gov/mads/rdf/v1#CorporateName", "http://www.loc.gov/mads/rdf/v1#Authority", "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@language": "en",
+        "@value": "American Film Manufacturing Company" } ], "http://www.loc.gov/mads/rdf/v1#elementList": [ { "@id": "_:b7idlocgovauthoritiesnamesn87914041" } ], "http://www.loc.gov/mads/rdf/v1#hasVariant": [ { "@id": "_:b11idlocgovauthoritiesnamesn87914041" }, { "@id": "_:b20idlocgovauthoritiesnamesn87914041" }, { "@id": "_:b29idlocgovauthoritiesnamesn87914041" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSCollection": [ { "@id": "http://id.loc.gov/authorities/names/collection_NamesAuthorizedHeadings" }, { "@id": "http://id.loc.gov/authorities/names/collection_LCNAF" } ], "http://www.loc.gov/mads/rdf/v1#hasExactExternalAuthority": [ { "@id": "http://viaf.org/viaf/sourceID/LC%7Cn+87914041#skos:Concept" } ], "http://www.loc.gov/mads/rdf/v1#identifiesRWO": [ { "@id": "http://id.loc.gov/rwo/agents/n87914041" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSScheme": [ { "@id": "http://id.loc.gov/authorities/names" } ], "http://id.loc.gov/vocabulary/identifiers/lccn": [ { "@value": "n 87914041" } ], "http://id.loc.gov/vocabulary/identifiers/local": [ { "@value": "(OCoLC)oca02258986" } ], "http://www.loc.gov/mads/rdf/v1#hasSource": [ { "@id": "_:b50idlocgovauthoritiesnamesn87914041" }, { "@id": "_:b58idlocgovauthoritiesnamesn87914041" }, { "@id": "_:b66idlocgovauthoritiesnamesn87914041" }, { "@id": "_:b72idlocgovauthoritiesnamesn87914041" } ], "http://www.loc.gov/mads/rdf/v1#adminMetadata": [ { "@id": "_:b80idlocgovauthoritiesnamesn87914041" }, { "@id": "_:b88idlocgovauthoritiesnamesn87914041" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "en",
+        "@value": "American Film Manufacturing Company" } ], "http://www.w3.org/2008/05/skos-xl#altLabel": [ { "@id": "_:b99idlocgovauthoritiesnamesn87914041" }, { "@id": "_:b106idlocgovauthoritiesnamesn87914041" }, { "@id": "_:b113idlocgovauthoritiesnamesn87914041" }, { "@language": "en",
         "@value": "American Film Company" }, { "@language": "en",
         "@value": "North American Film Corporation" }, { "@language": "en",
-        "@value": "Flying A Studio" } ], "http://www.w3.org/2004/02/skos/core#changeNote": [ { "@id": "_:b119authoritiesnamesn87914041" }, { "@id": "_:b127authoritiesnamesn87914041" } ] },  { "@id": "_:b66authoritiesnamesn87914041", "@type": [ "http://www.loc.gov/mads/rdf/v1#Source" ], "http://www.loc.gov/mads/rdf/v1#citation-source": [ { "@value": "Lawton, S. Santa Barbara's Flying A Studio, 1997:" } ], "http://www.loc.gov/mads/rdf/v1#citation-note": [ { "@language": "en",
-        "@value": "CIP galley (American Film Manufacturing Co. was popularly known as the Flying A Studio)" } ], "http://www.loc.gov/mads/rdf/v1#citation-status": [ { "@value": "found" } ] } ]
+        "@value": "Flying A Studio" } ], "http://www.w3.org/2004/02/skos/core#altLabel": [ { "@value": "American Film Company" }, { "@value": "North American Film Corporation" }, { "@value": "Flying A Studio" } ], "http://www.w3.org/2004/02/skos/core#exactMatch": [ { "@id": "http://viaf.org/viaf/sourceID/LC%7Cn+87914041#skos:Concept" } ], "http://www.w3.org/2004/02/skos/core#inScheme": [ { "@id": "http://id.loc.gov/authorities/names" } ], "http://www.w3.org/2004/02/skos/core#changeNote": [ { "@id": "_:b128idlocgovauthoritiesnamesn87914041" }, { "@id": "_:b136idlocgovauthoritiesnamesn87914041" } ] },  { "@id": "_:b11idlocgovauthoritiesnamesn87914041", "@type": [ "http://www.loc.gov/mads/rdf/v1#CorporateName", "http://www.loc.gov/mads/rdf/v1#Variant" ], "http://www.loc.gov/mads/rdf/v1#variantLabel": [ { "@language": "en",
+        "@value": "American Film Company" } ], "http://www.loc.gov/mads/rdf/v1#elementList": [ { "@id": "_:b16idlocgovauthoritiesnamesn87914041" } ] },  { "@id": "_:b17idlocgovauthoritiesnamesn87914041", "@type": [ "http://www.loc.gov/mads/rdf/v1#NameElement" ], "http://www.loc.gov/mads/rdf/v1#elementValue": [ { "@language": "en",
+        "@value": "American Film Company" } ] },  { "@id": "_:b20idlocgovauthoritiesnamesn87914041", "@type": [ "http://www.loc.gov/mads/rdf/v1#CorporateName", "http://www.loc.gov/mads/rdf/v1#Variant" ], "http://www.loc.gov/mads/rdf/v1#variantLabel": [ { "@language": "en",
+        "@value": "North American Film Corporation" } ], "http://www.loc.gov/mads/rdf/v1#elementList": [ { "@id": "_:b25idlocgovauthoritiesnamesn87914041" } ] } ]
     http_version: 
-  recorded_at: Fri, 10 Apr 2015 15:31:43 GMT
+  recorded_at: Tue, 16 Jan 2018 23:24:23 GMT
 - request:
     method: get
     uri: http://id.loc.gov/authorities/names/n81053687
@@ -139,13 +145,14 @@ http_interactions:
       string: ''
     headers:
       Accept:
-      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
-        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
-        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
-        application/rdf+xml, application/trig, application/x-trig, application/trix,
-        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, */*;q=0.1
+      - application/n-triples, text/plain;q=0.2, text/turtle, text/rdf+turtle, application/turtle;q=0.2,
+        application/x-turtle;q=0.2, application/ld+json, application/x-ld+json, application/n-quads,
+        text/x-nquads;q=0.2, application/rdf+json, text/html;q=0.5, application/xhtml+xml;q=0.7,
+        image/svg+xml;q=0.4, text/n3, text/rdf+n3;q=0.2, application/rdf+n3;q=0.2,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        application/trig, application/x-trig;q=0.2, application/trix
       Accept-Encoding:
-      - gzip, deflate
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       User-Agent:
       - Ruby
   response:
@@ -161,27 +168,29 @@ http_interactions:
       - http://id.loc.gov/authorities/names/n81053687
       X-Preflabel:
       - Haggard, Merle
-      Server:
-      - Apache
       Content-Length:
       - '0'
-      Accept-Ranges:
-      - bytes
       Date:
-      - Fri, 10 Apr 2015 15:31:39 GMT
+      - Tue, 16 Jan 2018 23:24:23 GMT
+      Server:
+      - Apache
       X-Varnish:
-      - '673125403'
+      - '57098034'
       Age:
       - '0'
       Via:
-      - 1.1 varnish
+      - 1.1 varnish-v4
+      X-Cache:
+      - MISS
+      X-Cache-Hits:
+      - '0'
       Connection:
       - keep-alive
     body:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Fri, 10 Apr 2015 15:31:44 GMT
+  recorded_at: Tue, 16 Jan 2018 23:24:23 GMT
 - request:
     method: get
     uri: http://id.loc.gov/authorities/names/n81053687.jsonld
@@ -190,15 +199,14 @@ http_interactions:
       string: ''
     headers:
       Accept:
-      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
-        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
-        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
-        application/rdf+xml, application/trig, application/x-trig, application/trix,
-        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, */*;q=0.1
+      - application/n-triples, text/plain;q=0.2, text/turtle, text/rdf+turtle, application/turtle;q=0.2,
+        application/x-turtle;q=0.2, application/ld+json, application/x-ld+json, application/n-quads,
+        text/x-nquads;q=0.2, application/rdf+json, text/html;q=0.5, application/xhtml+xml;q=0.7,
+        image/svg+xml;q=0.4, text/n3, text/rdf+n3;q=0.2, application/rdf+n3;q=0.2,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        application/trig, application/x-trig;q=0.2, application/trix
       Accept-Encoding:
-      - gzip, deflate
-      Cookie:
-      - ''
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       User-Agent:
       - Ruby
   response:
@@ -209,45 +217,49 @@ http_interactions:
       Content-Type:
       - application/ld+json
       Cache-Control:
-      - public, max-age=43200
+      - public, max-age=1209600
       Etag:
-      - 58f8f2a19f660b6e869bf2b55e9c0dc6
+      - d03df61d4a32aa7a8eb1f1de84fdee5c
       X-Uri:
       - http://id.loc.gov/authorities/names/n81053687
+      Content-Length:
+      - '9130'
+      Date:
+      - Tue, 16 Jan 2018 21:31:33 GMT
       Server:
       - Apache
-      Content-Length:
-      - '6413'
+      X-Varnish:
+      - 57098036 57061090
+      Age:
+      - '6770'
+      Via:
+      - 1.1 varnish-v4
+      X-Cache:
+      - HIT
+      X-Cache-Hits:
+      - '1'
       Accept-Ranges:
       - bytes
-      Date:
-      - Fri, 10 Apr 2015 15:31:40 GMT
-      X-Varnish:
-      - '673125411'
-      Age:
-      - '0'
-      Via:
-      - 1.1 varnish
       Connection:
       - keep-alive
     body:
       encoding: UTF-8
       string: |-
-        [  { "@id": "_:b7authoritiesnamesn81053687", "http://www.w3.org/1999/02/22-rdf-syntax-ns#first": [ { "@id": "_:b8authoritiesnamesn81053687" } ], "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest": [ { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#nil" } ] },  { "@id": "_:b27authoritiesnamesn81053687", "@type": [ "http://www.loc.gov/mads/rdf/v1#Source" ], "http://www.loc.gov/mads/rdf/v1#citation-source": [ { "@value": "His Sing me back home, c1981:" } ], "http://www.loc.gov/mads/rdf/v1#citation-note": [ { "@language": "en",
-        "@value": "p. 17 (b. 4/6/37)" } ], "http://www.loc.gov/mads/rdf/v1#citation-status": [ { "@value": "found" } ] },  { "@id": "_:b35authoritiesnamesn81053687", "@type": [ "http://www.loc.gov/mads/rdf/v1#Source" ], "http://www.loc.gov/mads/rdf/v1#citation-source": [ { "@value": "New Grove dict. of Amer. mus." } ], "http://www.loc.gov/mads/rdf/v1#citation-note": [ { "@language": "en",
-        "@value": "(Haggard, Merle (Ronald); b. Apr. 6, 1937, Bakersfield, CA; country-music singer, songwriter, and guitarist)" } ], "http://www.loc.gov/mads/rdf/v1#citation-status": [ { "@value": "found" } ] },  { "@id": "_:b8authoritiesnamesn81053687", "@type": [ "http://www.loc.gov/mads/rdf/v1#FullNameElement" ], "http://www.loc.gov/mads/rdf/v1#elementValue": [ { "@language": "en",
-        "@value": "Haggard, Merle" } ] },  { "@id": "_:b71authoritiesnamesn81053687", "@type": [ "http://purl.org/vocab/changeset/schema#ChangeSet" ], "http://purl.org/vocab/changeset/schema#subjectOfChange": [ { "@id": "http://id.loc.gov/authorities/names/n81053687" } ], "http://purl.org/vocab/changeset/schema#creatorName": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlc" } ], "http://purl.org/vocab/changeset/schema#createdDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        [  { "@id": "_:b55idlocgovauthoritiesnamesn81053687", "@type": [ "http://www.loc.gov/mads/rdf/v1#Source" ], "http://www.loc.gov/mads/rdf/v1#citation-source": [ { "@value": "His Sing me back home, c1981:" } ], "http://www.loc.gov/mads/rdf/v1#citation-note": [ { "@language": "en",
+        "@value": "p. 17 (b. 4/6/37)" } ], "http://www.loc.gov/mads/rdf/v1#citation-status": [ { "@value": "found" } ] },  { "@id": "_:b87idlocgovauthoritiesnamesn81053687", "@type": [ "http://id.loc.gov/ontologies/RecordInfo#RecordInfo" ], "http://id.loc.gov/ontologies/RecordInfo#recordChangeDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2016-04-07T07:53:28" } ], "http://id.loc.gov/ontologies/RecordInfo#recordStatus": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "revised" } ], "http://id.loc.gov/ontologies/RecordInfo#recordContentSource": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlc" } ], "http://id.loc.gov/ontologies/RecordInfo#languageOfCataloging": [ { "@id": "http://id.loc.gov/vocabulary/iso639-2/eng" } ] },  { "@id": "_:b8idlocgovauthoritiesnamesn81053687", "@type": [ "http://www.loc.gov/mads/rdf/v1#FullNameElement" ], "http://www.loc.gov/mads/rdf/v1#elementValue": [ { "@language": "en",
+        "@value": "Haggard, Merle" } ] },  { "@id": "http://id.loc.gov/authorities/names/n50061303", "@type": [ "http://www.loc.gov/mads/rdf/v1#Geographic" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@value": "Bakersfield (Calif.)" } ] },  { "@id": "_:b110idlocgovauthoritiesnamesn81053687", "@type": [ "http://purl.org/vocab/changeset/schema#ChangeSet" ], "http://purl.org/vocab/changeset/schema#subjectOfChange": [ { "@id": "http://id.loc.gov/authorities/names/n81053687" } ], "http://purl.org/vocab/changeset/schema#creatorName": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlc" } ], "http://purl.org/vocab/changeset/schema#createdDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2016-04-07T07:53:28" } ], "http://purl.org/vocab/changeset/schema#changeReason": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "revised" } ] },  { "@id": "_:b63idlocgovauthoritiesnamesn81053687", "@type": [ "http://www.loc.gov/mads/rdf/v1#Source" ], "http://www.loc.gov/mads/rdf/v1#citation-source": [ { "@value": "New Grove dict. of Amer. mus." } ], "http://www.loc.gov/mads/rdf/v1#citation-note": [ { "@language": "en",
+        "@value": "(Haggard, Merle (Ronald); b. Apr. 6, 1937, Bakersfield, CA; country-music singer, songwriter, and guitarist)" } ], "http://www.loc.gov/mads/rdf/v1#citation-status": [ { "@value": "found" } ] },  { "@id": "_:b102idlocgovauthoritiesnamesn81053687", "@type": [ "http://purl.org/vocab/changeset/schema#ChangeSet" ], "http://purl.org/vocab/changeset/schema#subjectOfChange": [ { "@id": "http://id.loc.gov/authorities/names/n81053687" } ], "http://purl.org/vocab/changeset/schema#creatorName": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlc" } ], "http://purl.org/vocab/changeset/schema#createdDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
         "@value": "1981-10-07T00:00:00" } ], "http://purl.org/vocab/changeset/schema#changeReason": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
-        "@value": "new" } ] },  { "@id": "_:b49authoritiesnamesn81053687", "@type": [ "http://id.loc.gov/ontologies/RecordInfo#RecordInfo" ], "http://id.loc.gov/ontologies/RecordInfo#recordChangeDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "new" } ] },  { "@id": "_:b18idlocgovauthoritiesnamesn81053687", "@type": [ "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.w3.org/2000/01/rdf-schema#label": [ { "@value": "(edtf) 1937-04-06" } ] },  { "@id": "http://id.loc.gov/rwo/agents/n81053687", "@type": [ "http://www.loc.gov/mads/rdf/v1#RWO", "http://id.loc.gov/ontologies/bibframe/Person", "http://xmlns.com/foaf/0.1/Person" ], "http://www.loc.gov/mads/rdf/v1#birthDate": [ { "@id": "_:b18idlocgovauthoritiesnamesn81053687" } ], "http://www.loc.gov/mads/rdf/v1#deathDate": [ { "@id": "_:b22idlocgovauthoritiesnamesn81053687" } ], "http://www.loc.gov/mads/rdf/v1#birthPlace": [ { "@id": "http://id.loc.gov/authorities/names/n50061303" } ], "http://www.loc.gov/mads/rdf/v1#fieldOfActivity": [ { "@id": "http://id.loc.gov/authorities/subjects/sh85033470" } ], "http://www.loc.gov/mads/rdf/v1#occupation": [ { "@id": "http://id.loc.gov/authorities/subjects/sh85033472" } ], "http://www.loc.gov/mads/rdf/v1#gender": [ { "@id": "_:b38idlocgovauthoritiesnamesn81053687" } ] },  { "@id": "http://id.loc.gov/authorities/names/n81053687", "@type": [ "http://www.loc.gov/mads/rdf/v1#PersonalName", "http://www.loc.gov/mads/rdf/v1#Authority", "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@language": "en",
+        "@value": "Haggard, Merle" } ], "http://www.loc.gov/mads/rdf/v1#elementList": [ { "@id": "_:b7idlocgovauthoritiesnamesn81053687" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSCollection": [ { "@id": "http://id.loc.gov/authorities/names/collection_NamesAuthorizedHeadings" }, { "@id": "http://id.loc.gov/authorities/names/collection_LCNAF" } ], "http://www.loc.gov/mads/rdf/v1#hasExactExternalAuthority": [ { "@id": "http://viaf.org/viaf/sourceID/LC%7Cn+81053687#skos:Concept" } ], "http://www.loc.gov/mads/rdf/v1#identifiesRWO": [ { "@id": "http://id.loc.gov/rwo/agents/n81053687" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSScheme": [ { "@id": "http://id.loc.gov/authorities/names" } ], "http://www.loc.gov/mads/rdf/v1#note": [ { "@value": "[Merle Haggard is a country music singer and composer]" } ], "http://id.loc.gov/vocabulary/identifiers/lccn": [ { "@value": "n 81053687" } ], "http://id.loc.gov/vocabulary/identifiers/local": [ { "@value": "(OCoLC)oca00599178" } ], "http://www.loc.gov/mads/rdf/v1#hasSource": [ { "@id": "_:b49idlocgovauthoritiesnamesn81053687" }, { "@id": "_:b55idlocgovauthoritiesnamesn81053687" }, { "@id": "_:b63idlocgovauthoritiesnamesn81053687" }, { "@id": "_:b71idlocgovauthoritiesnamesn81053687" } ], "http://www.loc.gov/mads/rdf/v1#adminMetadata": [ { "@id": "_:b79idlocgovauthoritiesnamesn81053687" }, { "@id": "_:b87idlocgovauthoritiesnamesn81053687" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "en",
+        "@value": "Haggard, Merle" } ], "http://www.w3.org/2004/02/skos/core#exactMatch": [ { "@id": "http://viaf.org/viaf/sourceID/LC%7Cn+81053687#skos:Concept" } ], "http://www.w3.org/2004/02/skos/core#note": [ { "@value": "[Merle Haggard is a country music singer and composer]" } ], "http://www.w3.org/2004/02/skos/core#inScheme": [ { "@id": "http://id.loc.gov/authorities/names" } ], "http://www.w3.org/2004/02/skos/core#changeNote": [ { "@id": "_:b102idlocgovauthoritiesnamesn81053687" }, { "@id": "_:b110idlocgovauthoritiesnamesn81053687" } ] },  { "@id": "_:b79idlocgovauthoritiesnamesn81053687", "@type": [ "http://id.loc.gov/ontologies/RecordInfo#RecordInfo" ], "http://id.loc.gov/ontologies/RecordInfo#recordChangeDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
         "@value": "1981-10-07T00:00:00" } ], "http://id.loc.gov/ontologies/RecordInfo#recordStatus": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
-        "@value": "new" } ], "http://id.loc.gov/ontologies/RecordInfo#recordContentSource": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlc" } ], "http://id.loc.gov/ontologies/RecordInfo#languageOfCataloging": [ { "@id": "http://id.loc.gov/vocabulary/iso639-2/eng" } ] },  { "@id": "_:b14authoritiesnamesn81053687", "@type": [ "http://www.loc.gov/mads/rdf/v1#RWO", "http://xmlns.com/foaf/0.1/Person" ], "http://www.loc.gov/mads/rdf/v1#birthdate": [ { "@value": "19370406" } ], "http://www.loc.gov/mads/rdf/v1#fieldOfActivity": [ { "@value": "Country music" } ] },  { "@id": "_:b79authoritiesnamesn81053687", "@type": [ "http://purl.org/vocab/changeset/schema#ChangeSet" ], "http://purl.org/vocab/changeset/schema#subjectOfChange": [ { "@id": "http://id.loc.gov/authorities/names/n81053687" } ], "http://purl.org/vocab/changeset/schema#creatorName": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlc" } ], "http://purl.org/vocab/changeset/schema#createdDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-        "@value": "2014-04-07T15:42:13" } ], "http://purl.org/vocab/changeset/schema#changeReason": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
-        "@value": "revised" } ] },  { "@id": "_:b21authoritiesnamesn81053687", "@type": [ "http://www.loc.gov/mads/rdf/v1#Source" ], "http://www.loc.gov/mads/rdf/v1#citation-source": [ { "@value": "The Best of Merle Haggard. [Phonodisc] 1968." } ], "http://www.loc.gov/mads/rdf/v1#citation-status": [ { "@value": "found" } ] },  { "@id": "_:b57authoritiesnamesn81053687", "@type": [ "http://id.loc.gov/ontologies/RecordInfo#RecordInfo" ], "http://id.loc.gov/ontologies/RecordInfo#recordChangeDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-        "@value": "2014-04-07T15:42:13" } ], "http://id.loc.gov/ontologies/RecordInfo#recordStatus": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
-        "@value": "revised" } ], "http://id.loc.gov/ontologies/RecordInfo#recordContentSource": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlc" } ], "http://id.loc.gov/ontologies/RecordInfo#languageOfCataloging": [ { "@id": "http://id.loc.gov/vocabulary/iso639-2/eng" } ] },  { "@id": "http://id.loc.gov/authorities/names/n81053687", "@type": [ "http://www.loc.gov/mads/rdf/v1#PersonalName", "http://www.loc.gov/mads/rdf/v1#Authority", "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@language": "en",
-        "@value": "Haggard, Merle" } ], "http://www.loc.gov/mads/rdf/v1#elementList": [ { "@id": "_:b7authoritiesnamesn81053687" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSCollection": [ { "@id": "http://id.loc.gov/authorities/names/collection_NamesAuthorizedHeadings" }, { "@id": "http://id.loc.gov/authorities/names/collection_LCNAF" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSScheme": [ { "@id": "http://id.loc.gov/authorities/names" } ], "http://www.loc.gov/mads/rdf/v1#identifiesRWO": [ { "@id": "_:b14authoritiesnamesn81053687" } ], "http://www.loc.gov/mads/rdf/v1#hasSource": [ { "@id": "_:b21authoritiesnamesn81053687" }, { "@id": "_:b27authoritiesnamesn81053687" }, { "@id": "_:b35authoritiesnamesn81053687" } ], "http://www.loc.gov/mads/rdf/v1#note": [ { "@value": "[Merle Haggard is a country music singer and composer]" } ], "http://id.loc.gov/vocabulary/identifiers/lccn": [ { "@value": "n 81053687" } ], "http://id.loc.gov/vocabulary/identifiers/local": [ { "@value": "(OCoLC)oca00599178" } ], "http://www.loc.gov/mads/rdf/v1#adminMetadata": [ { "@id": "_:b49authoritiesnamesn81053687" }, { "@id": "_:b57authoritiesnamesn81053687" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "en",
-        "@value": "Haggard, Merle" } ], "http://www.w3.org/2004/02/skos/core#note": [ { "@value": "[Merle Haggard is a country music singer and composer]" } ], "http://www.w3.org/2004/02/skos/core#inScheme": [ { "@id": "http://id.loc.gov/authorities/names" } ], "http://www.w3.org/2004/02/skos/core#changeNote": [ { "@id": "_:b71authoritiesnamesn81053687" }, { "@id": "_:b79authoritiesnamesn81053687" } ] } ]
+        "@value": "new" } ], "http://id.loc.gov/ontologies/RecordInfo#recordContentSource": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlc" } ], "http://id.loc.gov/ontologies/RecordInfo#languageOfCataloging": [ { "@id": "http://id.loc.gov/vocabulary/iso639-2/eng" } ] },  { "@id": "_:b22idlocgovauthoritiesnamesn81053687", "@type": [ "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.w3.org/2000/01/rdf-schema#label": [ { "@value": "(edtf) 2016-04-06" } ] },  { "@id": "_:b7idlocgovauthoritiesnamesn81053687", "http://www.w3.org/1999/02/22-rdf-syntax-ns#first": [ { "@id": "_:b8idlocgovauthoritiesnamesn81053687" } ], "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest": [ { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#nil" } ] },  { "@id": "http://id.loc.gov/authorities/subjects/sh85033472", "@type": [ "http://www.loc.gov/mads/rdf/v1#Occupation" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@value": "Country musicians" } ] },  { "@id": "_:b38idlocgovauthoritiesnamesn81053687", "@type": [ "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.w3.org/2000/01/rdf-schema#label": [ { "@value": "male" } ] },  { "@id": "_:b71idlocgovauthoritiesnamesn81053687", "@type": [ "http://www.loc.gov/mads/rdf/v1#Source" ], "http://www.loc.gov/mads/rdf/v1#citation-source": [ { "@value": "New York Times WWW site, viewed April 6, 2016" } ], "http://www.loc.gov/mads/rdf/v1#citation-note": [ { "@language": "en",
+        "@value": "(Merle Haggard; died Wednesday [April 6, 2016] on his 79th birthday; country music singer)" } ], "http://www.loc.gov/mads/rdf/v1#citation-status": [ { "@value": "found" } ] },  { "@id": "_:b49idlocgovauthoritiesnamesn81053687", "@type": [ "http://www.loc.gov/mads/rdf/v1#Source" ], "http://www.loc.gov/mads/rdf/v1#citation-source": [ { "@value": "The Best of Merle Haggard. [Phonodisc] 1968." } ], "http://www.loc.gov/mads/rdf/v1#citation-status": [ { "@value": "found" } ] },  { "@id": "http://id.loc.gov/authorities/subjects/sh85033470", "@type": [ "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@value": "Country music" } ] } ]
     http_version: 
-  recorded_at: Fri, 10 Apr 2015 15:31:44 GMT
-recorded_with: VCR 2.9.3
-
+  recorded_at: Tue, 16 Jan 2018 23:24:23 GMT
+recorded_with: VCR 4.0.0

@@ -8,14 +8,14 @@ http_interactions:
       string: ''
     headers:
       Accept:
-      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
-        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
-        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
-        application/rdf+xml, text/csv, text/tab-separated-values, application/trig,
-        application/x-trig, application/trix, text/turtle, text/rdf+turtle, application/turtle,
-        application/x-turtle, */*;q=0.1
+      - application/n-triples, text/plain;q=0.2, text/turtle, text/rdf+turtle, application/turtle;q=0.2,
+        application/x-turtle;q=0.2, application/ld+json, application/x-ld+json, application/n-quads,
+        text/x-nquads;q=0.2, application/rdf+json, text/html;q=0.5, application/xhtml+xml;q=0.7,
+        image/svg+xml;q=0.4, text/n3, text/rdf+n3;q=0.2, application/rdf+n3;q=0.2,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        application/trig, application/x-trig;q=0.2, application/trix
       Accept-Encoding:
-      - gzip, deflate
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       User-Agent:
       - Ruby
   response:
@@ -30,14 +30,14 @@ http_interactions:
       Content-Length:
       - '0'
       Date:
-      - Mon, 15 Jun 2015 17:43:20 GMT
+      - Tue, 16 Jan 2018 23:23:55 GMT
       Set-Cookie:
-      - BIGipServerForest=587573440.45165.0000; path=/
+      - BIGipServerForest=587573440.45165.0000; path=/; Httponly
     body:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Mon, 15 Jun 2015 17:43:20 GMT
+  recorded_at: Tue, 16 Jan 2018 23:23:55 GMT
 - request:
     method: get
     uri: http://vocab.getty.edu/download/nt?uri=http://vocab.getty.edu/aat/300128343
@@ -46,16 +46,14 @@ http_interactions:
       string: ''
     headers:
       Accept:
-      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
-        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
-        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
-        application/rdf+xml, text/csv, text/tab-separated-values, application/trig,
-        application/x-trig, application/trix, text/turtle, text/rdf+turtle, application/turtle,
-        application/x-turtle, */*;q=0.1
+      - application/n-triples, text/plain;q=0.2, text/turtle, text/rdf+turtle, application/turtle;q=0.2,
+        application/x-turtle;q=0.2, application/ld+json, application/x-ld+json, application/n-quads,
+        text/x-nquads;q=0.2, application/rdf+json, text/html;q=0.5, application/xhtml+xml;q=0.7,
+        image/svg+xml;q=0.4, text/n3, text/rdf+n3;q=0.2, application/rdf+n3;q=0.2,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        application/trig, application/x-trig;q=0.2, application/trix
       Accept-Encoding:
-      - gzip, deflate
-      Cookie:
-      - BIGipServerForest=587573440.45165.0000
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       User-Agent:
       - Ruby
   response:
@@ -70,9 +68,11 @@ http_interactions:
       Content-Type:
       - application/n-triples;charset=UTF-8
       Content-Length:
-      - '77065'
+      - '77681'
       Date:
-      - Mon, 15 Jun 2015 17:43:20 GMT
+      - Tue, 16 Jan 2018 23:23:55 GMT
+      Set-Cookie:
+      - BIGipServerForest=587573440.45165.0000; path=/; Httponly
     body:
       encoding: UTF-8
       string: |
@@ -165,7 +165,7 @@ http_interactions:
         <http://vocab.getty.edu/aat/300128343> <http://vocab.getty.edu/ontology#broaderPreferredExtended> <http://vocab.getty.edu/aat/300264092> .
         <http://vocab.getty.edu/aat/300128343> <http://vocab.getty.edu/ontology#broaderPreferredExtended> <http://vocab.getty.edu/aat/300264552> .
         <http://vocab.getty.edu/aat/300128343> <http://vocab.getty.edu/ontology#broaderPreferredExtended> <http://vocab.getty.edu/aat/300179869> .
-        <http://vocab.getty.edu/aat/300128343> <http://vocab.getty.edu/ontology#parentString> "<negatives by color>, negatives (photographic), <photographs by form>, photographs, <visual works by material or technique>, visual works (works), Visual Works (Hierarchy Name), Visual and Verbal Communication (Hierarchy Name), Objects Facet" .
+        <http://vocab.getty.edu/aat/300128343> <http://vocab.getty.edu/ontology#parentString> "<negatives by color>, negatives (photographs), <photographs by form>, photographs, <visual works by material or technique>, visual works (works), Visual Works (hierarchy name), Visual and Verbal Communication (hierarchy name), Objects Facet" .
         <http://vocab.getty.edu/aat/300128343> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/scopeNote/33666> .
         <http://vocab.getty.edu/aat/300128343> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/scopeNote/68748> .
         <http://vocab.getty.edu/aat/300128343> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/scopeNote/93092> .
@@ -198,7 +198,7 @@ http_interactions:
         <http://vocab.getty.edu/aat/300128343> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5002375961> .
         <http://vocab.getty.edu/aat/300128343> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5002803770> .
         <http://vocab.getty.edu/aat/300128343> <http://www.w3.org/2004/02/skos/core#note> <http://vocab.getty.edu/aat/rev/5003748261> .
-        <http://vocab.getty.edu/aat/300128343> <http://vocab.getty.edu/ontology#parentStringAbbrev> "<negatives by color>, negatives (photographic), ... Objects Facet" .
+        <http://vocab.getty.edu/aat/300128343> <http://vocab.getty.edu/ontology#parentStringAbbrev> "<negatives by color>, negatives (photographs), ... Objects Facet" .
         <http://vocab.getty.edu/aat/300128343> <http://vocab.getty.edu/ontology#displayOrder> "1"^^<http://www.w3.org/2001/XMLSchema#positiveInteger> .
         <http://vocab.getty.edu/aat/300128343> <http://www.w3.org/2008/05/skos-xl#prefLabel> <http://vocab.getty.edu/aat/term/1000128343-en> .
         <http://vocab.getty.edu/aat/300128343> <http://www.w3.org/2008/05/skos-xl#prefLabel> <http://vocab.getty.edu/aat/term/1000491750-nl> .
@@ -254,9 +254,9 @@ http_interactions:
         <http://vocab.getty.edu/aat/300128343> <http://www.w3.org/2004/02/skos/core#broaderTransitive> <http://vocab.getty.edu/aat/300191086> .
         <http://vocab.getty.edu/aat/300128343> <http://www.w3.org/2004/02/skos/core#broaderTransitive> <http://vocab.getty.edu/aat/300127173> .
         <http://vocab.getty.edu/aat/300128343> <http://www.w3.org/2004/02/skos/core#broaderTransitive> <http://vocab.getty.edu/aat/300046300> .
-        <http://vocab.getty.edu/aat/300128343> <http://creativecommons.org/ns#license> <http://opendatacommons.org/licenses/by/1.0/> .
-        <http://vocab.getty.edu/aat/300128343> <http://purl.org/dc/terms/license> <http://opendatacommons.org/licenses/by/1.0/> .
         <http://vocab.getty.edu/aat/300128343> <http://rdfs.org/ns/void#inDataset> <http://vocab.getty.edu/dataset/aat> .
+        <http://vocab.getty.edu/aat/300128343> <http://purl.org/dc/terms/license> <http://opendatacommons.org/licenses/by/1.0/> .
+        <http://vocab.getty.edu/aat/300128343> <http://creativecommons.org/ns#license> <http://opendatacommons.org/licenses/by/1.0/> .
         <http://vocab.getty.edu/aat/300128343> <http://www.w3.org/ns/prov#wasGeneratedBy> <http://vocab.getty.edu/aat/rev/5000061038> .
         <http://vocab.getty.edu/aat/rev/5000061038> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Activity> .
         <http://vocab.getty.edu/aat/rev/5000061038> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/prov#Create> .
@@ -407,7 +407,7 @@ http_interactions:
         <http://vocab.getty.edu/aat/scopeNote/33666> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://vocab.getty.edu/ontology#ScopeNote> .
         <http://vocab.getty.edu/aat/scopeNote/33666> <http://www.w3.org/1999/02/22-rdf-syntax-ns#value> "Refers to negatives whose images are composed of gray tones, black, and white or clear areas; may include one hue as a result of process, toning, or discoloration."@en .
         <http://vocab.getty.edu/aat/scopeNote/33666> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000000> .
-        <http://vocab.getty.edu/aat/scopeNote/33666> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000076211> .
+        <http://vocab.getty.edu/aat/scopeNote/33666> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000099620> .
         <http://vocab.getty.edu/aat/scopeNote/33666> <http://purl.org/dc/elements/1.1/identifier> "33666" .
         <http://vocab.getty.edu/aat/scopeNote/33666> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300388277> .
         <http://vocab.getty.edu/aat/scopeNote/33666> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/en> .
@@ -416,13 +416,14 @@ http_interactions:
         <http://vocab.getty.edu/aat/scopeNote/68748> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000131> .
         <http://vocab.getty.edu/aat/scopeNote/68748> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000051034> .
         <http://vocab.getty.edu/aat/scopeNote/68748> <http://purl.org/dc/elements/1.1/identifier> "68748" .
+        <http://vocab.getty.edu/aat/scopeNote/68748> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300388071> .
         <http://vocab.getty.edu/aat/scopeNote/68748> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300389311> .
         <http://vocab.getty.edu/aat/scopeNote/68748> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/es> .
         <http://vocab.getty.edu/aat/scopeNote/93092> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://vocab.getty.edu/ontology#ScopeNote> .
         <http://vocab.getty.edu/aat/scopeNote/93092> <http://www.w3.org/1999/02/22-rdf-syntax-ns#value> "Negatieven waarbij de afbeeldingen bestaan uit grijstinten, zwart en wit of open plekken; kunnen \u00E9\u00E9n kleurschakering bevatten als resultaat van ontwikkelen, toneren of verkleuren."@nl .
         <http://vocab.getty.edu/aat/scopeNote/93092> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000205> .
         <http://vocab.getty.edu/aat/scopeNote/93092> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000052374> .
-        <http://vocab.getty.edu/aat/scopeNote/93092> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000077523> .
+        <http://vocab.getty.edu/aat/scopeNote/93092> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000099619> .
         <http://vocab.getty.edu/aat/scopeNote/93092> <http://purl.org/dc/elements/1.1/identifier> "93092" .
         <http://vocab.getty.edu/aat/scopeNote/93092> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300388256> .
         <http://vocab.getty.edu/aat/scopeNote/93092> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/nl> .
@@ -459,8 +460,9 @@ http_interactions:
         <http://vocab.getty.edu/aat/term/1000491750-nl> <http://vocab.getty.edu/ontology#termType> <http://vocab.getty.edu/term/type/Descriptor> .
         <http://vocab.getty.edu/aat/term/1000491750-nl> <http://vocab.getty.edu/ontology#contributorPreferred> <http://vocab.getty.edu/aat/contrib/10000205> .
         <http://vocab.getty.edu/aat/term/1000491750-nl> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000205> .
-        <http://vocab.getty.edu/aat/term/1000491750-nl> <http://vocab.getty.edu/ontology#sourcePreferred> <http://vocab.getty.edu/aat/source/2000077523> .
-        <http://vocab.getty.edu/aat/term/1000491750-nl> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000077523> .
+        <http://vocab.getty.edu/aat/term/1000491750-nl> <http://vocab.getty.edu/ontology#sourcePreferred> <http://vocab.getty.edu/aat/source/2000099619> .
+        <http://vocab.getty.edu/aat/term/1000491750-nl> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000052374> .
+        <http://vocab.getty.edu/aat/term/1000491750-nl> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000099619> .
         <http://vocab.getty.edu/aat/term/1000491750-nl> <http://purl.org/dc/elements/1.1/identifier> "1000491750" .
         <http://vocab.getty.edu/aat/term/1000491750-nl> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300388256> .
         <http://vocab.getty.edu/aat/term/1000491750-nl> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/nl> .
@@ -504,6 +506,7 @@ http_interactions:
         <http://vocab.getty.edu/aat/term/1000438462-es> <http://vocab.getty.edu/ontology#sourcePreferred> <http://vocab.getty.edu/aat/source/2000051214> .
         <http://vocab.getty.edu/aat/term/1000438462-es> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000051214> .
         <http://vocab.getty.edu/aat/term/1000438462-es> <http://purl.org/dc/elements/1.1/identifier> "1000438462" .
+        <http://vocab.getty.edu/aat/term/1000438462-es> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300388071> .
         <http://vocab.getty.edu/aat/term/1000438462-es> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300389311> .
         <http://vocab.getty.edu/aat/term/1000438462-es> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/es> .
         <http://vocab.getty.edu/aat/source/2000010021-term-1000128343> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/Document> .
@@ -535,8 +538,8 @@ http_interactions:
         <http://vocab.getty.edu/aat/term/1000299292-en> <http://vocab.getty.edu/ontology#termPOS> <http://vocab.getty.edu/term/POS/SingularNoun> .
         <http://vocab.getty.edu/aat/term/1000299292-en> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000000> .
         <http://vocab.getty.edu/aat/term/1000299292-en> <http://vocab.getty.edu/ontology#contributorNonPreferred> <http://vocab.getty.edu/aat/contrib/10000000> .
-        <http://vocab.getty.edu/aat/term/1000299292-en> <http://vocab.getty.edu/ontology#sourcePreferred> <http://vocab.getty.edu/aat/source/2000093602> .
-        <http://vocab.getty.edu/aat/term/1000299292-en> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000093602> .
+        <http://vocab.getty.edu/aat/term/1000299292-en> <http://vocab.getty.edu/ontology#sourcePreferred> <http://vocab.getty.edu/aat/source/2000094828> .
+        <http://vocab.getty.edu/aat/term/1000299292-en> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000094828> .
         <http://vocab.getty.edu/aat/term/1000299292-en> <http://purl.org/dc/elements/1.1/identifier> "1000299292" .
         <http://vocab.getty.edu/aat/term/1000299292-en> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300388277> .
         <http://vocab.getty.edu/aat/term/1000299292-en> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/en> .
@@ -548,8 +551,8 @@ http_interactions:
         <http://vocab.getty.edu/aat/term/1000134476-en> <http://vocab.getty.edu/ontology#termPOS> <http://vocab.getty.edu/term/POS/Noun> .
         <http://vocab.getty.edu/aat/term/1000134476-en> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000000> .
         <http://vocab.getty.edu/aat/term/1000134476-en> <http://vocab.getty.edu/ontology#contributorNonPreferred> <http://vocab.getty.edu/aat/contrib/10000000> .
-        <http://vocab.getty.edu/aat/term/1000134476-en> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000093602> .
-        <http://vocab.getty.edu/aat/term/1000134476-en> <http://vocab.getty.edu/ontology#sourceNonPreferred> <http://vocab.getty.edu/aat/source/2000093602> .
+        <http://vocab.getty.edu/aat/term/1000134476-en> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000094828> .
+        <http://vocab.getty.edu/aat/term/1000134476-en> <http://vocab.getty.edu/ontology#sourceNonPreferred> <http://vocab.getty.edu/aat/source/2000094828> .
         <http://vocab.getty.edu/aat/term/1000134476-en> <http://purl.org/dc/elements/1.1/identifier> "1000134476" .
         <http://vocab.getty.edu/aat/term/1000134476-en> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300388277> .
         <http://vocab.getty.edu/aat/term/1000134476-en> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/en> .
@@ -561,8 +564,8 @@ http_interactions:
         <http://vocab.getty.edu/aat/term/1000152879-en> <http://vocab.getty.edu/ontology#termPOS> <http://vocab.getty.edu/term/POS/Noun> .
         <http://vocab.getty.edu/aat/term/1000152879-en> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000000> .
         <http://vocab.getty.edu/aat/term/1000152879-en> <http://vocab.getty.edu/ontology#contributorNonPreferred> <http://vocab.getty.edu/aat/contrib/10000000> .
-        <http://vocab.getty.edu/aat/term/1000152879-en> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000093602> .
-        <http://vocab.getty.edu/aat/term/1000152879-en> <http://vocab.getty.edu/ontology#sourceNonPreferred> <http://vocab.getty.edu/aat/source/2000093602> .
+        <http://vocab.getty.edu/aat/term/1000152879-en> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000094828> .
+        <http://vocab.getty.edu/aat/term/1000152879-en> <http://vocab.getty.edu/ontology#sourceNonPreferred> <http://vocab.getty.edu/aat/source/2000094828> .
         <http://vocab.getty.edu/aat/term/1000152879-en> <http://purl.org/dc/elements/1.1/identifier> "1000152879" .
         <http://vocab.getty.edu/aat/term/1000152879-en> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300388277> .
         <http://vocab.getty.edu/aat/term/1000152879-en> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/en> .
@@ -573,7 +576,8 @@ http_interactions:
         <http://vocab.getty.edu/aat/term/1000491751-nl> <http://vocab.getty.edu/ontology#termType> <http://vocab.getty.edu/term/type/AlternateDescriptor> .
         <http://vocab.getty.edu/aat/term/1000491751-nl> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000205> .
         <http://vocab.getty.edu/aat/term/1000491751-nl> <http://vocab.getty.edu/ontology#contributorNonPreferred> <http://vocab.getty.edu/aat/contrib/10000205> .
-        <http://vocab.getty.edu/aat/term/1000491751-nl> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000077523> .
+        <http://vocab.getty.edu/aat/term/1000491751-nl> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000052374> .
+        <http://vocab.getty.edu/aat/term/1000491751-nl> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000099619> .
         <http://vocab.getty.edu/aat/term/1000491751-nl> <http://purl.org/dc/elements/1.1/identifier> "1000491751" .
         <http://vocab.getty.edu/aat/term/1000491751-nl> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300388256> .
         <http://vocab.getty.edu/aat/term/1000491751-nl> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/nl> .
@@ -600,8 +604,8 @@ http_interactions:
         <http://vocab.getty.edu/aat/term/1000606140-de> <http://vocab.getty.edu/ontology#termPOS> <http://vocab.getty.edu/term/POS/PluralNoun> .
         <http://vocab.getty.edu/aat/term/1000606140-de> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000232> .
         <http://vocab.getty.edu/aat/term/1000606140-de> <http://vocab.getty.edu/ontology#contributorNonPreferred> <http://vocab.getty.edu/aat/contrib/10000232> .
-        <http://vocab.getty.edu/aat/term/1000606140-de> <http://vocab.getty.edu/ontology#sourcePreferred> <http://vocab.getty.edu/aat/source/2000083682> .
-        <http://vocab.getty.edu/aat/term/1000606140-de> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000083682> .
+        <http://vocab.getty.edu/aat/term/1000606140-de> <http://vocab.getty.edu/ontology#sourcePreferred> <http://vocab.getty.edu/aat/source/2000099618> .
+        <http://vocab.getty.edu/aat/term/1000606140-de> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000099618> .
         <http://vocab.getty.edu/aat/term/1000606140-de> <http://purl.org/dc/elements/1.1/identifier> "1000606140" .
         <http://vocab.getty.edu/aat/term/1000606140-de> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300388344> .
         <http://vocab.getty.edu/aat/term/1000606140-de> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/de> .
@@ -609,7 +613,7 @@ http_interactions:
         <http://vocab.getty.edu/aat/term/1000606142-de> <http://vocab.getty.edu/ontology#term> "Schwarzwei\u00DFnegativ"@de .
         <http://vocab.getty.edu/aat/term/1000606142-de> <http://vocab.getty.edu/ontology#displayOrder> "11"^^<http://www.w3.org/2001/XMLSchema#positiveInteger> .
         <http://vocab.getty.edu/aat/term/1000606142-de> <http://www.w3.org/2008/05/skos-xl#literalForm> "Schwarzwei\u00DFnegativ"@de .
-        <http://vocab.getty.edu/aat/term/1000606142-de> <http://vocab.getty.edu/ontology#termType> <http://vocab.getty.edu/term/type/AlternateDescriptor> .
+        <http://vocab.getty.edu/aat/term/1000606142-de> <http://vocab.getty.edu/ontology#termType> <http://vocab.getty.edu/term/type/UsedForTerm> .
         <http://vocab.getty.edu/aat/term/1000606142-de> <http://vocab.getty.edu/ontology#termPOS> <http://vocab.getty.edu/term/POS/SingularNoun> .
         <http://vocab.getty.edu/aat/term/1000606142-de> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000232> .
         <http://vocab.getty.edu/aat/term/1000606142-de> <http://vocab.getty.edu/ontology#contributorNonPreferred> <http://vocab.getty.edu/aat/contrib/10000232> .
@@ -621,11 +625,11 @@ http_interactions:
         <http://vocab.getty.edu/aat/term/1000606141-de> <http://vocab.getty.edu/ontology#term> "Schwarzwei\u00DFnegative"@de .
         <http://vocab.getty.edu/aat/term/1000606141-de> <http://vocab.getty.edu/ontology#displayOrder> "12"^^<http://www.w3.org/2001/XMLSchema#positiveInteger> .
         <http://vocab.getty.edu/aat/term/1000606141-de> <http://www.w3.org/2008/05/skos-xl#literalForm> "Schwarzwei\u00DFnegative"@de .
-        <http://vocab.getty.edu/aat/term/1000606141-de> <http://vocab.getty.edu/ontology#termType> <http://vocab.getty.edu/term/type/AlternateDescriptor> .
+        <http://vocab.getty.edu/aat/term/1000606141-de> <http://vocab.getty.edu/ontology#termType> <http://vocab.getty.edu/term/type/UsedForTerm> .
         <http://vocab.getty.edu/aat/term/1000606141-de> <http://vocab.getty.edu/ontology#termPOS> <http://vocab.getty.edu/term/POS/PluralNoun> .
         <http://vocab.getty.edu/aat/term/1000606141-de> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000232> .
         <http://vocab.getty.edu/aat/term/1000606141-de> <http://vocab.getty.edu/ontology#contributorNonPreferred> <http://vocab.getty.edu/aat/contrib/10000232> .
-        <http://vocab.getty.edu/aat/term/1000606141-de> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000083682> .
+        <http://vocab.getty.edu/aat/term/1000606141-de> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000099618> .
         <http://vocab.getty.edu/aat/term/1000606141-de> <http://purl.org/dc/elements/1.1/identifier> "1000606141" .
         <http://vocab.getty.edu/aat/term/1000606141-de> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300388344> .
         <http://vocab.getty.edu/aat/term/1000606141-de> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/de> .
@@ -639,6 +643,7 @@ http_interactions:
         <http://vocab.getty.edu/aat/term/1000438463-es> <http://purl.org/dc/terms/contributor> <http://vocab.getty.edu/aat/contrib/10000131> .
         <http://vocab.getty.edu/aat/term/1000438463-es> <http://purl.org/dc/terms/source> <http://vocab.getty.edu/aat/source/2000048810-term-1000438463> .
         <http://vocab.getty.edu/aat/term/1000438463-es> <http://purl.org/dc/elements/1.1/identifier> "1000438463" .
+        <http://vocab.getty.edu/aat/term/1000438463-es> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300388071> .
         <http://vocab.getty.edu/aat/term/1000438463-es> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/aat/300389311> .
         <http://vocab.getty.edu/aat/term/1000438463-es> <http://purl.org/dc/terms/language> <http://vocab.getty.edu/language/es> .
         <http://vocab.getty.edu/aat/source/2000084300-term-1000606142> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/DocumentPart> .
@@ -652,6 +657,5 @@ http_interactions:
         <http://vocab.getty.edu/aat/rel/300128343-aat2815_composed_of-300127344> <http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate> <http://vocab.getty.edu/ontology#aat2815_composed_of> .
         <http://vocab.getty.edu/aat/rel/300128343-aat2815_composed_of-300127344> <http://www.w3.org/1999/02/22-rdf-syntax-ns#object> <http://vocab.getty.edu/aat/300127344> .
     http_version: 
-  recorded_at: Mon, 15 Jun 2015 17:43:21 GMT
-recorded_with: VCR 2.9.3
-
+  recorded_at: Tue, 16 Jan 2018 23:23:55 GMT
+recorded_with: VCR 4.0.0

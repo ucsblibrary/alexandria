@@ -8,14 +8,14 @@ http_interactions:
       string: ''
     headers:
       Accept:
-      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
-        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
-        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
+      - application/n-triples, text/plain;q=0.2, text/turtle, text/rdf+turtle, application/turtle;q=0.2,
+        application/x-turtle;q=0.2, application/ld+json, application/x-ld+json, application/n-quads,
+        text/x-nquads;q=0.2, application/rdf+json, text/html;q=0.5, application/xhtml+xml;q=0.7,
+        image/svg+xml;q=0.4, text/n3, text/rdf+n3;q=0.2, application/rdf+n3;q=0.2,
         application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
-        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, application/trig,
-        application/x-trig, application/trix
+        application/trig, application/x-trig;q=0.2, application/trix
       Accept-Encoding:
-      - gzip, deflate
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       User-Agent:
       - Ruby
   response:
@@ -31,31 +31,29 @@ http_interactions:
       - http://id.loc.gov/authorities/names/n85088322
       X-Preflabel:
       - University of California (System). Regents
-      Server:
-      - Apache
       Content-Length:
       - '0'
-      Accept-Ranges:
-      - bytes
       Date:
-      - Thu, 02 Mar 2017 22:44:52 GMT
+      - Tue, 16 Jan 2018 21:31:06 GMT
+      Server:
+      - Apache
       X-Varnish:
-      - 1728002145 1727931023
+      - 44257129 44057379
       Age:
-      - '5490'
+      - '6770'
       Via:
-      - 1.1 varnish
-      Connection:
-      - keep-alive
+      - 1.1 varnish-v4
       X-Cache:
       - HIT
       X-Cache-Hits:
-      - '3'
+      - '1'
+      Connection:
+      - keep-alive
     body:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Thu, 02 Mar 2017 22:44:52 GMT
+  recorded_at: Tue, 16 Jan 2018 23:23:57 GMT
 - request:
     method: get
     uri: http://id.loc.gov/authorities/names/n85088322.jsonld
@@ -64,16 +62,14 @@ http_interactions:
       string: ''
     headers:
       Accept:
-      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
-        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
-        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
+      - application/n-triples, text/plain;q=0.2, text/turtle, text/rdf+turtle, application/turtle;q=0.2,
+        application/x-turtle;q=0.2, application/ld+json, application/x-ld+json, application/n-quads,
+        text/x-nquads;q=0.2, application/rdf+json, text/html;q=0.5, application/xhtml+xml;q=0.7,
+        image/svg+xml;q=0.4, text/n3, text/rdf+n3;q=0.2, application/rdf+n3;q=0.2,
         application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
-        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, application/trig,
-        application/x-trig, application/trix
+        application/trig, application/x-trig;q=0.2, application/trix
       Accept-Encoding:
-      - gzip, deflate
-      Cookie:
-      - ''
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       User-Agent:
       - Ruby
   response:
@@ -86,57 +82,57 @@ http_interactions:
       Cache-Control:
       - public, max-age=1209600
       Etag:
-      - 2e11858f0854bfef82a85bcd7f646dfb
+      - b97d86fda1b507eef3de576c243205d5
       X-Uri:
       - http://id.loc.gov/authorities/names/n85088322
+      Content-Length:
+      - '10890'
+      Date:
+      - Tue, 16 Jan 2018 21:31:07 GMT
       Server:
       - Apache
-      Content-Length:
-      - '10590'
+      X-Varnish:
+      - 57007534 57089581
+      Age:
+      - '6770'
+      Via:
+      - 1.1 varnish-v4
+      X-Cache:
+      - HIT
+      X-Cache-Hits:
+      - '2'
       Accept-Ranges:
       - bytes
-      Date:
-      - Thu, 02 Mar 2017 22:44:52 GMT
-      X-Varnish:
-      - '1728002147'
-      Age:
-      - '0'
-      Via:
-      - 1.1 varnish
       Connection:
       - keep-alive
-      X-Cache:
-      - MISS
-      X-Cache-Hits:
-      - '0'
     body:
       encoding: UTF-8
       string: |-
-        [  { "@id": "_:b95authoritiesnamesn85088322", "@type": [ "http://www.w3.org/2008/05/skos-xl#Label" ], "http://www.w3.org/2008/05/skos-xl#literalForm": [ { "@language": "en",
-        "@value": "Regents of the University of California" } ] },  { "@id": "_:b60authoritiesnamesn85088322", "@type": [ "http://www.loc.gov/mads/rdf/v1#Source" ], "http://www.loc.gov/mads/rdf/v1#citation-source": [ { "@value": "Phone call to University of California, Santa Barbara, 7/25/85" } ], "http://www.loc.gov/mads/rdf/v1#citation-note": [ { "@language": "en",
-        "@value": "(Regents of the University of California is the governing body of the University of California statewide system; \"Regents of the University of California\" appears on publications of the campuses of the system, when a contract or grant is involved, since every grant or contract is made in the name of the regents)" } ], "http://www.loc.gov/mads/rdf/v1#citation-status": [ { "@value": "found" } ] },  { "@id": "_:b40authoritiesnamesn85088322", "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest": [ { "@id": "_:b042" } ], "@type": [ "http://www.loc.gov/mads/rdf/v1#NameElement" ], "http://www.loc.gov/mads/rdf/v1#elementValue": [ { "@language": "en",
-        "@value": "University of California (System)." } ] },  { "@id": "_:b8authoritiesnamesn85088322", "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest": [ { "@id": "_:b010" } ], "@type": [ "http://www.loc.gov/mads/rdf/v1#NameElement" ], "http://www.loc.gov/mads/rdf/v1#elementValue": [ { "@language": "en",
-        "@value": "University of California (System)." } ] },  { "@id": "_:b11authoritiesnamesn85088322", "@type": [ "http://www.loc.gov/mads/rdf/v1#NameElement" ], "http://www.loc.gov/mads/rdf/v1#elementValue": [ { "@language": "en",
-        "@value": "Regents" } ] },  { "@id": "http://id.loc.gov/rwo/agents/n85088322", "@type": [ "http://www.loc.gov/mads/rdf/v1#RWO", "http://id.loc.gov/ontologies/bibframe/Organization", "http://xmlns.com/foaf/0.1/Organization" ], "http://www.w3.org/2000/01/rdf-schema#label": [ { "@value": "University of California (System). Regents" }, { "@value": "" } ] },  { "@id": "_:b39authoritiesnamesn85088322", "http://www.w3.org/1999/02/22-rdf-syntax-ns#first": [ { "@id": "_:b40authoritiesnamesn85088322" } ] },  { "@id": "_:b34authoritiesnamesn85088322", "@type": [ "http://www.loc.gov/mads/rdf/v1#CorporateName", "http://www.loc.gov/mads/rdf/v1#Variant" ], "http://www.loc.gov/mads/rdf/v1#variantLabel": [ { "@language": "en",
-        "@value": "University of California (System). Board of Regents" } ], "http://www.loc.gov/mads/rdf/v1#elementList": [ { "@id": "_:b39authoritiesnamesn85088322" } ] },  { "@id": "_:b30authoritiesnamesn85088322", "http://www.w3.org/1999/02/22-rdf-syntax-ns#first": [ { "@id": "_:b31authoritiesnamesn85088322" } ], "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest": [ { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#nil" } ] },  { "@id": "_:b25authoritiesnamesn85088322", "@type": [ "http://www.loc.gov/mads/rdf/v1#CorporateName", "http://www.loc.gov/mads/rdf/v1#Variant" ], "http://www.loc.gov/mads/rdf/v1#variantLabel": [ { "@language": "en",
-        "@value": "Regents of the University of California" } ], "http://www.loc.gov/mads/rdf/v1#elementList": [ { "@id": "_:b30authoritiesnamesn85088322" } ] },  { "@id": "_:b042", "http://www.w3.org/1999/02/22-rdf-syntax-ns#first": [ { "@id": "_:b43authoritiesnamesn85088322" } ], "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest": [ { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#nil" } ] },  { "@id": "_:b43authoritiesnamesn85088322", "@type": [ "http://www.loc.gov/mads/rdf/v1#NameElement" ], "http://www.loc.gov/mads/rdf/v1#elementValue": [ { "@language": "en",
-        "@value": "Board of Regents" } ] },  { "@id": "_:b68authoritiesnamesn85088322", "@type": [ "http://www.loc.gov/mads/rdf/v1#Source" ], "http://www.loc.gov/mads/rdf/v1#citation-source": [ { "@value": "University of California home page, at profile of the University, 12/17/97:" } ], "http://www.loc.gov/mads/rdf/v1#citation-note": [ { "@language": "en",
-        "@value": "at governance (governance of the University is entrusted to the Board of Regents)" } ], "http://www.loc.gov/mads/rdf/v1#citation-status": [ { "@value": "found" } ] },  { "@id": "_:b7authoritiesnamesn85088322", "http://www.w3.org/1999/02/22-rdf-syntax-ns#first": [ { "@id": "_:b8authoritiesnamesn85088322" } ] },  { "@id": "_:b31authoritiesnamesn85088322", "@type": [ "http://www.loc.gov/mads/rdf/v1#NameElement" ], "http://www.loc.gov/mads/rdf/v1#elementValue": [ { "@language": "en",
-        "@value": "Regents of the University of California" } ] },  { "@id": "_:b010", "http://www.w3.org/1999/02/22-rdf-syntax-ns#first": [ { "@id": "_:b11authoritiesnamesn85088322" } ], "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest": [ { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#nil" } ] },  { "@id": "_:b76authoritiesnamesn85088322", "@type": [ "http://id.loc.gov/ontologies/RecordInfo#RecordInfo" ], "http://id.loc.gov/ontologies/RecordInfo#recordChangeDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-        "@value": "1985-08-05T00:00:00" } ], "http://id.loc.gov/ontologies/RecordInfo#recordStatus": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
-        "@value": "new" } ], "http://id.loc.gov/ontologies/RecordInfo#recordContentSource": [ { "@id": "http://id.loc.gov/vocabulary/organizations/di" } ], "http://id.loc.gov/ontologies/RecordInfo#languageOfCataloging": [ { "@id": "http://id.loc.gov/vocabulary/iso639-2/eng" } ] },  { "@id": "_:b84authoritiesnamesn85088322", "@type": [ "http://id.loc.gov/ontologies/RecordInfo#RecordInfo" ], "http://id.loc.gov/ontologies/RecordInfo#recordChangeDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-        "@value": "2006-08-03T05:19:27" } ], "http://id.loc.gov/ontologies/RecordInfo#recordStatus": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
-        "@value": "revised" } ], "http://id.loc.gov/ontologies/RecordInfo#recordContentSource": [ { "@id": "http://id.loc.gov/vocabulary/organizations/di" } ], "http://id.loc.gov/ontologies/RecordInfo#languageOfCataloging": [ { "@id": "http://id.loc.gov/vocabulary/iso639-2/eng" } ] },  { "@id": "_:b100authoritiesnamesn85088322", "@type": [ "http://www.w3.org/2008/05/skos-xl#Label" ], "http://www.w3.org/2008/05/skos-xl#literalForm": [ { "@language": "en",
-        "@value": "University of California (System). Board of Regents" } ] },  { "@id": "_:b111authoritiesnamesn85088322", "@type": [ "http://purl.org/vocab/changeset/schema#ChangeSet" ], "http://purl.org/vocab/changeset/schema#subjectOfChange": [ { "@id": "http://id.loc.gov/authorities/names/n85088322" } ], "http://purl.org/vocab/changeset/schema#creatorName": [ { "@id": "http://id.loc.gov/vocabulary/organizations/di" } ], "http://purl.org/vocab/changeset/schema#createdDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-        "@value": "1985-08-05T00:00:00" } ], "http://purl.org/vocab/changeset/schema#changeReason": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
-        "@value": "new" } ] },  { "@id": "_:b119authoritiesnamesn85088322", "@type": [ "http://purl.org/vocab/changeset/schema#ChangeSet" ], "http://purl.org/vocab/changeset/schema#subjectOfChange": [ { "@id": "http://id.loc.gov/authorities/names/n85088322" } ], "http://purl.org/vocab/changeset/schema#creatorName": [ { "@id": "http://id.loc.gov/vocabulary/organizations/di" } ], "http://purl.org/vocab/changeset/schema#createdDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        [  { "@id": "_:b120idlocgovauthoritiesnamesn85088322", "@type": [ "http://purl.org/vocab/changeset/schema#ChangeSet" ], "http://purl.org/vocab/changeset/schema#subjectOfChange": [ { "@id": "http://id.loc.gov/authorities/names/n85088322" } ], "http://purl.org/vocab/changeset/schema#creatorName": [ { "@id": "http://id.loc.gov/vocabulary/organizations/di" } ], "http://purl.org/vocab/changeset/schema#createdDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
         "@value": "2006-08-03T05:19:27" } ], "http://purl.org/vocab/changeset/schema#changeReason": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
-        "@value": "revised" } ] },  { "@id": "http://id.loc.gov/authorities/names/n85088322", "@type": [ "http://www.loc.gov/mads/rdf/v1#CorporateName", "http://www.loc.gov/mads/rdf/v1#Authority", "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@language": "en",
-        "@value": "University of California (System). Regents" } ], "http://www.loc.gov/mads/rdf/v1#elementList": [ { "@id": "_:b7authoritiesnamesn85088322" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSCollection": [ { "@id": "http://id.loc.gov/authorities/names/collection_NamesAuthorizedHeadings" }, { "@id": "http://id.loc.gov/authorities/names/collection_LCNAF" } ], "http://www.loc.gov/mads/rdf/v1#hasExactExternalAuthority": [ { "@id": "http://viaf.org/viaf/sourceID/LC%7Cn+85088322#skos:Concept" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSScheme": [ { "@id": "http://id.loc.gov/authorities/names" } ], "http://www.loc.gov/mads/rdf/v1#identifiesRWO": [ { "@id": "http://id.loc.gov/rwo/agents/n85088322" } ], "http://www.loc.gov/mads/rdf/v1#hasVariant": [ { "@id": "_:b25authoritiesnamesn85088322" }, { "@id": "_:b34authoritiesnamesn85088322" } ], "http://id.loc.gov/vocabulary/identifiers/lccn": [ { "@value": "n 85088322" } ], "http://id.loc.gov/vocabulary/identifiers/local": [ { "@value": "(OCoLC)oca01393152" }, { "@value": "(Uk)001445229" } ], "http://www.loc.gov/mads/rdf/v1#hasSource": [ { "@id": "_:b52authoritiesnamesn85088322" }, { "@id": "_:b60authoritiesnamesn85088322" }, { "@id": "_:b68authoritiesnamesn85088322" } ], "http://www.loc.gov/mads/rdf/v1#adminMetadata": [ { "@id": "_:b76authoritiesnamesn85088322" }, { "@id": "_:b84authoritiesnamesn85088322" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "en",
-        "@value": "University of California (System). Regents" } ], "http://www.w3.org/2008/05/skos-xl#altLabel": [ { "@id": "_:b95authoritiesnamesn85088322" }, { "@id": "_:b100authoritiesnamesn85088322" } ], "http://www.w3.org/2004/02/skos/core#exactMatch": [ { "@id": "http://viaf.org/viaf/sourceID/LC%7Cn+85088322#skos:Concept" } ], "http://www.w3.org/2004/02/skos/core#inScheme": [ { "@id": "http://id.loc.gov/authorities/names" } ], "http://www.w3.org/2004/02/skos/core#altLabel": [ { "@language": "en",
+        "@value": "revised" } ] },  { "@id": "_:b92idlocgovauthoritiesnamesn85088322", "@type": [ "http://www.w3.org/2008/05/skos-xl#Label" ], "http://www.w3.org/2008/05/skos-xl#literalForm": [ { "@language": "en",
+        "@value": "Regents of the University of California" } ] },  { "@id": "_:b73idlocgovauthoritiesnamesn85088322", "@type": [ "http://id.loc.gov/ontologies/RecordInfo#RecordInfo" ], "http://id.loc.gov/ontologies/RecordInfo#recordChangeDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "1985-08-05T00:00:00" } ], "http://id.loc.gov/ontologies/RecordInfo#recordStatus": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "new" } ], "http://id.loc.gov/ontologies/RecordInfo#recordContentSource": [ { "@id": "http://id.loc.gov/vocabulary/organizations/di" } ], "http://id.loc.gov/ontologies/RecordInfo#languageOfCataloging": [ { "@id": "http://id.loc.gov/vocabulary/iso639-2/eng" } ] },  { "@id": "_:b32idlocgovauthoritiesnamesn85088322", "@type": [ "http://www.loc.gov/mads/rdf/v1#NameElement" ], "http://www.loc.gov/mads/rdf/v1#elementValue": [ { "@language": "en",
+        "@value": "Board of Regents" } ] },  { "@id": "_:b81idlocgovauthoritiesnamesn85088322", "@type": [ "http://id.loc.gov/ontologies/RecordInfo#RecordInfo" ], "http://id.loc.gov/ontologies/RecordInfo#recordChangeDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2006-08-03T05:19:27" } ], "http://id.loc.gov/ontologies/RecordInfo#recordStatus": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "revised" } ], "http://id.loc.gov/ontologies/RecordInfo#recordContentSource": [ { "@id": "http://id.loc.gov/vocabulary/organizations/di" } ], "http://id.loc.gov/ontologies/RecordInfo#languageOfCataloging": [ { "@id": "http://id.loc.gov/vocabulary/iso639-2/eng" } ] },  { "@id": "_:b031", "http://www.w3.org/1999/02/22-rdf-syntax-ns#first": [ { "@id": "_:b32idlocgovauthoritiesnamesn85088322" } ], "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest": [ { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#nil" } ] },  { "@id": "http://id.loc.gov/rwo/agents/n85088322", "@type": [ "http://www.loc.gov/mads/rdf/v1#RWO", "http://id.loc.gov/ontologies/bibframe/Organization", "http://xmlns.com/foaf/0.1/Organization" ] },  { "@id": "_:b49idlocgovauthoritiesnamesn85088322", "@type": [ "http://www.loc.gov/mads/rdf/v1#Source" ], "http://www.loc.gov/mads/rdf/v1#citation-source": [ { "@value": "Malin, P.E. Borehole geophone data, 1984:" } ], "http://www.loc.gov/mads/rdf/v1#citation-note": [ { "@language": "en",
+        "@value": "t.p. (Regents of the University of California)" } ], "http://www.loc.gov/mads/rdf/v1#citation-status": [ { "@value": "found" } ] },  { "@id": "_:b65idlocgovauthoritiesnamesn85088322", "@type": [ "http://www.loc.gov/mads/rdf/v1#Source" ], "http://www.loc.gov/mads/rdf/v1#citation-source": [ { "@value": "University of California home page, at profile of the University, 12/17/97:" } ], "http://www.loc.gov/mads/rdf/v1#citation-note": [ { "@language": "en",
+        "@value": "at governance (governance of the University is entrusted to the Board of Regents)" } ], "http://www.loc.gov/mads/rdf/v1#citation-status": [ { "@value": "found" } ] },  { "@id": "_:b11idlocgovauthoritiesnamesn85088322", "@type": [ "http://www.loc.gov/mads/rdf/v1#NameElement" ], "http://www.loc.gov/mads/rdf/v1#elementValue": [ { "@language": "en",
+        "@value": "Regents" } ] },  { "@id": "_:b7idlocgovauthoritiesnamesn85088322", "http://www.w3.org/1999/02/22-rdf-syntax-ns#first": [ { "@id": "_:b8idlocgovauthoritiesnamesn85088322" } ] },  { "@id": "_:b14idlocgovauthoritiesnamesn85088322", "@type": [ "http://www.loc.gov/mads/rdf/v1#CorporateName", "http://www.loc.gov/mads/rdf/v1#Variant" ], "http://www.loc.gov/mads/rdf/v1#variantLabel": [ { "@language": "en",
+        "@value": "Regents of the University of California" } ], "http://www.loc.gov/mads/rdf/v1#elementList": [ { "@id": "_:b19idlocgovauthoritiesnamesn85088322" } ] },  { "@id": "_:b19idlocgovauthoritiesnamesn85088322", "http://www.w3.org/1999/02/22-rdf-syntax-ns#first": [ { "@id": "_:b20idlocgovauthoritiesnamesn85088322" } ], "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest": [ { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#nil" } ] },  { "@id": "_:b23idlocgovauthoritiesnamesn85088322", "@type": [ "http://www.loc.gov/mads/rdf/v1#CorporateName", "http://www.loc.gov/mads/rdf/v1#Variant" ], "http://www.loc.gov/mads/rdf/v1#variantLabel": [ { "@language": "en",
+        "@value": "University of California (System). Board of Regents" } ], "http://www.loc.gov/mads/rdf/v1#elementList": [ { "@id": "_:b28idlocgovauthoritiesnamesn85088322" } ] },  { "@id": "_:b8idlocgovauthoritiesnamesn85088322", "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest": [ { "@id": "_:b010" } ], "@type": [ "http://www.loc.gov/mads/rdf/v1#NameElement" ], "http://www.loc.gov/mads/rdf/v1#elementValue": [ { "@language": "en",
+        "@value": "University of California (System)." } ] },  { "@id": "_:b57idlocgovauthoritiesnamesn85088322", "@type": [ "http://www.loc.gov/mads/rdf/v1#Source" ], "http://www.loc.gov/mads/rdf/v1#citation-source": [ { "@value": "Phone call to University of California, Santa Barbara, 7/25/85" } ], "http://www.loc.gov/mads/rdf/v1#citation-note": [ { "@language": "en",
+        "@value": "(Regents of the University of California is the governing body of the University of California statewide system; \"Regents of the University of California\" appears on publications of the campuses of the system, when a contract or grant is involved, since every grant or contract is made in the name of the regents)" } ], "http://www.loc.gov/mads/rdf/v1#citation-status": [ { "@value": "found" } ] },  { "@id": "_:b010", "http://www.w3.org/1999/02/22-rdf-syntax-ns#first": [ { "@id": "_:b11idlocgovauthoritiesnamesn85088322" } ], "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest": [ { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#nil" } ] },  { "@id": "_:b112idlocgovauthoritiesnamesn85088322", "@type": [ "http://purl.org/vocab/changeset/schema#ChangeSet" ], "http://purl.org/vocab/changeset/schema#subjectOfChange": [ { "@id": "http://id.loc.gov/authorities/names/n85088322" } ], "http://purl.org/vocab/changeset/schema#creatorName": [ { "@id": "http://id.loc.gov/vocabulary/organizations/di" } ], "http://purl.org/vocab/changeset/schema#createdDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "1985-08-05T00:00:00" } ], "http://purl.org/vocab/changeset/schema#changeReason": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "new" } ] },  { "@id": "_:b20idlocgovauthoritiesnamesn85088322", "@type": [ "http://www.loc.gov/mads/rdf/v1#NameElement" ], "http://www.loc.gov/mads/rdf/v1#elementValue": [ { "@language": "en",
+        "@value": "Regents of the University of California" } ] },  { "@id": "_:b29idlocgovauthoritiesnamesn85088322", "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest": [ { "@id": "_:b031" } ], "@type": [ "http://www.loc.gov/mads/rdf/v1#NameElement" ], "http://www.loc.gov/mads/rdf/v1#elementValue": [ { "@language": "en",
+        "@value": "University of California (System)." } ] },  { "@id": "http://id.loc.gov/authorities/names/n85088322", "@type": [ "http://www.loc.gov/mads/rdf/v1#CorporateName", "http://www.loc.gov/mads/rdf/v1#Authority", "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@language": "en",
+        "@value": "University of California (System). Regents" } ], "http://www.loc.gov/mads/rdf/v1#elementList": [ { "@id": "_:b7idlocgovauthoritiesnamesn85088322" } ], "http://www.loc.gov/mads/rdf/v1#hasVariant": [ { "@id": "_:b14idlocgovauthoritiesnamesn85088322" }, { "@id": "_:b23idlocgovauthoritiesnamesn85088322" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSCollection": [ { "@id": "http://id.loc.gov/authorities/names/collection_NamesAuthorizedHeadings" }, { "@id": "http://id.loc.gov/authorities/names/collection_LCNAF" } ], "http://www.loc.gov/mads/rdf/v1#hasExactExternalAuthority": [ { "@id": "http://viaf.org/viaf/sourceID/LC%7Cn+85088322#skos:Concept" } ], "http://www.loc.gov/mads/rdf/v1#identifiesRWO": [ { "@id": "http://id.loc.gov/rwo/agents/n85088322" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSScheme": [ { "@id": "http://id.loc.gov/authorities/names" } ], "http://id.loc.gov/vocabulary/identifiers/lccn": [ { "@value": "n 85088322" } ], "http://id.loc.gov/vocabulary/identifiers/local": [ { "@value": "(OCoLC)oca01393152" }, { "@value": "(Uk)001445229" } ], "http://www.loc.gov/mads/rdf/v1#hasSource": [ { "@id": "_:b49idlocgovauthoritiesnamesn85088322" }, { "@id": "_:b57idlocgovauthoritiesnamesn85088322" }, { "@id": "_:b65idlocgovauthoritiesnamesn85088322" } ], "http://www.loc.gov/mads/rdf/v1#adminMetadata": [ { "@id": "_:b73idlocgovauthoritiesnamesn85088322" }, { "@id": "_:b81idlocgovauthoritiesnamesn85088322" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "en",
+        "@value": "University of California (System). Regents" } ], "http://www.w3.org/2008/05/skos-xl#altLabel": [ { "@id": "_:b92idlocgovauthoritiesnamesn85088322" }, { "@id": "_:b99idlocgovauthoritiesnamesn85088322" }, { "@language": "en",
         "@value": "Regents of the University of California" }, { "@language": "en",
-        "@value": "University of California (System). Board of Regents" } ], "http://www.w3.org/2004/02/skos/core#changeNote": [ { "@id": "_:b111authoritiesnamesn85088322" }, { "@id": "_:b119authoritiesnamesn85088322" } ] },  { "@id": "_:b52authoritiesnamesn85088322", "@type": [ "http://www.loc.gov/mads/rdf/v1#Source" ], "http://www.loc.gov/mads/rdf/v1#citation-source": [ { "@value": "Malin, P.E. Borehole geophone data, 1984:" } ], "http://www.loc.gov/mads/rdf/v1#citation-note": [ { "@language": "en",
-        "@value": "t.p. (Regents of the University of California)" } ], "http://www.loc.gov/mads/rdf/v1#citation-status": [ { "@value": "found" } ] } ]
+        "@value": "University of California (System). Board of Regents" } ], "http://www.w3.org/2004/02/skos/core#altLabel": [ { "@value": "Regents of the University of California" }, { "@value": "University of California (System). Board of Regents" } ], "http://www.w3.org/2004/02/skos/core#exactMatch": [ { "@id": "http://viaf.org/viaf/sourceID/LC%7Cn+85088322#skos:Concept" } ], "http://www.w3.org/2004/02/skos/core#inScheme": [ { "@id": "http://id.loc.gov/authorities/names" } ], "http://www.w3.org/2004/02/skos/core#changeNote": [ { "@id": "_:b112idlocgovauthoritiesnamesn85088322" }, { "@id": "_:b120idlocgovauthoritiesnamesn85088322" } ] },  { "@id": "_:b28idlocgovauthoritiesnamesn85088322", "http://www.w3.org/1999/02/22-rdf-syntax-ns#first": [ { "@id": "_:b29idlocgovauthoritiesnamesn85088322" } ] },  { "@id": "_:b99idlocgovauthoritiesnamesn85088322", "@type": [ "http://www.w3.org/2008/05/skos-xl#Label" ], "http://www.w3.org/2008/05/skos-xl#literalForm": [ { "@language": "en",
+        "@value": "University of California (System). Board of Regents" } ] } ]
     http_version: 
-  recorded_at: Thu, 02 Mar 2017 22:44:52 GMT
-recorded_with: VCR 3.0.3
+  recorded_at: Tue, 16 Jan 2018 23:23:57 GMT
+recorded_with: VCR 4.0.0

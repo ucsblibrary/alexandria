@@ -7,90 +7,6 @@ http_interactions:
       encoding: UTF-8
       string: |-
         _profile: erc
-        erc.what: Test collection
-    headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
-      Host:
-      - ezid.cdlib.org
-      Content-Type:
-      - text/plain; charset=UTF-8
-      Authorization:
-      - Basic YXBpdGVzdDphcGl0ZXN0
-  response:
-    status:
-      code: 201
-      message: CREATED
-    headers:
-      Date:
-      - Thu, 16 Feb 2017 02:01:42 GMT
-      Server:
-      - Apache/2.2.17 (Unix) mod_ssl/2.2.17 OpenSSL/1.0.1k-fips mod_wsgi/4.4.9 Python/2.7.12
-      Content-Length:
-      - '30'
-      Vary:
-      - Accept-Language,Cookie
-      Content-Language:
-      - en
-      Content-Type:
-      - text/plain; charset=UTF-8
-    body:
-      encoding: UTF-8
-      string: 'success: ark:/99999/fk4fn1fc62'
-    http_version: 
-  recorded_at: Thu, 16 Feb 2017 02:01:43 GMT
-- request:
-    method: post
-    uri: https://ezid.cdlib.org/id/ark:/99999/fk4fn1fc62
-    body:
-      encoding: UTF-8
-      string: "_target: http://test.host/lib/ark:/99999/fk4fn1fc62\nerc.when: "
-    headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
-      Host:
-      - ezid.cdlib.org
-      Content-Type:
-      - text/plain; charset=UTF-8
-      Authorization:
-      - Basic YXBpdGVzdDphcGl0ZXN0
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Thu, 16 Feb 2017 02:01:44 GMT
-      Server:
-      - Apache/2.2.17 (Unix) mod_ssl/2.2.17 OpenSSL/1.0.1k-fips mod_wsgi/4.4.9 Python/2.7.12
-      Content-Length:
-      - '30'
-      Vary:
-      - Accept-Language,Cookie
-      Content-Language:
-      - en
-      Content-Type:
-      - text/plain; charset=UTF-8
-    body:
-      encoding: UTF-8
-      string: 'success: ark:/99999/fk4fn1fc62'
-    http_version: 
-  recorded_at: Thu, 16 Feb 2017 02:01:45 GMT
-- request:
-    method: post
-    uri: https://ezid.cdlib.org/shoulder/ark:/99999/fk4
-    body:
-      encoding: UTF-8
-      string: |-
-        _profile: erc
         erc.what: Test map
     headers:
       Accept-Encoding:
@@ -111,9 +27,9 @@ http_interactions:
       message: CREATED
     headers:
       Date:
-      - Thu, 16 Feb 2017 02:01:45 GMT
+      - Tue, 16 Jan 2018 23:27:16 GMT
       Server:
-      - Apache/2.2.17 (Unix) mod_ssl/2.2.17 OpenSSL/1.0.1k-fips mod_wsgi/4.4.9 Python/2.7.12
+      - Apache/2.2.17 (Unix) mod_ssl/2.2.17 OpenSSL/1.0.1e-fips mod_wsgi/4.4.9 Python/2.7.12
       Content-Length:
       - '30'
       Vary:
@@ -124,17 +40,17 @@ http_interactions:
       - text/plain; charset=UTF-8
     body:
       encoding: UTF-8
-      string: 'success: ark:/99999/fk49w0qk3v'
+      string: 'success: ark:/99999/fk4fr06g00'
     http_version: 
-  recorded_at: Thu, 16 Feb 2017 02:01:46 GMT
+  recorded_at: Tue, 16 Jan 2018 23:27:16 GMT
 - request:
     method: post
-    uri: https://ezid.cdlib.org/id/ark:/99999/fk49w0qk3v
+    uri: https://ezid.cdlib.org/id/ark:/99999/fk4fr06g00
     body:
       encoding: UTF-8
       string: |-
-        _target: http://test.host/lib/ark:/99999/fk49w0qk3v
-        erc.when: 1925
+        _target: http://test.host/lib/ark:/99999/fk4fr06g00
+        erc.when: <http://localhost:8986/rest/test/fk/4f/r0/6g/fk4fr06g00#timespan_g47425946136880> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.europeana.eu/schemas/edm/TimeSpan> .-<http://localhost:8986/rest/test/fk/4f/r0/6g/fk4fr06g00#timespan_g47425946136880> <http://www.europeana.eu/schemas/edm/begin> "1925" .
     headers:
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
@@ -154,9 +70,9 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 16 Feb 2017 02:01:48 GMT
+      - Tue, 16 Jan 2018 23:27:29 GMT
       Server:
-      - Apache/2.2.17 (Unix) mod_ssl/2.2.17 OpenSSL/1.0.1k-fips mod_wsgi/4.4.9 Python/2.7.12
+      - Apache/2.2.17 (Unix) mod_ssl/2.2.17 OpenSSL/1.0.1e-fips mod_wsgi/4.4.9 Python/2.7.12
       Content-Length:
       - '30'
       Vary:
@@ -167,7 +83,7 @@ http_interactions:
       - text/plain; charset=UTF-8
     body:
       encoding: UTF-8
-      string: 'success: ark:/99999/fk49w0qk3v'
+      string: 'success: ark:/99999/fk4fr06g00'
     http_version: 
-  recorded_at: Thu, 16 Feb 2017 02:01:49 GMT
-recorded_with: VCR 3.0.3
+  recorded_at: Tue, 16 Jan 2018 23:27:29 GMT
+recorded_with: VCR 4.0.0

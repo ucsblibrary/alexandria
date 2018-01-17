@@ -8,14 +8,14 @@ http_interactions:
       string: ''
     headers:
       Accept:
-      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
-        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
-        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
+      - application/n-triples, text/plain;q=0.2, text/turtle, text/rdf+turtle, application/turtle;q=0.2,
+        application/x-turtle;q=0.2, application/ld+json, application/x-ld+json, application/n-quads,
+        text/x-nquads;q=0.2, application/rdf+json, text/html;q=0.5, application/xhtml+xml;q=0.7,
+        image/svg+xml;q=0.4, text/n3, text/rdf+n3;q=0.2, application/rdf+n3;q=0.2,
         application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
-        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, application/trig,
-        application/x-trig, application/trix
+        application/trig, application/x-trig;q=0.2, application/trix
       Accept-Encoding:
-      - gzip, deflate
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       User-Agent:
       - Ruby
   response:
@@ -31,27 +31,29 @@ http_interactions:
       - http://id.loc.gov/vocabulary/resourceTypes/txt
       X-Preflabel:
       - Text
-      Server:
-      - Apache
       Content-Length:
       - '0'
-      Accept-Ranges:
-      - bytes
       Date:
-      - Thu, 09 Jun 2016 23:43:10 GMT
+      - Tue, 16 Jan 2018 21:29:50 GMT
+      Server:
+      - Apache
       X-Varnish:
-      - '1039156851'
+      - 44314759 26238967
       Age:
-      - '0'
+      - '6785'
       Via:
-      - 1.1 varnish
+      - 1.1 varnish-v4
+      X-Cache:
+      - HIT
+      X-Cache-Hits:
+      - '3'
       Connection:
       - keep-alive
     body:
       encoding: UTF-8
       string: ''
-    http_version:
-  recorded_at: Thu, 09 Jun 2016 23:43:13 GMT
+    http_version: 
+  recorded_at: Tue, 16 Jan 2018 23:22:55 GMT
 - request:
     method: get
     uri: http://id.loc.gov/vocabulary/resourceTypes/txt.jsonld
@@ -60,16 +62,14 @@ http_interactions:
       string: ''
     headers:
       Accept:
-      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
-        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
-        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
+      - application/n-triples, text/plain;q=0.2, text/turtle, text/rdf+turtle, application/turtle;q=0.2,
+        application/x-turtle;q=0.2, application/ld+json, application/x-ld+json, application/n-quads,
+        text/x-nquads;q=0.2, application/rdf+json, text/html;q=0.5, application/xhtml+xml;q=0.7,
+        image/svg+xml;q=0.4, text/n3, text/rdf+n3;q=0.2, application/rdf+n3;q=0.2,
         application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
-        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, application/trig,
-        application/x-trig, application/trix
+        application/trig, application/x-trig;q=0.2, application/trix
       Accept-Encoding:
-      - gzip, deflate
-      Cookie:
-      - ''
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       User-Agent:
       - Ruby
   response:
@@ -82,54 +82,37 @@ http_interactions:
       Cache-Control:
       - public, max-age=1209600
       Etag:
-      - a5b1c48cf57022ac141ba122760fcc91
+      - 816bdca7ce2e261969f7bdb1da522545
       X-Uri:
       - http://id.loc.gov/vocabulary/resourceTypes/txt
+      Content-Length:
+      - '3399'
+      Date:
+      - Fri, 22 Dec 2017 17:13:37 GMT
       Server:
       - Apache
-      Content-Length:
-      - '6797'
+      X-Varnish:
+      - 44039731 18827325
+      Age:
+      - '2182158'
+      Via:
+      - 1.1 varnish-v4
+      X-Cache:
+      - HIT
+      X-Cache-Hits:
+      - '26569'
       Accept-Ranges:
       - bytes
-      Date:
-      - Thu, 09 Jun 2016 23:43:11 GMT
-      X-Varnish:
-      - '1039156852'
-      Age:
-      - '0'
-      Via:
-      - 1.1 varnish
       Connection:
       - keep-alive
     body:
       encoding: UTF-8
       string: |-
-        [  { "@id": "http://id.loc.gov/vocabulary/resourceTypes/per", "@type": [ "http://www.w3.org/2002/07/owl#Class", "http://www.loc.gov/mads/rdf/v1#Authority", "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@language": "en",
-        "@value": "Periodical" } ], "http://www.w3.org/2000/01/rdf-schema#label": [ { "@language": "en",
-        "@value": "Periodical" }, { "@language": "en",
-        "@value": "Periodical" } ], "http://www.loc.gov/mads/rdf/v1#code": [ { "@value": "per" } ], "http://www.w3.org/2000/01/rdf-schema#subClassOf": [ { "@id": "http://id.loc.gov/vocabulary/resourceTypes/txt" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "en",
-        "@value": "Periodical" } ], "http://www.w3.org/2004/02/skos/core#notation": [ { "@value": "per" } ] },  { "@id": "http://id.loc.gov/vocabulary/resourceTypes/nws", "@type": [ "http://www.w3.org/2002/07/owl#Class", "http://www.loc.gov/mads/rdf/v1#Authority", "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@language": "en",
-        "@value": "Newspaper" } ], "http://www.w3.org/2000/01/rdf-schema#label": [ { "@language": "en",
-        "@value": "Newspaper" }, { "@language": "en",
-        "@value": "Newspaper" } ], "http://www.loc.gov/mads/rdf/v1#code": [ { "@value": "nws" } ], "http://www.w3.org/2000/01/rdf-schema#subClassOf": [ { "@id": "http://id.loc.gov/vocabulary/resourceTypes/txt" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "en",
-        "@value": "Newspaper" } ], "http://www.w3.org/2004/02/skos/core#notation": [ { "@value": "nws" } ] },  { "@id": "_:b51vocabularyresourceTypestxt", "@type": [ "http://www.loc.gov/mads/rdf/v1#Variant" ], "http://www.loc.gov/mads/rdf/v1#variantLabel": [ { "@language": "en",
-        "@value": "Language Material" } ] },  { "@id": "_:b65vocabularyresourceTypestxt", "@type": [ "http://id.loc.gov/ontologies/RecordInfo#RecordInfo" ], "http://id.loc.gov/ontologies/RecordInfo#recordStatus": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
-        "@value": "modified" } ], "http://id.loc.gov/ontologies/RecordInfo#recordChangeDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-        "@value": "2015-10-23T09:31:55.058476-04:00" } ], "http://id.loc.gov/ontologies/RecordInfo#recordContentSource": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlcmrc" } ] },  { "@id": "_:b80vocabularyresourceTypestxt", "@type": [ "http://www.w3.org/2008/05/skos-xl#Label" ], "http://www.w3.org/2008/05/skos-xl#literalForm": [ { "@language": "en",
-        "@value": "Language Material" } ] },  { "@id": "_:b126vocabularyresourceTypestxt", "@type": [ "http://purl.org/vocab/changeset/schema#ChangeSet" ], "http://purl.org/vocab/changeset/schema#subjectOfChange": [ { "@id": "http://id.loc.gov/vocabulary/resourceTypes/txt" } ], "http://purl.org/vocab/changeset/schema#creatorName": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlcmrc" } ], "http://purl.org/vocab/changeset/schema#createdDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-        "@value": "2015-10-23T09:31:55.058476-04:00" } ], "http://purl.org/vocab/changeset/schema#changeReason": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
-        "@value": "modified" } ] },  { "@id": "http://id.loc.gov/vocabulary/resourceTypes/leg", "@type": [ "http://www.w3.org/2002/07/owl#Class", "http://www.loc.gov/mads/rdf/v1#Authority", "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@language": "en",
-        "@value": "Legislation" } ], "http://www.w3.org/2000/01/rdf-schema#label": [ { "@language": "en",
-        "@value": "Legislation" }, { "@language": "en",
-        "@value": "Legislation" } ], "http://www.loc.gov/mads/rdf/v1#code": [ { "@value": "leg" } ], "http://www.w3.org/2000/01/rdf-schema#subClassOf": [ { "@id": "http://id.loc.gov/vocabulary/resourceTypes/txt" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "en",
-        "@value": "Legislation" } ], "http://www.w3.org/2004/02/skos/core#notation": [ { "@value": "leg" } ] },  { "@id": "http://id.loc.gov/vocabulary/resourceTypes/bke", "@type": [ "http://www.w3.org/2002/07/owl#Class", "http://www.loc.gov/mads/rdf/v1#Authority", "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@language": "en",
-        "@value": "Book" } ], "http://www.w3.org/2000/01/rdf-schema#label": [ { "@language": "en",
-        "@value": "Book" }, { "@language": "en",
-        "@value": "Book" } ], "http://www.loc.gov/mads/rdf/v1#code": [ { "@value": "bke" } ], "http://www.w3.org/2000/01/rdf-schema#subClassOf": [ { "@id": "http://id.loc.gov/vocabulary/resourceTypes/txt" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "en",
-        "@value": "Book" } ], "http://www.w3.org/2004/02/skos/core#notation": [ { "@value": "bke" } ] },  { "@id": "http://id.loc.gov/vocabulary/resourceTypes/txt", "@type": [ "http://www.w3.org/2002/07/owl#Class", "http://www.loc.gov/mads/rdf/v1#Authority", "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@language": "en",
-        "@value": "Text" } ], "http://www.loc.gov/mads/rdf/v1#hasNarrowerAuthority": [ { "@id": "http://id.loc.gov/vocabulary/resourceTypes/bke" }, { "@id": "http://id.loc.gov/vocabulary/resourceTypes/per" }, { "@id": "http://id.loc.gov/vocabulary/resourceTypes/nws" }, { "@id": "http://id.loc.gov/vocabulary/resourceTypes/leg" } ], "http://www.w3.org/2000/01/rdf-schema#subClassOf": [ { "@id": "http://id.loc.gov/vocabulary/resourceTypes/Res" } ], "http://www.loc.gov/mads/rdf/v1#hasVariant": [ { "@id": "_:b51vocabularyresourceTypestxt" } ], "http://www.loc.gov/mads/rdf/v1#code": [ { "@value": "txt" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSScheme": [ { "@id": "http://id.loc.gov/vocabulary/resourceTypes" } ], "http://www.loc.gov/mads/rdf/v1#adminMetadata": [ { "@id": "_:b65vocabularyresourceTypestxt" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "en",
-        "@value": "Text" } ], "http://www.w3.org/2008/05/skos-xl#altLabel": [ { "@id": "_:b80vocabularyresourceTypestxt" } ], "http://www.w3.org/2004/02/skos/core#narrower": [ { "@id": "http://id.loc.gov/vocabulary/resourceTypes/bke" }, { "@id": "http://id.loc.gov/vocabulary/resourceTypes/per" }, { "@id": "http://id.loc.gov/vocabulary/resourceTypes/nws" }, { "@id": "http://id.loc.gov/vocabulary/resourceTypes/leg" } ], "http://www.w3.org/2004/02/skos/core#notation": [ { "@value": "txt" } ], "http://www.w3.org/2004/02/skos/core#inScheme": [ { "@id": "http://id.loc.gov/vocabulary/resourceTypes" } ], "http://www.w3.org/2004/02/skos/core#altLabel": [ { "@language": "en",
-        "@value": "Language Material" } ], "http://www.w3.org/2004/02/skos/core#changeNote": [ { "@id": "_:b126vocabularyresourceTypestxt" } ] } ]
-    http_version:
-  recorded_at: Thu, 09 Jun 2016 23:43:13 GMT
-recorded_with: VCR 3.0.3
+        [  { "@id": "_:b38idlocgovvocabularyresourceTypestxt", "@type": [ "http://www.w3.org/2008/05/skos-xl#Label" ], "http://www.w3.org/2008/05/skos-xl#literalForm": [ { "@value": "Language Material" } ] },  { "@id": "_:b51idlocgovvocabularyresourceTypestxt", "@type": [ "http://purl.org/vocab/changeset/schema#ChangeSet" ], "http://purl.org/vocab/changeset/schema#subjectOfChange": [ { "@id": "http://id.loc.gov/vocabulary/resourceTypes/txt" } ], "http://purl.org/vocab/changeset/schema#creatorName": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlcmrc" } ], "http://purl.org/vocab/changeset/schema#createdDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2012-05-05T00:00:00" } ], "http://purl.org/vocab/changeset/schema#changeReason": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "new" } ] },  { "@id": "_:b23idlocgovvocabularyresourceTypestxt", "@type": [ "http://id.loc.gov/ontologies/RecordInfo#RecordInfo" ], "http://id.loc.gov/ontologies/RecordInfo#recordStatus": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "new" } ], "http://id.loc.gov/ontologies/RecordInfo#recordChangeDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2012-05-05T00:00:00" } ], "http://id.loc.gov/ontologies/RecordInfo#recordContentSource": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlcmrc" } ] },  { "@id": "_:b8idlocgovvocabularyresourceTypestxt", "@type": [ "http://www.loc.gov/mads/rdf/v1#Variant" ], "http://www.loc.gov/mads/rdf/v1#variantLabel": [ { "@value": "Language Material" } ] },  { "@id": "http://id.loc.gov/vocabulary/resourceTypes/txt", "@type": [ "http://www.loc.gov/mads/rdf/v1#Authority", "http://www.w3.org/2002/07/owl#Class", "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@value": "Text" } ], "http://www.loc.gov/mads/rdf/v1#hasVariant": [ { "@id": "_:b8idlocgovvocabularyresourceTypestxt" } ], "http://www.w3.org/2000/01/rdf-schema#subClassOf": [ { "@id": "http://id.loc.gov/vocabulary/resourceTypes/Res" }, { "@id": "http://id.loc.gov/vocabulary/resourceTypes/Res" } ], "http://www.loc.gov/mads/rdf/v1#hasBroaderAuthority": [ { "@id": "http://id.loc.gov/vocabulary/resourceTypes/Res" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSCollection": [ { "@id": "http://id.loc.gov/vocabulary/resourceTypes/collection_ResourceTypes" } ], "http://www.loc.gov/mads/rdf/v1#code": [ { "@value": "txt" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSScheme": [ { "@id": "http://id.loc.gov/vocabulary/resourceTypes" } ], "http://www.loc.gov/mads/rdf/v1#adminMetadata": [ { "@id": "_:b23idlocgovvocabularyresourceTypestxt" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@value": "Text" } ], "http://www.w3.org/2008/05/skos-xl#altLabel": [ { "@id": "_:b38idlocgovvocabularyresourceTypestxt" }, { "@value": "Language Material" } ], "http://www.w3.org/2004/02/skos/core#altLabel": [ { "@value": "Language Material" } ], "http://www.w3.org/2004/02/skos/core#broader": [ { "@id": "http://id.loc.gov/vocabulary/resourceTypes/Res" } ], "http://www.w3.org/2004/02/skos/core#notation": [ { "@value": "txt" } ], "http://www.w3.org/2004/02/skos/core#inScheme": [ { "@id": "http://id.loc.gov/vocabulary/resourceTypes" } ], "http://www.w3.org/2004/02/skos/core#changeNote": [ { "@id": "_:b51idlocgovvocabularyresourceTypestxt" } ] } ]
+    http_version: 
+  recorded_at: Tue, 16 Jan 2018 23:22:55 GMT
+recorded_with: VCR 4.0.0

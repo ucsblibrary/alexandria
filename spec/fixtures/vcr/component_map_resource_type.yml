@@ -8,14 +8,14 @@ http_interactions:
       string: ''
     headers:
       Accept:
-      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
-        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
-        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
+      - application/n-triples, text/plain;q=0.2, text/turtle, text/rdf+turtle, application/turtle;q=0.2,
+        application/x-turtle;q=0.2, application/ld+json, application/x-ld+json, application/n-quads,
+        text/x-nquads;q=0.2, application/rdf+json, text/html;q=0.5, application/xhtml+xml;q=0.7,
+        image/svg+xml;q=0.4, text/n3, text/rdf+n3;q=0.2, application/rdf+n3;q=0.2,
         application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
-        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, application/trig,
-        application/x-trig, application/trix
+        application/trig, application/x-trig;q=0.2, application/trix
       Accept-Encoding:
-      - gzip, deflate
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       User-Agent:
       - Ruby
   response:
@@ -31,31 +31,29 @@ http_interactions:
       - http://id.loc.gov/vocabulary/resourceTypes/img
       X-Preflabel:
       - Still Image
-      Server:
-      - Apache
       Content-Length:
       - '0'
-      Accept-Ranges:
-      - bytes
       Date:
-      - Thu, 02 Mar 2017 22:44:47 GMT
+      - Tue, 16 Jan 2018 21:31:04 GMT
+      Server:
+      - Apache
       X-Varnish:
-      - 1728002107 1727931047
+      - 44434410 44057374
       Age:
-      - '5483'
+      - '6771'
       Via:
-      - 1.1 varnish
-      Connection:
-      - keep-alive
+      - 1.1 varnish-v4
       X-Cache:
       - HIT
       X-Cache-Hits:
-      - '4'
+      - '2'
+      Connection:
+      - keep-alive
     body:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Thu, 02 Mar 2017 22:44:47 GMT
+  recorded_at: Tue, 16 Jan 2018 23:23:56 GMT
 - request:
     method: get
     uri: http://id.loc.gov/vocabulary/resourceTypes/img.jsonld
@@ -64,16 +62,14 @@ http_interactions:
       string: ''
     headers:
       Accept:
-      - application/n-triples, text/plain;q=0.5, application/n-quads, text/x-nquads,
-        application/ld+json, application/x-ld+json, application/rdf+json, text/html;q=0.5,
-        application/xhtml+xml;q=0.7, image/svg+xml, text/n3, text/rdf+n3, application/rdf+n3,
+      - application/n-triples, text/plain;q=0.2, text/turtle, text/rdf+turtle, application/turtle;q=0.2,
+        application/x-turtle;q=0.2, application/ld+json, application/x-ld+json, application/n-quads,
+        text/x-nquads;q=0.2, application/rdf+json, text/html;q=0.5, application/xhtml+xml;q=0.7,
+        image/svg+xml;q=0.4, text/n3, text/rdf+n3;q=0.2, application/rdf+n3;q=0.2,
         application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
-        text/turtle, text/rdf+turtle, application/turtle, application/x-turtle, application/trig,
-        application/x-trig, application/trix
+        application/trig, application/x-trig;q=0.2, application/trix
       Accept-Encoding:
-      - gzip, deflate
-      Cookie:
-      - ''
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       User-Agent:
       - Ruby
   response:
@@ -86,57 +82,37 @@ http_interactions:
       Cache-Control:
       - public, max-age=1209600
       Etag:
-      - b144464b013bc9dcb1232f2ac872cdb5
+      - 88ccf19d7f0cc77e5ab04349c9c7f211
       X-Uri:
       - http://id.loc.gov/vocabulary/resourceTypes/img
+      Content-Length:
+      - '4591'
+      Date:
+      - Mon, 01 Jan 2018 21:29:50 GMT
       Server:
       - Apache
-      Content-Length:
-      - '6453'
+      X-Varnish:
+      - 44257120 10947037
+      Age:
+      - '1302845'
+      Via:
+      - 1.1 varnish-v4
+      X-Cache:
+      - HIT
+      X-Cache-Hits:
+      - '15682'
       Accept-Ranges:
       - bytes
-      Date:
-      - Thu, 02 Mar 2017 22:44:48 GMT
-      X-Varnish:
-      - '1728002111'
-      Age:
-      - '0'
-      Via:
-      - 1.1 varnish
       Connection:
       - keep-alive
-      X-Cache:
-      - MISS
-      X-Cache-Hits:
-      - '0'
     body:
       encoding: UTF-8
       string: |-
-        [  { "@id": "_:b84vocabularyresourceTypesimg", "@type": [ "http://www.w3.org/2008/05/skos-xl#Label" ], "http://www.w3.org/2008/05/skos-xl#literalForm": [ { "@language": "en",
-        "@value": "2-dimensional nonprojected graphic" } ] },  { "@id": "_:b79vocabularyresourceTypesimg", "@type": [ "http://www.w3.org/2008/05/skos-xl#Label" ], "http://www.w3.org/2008/05/skos-xl#literalForm": [ { "@language": "en",
-        "@value": "Image" } ] },  { "@id": "http://id.loc.gov/vocabulary/resourceTypes/pho", "@type": [ "http://www.w3.org/2002/07/owl#Class", "http://www.loc.gov/mads/rdf/v1#Authority", "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@language": "en",
-        "@value": "Photograph" } ], "http://www.w3.org/2000/01/rdf-schema#label": [ { "@language": "en",
-        "@value": "Photograph" }, { "@language": "en",
-        "@value": "Photograph" } ], "http://www.loc.gov/mads/rdf/v1#code": [ { "@value": "pho" } ], "http://www.w3.org/2000/01/rdf-schema#subClassOf": [ { "@id": "http://id.loc.gov/vocabulary/resourceTypes/img" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "en",
-        "@value": "Photograph" } ], "http://www.w3.org/2004/02/skos/core#notation": [ { "@value": "pho" } ] },  { "@id": "http://id.loc.gov/vocabulary/resourceTypes/dwg", "@type": [ "http://www.w3.org/2002/07/owl#Class", "http://www.loc.gov/mads/rdf/v1#Authority", "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@language": "en",
-        "@value": "Drawing" } ], "http://www.w3.org/2000/01/rdf-schema#label": [ { "@language": "en",
-        "@value": "Drawing" }, { "@language": "en",
-        "@value": "Drawing" } ], "http://www.loc.gov/mads/rdf/v1#code": [ { "@value": "dwg" } ], "http://www.w3.org/2000/01/rdf-schema#subClassOf": [ { "@id": "http://id.loc.gov/vocabulary/resourceTypes/img" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "en",
-        "@value": "Drawing" } ], "http://www.w3.org/2004/02/skos/core#notation": [ { "@value": "dwg" } ] },  { "@id": "http://id.loc.gov/vocabulary/resourceTypes/img", "@type": [ "http://www.w3.org/2002/07/owl#Class", "http://www.loc.gov/mads/rdf/v1#Authority", "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@language": "en",
-        "@value": "Still Image" } ], "http://www.loc.gov/mads/rdf/v1#hasNarrowerAuthority": [ { "@id": "http://id.loc.gov/vocabulary/resourceTypes/pho" }, { "@id": "http://id.loc.gov/vocabulary/resourceTypes/pri" }, { "@id": "http://id.loc.gov/vocabulary/resourceTypes/dwg" } ], "http://www.w3.org/2000/01/rdf-schema#subClassOf": [ { "@id": "http://id.loc.gov/vocabulary/resourceTypes/Res" } ], "http://www.loc.gov/mads/rdf/v1#hasVariant": [ { "@id": "_:b41vocabularyresourceTypesimg" }, { "@id": "_:b50vocabularyresourceTypesimg" } ], "http://www.loc.gov/mads/rdf/v1#code": [ { "@value": "img" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSScheme": [ { "@id": "http://id.loc.gov/vocabulary/resourceTypes" } ], "http://www.loc.gov/mads/rdf/v1#adminMetadata": [ { "@id": "_:b64vocabularyresourceTypesimg" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "en",
-        "@value": "Still Image" } ], "http://www.w3.org/2008/05/skos-xl#altLabel": [ { "@id": "_:b79vocabularyresourceTypesimg" }, { "@id": "_:b84vocabularyresourceTypesimg" } ], "http://www.w3.org/2004/02/skos/core#narrower": [ { "@id": "http://id.loc.gov/vocabulary/resourceTypes/pho" }, { "@id": "http://id.loc.gov/vocabulary/resourceTypes/pri" }, { "@id": "http://id.loc.gov/vocabulary/resourceTypes/dwg" } ], "http://www.w3.org/2004/02/skos/core#notation": [ { "@value": "img" } ], "http://www.w3.org/2004/02/skos/core#inScheme": [ { "@id": "http://id.loc.gov/vocabulary/resourceTypes" } ], "http://www.w3.org/2004/02/skos/core#altLabel": [ { "@language": "en",
-        "@value": "Image" }, { "@language": "en",
-        "@value": "2-dimensional nonprojected graphic" } ], "http://www.w3.org/2004/02/skos/core#changeNote": [ { "@id": "_:b123vocabularyresourceTypesimg" } ] },  { "@id": "http://id.loc.gov/vocabulary/resourceTypes/pri", "@type": [ "http://www.w3.org/2002/07/owl#Class", "http://www.loc.gov/mads/rdf/v1#Authority", "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@language": "en",
-        "@value": "Print" } ], "http://www.w3.org/2000/01/rdf-schema#label": [ { "@language": "en",
-        "@value": "Print" }, { "@language": "en",
-        "@value": "Print" } ], "http://www.loc.gov/mads/rdf/v1#code": [ { "@value": "pri" } ], "http://www.w3.org/2000/01/rdf-schema#subClassOf": [ { "@id": "http://id.loc.gov/vocabulary/resourceTypes/img" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "en",
-        "@value": "Print" } ], "http://www.w3.org/2004/02/skos/core#notation": [ { "@value": "pri" } ] },  { "@id": "_:b123vocabularyresourceTypesimg", "@type": [ "http://purl.org/vocab/changeset/schema#ChangeSet" ], "http://purl.org/vocab/changeset/schema#subjectOfChange": [ { "@id": "http://id.loc.gov/vocabulary/resourceTypes/img" } ], "http://purl.org/vocab/changeset/schema#creatorName": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlcmrc" } ], "http://purl.org/vocab/changeset/schema#createdDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-        "@value": "2015-10-23T09:31:55.058476-04:00" } ], "http://purl.org/vocab/changeset/schema#changeReason": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
-        "@value": "modified" } ] },  { "@id": "_:b50vocabularyresourceTypesimg", "@type": [ "http://www.loc.gov/mads/rdf/v1#Variant" ], "http://www.loc.gov/mads/rdf/v1#variantLabel": [ { "@language": "en",
-        "@value": "2-dimensional nonprojected graphic" } ] },  { "@id": "_:b64vocabularyresourceTypesimg", "@type": [ "http://id.loc.gov/ontologies/RecordInfo#RecordInfo" ], "http://id.loc.gov/ontologies/RecordInfo#recordStatus": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
-        "@value": "modified" } ], "http://id.loc.gov/ontologies/RecordInfo#recordChangeDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-        "@value": "2015-10-23T09:31:55.058476-04:00" } ], "http://id.loc.gov/ontologies/RecordInfo#recordContentSource": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlcmrc" } ] },  { "@id": "_:b41vocabularyresourceTypesimg", "@type": [ "http://www.loc.gov/mads/rdf/v1#Variant" ], "http://www.loc.gov/mads/rdf/v1#variantLabel": [ { "@language": "en",
-        "@value": "Image" } ] } ]
+        [  { "@id": "_:b24idlocgovvocabularyresourceTypesimg", "@type": [ "http://www.loc.gov/mads/rdf/v1#Variant" ], "http://www.loc.gov/mads/rdf/v1#variantLabel": [ { "@value": "Nonprojected graphic" } ] },  { "@id": "_:b61idlocgovvocabularyresourceTypesimg", "@type": [ "http://www.w3.org/2008/05/skos-xl#Label" ], "http://www.w3.org/2008/05/skos-xl#literalForm": [ { "@value": "2-dimensional nonprojected graphic" } ] },  { "@id": "_:b85idlocgovvocabularyresourceTypesimg", "@type": [ "http://purl.org/vocab/changeset/schema#ChangeSet" ], "http://purl.org/vocab/changeset/schema#subjectOfChange": [ { "@id": "http://id.loc.gov/vocabulary/resourceTypes/img" } ], "http://purl.org/vocab/changeset/schema#creatorName": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlcmrc" } ], "http://purl.org/vocab/changeset/schema#createdDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2012-05-05T00:00:00" } ], "http://purl.org/vocab/changeset/schema#changeReason": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "new" } ] },  { "@id": "http://id.loc.gov/vocabulary/resourceTypes/img", "@type": [ "http://www.loc.gov/mads/rdf/v1#Authority", "http://www.w3.org/2002/07/owl#Class", "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@value": "Still Image" } ], "http://www.loc.gov/mads/rdf/v1#hasVariant": [ { "@id": "_:b8idlocgovvocabularyresourceTypesimg" }, { "@id": "_:b16idlocgovvocabularyresourceTypesimg" }, { "@id": "_:b24idlocgovvocabularyresourceTypesimg" } ], "http://www.w3.org/2000/01/rdf-schema#subClassOf": [ { "@id": "http://id.loc.gov/vocabulary/resourceTypes/Res" }, { "@id": "http://id.loc.gov/vocabulary/resourceTypes/Res" } ], "http://www.loc.gov/mads/rdf/v1#hasBroaderAuthority": [ { "@id": "http://id.loc.gov/vocabulary/resourceTypes/Res" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSCollection": [ { "@id": "http://id.loc.gov/vocabulary/resourceTypes/collection_ResourceTypes" } ], "http://www.loc.gov/mads/rdf/v1#code": [ { "@value": "img" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSScheme": [ { "@id": "http://id.loc.gov/vocabulary/resourceTypes" } ], "http://www.loc.gov/mads/rdf/v1#adminMetadata": [ { "@id": "_:b39idlocgovvocabularyresourceTypesimg" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@value": "Still Image" } ], "http://www.w3.org/2008/05/skos-xl#altLabel": [ { "@id": "_:b54idlocgovvocabularyresourceTypesimg" }, { "@id": "_:b61idlocgovvocabularyresourceTypesimg" }, { "@id": "_:b68idlocgovvocabularyresourceTypesimg" }, { "@value": "Image" }, { "@value": "2-dimensional nonprojected graphic" }, { "@value": "Nonprojected graphic" } ], "http://www.w3.org/2004/02/skos/core#altLabel": [ { "@value": "Image" }, { "@value": "2-dimensional nonprojected graphic" }, { "@value": "Nonprojected graphic" } ], "http://www.w3.org/2004/02/skos/core#broader": [ { "@id": "http://id.loc.gov/vocabulary/resourceTypes/Res" } ], "http://www.w3.org/2004/02/skos/core#notation": [ { "@value": "img" } ], "http://www.w3.org/2004/02/skos/core#inScheme": [ { "@id": "http://id.loc.gov/vocabulary/resourceTypes" } ], "http://www.w3.org/2004/02/skos/core#changeNote": [ { "@id": "_:b85idlocgovvocabularyresourceTypesimg" } ] },  { "@id": "_:b16idlocgovvocabularyresourceTypesimg", "@type": [ "http://www.loc.gov/mads/rdf/v1#Variant" ], "http://www.loc.gov/mads/rdf/v1#variantLabel": [ { "@value": "2-dimensional nonprojected graphic" } ] },  { "@id": "_:b39idlocgovvocabularyresourceTypesimg", "@type": [ "http://id.loc.gov/ontologies/RecordInfo#RecordInfo" ], "http://id.loc.gov/ontologies/RecordInfo#recordStatus": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "new" } ], "http://id.loc.gov/ontologies/RecordInfo#recordChangeDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2012-05-05T00:00:00" } ], "http://id.loc.gov/ontologies/RecordInfo#recordContentSource": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlcmrc" } ] },  { "@id": "_:b8idlocgovvocabularyresourceTypesimg", "@type": [ "http://www.loc.gov/mads/rdf/v1#Variant" ], "http://www.loc.gov/mads/rdf/v1#variantLabel": [ { "@value": "Image" } ] },  { "@id": "_:b54idlocgovvocabularyresourceTypesimg", "@type": [ "http://www.w3.org/2008/05/skos-xl#Label" ], "http://www.w3.org/2008/05/skos-xl#literalForm": [ { "@value": "Image" } ] },  { "@id": "_:b68idlocgovvocabularyresourceTypesimg", "@type": [ "http://www.w3.org/2008/05/skos-xl#Label" ], "http://www.w3.org/2008/05/skos-xl#literalForm": [ { "@value": "Nonprojected graphic" } ] } ]
     http_version: 
-  recorded_at: Thu, 02 Mar 2017 22:44:48 GMT
-recorded_with: VCR 3.0.3
+  recorded_at: Tue, 16 Jan 2018 23:23:56 GMT
+recorded_with: VCR 4.0.0
