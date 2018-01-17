@@ -1,7 +1,6 @@
 # coding: utf-8
 # frozen_string_literal: true
 
-require "active_fedora/cleaner"
 require "rails_helper"
 require "importer"
 require "parse"
