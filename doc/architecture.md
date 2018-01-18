@@ -58,13 +58,21 @@ you’ll have to tighten up the security on some of the services:
   operations:
   https://github.library.ucsb.edu/ADRL/sufia-centos/blob/master/roles/tomcat/templates/system-config.properties.j2
 
-## Upgrading the infrastructure
+## Fedora
 
-Some gotchas:
+Fedora stores binaries in a managed directory tree, and its metadata in
+PostgreSQL (rather than in the internal LevelDB).  In most cases you shouldn’t
+have to care about this, since all normal Fedora operations are handled by
+ActiveFedora.  However, if for some reason Fedora is corrupted beyond repair and
+requires a full wipe, you need to delete both the local binary data as well as
+the PSQL tables.  (Obviously this sort of destructive, manual action should only
+be taken on a staging or development server.)
 
-- Fedora keeps its metadata in PostgreSQL rather than in the internal
-  LevelDB.  If you connect a new instance of the ADRL Rails
-  application to an existing Fedora server, it will still have cached
-  data in PostgreSQL, which can cause odd 500 errors if you try to
-  clean out Fedora via `ActiveFedora::Cleaner.clean!`  In this case
-  you’ll need to manually wipe out Fedora’s tables in PSQL.
+1. Stop Tomcat: `systemctl stop tomcat`
+2. Remove the Fedora binary directory, e.g.: rm -rf /fedora-data/adrlstage201703/*
+3. Remove Fedora's PSQL table: `drop table "ispn_entry_FedoraRepository";`
+4. Restart Tomcat, then reset from within Rails: `ActiveFedora::Cleaner.clean!`
+
+The location of the Fedora data directory, as well as the host and credentials
+for its PSQL database, will be in `/etc/tomcat/tomcat.conf`.  The name of the
+database will be `ispn`.
