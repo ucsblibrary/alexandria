@@ -39,7 +39,7 @@ http_interactions:
     body:
       encoding: UTF-8
       string: 'success: ark:/99999/fk4902cv0n'
-    http_version:
+    http_version: 
   recorded_at: Thu, 11 Aug 2016 22:29:08 GMT
 - request:
     method: get
@@ -117,7 +117,7 @@ http_interactions:
         "@value": "Text" } ], "http://www.w3.org/2008/05/skos-xl#altLabel": [ { "@id": "_:b67vocabularyresourceTypestxt" } ], "http://www.w3.org/2004/02/skos/core#narrower": [ { "@id": "http://id.loc.gov/vocabulary/resourceTypes/bke" }, { "@id": "http://id.loc.gov/vocabulary/resourceTypes/per" }, { "@id": "http://id.loc.gov/vocabulary/resourceTypes/nws" }, { "@id": "http://id.loc.gov/vocabulary/resourceTypes/leg" } ], "http://www.w3.org/2004/02/skos/core#notation": [ { "@value": "txt" } ], "http://www.w3.org/2004/02/skos/core#inScheme": [ { "@id": "http://id.loc.gov/vocabulary/resourceTypes" } ], "http://www.w3.org/2004/02/skos/core#altLabel": [ { "@language": "en",
         "@value": "Language Material" } ] },  { "@id": "_:b67vocabularyresourceTypestxt", "@type": [ "http://www.w3.org/2008/05/skos-xl#Label" ], "http://www.w3.org/2008/05/skos-xl#literalForm": [ { "@language": "en",
         "@value": "Language Material" } ] } ]
-    http_version:
+    http_version: 
   recorded_at: Thu, 11 Aug 2016 22:29:09 GMT
 - request:
     method: post
@@ -158,7 +158,7 @@ http_interactions:
     body:
       encoding: UTF-8
       string: 'success: ark:/99999/fk4571p141'
-    http_version:
+    http_version: 
   recorded_at: Thu, 11 Aug 2016 22:29:11 GMT
 - request:
     method: get
@@ -208,7 +208,7 @@ http_interactions:
         _export: yes
         _created: 1470954551
         _status: public
-    http_version:
+    http_version: 
   recorded_at: Thu, 11 Aug 2016 22:29:11 GMT
 - request:
     method: post
@@ -253,7 +253,7 @@ http_interactions:
     body:
       encoding: UTF-8
       string: 'success: ark:/99999/fk4571p141'
-    http_version:
+    http_version: 
   recorded_at: Thu, 11 Aug 2016 22:29:12 GMT
 - request:
     method: get
@@ -303,7 +303,7 @@ http_interactions:
         _export: yes
         _created: 1470954548
         _status: public
-    http_version:
+    http_version: 
   recorded_at: Thu, 11 Aug 2016 22:29:14 GMT
 - request:
     method: post
@@ -348,7 +348,7 @@ http_interactions:
     body:
       encoding: UTF-8
       string: 'success: ark:/99999/fk4902cv0n'
-    http_version:
+    http_version: 
   recorded_at: Thu, 11 Aug 2016 22:29:14 GMT
 - request:
     method: get
@@ -384,7 +384,7 @@ http_interactions:
     body:
       encoding: UTF-8
       string: ''
-    http_version:
+    http_version: 
   recorded_at: Thu, 15 Sep 2016 17:17:27 GMT
 - request:
     method: get
@@ -430,55 +430,8 @@ http_interactions:
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        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
-        /rp/05hSfGkW3p7R+GL1N9k1q+NpHQAA
-    http_version:
+        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
+    http_version: 
   recorded_at: Thu, 15 Sep 2016 17:17:27 GMT
 - request:
     method: get
@@ -534,7 +487,7 @@ http_interactions:
     body:
       encoding: UTF-8
       string: ''
-    http_version:
+    http_version: 
   recorded_at: Fri, 18 Nov 2016 01:17:03 GMT
 - request:
     method: get
@@ -600,6 +553,588 @@ http_interactions:
         "@value": "PREMIS    Copyright Status Collection" } ] },  { "@id": "_:b44vocabularypreservationcopyrightStatuscpr", "@type": [ "http://purl.org/vocab/changeset/schema#ChangeSet" ], "http://purl.org/vocab/changeset/schema#subjectOfChange": [ { "@id": "http://id.loc.gov/vocabulary/preservation/copyrightStatus/cpr" } ], "http://purl.org/vocab/changeset/schema#creatorName": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlcmrc" } ], "http://purl.org/vocab/changeset/schema#createdDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
         "@value": "2012-08-01T00:00:00" } ], "http://purl.org/vocab/changeset/schema#changeReason": [ { "@value": "new" } ] },  { "@id": "_:b23vocabularypreservationcopyrightStatuscpr", "@type": [ "http://id.loc.gov/ontologies/RecordInfo#RecordInfo" ], "http://id.loc.gov/ontologies/RecordInfo#recordChangeDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
         "@value": "2012-08-01T00:00:00" } ], "http://id.loc.gov/ontologies/RecordInfo#recordStatus": [ { "@value": "new" } ], "http://id.loc.gov/ontologies/RecordInfo#recordContentSource": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlcmrc" } ] } ]
-    http_version:
+    http_version: 
   recorded_at: Fri, 18 Nov 2016 01:17:03 GMT
-recorded_with: VCR 3.0.3
+- request:
+    method: get
+    uri: http://rightsstatements.org/vocab/InC/1.0/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/n-triples, text/plain;q=0.2, text/turtle, text/rdf+turtle, application/turtle;q=0.2,
+        application/x-turtle;q=0.2, application/ld+json, application/x-ld+json, application/n-quads,
+        text/x-nquads;q=0.2, application/rdf+json, text/html;q=0.5, application/xhtml+xml;q=0.7,
+        image/svg+xml;q=0.4, text/n3, text/rdf+n3;q=0.2, application/rdf+n3;q=0.2,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        application/trig, application/x-trig;q=0.2, application/trix
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 303
+      message: See Other
+    headers:
+      Date:
+      - Thu, 18 Jan 2018 18:21:40 GMT
+      Server:
+      - Apache
+      Location:
+      - http://rightsstatements.org/page/InC/1.0/?language=en
+      Content-Length:
+      - '0'
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Thu, 18 Jan 2018 18:21:40 GMT
+- request:
+    method: get
+    uri: http://rightsstatements.org/page/InC/1.0/?language=en
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/n-triples, text/plain;q=0.2, text/turtle, text/rdf+turtle, application/turtle;q=0.2,
+        application/x-turtle;q=0.2, application/ld+json, application/x-ld+json, application/n-quads,
+        text/x-nquads;q=0.2, application/rdf+json, text/html;q=0.5, application/xhtml+xml;q=0.7,
+        image/svg+xml;q=0.4, text/n3, text/rdf+n3;q=0.2, application/rdf+n3;q=0.2,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        application/trig, application/x-trig;q=0.2, application/trix
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 18 Jan 2018 18:21:40 GMT
+      Server:
+      - Apache
+      Link:
+      - "<http://localhost:9000/page/InC/1.0/>; rel=derivedfrom"
+      Content-Type:
+      - text/html
+      Content-Language:
+      - en
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '2180'
+    body:
+      encoding: ASCII-8BIT
+      string: "<!doctype html>\n\n<html class=\"no-js\" lang=\"\">\n\n<head>\n    <meta
+        charset=\"utf-8\" />\n    <meta http-equiv=\"x-ua-compatible\" content=\"ie=edge\">\n
+        \   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"
+        />\n    <title>In Copyright | Rights Statements</title>\n    <link rel=\"stylesheet\"
+        href=\"https://cdn.jsdelivr.net/foundation/6.2.0/foundation.min.css\" />\n
+        \   <link href='//rightsstatements.org/css/rights-stmt.css' rel='stylesheet'>\n
+        \   <link rel=\"stylesheet\" type=\"text/css\" href=\"//cloud.typography.com/7018914/6677352/css/fonts.css\"
+        />\n</head>\n\n\n<body markdown=\"0\">\n\n    <script type=\"application/ld+json\">\n
+        \       {\n  \"identifier\": \"InC\",\n  \"note\": [\n    {\n      \"@language\":
+        \"en\",\n      \"@value\": \"You may find additional information about the
+        copyright status of the Item on the website of the organization that has made
+        the Item available.\"\n    },\n    {\n      \"@language\": \"en\",\n      \"@value\":
+        \"Unless expressly stated otherwise, the organization that has made this Item
+        available makes no warranties about the Item and cannot guarantee the accuracy
+        of this Rights Statement. You are responsible for your own use.\"\n    },\n
+        \   {\n      \"@language\": \"en\",\n      \"@value\": \"You may need to obtain
+        other permissions for your intended use. For example, other rights such as
+        publicity, privacy or moral rights may limit how you may use the material.\"\n
+        \   }\n  ],\n  \"creator\": \"http://rightsstatements.org/vocab/irswg\",\n
+        \ \"inScheme\": \"http://rightsstatements.org/vocab/1.0/\",\n  \"@type\":
+        [\n    \"dcterms:RightsStatement\",\n    \"skos:Concept\"\n  ],\n  \"prefLabel\":
+        {\n    \"@language\": \"en\",\n    \"@value\": \"In Copyright\"\n  },\n  \"versionInfo\":
+        \"1.0\",\n  \"@context\": {\n    \"note\": \"http://www.w3.org/2004/02/skos/core#note\",\n
+        \   \"creator\": {\n      \"@id\": \"http://purl.org/dc/terms/creator\",\n
+        \     \"@type\": \"@id\"\n    },\n    \"relatedMatch\": {\n      \"@id\":
+        \"http://www.w3.org/2004/02/skos/core#relatedMatch\",\n      \"@type\": \"@id\"\n
+        \   },\n    \"prefLabel\": \"http://www.w3.org/2004/02/skos/core#prefLabel\",\n
+        \   \"definition\": \"http://www.w3.org/2004/02/skos/core#definition\",\n
+        \   \"scopeNote\": \"http://www.w3.org/2004/02/skos/core#scopeNote\",\n    \"identifier\":
+        \"http://purl.org/dc/elements/1.1/identifier\",\n    \"inScheme\": {\n      \"@id\":
+        \"http://www.w3.org/2004/02/skos/core#inScheme\",\n      \"@type\": \"@id\"\n
+        \   },\n    \"closeMatch\": {\n      \"@id\": \"http://www.w3.org/2004/02/skos/core#closeMatch\",\n
+        \     \"@type\": \"@id\"\n    },\n    \"modified\": {\n      \"@id\": \"http://purl.org/dc/terms/modified\",\n
+        \     \"@type\": \"http://www.w3.org/2001/XMLSchema#date\"\n    },\n    \"versionInfo\":
+        \"http://www.w3.org/2002/07/owl#versionInfo\",\n    \"cc\": \"http://creativecommons.org/ns#\",\n
+        \   \"schema\": \"http://schema.org/\",\n    \"premiscopy\": \"http://id.loc.gov/vocabulary/preservation/copyrightStatus/\",\n
+        \   \"owl\": \"http://www.w3.org/2002/07/owl#\",\n    \"xsd\": \"http://www.w3.org/2001/XMLSchema#\",\n
+        \   \"dcmitype\": \"http://purl.org/dc/dcmitype/\",\n    \"skos\": \"http://www.w3.org/2004/02/skos/core#\",\n
+        \   \"rdfs\": \"http://www.w3.org/2000/01/rdf-schema#\",\n    \"p3p\": \"http://www.w3.org/2002/01/p3prdfv1#\",\n
+        \   \"edm\": \"http://www.europeana.eu/schemas/edm/\",\n    \"dcterms\": \"http://purl.org/dc/terms/\",\n
+        \   \"odrl\": \"http://www.w3c.org/community/odrl/two/vocab/2.1/\",\n    \"foaf\":
+        \"http://xmlns.com/foaf/0.1/\",\n    \"dc\": \"http://purl.org/dc/elements/1.1/\"\n
+        \ },\n  \"closeMatch\": \"http://www.europeana.eu/rights/rr-f/\",\n  \"relatedMatch\":
+        \"premiscopy:cpr\",\n  \"modified\": \"2016-05-09\",\n  \"definition\": {\n
+        \   \"@language\": \"en\",\n    \"@value\": \"This Item is protected by copyright
+        and/or related rights.\\n\\n  You are free to use this Item in any way that
+        is permitted by the copyright and related rights legislation that applies
+        to your use.\\n\\n  For other uses you need to obtain permission from the
+        rights-holder(s).\"\n  },\n  \"@id\": \"http://rightsstatements.org/vocab/InC/1.0/\",\n
+        \ \"scopeNote\": {\n    \"@language\": \"en\",\n    \"@value\": \"This Rights
+        Statement can be used for an Item that is in copyright. Using this statement
+        implies that the organization making this Item available has determined that
+        the Item is in copyright and either is the rights-holder, has obtained permission
+        from the rights-holder(s) to make their Work(s) available, or makes the Item
+        available under an exception or limitation to copyright (including Fair Use)
+        that entitles it to make the Item available.\"\n  }\n}\n    </script>\n\n
+        \   <div class=\"row columns statement-container\">\n        <div class=\"statement-wrapper\">\n
+        \           <div class=\"row statement-main\">\n                <div class=\"large-4
+        columns\">\n                    <div class=\"statement-iconcolumn\">\n                        <img
+        src=\"//rightsstatements.org/files/buttons/InC.white.svg\" title=\"In Copyright\"
+        />\n                    </div>\n                </div>\n                <div
+        class=\"large-8 columns\">\n                    <div class=\"statement-textcolumn\">\n
+        \                       <h1>In Copyright</h1>\n                        <p>This
+        Item is protected by copyright and/or related rights.\n\n  You are free to
+        use this Item in any way that is permitted by the copyright and related rights
+        legislation that applies to your use.\n\n  For other uses you need to obtain
+        permission from the rights-holder(s).</p>\n                        \n\n                        \n
+        \                       <h2>Notices</h2>\n                        <ul>\n                            \n
+        \                               <li><span>Unless expressly stated otherwise,
+        the organization that has made this Item available makes no warranties about
+        the Item and cannot guarantee the accuracy of this Rights Statement. You are
+        responsible for your own use.</span></li>\n                            \n
+        \                               <li><span>You may find additional information
+        about the copyright status of the Item on the website of the organization
+        that has made the Item available.</span></li>\n                            \n
+        \                               <li><span>You may need to obtain other permissions
+        for your intended use. For example, other rights such as publicity, privacy
+        or moral rights may limit how you may use the material.</span></li>\n                            \n
+        \                       </ul>\n                        <p class=\"disclaimer\">DISCLAIMER
+        The purpose of this statement is to help the public understand how this Item
+        may be used. When there is a (non-standard) License or contract that governs
+        re-use of the associated Item, this statement only summarizes the effects
+        of some of its terms. It is not a License, and should not be used to license
+        your Work. To license your own Work, use a License offered at <a href=\"http://creativecommons.org/\">http://creativecommons.org/</a></p>\n
+        \                       <p>URI for this statement:<br/>\n                            <a
+        href=\"http://rightsstatements.org/vocab/InC/1.0/\">http://rightsstatements.org/vocab/InC/1.0/</a></p>\n
+        \                   </div>\n                </div>\n            </div>\n\n
+        \           <div class=\"row footer\">\n                <div class=\"large-9
+        columns\">\n                    This statement is provided by <a href=\"http://rightsstatements.org\">rightsstatements.org</a>\n
+        \               </div>\n                <div class=\"large-3 columns\">\n
+        \                   <img src=\"//rightsstatements.org/files/images/logo.svg\"
+        />\n                </div>\n            </div>\n        </div>\n    </div>\n
+        \   <script src=\"https://code.jquery.com/jquery-1.12.0.min.js\"></script>\n
+        \   <script src=\"https://code.jquery.com/jquery-migrate-1.2.1.min.js\"></script>\n
+        \   <script src=\"https://cdn.jsdelivr.net/what-input/2.0.1/what-input.min.js\"></script>\n
+        \   <script src=\"https://cdn.jsdelivr.net/foundation/6.2.0/foundation.min.js\"></script>\n
+        \   <script>\n        $(document).foundation();\n    </script>\n\n</body>\n\n\n</html>\n"
+    http_version: 
+  recorded_at: Thu, 18 Jan 2018 18:21:40 GMT
+- request:
+    method: get
+    uri: http://id.loc.gov/vocabulary/preservation/copyrightStatus/cpr
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/n-triples, text/plain;q=0.2, text/turtle, text/rdf+turtle, application/turtle;q=0.2,
+        application/x-turtle;q=0.2, application/ld+json, application/x-ld+json, application/n-quads,
+        text/x-nquads;q=0.2, application/rdf+json, text/html;q=0.5, application/xhtml+xml;q=0.7,
+        image/svg+xml;q=0.4, text/n3, text/rdf+n3;q=0.2, application/rdf+n3;q=0.2,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        application/trig, application/x-trig;q=0.2, application/trix
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 303
+      message: SEE OTHER
+    headers:
+      Location:
+      - http://id.loc.gov/vocabulary/preservation/copyrightStatus/cpr.jsonld
+      Vary:
+      - Accept
+      X-Uri:
+      - http://id.loc.gov/vocabulary/preservation/copyrightStatus/cpr
+      X-Preflabel:
+      - copyrighted
+      Content-Length:
+      - '0'
+      Date:
+      - Tue, 16 Jan 2018 21:31:59 GMT
+      Server:
+      - Apache
+      X-Varnish:
+      - 44983203 43941293
+      Age:
+      - '162839'
+      Via:
+      - 1.1 varnish-v4
+      X-Cache:
+      - HIT
+      X-Cache-Hits:
+      - '32'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Thu, 18 Jan 2018 18:45:58 GMT
+- request:
+    method: get
+    uri: http://id.loc.gov/vocabulary/preservation/copyrightStatus/cpr.jsonld
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/n-triples, text/plain;q=0.2, text/turtle, text/rdf+turtle, application/turtle;q=0.2,
+        application/x-turtle;q=0.2, application/ld+json, application/x-ld+json, application/n-quads,
+        text/x-nquads;q=0.2, application/rdf+json, text/html;q=0.5, application/xhtml+xml;q=0.7,
+        image/svg+xml;q=0.4, text/n3, text/rdf+n3;q=0.2, application/rdf+n3;q=0.2,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        application/trig, application/x-trig;q=0.2, application/trix
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/ld+json
+      Cache-Control:
+      - public, max-age=1209600
+      Etag:
+      - b47b59044745c26f00153caf18fe4e96
+      X-Uri:
+      - http://id.loc.gov/vocabulary/preservation/copyrightStatus/cpr
+      Content-Length:
+      - '2667'
+      Date:
+      - Sun, 24 Dec 2017 12:30:28 GMT
+      Server:
+      - Apache
+      X-Varnish:
+      - 44983204 9647415
+      Age:
+      - '2182530'
+      Via:
+      - 1.1 varnish-v4
+      X-Cache:
+      - HIT
+      X-Cache-Hits:
+      - '28109'
+      Accept-Ranges:
+      - bytes
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: |-
+        [  { "@id": "http://id.loc.gov/vocabulary/preservation/copyrightStatus/cpr", "@type": [ "http://www.loc.gov/mads/rdf/v1#Topic", "http://www.loc.gov/mads/rdf/v1#Authority", "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@language": "en",
+        "@value": "copyrighted" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSCollection": [ { "@id": "http://id.loc.gov/vocabulary/preservation/copyrightStatus/collection_PREMIS" } ], "http://www.loc.gov/mads/rdf/v1#definitionNote": [ { "@language": "en",
+        "@value": "Under copyright." } ], "http://www.loc.gov/mads/rdf/v1#code": [ { "@value": "cpr" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSScheme": [ { "@id": "http://id.loc.gov/vocabulary/preservation/copyrightStatus" }, { "@id": "http://id.loc.gov/vocabulary/preservation" } ], "http://www.loc.gov/mads/rdf/v1#adminMetadata": [ { "@id": "_:b15idlocgovvocabularypreservationcopyrightStatuscpr" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "en",
+        "@value": "copyrighted" } ], "http://www.w3.org/2004/02/skos/core#definition": [ { "@language": "en",
+        "@value": "Under copyright." } ], "http://www.w3.org/2004/02/skos/core#notation": [ { "@value": "cpr" } ], "http://www.w3.org/2004/02/skos/core#inScheme": [ { "@id": "http://id.loc.gov/vocabulary/preservation/copyrightStatus" }, { "@id": "http://id.loc.gov/vocabulary/preservation" } ], "http://www.w3.org/2004/02/skos/core#changeNote": [ { "@id": "_:b36idlocgovvocabularypreservationcopyrightStatuscpr" } ] },  { "@id": "_:b36idlocgovvocabularypreservationcopyrightStatuscpr", "@type": [ "http://purl.org/vocab/changeset/schema#ChangeSet" ], "http://purl.org/vocab/changeset/schema#subjectOfChange": [ { "@id": "http://id.loc.gov/vocabulary/preservation/copyrightStatus/cpr" } ], "http://purl.org/vocab/changeset/schema#creatorName": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlcmrc" } ], "http://purl.org/vocab/changeset/schema#createdDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2012-08-01T00:00:00" } ], "http://purl.org/vocab/changeset/schema#changeReason": [ { "@value": "new" } ] },  { "@id": "_:b15idlocgovvocabularypreservationcopyrightStatuscpr", "@type": [ "http://id.loc.gov/ontologies/RecordInfo#RecordInfo" ], "http://id.loc.gov/ontologies/RecordInfo#recordChangeDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2012-08-01T00:00:00" } ], "http://id.loc.gov/ontologies/RecordInfo#recordStatus": [ { "@value": "new" } ], "http://id.loc.gov/ontologies/RecordInfo#recordContentSource": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlcmrc" } ] } ]
+    http_version: 
+  recorded_at: Thu, 18 Jan 2018 18:45:59 GMT
+- request:
+    method: get
+    uri: http://id.loc.gov/vocabulary/preservation/copyrightStatus/cpr
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/n-triples, text/plain;q=0.2, text/turtle, text/rdf+turtle, application/turtle;q=0.2,
+        application/x-turtle;q=0.2, application/ld+json, application/x-ld+json, application/n-quads,
+        text/x-nquads;q=0.2, application/rdf+json, text/html;q=0.5, application/xhtml+xml;q=0.7,
+        image/svg+xml;q=0.4, text/n3, text/rdf+n3;q=0.2, application/rdf+n3;q=0.2,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        application/trig, application/x-trig;q=0.2, application/trix
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 303
+      message: SEE OTHER
+    headers:
+      Location:
+      - http://id.loc.gov/vocabulary/preservation/copyrightStatus/cpr.jsonld
+      Vary:
+      - Accept
+      X-Uri:
+      - http://id.loc.gov/vocabulary/preservation/copyrightStatus/cpr
+      X-Preflabel:
+      - copyrighted
+      Content-Length:
+      - '0'
+      Date:
+      - Tue, 16 Jan 2018 21:31:59 GMT
+      Server:
+      - Apache
+      X-Varnish:
+      - 45483499 43941293
+      Age:
+      - '162839'
+      Via:
+      - 1.1 varnish-v4
+      X-Cache:
+      - HIT
+      X-Cache-Hits:
+      - '33'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Thu, 18 Jan 2018 18:45:59 GMT
+- request:
+    method: get
+    uri: http://id.loc.gov/vocabulary/preservation/copyrightStatus/cpr.jsonld
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/n-triples, text/plain;q=0.2, text/turtle, text/rdf+turtle, application/turtle;q=0.2,
+        application/x-turtle;q=0.2, application/ld+json, application/x-ld+json, application/n-quads,
+        text/x-nquads;q=0.2, application/rdf+json, text/html;q=0.5, application/xhtml+xml;q=0.7,
+        image/svg+xml;q=0.4, text/n3, text/rdf+n3;q=0.2, application/rdf+n3;q=0.2,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        application/trig, application/x-trig;q=0.2, application/trix
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/ld+json
+      Cache-Control:
+      - public, max-age=1209600
+      Etag:
+      - b47b59044745c26f00153caf18fe4e96
+      X-Uri:
+      - http://id.loc.gov/vocabulary/preservation/copyrightStatus/cpr
+      Content-Length:
+      - '2667'
+      Date:
+      - Sun, 24 Dec 2017 12:30:28 GMT
+      Server:
+      - Apache
+      X-Varnish:
+      - 44983205 9647415
+      Age:
+      - '2182530'
+      Via:
+      - 1.1 varnish-v4
+      X-Cache:
+      - HIT
+      X-Cache-Hits:
+      - '28110'
+      Accept-Ranges:
+      - bytes
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: |-
+        [  { "@id": "http://id.loc.gov/vocabulary/preservation/copyrightStatus/cpr", "@type": [ "http://www.loc.gov/mads/rdf/v1#Topic", "http://www.loc.gov/mads/rdf/v1#Authority", "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@language": "en",
+        "@value": "copyrighted" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSCollection": [ { "@id": "http://id.loc.gov/vocabulary/preservation/copyrightStatus/collection_PREMIS" } ], "http://www.loc.gov/mads/rdf/v1#definitionNote": [ { "@language": "en",
+        "@value": "Under copyright." } ], "http://www.loc.gov/mads/rdf/v1#code": [ { "@value": "cpr" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSScheme": [ { "@id": "http://id.loc.gov/vocabulary/preservation/copyrightStatus" }, { "@id": "http://id.loc.gov/vocabulary/preservation" } ], "http://www.loc.gov/mads/rdf/v1#adminMetadata": [ { "@id": "_:b15idlocgovvocabularypreservationcopyrightStatuscpr" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "en",
+        "@value": "copyrighted" } ], "http://www.w3.org/2004/02/skos/core#definition": [ { "@language": "en",
+        "@value": "Under copyright." } ], "http://www.w3.org/2004/02/skos/core#notation": [ { "@value": "cpr" } ], "http://www.w3.org/2004/02/skos/core#inScheme": [ { "@id": "http://id.loc.gov/vocabulary/preservation/copyrightStatus" }, { "@id": "http://id.loc.gov/vocabulary/preservation" } ], "http://www.w3.org/2004/02/skos/core#changeNote": [ { "@id": "_:b36idlocgovvocabularypreservationcopyrightStatuscpr" } ] },  { "@id": "_:b36idlocgovvocabularypreservationcopyrightStatuscpr", "@type": [ "http://purl.org/vocab/changeset/schema#ChangeSet" ], "http://purl.org/vocab/changeset/schema#subjectOfChange": [ { "@id": "http://id.loc.gov/vocabulary/preservation/copyrightStatus/cpr" } ], "http://purl.org/vocab/changeset/schema#creatorName": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlcmrc" } ], "http://purl.org/vocab/changeset/schema#createdDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2012-08-01T00:00:00" } ], "http://purl.org/vocab/changeset/schema#changeReason": [ { "@value": "new" } ] },  { "@id": "_:b15idlocgovvocabularypreservationcopyrightStatuscpr", "@type": [ "http://id.loc.gov/ontologies/RecordInfo#RecordInfo" ], "http://id.loc.gov/ontologies/RecordInfo#recordChangeDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2012-08-01T00:00:00" } ], "http://id.loc.gov/ontologies/RecordInfo#recordStatus": [ { "@value": "new" } ], "http://id.loc.gov/ontologies/RecordInfo#recordContentSource": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlcmrc" } ] } ]
+    http_version: 
+  recorded_at: Thu, 18 Jan 2018 18:45:59 GMT
+- request:
+    method: get
+    uri: http://rightsstatements.org/vocab/InC/1.0/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/n-triples, text/plain;q=0.2, text/turtle, text/rdf+turtle, application/turtle;q=0.2,
+        application/x-turtle;q=0.2, application/ld+json, application/x-ld+json, application/n-quads,
+        text/x-nquads;q=0.2, application/rdf+json, text/html;q=0.5, application/xhtml+xml;q=0.7,
+        image/svg+xml;q=0.4, text/n3, text/rdf+n3;q=0.2, application/rdf+n3;q=0.2,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        application/trig, application/x-trig;q=0.2, application/trix
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 303
+      message: See Other
+    headers:
+      Date:
+      - Thu, 18 Jan 2018 18:46:00 GMT
+      Server:
+      - Apache
+      Location:
+      - http://rightsstatements.org/page/InC/1.0/?language=en
+      Content-Length:
+      - '0'
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Thu, 18 Jan 2018 18:46:00 GMT
+- request:
+    method: get
+    uri: http://rightsstatements.org/page/InC/1.0/?language=en
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/n-triples, text/plain;q=0.2, text/turtle, text/rdf+turtle, application/turtle;q=0.2,
+        application/x-turtle;q=0.2, application/ld+json, application/x-ld+json, application/n-quads,
+        text/x-nquads;q=0.2, application/rdf+json, text/html;q=0.5, application/xhtml+xml;q=0.7,
+        image/svg+xml;q=0.4, text/n3, text/rdf+n3;q=0.2, application/rdf+n3;q=0.2,
+        application/rdf+xml, text/csv, text/tab-separated-values, application/csvm+json,
+        application/trig, application/x-trig;q=0.2, application/trix
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 18 Jan 2018 18:46:00 GMT
+      Server:
+      - Apache
+      Link:
+      - "<http://localhost:9000/page/InC/1.0/>; rel=derivedfrom"
+      Content-Type:
+      - text/html
+      Content-Language:
+      - en
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '2180'
+    body:
+      encoding: ASCII-8BIT
+      string: "<!doctype html>\n\n<html class=\"no-js\" lang=\"\">\n\n<head>\n    <meta
+        charset=\"utf-8\" />\n    <meta http-equiv=\"x-ua-compatible\" content=\"ie=edge\">\n
+        \   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"
+        />\n    <title>In Copyright | Rights Statements</title>\n    <link rel=\"stylesheet\"
+        href=\"https://cdn.jsdelivr.net/foundation/6.2.0/foundation.min.css\" />\n
+        \   <link href='//rightsstatements.org/css/rights-stmt.css' rel='stylesheet'>\n
+        \   <link rel=\"stylesheet\" type=\"text/css\" href=\"//cloud.typography.com/7018914/6677352/css/fonts.css\"
+        />\n</head>\n\n\n<body markdown=\"0\">\n\n    <script type=\"application/ld+json\">\n
+        \       {\n  \"identifier\": \"InC\",\n  \"note\": [\n    {\n      \"@language\":
+        \"en\",\n      \"@value\": \"You may find additional information about the
+        copyright status of the Item on the website of the organization that has made
+        the Item available.\"\n    },\n    {\n      \"@language\": \"en\",\n      \"@value\":
+        \"Unless expressly stated otherwise, the organization that has made this Item
+        available makes no warranties about the Item and cannot guarantee the accuracy
+        of this Rights Statement. You are responsible for your own use.\"\n    },\n
+        \   {\n      \"@language\": \"en\",\n      \"@value\": \"You may need to obtain
+        other permissions for your intended use. For example, other rights such as
+        publicity, privacy or moral rights may limit how you may use the material.\"\n
+        \   }\n  ],\n  \"creator\": \"http://rightsstatements.org/vocab/irswg\",\n
+        \ \"inScheme\": \"http://rightsstatements.org/vocab/1.0/\",\n  \"@type\":
+        [\n    \"dcterms:RightsStatement\",\n    \"skos:Concept\"\n  ],\n  \"prefLabel\":
+        {\n    \"@language\": \"en\",\n    \"@value\": \"In Copyright\"\n  },\n  \"versionInfo\":
+        \"1.0\",\n  \"@context\": {\n    \"note\": \"http://www.w3.org/2004/02/skos/core#note\",\n
+        \   \"creator\": {\n      \"@id\": \"http://purl.org/dc/terms/creator\",\n
+        \     \"@type\": \"@id\"\n    },\n    \"relatedMatch\": {\n      \"@id\":
+        \"http://www.w3.org/2004/02/skos/core#relatedMatch\",\n      \"@type\": \"@id\"\n
+        \   },\n    \"prefLabel\": \"http://www.w3.org/2004/02/skos/core#prefLabel\",\n
+        \   \"definition\": \"http://www.w3.org/2004/02/skos/core#definition\",\n
+        \   \"scopeNote\": \"http://www.w3.org/2004/02/skos/core#scopeNote\",\n    \"identifier\":
+        \"http://purl.org/dc/elements/1.1/identifier\",\n    \"inScheme\": {\n      \"@id\":
+        \"http://www.w3.org/2004/02/skos/core#inScheme\",\n      \"@type\": \"@id\"\n
+        \   },\n    \"closeMatch\": {\n      \"@id\": \"http://www.w3.org/2004/02/skos/core#closeMatch\",\n
+        \     \"@type\": \"@id\"\n    },\n    \"modified\": {\n      \"@id\": \"http://purl.org/dc/terms/modified\",\n
+        \     \"@type\": \"http://www.w3.org/2001/XMLSchema#date\"\n    },\n    \"versionInfo\":
+        \"http://www.w3.org/2002/07/owl#versionInfo\",\n    \"cc\": \"http://creativecommons.org/ns#\",\n
+        \   \"schema\": \"http://schema.org/\",\n    \"premiscopy\": \"http://id.loc.gov/vocabulary/preservation/copyrightStatus/\",\n
+        \   \"owl\": \"http://www.w3.org/2002/07/owl#\",\n    \"xsd\": \"http://www.w3.org/2001/XMLSchema#\",\n
+        \   \"dcmitype\": \"http://purl.org/dc/dcmitype/\",\n    \"skos\": \"http://www.w3.org/2004/02/skos/core#\",\n
+        \   \"rdfs\": \"http://www.w3.org/2000/01/rdf-schema#\",\n    \"p3p\": \"http://www.w3.org/2002/01/p3prdfv1#\",\n
+        \   \"edm\": \"http://www.europeana.eu/schemas/edm/\",\n    \"dcterms\": \"http://purl.org/dc/terms/\",\n
+        \   \"odrl\": \"http://www.w3c.org/community/odrl/two/vocab/2.1/\",\n    \"foaf\":
+        \"http://xmlns.com/foaf/0.1/\",\n    \"dc\": \"http://purl.org/dc/elements/1.1/\"\n
+        \ },\n  \"closeMatch\": \"http://www.europeana.eu/rights/rr-f/\",\n  \"relatedMatch\":
+        \"premiscopy:cpr\",\n  \"modified\": \"2016-05-09\",\n  \"definition\": {\n
+        \   \"@language\": \"en\",\n    \"@value\": \"This Item is protected by copyright
+        and/or related rights.\\n\\n  You are free to use this Item in any way that
+        is permitted by the copyright and related rights legislation that applies
+        to your use.\\n\\n  For other uses you need to obtain permission from the
+        rights-holder(s).\"\n  },\n  \"@id\": \"http://rightsstatements.org/vocab/InC/1.0/\",\n
+        \ \"scopeNote\": {\n    \"@language\": \"en\",\n    \"@value\": \"This Rights
+        Statement can be used for an Item that is in copyright. Using this statement
+        implies that the organization making this Item available has determined that
+        the Item is in copyright and either is the rights-holder, has obtained permission
+        from the rights-holder(s) to make their Work(s) available, or makes the Item
+        available under an exception or limitation to copyright (including Fair Use)
+        that entitles it to make the Item available.\"\n  }\n}\n    </script>\n\n
+        \   <div class=\"row columns statement-container\">\n        <div class=\"statement-wrapper\">\n
+        \           <div class=\"row statement-main\">\n                <div class=\"large-4
+        columns\">\n                    <div class=\"statement-iconcolumn\">\n                        <img
+        src=\"//rightsstatements.org/files/buttons/InC.white.svg\" title=\"In Copyright\"
+        />\n                    </div>\n                </div>\n                <div
+        class=\"large-8 columns\">\n                    <div class=\"statement-textcolumn\">\n
+        \                       <h1>In Copyright</h1>\n                        <p>This
+        Item is protected by copyright and/or related rights.\n\n  You are free to
+        use this Item in any way that is permitted by the copyright and related rights
+        legislation that applies to your use.\n\n  For other uses you need to obtain
+        permission from the rights-holder(s).</p>\n                        \n\n                        \n
+        \                       <h2>Notices</h2>\n                        <ul>\n                            \n
+        \                               <li><span>Unless expressly stated otherwise,
+        the organization that has made this Item available makes no warranties about
+        the Item and cannot guarantee the accuracy of this Rights Statement. You are
+        responsible for your own use.</span></li>\n                            \n
+        \                               <li><span>You may find additional information
+        about the copyright status of the Item on the website of the organization
+        that has made the Item available.</span></li>\n                            \n
+        \                               <li><span>You may need to obtain other permissions
+        for your intended use. For example, other rights such as publicity, privacy
+        or moral rights may limit how you may use the material.</span></li>\n                            \n
+        \                       </ul>\n                        <p class=\"disclaimer\">DISCLAIMER
+        The purpose of this statement is to help the public understand how this Item
+        may be used. When there is a (non-standard) License or contract that governs
+        re-use of the associated Item, this statement only summarizes the effects
+        of some of its terms. It is not a License, and should not be used to license
+        your Work. To license your own Work, use a License offered at <a href=\"http://creativecommons.org/\">http://creativecommons.org/</a></p>\n
+        \                       <p>URI for this statement:<br/>\n                            <a
+        href=\"http://rightsstatements.org/vocab/InC/1.0/\">http://rightsstatements.org/vocab/InC/1.0/</a></p>\n
+        \                   </div>\n                </div>\n            </div>\n\n
+        \           <div class=\"row footer\">\n                <div class=\"large-9
+        columns\">\n                    This statement is provided by <a href=\"http://rightsstatements.org\">rightsstatements.org</a>\n
+        \               </div>\n                <div class=\"large-3 columns\">\n
+        \                   <img src=\"//rightsstatements.org/files/images/logo.svg\"
+        />\n                </div>\n            </div>\n        </div>\n    </div>\n
+        \   <script src=\"https://code.jquery.com/jquery-1.12.0.min.js\"></script>\n
+        \   <script src=\"https://code.jquery.com/jquery-migrate-1.2.1.min.js\"></script>\n
+        \   <script src=\"https://cdn.jsdelivr.net/what-input/2.0.1/what-input.min.js\"></script>\n
+        \   <script src=\"https://cdn.jsdelivr.net/foundation/6.2.0/foundation.min.js\"></script>\n
+        \   <script>\n        $(document).foundation();\n    </script>\n\n</body>\n\n\n</html>\n"
+    http_version: 
+  recorded_at: Thu, 18 Jan 2018 18:46:00 GMT
+recorded_with: VCR 4.0.0

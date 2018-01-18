@@ -94,7 +94,11 @@ describe Importer::Factory::ETDFactory do
 
       it 'doesn\'t attach the same file again' do
         expect(etd.file_sets.count).to eq 1
-        factory.attach_files(etd, files)
+
+        VCR.use_cassette("etd_importer") do
+          factory.attach_files(etd, files)
+        end
+
         expect(etd.file_sets.count).to eq 1
       end
     end
