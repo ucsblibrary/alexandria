@@ -1,6 +1,7 @@
 <% # FIXME: this will break when we have curated collections and maps in multiple MapSets %>
 <% map_set = document.map_sets.first %>
 <% collection = document.in_collections.first %>
+<% return if collection.nil? %>
 
 <ul class="adrl-breadcrumb">
   <li><%= link_to("ADRL", root_url) %>
