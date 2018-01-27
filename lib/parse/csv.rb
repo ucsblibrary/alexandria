@@ -82,8 +82,15 @@ module Parse::CSV
       processed[:collection] ||= {}
       update_collection(processed[:collection], Regexp.last_match(1), val)
     else
-      last_entry = Array(processed[header.to_sym]).last
-      if last_entry.is_a?(Hash) && !last_entry[:name]
+      previous_entry = Array(processed[header.to_sym]).last
+
+      # if the previous value for the named header is a non-RDF Hash that
+      # doesn't have a name key, then this is a typed field that needs to have a
+      # type assigned
+      is_typed_field = previous_entry.is_a?(Hash) &&
+                       !previous_entry.key?(:name) && !previous_entry.key?(:_rdf)
+
+      if is_typed_field
         update_typed_field(header, val, processed)
       else
         extract_multi_value_field(header, val, processed)
