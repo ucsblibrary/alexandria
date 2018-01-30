@@ -1,4 +1,9 @@
-<% thumb = random_thumbnail_from_collection(@member_docs) %>
+<% thumb = if @presenter.id == "f3ww7kdw"
+  ['newspapers-collection.png']
+else
+  random_thumbnail_from_collection(@member_docs)
+end %>
+
 <%=
   link_to collection_path(@presenter), data: { turbolinks: false } do
     if thumb
