@@ -1,40 +1,33 @@
-<% carousel = document["image_url_ssm"].present? && document["image_url_ssm"].count > 1 %>
+<% pdfs_present = document.file_sets.select { |fs| fs["original_filename_ss"].include?('pdf') }.size > 0 ? true : false %>
+
+<% if pdfs_present %>
 
 <div class="row">
   <div class="col-md-6">
-    <% if carousel %>
-      <div class="stage-wrapper clearfix">
-        <div class="stage clearfix">
-          <div class="stage-container">
-            <div class="jcarousel-wrapper">
-              <div class="jcarousel">
-                <ul class="clearfix">
+    <% Array(document['image_url_ssm']).each do |img| %>
+        <% fs_id = URI.decode(img.sub(%r{\/image-service\/([^\/]+).*}, '\1')).sub(%r{\A([^\/]*)\/.*}, '\1') %>
+        <% if document.file_sets.find { |fs| fs.id == fs_id }.pdf? %>
+          <%= link_to(image_tag(img, style: 'width: 100%'), download_url(fs_id, only_path: true)) %>
+        <% else %>
+          <%= image_tag(img, style: 'width: 100%') %>
+        <% end %>
     <% end %>
-
-  <% Array(document['image_url_ssm']).each do |img| %>
-    <% if carousel %><li><% end %>
-      <% fs_id = URI.decode(img.sub(%r{\/image-service\/([^\/]+).*}, '\1')).sub(%r{\A([^\/]*)\/.*}, '\1') %>
-
-      <% if document.file_sets.find { |fs| fs.id == fs_id }.pdf? %>
-        <%= link_to(image_tag(img, style: 'width: 100%'), download_url(fs_id, only_path: true)) %>
-      <% else %>
-        <%= image_tag(img, style: 'width: 100%') %>
-      <% end %>
-
-      <% if carousel %></li><% end %>
-  <% end %>
-
-  <% if carousel %>
-                </ul>
-              </div>
-              <a href="#" class="jcarousel-control-prev">&lsaquo;</a>
-              <a href="#" class="jcarousel-control-next">&rsaquo;</a>
-
-              <p class="jcarousel-pagination"></p>
-            </div>
-          </div>
-        </div>
-      </div>
-  <% end %>
   </div>
 </div>
+<% else %>
+<div class="row zoom">
+  <% if document["file_set_iiif_manifest_ssm"].present? %>
+
+    <% if document["file_set_iiif_manifest_ssm"].size == 1 %>
+      <%= openseadragon_picture_tag(
+      document["file_set_iiif_manifest_ssm"]) %>
+    <% else %>
+      <%= openseadragon_picture_tag(
+        document["file_set_iiif_manifest_ssm"],
+        { data: { openseadragon: { tileSources:
+        document["file_set_iiif_manifest_ssm"], sequenceMode: true } } }
+      ) %>
+    <% end %>
+  <% end %>
+</div>
+<% end %>

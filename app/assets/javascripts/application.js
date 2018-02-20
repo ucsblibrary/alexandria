@@ -16,10 +16,8 @@
 //= require blacklight/blacklight
 //= require bootstrap/tab
 //
-//= require jquery.jcarousel
 //= require search_typeahead
 //= require blacklight_gallery
-//= require jcarousel
 //= require manage_repeating_fields
 //= require editor
 //= require contributor_editor
@@ -28,7 +26,6 @@
 //= require editMetadata.js
 //= require openseadragon
 //= require openseadragon/rails
-
 // For blacklight_range_limit built-in JS, if you don't want it you don't need
 // this:
 //= require 'blacklight_range_limit'
