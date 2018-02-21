@@ -17,7 +17,7 @@ feature "Image show page:" do
   let(:collection) do
     create(:collection,
            title: ["HECK"],
-           identifier: ["ark:/99999/YES"])
+           identifier: ["ark:/99123/YES"])
   end
 
   let(:image) do
@@ -36,9 +36,21 @@ feature "Image show page:" do
            title: title)
   end
 
+  let(:file_path) { File.join(fixture_path, "images", "cusbspcmss36_110108_1_a.tif") }
+
+  let(:file_set) do
+    FileSet.new(admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID) do |fs|
+      Hydra::Works::AddFileToFileSet.call(
+        fs,
+        File.new(file_path),
+        :original_file
+      )
+    end
+  end
+
   # See config/routes.rb: routing for images is a little weird
   scenario "show the page for the regular image" do
-    visit catalog_ark_path("ark:", "99999", image.id)
+    visit catalog_ark_path("ark:", "99123", image.id)
 
     expect(page).to have_content extent.first
     expect(page).to have_content creator.first
@@ -46,8 +58,33 @@ feature "Image show page:" do
     expect(page).to have_content title.first
   end
 
+  describe "viewing images allows for pan and zoom" do
+    before do
+      allow_any_instance_of(SolrDocument).to receive(:ark).and_return("99123")
+      image.members << file_set
+      image.save!
+      image.update_index
+    end
+
+    context "page doesn't use openseadragon picture tag with pdfs" do
+      let(:file_path) { File.join(fixture_path, "pdf", "sample.pdf") }
+
+      scenario "with a pdf" do
+        visit catalog_ark_path("ark:", "99123", image.id)
+        expect(page).not_to have_css("picture")
+      end
+    end
+
+    context "page uses openseadragon picture tag with a tif" do
+      scenario "with a tif" do
+        visit catalog_ark_path("ark:", "99123", image.id)
+        expect(page).to have_css("picture")
+      end
+    end
+  end
+
   scenario "show the page for the image missing a collection" do
-    visit catalog_ark_path("ark:", "99999", image_without_collection.id)
+    visit catalog_ark_path("ark:", "99123", image_without_collection.id)
 
     expect(page).to have_content title.first
   end
