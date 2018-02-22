@@ -58,18 +58,17 @@ class CatalogController < ApplicationController
 
     config.oai = {
       provider: {
-        repository_name: 'Test',
-        repository_url: 'http://localhost:3000/catalog/oai',
-        record_prefix: 'oai:test',
-        admin_email: 'root@localhost',
-        sample_id: '109660'
+        repository_name: "Alexandria Digital Research Library",
+        repository_url: "https://alexandria.ucsb.edu/catalog/oai",
+        record_prefix: "oai:ucsb",
+        admin_email: "admin@library.ucsb.edu",
       },
       document: {
-        limit: 25,            # number of records returned with each request, default: 15
-        set_fields: [        # ability to define ListSets, optional, default: nil
-          { label: 'language', solr_field: 'language_facet' }
+        limit: 25,
+        set_fields: [
+          { label: "default", solr_field: "title_tesim", description: "The default set" }
         ]
-      }
+      },
     }
 
     # This controls which partials are used, and in what order, for

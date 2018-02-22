@@ -8,6 +8,8 @@ class SolrDocument
   include Blacklight::Solr::Document
   include BlacklightOaiProvider::SolrDocument
 
+  self.timestamp_key = 'timestamp'
+
   include Blacklight::Gallery::OpenseadragonSolrDocument
   include CurationConcerns::SolrDocumentBehavior
 
@@ -27,7 +29,6 @@ class SolrDocument
 
   # Do content negotiation for AF models.
   use_extension(Hydra::ContentNegotiation)
-  self.timestamp_key = 'record_creation_date'
 
   # This overrides the connection provided by Hydra::ContentNegotiation so we
   # can get the model too.
