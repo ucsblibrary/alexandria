@@ -139,6 +139,10 @@ GEM
       bootstrap-sass (~> 3.0)
       openseadragon (>= 0.2.0)
       rails
+    blacklight_oai_provider (6.0.0)
+      blacklight (~> 6.0)
+      oai (~> 0.4)
+      rails (>= 4.2, < 6)
     blacklight_range_limit (6.2.1)
       blacklight (>= 6.0.2)
       jquery-rails
@@ -290,6 +294,8 @@ GEM
       multipart-post (>= 1.2, < 3)
     faraday-encoding (0.0.4)
       faraday
+    faraday_middleware (0.12.2)
+      faraday (>= 0.7.4, < 1.0)
     fcrepo_wrapper (0.7.0)
       ruby-progressbar
     ffi (1.9.23)
@@ -506,6 +512,10 @@ GEM
       activesupport (>= 3.2.18)
       i18n
       nokogiri
+    oai (0.4.0)
+      builder (>= 3.1.0)
+      faraday
+      faraday_middleware
     oauth2 (1.4.0)
       faraday (>= 0.8, < 0.13)
       jwt (~> 1.0)
@@ -844,6 +854,7 @@ DEPENDENCIES
   american_date (~> 1.1.0)
   awesome_print
   blacklight-gallery (~> 0.8.0)
+  blacklight_oai_provider
   blacklight_range_limit (~> 6.2.1)
   byebug
   capistrano (~> 3.8.0)

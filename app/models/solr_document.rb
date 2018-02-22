@@ -6,6 +6,10 @@ require "identifier"
 
 class SolrDocument
   include Blacklight::Solr::Document
+  include BlacklightOaiProvider::SolrDocument
+
+  self.timestamp_key = "timestamp"
+
   include Blacklight::Gallery::OpenseadragonSolrDocument
   include CurationConcerns::SolrDocumentBehavior
 

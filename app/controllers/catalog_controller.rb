@@ -4,6 +4,7 @@ class CatalogController < ApplicationController
   include BlacklightRangeLimit::ControllerOverride
   include CurationConcerns::CatalogController
   include Hydra::Controller::ControllerBehavior
+  include BlacklightOaiProvider::Controller
 
   # enforce_show_permissions is from hydra-access-controls gem
   before_action :enforce_show_permissions, only: :show
@@ -53,6 +54,25 @@ class CatalogController < ApplicationController
     config.view.gallery.partials = [:index_header, :index]
     config.view.slideshow.partials = [:index]
     config.view.slideshow.slideshow_method = :choose_image
+
+    config.oai = {
+      provider: {
+        repository_name: Rails.application.secrets.repository_name,
+        repository_url: Rails.application.secrets.repository_url,
+        record_prefix: Rails.application.secrets.oai_record_prefix,
+        admin_email: Rails.application.secrets.admin_email,
+      },
+      document: {
+        limit: 25,
+        set_fields: [
+          {
+            label: "default",
+            solr_field: "title_tesim",
+            description: "The default set",
+          },
+        ],
+      },
+    }
 
     # This controls which partials are used, and in what order, for
     # each record type.  E.g., for an AudioRecording we will render
