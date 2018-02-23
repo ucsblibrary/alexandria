@@ -55,19 +55,22 @@ class CatalogController < ApplicationController
     config.view.slideshow.partials = [:index]
     config.view.slideshow.slideshow_method = :choose_image
 
-
     config.oai = {
       provider: {
         repository_name: "Alexandria Digital Research Library",
         repository_url: "https://alexandria.ucsb.edu/catalog/oai",
         record_prefix: "oai:ucsb",
-        admin_email: "admin@library.ucsb.edu",
+        admin_email: "systems@curationexperts.com",
       },
       document: {
         limit: 25,
         set_fields: [
-          { label: "default", solr_field: "title_tesim", description: "The default set" }
-        ]
+          {
+            label: "default",
+            solr_field: "title_tesim",
+            description: "The default set",
+          },
+        ],
       },
     }
 
