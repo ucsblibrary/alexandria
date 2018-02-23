@@ -78,6 +78,8 @@ Rails.application.routes.draw do
   post "access/:id/destroy", to: "access#destroy"
   post "access/:id/deactivate", to: "access#deactivate"
 
+  concern :oai_provider, BlacklightOaiProvider::Routes.new
+
   concern :searchable, Blacklight::Routes::Searchable.new
   concern :range_searchable, BlacklightRangeLimit::Routes::RangeSearchable.new
   resource :catalog,
@@ -85,6 +87,7 @@ Rails.application.routes.draw do
            as: "catalog",
            path: "/catalog",
            controller: "catalog" do
+    concerns :oai_provider
     concerns :searchable
     concerns :range_searchable
   end
