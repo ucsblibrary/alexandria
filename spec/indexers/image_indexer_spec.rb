@@ -40,6 +40,9 @@ describe ImageIndexer do
         expect(subject["large_image_url_ssm"]).to(
           eq ["/image-service/s1%2F78%2F4k%2F72%2Fs1784k724%2Ffiles%2F6185235a-79b2-4c29-8c24-4d6ad9b11470/full/1000,/0/default.jpg"]
         )
+        expect(subject["file_set_iiif_manifest_ssm"]).to(
+          eq ["/image-service/s1%2F78%2F4k%2F72%2Fs1784k724%2Ffiles%2F6185235a-79b2-4c29-8c24-4d6ad9b11470/info.json"]
+        )
         # rubocop:enable Metrics/LineLength
       end
     end
