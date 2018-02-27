@@ -1,14 +1,4 @@
 GIT
-  remote: https://github.com/curationexperts/riiif.git
-  revision: db122f9f61c2573c620a8d6ac39bd7633149da45
-  ref: db122f9f61c2573c620a8d6ac39bd7633149da45
-  specs:
-    riiif (2.0.0.beta2)
-      deprecation (>= 1.0.0)
-      iiif-image-api (~> 0.1.0)
-      railties (>= 4.2, < 6)
-
-GIT
   remote: https://github.com/projecthydra-labs/linked_vocabs.git
   revision: 67d80da0de07bf428c7f1a70ac2647b96edc274b
   specs:
@@ -679,6 +669,10 @@ GEM
       sass-rails
       twitter-bootstrap-rails
     retriable (3.1.1)
+    riiif (2.0.0)
+      deprecation (>= 1.0.0)
+      iiif-image-api (~> 0.1.0)
+      railties (>= 4.2, < 6)
     rsolr (2.1.0)
       builder (>= 2.1.2)
       faraday (>= 0.9.0)
@@ -889,7 +883,7 @@ DEPENDENCIES
   resque-pool
   resque-status
   resque-web
-  riiif!
+  riiif (>= 2.0.0)
   rsolr
   rspec-activemodel-mocks
   rspec-rails
@@ -910,4 +904,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   1.16.0
+   1.16.1
