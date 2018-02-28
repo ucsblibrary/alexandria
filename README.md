@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/ucsblibrary/alexandria.svg?branch=master)](https://travis-ci.org/ucsblibrary/alexandria)
+
 # Developing
 
 1. Copy `config/secrets.yml.template` to `config/secrets.yml` and add
