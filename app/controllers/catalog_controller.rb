@@ -104,6 +104,7 @@ class CatalogController < ApplicationController
         lc_subject_label_tesim
         location_label_tesim
         title_tesim
+        all_text_timv
       ].join(" "),
       wt: "json",
       qt: "search",
