@@ -57,10 +57,10 @@ class CatalogController < ApplicationController
 
     config.oai = {
       provider: {
-        repository_name: Rails.application.secrets.repository_name,
-        repository_url: Rails.application.secrets.repository_url,
-        record_prefix: Rails.application.secrets.oai_record_prefix,
-        admin_email: Rails.application.secrets.admin_email,
+        repository_name: Settings.oai_repository_name,
+        repository_url: Settings.oai_repository_url,
+        record_prefix: Settings.oai_record_prefix,
+        admin_email: Rails.application.secrets.oai_admin_email,
       },
       document: {
         limit: 25,
