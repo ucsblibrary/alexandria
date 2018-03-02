@@ -35,6 +35,7 @@ gem "qa", "~> 0.11.0"
 gem "rdf-marmotta", "~> 0.1.1"
 gem "riiif", ">= 2.0.0"
 gem "rsolr"
+gem "simple_form", "3.5.0"
 gem "traject", "~> 2.3.2"
 
 # https://github.com/amatsuda/kaminari/pull/636
