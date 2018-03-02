@@ -9,6 +9,6 @@ default_params:
   - "alma.mms_tagSuppressed=false"
 ark_query: "(alma.standard_number=%<ark>s)"
 binary_query: "(alma.local_field_956=%<binary>s)"
-cylinder_query: "(alma.all_for_ui=http://www.library.ucsb.edu/OBJID/Cylinder*)"
+cylinder_query: "(alma.all_for_ui=www.library.ucsb.edu/OBJID/Cylinder*)"
 cylinder_query_single: "(alma.all_for_ui=*OBJID/Cylinder%<number>s)"
 etd_query: "(alma.local_field_947=pqd)"
