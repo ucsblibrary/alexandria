@@ -2,6 +2,7 @@ defaults: &defaults
   binary_source_root: <%= ENV['ADRL_BINARY_ROOT'] || "/opt/ingest" %>
   derivatives_dir: <%= ENV['ADRL_DERIVATIVES'] || "#{Rails.root}/tmp/derivatives" %>
   download_root: <%= ENV['ADRL_DOWNLOAD_ROOT'] || "#{Rails.root}/tmp/download_root" %>
+  sample_data: <%= ENV['SAMPLE_DATA_DIR'] || "#{Rails.root}/tmp/sample_data" %>
   ezid_host: ezid.cdlib.org
   ezid_port: 443
   ffmpeg_path: <%= ENV['FFMPEG_PATH'] || "ffmpeg" %>
