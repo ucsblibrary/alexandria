@@ -18,11 +18,18 @@ namespace :fedora do
 
   desc "Print fedora object counts"
   task count: [:environment] do
-    models = CurationConcerns.config.curation_concerns +
-             [Collection, FileSet] +
+    puts "Number of objects in fedora:"
+    puts "  ActiveFedora::Base: #{ActiveFedora::Base.count}"
+
+    puts "Counts by model:"
+    models = [Hydra::AdminPolicy,
+              Hydra::AccessControl,
+              Hydra::AccessControls::Permission,
+              Collection,
+              FileSet,] +
+             CurationConcerns.config.curation_concerns +
              LocalAuthority::LOCAL_AUTHORITY_MODELS - [Agent]
 
-    puts "Number of objects in fedora:"
     models.each do |model|
       puts "  #{model}: #{model.count}"
     end
