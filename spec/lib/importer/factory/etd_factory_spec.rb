@@ -89,7 +89,7 @@ describe Importer::Factory::ETDFactory do
         fs.save!
       end
 
-      it 'doesn\'t attach the same file again' do
+      it "doesn't attach the same file again" do
         expect(etd.file_sets.count).to eq 1
         factory.attach_files(etd, files)
         expect(etd.file_sets.count).to eq 1

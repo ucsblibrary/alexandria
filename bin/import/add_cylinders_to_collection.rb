@@ -9,7 +9,7 @@
 
 $stdout.sync = true # flush output immediately
 puts "Loading environment"
-require File.expand_path("../../config/environment", __FILE__)
+require File.expand_path("../config/environment", __dir__)
 
 # Find or create the right collection:
 require "importer"

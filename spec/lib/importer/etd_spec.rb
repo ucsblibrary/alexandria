@@ -91,14 +91,14 @@ describe Importer::ETD do
       end
     end
 
-    context 'when ETD collection doesn\'t exist yet' do
+    context "when ETD collection doesn't exist yet" do
       before { Collection.destroy_all }
 
       it "raises an exception" do
         expect do
           described_class.ensure_collection_exists
         end.to(
-          change { ETD.count }.by(0).and(
+          change(ETD, :count).by(0).and(
             raise_error(
               CollectionNotFound,
               "Not Found: Collection with accession number [\"etds\"]"

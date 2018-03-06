@@ -36,6 +36,6 @@ module SessionsHelper
       groups.include? sg
     end
 
-    user.update_attributes(group_list: new_groups + default_groups)
+    user.update(group_list: new_groups + default_groups)
   end
 end

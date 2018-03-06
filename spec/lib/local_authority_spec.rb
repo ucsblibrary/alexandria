@@ -86,7 +86,7 @@ describe LocalAuthority do
             rh = described_class.find_or_create_rdf_attribute(
               :rights_holder, attributes
             )
-          end.to change { Agent.count }.by(1)
+          end.to change(Agent, :count).by(1)
 
           expect(rh.fetch(:rights_holder).map(&:class).uniq).to eq [RDF::URI]
           local_rights_holder = Agent.first
@@ -124,7 +124,7 @@ describe LocalAuthority do
             described_class.find_or_create_rdf_attribute(
               :rights_holder, attributes
             )
-          end.to change { Agent.count }.by(1)
+          end.to change(Agent, :count).by(1)
 
           expect(Agent.all.map(&:foaf_name).sort).to(
             eq ["Bilbo Baggins", "Frodo Baggins"]
@@ -141,7 +141,7 @@ describe LocalAuthority do
             described_class.find_or_create_rdf_attribute(
               :rights_holder, attributes
             )
-          end.to change { Agent.count }.by(1)
+          end.to change(Agent, :count).by(1)
         end
       end
 
@@ -157,7 +157,7 @@ describe LocalAuthority do
             rh = described_class.find_or_create_rdf_attribute(
               :rights_holder, attributes
             )
-          end.to change { Person.count }.by(1)
+          end.to change(Person, :count).by(1)
           expect(rh.fetch(:rights_holder).map(&:class)).to eq [RDF::URI]
         end
       end
@@ -192,9 +192,9 @@ describe LocalAuthority do
               :lc_subject, attributes
             )
           end.to(
-            change { Person.count }.by(1).and(
-              change { Topic.count }.by(1).and(
-                change { Organization.count }.by(1)
+            change(Person, :count).by(1).and(
+              change(Topic, :count).by(1).and(
+                change(Organization, :count).by(1)
               )
             )
           )
@@ -232,7 +232,7 @@ describe LocalAuthority do
             attrs = described_class.find_or_create_rdf_attribute(
               :location, attributes
             )
-          end.to change { Topic.count }.by 1
+          end.to change(Topic, :count).by 1
 
           top = Topic.first
           expect(top.label).to eq ["Missouri"]
@@ -249,7 +249,7 @@ describe LocalAuthority do
             attrs = described_class.find_or_create_rdf_attribute(
               :location, attributes
             )
-          end.to change { Topic.count }.by 0
+          end.to change(Topic, :count).by 0
 
           expect(attrs[:location].map(&:to_s)).to eq [topic.public_uri]
         end
@@ -280,7 +280,7 @@ describe LocalAuthority do
           contributors = described_class.find_or_create_contributors(
             fields, attributes
           )
-        end.to change { Person.count }.by(1)
+        end.to change(Person, :count).by(1)
 
         expect(contributors.keys.sort).to eq [:contributor, :creator]
         expect(contributors[:creator].first.class).to eq RDF::URI
@@ -303,7 +303,7 @@ describe LocalAuthority do
           contributors = described_class.find_or_create_contributors(
             fields, attributes
           )
-        end.to change { Person.count }.by(0)
+        end.to change(Person, :count).by(0)
 
         expect(contributors.keys.sort).to eq [:contributor, :creator]
         expect(contributors[:creator].first.class).to eq RDF::URI
@@ -324,7 +324,7 @@ describe LocalAuthority do
       it "only finds exact name matches" do
         expect do
           described_class.find_or_create_contributors([:creator], attributes)
-        end.to change { Person.count }.by(1)
+        end.to change(Person, :count).by(1)
 
         expect(Person.all.map(&:foaf_name).sort).to(
           eq ["Bilbo Baggins", "Frodo Baggins"]
@@ -343,8 +343,8 @@ describe LocalAuthority do
       it "creates the local authorities" do
         expect do
           described_class.find_or_create_contributors(fields, attributes)
-        end.to change { Person.count }.by(1)
-          .and change { Group.count }.by(1)
+        end.to change(Person, :count).by(1)
+          .and change(Group, :count).by(1)
       end
     end
   end # '#find_or_create_contributors'

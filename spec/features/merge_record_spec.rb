@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-feature "Merge Record: " do
+describe "Merge Record: " do
   let!(:old) { Topic.create(label: ["old record"]) }
   let!(:new) { Topic.create(label: ["new record"]) }
 
@@ -18,7 +18,7 @@ feature "Merge Record: " do
     let(:user) { user_with_groups [AdminPolicy::META_ADMIN] }
 
     # Test that the javascript is wired up correctly
-    scenario "fill in and submit the form", js: true do
+    it "fill in and submit the form", js: true do
       visit new_merge_record_path(old)
       expect(page).to have_content "Merge Record: old record"
 

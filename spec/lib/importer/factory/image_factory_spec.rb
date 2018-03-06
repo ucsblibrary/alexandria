@@ -76,7 +76,7 @@ describe Importer::Factory::ImageFactory do
           expect(obj.file_sets.first.admin_policy_id).to(
             eq AdminPolicy::PUBLIC_POLICY_ID
           )
-        end.not_to(change { Image.count })
+        end.not_to(change(Image, :count))
       end
     end
 
@@ -105,7 +105,7 @@ describe Importer::Factory::ImageFactory do
           VCR.use_cassette("image_factory") do
             image = factory.run
           end
-        end.to change { Collection.count }.by(0)
+        end.to change(Collection, :count).by(0)
 
         expect(image.local_collection_id).to include(coll.id)
 
@@ -117,7 +117,7 @@ describe Importer::Factory::ImageFactory do
       end
     end
 
-    context 'when collection doesn\'t exist yet' do
+    context "when collection doesn't exist yet" do
       before do
         Collection.where(
           accession_number: collection_attrs[:accession_number]
@@ -130,7 +130,7 @@ describe Importer::Factory::ImageFactory do
           VCR.use_cassette("image_factory") do
             image = factory.run
           end
-        end.to change { Collection.count }.by(1)
+        end.to change(Collection, :count).by(1)
       end
     end
 
@@ -139,7 +139,7 @@ describe Importer::Factory::ImageFactory do
         described_class.new(attributes.except(:collection), files)
       end
 
-      it 'doesn\'t add the image to any collection' do
+      it "doesn't add the image to any collection" do
         VCR.use_cassette("image_factory") do
           expect(Collection.count).to eq 0
           image = factory.run

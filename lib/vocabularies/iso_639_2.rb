@@ -180,7 +180,7 @@ module Vocabularies
     property :gre, label: "Greek, Modern (1453-)"
     property :grn, label: "Guarani"
     property :guj, label: "Gujarati"
-    property :gwi, label: 'Gwich\'in'
+    property :gwi, label: "Gwich'in"
     property :hai, label: "Haida"
     property :hat, label: "Haitian | Haitian Creole"
     property :hau, label: "Hausa"
@@ -307,7 +307,7 @@ module Vocabularies
     property :mas, label: "Masai"
     property :myn, label: "Mayan languages"
     property :men, label: "Mende"
-    property :mic, label: 'Mi\'kmaq | Micmac'
+    property :mic, label: "Mi'kmaq | Micmac"
     property :min, label: "Minangkabau"
     property :mwl, label: "Mirandese"
     property :moh, label: "Mohawk"
@@ -318,7 +318,7 @@ module Vocabularies
     property :mos, label: "Mossi"
     property :mul, label: "Multiple languages"
     property :mun, label: "Munda languages"
-    property :nqo, label: 'N\'Ko'
+    property :nqo, label: "N'Ko"
     property :nah, label: "Nahuatl languages"
     property :nau, label: "Nauru"
     property :nav, label: "Navajo | Navaho"

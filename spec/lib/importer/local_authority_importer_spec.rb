@@ -34,10 +34,10 @@ describe Importer::LocalAuthorityImporter do
     it "imports the local authorities" do
       expect { importer.run }
         .to change { Agent.exact_model.count }.by(1)
-        .and change { Person.count }.by(2)
-        .and change { Group.count }.by(1)
-        .and change { Organization.count }.by(1)
-        .and change { Topic.count }.by(2)
+        .and change(Person, :count).by(2)
+        .and change(Group, :count).by(1)
+        .and change(Organization, :count).by(1)
+        .and change(Topic, :count).by(2)
 
       object = Person.find(justin[:id])
       expect(object.foaf_name).to eq justin[:name]
@@ -67,7 +67,7 @@ describe Importer::LocalAuthorityImporter do
 
     it "updates the local authorities" do
       expect { importer.run }
-        .to change { Person.count }.by(0)
+        .to change(Person, :count).by(0)
       object = Person.find(justin[:id])
       expect(object.foaf_name).to eq justin[:name]
     end

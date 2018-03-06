@@ -20,7 +20,7 @@ namespace :marc do
     output = File.join(Settings.marc_directory,
                        "#{args[:pid].split("/").last}.xml")
 
-    return $stderr.puts "ERROR: nothing found for #{args[:pid]}" if marc.nil?
+    return warn "ERROR: nothing found for #{args[:pid]}" if marc.nil?
 
     File.open(output, "w") do |f|
       f.write marc

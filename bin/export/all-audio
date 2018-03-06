@@ -2,6 +2,6 @@
 # frozen_string_literal: true
 
 $stdout.sync = true
-require File.expand_path("../../../config/environment", __FILE__)
+require File.expand_path("../../config/environment", __dir__)
 
 puts AudioRecording.all.map(&:identifier).join("\n")

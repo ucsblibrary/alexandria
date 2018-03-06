@@ -39,7 +39,7 @@ module Importer::MODS
     end
 
     ingests
-  rescue => e
+  rescue StandardError => e
     logger.error e
     logger.error e.backtrace
     raise IngestError, reached: ingests

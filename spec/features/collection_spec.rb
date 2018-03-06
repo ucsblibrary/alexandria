@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-feature "Collection show page:" do
+describe "Collection show page:" do
   let(:red_attrs) do
     { title: ["Red"],
       contributor: ["Coloring book"],
@@ -29,7 +29,7 @@ feature "Collection show page:" do
     create_collection_with_images(colors_attrs, [red_attrs, pink_attrs])
   end
 
-  scenario "Use facets to browse collection members" do
+  it "Use facets to browse collection members" do
     visit collection_path(colors)
     expect(page).to have_content red_attrs[:title].first
     expect(page).to have_content pink_attrs[:title].first

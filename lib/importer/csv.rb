@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require File.expand_path("../factory", __FILE__)
+require File.expand_path("factory", __dir__)
 
 # Import objects from CSV metadata files
 module Importer::CSV
@@ -76,7 +76,7 @@ module Importer::CSV
           ingested += 1
         rescue Interrupt
           raise IngestError, reached: i
-        rescue => e
+        rescue StandardError => e
           logger.error e.message
           logger.error e.backtrace
           raise IngestError, reached: i

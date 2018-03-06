@@ -44,8 +44,8 @@ module SRU
     begin
       # $stderr.puts "==> #{query}"
       search = client.get(query)
-    rescue => e
-      $stderr.puts "Error for query #{query}: #{e.message}"
+    rescue StandardError => e
+      warn "Error for query #{query}: #{e.message}"
       raise e
     end
 
@@ -54,7 +54,7 @@ module SRU
       message = Nokogiri::XML(result).xpath("//diag:message").first.text
       raise "Error for query #{query}: \"#{message}\""
     elsif result.include? "numberOfRecords>0<"
-      $stderr.puts "Nothing found for #{query}"
+      warn "Nothing found for #{query}"
     end
     result
   end

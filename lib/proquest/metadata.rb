@@ -15,7 +15,7 @@ class Proquest::Metadata
 
   def run
     if attributes.blank?
-      $stderr.puts "ProQuest metadata not found for ETD: #{etd.id}"
+      warn "ProQuest metadata not found for ETD: #{etd.id}"
     else
       update_embargo_metadata!
       update_access_metadata

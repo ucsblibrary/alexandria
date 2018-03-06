@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-feature "Image show page:" do
+describe "Image show page:" do
   # TODO: Add test that ensures URIs are being dereferenced before display
   # let(:creator) { ['http://id.loc.gov/authorities/names/n81038526'] }
   let(:creator) { ["Century Company"] }
@@ -49,7 +49,7 @@ feature "Image show page:" do
   end
 
   # See config/routes.rb: routing for images is a little weird
-  scenario "show the page for the regular image" do
+  it "show the page for the regular image" do
     visit catalog_ark_path("ark:", "99999", image.id)
 
     expect(page).to have_content extent.first
@@ -69,21 +69,21 @@ feature "Image show page:" do
     context "page doesn't use openseadragon picture tag with pdfs" do
       let(:file_path) { File.join(fixture_path, "pdf", "sample.pdf") }
 
-      scenario "with a pdf" do
+      it "with a pdf" do
         visit catalog_ark_path("ark:", "99999", image.id)
         expect(page).not_to have_css("picture")
       end
     end
 
     context "page uses openseadragon picture tag with a tif" do
-      scenario "with a tif" do
+      it "with a tif" do
         visit catalog_ark_path("ark:", "99999", image.id)
         expect(page).to have_css("picture")
       end
     end
   end
 
-  scenario "show the page for the image missing a collection" do
+  it "show the page for the image missing a collection" do
     visit catalog_ark_path("ark:", "99999", image_without_collection.id)
 
     expect(page).to have_content title.first

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class IngestJob < ActiveJob::Base
+class IngestJob < ApplicationJob
   queue_as :ingest
 
   def perform(args)

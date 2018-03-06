@@ -4,9 +4,9 @@
 $stdout.sync = true # flush output immediately
 
 puts "Loading environment..."
-require File.expand_path("../../config/environment", __FILE__)
+require File.expand_path("../config/environment", __dir__)
 puts "Running in #{Rails.env} mode..."
-require File.expand_path("../../lib/importer", __FILE__)
+require File.expand_path("../lib/importer", __dir__)
 
 # If there are no options given, invoke help
 ARGV << "-h" if ARGV.empty?

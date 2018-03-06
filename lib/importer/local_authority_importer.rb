@@ -61,7 +61,7 @@ class Importer::LocalAuthorityImporter
 
   def find(klass, id)
     klass.find(id) if klass.exists?(id)
-  rescue => e
+  rescue StandardError => e
     puts "ERROR trying to find object with id #{id}"
     raise e
   end

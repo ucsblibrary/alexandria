@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-feature "file_set iiif manifest" do
+describe "file_set iiif manifest" do
   let(:file_path) { File.join(fixture_path, "maps", "7070s_250_u54_index.jpg") }
   let(:policy_id) { AdminPolicy::PUBLIC_POLICY_ID }
   let(:file_set) do
@@ -15,7 +15,7 @@ feature "file_set iiif manifest" do
     end
   end
 
-  scenario "visit the iiif manifest" do
+  it "visit the iiif manifest" do
     visit Riiif::Engine.routes.url_helpers.info_path(file_set.id)
     expect(JSON.parse(body)["@context"]).to(
       eql("http://iiif.io/api/image/2/context.json")
