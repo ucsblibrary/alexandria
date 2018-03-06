@@ -66,18 +66,6 @@ Naming/MemoizedInstanceVariableName:
     - 'lib/auth/yaml.rb'
     - 'lib/proquest/metadata.rb'
 
-# Offense count: 9
-# Configuration parameters: MinNameLength, AllowNamesEndingInNumbers, AllowedNames, ForbiddenNames.
-# AllowedNames: io, id
-Naming/UncommunicativeMethodParamName:
-  Exclude:
-    - 'app/authorities/local_names.rb'
-    - 'app/authorities/local_subjects.rb'
-    - 'app/controllers/catalog_controller.rb'
-    - 'app/controllers/local_authorities_controller.rb'
-    - 'lib/importer/factory/collection_factory.rb'
-    - 'spec/controllers/application_controller_spec.rb'
-
 # Offense count: 35
 RSpec/AnyInstance:
   Enabled: false
@@ -260,7 +248,7 @@ Style/MixinUsage:
     - 'lib/traject/audio_config.rb'
     - 'lib/traject/etd_config.rb'
 
-# Offense count: 22
+# Offense count: 23
 # Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
 # URISchemes: http, https
 Metrics/LineLength:

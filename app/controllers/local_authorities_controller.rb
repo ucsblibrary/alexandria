@@ -90,7 +90,7 @@ class LocalAuthoritiesController < ApplicationController
 
     # Should we show the "edit metadata" link on the show page?
     # Only shows up for non-etd things
-    def editor?(_, stuff)
+    def editor?(_user, stuff)
       document = stuff.fetch(:document)
       can?(:edit, document)
     end
