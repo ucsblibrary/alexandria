@@ -104,10 +104,7 @@ module Importer::Factory
         clear_attribute!(object, prop)
       end
 
-      # rubocop:disable Rails/ActiveRecordAliases
       object.attributes = update_attributes
-      # rubocop:enable Rails/ActiveRecordAliases
-
       process_binaries(object, files) unless files.empty?
 
       run_callbacks(:save) do

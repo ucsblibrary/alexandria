@@ -50,6 +50,11 @@ Metrics/ModuleLength:
 Rails:
   Enabled: true
 
+Rails/ActiveRecordAliases:
+  # this class has its own #update_attributes method
+  Exclude:
+    - 'lib/importer/factory/object_factory.rb'
+
 Rails/ApplicationRecord:
   Enabled: false
 
