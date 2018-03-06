@@ -22,7 +22,11 @@ namespace :fedora do
     puts "  ActiveFedora::Base: #{ActiveFedora::Base.count}"
 
     puts "Counts by model:"
-    models = [Hydra::AdminPolicy,
+    models = [ActiveFedora::Aggregation::ListSource,
+              ActiveFedora::Aggregation::Proxy,
+              ActiveFedora::IndirectContainer,
+              ActiveFedora::DirectContainer,] +
+             [Hydra::AdminPolicy,
               Hydra::AccessControl,
               Hydra::AccessControls::Permission,
               Collection,
