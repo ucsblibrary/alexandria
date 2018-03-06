@@ -71,7 +71,7 @@ module Importer::CLI
         begin
           importer = Importer::Cylinder.new(cli_opts)
           importer.run
-        rescue => e
+        rescue StandardError => e
           logger.error e
           logger.error e.backtrace
           raise IngestError,

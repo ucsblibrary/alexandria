@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-feature "Collection show page:" do
+describe "Collection show page:" do
   let(:collection) do
     create(:collection,
            title: ["HECK"],
@@ -18,7 +18,7 @@ feature "Collection show page:" do
     )
   end
 
-  scenario "show the page" do
+  it "show the page" do
     visit catalog_ark_path("ark:", "99999", recording.id)
     expect(page).to have_content "Any rags"
     expect(page).to have_content "Baritone solo with orchestra accompaniment."

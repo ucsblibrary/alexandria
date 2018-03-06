@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-feature "Accessing records:" do
+describe "Accessing records:" do
   let(:collection) do
     create(:collection,
            admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID,
@@ -53,7 +53,7 @@ feature "Accessing records:" do
   context "a metadata admin" do
     let(:user) { user_with_groups [AdminPolicy::META_ADMIN] }
 
-    scenario "views a collection and members" do
+    it "views a collection and members" do
       visit collection_path(collection)
 
       expect(page).to have_link public_image[:title].first
@@ -81,7 +81,7 @@ feature "Accessing records:" do
   context "a not logged in user" do
     let(:user) { user_with_groups [AdminPolicy::PUBLIC_GROUP] }
 
-    scenario "views a collection and members" do
+    it "views a collection and members" do
       visit collection_path(collection)
       expect(page).to     have_link public_image[:title].first
       expect(page).to     have_link discovery_image[:title].first

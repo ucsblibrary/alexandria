@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-feature "Collection:" do
+describe "Collection:" do
   let!(:collection) do
     create(
       :public_collection,
@@ -27,7 +27,7 @@ feature "Collection:" do
     collection.update_index
   end
 
-  scenario "viewing the show page for a collection" do
+  it "viewing the show page for a collection" do
     visit collection_path(collection)
 
     # It should display both audio records as collection members

@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-feature "Navigation menu:" do
+describe "Navigation menu:" do
   before do
     allow_any_instance_of(User).to receive(:groups).and_return(groups)
   end
@@ -10,7 +10,7 @@ feature "Navigation menu:" do
   context "a metadata-admin user" do
     let(:groups) { [AdminPolicy::META_ADMIN] }
 
-    scenario "using the navigation" do
+    it "using the navigation" do
       visit search_catalog_path
 
       # The nav menu
@@ -30,7 +30,7 @@ feature "Navigation menu:" do
   context "a rights-admin user" do
     let(:groups) { [AdminPolicy::RIGHTS_ADMIN] }
 
-    scenario "using the navigation" do
+    it "using the navigation" do
       visit search_catalog_path
 
       # The nav menu
@@ -47,7 +47,7 @@ feature "Navigation menu:" do
   context "a UCSB student (non-privileged user, logged in)" do
     let(:groups) { [AdminPolicy::UCSB_GROUP] }
 
-    scenario "using the navigation" do
+    it "using the navigation" do
       visit search_catalog_path
 
       # Shouldn't see admin links
@@ -60,7 +60,7 @@ feature "Navigation menu:" do
   context "user is not logged in" do
     let(:groups) { [AdminPolicy::PUBLIC_GROUP] }
 
-    scenario "using the navigation" do
+    it "using the navigation" do
       visit search_catalog_path
 
       # Shouldn't be able to see the admin menu items

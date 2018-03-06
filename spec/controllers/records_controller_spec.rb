@@ -203,7 +203,7 @@ describe RecordsController do
         it "returns message that record cannot be destroyed" do
           expect do
             delete :destroy, params: { id: person }
-          end.to change { Person.count }.by(0)
+          end.to change(Person, :count).by(0)
 
           expect(flash[:alert]).to(
             eq "Record \"#{person.rdf_label.first}\" cannot be deleted "\
@@ -216,7 +216,7 @@ describe RecordsController do
         it "destroys the record" do
           expect do
             delete :destroy, params: { id: person }
-          end.to change { Person.count }.by(-1)
+          end.to change(Person, :count).by(-1)
 
           expect(response).to redirect_to local_authorities_path
 

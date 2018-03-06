@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-feature "MapSet show page:" do
+describe "MapSet show page:" do
   before do
     [index_map_west_id,
      index_map_east_id,
@@ -126,7 +126,7 @@ feature "MapSet show page:" do
     )
   end
 
-  scenario "show the page" do
+  it "show the page" do
     visit catalog_ark_path("ark:", "99999", map_set.id)
     expect(page).to have_content title.first
     expect(page).to have_content extent.first

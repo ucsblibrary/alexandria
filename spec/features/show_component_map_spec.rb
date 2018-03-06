@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-feature "ComponentMap show page:" do
+describe "ComponentMap show page:" do
   let(:file_path) { File.join(fixture_path, "maps", "7070s_250_u54_index.jpg") }
   let(:extent) { ["1 map : color ; 27 x 38 cm"] }
   let(:scale) { ["1:18,374,400"] }
@@ -94,7 +94,7 @@ feature "ComponentMap show page:" do
     end
   end
 
-  scenario "show the page" do
+  it "show the page" do
     visit catalog_ark_path("ark:", "99999", map.id)
     expect(page).to have_content title.first
     expect(page).to have_content extent.first

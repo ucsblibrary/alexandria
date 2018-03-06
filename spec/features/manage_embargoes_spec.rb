@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-feature "Embargo management" do
+describe "Embargo management" do
   before do
     AdminPolicy.ensure_admin_policy_exists
     # To make it easier to interact with the form during the
@@ -61,7 +61,7 @@ feature "Embargo management" do
     end
 
     context "for an active embargo" do
-      scenario "edits the embargo" do
+      it "edits the embargo" do
         # Navigate to the edit form for this embargo
         visit search_catalog_path
         click_link "Embargoes"
@@ -89,7 +89,7 @@ feature "Embargo management" do
     context "for an active embargo that has expired:" do
       let(:old_date) { Time.zone.today - 3.days }
 
-      scenario "deactivates the embargo for ETD, but not for attached file" do
+      it "deactivates the embargo for ETD, but not for attached file" do
         # The ETD starts with "Discovery" access
         visit catalog_ark_path("ark:", "99999", etd.id)
         expect(page).to have_content "Access: Discovery access only"
@@ -117,7 +117,7 @@ feature "Embargo management" do
         expect(fs.reload.admin_policy_id).to eq AdminPolicy::DISCOVERY_POLICY_ID
       end
 
-      scenario "deactivates embargo for both the ETD and the attached file" do
+      it "deactivates embargo for both the ETD and the attached file" do
         visit embargoes_path
         click_link "Expired Active Embargoes"
 

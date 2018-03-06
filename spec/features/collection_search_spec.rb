@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-feature "Collection search page", js: true do
+describe "Collection search page", js: true do
   before do
     # Since we're testing the search results, we need to ensure the
     # images we're interested in don't spill over to the second page
@@ -20,7 +20,7 @@ feature "Collection search page", js: true do
                                  extent: ["7 photos"])
     end
 
-    scenario "Search for a collection" do
+    it "Search for a collection" do
       visit collections_path
 
       fill_in "q", with: "Pink"
@@ -70,7 +70,7 @@ feature "Collection search page", js: true do
       create_collection_with_images(fruits_attrs, [orange, banana])
     end
 
-    scenario "Search within a collection" do
+    it "Search within a collection" do
       visit collection_path(colors)
 
       expect(page).to have_link("Pink", href: "/lib/pink")
@@ -92,7 +92,7 @@ feature "Collection search page", js: true do
       expect(page).not_to have_link("Banana", href: "/lib/banana")
     end
 
-    scenario "Search with main search bar instead of within the collection" do
+    it "Search with main search bar instead of within the collection" do
       visit collection_path(colors)
 
       expect(page).to have_link("Pink", href: "/lib/pink")

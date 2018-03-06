@@ -15,19 +15,19 @@ if defined?(PhusionPassenger)
       require "redis"
 
       # The important two lines
-      $redis.client.disconnect if $redis
+      $redis&.client.disconnect
       $redis = begin
                  Redis.new(
                    host: config[:host],
                    port: config[:port],
                    thread_safe: true
                  )
-               rescue
+               rescue StandardError
                  nil
                end
       Resque.redis = $redis
       Resque.redis.namespace = "curation_concerns:#{Rails.env}"
-      Resque.redis.client.reconnect if Resque.redis
+      Resque.redis&.client.reconnect
     end
   end
 else
@@ -37,7 +37,7 @@ else
                port: config[:port],
                thread_safe: true
              )
-           rescue
+           rescue StandardError
              nil
            end
 end

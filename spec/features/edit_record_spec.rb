@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-feature "Editing Records", js: true do
+describe "Editing Records", js: true do
   let!(:collection) do
     Collection.create!(
       title: ["superbork"],
@@ -41,7 +41,7 @@ feature "Editing Records", js: true do
       )
     end
 
-    scenario "edits a record" do
+    it "edits a record" do
       VCR.use_cassette("image_factory") do
         visit catalog_ark_path("ark:", "99999", "bork")
 

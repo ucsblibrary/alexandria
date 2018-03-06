@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-feature "IndexMap show page:" do
+describe "IndexMap show page:" do
   let(:extent) { ["1 map : color ; 27 x 38 cm"] }
   let(:scale) { ["1:18,374,400"] }
 
@@ -79,7 +79,7 @@ feature "IndexMap show page:" do
     end
   end
 
-  scenario "show the page" do
+  it "show the page" do
     visit catalog_ark_path("ark:", "99999", map.id)
     expect(page).to have_content title.first
     expect(page).to have_content extent.first

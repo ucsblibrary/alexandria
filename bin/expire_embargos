@@ -2,7 +2,7 @@
 # frozen_string_literal: true
 
 print "Loading environment... "
-require File.expand_path("../../config/environment", __FILE__)
+require File.expand_path("../config/environment", __dir__)
 puts Rails.env
 require "expire_embargos"
 puts "Starting to expire embargos..."

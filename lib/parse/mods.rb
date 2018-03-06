@@ -144,7 +144,7 @@ class Parse::MODS
 
   def record_origin
     ro = []
-    if mods.record_info && mods.record_info.respond_to?(:recordOrigin)
+    if mods.record_info&.respond_to?(:recordOrigin)
       ro += mods.record_info.recordOrigin.map do |node|
         prepend_timestamp(strip_whitespace(node.text))
       end

@@ -87,7 +87,7 @@ describe Importer::Factory::AudioRecordingFactory do
         expect(FileSet).not_to receive(:create!)
         expect do
           factory.attach_files(audio, files)
-        end.to change { FileSet.count }.by(0)
+        end.to change(FileSet, :count).by(0)
       end
     end
 
@@ -95,7 +95,7 @@ describe Importer::Factory::AudioRecordingFactory do
       it "attaches the files" do
         expect do
           factory.attach_files(audio, files)
-        end.to change { FileSet.count }.by(2)
+        end.to change(FileSet, :count).by(2)
 
         expect(audio.file_sets.map(&:title)).to(
           contain_exactly(["Cylinder0001"], ["Cylinder0002"])

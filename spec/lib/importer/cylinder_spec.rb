@@ -1,4 +1,3 @@
-# coding: utf-8
 # frozen_string_literal: true
 
 require "rails_helper"
@@ -139,7 +138,7 @@ describe Importer::Cylinder do
     end
   end # attributes
 
-  describe 'when the collection doesn\'t exist' do
+  describe "when the collection doesn't exist" do
     before { Collection.destroy_all }
 
     it "raises an exception" do
@@ -176,8 +175,8 @@ describe Importer::Cylinder do
           importer.run
         end
       end.to(
-        change { AudioRecording.count }.by(3).and(
-          change { FileSet.count }.by(2)
+        change(AudioRecording, :count).by(3).and(
+          change(FileSet, :count).by(2)
         )
       )
 
@@ -280,12 +279,9 @@ describe Importer::Cylinder do
           ['"Coon song."'],
           ["Copies 2, 3 are possible alternate takes."],
           ["Edison Gold Moulded Record: 8525."],
-
           ["Issue number from \"Edison Cylinder Records, "\
            "1889-1912\" / Koenigsberg, c1969.",],
-
           ["Todd collection."],
-
           ["Year of release and descriptor from "\
            "\"The Edison Phonograph Monthly,\" v.1 (1903/1904).",]
         )
@@ -400,7 +396,7 @@ describe Importer::Cylinder do
     it "skips that record, but imports other records" do
       expect do
         importer.run
-      end.to change { AudioRecording.count }.by(1)
+      end.to change(AudioRecording, :count).by(1)
       expect(importer.imported_records_count).to eq 1
     end
   end
@@ -421,7 +417,7 @@ describe Importer::Cylinder do
     it "creates the audio record" do
       expect do
         importer.run
-      end.to change { AudioRecording.count }.by(1)
+      end.to change(AudioRecording, :count).by(1)
 
       audio = AudioRecording.find(id)
       expect(audio.language).to eq []

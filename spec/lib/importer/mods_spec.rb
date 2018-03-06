@@ -95,7 +95,7 @@ describe Importer::MODS do
               options: { skip: 0 }
             )
           end
-        end.to change { Collection.count }.by(0)
+        end.to change(Collection, :count).by(0)
 
         expect(Image.count).to eq 1
         image = Image.first
@@ -125,8 +125,8 @@ describe Importer::MODS do
             )
           end
         end.to(
-          change { Collection.count }.by(1).and(
-            change { Person.count }.by(1)
+          change(Collection, :count).by(1).and(
+            change(Person, :count).by(1)
           )
         )
 
@@ -168,7 +168,7 @@ describe Importer::MODS do
               options: { skip: 0 }
             )
           end
-        end.to change { Collection.count }.by(0)
+        end.to change(Collection, :count).by(0)
 
         coll = Collection.first
         expect(coll.id).to eq existing.id
@@ -196,8 +196,8 @@ describe Importer::MODS do
             )
           end
         end.to(
-          change { Collection.count }.by(1).and(
-            change { Person.count }.by(0)
+          change(Collection, :count).by(1).and(
+            change(Person, :count).by(0)
           )
         )
 

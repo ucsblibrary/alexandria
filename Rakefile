@@ -4,7 +4,7 @@
 # example lib/tasks/capistrano.rake, and they will automatically be
 # available to Rake.
 
-require File.expand_path("../config/environment", __FILE__)
+require File.expand_path("config/environment", __dir__)
 
 require "importer"
 require "ss"

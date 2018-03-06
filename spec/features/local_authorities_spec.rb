@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-feature "Local Authorities", js: true do
+describe "Local Authorities", js: true do
   before do
     # Delete existing records to make sure that search and facet
     # results will contain the results the spec is looking for
@@ -25,7 +25,7 @@ feature "Local Authorities", js: true do
     let!(:uruk) { create :organization, foaf_name: "uruk" }
     let!(:ring) { create :topic, label: ["the ring"] }
 
-    scenario "browse using facets" do
+    it "browse using facets" do
       visit local_authorities_path
       click_button "Search"
 
@@ -57,7 +57,7 @@ feature "Local Authorities", js: true do
       expect(page).to have_link(fellows.foaf_name)
     end
 
-    scenario "Click show link from index page" do
+    it "Click show link from index page" do
       visit local_authorities_path
       click_button "Search"
       expect(page).to have_link(frodo.foaf_name)

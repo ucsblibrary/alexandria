@@ -98,7 +98,7 @@ module Importer::ETD
                    data: files,
                    collection: collection,
                    logger: logger)
-      rescue => e
+      rescue StandardError => e
         logger.error e.message
         logger.error e.backtrace
         raise IngestError, reached: ingests

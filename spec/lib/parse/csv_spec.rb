@@ -1,4 +1,3 @@
-# coding: utf-8
 # frozen_string_literal: true
 
 require "rails_helper"
@@ -7,41 +6,43 @@ require "parse"
 describe Parse::CSV do
   context "set access policy" do
     let(:public_data) { { access_policy: ["public"] } }
+    let(:nonsense) { { access_policy: ["nonsense"] } }
+    let(:ucsb_campus) { { access_policy: ["ucsb_campus"] } }
+    let(:restricted) { { access_policy: ["restricted"] } }
+    let(:public_campus) { { access_policy: ["public_campus"] } }
+    let(:discovery) { { access_policy: ["discovery"] } }
+    let(:ucsb_restricted_data) { { access_policy: ["ucsb"] } }
+
     it "assigns the public access policy if public is specified" do
       expect(described_class.assign_access_policy(public_data)).to(
         eql(admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID)
       )
     end
 
-    let(:ucsb_restricted_data) { { access_policy: ["ucsb"] } }
     it "assigns the UCSB restricted access policy" do
       expect(described_class.assign_access_policy(ucsb_restricted_data)).to(
         eql(admin_policy_id: AdminPolicy::UCSB_POLICY_ID)
       )
     end
 
-    let(:discovery) { { access_policy: ["discovery"] } }
     it "assigns the discovery access policy" do
       expect(described_class.assign_access_policy(discovery)).to(
         eql(admin_policy_id: AdminPolicy::DISCOVERY_POLICY_ID)
       )
     end
 
-    let(:public_campus) { { access_policy: ["public_campus"] } }
     it "assigns the public_campus policy" do
       expect(described_class.assign_access_policy(public_campus)).to(
         eql(admin_policy_id: AdminPolicy::PUBLIC_CAMPUS_POLICY_ID)
       )
     end
 
-    let(:restricted) { { access_policy: ["restricted"] } }
     it "assigns the restricted policy" do
       expect(described_class.assign_access_policy(restricted)).to(
         eql(admin_policy_id: AdminPolicy::RESTRICTED_POLICY_ID)
       )
     end
 
-    let(:ucsb_campus) { { access_policy: ["ucsb_campus"] } }
     it "assigns the ucsb_campus policy" do
       expect(described_class.assign_access_policy(ucsb_campus)).to(
         eql(admin_policy_id: AdminPolicy::UCSB_CAMPUS_POLICY_ID)
@@ -55,8 +56,6 @@ describe Parse::CSV do
         raise_error(RuntimeError, "No access policy defined")
       )
     end
-
-    let(:nonsense) { { access_policy: ["nonsense"] } }
 
     it "raises an error for an unrecognized value" do
       expect { described_class.assign_access_policy(nonsense) }.to(

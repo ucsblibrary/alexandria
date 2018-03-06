@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-feature "Group creation" do
+describe "Group creation" do
   context "a metadata admin" do
     before do
       AdminPolicy.ensure_admin_policy_exists
@@ -11,14 +11,14 @@ feature "Group creation" do
       )
     end
 
-    scenario "creates a new record" do
+    it "creates a new record" do
       visit search_catalog_path
       click_link "Add Record"
       select "Group", from: "type"
       click_button "Next"
       title = "My New Group"
       fill_in "Name", with: title
-      expect { click_button "Save" }.to change { Group.count }.by(1)
+      expect { click_button "Save" }.to change(Group, :count).by(1)
       expect(page).to have_content title
     end
   end
