@@ -43,7 +43,7 @@ class Ability
     # Allow admins to download originals of AudioRecordings
     can :download_original, FileSet
 
-    cannot [:read, :edit], FileSet do |fs|
+    cannot([:read, :edit], FileSet) do |fs|
       fs.parent.is_a?(ETD) &&
         fs.parent.admin_policy_id == AdminPolicy::DISCOVERY_POLICY_ID
     end
