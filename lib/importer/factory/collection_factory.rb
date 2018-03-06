@@ -17,6 +17,6 @@ module Importer::Factory
       run(&:save!)
     end
 
-    def attach_files(_, _); end
+    def attach_files(_object, _files); end
   end
 end

@@ -3,8 +3,8 @@
 require "rails_helper"
 
 describe ApplicationController do
-  def stub_remote_ip(ip)
-    allow_any_instance_of(ActionDispatch::Request).to receive(:remote_ip) { ip }
+  def stub_remote_ip(ip_addr)
+    allow_any_instance_of(ActionDispatch::Request).to receive(:remote_ip) { ip_addr }
   end
 
   describe "#on_campus?" do
