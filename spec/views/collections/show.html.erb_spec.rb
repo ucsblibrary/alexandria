@@ -21,9 +21,9 @@ describe "collections/show.html.erb", type: :view do
   end
 
   let(:search_state) do
-    double("SearchState",
-           params_for_search: {},
-           url_for_document: solr_document)
+    instance_double("Blacklight::SearchState",
+                    params_for_search: {},
+                    url_for_document: solr_document)
   end
 
   let(:sample_response) do

@@ -80,7 +80,9 @@ describe Importer::Factory::AudioRecordingFactory do
 
     context "when there are already files attached" do
       before do
-        allow(audio).to receive(:file_sets).and_return([double("a file")])
+        allow(audio).to(
+          receive(:file_sets).and_return([instance_double("FileSet")])
+        )
       end
 
       it "doesn't create any new filesets" do

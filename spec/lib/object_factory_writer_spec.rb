@@ -17,7 +17,9 @@ describe ObjectFactoryWriter do
   describe "#put" do
     before { ETD.destroy_all }
 
-    let(:traject_context) { double(output_hash: traject_hash) }
+    let(:traject_context) do
+      instance_double("Traject::Indexer::Context", output_hash: traject_hash)
+    end
 
     let(:traject_hash) do
       {
