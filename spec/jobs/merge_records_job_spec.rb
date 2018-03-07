@@ -29,7 +29,7 @@ RSpec.describe MergeRecordsJob, type: :job do
       end
 
       it "calls the service that merges the records" do
-        merge_service = double(run: true)
+        merge_service = instance_double("MergeRecordsService", run: true)
         expect(MergeRecordsService).to(
           receive(:new).with(conway, joel) { merge_service }
         )
