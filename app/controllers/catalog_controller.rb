@@ -64,14 +64,7 @@ class CatalogController < ApplicationController
       },
       document: {
         limit: 25,
-        set_fields: [
-          {
-            label: "default",
-            solr_field: "title_tesim",
-            description: "The default set",
-          },
-        ],
-      },
+      }
     }
 
     # This controls which partials are used, and in what order, for

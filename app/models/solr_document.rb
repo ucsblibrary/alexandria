@@ -6,11 +6,31 @@ require "identifier"
 class SolrDocument
   include Blacklight::Solr::Document
   include BlacklightOaiProvider::SolrDocument
+  use_extension Blacklight::Document::DublinCore
 
   self.timestamp_key = "timestamp"
 
   include Blacklight::Gallery::OpenseadragonSolrDocument
   include CurationConcerns::SolrDocumentBehavior
+
+  # Blacklight OAI metadata mapping
+  field_semantics.merge!(
+    title:       "title_tesim",
+    description: "description_tesim",
+    langauge: "language_label_ssm",
+    subject: "lc_subject_label_tesim",
+    contributor: "contributor_tesim",
+    coverage: "coverage_tesim",
+    creator: "creator_tesim",
+    date: "date",
+    format: "form_of_work_label_tesim",
+    identifier: "id",
+    publisher: "publisher_tesim",
+    relation: "relation_tesim",
+    rights: "license_label_tesim",
+    source: "source_teism",
+    type: "type_tesim"
+  )
 
   # self.unique_key = 'id'
 
