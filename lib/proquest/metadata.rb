@@ -111,10 +111,10 @@ class Proquest::Metadata
       return if attributes[:DISS_accept_date].blank?
 
       date = Date.parse(attributes[:DISS_accept_date])
-      if date.month == 1 && date.day == 1
-        date = Date.parse("#{date.year}-12-31")
-      end
-      date
+
+      return date unless date.month == 1 && date.day == 1
+
+      Date.parse("#{date.year}-12-31")
     end
 
     def six_month_embargo

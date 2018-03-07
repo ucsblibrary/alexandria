@@ -142,9 +142,7 @@ module Importer::Factory
     end
 
     def render_thumbnails(object)
-      unless [Image, ComponentMap, IndexMap, ScannedMap].include?(object.class)
-        return
-      end
+      return unless [Image, ComponentMap, IndexMap, ScannedMap].include?(object.class)
 
       object.file_sets.select(&:image?).map(&:files).flatten.each do |f|
         Settings.thumbnails.each_key do |k|
