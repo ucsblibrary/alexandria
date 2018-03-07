@@ -15,7 +15,7 @@ if defined?(PhusionPassenger)
       require "redis"
 
       # The important two lines
-      $redis&.client.disconnect
+      $redis&.client&.disconnect
       $redis = begin
                  Redis.new(
                    host: config[:host],
@@ -27,7 +27,7 @@ if defined?(PhusionPassenger)
                end
       Resque.redis = $redis
       Resque.redis.namespace = "curation_concerns:#{Rails.env}"
-      Resque.redis&.client.reconnect
+      Resque.redis&.client&.reconnect
     end
   end
 else
