@@ -227,20 +227,13 @@ Style/GlobalVars:
   Exclude:
     - 'config/initializers/redis_config.rb'
 
-# Offense count: 2
-# Cop supports --auto-correct.
-Style/IfUnlessModifier:
-  Exclude:
-    - 'lib/importer/factory/object_factory.rb'
-    - 'lib/proquest/metadata.rb'
-
 # Offense count: 21
 Style/MixinUsage:
   Exclude:
     - 'lib/traject/audio_config.rb'
     - 'lib/traject/etd_config.rb'
 
-# Offense count: 23
+# Offense count: 24
 # Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
 # URISchemes: http, https
 Metrics/LineLength:
