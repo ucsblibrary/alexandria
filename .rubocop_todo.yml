@@ -51,7 +51,7 @@ Naming/MemoizedInstanceVariableName:
     - 'lib/auth/yaml.rb'
     - 'lib/proquest/metadata.rb'
 
-# Offense count: 35
+# Offense count: 34
 RSpec/AnyInstance:
   Enabled: false
 
@@ -149,23 +149,13 @@ RSpec/ScatteredLet:
     - 'spec/indexers/index_map_indexer_spec.rb'
     - 'spec/lib/local_authority_spec.rb'
 
-# Offense count: 26
+# Offense count: 12
 # Configuration parameters: IgnoreSymbolicNames.
 RSpec/VerifiedDoubles:
   Exclude:
-    - 'spec/controllers/downloads_controller_spec.rb'
-    - 'spec/helpers/curation_concerns_helper_spec.rb'
-    - 'spec/indexers/component_map_indexer_spec.rb'
-    - 'spec/indexers/image_indexer_spec.rb'
-    - 'spec/indexers/index_map_indexer_spec.rb'
-    - 'spec/indexers/scanned_map_indexer_spec.rb'
     - 'spec/inputs/controlled_vocabulary_input_spec.rb'
     - 'spec/inputs/controlled_vocabulary_select_input_spec.rb'
     - 'spec/inputs/relator_input_spec.rb'
-    - 'spec/jobs/merge_records_job_spec.rb'
-    - 'spec/lib/importer/factory/audio_recording_factory_spec.rb'
-    - 'spec/lib/object_factory_writer_spec.rb'
-    - 'spec/views/collections/show.html.erb_spec.rb'
 
 # Offense count: 1
 # Configuration parameters: Include.

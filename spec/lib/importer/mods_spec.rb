@@ -72,11 +72,6 @@ describe Importer::MODS do
       before do
         Image.all.each { |i| i.destroy(eradicate: true) }
         Collection.all.each { |c| c.destroy(eradicate: true) }
-
-        # skip creating files
-        allow_any_instance_of(Importer::Factory::ImageFactory).to(
-          receive(:after_create)
-        )
       end
 
       let!(:coll) do

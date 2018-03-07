@@ -28,7 +28,10 @@ describe CurationConcernsHelper do
       end
 
       context "without an ark" do
-        let(:search_state) { double("SearchState", url_for_document: document) }
+        let(:search_state) do
+          instance_double("Blacklight::SearchState", url_for_document: document)
+        end
+
         let(:document) do
           SolrDocument.new(has_model_ssim: [model], id: "fk4v989d9j")
         end
