@@ -23,11 +23,6 @@ RSpec.describe "Oai requests", type: :request do
     expect(oai_xml.errors).to eq([])
   end
 
-  it "returns a default set" do
-    get "/catalog/oai?verb=ListSets"
-    expect(response.body).to match(/The default set/)
-  end
-
   it "has dc as a metadata type" do
     get "/catalog/oai?verb=ListMetadataFormats"
     expect(response.body).to match(/oai_dc/)
@@ -36,5 +31,15 @@ RSpec.describe "Oai requests", type: :request do
   it "has a record in the repo" do
     get "/catalog/oai?verb=ListRecords&metadataPrefix=oai_dc"
     expect(response.body).to match(%r{<identifier>oai:ucsb:.*<\/identifier>})
+  end
+
+  it "has a record in the repo with a title" do
+    get "/catalog/oai?verb=ListRecords&metadataPrefix=oai_dc"
+    expect(response.body).to match(%r{<dc:title>.*<\/dc:title>})
+  end
+
+  it "has a record in the repo with a dc identifier" do
+    get "/catalog/oai?verb=ListRecords&metadataPrefix=oai_dc"
+    expect(response.body).to match(%r{<dc:identifier>.*<\/dc:identifier>})
   end
 end
