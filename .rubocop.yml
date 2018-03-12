@@ -42,7 +42,10 @@ Metrics/ClassLength:
 
 Metrics/LineLength:
   Exclude:
+    - 'app/indexers/object_indexer.rb'
+    - 'config/environments/production.rb'
     - 'lib/vocabularies/*'
+    - 'spec/indexers/image_indexer_spec.rb'
 
 Metrics/ModuleLength:
   Enabled: false

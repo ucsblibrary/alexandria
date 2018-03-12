@@ -4,6 +4,9 @@ Rails.application.configure do
   # Settings specified here will take precedence over those in
   # config/application.rb.
 
+  # Uncomment and configure to use an external IIIF server
+  # config.external_iiif_url = "http://iiif-sandbox.library.ucsb.edu:8080/Cantaloupe-3.4.1/iiif/2"
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 
