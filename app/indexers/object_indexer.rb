@@ -194,20 +194,35 @@ class ObjectIndexer < CurationConcerns::WorkIndexer
       object.file_sets.map do |file_set|
         file = file_set.files.first
         next unless file
-        Riiif::Engine.routes.url_helpers.image_url(
-          file.id,
-          size: size,
-          region: region,
-          only_path: true
-        )
+        if Rails.configuration.try(:external_iiif_url)
+          rotation = "0"
+          quality = "default"
+          format = "jpg"
+          # rubocop:disable Metrics/LineLength
+          "#{Rails.configuration.external_iiif_url}#{CGI.escape(file.id)}/#{region}/#{size}/#{rotation}/#{quality}.#{format}"
+          # rubocop:enable Metrics/LineLength
+        else
+          Riiif::Engine.routes.url_helpers.image_url(
+            file.id,
+            size: size,
+            region: region,
+            only_path: true
+          )
+        end
       end
     end
 
+    # Define Rails.configuration.external_iiif_url to index against an external
+    # iiif service
     def file_set_iiif_manifests
       object.file_sets.map do |file_set|
         file = file_set.files.first
         next unless file
-        Riiif::Engine.routes.url_helpers.info_path(file.id)
+        if Rails.configuration.try(:external_iiif_url)
+          "#{Rails.configuration.external_iiif_url}#{CGI.escape(file.id)}/info.json"
+        else
+          Riiif::Engine.routes.url_helpers.info_path(file.id)
+        end
       end
     end
 end

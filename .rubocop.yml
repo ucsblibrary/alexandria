@@ -43,6 +43,7 @@ Metrics/ClassLength:
 Metrics/LineLength:
   Exclude:
     - 'lib/vocabularies/*'
+    - 'spec/indexers/image_indexer_spec.rb'
 
 Metrics/ModuleLength:
   Enabled: false

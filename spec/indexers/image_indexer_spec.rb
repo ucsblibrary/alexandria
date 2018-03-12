@@ -32,7 +32,6 @@ describe ImageIndexer do
 
     it "has images" do
       VCR.use_cassette("image_indexer") do
-        # rubocop:disable Metrics/LineLength
         expect(subject[ObjectIndexer.thumbnail_field]).to(
           eq ["/image-service/s1%2F78%2F4k%2F72%2Fs1784k724%2Ffiles%2F6185235a-79b2-4c29-8c24-4d6ad9b11470/square/100,/0/default.jpg"]
         )
@@ -47,7 +46,6 @@ describe ImageIndexer do
         expect(subject["file_set_iiif_manifest_ssm"]).to(
           eq ["/image-service/s1%2F78%2F4k%2F72%2Fs1784k724%2Ffiles%2F6185235a-79b2-4c29-8c24-4d6ad9b11470/info.json"]
         )
-        # rubocop:enable Metrics/LineLength
       end
     end
   end
@@ -176,6 +174,51 @@ describe ImageIndexer do
           contain_exactly("Valerie",
                           "University of California (System). Regents")
         )
+      end
+    end
+  end
+
+  context "internal vs external iiif uris" do
+    let(:image) { FactoryBot.create(:public_image) }
+    let(:file) { File.new(fixture_file_path("images/cusbspcmss36_110108_1_a.tif")) }
+    let(:file_set) { FactoryBot.create(:public_file_set) }
+
+    before do
+      Hydra::Works::AddFileToFileSet.call(file_set, file, :original_file)
+      image.members << file_set
+      image.save
+    end
+    after do
+      Rails.configuration.external_iiif_url = nil
+    end
+    context "iiif manifest" do
+      it "uses internal riiif urls if there is no external riiif service defined" do
+        Rails.configuration.external_iiif_url = nil
+        image_indexer_solr_doc = described_class.new(image).generate_solr_document
+        expect(image_indexer_solr_doc["file_set_iiif_manifest_ssm"].first).to match(%r{^/image-service/*})
+      end
+      it "uses external riiif urls if there is an external riiif service defined" do
+        Rails.configuration.external_iiif_url = "http://localhost:8182/iiif/2/"
+        image_indexer_solr_doc = described_class.new(image).generate_solr_document
+        expect(image_indexer_solr_doc["file_set_iiif_manifest_ssm"].first).to match(/^#{Rails.configuration.external_iiif_url}*/)
+      end
+    end
+    context "image urls" do
+      it "uses internal riiif urls if there is no external riiif service defined" do
+        Rails.configuration.external_iiif_url = nil
+        image_indexer_solr_doc = described_class.new(image).generate_solr_document
+        expect(image_indexer_solr_doc["image_url_ssm"].first).to match(%r{^/image-service/*})
+        expect(image_indexer_solr_doc["large_image_url_ssm"].first).to match(%r{^/image-service/*})
+        expect(image_indexer_solr_doc["thumbnail_url_ssm"].first).to match(%r{^/image-service/*})
+        expect(image_indexer_solr_doc["square_thumbnail_url_ssm"].first).to match(%r{^/image-service/*})
+      end
+      it "uses external riiif urls if there is an external riiif service defined" do
+        Rails.configuration.external_iiif_url = "http://localhost:8182/iiif/2/"
+        image_indexer_solr_doc = described_class.new(image).generate_solr_document
+        expect(image_indexer_solr_doc["image_url_ssm"].first).to match(/^#{Rails.configuration.external_iiif_url}*/)
+        expect(image_indexer_solr_doc["large_image_url_ssm"].first).to match(/^#{Rails.configuration.external_iiif_url}*/)
+        expect(image_indexer_solr_doc["thumbnail_url_ssm"].first).to match(/^#{Rails.configuration.external_iiif_url}*/)
+        expect(image_indexer_solr_doc["square_thumbnail_url_ssm"].first).to match(/^#{Rails.configuration.external_iiif_url}*/)
       end
     end
   end
