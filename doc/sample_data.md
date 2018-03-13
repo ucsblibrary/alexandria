@@ -37,7 +37,7 @@ This data is intended for development and testing purposes. It contains collecti
 
   - `RAILS_ENV=production bin/ingest -f mods -m $SAMPLE_DATA_DIR/images-mods/mods_collection.xml`
 
-  - `RAILS_ENV=production bin/ingest -f csv -m $SAMPLE_DATA_DIR/images-mods/map_collection.csv`
+  - `RAILS_ENV=production bin/ingest -f csv -m $SAMPLE_DATA_DIR/maps/map_collection.csv`
 
 2. Use the importers to ingest each format. In some cases it's necessary to update the collection's solr index afterwards.
 
