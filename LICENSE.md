@@ -1,4 +1,4 @@
-This software is Copyright © 2012-2013 The Regents of the University of
+This software is Copyright © 2012-2018 The Regents of the University of
 California. All Rights Reserved.
 
 Permission to copy, modify, and distribute this software and its documentation
