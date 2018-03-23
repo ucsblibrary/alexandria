@@ -37,9 +37,9 @@ class SolrDocument
     creator: "creator_tesim",
     date: "date_si",
     format: "form_of_work_label_tesim",
-    identifier: "identifier_ssm",
+    identifier: "uri_ssm",
     publisher: "publisher_tesim",
-    relation: %w[collection_label_ssim square_thumbnail_url_ssm],
+    relation: "collection_label_ssim",
     rights: "license_tesim",
     type: "work_type_label_tesim"
   )

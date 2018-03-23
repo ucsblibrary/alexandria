@@ -57,6 +57,9 @@ class ObjectIndexer < CurationConcerns::WorkIndexer
         s.respond_to?(:rdf_label) ? s.rdf_label : s
       end.flatten
 
+      solr_doc["uri_ssm"] =
+        "#{Settings.oai_identifier_prefix}#{object.identifier.first}"
+
       yield(solr_doc) if block_given?
     end
   end

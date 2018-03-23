@@ -38,8 +38,9 @@ RSpec.describe "Oai requests", type: :request do
     expect(response.body).to match(%r{<dc:title>.*<\/dc:title>})
   end
 
-  it "has a record in the repo with a dc identifier" do
+  it "has a record in the repo with a dc identifier with an http prefix" do
     get "/catalog/oai?verb=ListRecords&metadataPrefix=oai_dc"
-    expect(response.body).to match(%r{<dc:identifier>.*<\/dc:identifier>})
+    prefix_id = %r{<dc:identifier>https://alexandria.ucsb.edu/lib/.*<\/dc:identifier>}
+    expect(response.body).to match(prefix_id)
   end
 end
