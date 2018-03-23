@@ -27,6 +27,7 @@ defaults: &defaults
   oai_repository_name: "Alexandria Digital Research Library"
   oai_repository_url: "https://alexandria.ucsb.edu/catalog/oai"
   oai_record_prefix: "oai:ucsb"
+  oai_identifier_prefix: "https://alexandria.ucsb.edu/lib/"
   uploads_dir: <%= ENV['ADRL_UPLOADS'] || Rails.root.join("tmp", "uploads") %>
 
 development:
