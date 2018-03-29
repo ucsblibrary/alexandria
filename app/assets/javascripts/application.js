@@ -16,8 +16,10 @@
 //= require blacklight/blacklight
 //= require bootstrap/tab
 //
+//= require jquery.jcarousel
 //= require search_typeahead
 //= require blacklight_gallery
+//= require jcarousel
 //= require manage_repeating_fields
 //= require editor
 //= require contributor_editor
