@@ -4,7 +4,6 @@ module ContactUsHelper
   def contact_us_categories
     [
       "General Inquiry or Request",
-      "Copyright Information",
       "Feedback",
       "Report Problem",
     ]
