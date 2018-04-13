@@ -6,29 +6,34 @@
 class FullTextToSolrJob < ApplicationJob
   # @return [String] the id for the SolrDocument being updated
   # @return [IO] the PDF content
-  attr_reader :work_id, :logger
+  attr_reader :solr_doc
 
   queue_as :default
 
-  def initialize(work_id, logger = Logger.new(STDOUT))
-    @work_id = work_id
-    @logger = logger
+  def initialize(solr_doc)
+    @solr_doc = solr_doc
   end
 
   def perform
-    return if all_text.nil?
-    solr_document = SolrDocument.find(@work_id).to_h
-    solr_document["all_text_timv"] = all_text
-    ActiveFedora::SolrService.add(solr_document)
+    return if solr_doc[:id].blank?
+    return if all_text.blank?
+
+    solr_doc["all_text_timv"] = all_text
+    ActiveFedora::SolrService.add(solr_doc)
     ActiveFedora::SolrService.commit
-    @logger.info("Full text indexed for work: #{@work_id}")
   end
 
   private
 
+    def work
+      ActiveFedora::Base.find(solr_doc[:id])
+    end
+
     def files
-      return nil if ActiveFedora::Base.find(@work_id).class == Collection
-      ActiveFedora::Base.find(@work_id).file_sets.map(&:files).flatten
+      unless CurationConcerns.config.registered_curation_concern_types.include?(work.class.to_s)
+        return nil
+      end
+      work.file_sets.map(&:files).flatten
     end
 
     def all_text

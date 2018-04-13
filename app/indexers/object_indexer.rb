@@ -60,6 +60,9 @@ class ObjectIndexer < CurationConcerns::WorkIndexer
       solr_doc["uri_ssm"] =
         "#{Settings.oai_identifier_prefix}#{object.identifier.first}"
 
+      # Full-Text Indexing
+      ::FullTextToSolrJob.new(solr_doc).perform
+
       yield(solr_doc) if block_given?
     end
   end
