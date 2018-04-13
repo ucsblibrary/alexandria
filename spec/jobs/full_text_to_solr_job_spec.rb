@@ -27,7 +27,7 @@ RSpec.describe FullTextToSolrJob do
   end
 
   let(:image) { FactoryBot.create(:public_image) }
-  let(:ftts) { described_class.new(image.id) }
+  let(:ftts) { described_class.new(image.to_solr) }
   let(:solr) { RSolr.connect(url: ActiveFedora::SolrService.instance.conn.uri.to_s) }
 
   describe "#perform_now" do

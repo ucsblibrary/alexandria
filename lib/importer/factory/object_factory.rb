@@ -95,8 +95,6 @@ module Importer::Factory
 
       logger.info "Created #{klass.model_name.human} #{object.id} "\
                   "(#{Array(attributes[system_identifier_field]).first})"
-      # Full-Text Indexing
-      ::FullTextToSolrJob.new(object.id, @logger).perform
     end
 
     def update
