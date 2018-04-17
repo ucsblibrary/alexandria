@@ -45,6 +45,13 @@ module Importer::CSV
     ingested = 0
 
     rows_to_ingest = meta.drop(options[:skip])
+
+    if options[:accession_numbers].present?
+      rows_to_ingest.select! do |row|
+        options[:accession_numbers].include? row[:accession_number]
+      end
+    end
+
     return 0 if rows_to_ingest.blank?
 
     collections = rows_to_ingest.select { |row| row[:type] == "Collection" }
@@ -100,7 +107,7 @@ module Importer::CSV
       logger.info "Ingesting accession number #{attrs[:accession_number].first}"
     end
 
-    files = Parse::CSV.get_binary_paths(attrs[:files], data)
+    files = Parse.get_binary_paths(attrs[:files], data)
 
     logger.debug "Object attributes:"
     attrs.each { |k, v| logger.debug "#{k}: #{v}" }

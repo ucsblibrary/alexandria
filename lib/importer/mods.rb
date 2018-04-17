@@ -14,27 +14,42 @@ module Importer::MODS
     end
     ingests = 0
 
-    # TODO: this currently assumes one record per metadata file
-    meta.each do |metadatum|
-      if options[:skip] > ingests
-        ingests += 1
-        next
+    metadata = meta.map do |m|
+      # TODO: this currently assumes one record per metadata file?
+      parser = Parse::MODS.new(m, logger)
+      {
+        model: parser.model.to_s,
+        attributes: parser.attributes,
+      }
+    end
+
+    if options[:accession_numbers].present?
+      metadata.select! do |record|
+        options[:accession_numbers].include?(
+          record[:attributes][:accession_number].first
+        )
       end
+    end
+
+    metadata.drop(options[:skip]).each do |record|
       next if options[:number] && options[:number] <= ingests
 
-      start_record = Time.zone.now
+      files = Parse.get_binary_paths(record[:attributes][:files], data)
 
-      ingest_mod(
-        metadata: metadatum,
-        data: Parse.find_paths(data),
-        logger: logger
+      logger.debug "Object metadata:"
+      logger.debug metadata
+      logger.debug "Associated files:"
+      files.each { |f| logger.debug f }
+
+      IngestJob.perform_later(
+        model: record[:model],
+        attrs: record[:attributes].merge(
+          admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID
+        ).to_json,
+        files: files
       )
 
-      end_record = Time.zone.now
-
-      logger.info "Ingested record #{ingests + 1} of #{meta.length} "\
-                  "in #{end_record - start_record} seconds"
-
+      logger.info "Queued record #{ingests + 1} of #{metadata.length}"
       ingests += 1
     end
 
@@ -46,31 +61,5 @@ module Importer::MODS
   rescue Interrupt
     logger.error "\nIngest stopped, cleaning up..."
     raise IngestError, reached: ingests
-  end
-
-  def self.ingest_mod(metadata:, data:, logger: Logger.new(STDOUT))
-    selected_data = data.select do |f|
-      # FIXME: find a more reliable test
-      meta_base = File.basename(metadata, ".xml")
-      data_base = File.basename(f, File.extname(f))
-      data_base.include?(meta_base) || meta_base.include?(data_base)
-    end
-
-    logger.debug "Object metadata:"
-    logger.debug metadata
-    logger.debug "Associated files:"
-    selected_data.each { |f| logger.debug f }
-
-    parser = Parse::MODS.new(metadata, logger)
-
-    attrs = parser.attributes.merge(
-      admin_policy_id: AdminPolicy::PUBLIC_POLICY_ID
-    )
-
-    IngestJob.perform_later(
-      model: parser.model.to_s,
-      attrs: attrs.to_json,
-      files: selected_data
-    )
   end
 end

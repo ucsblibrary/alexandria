@@ -23,6 +23,9 @@ options = Trollop.options do
 
 EOS
 
+  opt :accession_numbers,
+      "Only ingest records with these accession numbers (CSV and MODS)",
+      type: :strings
   opt :data, "Data file(s)/directory", type: :strings
   opt :format, "Metadata format (csv, mods, etd, cyl)", type: :string
   opt :metadata, "Metadata file(s)/directory", type: :strings
