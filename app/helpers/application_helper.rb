@@ -7,7 +7,7 @@ module ApplicationHelper
   # @return [String]
   def linkify(string)
     string.gsub(URI.regexp(%w[http https]),
-                '<a href="\1://\4">\1://\4</a>')
+                '<a href="\1://\4\7">\1://\4\7</a>')
   end
 
   # Used in {CatalogController} to render notes and restrictions as
