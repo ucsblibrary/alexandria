@@ -30,6 +30,11 @@ class ObjectIndexer < CurationConcerns::WorkIndexer
 
   def generate_solr_document
     super do |solr_doc|
+      # override CurationConcerns::WorkIndexer to preserve FileSet
+      # order
+      solr_doc[Solrizer.solr_name("member_ids", :symbol)] =
+        object.ordered_members.to_a.map(&:id)
+
       collection_ids, collection_titles = collections
       solr_doc[COLLECTION] = collection_ids
       solr_doc[COLLECTION_LABEL] = collection_titles
