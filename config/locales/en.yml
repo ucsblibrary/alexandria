@@ -24,11 +24,11 @@ en:
     product_name: 'Alexandria Digital Research Library'
   catalog:
     access_denied:
-      authorities/policies/discovery: This item is restricted and not available for digital download.  Please contact UCSB Library staff if you need additional assistance.
-      authorities/policies/ucsb_on_campus: This item is restricted.  You must be a UCSB user and can only access this item on campus.  Please contact UCSB Library staff if you need additional assistance.
-      authorities/policies/ucsb: This item is restricted to UCSB users only, please login or contact UCSB Library staff if you need additional assistance.
-      authorities/policies/uc: This item is restricted to logged-in University of California users only, please login or contact UCSB Library staff if you need additional assistance.
-      authorities/policies/public_on_campus: This item is restricted to on-campus access only, please contact UCSB Library staff if you need additional assistance.
+      authorities/policies/discovery: At the request of the author, this item is currently restricted via delayed access (embargo), and may become available at a later date. Please check our FAQs for more information.
+      authorities/policies/ucsb_on_campus: This item is restricted. You must be a UCSB user and can only access this item on campus. Please log in from an on-campus device or contact UCSB Library staff if you need additional assistance.
+      authorities/policies/ucsb: This item is restricted to UCSB users only. Please log in or contact UCSB Library staff if you need additional assistance.
+      authorities/policies/uc: This item is restricted to University of California users only. Please log in or contact UCSB Library staff if you need additional assistance.
+      authorities/policies/public_on_campus: This item is restricted to on-campus access only. Please check our FAQs or contact UCSB Library staff if you need additional assistance.
   simple_form:
     labels:
       image:
