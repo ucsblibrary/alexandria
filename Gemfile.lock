@@ -706,7 +706,7 @@ GEM
       rspec-mocks (~> 3.7.0)
       rspec-support (~> 3.7.0)
     rspec-support (3.7.1)
-    rubocop (0.53.0)
+    rubocop (0.55.0)
       parallel (~> 1.10)
       parser (>= 2.5)
       powerpack (~> 0.1)
@@ -897,7 +897,7 @@ DEPENDENCIES
   rsolr
   rspec-activemodel-mocks
   rspec-rails
-  rubocop (~> 0.53.0)
+  rubocop (~> 0.53)
   rubocop-rspec
   sass-rails (~> 5.0)
   settingslogic

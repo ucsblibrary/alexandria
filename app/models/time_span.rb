@@ -67,9 +67,9 @@ class TimeSpan < ActiveTriples::Resource
   end
 
   def earliest_year
-    start.reject(&:blank?).sort do |a, b|
+    start.reject(&:blank?).min do |a, b|
       extract_year(a) <=> extract_year(b)
-    end.first
+    end
   end
 
   private
