@@ -34,7 +34,7 @@ class SolrDocument
     subject: "lc_subject_label_tesim",
     contributor: "all_contributors_label_sim",
     coverage: "location_label_tesim",
-    creator: "creator_tesim",
+    creator: "creator_label_tesim",
     date: "date_si",
     format: "form_of_work_label_tesim",
     identifier: "uri_ssm",
