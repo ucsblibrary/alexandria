@@ -4,6 +4,7 @@ require "rails_helper"
 require "importer"
 
 describe Importer::Factory::IndexMapFactory do
+  # rubocop:disable RSpec/BeforeAfterAll
   before(:all) do
     (Collection.all + IndexMap.all).map(&:id).each do |id|
       if ActiveFedora::Base.exists?(id)
@@ -49,6 +50,8 @@ describe Importer::Factory::IndexMapFactory do
       ).run
     end
   end
+  # rubocop:enable RSpec/BeforeAfterAll
+
   context "Making an IndexMap" do
     it "can make an IndexMap" do
       expect(@index_map).to be_instance_of(IndexMap)
