@@ -141,7 +141,7 @@ class SolrDocument
             else
               {
                 index_maps_ssim: self["accession_number_ssim"],
-                has_model_ssim: "MapSet"
+                has_model_ssim: "MapSet",
               }
             end
 

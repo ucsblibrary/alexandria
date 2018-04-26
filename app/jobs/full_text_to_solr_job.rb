@@ -30,9 +30,9 @@ class FullTextToSolrJob < ApplicationJob
     end
 
     def files
-      unless CurationConcerns.config.registered_curation_concern_types.include?(work.class.to_s)
-        return nil
-      end
+      models = CurationConcerns.config.registered_curation_concern_types
+      return nil unless models.include?(work.class.to_s)
+
       work.file_sets.map(&:files).flatten
     end
 
