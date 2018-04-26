@@ -4,6 +4,7 @@ require "rails_helper"
 require "importer"
 
 describe Importer::Factory::ScannedMapFactory do
+  # rubocop:disable RSpec/BeforeAfterAll
   before(:all) do
     (Collection.all + ScannedMap.all).map(&:id).each do |id|
       if ActiveFedora::Base.exists?(id)
@@ -46,6 +47,8 @@ describe Importer::Factory::ScannedMapFactory do
       ).run
     end
   end
+  # rubocop:enable RSpec/BeforeAfterAll
+
   context "creating a ScannedMap" do
     it "can make a ScannedMap" do
       expect(@scanned_map).to be_instance_of(ScannedMap)

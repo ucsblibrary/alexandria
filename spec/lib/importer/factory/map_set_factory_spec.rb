@@ -4,6 +4,7 @@ require "rails_helper"
 require "importer"
 
 describe Importer::Factory::MapSetFactory do
+  # rubocop:disable RSpec/BeforeAfterAll
   before(:all) do
     (Collection.all + MapSet.all).map(&:id).each do |id|
       if ActiveFedora::Base.exists?(id)
@@ -47,6 +48,8 @@ describe Importer::Factory::MapSetFactory do
       ).run
     end
   end
+  # rubocop:enable RSpec/BeforeAfterAll
+
   context "making a MapSet" do
     it "can make a MapSet" do
       expect(@map_set).to be_instance_of(MapSet)

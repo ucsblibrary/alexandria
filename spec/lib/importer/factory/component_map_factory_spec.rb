@@ -4,6 +4,7 @@ require "rails_helper"
 require "importer"
 
 describe Importer::Factory::ComponentMapFactory do
+  # rubocop:disable RSpec/BeforeAfterAll
   before(:all) do
     (Collection.all + ComponentMap.all).map(&:id).each do |id|
       if ActiveFedora::Base.exists?(id)
@@ -51,6 +52,8 @@ describe Importer::Factory::ComponentMapFactory do
       ).run
     end
   end
+  # rubocop:enable RSpec/BeforeAfterAll
+
   context "make a ComponentMap" do
     it "can make a ComponentMap" do
       expect(@component_map).to be_instance_of(ComponentMap)

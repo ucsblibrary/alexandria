@@ -11,7 +11,7 @@ Lint/UriEscapeUnescape:
   Exclude:
     - 'app/controllers/downloads_controller.rb'
 
-# Offense count: 59
+# Offense count: 60
 Metrics/AbcSize:
   Max: 97
 
@@ -55,18 +55,7 @@ Naming/MemoizedInstanceVariableName:
 RSpec/AnyInstance:
   Enabled: false
 
-# Offense count: 4
-RSpec/BeforeAfterAll:
-  Exclude:
-    - 'spec/spec_helper.rb'
-    - 'spec/rails_helper.rb'
-    - 'spec/support/**/*.rb'
-    - 'spec/lib/importer/factory/component_map_factory_spec.rb'
-    - 'spec/lib/importer/factory/index_map_factory_spec.rb'
-    - 'spec/lib/importer/factory/map_set_factory_spec.rb'
-    - 'spec/lib/importer/factory/scanned_map_factory_spec.rb'
-
-# Offense count: 201
+# Offense count: 205
 # Configuration parameters: Prefixes.
 # Prefixes: when, with, without
 RSpec/ContextWording:
@@ -76,7 +65,7 @@ RSpec/ContextWording:
 RSpec/DescribeClass:
   Enabled: false
 
-# Offense count: 167
+# Offense count: 170
 # Configuration parameters: Max.
 RSpec/ExampleLength:
   Enabled: false
@@ -112,7 +101,7 @@ RSpec/LetSetup:
 RSpec/MessageSpies:
   EnforcedStyle: receive
 
-# Offense count: 237
+# Offense count: 240
 # Configuration parameters: AggregateFailuresByDefault.
 RSpec/MultipleExpectations:
   Max: 43
@@ -122,24 +111,8 @@ RSpec/NamedSubject:
   Enabled: false
 
 # Offense count: 90
-# Configuration parameters: Max.
 RSpec/NestedGroups:
-  Exclude:
-    - 'spec/controllers/access_controller_spec.rb'
-    - 'spec/controllers/catalog_controller_spec.rb'
-    - 'spec/controllers/downloads_controller_spec.rb'
-    - 'spec/controllers/embargoes_controller_spec.rb'
-    - 'spec/controllers/records_controller_spec.rb'
-    - 'spec/helpers/curation_concerns_helper_spec.rb'
-    - 'spec/indexers/etd_indexer_spec.rb'
-    - 'spec/indexers/object_indexer_spec.rb'
-    - 'spec/lib/importer/factory/object_factory_spec.rb'
-    - 'spec/lib/local_authority_spec.rb'
-    - 'spec/lib/proquest/metadata_spec.rb'
-    - 'spec/models/image_spec.rb'
-    - 'spec/models/solr_document_spec.rb'
-    - 'spec/models/time_span_spec.rb'
-    - 'spec/services/auth_service_spec.rb'
+  Max: 5
 
 # Offense count: 9
 RSpec/ScatteredLet:
@@ -216,7 +189,7 @@ Style/MixinUsage:
     - 'lib/traject/audio_config.rb'
     - 'lib/traject/etd_config.rb'
 
-# Offense count: 24
+# Offense count: 25
 # Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
 # URISchemes: http, https
 Metrics/LineLength:
