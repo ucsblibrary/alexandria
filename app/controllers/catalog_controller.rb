@@ -64,7 +64,7 @@ class CatalogController < ApplicationController
       },
       document: {
         limit: 25,
-      }
+      },
     }
 
     # This controls which partials are used, and in what order, for
