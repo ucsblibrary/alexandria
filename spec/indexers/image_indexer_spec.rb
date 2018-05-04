@@ -14,37 +14,32 @@ describe ImageIndexer do
   subject { described_class.new(image).generate_solr_document }
 
   context "with a file_set" do
-    let(:image) { Image.new }
-    let(:file_set) do
-      instance_double("FileSet", files: [file], image?: true)
-    end
-
-    let(:file) do
-      instance_double(
-        "ActiveFedora::File",
-        id: "s1/78/4k/72/s1784k724/files/6185235a-79b2-4c29-8c24-4d6ad9b11470"
-      )
-    end
+    let(:file) { File.new(fixture_file_path("images/dirge1.tif")) }
+    let(:file_set) { FactoryBot.create(:public_file_set) }
+    let(:image) { Image.new(title: ["index me"]) }
 
     before do
-      allow(image).to receive_messages(file_sets: [file_set])
+      Hydra::Works::AddFileToFileSet.call(file_set, file, :original_file)
+
+      image.ordered_members << file_set
+      image.save
     end
 
     it "has images" do
       VCR.use_cassette("image_indexer") do
-        expect(subject[ObjectIndexer.thumbnail_field]).to(
-          eq ["/image-service/s1%2F78%2F4k%2F72%2Fs1784k724%2Ffiles%2F6185235a-79b2-4c29-8c24-4d6ad9b11470/square/100,/0/default.jpg"]
+        expect(subject[ObjectIndexer.thumbnail_field].first).to(
+          match %r{\/image-service\/.*%2Ffiles%2F.*/square/100,/0/default.jpg}
         )
 
-        expect(subject["image_url_ssm"]).to(
-          eq ["/image-service/s1%2F78%2F4k%2F72%2Fs1784k724%2Ffiles%2F6185235a-79b2-4c29-8c24-4d6ad9b11470/full/400,/0/default.jpg"]
+        expect(subject["image_url_ssm"].first).to(
+          match %r{\/image-service\/.*%2Ffiles%2F.*/full/400,/0/default.jpg}
         )
 
-        expect(subject["large_image_url_ssm"]).to(
-          eq ["/image-service/s1%2F78%2F4k%2F72%2Fs1784k724%2Ffiles%2F6185235a-79b2-4c29-8c24-4d6ad9b11470/full/1000,/0/default.jpg"]
+        expect(subject["large_image_url_ssm"].first).to(
+          match %r{\/image-service\/.*%2Ffiles%2F.*/full/1000,/0/default.jpg}
         )
-        expect(subject["file_set_iiif_manifest_ssm"]).to(
-          eq ["/image-service/s1%2F78%2F4k%2F72%2Fs1784k724%2Ffiles%2F6185235a-79b2-4c29-8c24-4d6ad9b11470/info.json"]
+        expect(subject["file_set_iiif_manifest_ssm"].first).to(
+          match %r{\/image-service\/.*%2Ffiles%2F.*/info.json}
         )
       end
     end
@@ -179,30 +174,34 @@ describe ImageIndexer do
   end
 
   context "internal vs external iiif uris" do
-    let(:image) { FactoryBot.create(:public_image) }
     let(:file) { File.new(fixture_file_path("images/cusbspcmss36_110108_1_a.tif")) }
     let(:file_set) { FactoryBot.create(:public_file_set) }
+    let(:image) { FactoryBot.create(:public_image) }
 
     before do
       Hydra::Works::AddFileToFileSet.call(file_set, file, :original_file)
-      image.members << file_set
+      image.ordered_members << file_set
       image.save
     end
+
     after do
       Rails.configuration.external_iiif_url = nil
     end
+
     context "iiif manifest" do
       it "uses internal riiif urls if there is no external riiif service defined" do
         Rails.configuration.external_iiif_url = nil
         image_indexer_solr_doc = described_class.new(image).generate_solr_document
         expect(image_indexer_solr_doc["file_set_iiif_manifest_ssm"].first).to match(%r{^/image-service/*})
       end
+
       it "uses external riiif urls if there is an external riiif service defined" do
         Rails.configuration.external_iiif_url = "http://localhost:8182/iiif/2/"
         image_indexer_solr_doc = described_class.new(image).generate_solr_document
         expect(image_indexer_solr_doc["file_set_iiif_manifest_ssm"].first).to match(/^#{Rails.configuration.external_iiif_url}*/)
       end
     end
+
     context "image urls" do
       it "uses internal riiif urls if there is no external riiif service defined" do
         Rails.configuration.external_iiif_url = nil
@@ -212,6 +211,7 @@ describe ImageIndexer do
         expect(image_indexer_solr_doc["thumbnail_url_ssm"].first).to match(%r{^/image-service/*})
         expect(image_indexer_solr_doc["square_thumbnail_url_ssm"].first).to match(%r{^/image-service/*})
       end
+
       it "uses external riiif urls if there is an external riiif service defined" do
         Rails.configuration.external_iiif_url = "http://localhost:8182/iiif/2/"
         image_indexer_solr_doc = described_class.new(image).generate_solr_document

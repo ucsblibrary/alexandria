@@ -14,14 +14,14 @@ describe "MapSet show page:" do
     end
 
     VCR.use_cassette("show_map_set_feature_spec") do
-      index_map_west.members << file_set
+      index_map_west.ordered_members << file_set
       index_map_west.save
-      index_map_east.members << file_set
+      index_map_east.ordered_members << file_set
       index_map_east.save
 
-      component_map_river.members << file_set
+      component_map_river.ordered_members << file_set
       component_map_river.save
-      component_map_city.members << file_set
+      component_map_city.ordered_members << file_set
       component_map_city.save
 
       map_set.update_index
