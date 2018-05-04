@@ -135,4 +135,135 @@ http_interactions:
         "@value": "Century Company" } ] },  { "@id": "http://id.loc.gov/rwo/agents/n81038526", "@type": [ "http://www.loc.gov/mads/rdf/v1#RWO", "http://id.loc.gov/ontologies/bibframe/Organization", "http://xmlns.com/foaf/0.1/Organization" ], "http://www.w3.org/2000/01/rdf-schema#label": [ { "@value": "Century Company" }, { "@value": "" } ] } ]
     http_version: 
   recorded_at: Fri, 03 Mar 2017 00:54:27 GMT
-recorded_with: VCR 3.0.3
+- request:
+    method: get
+    uri: http://id.loc.gov/authorities/names/n81038526
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - text/turtle, text/rdf+turtle, application/turtle;q=0.2, application/x-turtle;q=0.2,
+        application/ld+json, application/x-ld+json, application/n-triples, text/plain;q=0.2,
+        application/n-quads, text/x-nquads;q=0.2, application/rdf+json, text/html;q=0.5,
+        application/xhtml+xml;q=0.7, image/svg+xml;q=0.4, text/n3, text/rdf+n3;q=0.2,
+        application/rdf+n3;q=0.2, application/rdf+xml, text/csv, text/tab-separated-values,
+        application/csvm+json, application/trig, application/x-trig;q=0.2, application/trix
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 303
+      message: SEE OTHER
+    headers:
+      Location:
+      - http://id.loc.gov/authorities/names/n81038526.jsonld
+      Vary:
+      - Accept
+      X-Uri:
+      - http://id.loc.gov/authorities/names/n81038526
+      X-Preflabel:
+      - Century Company
+      Content-Length:
+      - '0'
+      Date:
+      - Fri, 04 May 2018 21:18:18 GMT
+      Server:
+      - Apache
+      X-Varnish:
+      - '144367821'
+      Age:
+      - '0'
+      Via:
+      - 1.1 varnish-v4
+      X-Cache:
+      - MISS
+      X-Cache-Hits:
+      - '0'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Fri, 04 May 2018 21:18:18 GMT
+- request:
+    method: get
+    uri: http://id.loc.gov/authorities/names/n81038526.jsonld
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - text/turtle, text/rdf+turtle, application/turtle;q=0.2, application/x-turtle;q=0.2,
+        application/ld+json, application/x-ld+json, application/n-triples, text/plain;q=0.2,
+        application/n-quads, text/x-nquads;q=0.2, application/rdf+json, text/html;q=0.5,
+        application/xhtml+xml;q=0.7, image/svg+xml;q=0.4, text/n3, text/rdf+n3;q=0.2,
+        application/rdf+n3;q=0.2, application/rdf+xml, text/csv, text/tab-separated-values,
+        application/csvm+json, application/trig, application/x-trig;q=0.2, application/trix
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/ld+json
+      Cache-Control:
+      - public, max-age=1209600
+      Etag:
+      - 1035674e1e3c0f05004551b47c7fa349
+      X-Uri:
+      - http://id.loc.gov/authorities/names/n81038526
+      Content-Length:
+      - '9136'
+      Date:
+      - Fri, 04 May 2018 21:18:19 GMT
+      Server:
+      - Apache
+      X-Varnish:
+      - '6703777'
+      Age:
+      - '0'
+      Via:
+      - 1.1 varnish-v4
+      X-Cache:
+      - MISS
+      X-Cache-Hits:
+      - '0'
+      Accept-Ranges:
+      - bytes
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: |-
+        [  { "@id": "_:b7idlocgovauthoritiesnamesn81038526", "http://www.w3.org/1999/02/22-rdf-syntax-ns#first": [ { "@id": "_:b8idlocgovauthoritiesnamesn81038526" } ], "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest": [ { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#nil" } ] },  { "@id": "_:b16idlocgovauthoritiesnamesn81038526", "http://www.w3.org/1999/02/22-rdf-syntax-ns#first": [ { "@id": "_:b17idlocgovauthoritiesnamesn81038526" } ], "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest": [ { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#nil" } ] },  { "@id": "http://id.loc.gov/authorities/names/nr90010169", "@type": [ "http://www.loc.gov/mads/rdf/v1#CorporateName", "http://www.loc.gov/mads/rdf/v1#Variant", "http://www.w3.org/2008/05/skos-xl#Label" ], "http://www.loc.gov/mads/rdf/v1#variantLabel": [ { "@language": "en",
+        "@value": "Scribner & Co." } ], "http://www.loc.gov/mads/rdf/v1#elementList": [ { "@id": "_:b25idlocgovauthoritiesnamesn81038526" } ], "http://www.w3.org/2008/05/skos-xl#literalForm": [ { "@language": "en",
+        "@value": "Scribner & Co." } ] },  { "@id": "http://id.loc.gov/authorities/names/n81038526", "@type": [ "http://www.loc.gov/mads/rdf/v1#CorporateName", "http://www.loc.gov/mads/rdf/v1#Authority", "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@language": "en",
+        "@value": "Century Company" } ], "http://www.loc.gov/mads/rdf/v1#elementList": [ { "@id": "_:b7idlocgovauthoritiesnamesn81038526" } ], "http://www.loc.gov/mads/rdf/v1#hasLaterEstablishedForm": [ { "@id": "http://id.loc.gov/authorities/names/n81038528" } ], "http://www.loc.gov/mads/rdf/v1#hasEarlierEstablishedForm": [ { "@id": "http://id.loc.gov/authorities/names/nr90010169" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSCollection": [ { "@id": "http://id.loc.gov/authorities/names/collection_NamesAuthorizedHeadings" }, { "@id": "http://id.loc.gov/authorities/names/collection_LCNAF" } ], "http://www.loc.gov/mads/rdf/v1#hasExactExternalAuthority": [ { "@id": "http://viaf.org/viaf/sourceID/LC%7Cn+81038526#skos:Concept" } ], "http://www.loc.gov/mads/rdf/v1#identifiesRWO": [ { "@id": "http://id.loc.gov/rwo/agents/n81038526" } ], "http://www.loc.gov/mads/rdf/v1#isMemberOfMADSScheme": [ { "@id": "http://id.loc.gov/authorities/names" } ], "http://id.loc.gov/vocabulary/identifiers/lccn": [ { "@value": "n 81038526" } ], "http://www.loc.gov/mads/rdf/v1#hasSource": [ { "@id": "_:b39idlocgovauthoritiesnamesn81038526" }, { "@id": "_:b47idlocgovauthoritiesnamesn81038526" }, { "@id": "_:b55idlocgovauthoritiesnamesn81038526" } ], "http://www.loc.gov/mads/rdf/v1#adminMetadata": [ { "@id": "_:b63idlocgovauthoritiesnamesn81038526" }, { "@id": "_:b71idlocgovauthoritiesnamesn81038526" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "en",
+        "@value": "Century Company" } ], "http://www.w3.org/2000/01/rdf-schema#seeAlso": [ { "@id": "http://id.loc.gov/authorities/names/n81038528" }, { "@id": "http://id.loc.gov/authorities/names/nr90010169" } ], "http://www.w3.org/2004/02/skos/core#altLabel": [ { "@value": "Scribner & Co." } ], "http://www.w3.org/2004/02/skos/core#exactMatch": [ { "@id": "http://viaf.org/viaf/sourceID/LC%7Cn+81038526#skos:Concept" } ], "http://www.w3.org/2004/02/skos/core#inScheme": [ { "@id": "http://id.loc.gov/authorities/names" } ], "http://www.w3.org/2004/02/skos/core#changeNote": [ { "@id": "_:b96idlocgovauthoritiesnamesn81038526" }, { "@id": "_:b104idlocgovauthoritiesnamesn81038526" } ] },  { "@id": "_:b17idlocgovauthoritiesnamesn81038526", "@type": [ "http://www.loc.gov/mads/rdf/v1#NameElement" ], "http://www.loc.gov/mads/rdf/v1#elementValue": [ { "@language": "en",
+        "@value": "D. Appleton-Century Company" } ] },  { "@id": "_:b71idlocgovauthoritiesnamesn81038526", "@type": [ "http://id.loc.gov/ontologies/RecordInfo#RecordInfo" ], "http://id.loc.gov/ontologies/RecordInfo#recordChangeDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2015-01-06T07:14:58" } ], "http://id.loc.gov/ontologies/RecordInfo#recordStatus": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "revised" } ], "http://id.loc.gov/ontologies/RecordInfo#recordContentSource": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlc" } ], "http://id.loc.gov/ontologies/RecordInfo#languageOfCataloging": [ { "@id": "http://id.loc.gov/vocabulary/iso639-2/eng" } ] },  { "@id": "_:b63idlocgovauthoritiesnamesn81038526", "@type": [ "http://id.loc.gov/ontologies/RecordInfo#RecordInfo" ], "http://id.loc.gov/ontologies/RecordInfo#recordChangeDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "1981-08-17T00:00:00" } ], "http://id.loc.gov/ontologies/RecordInfo#recordStatus": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "new" } ], "http://id.loc.gov/ontologies/RecordInfo#recordContentSource": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlc" } ], "http://id.loc.gov/ontologies/RecordInfo#languageOfCataloging": [ { "@id": "http://id.loc.gov/vocabulary/iso639-2/eng" } ] },  { "@id": "_:b25idlocgovauthoritiesnamesn81038526", "http://www.w3.org/1999/02/22-rdf-syntax-ns#first": [ { "@id": "_:b26idlocgovauthoritiesnamesn81038526" } ], "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest": [ { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#nil" } ] },  { "@id": "_:b55idlocgovauthoritiesnamesn81038526", "@type": [ "http://www.loc.gov/mads/rdf/v1#Source" ], "http://www.loc.gov/mads/rdf/v1#citation-source": [ { "@value": "Information from 678 converted Jan. 5, 2015" } ], "http://www.loc.gov/mads/rdf/v1#citation-note": [ { "@language": "en",
+        "@value": "(In 1933 D. Appleton and Company merged with the Century Company)" } ], "http://www.loc.gov/mads/rdf/v1#citation-status": [ { "@value": "found" } ] },  { "@id": "_:b47idlocgovauthoritiesnamesn81038526", "@type": [ "http://www.loc.gov/mads/rdf/v1#Source" ], "http://www.loc.gov/mads/rdf/v1#citation-source": [ { "@value": "MWA/NAIP files" } ], "http://www.loc.gov/mads/rdf/v1#citation-note": [ { "@language": "en",
+        "@value": "(hdg.: Century Company; note: established 1870 as Scribner & Co.; 1881 name changed to Century Company)" } ], "http://www.loc.gov/mads/rdf/v1#citation-status": [ { "@value": "found" } ] },  { "@id": "http://id.loc.gov/authorities/names/n81038528", "@type": [ "http://www.loc.gov/mads/rdf/v1#CorporateName", "http://www.loc.gov/mads/rdf/v1#Authority", "http://www.w3.org/2004/02/skos/core#Concept" ], "http://www.loc.gov/mads/rdf/v1#authoritativeLabel": [ { "@language": "en",
+        "@value": "D. Appleton-Century Company" } ], "http://www.loc.gov/mads/rdf/v1#elementList": [ { "@id": "_:b16idlocgovauthoritiesnamesn81038526" } ], "http://www.w3.org/2004/02/skos/core#prefLabel": [ { "@language": "en",
+        "@value": "D. Appleton-Century Company" } ] },  { "@id": "_:b96idlocgovauthoritiesnamesn81038526", "@type": [ "http://purl.org/vocab/changeset/schema#ChangeSet" ], "http://purl.org/vocab/changeset/schema#subjectOfChange": [ { "@id": "http://id.loc.gov/authorities/names/n81038526" } ], "http://purl.org/vocab/changeset/schema#creatorName": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlc" } ], "http://purl.org/vocab/changeset/schema#createdDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "1981-08-17T00:00:00" } ], "http://purl.org/vocab/changeset/schema#changeReason": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "new" } ] },  { "@id": "_:b39idlocgovauthoritiesnamesn81038526", "@type": [ "http://www.loc.gov/mads/rdf/v1#Source" ], "http://www.loc.gov/mads/rdf/v1#citation-source": [ { "@value": "Appleton-Century-Crofts, inc." } ], "http://www.loc.gov/mads/rdf/v1#citation-note": [ { "@language": "en",
+        "@value": "Fruit among the leaves, 1950." } ], "http://www.loc.gov/mads/rdf/v1#citation-status": [ { "@value": "found" } ] },  { "@id": "_:b104idlocgovauthoritiesnamesn81038526", "@type": [ "http://purl.org/vocab/changeset/schema#ChangeSet" ], "http://purl.org/vocab/changeset/schema#subjectOfChange": [ { "@id": "http://id.loc.gov/authorities/names/n81038526" } ], "http://purl.org/vocab/changeset/schema#creatorName": [ { "@id": "http://id.loc.gov/vocabulary/organizations/dlc" } ], "http://purl.org/vocab/changeset/schema#createdDate": [ { "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "@value": "2015-01-06T07:14:58" } ], "http://purl.org/vocab/changeset/schema#changeReason": [ { "@type": "http://www.w3.org/2001/XMLSchema#string",
+        "@value": "revised" } ] },  { "@id": "_:b8idlocgovauthoritiesnamesn81038526", "@type": [ "http://www.loc.gov/mads/rdf/v1#NameElement" ], "http://www.loc.gov/mads/rdf/v1#elementValue": [ { "@language": "en",
+        "@value": "Century Company" } ] },  { "@id": "_:b26idlocgovauthoritiesnamesn81038526", "@type": [ "http://www.loc.gov/mads/rdf/v1#NameElement" ], "http://www.loc.gov/mads/rdf/v1#elementValue": [ { "@language": "en",
+        "@value": "Scribner & Co." } ] },  { "@id": "http://id.loc.gov/rwo/agents/n81038526", "@type": [ "http://www.loc.gov/mads/rdf/v1#RWO", "http://id.loc.gov/ontologies/bibframe/Organization", "http://xmlns.com/foaf/0.1/Organization" ] } ]
+    http_version: 
+  recorded_at: Fri, 04 May 2018 21:18:19 GMT
+recorded_with: VCR 4.0.0

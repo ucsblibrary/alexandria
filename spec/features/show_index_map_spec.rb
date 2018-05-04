@@ -73,7 +73,7 @@ describe "IndexMap show page:" do
     map.members << file_set
     VCR.use_cassette("show_index_map_feature_spec") do
       map.save!
-      component_map.members << file_set
+      component_map.ordered_members << file_set
       component_map.save!
       map_set.update_index
     end

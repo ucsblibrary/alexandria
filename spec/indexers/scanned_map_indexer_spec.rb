@@ -13,41 +13,33 @@ describe ScannedMapIndexer do
   subject { described_class.new(scanned_map).generate_solr_document }
 
   context "with a file_set" do
+    let(:file) { File.new(fixture_file_path("images/dirge1.tif")) }
+    let(:file_set) { FactoryBot.create(:public_file_set) }
+    let(:scanned_map) { ScannedMap.new(title: ["index me"]) }
+
     before do
-      allow(scanned_map).to receive_messages(file_sets: [file_set])
-    end
+      Hydra::Works::AddFileToFileSet.call(file_set, file, :original_file)
 
-    let(:file) do
-      instance_double(
-        "ActiveFedora::File",
-        id: "s1/78/4k/72/s1784k724/files/6185235a-79b2-4c29-8c24-4d6ad9b11470"
-      )
+      scanned_map.ordered_members << file_set
+      scanned_map.save
     end
-
-    let(:file_set) do
-      instance_double("FileSet", files: [file], image?: true)
-    end
-    let(:scanned_map) { ScannedMap.new }
 
     it "has images" do
       VCR.use_cassette("scanned_map_indexer") do
-        # rubocop:disable Metrics/LineLength
-        expect(subject[ObjectIndexer.thumbnail_field]).to(
-          eq ["/image-service/s1%2F78%2F4k%2F72%2Fs1784k724%2Ffiles%2F6185235a-79b2-4c29-8c24-4d6ad9b11470/square/100,/0/default.jpg"]
+        expect(subject[ObjectIndexer.thumbnail_field].first).to(
+          match %r{\/image-service\/.*%2Ffiles%2F.*/square/100,/0/default.jpg}
         )
 
-        expect(subject["image_url_ssm"]).to(
-          eq ["/image-service/s1%2F78%2F4k%2F72%2Fs1784k724%2Ffiles%2F6185235a-79b2-4c29-8c24-4d6ad9b11470/full/400,/0/default.jpg"]
+        expect(subject["image_url_ssm"].first).to(
+          match %r{\/image-service\/.*%2Ffiles%2F.*/full/400,/0/default.jpg}
         )
 
-        expect(subject["large_image_url_ssm"]).to(
-          eq ["/image-service/s1%2F78%2F4k%2F72%2Fs1784k724%2Ffiles%2F6185235a-79b2-4c29-8c24-4d6ad9b11470/full/1000,/0/default.jpg"]
+        expect(subject["large_image_url_ssm"].first).to(
+          match %r{\/image-service\/.*%2Ffiles%2F.*/full/1000,/0/default.jpg}
         )
-
-        expect(subject["file_set_iiif_manifest_ssm"]).to(
-          eq ["/image-service/s1%2F78%2F4k%2F72%2Fs1784k724%2Ffiles%2F6185235a-79b2-4c29-8c24-4d6ad9b11470/info.json"]
+        expect(subject["file_set_iiif_manifest_ssm"].first).to(
+          match %r{\/image-service\/.*%2Ffiles%2F.*/info.json}
         )
-        # rubocop:enable Metrics/LineLength
       end
     end
   end

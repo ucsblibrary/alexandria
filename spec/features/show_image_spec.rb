@@ -61,7 +61,7 @@ describe "Image show page:" do
   describe "viewing images allows for pan and zoom" do
     before do
       allow_any_instance_of(SolrDocument).to receive(:ark).and_return("99999")
-      image.members << file_set
+      image.ordered_members << file_set
       image.save!
       image.update_index
     end
