@@ -83,12 +83,13 @@ describe "ComponentMap show page:" do
   before do
     # Need ARK to be able to draw thumbnail links
     allow_any_instance_of(SolrDocument).to receive(:ark).and_return("123")
-    map.members << file_set
+    map.ordered_members << file_set
+
     VCR.use_cassette("show_component_map_feature_spec") do
       map.save!
-      index_map.members << file_set
+      index_map.ordered_members << file_set
       index_map.save!
-      sibling_component_map.members << file_set
+      sibling_component_map.ordered_members << file_set
       sibling_component_map.save!
       map_set.update_index
     end

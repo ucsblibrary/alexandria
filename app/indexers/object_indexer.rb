@@ -32,8 +32,7 @@ class ObjectIndexer < CurationConcerns::WorkIndexer
     super do |solr_doc|
       # override CurationConcerns::WorkIndexer to preserve FileSet
       # order
-      solr_doc[Solrizer.solr_name("member_ids", :symbol)] =
-        object.ordered_members.to_a.map(&:id)
+      solr_doc[Solrizer.solr_name("member_ids", :symbol)] = object.ordered_member_ids
 
       collection_ids, collection_titles = collections
       solr_doc[COLLECTION] = collection_ids
@@ -200,11 +199,11 @@ class ObjectIndexer < CurationConcerns::WorkIndexer
       file_set_images(size: Settings.thumbnails["large"]["size"])
     end
 
-    def file_set_images(size: Settings.thumbnails["basic"]["size"],
-                        region: "full")
-      object.file_sets.map do |file_set|
-        file = file_set.files.first
-        next unless file
+    def file_set_images(size: Settings.thumbnails["basic"]["size"], region: "full")
+      object.ordered_members.to_a.map do |fs|
+        file = fs.files.first
+        next if file.blank?
+
         if Rails.configuration.try(:external_iiif_url)
           rotation = "0"
           quality = "default"
@@ -226,9 +225,10 @@ class ObjectIndexer < CurationConcerns::WorkIndexer
     # Define Rails.configuration.external_iiif_url to index against an external
     # iiif service
     def file_set_iiif_manifests
-      object.file_sets.map do |file_set|
-        file = file_set.files.first
-        next unless file
+      object.ordered_members.to_a.map do |fs|
+        file = fs.files.first
+        next if file.blank?
+
         if Rails.configuration.try(:external_iiif_url)
           "#{Rails.configuration.external_iiif_url}#{CGI.escape(file.id)}/info.json"
         else
