@@ -15,7 +15,7 @@ module Importer::CSV
     ingested = 0
 
     meta.each do |m|
-      table = ::CSV.table(m, encoding: "bom|UTF-8")
+      table = ::CSV.table(m, encoding: "UTF-8")
 
       if options[:skip] >= table.length
         raise ArgumentError,
