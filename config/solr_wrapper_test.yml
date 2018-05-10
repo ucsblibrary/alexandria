@@ -4,6 +4,7 @@ collection:
     name: test
 instance_dir: tmp/solr-test
 managed: true
+mirror_url: http://lib-solr-mirror.princeton.edu/dist/
 port: 8985
 solr_xml: solr/config/solrconfig.xml
 verbose: true

@@ -1,4 +1,14 @@
 GIT
+  remote: https://github.com/cbeer/solr_wrapper.git
+  revision: 55910f63ca58cf7cdc1ab0ec3bb75ace22bbe1ba
+  specs:
+    solr_wrapper (1.2.0)
+      faraday
+      retriable
+      ruby-progressbar
+      rubyzip
+
+GIT
   remote: https://github.com/projecthydra-labs/linked_vocabs.git
   revision: 67d80da0de07bf428c7f1a70ac2647b96edc274b
   specs:
@@ -296,7 +306,7 @@ GEM
       faraday
     faraday_middleware (0.12.2)
       faraday (>= 0.7.4, < 1.0)
-    fcrepo_wrapper (0.7.0)
+    fcrepo_wrapper (0.9.0)
       ruby-progressbar
     ffi (1.9.23)
     flot-rails (0.0.7)
@@ -750,10 +760,6 @@ GEM
       rack-protection (= 2.0.1)
       tilt (~> 2.0)
     slop (3.6.0)
-    solr_wrapper (0.19.0)
-      faraday
-      ruby-progressbar
-      rubyzip
     solrizer (3.4.1)
       activesupport
       daemons
@@ -866,7 +872,7 @@ DEPENDENCIES
   database_cleaner
   ezid-client (~> 1.2)
   factory_bot_rails
-  fcrepo_wrapper (= 0.7.0)
+  fcrepo_wrapper
   font-awesome-sass
   highline
   http_logger
@@ -902,7 +908,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   settingslogic
   simple_form (= 3.5.0)
-  solr_wrapper (~> 0.19.0)
+  solr_wrapper!
   spring
   spring-commands-rspec
   sqlite3
