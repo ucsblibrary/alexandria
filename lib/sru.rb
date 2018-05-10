@@ -79,33 +79,57 @@ module SRU
     EOS
   end
 
-  def self.download_all(type)
-    start_doc = fetch(query: config["#{type}_query"])
+  def self.download_etds
+    start_doc = fetch(query: config["etd_query"])
+    marc_count = Nokogiri::XML(start_doc).css("numberOfRecords").text.to_i
+
+    if marc_count > 10_000
+      warn "More than 10,000 ETDs found; downloading the first 10,000"
+    end
+
+    Rails.logger.info "Downloading #{marc_count} records (this is slow)"
+
+    batches = marc_count / config[:batch_size]
+    all = Array.new(batches) do |i|
+      start = (i * config[:batch_size]) + 1
+      strip(download_range(:etd, start, config[:batch_size]))
+    end
+
+    remainder = marc_count % config[:batch_size]
+    if remainder.positive?
+      all << download_range(:etd, (marc_count - remainder + 1), remainder)
+    end
+
+    output = File.join(Settings.marc_directory, "etd-metadata.xml")
+    File.open(output, "w") do |f|
+      f.write wrap(all)
+      num = MARC::XMLReader.new(StringIO.new(wrap(all))).map { |r| r }.count
+      Rails.logger.info "Wrote #{num} records to #{output}"
+    end
+  end
+
+  def self.download_cylinders
+    start_doc = fetch(query: config["cylinder_query"])
     marc_count = Nokogiri::XML(start_doc).css("numberOfRecords").text.to_i
     Rails.logger.info "Downloading #{marc_count} records (this is slow)"
 
-    batched_count = if marc_count > 10_000
-                      10_000
-                    else
-                      marc_count
-                    end
+    all = Array.new(marc_count) do |i|
+      marc = fetch(
+        query: format(config[:cylinder_query_single], number: i.to_s.rjust(4, "0"))
+      )
+      next if Nokogiri::XML(marc).css("numberOfRecords").text == "0"
 
-    batches = batched_count / config[:batch_size]
-    all = Array.new(batches) do |i|
-      start = (i * config[:batch_size]) + 1
-      strip(download_range(type, start, config[:batch_size]))
-    end
+      output = File.join(Settings.marc_directory, "cylinder-#{i + 10_000}.xml")
 
-    if marc_count > 10_000
-      all << download_extra(type, marc_count)
-    else
-      remainder = marc_count % config[:batch_size]
-      if remainder.positive?
-        all << download_range(type, (marc_count - remainder + 1), remainder)
+      File.open(output, "w") do |f|
+        f.write marc
+        Rails.logger.info "Wrote #{output}"
       end
-    end
 
-    output = File.join(Settings.marc_directory, "#{type}-metadata.xml")
+      marc
+    end.compact
+
+    output = File.join(Settings.marc_directory, "cylinder-metadata.xml")
     File.open(output, "w") do |f|
       f.write wrap(all)
       num = MARC::XMLReader.new(StringIO.new(wrap(all))).map { |r| r }.count
@@ -134,30 +158,5 @@ module SRU
     end
 
     marc_batch
-  end
-
-  # Work around the fact that when a query matches more than 10,000
-  # records, Alma will only let you access the first 10,000
-  #
-  # @param [Symbol] type
-  # @param [Integer] extra
-  def self.download_extra(type, extra)
-    raise "We've passed 10,000 ETDs!!!" if type == :etd
-
-    Array.new(extra - 10_000) do |i|
-      marc = fetch(
-        query: format(config[:cylinder_query_single], number: (i + 10_000))
-      )
-      next if Nokogiri::XML(marc).css("numberOfRecords").text == "0"
-
-      output = File.join(Settings.marc_directory,
-                         "cylinder-#{i + 10_000}.xml")
-      File.open(output, "w") do |f|
-        f.write marc
-        Rails.logger.info "Wrote #{output}"
-      end
-
-      marc
-    end.compact
   end
 end

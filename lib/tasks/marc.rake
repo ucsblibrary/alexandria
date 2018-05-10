@@ -6,12 +6,12 @@ require "sru"
 namespace :marc do
   desc "Download Wax Cylinder MARC records from SRU"
   task download_cylinders: :environment do
-    SRU.download_all(:cylinder)
+    SRU.download_cylinders
   end
 
   desc "Download ETD MARC records from SRU"
   task download_etds: :environment do
-    SRU.download_all(:etd)
+    SRU.download_etds
   end
 
   desc "Download the MARC record for an ARK (e.g., '48907/f3cv4hxn')"
