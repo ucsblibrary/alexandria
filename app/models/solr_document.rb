@@ -28,20 +28,20 @@ class SolrDocument
 
   # Blacklight OAI metadata mapping
   field_semantics.merge!(
-    title:       "title_tesim",
-    description: %w[description_tesim note_label_tesim citation],
-    langauge: "language_label_ssm",
-    subject: "lc_subject_label_tesim",
     contributor: "all_contributors_label_sim",
-    coverage: "location_label_tesim",
-    creator: "creator_label_tesim",
-    date: "date_si",
-    format: "form_of_work_label_tesim",
-    identifier: "uri_ssm",
-    publisher: "publisher_tesim",
-    relation: "collection_label_ssim",
-    rights: "license_tesim",
-    type: "work_type_label_tesim"
+    coverage:    "location_label_tesim",
+    creator:     "creator_label_tesim",
+    date:        "date_si",
+    description: %w[description_tesim note_label_tesim citation],
+    format:      "form_of_work_label_tesim",
+    identifier:  "uri_ssm",
+    language:    "language_label_ssm",
+    publisher:   "publisher_tesim",
+    relation:    "collection_label_ssim",
+    rights:      "license_tesim",
+    subject:     "lc_subject_label_tesim",
+    title:       "title_tesim",
+    type:        "work_type_label_tesim"
   )
 
   # Do content negotiation for AF models.
