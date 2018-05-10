@@ -64,6 +64,9 @@ class CatalogController < ApplicationController
       },
       document: {
         limit: 25,
+        set_fields: [
+          { label: "Collection", solr_field: "collection_label_ssim" },
+        ],
       },
     }
 
