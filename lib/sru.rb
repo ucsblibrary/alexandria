@@ -42,7 +42,7 @@ module SRU
     client = HTTPClient.new
 
     begin
-      # $stderr.puts "==> #{query}"
+      puts "Fetching #{query}"
       search = client.get(query)
     rescue StandardError => e
       warn "Error for query #{query}: #{e.message}"
@@ -79,25 +79,27 @@ module SRU
     EOS
   end
 
-  def self.download_etds
+  def self.download_etds(number:, skip: 0)
     start_doc = fetch(query: config["etd_query"])
-    marc_count = Nokogiri::XML(start_doc).css("numberOfRecords").text.to_i
+    marc_count = number || Nokogiri::XML(start_doc).css("numberOfRecords").text.to_i
 
     if marc_count > 10_000
       warn "More than 10,000 ETDs found; downloading the first 10,000"
     end
 
-    Rails.logger.info "Downloading #{marc_count} records (this is slow)"
-
     batches = marc_count / config[:batch_size]
-    all = Array.new(batches) do |i|
-      start = (i * config[:batch_size]) + 1
+    skip_batches = skip / config[:batch_size]
+    download_batches = Array.new(batches) { |i| i }.drop(skip_batches)
+
+    all = download_batches.map do |i|
+      start = ((i * config[:batch_size]) + 1) + (skip % config[:batch_size])
       strip(download_range(:etd, start, config[:batch_size]))
     end
 
     remainder = marc_count % config[:batch_size]
     if remainder.positive?
-      all << download_range(:etd, (marc_count - remainder + 1), remainder)
+      leftover = (marc_count - remainder + 1) + (skip % config[:batch_size])
+      all << download_range(:etd, leftover, remainder)
     end
 
     output = File.join(Settings.marc_directory, "etd-metadata.xml")
@@ -108,18 +110,23 @@ module SRU
     end
   end
 
-  def self.download_cylinders
-    start_doc = fetch(query: config["cylinder_query"])
-    marc_count = Nokogiri::XML(start_doc).css("numberOfRecords").text.to_i
-    Rails.logger.info "Downloading #{marc_count} records (this is slow)"
+  def self.download_cylinders(number:, skip: 0)
+    marc_count = if number.present?
+                   number
+                 else
+                   start_doc = fetch(query: config["cylinder_query"])
+                   Nokogiri::XML(start_doc).css("numberOfRecords").text.to_i
+                 end
 
     all = Array.new(marc_count) do |i|
+      cyl_number = (i + 1 + skip).to_s.rjust(4, "0")
+
       marc = fetch(
-        query: format(config[:cylinder_query_single], number: i.to_s.rjust(4, "0"))
+        query: format(config[:cylinder_query_single], number: cyl_number)
       )
       next if Nokogiri::XML(marc).css("numberOfRecords").text == "0"
 
-      output = File.join(Settings.marc_directory, "cylinder-#{i + 10_000}.xml")
+      output = File.join(Settings.marc_directory, "cylinder-#{cyl_number}.xml")
 
       File.open(output, "w") do |f|
         f.write marc

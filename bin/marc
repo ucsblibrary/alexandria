@@ -1,0 +1,41 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+$stdout.sync = true # flush output immediately
+
+puts "Loading environment..."
+require File.expand_path("../config/environment", __dir__)
+
+# If there are no options given, invoke help
+ARGV << "-h" if ARGV.empty?
+
+options = Trollop.options do
+  opt :ark, "Only download metadata for these ARKs", type: :strings
+  opt :number, "Only download N records", type: :integer
+  opt :skip, "Skip the first N records", default: 0
+  opt :type, "Type of object to download (etd or cyl)", type: :string
+  opt :verbosity,
+      "Log verbosity: DEBUG, INFO, WARN, ERROR",
+      type: :string,
+      default: "INFO",
+      short: "-v"
+end
+
+if options[:ark]
+  options[:ark].each do |ark|
+    marc = SRU.by_ark(ark)
+    return warn "ERROR: nothing found for #{ark}" if marc.nil?
+
+    output = File.join(Settings.marc_directory, "#{ark.split("/").last}.xml")
+    File.open(output, "w") do |f|
+      f.write marc
+    end
+  end
+else
+  case options[:type]
+  when "etd"
+    SRU.download_etds(number: options[:number], skip: options[:skip])
+  when "cyl"
+    SRU.download_cylinders(number: options[:number], skip: options[:skip])
+  end
+end
