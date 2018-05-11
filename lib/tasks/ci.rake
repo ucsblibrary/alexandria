@@ -11,6 +11,7 @@ unless Rails.env.production?
     solr_params = {
       instance_dir: Rails.root.join("tmp", "solr-test"),
       managed: true,
+      mirror_url: "http://lib-solr-mirror.princeton.edu/dist/",
       port: 8985,
       solr_xml: Rails.root.join("solr", "config", "solrconfig.xml"),
       verbose: true,

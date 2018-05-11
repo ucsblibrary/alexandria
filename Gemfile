@@ -61,11 +61,8 @@ group :development, :test do
   gem "byebug"
   gem "factory_bot_rails"
 
-  # Used exact gem versions for solr_wrapper and fcrepo_wrapper
-  # because they aren't careful about making breaking changes on
-  # minor releases, so we'll need to be mindful about upgrading.
-  gem "fcrepo_wrapper", "0.7.0"
-  gem "solr_wrapper", "~> 0.19.0"
+  gem "fcrepo_wrapper"
+  gem "solr_wrapper", git: "https://github.com/cbeer/solr_wrapper.git"
 
   gem "poltergeist"
   gem "rspec-activemodel-mocks"
