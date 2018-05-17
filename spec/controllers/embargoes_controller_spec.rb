@@ -9,6 +9,7 @@ describe EmbargoesController do
 
   let(:user) { user_with_groups [AdminPolicy::PUBLIC_GROUP] }
   let(:work) { create(:etd) }
+  let(:file_set) { FileSet.create }
 
   describe "#index" do
     context "when I am NOT a rights admin" do
@@ -41,7 +42,13 @@ describe EmbargoesController do
 
       before do
         AdminPolicy.ensure_admin_policy_exists
+        work.ordered_members << file_set
+
         work.admin_policy_id = AdminPolicy::UCSB_CAMPUS_POLICY_ID
+        work.file_sets.each do |fs|
+          fs.admin_policy_id = AdminPolicy::UCSB_CAMPUS_POLICY_ID
+        end
+
         work.visibility_during_embargo = RDF::URI(
           ActiveFedora::Base.id_to_uri(AdminPolicy::UCSB_CAMPUS_POLICY_ID)
         )
@@ -50,6 +57,8 @@ describe EmbargoesController do
         )
         work.embargo_release_date = release_date.to_s
         work.save(validate: false)
+        work.file_sets.each(&:save)
+
         get :destroy, params: { id: work }
         work.reload
       end
@@ -59,6 +68,9 @@ describe EmbargoesController do
 
         it "deactivates embargo without updating admin_policy_id" do
           expect(work.admin_policy_id).to eq AdminPolicy::UCSB_CAMPUS_POLICY_ID
+          expect(work.file_sets.first.admin_policy_id).to(
+            eq AdminPolicy::UCSB_CAMPUS_POLICY_ID
+          )
           expect(response).to redirect_to solr_document_path(work)
         end
       end
@@ -68,6 +80,9 @@ describe EmbargoesController do
 
         it "deactivates embargo, updates the admin_policy_id and redirects" do
           expect(work.admin_policy_id).to eq AdminPolicy::PUBLIC_POLICY_ID
+          expect(work.file_sets.first.admin_policy_id).to(
+            eq AdminPolicy::PUBLIC_POLICY_ID
+          )
           expect(response).to redirect_to solr_document_path(work)
         end
       end
