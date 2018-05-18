@@ -19,7 +19,10 @@ class EmbargoesController < ApplicationController
   # Deactivate an active or lapsed embargo
   def destroy
     authorize! :update_rights, curation_concern
-    EmbargoService.deactivate_embargo(curation_concern)
+
+    CurationConcerns::Actors::EmbargoActor.new(curation_concern).destroy
+    curation_concern.copy_admin_policy_to_files!
+
     flash[:notice] = curation_concern.embargo_history.last
     redirect_to solr_document_path(curation_concern)
   end
