@@ -49,6 +49,10 @@ class ObjectIndexer < CurationConcerns::WorkIndexer
       solr_doc[ALL_CONTRIBUTORS_LABEL] = all_contributors_combined
       solr_doc[ALL_CONTRIBUTORS_FACET] = solr_doc[ALL_CONTRIBUTORS_LABEL]
 
+      # Used by OAI feed for collections: DIGREPO-903
+      solr_doc["accession_number_normalized_ssm"] =
+        [object["accession_number"].first&.tr(" ", "")&.downcase]
+
       # Primarily for the Index and Component Map trays, but also used
       # for collections' representative image thumbnail
       solr_doc["square_thumbnail_url_ssm"] = square_thumbnail_images
