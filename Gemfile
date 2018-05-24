@@ -29,7 +29,7 @@ gem "linked_vocabs",
 gem "marc"
 gem "metadata_ci",
     git: "https://github.com/ucsblibrary/metadata-ci.git",
-    ref: "018a7fb56abec9bbf229facaec711166b736f500"
+    ref: "0c346700c907f6716971a79b0ec97e23332b2911"
 gem "mods", "~> 2.0.3"
 gem "openseadragon"
 gem "qa", "~> 0.11.0"

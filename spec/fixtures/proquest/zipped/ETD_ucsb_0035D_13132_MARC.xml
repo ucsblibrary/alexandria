@@ -38,6 +38,7 @@
   <datafield tag="710" ind1="2" ind2=" ">
     <subfield code="a">University of California, Santa Barbara.</subfield>
     <subfield code="b">Religious Studies.</subfield>
+    <subfield code="e">degree granting institution.</subfield>
   </datafield>
   <datafield tag="852" ind1=" " ind2=" ">
     <subfield code="a">CU-SB</subfield>

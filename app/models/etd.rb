@@ -16,10 +16,6 @@ class ETD < ActiveFedora::Base
     index.as :symbol
   end
 
-  property :degree_grantor, predicate: ::RDF::Vocab::MARCRelators.dgg do |index|
-    index.as :symbol
-  end
-
   property :keywords, predicate: ::RDF::Vocab::SCHEMA.keywords do |index|
     index.as :stored_searchable
   end

@@ -11,8 +11,8 @@ GIT
 
 GIT
   remote: https://github.com/ucsblibrary/metadata-ci.git
-  revision: 018a7fb56abec9bbf229facaec711166b736f500
-  ref: 018a7fb56abec9bbf229facaec711166b736f500
+  revision: 0c346700c907f6716971a79b0ec97e23332b2911
+  ref: 0c346700c907f6716971a79b0ec97e23332b2911
   specs:
     metadata_ci (0.0.1)
       htmlentities
@@ -915,4 +915,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   1.16.1
+   1.16.2
