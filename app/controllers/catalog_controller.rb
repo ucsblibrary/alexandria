@@ -191,7 +191,7 @@ class CatalogController < ApplicationController
                            label: "Contributors",
                            if: :show_contributors?
 
-    config.add_index_field solr_name("author", :stored_searchable),
+    config.add_index_field solr_name("author_label", :stored_searchable),
                            label: "Author", if: :show_author?
 
     config.add_index_field solr_name("created", :displayable),
