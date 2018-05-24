@@ -48,7 +48,7 @@ describe Importer::ETD do
         expect(costa.file_sets.count).to eq 1
 
         expect(costa.admin_policy_id).to eq AdminPolicy::DISCOVERY_POLICY_ID
-        expect(costa.author).to eq ["ETD, New"]
+        expect(costa.author.map(&:class)).to eq [ControlledVocabularies::Creator]
         expect(costa.issued).to eq ["2016"]
         expect(costa.keywords).to contain_exactly("Frick", "It.", "Dang")
         expect(costa.local_collection_id).to eq ["etds"]

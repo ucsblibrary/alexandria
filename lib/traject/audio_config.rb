@@ -7,7 +7,7 @@ require "traject/macros/marc21_semantics"
 require "traject/extract_and_join"
 require "traject/extract_ark"
 require "traject/extract_complex_subject"
-require "traject/extract_contributors"
+require "traject/extract_cylinder_contributors"
 require "traject/extract_fulltext_link"
 require "traject/extract_issue_date"
 require "traject/extract_issue_number"
@@ -22,7 +22,7 @@ extend Traject::Macros::MarcFormats
 extend ExtractAndJoin
 extend ExtractArk
 extend ExtractComplexSubject
-extend ExtractContributors
+extend ExtractCylinderContributors
 extend ExtractFulltextLink
 extend ExtractIssueDate
 extend ExtractIssueNumber

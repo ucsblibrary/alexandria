@@ -44,8 +44,9 @@ class ETDIndexer < ObjectIndexer
 
     # Derive department by stripping "UC, SB" from the degree grantor field
     def department(solr_doc)
-      Array(solr_doc[Solrizer.solr_name("degree_grantor", :symbol)])
-        .map { |a| a.sub(/^University of California, Santa Barbara\. /, "") }
+      Array(solr_doc["degree_grantor_tesim"]).map do |a|
+        a.sub(/^University of California, Santa Barbara\. /, "")
+      end
     end
 
     # Create a date field for sorting on

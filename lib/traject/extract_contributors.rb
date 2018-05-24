@@ -20,27 +20,30 @@ module ExtractContributors
                     "3" => "group", }.freeze
 
   # Find the attribute name based on what's in subfield 4 or e.
-  ROLE_MAP = { "arr" => :arranger,
-               "aut" => :author,
-               "cmp" => :composer,
-               "cnd" => :conductor,
-               "itr" => :instrumentalist,
-               "lbt" => :librettist,
-               "lyr" => :lyricist,
-               "prf" => :performer,
-               "sng" => :singer,
-               "spk" => :speaker,
-               "voc" => :singer,
-               "arranger of music" => :arranger,
-               "author" => :author,
-               "composer" => :composer,
-               "conductor" => :conductor,
-               "instrumentalist" => :instrumentalist,
-               "librettist" => :librettist,
-               "lyricist" => :lyricist,
-               "performer" => :performer,
-               "singer" => :singer,
-               "speaker" => :speaker, }.freeze
+  ROLE_MAP = {
+    "arr" => :arranger,
+    "aut" => :author,
+    "cmp" => :composer,
+    "cnd" => :conductor,
+    "itr" => :instrumentalist,
+    "lbt" => :librettist,
+    "lyr" => :lyricist,
+    "prf" => :performer,
+    "sng" => :singer,
+    "spk" => :speaker,
+    "voc" => :singer,
+    "arranger of music" => :arranger,
+    "author" => :author,
+    "composer" => :composer,
+    "conductor" => :conductor,
+    "degree granting institution" => :degree_grantor,
+    "instrumentalist" => :instrumentalist,
+    "librettist" => :librettist,
+    "lyricist" => :lyricist,
+    "performer" => :performer,
+    "singer" => :singer,
+    "speaker" => :speaker,
+  }.freeze
 
   def extract_contributors
     lambda do |record, accumulator|
@@ -66,14 +69,8 @@ module ExtractContributors
     end.map { |role| Traject::Macros::Marc21.trim_punctuation(role.value) }
   end
 
-  def roles_for(field)
-    roles = %w[4 e].map do |code|
-      trim_subfield(field, code)
-    end.compact.flatten
-
-    return [:performer] if roles.blank?
-
-    roles.map { |r| ROLE_MAP.fetch(r.strip.downcase) }
+  def roles_for(_field)
+    raise NotImplementedError
   end
 
   def data_for(field)
