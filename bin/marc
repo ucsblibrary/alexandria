@@ -5,6 +5,7 @@ $stdout.sync = true # flush output immediately
 
 puts "Loading environment..."
 require File.expand_path("../config/environment", __dir__)
+require "sru"
 
 # If there are no options given, invoke help
 ARGV << "-h" if ARGV.empty?
