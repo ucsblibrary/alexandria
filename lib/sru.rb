@@ -111,12 +111,16 @@ module SRU
   end
 
   def self.download_cylinders(number:, skip: 0)
-    marc_count = if number.present?
-                   number
-                 else
-                   start_doc = fetch(query: config["cylinder_query"])
-                   Nokogiri::XML(start_doc).css("numberOfRecords").text.to_i
-                 end
+    start_doc = fetch(query: config["cylinder_query"])
+    total_record_count = Nokogiri::XML(start_doc).css("numberOfRecords").text.to_i
+
+    marc_count = number || total_record_count
+
+    if skip > total_record_count
+      warn "Records to be skipped (#{skip}) "\
+           "greater than total record count (#{total_record_count})"
+      return
+    end
 
     all = Array.new(marc_count) do |i|
       cyl_number = (i + 1 + skip).to_s.rjust(4, "0")
