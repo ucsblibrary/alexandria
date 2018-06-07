@@ -153,8 +153,7 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name("location_label", :facetable),
                            label: "Place", limit: true
 
-    config.add_facet_field solr_name("form_of_work_label", :facetable),
-                           label: "Genre", limit: true
+    config.add_facet_field "genre_capitalized", label: "Genre", limit: true
 
     config.add_facet_field ObjectIndexer::FACETABLE_YEAR,
                            label: "Date", range: true
@@ -255,9 +254,9 @@ class CatalogController < ApplicationController
       }
     )
 
-    config.add_show_field solr_name("form_of_work_label", :stored_searchable),
+    config.add_show_field "genre_capitalized",
                           label: "Genres",
-                          link_to_search: "form_of_work_label_sim"
+                          link_to_search: "genre_capitalized"
 
     config.add_show_field solr_name("degree_grantor", :symbol),
                           label: "Degree Grantor"
