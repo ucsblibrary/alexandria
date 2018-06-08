@@ -88,6 +88,11 @@ module Importer::Factory
         end
       end
 
+      # We override the member_ids field in Solr using information
+      # that hasn't been saved at the time of object creation.  So we
+      # need to reindex now in order to get the FileSets in Solr:
+      object.update_index
+
       # The fields used for erc_when and erc_who are set during the
       # object creation, so we have to update the ARK metadata
       # afterwards
