@@ -10,6 +10,7 @@ VOCAB_MAP = {
   "cclicenses" => "http://creativecommons.org/licenses/",
   "ccpublic" => "http://creativecommons.org/publicdomain/",
   "eurights" => "http://www.europeana.eu/rights/",
+  "gf" => "http://id.loc.gov/authorities/genreForms",
   "iso_639_2" => "http://id.loc.gov/vocabulary/iso639-2/",
   "lc_orgs" => "http://id.loc.gov/vocabulary/organizations/",
   "lccs" => "http://id.loc.gov/vocabulary/preservation/copyrightStatus",

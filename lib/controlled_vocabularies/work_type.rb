@@ -6,7 +6,7 @@ class ControlledVocabularies::WorkType < ActiveTriples::Resource
 
   configure repository: :vocabs
   use_vocabulary :aat, class: Vocabularies::AAT
-  use_vocabulary :ldp, class: ::RDF::Vocab::LDP
-  # use_vocabulary :worktype
+  use_vocabulary :gf, class: Vocabularies::GF
   use_vocabulary :lcsh, class: Vocabularies::LCSH
+  use_vocabulary :ldp, class: ::RDF::Vocab::LDP
 end
