@@ -14,6 +14,7 @@ class ObjectIndexer < CurationConcerns::WorkIndexer
   OTHER = Solrizer.solr_name("date_other", :displayable)
 
   SORTABLE_DATE = Solrizer.solr_name("date", :sortable)
+  SORTABLE_TITLE = "title_si"
   FACETABLE_YEAR = "year_iim"
 
   COLLECTION_LABEL = Solrizer.solr_name("collection_label", :symbol)
@@ -43,6 +44,7 @@ class ObjectIndexer < CurationConcerns::WorkIndexer
       solr_doc[VALID] = display_date("date_valid")
 
       solr_doc[SORTABLE_DATE] = sortable_date
+      solr_doc[SORTABLE_TITLE] = object.title.first
       solr_doc[FACETABLE_YEAR] = facetable_year
 
       solr_doc[SORTABLE_CREATOR] = sortable_creator(solr_doc)

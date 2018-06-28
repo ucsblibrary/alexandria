@@ -396,6 +396,14 @@ class CatalogController < ApplicationController
       label: "relevance"
     )
     config.add_sort_field(
+      "title_si asc, creator_label_si asc",
+      label: "title ascending"
+    )
+    config.add_sort_field(
+      "title_si desc, creator_label_si asc",
+      label: "title descending"
+    )
+    config.add_sort_field(
       "#{ObjectIndexer::SORTABLE_DATE} asc, creator_label_si asc",
       label: "year ascending"
     )
