@@ -159,7 +159,7 @@ class CatalogController < ApplicationController
     config.add_facet_field ObjectIndexer::FACETABLE_YEAR,
                            label: "Date", range: true
 
-    config.add_facet_field solr_name("language", :facetable),
+    config.add_facet_field solr_name("language_label", :facetable),
                            label: "Language", limit: true
 
     config.add_facet_field solr_name("department", :facetable),
@@ -230,9 +230,6 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name("date_other", :displayable),
                           label: "Other Date"
 
-    config.add_show_field solr_name("language", :stored_searchable),
-                          label: "Language"
-
     config.add_show_field solr_name("lc_subject_label", :stored_searchable),
                           label: "Topics",
                           link_to_search: "lc_subject_label_sim"
@@ -283,6 +280,10 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name("work_type_label", :stored_searchable),
                           label: "Format",
                           link_to_search: "work_type_label_sim"
+
+    config.add_show_field solr_name("language_label", :stored_searchable),
+                          label: "Language",
+                          link_to_search: "language_label_sim"
 
     config.add_show_field solr_name("collection_label", :symbol),
                           label: "Collection(s)",

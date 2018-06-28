@@ -92,7 +92,7 @@ module Metadata
 
     property :language, predicate: RDF::Vocab::DC.language,
                         class_name: ControlledVocabularies::Language do |index|
-      index.as :displayable
+      index.as :stored_searchable, :facetable
     end
 
     property :location,

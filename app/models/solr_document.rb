@@ -35,7 +35,7 @@ class SolrDocument
     description: %w[description_tesim note_label_tesim citation],
     format:      "form_of_work_label_tesim",
     identifier:  "uri_ssm",
-    language:    "language_label_ssm",
+    language:    "language_label_tesim",
     publisher:   "publisher_tesim",
     relation:    "collection_label_ssim",
     rights:      "license_tesim",
