@@ -12,7 +12,7 @@ module Importer::ETD
   # @param [Logger] logger
   # @return [Integer]
   def self.import(meta:, data:, options: {}, logger: Logger.new(STDOUT))
-    raise ArgumentError, "Nothing found in #{data}" if data.empty?
+    raise ArgumentError, "Nothing found in data: #{data.inspect}" if data.blank?
     collection = ensure_collection_exists(logger: logger)
     ingests = 0
 
