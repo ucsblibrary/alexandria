@@ -24,67 +24,21 @@ We are using the gems `solr_wrapper` and `fcrepo_wrapper` to run solr and fedora
    You should be able to download the files from the [Apache Archive](http://archive.apache.org/dist/lucene/solr)
 
 ## Example config files
-
-Here are some files that I have used.  Note that I am running my dev and test environments on the same port.  You might want to use different ports if you intend to run specs at the same time that your dev environment is running.
-
-Example file `.solr_wrapper_dev`:
-
-```ruby
-version: 5.5.0
-port: 8983
-download_dir: tmp/solr_download
-instance_dir: tmp/solr
-collection:
-    persist: true
-    dir: solr/config/
-    name: development
-```
-
-Example file `.solr_wrapper_test`:
-
-```ruby
-version: 5.5.0
-port: 8983
-download_dir: tmp/solr_download
-instance_dir: tmp/solr
-collection:
-    persist: false
-    dir: solr/config/
-    name: test
-```
-
-Example file `.fcrepo_wrapper_dev`:
-
-```ruby
-port: 8984
-enable_jms: false
-version: 4.5.0
-download_dir: tmp/fedora/download
-instance_dir: tmp/fedora
-fcrepo_home_dir: tmp/fedora/dev
-```
-Example file `.fcrepo_wrapper_test`:
-
-```ruby
-port: 8984
-enable_jms: false
-version: 4.5.0
-download_dir: tmp/fedora/download
-instance_dir: tmp/fedora
-fcrepo_home_dir: tmp/fedora/test
-```
+The app uses 2 separate configs for development and test environments. 
+See `config/solr_wrapper_development.yml` & `config/solr_wrapper_test.yml` for solr config.     
+See `config/fedora_wrapper_development.yml` & `config/fedora_wrapper_test.yml` for fedora config.
 
 ## Running solr and fedora
 
-To run solr using your config file:
+To run solr in development mode:
 
 ```bash
-$ solr_wrapper --config .solr_wrapper_dev
+$ bundle exec solr_wrapper --config config/solr_wrapper_development.yml
 ```
 
-To run fedora using your config file:
+To run fedora in development mode:
 ```bash
-$ fcrepo_wrapper --config .fcrepo_wrapper_dev
+$ bundle exec fcrepo_wrapper --config config/fcrepo_wrapper_development.yml
 ```
 
 ## Running the specs
@@ -93,7 +47,7 @@ $ fcrepo_wrapper --config .fcrepo_wrapper_dev
 * Make sure marmotta is running, or CI environment variable is set to bypass marmotta
 
 ```bash
-$ solr_wrapper --config .solr_wrapper_test
-$ fcrepo_wrapper --config .fcrepo_wrapper_test
+$ bundle exec solr_wrapper --config config/solr_wrapper_test.yml
+$ bundle exec fcrepo_wrapper --config config/fcrepo_wrapper_test.yml
 $ bundle exec rake spec
 ```
