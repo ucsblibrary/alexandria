@@ -7,6 +7,10 @@ describe ETD do
     expect(described_class.properties).to have_key "system_number"
   end
 
+  it "has merritt_id" do
+    expect(described_class.properties).to have_key "merritt_id"
+  end
+
   describe "::_to_partial_path" do
     subject { described_class._to_partial_path }
 
@@ -69,4 +73,5 @@ describe ETD do
 
     it { is_expected.to eq "catalog/document" }
   end
+
 end
