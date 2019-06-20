@@ -73,4 +73,5 @@ describe ETD do
 
     it { is_expected.to eq "catalog/document" }
   end
+
 end
