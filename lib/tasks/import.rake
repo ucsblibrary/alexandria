@@ -11,7 +11,7 @@ namespace :import do
     # Proquest ID,Meritt Ark,UCSB Ark
     # ProQuestID:0035D,ark:/13030/m00999g9,ark:/48907/f30865g5
 
-    puts "Beginning Import #{Time.now}"
+    puts "Beginning Import #{Time.zone.now}"
     csv_text = File.read("tmp/ucsb_merritt_etds.csv")
     csv = CSV.parse(csv_text, headers: true)
     missing_etds = []
@@ -31,6 +31,6 @@ namespace :import do
       end
     end
     puts "Missing ETDs: #{missing_etds.inspect}" if missing_etds.present?
-    puts "Import Complete #{Time.now}"
+    puts "Import Complete #{Time.zone.now}"
   end
 end
