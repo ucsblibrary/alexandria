@@ -54,7 +54,7 @@ module Importer::ETD
   end
 
   def self.extract_marc(meta:, data:, logger: Logger.new(STDOUT))
-    if meta.blank?
+    if meta.empty?
       logger.info "No metadata provided; fetching from Pegasus"
       data.map { |e| e[:xml] }.map do |x|
         raise IngestError, "Bad zipfile source: #{e}" if x.nil?

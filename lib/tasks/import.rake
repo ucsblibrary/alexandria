@@ -14,7 +14,6 @@ namespace :import do
     CSV.foreach(args[:file_path], headers: true) do |row|
       ucsb_ark = row["ucsb"].split("/").last
       merritt_ark = row["merritt"]
-
       begin
         etd = ETD.find ucsb_ark
         next if etd.merritt_id.present?
