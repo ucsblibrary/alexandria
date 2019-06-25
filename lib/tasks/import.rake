@@ -1,10 +1,11 @@
 # frozen_string_literal: true
+require 'csv'
 
 require "csv"
 
 namespace :import do
   desc "Import merritt arks from csv for UCSB ETDs"
-  
+
   task :merritt_arks, [:file_path] => :environment do |_t, args|
     puts "Beginning Import #{Time.zone.now}"
     missing_etds = []
