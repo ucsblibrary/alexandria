@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-require 'csv'
+require "csv"
 
 namespace :import do
   desc "Import merritt arks from csv for UCSB ETDs"
@@ -12,12 +12,12 @@ namespace :import do
     # ProQuestID:0035D,ark:/13030/m00999g9,ark:/48907/f30865g5
 
     puts "Beginning Import"
-    csv_text = File.read('tmp/ucsb_merritt_etds.csv')
-    csv = CSV.parse(csv_text, :headers => true)
+    csv_text = File.read("tmp/ucsb_merritt_etds.csv")
+    csv = CSV.parse(csv_text, headers: true)
     missing_etds = []
 
     csv.each do |row|
-      ucsb_ark = row[2].split('/').last
+      ucsb_ark = row[2].split("/").last
       merritt_ark = row[1]
 
       begin
@@ -30,7 +30,7 @@ namespace :import do
         missing_etds << ucsb_ark
       end
     end
-    puts "Missing ETDs: #{missing_etds.inspect}" unless missing_etds.blank?
+    puts "Missing ETDs: #{missing_etds.inspect}" if missing_etds.present?
     puts "Import Complete"
   end
 end
