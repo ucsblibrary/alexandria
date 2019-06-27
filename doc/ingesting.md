@@ -5,7 +5,7 @@ The descriptive metadata repository is automatically cloned to
 up-to-date when running ingests.
 
 The remote fileshare with supporting images is automatically mounted
-to `/opt/ingest/data`.
+to `/opt/ingest/repository`.
 
 Some ingests trigger background jobs, which are handled by Resque.
 The web interface for Resque can be started with the following:
@@ -72,14 +72,14 @@ RAILS_ENV=production bin/ingest -f mods -m /opt/ingest/metadata/adrl-dm/ingest-r
 Then ingest ETDs:
 
 ```
-RAILS_ENV=production bin/ingest -f etd -d /opt/ingest/data/etds/2adrl_ready/*.zip
+RAILS_ENV=production bin/ingest -f etd -d /opt/ingest/repository/etds/2adrl_ready/*.zip
 ```
 
 Currently, because we’re using a local modification to collection
 membership (see {file:local_collections.md}), we need to update the
 ETD collection after ingesting members:
 
-```
+``` 
 irb> etd_collection.update_index
 ```
 
@@ -117,7 +117,7 @@ you can provide the directory that contains both the `collection` and
 `objects` metadata directories:
 
 ```
-RAILS_ENV=production bin/ingest -f mods -m /opt/data/ingest/metadata/adrl-dm/ingest-ready/sbhcmss036/ -d /opt/data/images/sbhcmss036/
+RAILS_ENV=production bin/ingest -f mods -m /opt/ingest/metadata/adrl-dm/ingest-ready/sbhcmss036/ -d /opt/ingest/repository/images/sbhcmss036/
 ```
 
 ### Ingesting CSV records
