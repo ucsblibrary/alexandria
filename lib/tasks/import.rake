@@ -47,7 +47,6 @@ namespace :import do
              headers: %w[proquest merritt ucsb]) do |row|
       ETD.find_each do |etd|
         next if etd.merritt_id.present?
-
         pq_name = etd.file_sets.first.original_file.file_name.first
         pq_id = "ProQuestID:" + pq_name.split("_").last.split(".").first
         match = csv.find { |r| r["proquest"].strip == pq_id }
