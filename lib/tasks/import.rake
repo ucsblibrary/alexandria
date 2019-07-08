@@ -50,7 +50,11 @@ namespace :import do
           pq_id = "ProQuestID:" + pq_name.split("_").last.split(".").first
           match = csv.find { |r| r["proquest"].strip == pq_id }
           if match.present?
-            row << [match["proquest"].strip, match["merritt"].strip, etd.identifier.first]
+            row << [
+              match["proquest"].strip,
+              match["merritt"].strip,
+              etd.identifier.first
+            ]
             count += 1
           else
             non_adrl << match["merritt"]
