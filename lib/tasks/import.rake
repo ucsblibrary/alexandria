@@ -29,4 +29,39 @@ namespace :import do
     puts "Missing ETDs: #{missing_etds.inspect}" if missing_etds.present?
     puts "Import Complete #{Time.zone.now}"
   end
+
+  task :adrl_arks, [:file_path] => :environment do |_t, args|
+    puts "Beginning import #{Time.zone.now}"
+    csv = CSV.read(args[:file_path], headers: true)
+    count = 0
+    missing_files = non_adrl = []
+
+    CSV.open("tmp/adrl_arks.csv",
+             "w",
+             write_headers: true,
+             headers: %w[proquest merritt ucsb]) do |row|
+      ETD.all.each do |etd|
+        # skip rows with ADRL arks
+        next if csv.find { |rw| rw["ucsb"] == etd.identifier.first }
+
+        pq_name = etd.file_sets.first.original_file.file_name.first
+        if pq_name.blank?
+          missing_files << etd.id
+        else
+          pq_id = "ProQuestID:" + pq_name.split("_").last.split(".").first
+          match = csv.find { |r| r["proquest"].strip == pq_id }
+          if match.present?
+            row << [match["proquest"].strip, match["merritt"].strip, etd.identifier.first]
+            count += 1
+          else
+            non_adrl << match["merritt"]
+          end
+        end
+      end
+    end
+    puts "Merritt ETDs not found in ADRL #{non_adrl}"
+    puts "No files found for ETDs: #{missing_files}"
+    puts "Imported #{count} ETD Arks"
+    puts "Import Complete #{Time.zone.now}"
+  end
 end
