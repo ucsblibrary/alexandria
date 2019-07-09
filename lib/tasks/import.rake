@@ -8,7 +8,7 @@ namespace :import do
   task :merritt_arks, [:file_path] => :environment do |_t, args|
     puts "Beginning Import #{Time.zone.now}"
     missing_etds = []
-    # CSV file contents would be as below
+    # CSV file contents would be
     # proquest,merritt,ucsb
     # ProQuestID:0035D,ark:/13030/m00999g9,ark:/48907/f30865g5
     CSV.foreach(args[:file_path], headers: true) do |row|
@@ -31,17 +31,21 @@ namespace :import do
 
   task :adrl_arks, [:file_path] => :environment do |_t, args|
     puts "Beginning import #{Time.zone.now}"
+    # CSV file contents would be
+    # merritt,proquest
+    # ark:/13030/m00999g9,ProQuestID:0035D
     csv = CSV.read(args[:file_path], headers: true)
     count = 0
     missing_files = non_adrl = []
 
+    # rewrite CSV with each run
+    # using 'w' mode
     CSV.open("tmp/adrl_arks.csv",
              "w",
              write_headers: true,
              headers: %w[proquest merritt ucsb]) do |row|
-      ETD.all.each do |etd|
-        # skip rows with ADRL arks
-        next if csv.find { |rw| rw["ucsb"] == etd.identifier.first }
+      ETD.find_each do |etd|
+        next if etd.merritt_id.present?
 
         pq_name = etd.file_sets.first.original_file.file_name.first
         if pq_name.blank?
