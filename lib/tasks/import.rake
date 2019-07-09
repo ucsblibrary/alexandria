@@ -4,7 +4,6 @@ require "csv"
 
 namespace :import do
   desc "Import merritt arks from csv for UCSB ETDs"
-
   task :merritt_arks, [:file_path] => :environment do |_t, args|
     puts "Beginning Import #{Time.zone.now}"
     missing_etds = []
@@ -29,18 +28,19 @@ namespace :import do
     puts "Import Complete #{Time.zone.now}"
   end
 
-  task :adrl_arks, [:file_path] => :environment do |_t, args|
+  desc "Import UCSB ETD arks into CSV for merritt ark mappings"
+  task :adrl_arks, [:input_file, :output_file] => :environment do |_t, args|
     puts "Beginning import #{Time.zone.now}"
     # CSV file contents would be
     # merritt,proquest
     # ark:/13030/m00999g9,ProQuestID:0035D
-    csv = CSV.read(args[:file_path], headers: true)
+    csv = CSV.read(args[:input_file], headers: true)
     count = 0
-    missing_files = non_adrl = []
+    non_adrl = []
 
     # rewrite CSV with each run
     # using 'w' mode
-    CSV.open("tmp/adrl_arks.csv",
+    CSV.open(args[:output_file],
              "w",
              write_headers: true,
              headers: %w[proquest merritt ucsb]) do |row|
@@ -48,26 +48,21 @@ namespace :import do
         next if etd.merritt_id.present?
 
         pq_name = etd.file_sets.first.original_file.file_name.first
-        if pq_name.blank?
-          missing_files << etd.id
+        pq_id = "ProQuestID:" + pq_name.split("_").last.split(".").first
+        match = csv.find { |r| r["proquest"].strip == pq_id }
+        if match.present?
+          row << [
+            match["proquest"].strip,
+            match["merritt"].strip,
+            etd.identifier.first,
+          ]
+          count += 1
         else
-          pq_id = "ProQuestID:" + pq_name.split("_").last.split(".").first
-          match = csv.find { |r| r["proquest"].strip == pq_id }
-          if match.present?
-            row << [
-              match["proquest"].strip,
-              match["merritt"].strip,
-              etd.identifier.first
-            ]
-            count += 1
-          else
-            non_adrl << match["merritt"]
-          end
+          non_adrl << match["merritt"]
         end
       end
     end
     puts "Merritt ETDs not found in ADRL #{non_adrl}"
-    puts "No files found for ETDs: #{missing_files}"
     puts "Imported #{count} ETD Arks"
     puts "Import Complete #{Time.zone.now}"
   end
