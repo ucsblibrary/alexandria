@@ -2,8 +2,6 @@
 
 require "csv"
 
-require "csv"
-
 namespace :import do
   desc "Import merritt arks from csv for UCSB ETDs"
   task :merritt_arks, [:file_path] => :environment do |_t, args|
@@ -37,7 +35,6 @@ namespace :import do
     # ark:/13030/m00999g9,ProQuestID:0035D
     csv = CSV.read(args[:input_file], headers: true)
     count = 0
-    non_adrl = []
 
     # rewrite CSV with each run
     # using 'w' mode
@@ -47,22 +44,23 @@ namespace :import do
              headers: %w[proquest merritt ucsb]) do |row|
       ETD.find_each do |etd|
         next if etd.merritt_id.present?
-        pq_name = etd.file_sets.first.original_file.file_name.first
-        pq_id = "ProQuestID:" + pq_name.split("_").last.split(".").first
-        match = csv.find { |r| r["proquest"].strip == pq_id }
-        if match.present?
-          row << [
-            match["proquest"].strip,
-            match["merritt"].strip,
-            etd.identifier.first,
-          ]
-          count += 1
-        else
-          non_adrl << match["merritt"]
+        begin
+          pq_name = etd.file_sets.first.original_file.file_name.first
+          pq_id = "ProQuestID:" + pq_name.split("_").last.split(".").first
+          match = csv.find { |r| r["proquest"].strip == pq_id }
+          if match.present?
+            row << [
+              match["proquest"].strip,
+              match["merritt"].strip,
+              etd.identifier.first,
+            ]
+            count += 1
+          end
+        rescue NoMethodError => e
+          puts "Error occured with #{etd.id} => #{e.inspect}"
         end
       end
     end
-    puts "Merritt ETDs not found in ADRL #{non_adrl}"
     puts "Imported #{count} ETD Arks"
     puts "Import Complete #{Time.zone.now}"
   end
