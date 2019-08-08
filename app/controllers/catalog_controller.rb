@@ -312,6 +312,9 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name("identifier", :displayable),
                           label: "ARK"
 
+    config.add_show_field solr_name("merritt_id", :displayable),
+                          label: "Merritt ARK"
+
     config.add_show_field solr_name("accession_number", :symbol),
                           label: "Local Identifier"
 
