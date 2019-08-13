@@ -41,7 +41,7 @@ describe CatalogController do
 
     context "download TTL file" do
       before do
-        get :show, params: { id: record, format: :ttl }
+        get :show, params: { id: `record`, format: :ttl }
       end
 
       context "for an Image record" do
@@ -53,10 +53,15 @@ describe CatalogController do
       end
 
       context "for an ETD record" do
-        let(:record) { create :public_etd, identifier: [ark] }
+        let(:merritt_id) { "ark:/13030/m00999g" }
+        let(:record) { create :public_etd, identifier: [ark], merritt_id: [merritt_id] }
 
         it "shows public urls (not fedora urls)" do
           expect(response.body).to include "<http://test.host/lib/#{ark}>"
+        end
+
+        it "shows merritt ark" do
+          expect(response.body).to include merritt_id
         end
       end
 
