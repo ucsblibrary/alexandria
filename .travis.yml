@@ -15,7 +15,7 @@ rvm:
   - 2.4.2
 
 jdk:
-  - oraclejdk11
+  - oraclejdk8
 
 services:
   - redis-server
