@@ -1,5 +1,4 @@
 ---
-sudo: false
 language: ruby
 
 cache:
@@ -11,11 +10,11 @@ env:
     - CI=1
 
 rvm:
-  - 2.3.1
   - 2.4.2
+  - 2.6.3
 
 jdk:
-  - oraclejdk8
+  - oraclejdk9
 
 services:
   - redis-server
@@ -27,7 +26,11 @@ before_install:
   - export PATH="$(pwd)/fits-0.8.6:$PATH"
 
 before_script:
+  - rm -rf tmp/solr-test
   - cp config/secrets.yml.template config/secrets.yml
+
+after_failure:
+  - cat tmp/solr-test/server/logs/solr.log
 
 notifications:
   email: false
