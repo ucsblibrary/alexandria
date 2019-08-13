@@ -54,7 +54,9 @@ describe CatalogController do
 
       context "for an ETD record" do
         let(:merritt_id) { "ark:/13030/m00999g" }
-        let(:record) { create :public_etd, identifier: [ark], merritt_id: [merritt_id] }
+        let(:record) do
+          create :public_etd, identifier: [ark], merritt_id: [merritt_id]
+        end
 
         it "shows public urls (not fedora urls)" do
           expect(response.body).to include "<http://test.host/lib/#{ark}>"
