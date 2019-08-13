@@ -41,7 +41,7 @@ describe CatalogController do
 
     context "download TTL file" do
       before do
-        get :show, params: { id: `record`, format: :ttl }
+        get :show, params: { id: record, format: :ttl }
       end
 
       context "for an Image record" do
