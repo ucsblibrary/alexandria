@@ -721,7 +721,7 @@ GEM
       multipart-post
       oauth2
     ruby-progressbar (1.9.0)
-    rubyzip (1.2.1)
+    rubyzip (1.2.3)
     safe_yaml (1.0.4)
     sass (3.5.6)
       sass-listen (~> 4.0.0)
@@ -750,8 +750,9 @@ GEM
       rack-protection (= 2.0.2)
       tilt (~> 2.0)
     slop (3.6.0)
-    solr_wrapper (0.19.0)
+    solr_wrapper (2.1.0)
       faraday
+      retriable
       ruby-progressbar
       rubyzip
     solrizer (3.4.1)
@@ -902,7 +903,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   settingslogic
   simple_form (= 3.5.0)
-  solr_wrapper (~> 0.19.0)
+  solr_wrapper (~> 2.1.0)
   spring
   spring-commands-rspec
   sqlite3
@@ -915,4 +916,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   1.16.2
+   1.17.1
