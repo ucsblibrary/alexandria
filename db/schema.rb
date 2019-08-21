@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170308175556) do
+ActiveRecord::Schema.define(version: 20190821213804) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -54,6 +54,29 @@ ActiveRecord::Schema.define(version: 20170308175556) do
     t.index ["parent_id"], name: "index_curation_concerns_operations_on_parent_id"
     t.index ["rgt"], name: "index_curation_concerns_operations_on_rgt"
     t.index ["user_id"], name: "index_curation_concerns_operations_on_user_id"
+  end
+
+  create_table "merritt_etds", force: :cascade do |t|
+    t.integer "merritt_id", null: false
+    t.string "title"
+    t.string "author"
+    t.datetime "published_date"
+    t.datetime "last_modified", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["last_modified"], name: "index_merritt_etds_on_last_modified"
+    t.index ["merritt_id"], name: "index_merritt_etds_on_merritt_id"
+  end
+
+  create_table "merritt_feeds", force: :cascade do |t|
+    t.string "repo_url", null: false
+    t.integer "page_num", null: false
+    t.datetime "last_modified", null: false
+    t.string "work_type", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["last_modified"], name: "index_merritt_feeds_on_last_modified"
+    t.index ["work_type"], name: "index_merritt_feeds_on_work_type"
   end
 
   create_table "searches", force: :cascade do |t|

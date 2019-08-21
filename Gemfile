@@ -9,7 +9,9 @@ end
 gem "puma"
 gem "rails", "~> 5.1.5"
 
+gem "feedjira"
 gem "font-awesome-sass"
+gem "httparty"
 gem "jquery-rails", "~> 4.0"
 gem "sass-rails", "~> 5.0"
 gem "uglifier", "~> 3.1"
