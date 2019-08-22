@@ -5,7 +5,7 @@ class CreateMerrittEtds < ActiveRecord::Migration[5.1]
       t.string    :title
       t.string    :author
       t.datetime  :published_date
-      t.datetime  :updated_date, null: false
+      t.datetime  :last_modified, index: true, null: false
       t.timestamps
     end
   end
