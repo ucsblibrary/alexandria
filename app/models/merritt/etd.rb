@@ -2,7 +2,7 @@
 
 class Merritt::Etd < ActiveRecord::Base
   def self.merritt_id(etd_entry)
-    "ark"+ etd_entry.entry_id.split("ark").last
+    "ark" + etd_entry.entry_id.split("ark").last
   end
 
   # includes proquest pdf, xml
@@ -21,7 +21,7 @@ class Merritt::Etd < ActiveRecord::Base
 
   def self.supp_files(etd_entry)
     proquest_files(etd_entry) - [
-      metadata_file(etd_entry), dissertation_file(etd_entry)
+      metadata_file(etd_entry), dissertation_file(etd_entry),
     ]
   end
 

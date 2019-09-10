@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Merritt::Feed < ActiveRecord::Base
-  HOME = "https://merritt.cdlib.org"
+  HOME = "https://merritt.cdlib.org".freeze
 
   def self.etd_feed_url(page = 1)
     HOME + "/object/recent.atom?collection=ark:/13030/m5pv6m0x&page=#{page}"
