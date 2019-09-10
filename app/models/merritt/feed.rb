@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class Merritt::Feed < ActiveRecord::Base
   HOME = "https://merritt.cdlib.org"
 
-  def self.etd_feed_url(page=1)
+  def self.etd_feed_url(page = 1)
     HOME + "/object/recent.atom?collection=ark:/13030/m5pv6m0x&page=#{page}"
   end
 
@@ -31,7 +33,7 @@ class Merritt::Feed < ActiveRecord::Base
   def self.last_page
     parse.links[2].split("&").last.split("=").last.to_i
   end
-  
+
   def self.last_modified
     parse.last_modified
   end

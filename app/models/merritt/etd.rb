@@ -1,5 +1,6 @@
+# frozen_string_literal: true
+
 class Merritt::Etd < ActiveRecord::Base
-  
   def self.merritt_id(etd_entry)
     "ark"+ etd_entry.entry_id.split("ark").last
   end
@@ -7,19 +8,21 @@ class Merritt::Etd < ActiveRecord::Base
   # includes proquest pdf, xml
   # & optional supplemental files
   def self.proquest_files(etd_entry)
-    etd_entry.links.select{|l| l.match("ucsb_0035")}
+    etd_entry.links.select { |l| l.match("ucsb_0035") }
   end
 
   def self.metadata_file(etd_entry)
-    proquest_files(etd_entry).find {|f| f.match("xml")}
+    proquest_files(etd_entry).find { |f| f.match("xml") }
   end
 
   def self.dissertation_file(etd_entry)
-    proquest_files(etd_entry).find {|f| f.match("pdf")}
+    proquest_files(etd_entry).find { |f| f.match("pdf") }
   end
 
   def self.supp_files(etd_entry)
-    proquest_files(etd_entry) - [metadata_file(etd_entry), dissertation_file(etd_entry)]
+    proquest_files(etd_entry) - [
+      metadata_file(etd_entry), dissertation_file(etd_entry)
+    ]
   end
 
   def self.metadata_file_url(etd_entry)
@@ -31,7 +34,7 @@ class Merritt::Etd < ActiveRecord::Base
   end
 
   def self.supp_file_urls(etd_entry)
-    supp_files(etd_entry).map {|f| Merritt::Feed::HOME + f}
+    supp_files(etd_entry).map { |f| Merritt::Feed::HOME + f }
   end
 
   def self.create_etd(etd_entry)
