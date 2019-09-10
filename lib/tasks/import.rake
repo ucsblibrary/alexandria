@@ -86,7 +86,6 @@ namespace :import do
         # Create Merritt::Etd entry in db
       end
       # Create Merritt::Feed entry in db
-      page += 1
     end
   end
 end
