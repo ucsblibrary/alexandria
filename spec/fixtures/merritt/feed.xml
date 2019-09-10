@@ -1,0 +1,224 @@
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:dct="http://purl.org/dc/terms/">
+  <link href="/object/recent.atom?collection=ark:/13030/m5pv6m0x&amp;page=1" rel="self" type="application/atom+xml"/>
+  <link href="/object/recent.atom?collection=ark:/13030/m5pv6m0x&amp;page=1" rel="first" type="application/atom+xml"/>
+  <link href="/object/recent.atom?collection=ark:/13030/m5pv6m0x&amp;page=311" rel="last" type="application/atom+xml"/>
+  <link href="/object/recent.atom?collection=ark:/13030/m5pv6m0x&amp;page=2" rel="next" type="application/atom+xml"/>
+  <id>urn:uuid:8dd71209-616a-4723-bfc1-b46572499932</id>
+  <title>Recent objects</title>
+  <updated>2019-09-06T10:24:17-07:00</updated>
+  <author>
+    <name>California Digital Library</name>
+    <email>uc3@ucop.edu</email>
+  </author>
+  <generator version="0" uri="http://www.cdlib.org/">UC3 Dashboard</generator>
+  <entry>
+    <id>http://n2t.net/ark:/13030/m5dc30v7</id>
+    <link rel="alternate" type="application/zip" href="/d/ark%253A%252F13030%252Fm5dc30v7"/>
+    <dct:extent>17860289</dct:extent>
+    <title>Unsettling Racial Capitalism: Horror in African American and Native American Fiction</title>
+    <author>
+      <name>Saylor, Colton Scott</name>
+    </author>
+    <updated>2019-09-06T10:24:17-07:00</updated>
+    <published>2019-05-01T16:20:13-07:00</published>
+    <link href="/d/ark%253A%252F13030%252Fm5dc30v7/2/producer%252FSaylor_ucsb_0035D_13902_DATA.xml" rel="http://purl.org/dc/terms/hasPart" title="producer/Saylor_ucsb_0035D_13902_DATA.xml" length="6192" type="application/xml"/>
+    <link href="/d/ark%253A%252F13030%252Fm5dc30v7/2/producer%252FSaylor_ucsb_0035D_13902.pdf" rel="http://purl.org/dc/terms/hasPart" title="producer/Saylor_ucsb_0035D_13902.pdf" length="17841670" type="application/pdf"/>
+    <link href="/d/ark%253A%252F13030%252Fm5dc30v7/2/system%252Fmrt-ingest.txt" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-ingest.txt" length="1550" type="text/plain"/>
+    <link href="/d/ark%253A%252F13030%252Fm5dc30v7/2/system%252Fmrt-membership.txt" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-membership.txt" length="20" type="text/plain"/>
+    <link href="/d/ark%253A%252F13030%252Fm5dc30v7/2/system%252Fmrt-dc.xml" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-dc.xml" length="149" type="application/xml"/>
+    <link href="/d/ark%253A%252F13030%252Fm5dc30v7/2/system%252Fmrt-object-map.ttl" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-object-map.ttl" length="2642" type="plain/turtle"/>
+    <link href="/d/ark%253A%252F13030%252Fm5dc30v7/2/system%252Fmrt-erc.txt" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-erc.txt" length="184" type="text/plain"/>
+    <link href="/d/ark%253A%252F13030%252Fm5dc30v7/2/system%252Fmrt-mom.txt" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-mom.txt" length="113" type="text/plain"/>
+    <link href="/d/ark%253A%252F13030%252Fm5dc30v7/2/system%252Fmrt-owner.txt" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-owner.txt" length="19" type="text/plain"/>
+  </entry>
+  <entry>
+    <id>http://n2t.net/ark:/13030/m53z35m7</id>
+    <link rel="alternate" type="application/zip" href="/d/ark%253A%252F13030%252Fm53z35m7"/>
+    <dct:extent>3240154</dct:extent>
+    <title>Just Growing? Investigating Racial Inequity and Liberatory Potential in Brooklyn School Gardens</title>
+    <author>
+      <name>Oyewole, Michelle Tokunbo Oluwaseyi</name>
+    </author>
+    <updated>2019-09-06T10:12:17-07:00</updated>
+    <published>2019-05-01T17:11:16-07:00</published>
+    <link href="/d/ark%253A%252F13030%252Fm53z35m7/2/system%252Fmrt-ingest.txt" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-ingest.txt" length="1546" type="text/plain"/>
+    <link href="/d/ark%253A%252F13030%252Fm53z35m7/2/system%252Fmrt-membership.txt" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-membership.txt" length="20" type="text/plain"/>
+    <link href="/d/ark%253A%252F13030%252Fm53z35m7/2/producer%252FOyewole_ucsb_0035D_14103_DATA.xml" rel="http://purl.org/dc/terms/hasPart" title="producer/Oyewole_ucsb_0035D_14103_DATA.xml" length="7086" type="application/xml"/>
+    <link href="/d/ark%253A%252F13030%252Fm53z35m7/2/system%252Fmrt-dc.xml" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-dc.xml" length="149" type="application/xml"/>
+    <link href="/d/ark%253A%252F13030%252Fm53z35m7/2/system%252Fmrt-object-map.ttl" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-object-map.ttl" length="2644" type="plain/turtle"/>
+    <link href="/d/ark%253A%252F13030%252Fm53z35m7/2/producer%252FOyewole_ucsb_0035D_14103.pdf" rel="http://purl.org/dc/terms/hasPart" title="producer/Oyewole_ucsb_0035D_14103.pdf" length="1627507" type="application/pdf"/>
+    <link href="/d/ark%253A%252F13030%252Fm53z35m7/2/system%252Fmrt-erc.txt" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-erc.txt" length="210" type="text/plain"/>
+    <link href="/d/ark%253A%252F13030%252Fm53z35m7/2/system%252Fmrt-mom.txt" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-mom.txt" length="113" type="text/plain"/>
+    <link href="/d/ark%253A%252F13030%252Fm53z35m7/2/system%252Fmrt-owner.txt" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-owner.txt" length="19" type="text/plain"/>
+  </entry>
+  <entry>
+    <id>http://n2t.net/ark:/13030/m5m957nc</id>
+    <link rel="alternate" type="application/zip" href="/d/ark%253A%252F13030%252Fm5m957nc"/>
+    <dct:extent>64908678</dct:extent>
+    <title>Investigating Electrokinetic and Electrochemical Phenomena in Confined Geometries through Multiphysical Modeling</title>
+    <author>
+      <name>Eden, Alexander</name>
+    </author>
+    <updated>2019-09-06T09:40:15-07:00</updated>
+    <published>2019-05-01T17:43:52-07:00</published>
+    <link href="/d/ark%253A%252F13030%252Fm5m957nc/2/producer%252FEden_ucsb_0035D_14229.pdf" rel="http://purl.org/dc/terms/hasPart" title="producer/Eden_ucsb_0035D_14229.pdf" length="34117807" type="application/pdf"/>
+    <link href="/d/ark%253A%252F13030%252Fm5m957nc/2/system%252Fmrt-ingest.txt" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-ingest.txt" length="1543" type="text/plain"/>
+    <link href="/d/ark%253A%252F13030%252Fm5m957nc/2/system%252Fmrt-membership.txt" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-membership.txt" length="20" type="text/plain"/>
+    <link href="/d/ark%253A%252F13030%252Fm5m957nc/2/system%252Fmrt-dc.xml" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-dc.xml" length="149" type="application/xml"/>
+    <link href="/d/ark%253A%252F13030%252Fm5m957nc/2/system%252Fmrt-object-map.ttl" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-object-map.ttl" length="2638" type="plain/turtle"/>
+    <link href="/d/ark%253A%252F13030%252Fm5m957nc/2/system%252Fmrt-erc.txt" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-erc.txt" length="207" type="text/plain"/>
+    <link href="/d/ark%253A%252F13030%252Fm5m957nc/2/producer%252FEden_ucsb_0035D_14229_DATA.xml" rel="http://purl.org/dc/terms/hasPart" title="producer/Eden_ucsb_0035D_14229_DATA.xml" length="7323" type="application/xml"/>
+    <link href="/d/ark%253A%252F13030%252Fm5m957nc/2/system%252Fmrt-mom.txt" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-mom.txt" length="113" type="text/plain"/>
+    <link href="/d/ark%253A%252F13030%252Fm5m957nc/2/system%252Fmrt-owner.txt" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-owner.txt" length="19" type="text/plain"/>
+  </entry>
+  <entry>
+    <id>http://n2t.net/ark:/13030/m5zw6jv4</id>
+    <link rel="alternate" type="application/zip" href="/d/ark%253A%252F13030%252Fm5zw6jv4"/>
+    <dct:extent>2187288</dct:extent>
+    <title>Belonging, Possession and the Ironic Life Force: Philosophical Synthesis in the Early Period Plays of Eugene O’Neill</title>
+    <author>
+      <name>Thornton, Ryder Williams</name>
+    </author>
+    <updated>2019-06-11T11:13:34-07:00</updated>
+    <published>2019-06-11T11:13:31-07:00</published>
+    <link href="/d/ark%253A%252F13030%252Fm5zw6jv4/4/system%252Fmrt-ingest.txt" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-ingest.txt" length="1671" type="text/plain"/>
+    <link href="/d/ark%253A%252F13030%252Fm5zw6jv4/4/system%252Fmrt-membership.txt" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-membership.txt" length="20" type="text/plain"/>
+    <link href="/d/ark%253A%252F13030%252Fm5zw6jv4/4/producer%252FThornton_ucsb_0035D_14168.pdf" rel="http://purl.org/dc/terms/hasPart" title="producer/Thornton_ucsb_0035D_14168.pdf" length="2157820" type="application/pdf"/>
+    <link href="/d/ark%253A%252F13030%252Fm5zw6jv4/4/system%252Fmrt-dc.xml" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-dc.xml" length="149" type="application/xml"/>
+    <link href="/d/ark%253A%252F13030%252Fm5zw6jv4/4/system%252Fmrt-object-map.ttl" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-object-map.ttl" length="2646" type="plain/turtle"/>
+    <link href="/d/ark%253A%252F13030%252Fm5zw6jv4/4/producer%252FThornton_ucsb_0035D_14168_DATA.xml" rel="http://purl.org/dc/terms/hasPart" title="producer/Thornton_ucsb_0035D_14168_DATA.xml" length="6609" type="application/xml"/>
+    <link href="/d/ark%253A%252F13030%252Fm5zw6jv4/4/system%252Fmrt-erc.txt" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-erc.txt" length="222" type="text/plain"/>
+    <link href="/d/ark%253A%252F13030%252Fm5zw6jv4/4/system%252Fmrt-mom.txt" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-mom.txt" length="113" type="text/plain"/>
+    <link href="/d/ark%253A%252F13030%252Fm5zw6jv4/4/system%252Fmrt-owner.txt" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-owner.txt" length="19" type="text/plain"/>
+  </entry>
+  <entry>
+    <id>http://n2t.net/ark:/13030/m5t73653</id>
+    <link rel="alternate" type="application/zip" href="/d/ark%253A%252F13030%252Fm5t73653"/>
+    <dct:extent>45090286</dct:extent>
+    <title>The Image of the Author in Poetic Editions of Pope, Robinson, and Byron</title>
+    <author>
+      <name>Egan, Gerald O'Connor</name>
+    </author>
+    <updated>2019-05-06T14:17:17-07:00</updated>
+    <published>2013-12-01T11:03:43-08:00</published>
+    <link href="/d/ark%253A%252F13030%252Fm5t73653/9/producer%252Fetdadmin_upload_221812%252FEgan_ucsb_0035D_11645_DATA.xml" rel="http://purl.org/dc/terms/hasPart" title="producer/etdadmin_upload_221812/Egan_ucsb_0035D_11645_DATA.xml" length="6890" type="application/xml"/>
+    <link href="/d/ark%253A%252F13030%252Fm5t73653/9/producer%252Fetdadmin_upload_221812%252FEgan_ucsb_0035D_11645.pdf" rel="http://purl.org/dc/terms/hasPart" title="producer/etdadmin_upload_221812/Egan_ucsb_0035D_11645.pdf" length="22520359" type="application/pdf"/>
+    <link href="/d/ark%253A%252F13030%252Fm5t73653/9/system%252Fmrt-ingest.txt" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-ingest.txt" length="1533" type="text/plain"/>
+    <link href="/d/ark%253A%252F13030%252Fm5t73653/9/system%252Fmrt-delete.txt" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-delete.txt" length="59" type="text/plain"/>
+    <link href="/d/ark%253A%252F13030%252Fm5t73653/9/system%252Fmrt-membership.txt" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-membership.txt" length="20" type="text/plain"/>
+    <link href="/d/ark%253A%252F13030%252Fm5t73653/9/system%252Fmrt-dc.xml" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-dc.xml" length="149" type="application/xml"/>
+    <link href="/d/ark%253A%252F13030%252Fm5t73653/9/system%252Fmrt-object-map.ttl" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-object-map.ttl" length="2773" type="plain/turtle"/>
+    <link href="/d/ark%253A%252F13030%252Fm5t73653/9/system%252Fmrt-erc.txt" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-erc.txt" length="193" type="text/plain"/>
+    <link href="/d/ark%253A%252F13030%252Fm5t73653/9/system%252Fmrt-mom.txt" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-mom.txt" length="134" type="text/plain"/>
+    <link href="/d/ark%253A%252F13030%252Fm5t73653/9/system%252Fmrt-owner.txt" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-owner.txt" length="19" type="text/plain"/>
+  </entry>
+  <entry>
+    <id>http://n2t.net/ark:/13030/m5r83d6r</id>
+    <link rel="alternate" type="application/zip" href="/d/ark%253A%252F13030%252Fm5r83d6r"/>
+    <dct:extent>1061857</dct:extent>
+    <title>Empathy, Open-Mindedness and Virtue in Argumentation</title>
+    <author>
+      <name>Caravello, Jonathan Anthony</name>
+    </author>
+    <updated>2019-05-06T14:07:17-07:00</updated>
+    <published>2019-05-01T16:38:34-07:00</published>
+    <link href="/d/ark%253A%252F13030%252Fm5r83d6r/2/system%252Fmrt-ingest.txt" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-ingest.txt" length="1616" type="text/plain"/>
+    <link href="/d/ark%253A%252F13030%252Fm5r83d6r/2/system%252Fmrt-membership.txt" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-membership.txt" length="20" type="text/plain"/>
+    <link href="/d/ark%253A%252F13030%252Fm5r83d6r/2/system%252Fmrt-dc.xml" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-dc.xml" length="149" type="application/xml"/>
+    <link href="/d/ark%253A%252F13030%252Fm5r83d6r/2/system%252Fmrt-object-map.ttl" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-object-map.ttl" length="2648" type="plain/turtle"/>
+    <link href="/d/ark%253A%252F13030%252Fm5r83d6r/2/system%252Fmrt-erc.txt" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-erc.txt" length="159" type="text/plain"/>
+    <link href="/d/ark%253A%252F13030%252Fm5r83d6r/2/producer%252FCaravello_ucsb_0035D_13972_DATA.xml" rel="http://purl.org/dc/terms/hasPart" title="producer/Caravello_ucsb_0035D_13972_DATA.xml" length="7593" type="application/xml"/>
+    <link href="/d/ark%253A%252F13030%252Fm5r83d6r/2/producer%252FCaravello_ucsb_0035D_13972.pdf" rel="http://purl.org/dc/terms/hasPart" title="producer/Caravello_ucsb_0035D_13972.pdf" length="1040078" type="application/pdf"/>
+    <link href="/d/ark%253A%252F13030%252Fm5r83d6r/2/system%252Fmrt-mom.txt" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-mom.txt" length="113" type="text/plain"/>
+    <link href="/d/ark%253A%252F13030%252Fm5r83d6r/2/system%252Fmrt-owner.txt" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-owner.txt" length="19" type="text/plain"/>
+  </entry>
+  <entry>
+    <id>http://n2t.net/ark:/13030/m5qv8kfd</id>
+    <link rel="alternate" type="application/zip" href="/d/ark%253A%252F13030%252Fm5qv8kfd"/>
+    <dct:extent>936663</dct:extent>
+    <title>Alternative Arabic Music in Jordan</title>
+    <author>
+      <name>Munk, Elizabeth Nora Frances</name>
+    </author>
+    <updated>2019-05-06T14:06:17-07:00</updated>
+    <published>2019-05-01T15:19:04-07:00</published>
+    <link href="/d/ark%253A%252F13030%252Fm5qv8kfd/2/system%252Fmrt-ingest.txt" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-ingest.txt" length="1594" type="text/plain"/>
+    <link href="/d/ark%253A%252F13030%252Fm5qv8kfd/2/system%252Fmrt-membership.txt" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-membership.txt" length="20" type="text/plain"/>
+    <link href="/d/ark%253A%252F13030%252Fm5qv8kfd/2/producer%252FMunk_ucsb_0035N_13642.pdf" rel="http://purl.org/dc/terms/hasPart" title="producer/Munk_ucsb_0035N_13642.pdf" length="920058" type="application/pdf"/>
+    <link href="/d/ark%253A%252F13030%252Fm5qv8kfd/2/system%252Fmrt-dc.xml" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-dc.xml" length="149" type="application/xml"/>
+    <link href="/d/ark%253A%252F13030%252Fm5qv8kfd/2/system%252Fmrt-object-map.ttl" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-object-map.ttl" length="2638" type="plain/turtle"/>
+    <link href="/d/ark%253A%252F13030%252Fm5qv8kfd/2/system%252Fmrt-erc.txt" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-erc.txt" length="142" type="text/plain"/>
+    <link href="/d/ark%253A%252F13030%252Fm5qv8kfd/2/producer%252FMunk_ucsb_0035N_13642_DATA.xml" rel="http://purl.org/dc/terms/hasPart" title="producer/Munk_ucsb_0035N_13642_DATA.xml" length="5089" type="application/xml"/>
+    <link href="/d/ark%253A%252F13030%252Fm5qv8kfd/2/system%252Fmrt-mom.txt" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-mom.txt" length="113" type="text/plain"/>
+    <link href="/d/ark%253A%252F13030%252Fm5qv8kfd/2/system%252Fmrt-owner.txt" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-owner.txt" length="19" type="text/plain"/>
+  </entry>
+  <entry>
+    <id>http://n2t.net/ark:/13030/m57x1b1t</id>
+    <link rel="alternate" type="application/zip" href="/d/ark%253A%252F13030%252Fm57x1b1t"/>
+    <dct:extent>18101102</dct:extent>
+    <title>Touch Amplification for Human Computer Interaction</title>
+    <author>
+      <name>Schafer, Harald</name>
+    </author>
+    <updated>2019-05-06T14:03:16-07:00</updated>
+    <published>2019-05-01T14:19:59-07:00</published>
+    <link href="/d/ark%253A%252F13030%252Fm57x1b1t/2/producer%252FSchafer_ucsb_0035N_13426.pdf" rel="http://purl.org/dc/terms/hasPart" title="producer/Schafer_ucsb_0035N_13426.pdf" length="18084138" type="application/pdf"/>
+    <link href="/d/ark%253A%252F13030%252Fm57x1b1t/2/system%252Fmrt-membership.txt" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-membership.txt" length="20" type="text/plain"/>
+    <link href="/d/ark%253A%252F13030%252Fm57x1b1t/2/system%252Fmrt-ingest.txt" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-ingest.txt" length="1600" type="text/plain"/>
+    <link href="/d/ark%253A%252F13030%252Fm57x1b1t/2/system%252Fmrt-dc.xml" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-dc.xml" length="149" type="application/xml"/>
+    <link href="/d/ark%253A%252F13030%252Fm57x1b1t/2/system%252Fmrt-object-map.ttl" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-object-map.ttl" length="2644" type="plain/turtle"/>
+    <link href="/d/ark%253A%252F13030%252Fm57x1b1t/2/producer%252FSchafer_ucsb_0035N_13426_DATA.xml" rel="http://purl.org/dc/terms/hasPart" title="producer/Schafer_ucsb_0035N_13426_DATA.xml" length="5224" type="application/xml"/>
+    <link href="/d/ark%253A%252F13030%252Fm57x1b1t/2/system%252Fmrt-erc.txt" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-erc.txt" length="145" type="text/plain"/>
+    <link href="/d/ark%253A%252F13030%252Fm57x1b1t/2/system%252Fmrt-mom.txt" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-mom.txt" length="113" type="text/plain"/>
+    <link href="/d/ark%253A%252F13030%252Fm57x1b1t/2/system%252Fmrt-owner.txt" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-owner.txt" length="19" type="text/plain"/>
+  </entry>
+  <entry>
+    <id>http://n2t.net/ark:/13030/m5zd31s2</id>
+    <link rel="alternate" type="application/zip" href="/d/ark%253A%252F13030%252Fm5zd31s2"/>
+    <dct:extent>1593607832</dct:extent>
+    <title>Part One: Ferrari's 'Les Arythmiques' / Part Two: Brief Analysis of the Author's Compositions</title>
+    <author>
+      <name>Barel, Ori</name>
+    </author>
+    <updated>2019-05-06T14:02:16-07:00</updated>
+    <published>2019-05-01T14:26:04-07:00</published>
+    <link href="/d/ark%253A%252F13030%252Fm5zd31s2/2/producer%252FBarel_ucsb_0035D_67%252FOri%2520Barel-Three%2520Poems%2520by%2520Andrew%2520Choate%2520-%2520Ori%2520Barel%2520-%2520Soprano%2520by%2520Kyra%2520Folk-Farber.aif" rel="http://purl.org/dc/terms/hasPart" title="producer/Barel_ucsb_0035D_67/Ori Barel-Three Poems by Andrew Choate - Ori Barel - Soprano by Kyra Folk-Farber.aif" length="162504384" type="audio/x-aiff"/>
+    <link href="/d/ark%253A%252F13030%252Fm5zd31s2/2/producer%252FBarel_ucsb_0035D_67%252FOri%2520Barel-Marco%2520at%2520the%2520Record%2520Store.wav" rel="http://purl.org/dc/terms/hasPart" title="producer/Barel_ucsb_0035D_67/Ori Barel-Marco at the Record Store.wav" length="101442976" type="audio/vnd.wave"/>
+    <link href="/d/ark%253A%252F13030%252Fm5zd31s2/2/producer%252FBarel_ucsb_0035D_13436.pdf" rel="http://purl.org/dc/terms/hasPart" title="producer/Barel_ucsb_0035D_13436.pdf" length="7019523" type="application/pdf"/>
+    <link href="/d/ark%253A%252F13030%252Fm5zd31s2/2/system%252Fmrt-ingest.txt" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-ingest.txt" length="1636" type="text/plain"/>
+    <link href="/d/ark%253A%252F13030%252Fm5zd31s2/2/system%252Fmrt-object-map.ttl" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-object-map.ttl" length="3952" type="plain/turtle"/>
+    <link href="/d/ark%253A%252F13030%252Fm5zd31s2/2/producer%252FBarel_ucsb_0035D_67%252FAppendix%2520A%2520-%2520Audio%2520Excerpts%2520from%2520Part%25201%2520.zip" rel="http://purl.org/dc/terms/hasPart" title="producer/Barel_ucsb_0035D_67/Appendix A - Audio Excerpts from Part 1 .zip" length="126350609" type="application/zip"/>
+    <link href="/d/ark%253A%252F13030%252Fm5zd31s2/2/system%252Fmrt-mom.txt" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-mom.txt" length="113" type="text/plain"/>
+    <link href="/d/ark%253A%252F13030%252Fm5zd31s2/2/system%252Fmrt-owner.txt" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-owner.txt" length="19" type="text/plain"/>
+    <link href="/d/ark%253A%252F13030%252Fm5zd31s2/2/producer%252FBarel_ucsb_0035D_67%252FAppendix%2520B%2520from%2520Part%25202.zip" rel="http://purl.org/dc/terms/hasPart" title="producer/Barel_ucsb_0035D_67/Appendix B from Part 2.zip" length="65448177" type="application/zip"/>
+    <link href="/d/ark%253A%252F13030%252Fm5zd31s2/2/producer%252FBarel_ucsb_0035D_67%252FSmall%2520Town.zip" rel="http://purl.org/dc/terms/hasPart" title="producer/Barel_ucsb_0035D_67/Small Town.zip" length="396171821" type="application/zip"/>
+    <link href="/d/ark%253A%252F13030%252Fm5zd31s2/2/system%252Fmrt-membership.txt" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-membership.txt" length="20" type="text/plain"/>
+    <link href="/d/ark%253A%252F13030%252Fm5zd31s2/2/producer%252FBarel_ucsb_0035D_67%252FOri%2520Barel-Death%2520of%2520a%2520Moon.wav" rel="http://purl.org/dc/terms/hasPart" title="producer/Barel_ucsb_0035D_67/Ori Barel-Death of a Moon.wav" length="206662338" type="audio/vnd.wave"/>
+    <link href="/d/ark%253A%252F13030%252Fm5zd31s2/2/system%252Fmrt-dc.xml" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-dc.xml" length="149" type="application/xml"/>
+    <link href="/d/ark%253A%252F13030%252Fm5zd31s2/2/producer%252FBarel_ucsb_0035D_67%252FTrichromatic-Ori%2520Barel-Seth%2520Josel%2520E%2520Guitar.aif" rel="http://purl.org/dc/terms/hasPart" title="producer/Barel_ucsb_0035D_67/Trichromatic-Ori Barel-Seth Josel E Guitar.aif" length="192893970" type="audio/x-aiff"/>
+    <link href="/d/ark%253A%252F13030%252Fm5zd31s2/2/producer%252FBarel_ucsb_0035D_67%252FHommage%2520to%2520Phantom%2520of%2520Liberty%2520by%2520Bunuel-Ori%2520Barel.aif" rel="http://purl.org/dc/terms/hasPart" title="producer/Barel_ucsb_0035D_67/Hommage to Phantom of Liberty by Bunuel-Ori Barel.aif" length="240768570" type="audio/x-aiff"/>
+    <link href="/d/ark%253A%252F13030%252Fm5zd31s2/2/system%252Fmrt-erc.txt" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-erc.txt" length="183" type="text/plain"/>
+    <link href="/d/ark%253A%252F13030%252Fm5zd31s2/2/producer%252FBarel_ucsb_0035D_13436_DATA.xml" rel="http://purl.org/dc/terms/hasPart" title="producer/Barel_ucsb_0035D_13436_DATA.xml" length="6741" type="application/xml"/>
+    <link href="/d/ark%253A%252F13030%252Fm5zd31s2/2/producer%252FBarel_ucsb_0035D_67%252FCellular%2520Automata%2520Variations-Ori%2520Barel.aif" rel="http://purl.org/dc/terms/hasPart" title="producer/Barel_ucsb_0035D_67/Cellular Automata Variations-Ori Barel.aif" length="94323796" type="audio/x-aiff"/>
+  </entry>
+  <entry>
+    <id>http://n2t.net/ark:/13030/m5gf5sb3</id>
+    <link rel="alternate" type="application/zip" href="/d/ark%253A%252F13030%252Fm5gf5sb3"/>
+    <dct:extent>5650428</dct:extent>
+    <title>The Economics of Political Participation and Distribution in Fisheries Management</title>
+    <author>
+      <name>Sutherland, Sara Anne</name>
+    </author>
+    <updated>2019-05-06T14:00:16-07:00</updated>
+    <published>2019-05-01T10:37:06-07:00</published>
+    <link href="/d/ark%253A%252F13030%252Fm5gf5sb3/2/producer%252FSutherland_ucsb_0035D_13235_DATA.xml" rel="http://purl.org/dc/terms/hasPart" title="producer/Sutherland_ucsb_0035D_13235_DATA.xml" length="5929" type="application/xml"/>
+    <link href="/d/ark%253A%252F13030%252Fm5gf5sb3/2/system%252Fmrt-ingest.txt" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-ingest.txt" length="1640" type="text/plain"/>
+    <link href="/d/ark%253A%252F13030%252Fm5gf5sb3/2/system%252Fmrt-membership.txt" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-membership.txt" length="20" type="text/plain"/>
+    <link href="/d/ark%253A%252F13030%252Fm5gf5sb3/2/producer%252FSutherland_ucsb_0035D_13235.pdf" rel="http://purl.org/dc/terms/hasPart" title="producer/Sutherland_ucsb_0035D_13235.pdf" length="5632120" type="application/pdf"/>
+    <link href="/d/ark%253A%252F13030%252Fm5gf5sb3/2/system%252Fmrt-dc.xml" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-dc.xml" length="149" type="application/xml"/>
+    <link href="/d/ark%253A%252F13030%252Fm5gf5sb3/2/system%252Fmrt-object-map.ttl" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-object-map.ttl" length="2650" type="plain/turtle"/>
+    <link href="/d/ark%253A%252F13030%252Fm5gf5sb3/2/system%252Fmrt-erc.txt" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-erc.txt" length="182" type="text/plain"/>
+    <link href="/d/ark%253A%252F13030%252Fm5gf5sb3/2/system%252Fmrt-mom.txt" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-mom.txt" length="113" type="text/plain"/>
+    <link href="/d/ark%253A%252F13030%252Fm5gf5sb3/2/system%252Fmrt-owner.txt" rel="http://purl.org/dc/terms/hasPart" title="system/mrt-owner.txt" length="19" type="text/plain"/>
+  </entry>
+</feed>
