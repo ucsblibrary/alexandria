@@ -5,12 +5,14 @@ class Merritt::Feed < ActiveRecord::Base
     HOME + "/object/recent.atom?collection=ark:/13030/m5pv6m0x&page=#{page}"
   end
 
-  def self.parse(page=1)
+  def self.parse(page = 1)
     url = etd_feed_url(page)
     response = HTTParty.get(url)
     # TODO: This does not belong here
     # Figure out better error handling
-    # raise "Merritt Feed Error: #{response.code} #{response.message}" if response.code != 200
+    # raise "Merritt Feed Error:
+    # #{response.code} {response.message}"
+    # if response.code != 200
     xml = response.body
     Feedjira.parse(xml)
   end
@@ -34,7 +36,7 @@ class Merritt::Feed < ActiveRecord::Base
     parse.last_modified
   end
 
-  def self.create_feed(page=1)
+  def self.create_feed(page = 1)
     feed = parse(page)
     create!(
       repo_url:   etd_feed_url(page),
