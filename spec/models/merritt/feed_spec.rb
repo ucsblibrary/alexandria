@@ -1,5 +1,5 @@
 require "rails_helper"
-require 'httparty'
+require "httparty"
 
 describe Merritt::Feed do
   let(:etd_path) { "/object/recent.atom?collection=ark:/13030/m5pv6m0x" }
@@ -9,9 +9,9 @@ describe Merritt::Feed do
   let(:feed_parsed) { Feedjira.parse File.read(feed_file) }
 
   before do
-    VCR.turn_off!(:ignore_cassettes => true)
+    VCR.turn_off!(ignore_cassettes: true)
     stub_request(:get, etd_feed).
-        to_return(headers: {}, body: File.read(feed_file), status: [200, "OK"])
+      to_return(headers: {}, body: File.read(feed_file), status: [200, "OK"])
     HTTParty.get(etd_feed)
   end
 

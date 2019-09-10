@@ -18,7 +18,7 @@ class Merritt::Etd < ActiveRecord::Base
     proquest_files(etd_entry).find {|f| f.match("pdf")}
   end
 
-  def self.supplemental_files(etd_entry)
+  def self.supp_files(etd_entry)
     proquest_files(etd_entry) - [metadata_file(etd_entry), dissertation_file(etd_entry)]
   end
 
@@ -30,8 +30,8 @@ class Merritt::Etd < ActiveRecord::Base
     Merritt::Feed::HOME + dissertation_file(etd_entry)
   end
 
-  def self.supplemental_file_urls(etd_entry)
-    supplemental_files(etd_entry).map {|f| Merritt::Feed::HOME + f}
+  def self.supp_file_urls(etd_entry)
+    supp_files(etd_entry).map {|f| Merritt::Feed::HOME + f}
   end
 
   def self.create_etd(etd_entry)
