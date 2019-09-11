@@ -78,12 +78,12 @@ namespace :import do
       parsed_feed = Merritt::Feed.parse(page)
       parsed_feed.entries.each do |etd_entry|
         # Ingest the ETD entry
-          # download xml
-          # download pdf & suppl files
-          # create XML mappings
-          # ingest into Fedora
-          # create solr index
-        # Create Merritt::Etd entry in db
+        ## download xml
+        ## download pdf & suppl files
+        ## create XML mappings
+        ## ingest into Fedora
+        ## create solr index
+        ## Create Merritt::Etd entry in db
       end
       # Create Merritt::Feed entry in db
     end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "rails_helper"
 require "httparty"
 
@@ -10,8 +12,8 @@ describe Merritt::Feed do
 
   before do
     VCR.turn_off!(ignore_cassettes: true)
-    stub_request(:get, etd_feed).
-      to_return(headers: {}, body: File.read(feed_file), status: [200, "OK"])
+    stub_request(:get, etd_feed)
+      .to_return(headers: {}, body: File.read(feed_file), status: [200, "OK"])
     HTTParty.get(etd_feed)
   end
 
