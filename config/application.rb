@@ -18,6 +18,9 @@ class Alexandria::Application < Rails::Application
     g.test_framework :rspec, spec: true
   end
 
+  config.merritt_user     = "tjohnson"
+  config.merritt_pwd = "8t8cOKR2YX"
+
   config.autoload_paths << Rails.root.join("lib")
 
   # Handle exceptions manually

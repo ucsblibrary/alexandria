@@ -41,7 +41,7 @@ module Metadata
 
     # For Merritt ARKs
     property :merritt_id, predicate: RDF::Vocab::DC11.identifier do |index|
-      index.as :displayable
+      index.as :displayable, :stored_searchable
     end
 
     property :accession_number,
