@@ -43,13 +43,10 @@ module Merritt
       parse.last_modified
     end
 
-    def self.create_feed(page = 1)
-      feed = parse(page)
+    def self.create_feed(page)
       create!(
-        repo_url:   etd_feed_url(page),
-        page_num:   page,
-        updated:    feed.updated.to_datetime,
-        work_type:  work_type
+        page: page,
+        last_modified: parse(page).last_modified.to_datetime
       )
     end
   end

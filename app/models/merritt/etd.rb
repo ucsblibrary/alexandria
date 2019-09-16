@@ -45,10 +45,7 @@ module Merritt
     def self.create_etd(etd_entry)
       create!(
         merritt_id:     merritt_id(etd_entry),
-        title:          etd_entry.title,
-        author:         etd_entry.author,
-        published_date: etd_entry.published_at,
-        last_modified:  etd_entry.last_modified
+        last_modified:  etd_entry.last_modified.to_datetime
       )
     end
   end
