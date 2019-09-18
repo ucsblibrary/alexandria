@@ -69,14 +69,15 @@ namespace :import do
   task :merritt_etds, [:first, :last] => :environment do |_t, args|
     puts "Beginning import #{Time.zone.now}"
 
-    first = args[:first] || Merritt::Feed.first_page
-    last  = args[:last] || Merritt::Feed.last_page
+    first = args[:first] || Importer::Merritt::Feed.first_page
+    last  = args[:last] || Importer::Merritt::Feed.last_page
 
     # Each page in merrit's
     # atom feed has 10 ETD entries
     first.upto(last).each do |page|
-      parsed_feed = Merritt::Feed.parse(page)
-      parsed_feed.entries.each do |etd_entry|
+      feed = Importer::Merritt::Feed.parse(page)
+      feed.entries.each do |etd|
+        Importer::Merritt::Etd.import(etd)
         # Ingest the ETD entry
         ## download xml
         ## download pdf & suppl files
@@ -85,7 +86,7 @@ namespace :import do
         ## create solr index
         ## Create Merritt::Etd entry in db
       end
-      # Create Merritt::Feed entry in db
+      # Create Importer::Merritt::Feed entry in db
     end
   end
 end
