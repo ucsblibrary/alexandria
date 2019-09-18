@@ -9,20 +9,33 @@ module Importer::Merritt::Etd
   # metadata, dissertation
   # & supplemental files
   def self.import(etd)
+    # tmp/merrittetds
     merritt_etd_dir = Settings.merritt_etd_dir
     Dir.mkdir merritt_etd_dir unless File.directory? merritt_etd_dir
-    file_path = File.join(merritt_etd_dir, "download_#{ark(etd)}")
-    Dir.mkdir(file_path) unless File.directory?(file_path)
+    # tmp/merrittetds/download_m5bp580k
+    download_path = File.join(merritt_etd_dir, "download_#{ark(etd)}")
+    Dir.mkdir download_path unless File.directory? download_path
 
     [metadata_url(etd), dissertation_url(etd)].each do |url|
+      # tmp/merrittetds/download_m5bp580k/Soriano_ucsb_0035N_14420_DATA.xml
+      # tmp/merrittetds/download_m5bp580k/Soriano_ucsb_0035N_14420.pdf
+      file_path = File.join(download_path, escape_encodings(url))
       create_poquest_file(file_path, url)
     end
 
     if supp_urls(etd).present?
-      supp_path = File.join(file_path, "supplements")
+      # tmp/merrittetds/download_m5bp580k/supplements
+      supp_path = File.join(download_path, "supplements")
       Dir.mkdir(supp_path) unless File.directory?(supp_path)
+
       supp_urls(etd).each do |supp_url|
-        create_poquest_file(supp_path, supp_url)
+        # tmp/merrittetds/download_m5bp580k/supplements/Soriano_ucsb_0035N_67
+        sub_dir = File.join(supp_path, escape_encodings(supp_url).split("/").first)
+        Dir.mkdir(sub_dir) unless File.directory?(sub_dir)
+
+        # tmp/merrittetds/download_m5bp580k/supplements/Soriano_ucsb_0035N_67/av.jpeg
+        supp_file_path = File.join(sub_dir, escape_encodings(supp_url).split("/").last)
+        create_poquest_file(supp_file_path, supp_url)
       end
     end
   end
@@ -61,6 +74,10 @@ module Importer::Merritt::Etd
     supp_files(etd).map { |f| HOME + f }
   end
 
+  def self.supp_extensions(etd)
+    supp_urls(etd).map { |url| url.split(".").last }
+  end
+
   def self.get_content(url)
     uri = URI.parse(url)
     http = Net::HTTP.new(uri.host, uri.port)
@@ -74,13 +91,13 @@ module Importer::Merritt::Etd
 
   def self.escape_encodings(url)
     # double unescape to handle %252F in urls like
-    # Barel_ucsb_0035D_67%252FSmall%2520Town.zip
+    # Barel_ucsb_0035D_67/Small_Town.zip
     str = CGI.unescape(CGI.unescape(url))
     str.split("producer/").last
   end
 
   def self.create_poquest_file(file_path, url)
-    File.open(File.join(file_path, escape_encodings(url)), "wb") do |f|
+    File.open(file_path, "wb") do |f|
       f.write get_content(url).body
     end
   end
