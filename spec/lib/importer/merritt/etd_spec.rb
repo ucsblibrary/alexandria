@@ -16,6 +16,10 @@ describe Importer::Merritt::Etd do
   let(:supp_urls) do
     supp_files.map { |s_file| Importer::Merritt::Feed::HOME + s_file }
   end
+  let(:meta_url) { Importer::Merritt::Feed::HOME + metadata_file }
+  let(:diss_url) { Importer::Merritt::Feed::HOME + dissertation_file }
+  let(:pq_meta) { File.join(fixture_path, "merritt", "proquest_metadata.xml") }
+  let(:pq_diss) { File.join(fixture_path, "merritt", "proquest_dissertation.pdf") }
   let(:etd) do
     Feedjira::Parser::AtomEntry.new(
       entry_id: "http://n2t.net/" + ark,
@@ -40,7 +44,7 @@ describe Importer::Merritt::Etd do
   describe ".metadata_url" do
     it "returns url for metadata file" do
       expect(described_class.metadata_url(etd))
-        .to eq(Importer::Merritt::Feed::HOME + metadata_file)
+        .to eq(meta_url)
     end
   end
 
@@ -55,6 +59,45 @@ describe Importer::Merritt::Etd do
     it "returns url for supplemental files" do
       expect(described_class.supp_urls(etd))
         .to eq(supp_urls)
+    end
+  end
+
+  describe ".get_content" do
+    before do
+      VCR.turn_off!(ignore_cassettes: true)
+    end
+
+    describe "with metadata file url" do
+      before do
+        stub_request(:get, meta_url)
+          .to_return(headers: {}, body: File.read(pq_meta), status: [200, "OK"])
+        Net::HTTP::Get.new(meta_url)
+      end
+
+      it "returns the metadata xml file" do
+        expect(described_class.get_content(meta_url).body)
+          .to eq(File.read(pq_meta))
+      end
+    end
+
+    describe "with dissertation file url" do
+      before do
+        stub_request(:get, diss_url)
+          .to_return(headers: {}, body: File.read(pq_diss), status: [200, "OK"])
+        Net::HTTP::Get.new(diss_url)
+      end
+
+      it "returns the metadata xml file" do
+        expect(described_class.get_content(diss_url).body)
+          .to eq(File.read(pq_diss))
+      end
+    end
+  end
+
+  describe ".escape_encodings" do
+    it "escapes html url encodings" do
+      expect(described_class.escape_encodings(meta_url))
+        .to eq("Thornton_ucsb_0035D_14168_DATA.xml")
     end
   end
 end

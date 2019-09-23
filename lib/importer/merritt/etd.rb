@@ -75,10 +75,6 @@ module Importer::Merritt::Etd
     supp_files(etd).map { |f| HOME + f }
   end
 
-  def self.supp_extensions(etd)
-    supp_urls(etd).map { |url| url.split(".").last }
-  end
-
   def self.get_content(url)
     uri = URI.parse(url)
     http = Net::HTTP.new(uri.host, uri.port)
