@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe Importer::Merritt::Etd do
+describe Merritt::Import::Etd do
   let(:ark) { "m5zw6jv4" }
   let(:ark_path) { "/d/ark%253A%252F13030%252F/4/producer%252F" }
   let(:sys_path) { "/d/ark%253A%252F13030%252Fm5zd31s2/2/producer%252/F" }
@@ -14,10 +14,10 @@ describe Importer::Merritt::Etd do
   let(:proquest_files) { [metadata_file, dissertation_file] + supp_files }
   let(:system_files) { ["#{ark_path}/4/system%252Fmrt-ingest.txt"] }
   let(:supp_urls) do
-    supp_files.map { |s_file| Importer::Merritt::Feed::HOME + s_file }
+    supp_files.map { |s_file| Merritt::Feed::HOME + s_file }
   end
-  let(:meta_url) { Importer::Merritt::Feed::HOME + metadata_file }
-  let(:diss_url) { Importer::Merritt::Feed::HOME + dissertation_file }
+  let(:meta_url) { Merritt::Feed::HOME + metadata_file }
+  let(:diss_url) { Merritt::Feed::HOME + dissertation_file }
   let(:pq_meta) { File.join(fixture_path, "merritt", "proquest_metadata.xml") }
   let(:pq_diss) { File.join(fixture_path, "merritt", "proquest_dissertation.pdf") }
   let(:etd) do
@@ -51,7 +51,7 @@ describe Importer::Merritt::Etd do
   describe ".dissertation_url" do
     it "returns url for dissertation file" do
       expect(described_class.dissertation_url(etd))
-        .to eq(Importer::Merritt::Feed::HOME + dissertation_file)
+        .to eq(Merritt::Feed::HOME + dissertation_file)
     end
   end
 

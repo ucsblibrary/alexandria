@@ -70,14 +70,14 @@ namespace :import do
   task :merritt_etds, [:first, :last] => :environment do |_t, args|
     puts "Beginning import #{Time.zone.now}"
 
-    first = args[:first]  || Importer::Merritt::Feed.first_page
-    last  = args[:last]   || Importer::Merritt::Feed.last_page
+    first = args[:first]  || Merritt::Feed.first_page
+    last  = args[:last]   || Merritt::Feed.last_page
 
     # Each page in merrit's
     # atom feed has 10 ETD entries
     first.upto(last).each do |page|
       begin
-        feed = Importer::Merritt::Feed.parse(page)
+        feed = Merritt::Feed.parse(page)
         err = []
         feed.entries.each do |etd|
           merr_id = Merritt::Etd.merritt_id(etd)
@@ -93,7 +93,7 @@ namespace :import do
           next if ETD.where(merritt_id: merr_id).present?
 
           begin
-            Importer::Merritt::Etd.import(etd)
+            Merritt::Import::Etd.import(etd)
             Merritt::Etd.find_or_create_by!(merritt_id: merr_id,
                                             last_modified: etd.last_modified)
             # Ingest the imported ETD
@@ -104,8 +104,6 @@ namespace :import do
             err << "Page:#{page} Entry:#{etd.entry_id} raised error: #{e.inspect}"
           end
         end
-        Merritt::Feed.create!(page: page.to_i,
-                              last_modified: feed.last_modified)
         # TODO: How can we handle errors better?
         err.each { |e| puts e.inspect } if err.present?
       rescue StandardError => e

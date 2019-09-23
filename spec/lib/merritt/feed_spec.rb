@@ -3,9 +3,9 @@
 require "rails_helper"
 require "httparty"
 
-describe Importer::Merritt::Feed do
+describe Merritt::Feed do
   let(:etd_path) { "/object/recent.atom?collection=ark:/13030/m5pv6m0x" }
-  let(:etd_feed) { Importer::Merritt::Feed::HOME + etd_path }
+  let(:etd_feed) { Merritt::Feed::HOME + etd_path }
   let(:page_one) { etd_feed + "&page=1" }
   let(:feed_file) { File.join(fixture_path, "merritt", "feed.xml") }
   let(:feed_parsed) { Feedjira.parse File.read(feed_file) }

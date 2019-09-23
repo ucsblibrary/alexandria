@@ -3,8 +3,8 @@
 require "net/https"
 require "uri"
 
-module Importer::Merritt::Etd
-  include Importer::Merritt::Feed
+module Merritt::Import::Etd
+  include Merritt::Feed
 
   # metadata, dissertation
   # & supplemental files

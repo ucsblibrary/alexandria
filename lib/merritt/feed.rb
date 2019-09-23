@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Importer::Merritt::Feed
+module Merritt::Feed
   HOME = "https://merritt.cdlib.org"
 
   def self.etd_feed_url(page = 1)

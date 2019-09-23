@@ -65,14 +65,6 @@ ActiveRecord::Schema.define(version: 20190821213804) do
     t.index ["merritt_id"], name: "index_merritt_etds_on_merritt_id"
   end
 
-  create_table "merritt_feeds", force: :cascade do |t|
-    t.integer "page", null: false
-    t.datetime "last_modified", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["last_modified"], name: "index_merritt_feeds_on_last_modified"
-  end
-
   create_table "searches", force: :cascade do |t|
     t.text "query_params"
     t.integer "user_id"
