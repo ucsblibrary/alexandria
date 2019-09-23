@@ -9,13 +9,11 @@ module Importer::Merritt::Feed
 
   def self.parse(page = 1)
     url = etd_feed_url(page)
-    response = HTTParty.get(url)
-    # TODO: This does not belong here
-    # Figure out better error handling
-    # raise "Merritt Feed Error:
-    # #{response.code} {response.message}"
-    # if response.code != 200
-    xml = response.body
+    resp = HTTParty.get(url)
+    if resp.code != 200
+      raise StandardError, "#{url} returned #{resp.code} #{resp.message}"
+    end
+    xml = resp.body
     Feedjira.parse(xml)
   end
 

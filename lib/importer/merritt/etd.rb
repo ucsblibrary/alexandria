@@ -34,7 +34,8 @@ module Importer::Merritt::Etd
         Dir.mkdir(sub_dir) unless File.directory?(sub_dir)
 
         # tmp/merrittetds/download_m5bp580k/supplements/Soriano_ucsb_0035N_67/av.jpeg
-        supp_file_path = File.join(sub_dir, escape_encodings(supp_url).split("/").last)
+        supp_file_path = File.join(sub_dir,
+                                   escape_encodings(supp_url).split("/").last)
         create_poquest_file(supp_file_path, supp_url)
       end
     end
@@ -90,10 +91,13 @@ module Importer::Merritt::Etd
   end
 
   def self.escape_encodings(url)
-    # double unescape to handle %252F in urls like
-    # Barel_ucsb_0035D_67/Small_Town.zip
+    # double unescape urls to convert encodings
+    # like %252F => %2F => / in urls as shown below
+    # https://merritt.cdlib.org/d/ark:/13030/m5t73653/9
+    # /producer/etdadmin_upload_221812/Egan_ucsb_0035D_11645_DATA.xml
     str = CGI.unescape(CGI.unescape(url))
     str.split("producer/").last
+    str.split("/").last
   end
 
   def self.create_poquest_file(file_path, url)

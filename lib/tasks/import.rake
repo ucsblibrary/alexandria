@@ -1,10 +1,11 @@
+
 # frozen_string_literal: true
 
 require "csv"
 
 namespace :import do
   desc "Import merritt arks from csv for UCSB ETDs"
-  task :merritt_arks, [:file_path] => :environment do |_t, args|
+  task :merr_arks, [:file_path] => :environment do |_t, args|
     puts "Beginning Import #{Time.zone.now}"
     missing_etds = []
     # CSV file contents would be
@@ -12,11 +13,11 @@ namespace :import do
     # ProQuestID:0035D,ark:/13030/m00999g9,ark:/48907/f30865g5
     CSV.foreach(args[:file_path], headers: true) do |row|
       ucsb_ark = row["ucsb"].split("/").last
-      merritt_ark = row["merritt"]
+      merr_ark = row["merritt"]
       begin
         etd = ETD.find ucsb_ark
         next if etd.merritt_id.present?
-        etd.merritt_id = [merritt_ark]
+        etd.merritt_id = [merr_ark]
         etd.save
         puts "Updated UCSB ETD: #{ucsb_ark}"
       rescue ActiveFedora::ObjectNotFoundError
@@ -69,22 +70,49 @@ namespace :import do
   task :merritt_etds, [:first, :last] => :environment do |_t, args|
     puts "Beginning import #{Time.zone.now}"
 
-    first = args[:first] || Importer::Merritt::Feed.first_page
-    last  = args[:last] || Importer::Merritt::Feed.last_page
+    first = args[:first]  || Importer::Merritt::Feed.first_page
+    last  = args[:last]   || Importer::Merritt::Feed.last_page
 
     # Each page in merrit's
     # atom feed has 10 ETD entries
     first.upto(last).each do |page|
-      feed = Importer::Merritt::Feed.parse(page)
-      feed.entries.each do |etd|
-        Importer::Merritt::Etd.import(etd)
-        # Ingest the imported ETD
-        ## create XML mappings
-        ## ingest into Fedora
-        ## create solr index
-        ## Create Merritt::Etd db entry
+      begin
+        feed = Importer::Merritt::Feed.parse(page)
+        err = []
+        feed.entries.each do |etd|
+          merr_id = Merritt::Etd.merritt_id(etd)
+          imported_etd = Merritt::Etd.where(merritt_id: merr_id)
+            .order(last_modified: "DESC").first
+
+          # Skip existing ETDs with Merritt arks
+          # that have not been modified
+          next if imported_etd.present? &&
+                  imported_etd.last_modified == etd.last_modified
+          # && ETD.where(id: Merritt::Etd.ark(etd)).present?
+          # Skip existing ETDs with UCSB arks
+          next if ETD.where(merritt_id: merr_id).present?
+
+          begin
+            Importer::Merritt::Etd.import(etd)
+            Merritt::Etd.find_or_create_by!(merritt_id: merr_id,
+                                            last_modified: etd.last_modified)
+            # Ingest the imported ETD
+            ## create XML mappings
+            ## create Fedora Obj
+            ## create solr index
+          rescue StandardError => e
+            err << "Page:#{page} Entry:#{etd.entry_id} raised error: #{e.inspect}"
+          end
+        end
+        Merritt::Feed.create!(page: page.to_i,
+                              last_modified: feed.last_modified)
+        # TODO: How can we handle errors better?
+        err.each { |e| puts e.inspect } if err.present?
+      rescue StandardError => e
+        puts "Page: #{page} could not be parsed"
+        puts e.inspect
       end
-      # Create Importer::Merritt::Feed entry in db
     end
+    puts "Ending import #{Time.zone.now}"
   end
 end

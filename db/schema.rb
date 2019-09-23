@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 20190821213804) do
   end
 
   create_table "merritt_etds", force: :cascade do |t|
-    t.integer "merritt_id", null: false
+    t.string "merritt_id", null: false
     t.datetime "last_modified", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

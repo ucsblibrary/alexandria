@@ -10,11 +10,8 @@ module Merritt
       "ark" + etd.entry_id.split("ark").last
     end
 
-    def self.create_etd(etd)
-      create!(
-        merritt_id:     merritt_id(etd),
-        last_modified:  etd.last_modified.to_datetime
-      )
+    def self.ark(etd)
+      etd.entry_id.split("/").last
     end
   end
 end
