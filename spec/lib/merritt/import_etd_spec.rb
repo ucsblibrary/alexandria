@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe Merritt::Import::Etd do
+describe Merritt::ImportEtd do
   let(:ark) { "m5zw6jv4" }
   let(:ark_path) { "/d/ark%253A%252F13030%252F/4/producer%252F" }
   let(:sys_path) { "/d/ark%253A%252F13030%252Fm5zd31s2/2/producer%252/F" }

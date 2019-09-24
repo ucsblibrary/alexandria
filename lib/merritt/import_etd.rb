@@ -3,7 +3,7 @@
 require "net/https"
 require "uri"
 
-module Merritt::Import::Etd
+module Merritt::ImportEtd
   include Merritt::Feed
 
   # metadata, dissertation
@@ -29,16 +29,13 @@ module Merritt::Import::Etd
       Dir.mkdir(supp_path) unless File.directory?(supp_path)
 
       supp_urls(etd).each do |supp_url|
-        # tmp/merrittetds/download_m5bp580k/supplements/Soriano_ucsb_0035N_67
-        sub_dir = File.join(supp_path, escape_encodings(supp_url).split("/").first)
-        Dir.mkdir(sub_dir) unless File.directory?(sub_dir)
-
-        # tmp/merrittetds/download_m5bp580k/supplements/Soriano_ucsb_0035N_67/av.jpeg
-        supp_file_path = File.join(sub_dir,
-                                   escape_encodings(supp_url).split("/").last)
+        # tmp/merrittetds/download_m5bp580k/supplements/av.jpeg
+        supp_file_path = File.join(supp_path,
+                                   escape_encodings(supp_url))
         create_poquest_file(supp_file_path, supp_url)
       end
     end
+    download_path
   end
 
   def self.ark(etd)
@@ -89,8 +86,8 @@ module Merritt::Import::Etd
   def self.escape_encodings(url)
     # double unescape urls to convert encodings
     # like %252F => %2F => / in urls as shown below
-    # https://merritt.cdlib.org/d/ark:/13030/m5t73653/9
-    # /producer/etdadmin_upload_221812/Egan_ucsb_0035D_11645_DATA.xml
+    # https://merritt.cdlib.org/d/ark:/13030/m5bp580k/9
+    # /producer/Soriano_ucsb_0035N_67/av.jpeg
     str = CGI.unescape(CGI.unescape(url))
     str.split("producer/").last
     str.split("/").last

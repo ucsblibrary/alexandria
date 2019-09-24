@@ -68,7 +68,15 @@ namespace :import do
 
   desc "Import merritt etds from atom feed"
   task :merritt_etds, [:first, :last] => :environment do |_t, args|
-    puts "Beginning import #{Time.zone.now}"
+    puts "Beginning Import #{Time.zone.now}"
+
+    unless Merritt::IngestEtd.collection_exists?
+      puts "Aborting Import: Before you can import ETD records, "\
+           "the ETD collection must exist."
+      puts "Please import the ETD collection record first, "\
+           "then re-try this import."
+      return
+    end
 
     first = args[:first]  || Merritt::Feed.first_page
     last  = args[:last]   || Merritt::Feed.last_page
@@ -93,9 +101,10 @@ namespace :import do
           next if ETD.where(merritt_id: merr_id).present?
 
           begin
-            Merritt::Import::Etd.import(etd)
+            file_path = Merritt::ImportEtd.import(etd)
             Merritt::Etd.find_or_create_by!(merritt_id: merr_id,
                                             last_modified: etd.last_modified)
+            Merritt::IngestEtd.ingest(merr_id, file_path)
             # Ingest the imported ETD
             ## create XML mappings
             ## create Fedora Obj
@@ -111,6 +120,6 @@ namespace :import do
         puts e.inspect
       end
     end
-    puts "Ending import #{Time.zone.now}"
+    puts "Ending Import #{Time.zone.now}"
   end
 end

@@ -11,7 +11,9 @@ module Merritt::Feed
     url = etd_feed_url(page)
     resp = HTTParty.get(url)
     if resp.code != 200
-      raise StandardError, "#{url} returned #{resp.code} #{resp.message}"
+      raise StandardError,
+            "Error in Merritt::Feed.parse:"\
+            "#{url} returned #{resp.code} #{resp.message}"
     end
     xml = resp.body
     Feedjira.parse(xml)
