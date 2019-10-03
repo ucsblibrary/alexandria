@@ -56,7 +56,7 @@ module Proquest::XML
     {
       title: [title(xml)],
       description: description(xml),
-      controbutors: controbutors(xml),
+      contributors: contributors(xml),
       created_attributes: [{ start: issued(xml) }],
       dissertation_degree: dissertation_degree(xml),
       dissertation_year: dissertation_year(xml),
@@ -82,7 +82,7 @@ module Proquest::XML
     [arr.join("\\n\\n")]
   end
 
-  def self.controbutors(xml)
+  def self.contributors(xml)
     [{ author: author(xml),
        degree_grantor: degree_grantor(xml),
        degree_supervisor: degree_supervisor(xml), },]
