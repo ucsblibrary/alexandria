@@ -57,7 +57,7 @@ module Proquest::XML
       title: [title(xml)],
       description: description(xml),
       controbutors: controbutors(xml),
-      created_attributes: [{start: issued(xml)}],
+      created_attributes: [{ start: issued(xml) }],
       dissertation_degree: dissertation_degree(xml),
       dissertation_year: dissertation_year(xml),
       dissertation_institution: dissertation_institution(xml),
@@ -67,7 +67,7 @@ module Proquest::XML
       place_of_publication: ["[Santa Barbara, Calif.]"],
       publisher: ["University of California, Santa Barbara"],
       work_type: [{ _rdf: ["http://id.loc.gov/vocabulary/resourceTypes/txt"] }],
-      language: language(xml)
+      language: language(xml),
     }
   end
 
@@ -82,12 +82,10 @@ module Proquest::XML
     [arr.join("\\n\\n")]
   end
 
-  def controbutors(xml)
-    [{
-      author: [author],
-      degree_grantor: [degree_grantor],
-      degree_supervisor: [degree_supervisor]
-    }]
+  def self.controbutors(xml)
+    [{ author: author(xml),
+       degree_grantor: degree_grantor(xml),
+       degree_supervisor: degree_supervisor(xml), },]
   end
 
   def self.author(xml)
@@ -96,23 +94,23 @@ module Proquest::XML
     path = xml.xpath('//DISS_author[@type="primary"]/DISS_name')
     return [] if path.blank?
     name = [path.xpath("DISS_surname").text, path.xpath("DISS_fname").text,
-            path.xpath("DISS_middle").text].join(" ")
-    {type: "agent", name: name}
+            path.xpath("DISS_middle").text,].join(" ")
+    [{ type: "agent", name: name }]
   end
 
   def self.degree_grantor(xml)
     # <DISS_inst_name>.[space]<DISS_inst_contact>
     name = [xml.xpath("//DISS_institution//DISS_inst_name").text,
-             xml.xpath("//DISS_institution//DISS_inst_contact").text].join(".")
-    {type: "organization", name: name}
+            xml.xpath("//DISS_institution//DISS_inst_contact").text,].join(".")
+    [{ type: "organization", name: name }]
   end
 
   def self.degree_supervisor(xml)
     name = [xml.xpath("//DISS_advisor//DISS_surname").text,
-            xml.xpath("//DISS_advisor//DISS_fname").text].join(" ")
+            xml.xpath("//DISS_advisor//DISS_fname").text,].join(" ")
     middle = xml.xpath("//DISS_advisor//DISS_middle").text
-    name = name + ' ' + middle unless middle.blank?
-    {type: "agent", name: name}
+    name = [name, middle].join(" ") if middle.present?
+    [{ type: "agent", name: name }]
   end
 
   def self.dissertation_degree(xml)
@@ -136,7 +134,8 @@ module Proquest::XML
   end
 
   def self.marc_subjects(xml)
-    xml.xpath("//DISS_categorization//DISS_category//DISS_cat_desc").children.map {|c| c.text}
+    xml.xpath("//DISS_categorization//DISS_category//DISS_cat_desc")
+      .children.map(&:text)
   end
 
   def self.language(xml)
@@ -147,4 +146,3 @@ module Proquest::XML
     end
   end
 end
-

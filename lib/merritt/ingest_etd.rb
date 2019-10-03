@@ -15,14 +15,14 @@ module Merritt::IngestEtd
   end
 
   def self.collection_exists?
-    get_collection.present? ? true : false
+    collection.present? ? true : false
   end
 
   def self.unpack(file_path)
     etd_files = {
       xml: Dir["#{file_path}/*_DATA.xml"].first,
       pdf: Dir["#{file_path}/*.pdf"].first,
-      supplements: []
+      supplements: [],
     }
     supplements = File.join(file_path, "supplements")
     if File.directory? supplements
@@ -37,15 +37,15 @@ module Merritt::IngestEtd
       id:         Identifier.merritt_ark_to_id(merritt_id),
       identifier: [merritt_id],
       merritt_id: [merritt_id],
-      local_collection_id: get_collection
+      local_collection_id: collection,
     }.merge(Proquest::XML.metadata_attribs(xml))
   end
 
-  def self.get_collection
+  def self.collection
     Importer::Factory::CollectionFactory.new(
-        COLLECTION,
-        [],
-        Logger.new(STDOUT)
+      COLLECTION,
+      [],
+      Logger.new(STDOUT)
     ).find
   end
 end
