@@ -394,6 +394,7 @@ GEM
       activesupport (<= 6)
     inflecto (0.0.2)
     iso-639 (0.2.8)
+    iso639 (1.3.2)
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
@@ -877,6 +878,7 @@ DEPENDENCIES
   http_logger
   httparty
   hydra-role-management
+  iso639
   jbuilder (~> 2.0)
   jquery-rails (~> 4.0)
   kaminari_route_prefix

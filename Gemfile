@@ -26,6 +26,7 @@ gem "blacklight_range_limit"
 gem "curation_concerns", "~> 1.7.7"
 gem "ezid-client", "~> 1.2"
 gem "hydra-role-management"
+gem "iso639"
 gem "linked_vocabs",
     git: "https://github.com/projecthydra-labs/linked_vocabs.git"
 gem "marc"
