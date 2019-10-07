@@ -876,7 +876,6 @@ DEPENDENCIES
   font-awesome-sass
   highline
   http_logger
-  httparty
   hydra-role-management
   iso639
   jbuilder (~> 2.0)

@@ -9,13 +9,19 @@ module Merritt::Feed
 
   def self.parse(page = 1)
     url = etd_feed_url(page)
-    resp = HTTParty.get(url)
-    if resp.code != 200
+    uri = URI.parse(url)
+    request = Net::HTTP::Get.new(uri.request_uri)
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    response = http.request request
+    if response.code != 200
       raise StandardError,
             "Error in Merritt::Feed.parse:"\
-            "#{url} returned #{resp.code} #{resp.message}"
+            "#{url} returned #{response.code} #{response.message}"
     end
-    xml = resp.body
+
+    xml = response.body
     Feedjira.parse(xml)
   end
 
