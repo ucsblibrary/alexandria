@@ -56,7 +56,9 @@ module Proquest::XML
     {
       title: [title(xml)],
       description: description(xml),
-      contributors: contributors(xml),
+      author: author(xml),
+      degree_grantor: degree_grantor(xml),
+      degree_supervisor: degree_supervisor(xml),
       created_attributes: [{ start: issued(xml) }],
       dissertation_degree: dissertation_degree(xml),
       dissertation_year: dissertation_year(xml),
@@ -139,10 +141,23 @@ module Proquest::XML
   end
 
   def self.language(xml)
-    if xml.xpath("//DISS_language").text.present?
-      [Iso639[xml.xpath("//DISS_language").text].english_name]
-    else
-      []
+    lang = xml.xpath("//DISS_language").text
+    iso_str = to_iso639_2(str: lang)
+    return [] if iso_str.nil?
+    begin
+      value = Vocabularies::ISO_639_2[iso_str].to_s
+      [{ _rdf: [value] }]
+    rescue KeyError
+      Rails.logger.warn "Conversion to Iso639-2 failed for #{iso_str} on ARK"
+      return []
     end
+  end
+
+  private
+  def self.to_iso639_2(str:)
+    lang = Iso639[str]
+    return lang.alpha3 if lang.present?
+    Rails.logger.warn "Conversion to Iso639-2 failed for #{str} on ARK"
+    nil
   end
 end

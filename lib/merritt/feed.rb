@@ -15,7 +15,8 @@ module Merritt::Feed
     http.use_ssl = true
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
     response = http.request request
-    if response.code != 200
+
+    if response.code.to_i != 200
       raise StandardError,
             "Error in Merritt::Feed.parse:"\
             "#{url} returned #{response.code} #{response.message}"

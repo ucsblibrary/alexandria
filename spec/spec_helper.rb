@@ -20,6 +20,7 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
+require "dotenv/load"
 require "webmock/rspec"
 
 RSpec.configure do |config|

@@ -70,7 +70,7 @@ namespace :import do
   task :merritt_etds, [:first, :last] => :environment do |_t, args|
     puts "Beginning Import #{Time.zone.now}"
 
-    unless Merritt::IngestEtd.collection_exists?
+    unless Merritt::IngestEtd.collection.present?
       puts "Aborting Import: Before you can import ETD records, "\
            "the ETD collection must exist."
       puts "Please import the ETD collection record first, "\
@@ -88,8 +88,9 @@ namespace :import do
         feed = Merritt::Feed.parse(page)
         err = []
         feed.entries.each do |etd|
-          merr_id = Merritt::Etd.merritt_id(etd)
-          imported_etd = Merritt::Etd.where(merritt_id: merr_id)
+          merritt_id = Merritt::Etd.merritt_id(etd)
+          ark = Merritt::Etd.ark
+          imported_etd = Merritt::Etd.where(merritt_id: merritt_id)
             .order(last_modified: "DESC").first
 
           # Skip existing ETDs with Merritt arks
@@ -98,17 +99,13 @@ namespace :import do
                   imported_etd.last_modified == etd.last_modified
           # && ETD.where(id: Merritt::Etd.ark(etd)).present?
           # Skip existing ETDs with UCSB arks
-          next if ETD.where(merritt_id: merr_id).present?
+          next if ETD.where(merritt_id: merritt_id).present?
 
           begin
             file_path = Merritt::ImportEtd.import(etd)
-            Merritt::Etd.find_or_create_by!(merritt_id: merr_id,
+            Merritt::IngestEtd.ingest(merritt_id, file_path)
+            Merritt::Etd.find_or_create_by!(merritt_id: merritt_id,
                                             last_modified: etd.last_modified)
-            Merritt::IngestEtd.ingest(merr_id, file_path)
-            # Ingest the imported ETD
-            ## create XML mappings
-            ## create Fedora Obj
-            ## create solr index
           rescue StandardError => e
             err << "Page:#{page} Entry:#{etd.entry_id} raised error: #{e.inspect}"
           end

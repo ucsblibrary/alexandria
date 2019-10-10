@@ -1,21 +1,17 @@
 # frozen_string_literal: true
 
 module Merritt::IngestEtd
-  COLLECTION = { accession_number: ["etds"] }.freeze
-
   def self.ingest(merritt_id, file_path)
+    raise CollectionNotFound, "ETD Collection Not Found" if collection.blank?
     # etd = ETD.where(id: merritt_id).first
     files = unpack(file_path)
     attribs = extract_metadata(merritt_id, files[:xml])
+
     IngestJob.perform_later(
       model: "ETD",
-      attrs: attribs,
-      files: [files]
+      attrs: attribs.to_json,
+      files: files
     )
-  end
-
-  def self.collection_exists?
-    collection.present? ? true : false
   end
 
   def self.unpack(file_path)
@@ -37,15 +33,11 @@ module Merritt::IngestEtd
       id:         Identifier.merritt_ark_to_id(merritt_id),
       identifier: [merritt_id],
       merritt_id: [merritt_id],
-      local_collection_id: collection,
+      local_collection_id: [collection.id]
     }.merge(Proquest::XML.metadata_attribs(xml))
   end
 
   def self.collection
-    Importer::Factory::CollectionFactory.new(
-      COLLECTION,
-      [],
-      Logger.new(STDOUT)
-    ).find
+    Collection.where(accession_number: ["etds"]).first
   end
 end

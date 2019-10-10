@@ -109,8 +109,25 @@ describe Proquest::XML do
         .to eq([{ _rdf: ["http://id.loc.gov/vocabulary/resourceTypes/txt"] }])
     end
 
-    it "collects ETD language" do
-      expect(metadata_attribs[:language]).to eq(["English"])
+    describe ".language" do
+      describe "with unknown language" do
+        it "is empty" do
+          xml = Nokogiri::XML.parse("<DISS_language>blah</DISS_language>")
+          expect(described_class.language(xml)).to be_empty
+        end
+      end
+
+      describe "with unknown iso code" do
+        it "is empty" do
+          allow(described_class).to receive(:to_iso639_2).with(str: "en").and_return("om")
+          expect(described_class.language(xml)).to be_empty
+        end
+      end
+
+      it "collects ETD language" do
+        expect(metadata_attribs[:language])
+          .to eq([{ _rdf: ["http://id.loc.gov/vocabulary/iso639-2/eng"] }])
+      end
     end
   end
 end

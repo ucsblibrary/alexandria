@@ -59,7 +59,6 @@ class Proquest::Metadata
 
     def update_embargo_metadata!
       return if no_embargo? || infinite_embargo?
-
       etd.embargo_release_date = embargo_release_date
 
       etd.visibility_during_embargo = RDF::URI(

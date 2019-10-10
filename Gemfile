@@ -61,6 +61,7 @@ gem "american_date", "~> 1.1.0"
 group :development, :test do
   gem "awesome_print"
   gem "byebug"
+  gem "dotenv"
   gem "factory_bot_rails"
 
   # Used exact gem versions for solr_wrapper and fcrepo_wrapper

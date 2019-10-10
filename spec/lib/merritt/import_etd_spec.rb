@@ -67,6 +67,19 @@ describe Merritt::ImportEtd do
       VCR.turn_off!(ignore_cassettes: true)
     end
 
+    describe "with a non 200 response" do
+      before do
+        body = 'You are being <a href="http://merritt.cdlib.org/guest_login">redirected</a>.'
+        stub_request(:get, meta_url)
+          .to_return(headers: {}, body: body, status: [302, "HTTPFound"])
+        Net::HTTP::Get.new(meta_url)
+      end
+
+      it "raises an error" do
+        expect { described_class.get_content(meta_url) }.to raise_error(Net::HTTPError)
+      end
+    end
+
     describe "with metadata file url" do
       before do
         stub_request(:get, meta_url)
@@ -75,7 +88,7 @@ describe Merritt::ImportEtd do
       end
 
       it "returns the metadata xml file" do
-        expect(described_class.get_content(meta_url).body)
+        expect(described_class.get_content(meta_url))
           .to eq(File.read(pq_meta))
       end
     end
@@ -88,7 +101,7 @@ describe Merritt::ImportEtd do
       end
 
       it "returns the metadata xml file" do
-        expect(described_class.get_content(diss_url).body)
+        expect(described_class.get_content(diss_url))
           .to eq(File.read(pq_diss))
       end
     end
