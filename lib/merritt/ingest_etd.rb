@@ -6,7 +6,6 @@ module Merritt::IngestEtd
     # etd = ETD.where(id: merritt_id).first
     files = unpack(file_path)
     attribs = extract_metadata(merritt_id, files[:xml])
-
     IngestJob.perform_later(
       model: "ETD",
       attrs: attribs.to_json,
@@ -33,7 +32,7 @@ module Merritt::IngestEtd
       id:         Identifier.merritt_ark_to_id(merritt_id),
       identifier: [merritt_id],
       merritt_id: [merritt_id],
-      local_collection_id: [collection.id]
+      local_collection_id: [collection.id],
     }.merge(Proquest::XML.metadata_attribs(xml))
   end
 

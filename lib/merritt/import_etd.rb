@@ -4,8 +4,6 @@ require "net/https"
 require "uri"
 
 module Merritt::ImportEtd
-  include Merritt::Feed
-
   # metadata, dissertation
   # & supplemental files
   def self.import(etd)
@@ -61,15 +59,15 @@ module Merritt::ImportEtd
   end
 
   def self.metadata_url(etd)
-    HOME + metadata_file(etd)
+    Merritt::Feed::HOME + metadata_file(etd)
   end
 
   def self.dissertation_url(etd)
-    HOME + dissertation_file(etd)
+    Merritt::Feed::HOME + dissertation_file(etd)
   end
 
   def self.supp_urls(etd)
-    supp_files(etd).map { |f| HOME + f }
+    supp_files(etd).map { |f| Merritt::Feed::HOME + f }
   end
 
   def self.get_content(url)
@@ -81,7 +79,7 @@ module Merritt::ImportEtd
     request.basic_auth(Rails.application.config_for(:merritt)["merritt_user"],
                        Rails.application.config_for(:merritt)["merritt_pwd"])
     response = http.request(request)
-    raise(Net::HTTPError.new(response.body, response)) unless response.code == 200.to_s
+    raise Net::HTTPError.new(response.body, response) if response.code != 200.to_s
     response.body
   end
 

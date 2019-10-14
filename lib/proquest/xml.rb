@@ -84,19 +84,15 @@ module Proquest::XML
     [arr.join("\\n\\n")]
   end
 
-  def self.contributors(xml)
-    [{ author: author(xml),
-       degree_grantor: degree_grantor(xml),
-       degree_supervisor: degree_supervisor(xml), },]
-  end
-
   def self.author(xml)
     # <DISS_surname>,[space]<DISS_fname>[space]<DISS_middle>.
     # If <DISS_middle> value is null, <DISS_surname>,[space]<DISS_fname>
     path = xml.xpath('//DISS_author[@type="primary"]/DISS_name')
     return [] if path.blank?
-    name = [path.xpath("DISS_surname").text, path.xpath("DISS_fname").text,
-            path.xpath("DISS_middle").text,].join(" ")
+    full_name = [path.xpath("DISS_surname").text, path.xpath("DISS_fname").text]
+      .join(", ")
+    middle    = path.xpath("DISS_middle").text
+    name      = middle.blank? ? full_name : [full_name, middle].join(" ")
     [{ type: "agent", name: name }]
   end
 
@@ -148,16 +144,15 @@ module Proquest::XML
       value = Vocabularies::ISO_639_2[iso_str].to_s
       [{ _rdf: [value] }]
     rescue KeyError
-      Rails.logger.warn "Conversion to Iso639-2 failed for #{iso_str} on ARK"
+      Rails.logger.warn "Conversion to Iso639-2 failed for #{iso_str}"
       return []
     end
   end
 
-  private
   def self.to_iso639_2(str:)
     lang = Iso639[str]
     return lang.alpha3 if lang.present?
-    Rails.logger.warn "Conversion to Iso639-2 failed for #{str} on ARK"
+    Rails.logger.warn "Conversion to Iso639-2 failed for #{str}"
     nil
   end
 end

@@ -69,14 +69,16 @@ describe Merritt::ImportEtd do
 
     describe "with a non 200 response" do
       before do
-        body = 'You are being <a href="http://merritt.cdlib.org/guest_login">redirected</a>.'
+        body = 'You are being <a href="http://merritt.cdlib.org/guest_login">
+        redirected</a>.'
         stub_request(:get, meta_url)
           .to_return(headers: {}, body: body, status: [302, "HTTPFound"])
         Net::HTTP::Get.new(meta_url)
       end
 
       it "raises an error" do
-        expect { described_class.get_content(meta_url) }.to raise_error(Net::HTTPError)
+        expect { described_class.get_content(meta_url) }
+          .to raise_error(Net::HTTPError)
       end
     end
 

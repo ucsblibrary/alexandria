@@ -57,13 +57,20 @@ describe Proquest::XML do
       expect(metadata_attribs[:title]).to eq(["Fear of Heights"])
     end
 
-    it "collects ETD contributors" do
-      expect(metadata_attribs[:contributors])
-        .to eq([{ author: [{ type: "agent", name: "Johnson Angelina " }],
-                  degree_grantor:
-                  [{ type: "organization",
-                     name: "University of California, Santa Barbara.Psychology", },],
-                  degree_supervisor: [{ type: "agent", name: "Meowmers Catface" }], },])
+    it "collects ETD author" do
+      expect(metadata_attribs[:author])
+        .to eq([{ type: "agent", name: "Johnson, Angelina" }])
+    end
+
+    it "collects ETD degree_supervisor" do
+      expect(metadata_attribs[:degree_supervisor])
+        .to eq([{ type: "agent", name: "Meowmers Catface" }])
+    end
+
+    it "collects ETD degree_grantor" do
+      ucsb = "University of California, Santa Barbara.Psychology"
+      expect(metadata_attribs[:degree_grantor]).to eq([{ type: "organization",
+                                                         name: ucsb, },])
     end
 
     it "collects ETD created_attributes" do
@@ -119,7 +126,8 @@ describe Proquest::XML do
 
       describe "with unknown iso code" do
         it "is empty" do
-          allow(described_class).to receive(:to_iso639_2).with(str: "en").and_return("om")
+          allow(described_class).to receive(:to_iso639_2).with(str: "en")
+            .and_return("om")
           expect(described_class.language(xml)).to be_empty
         end
       end

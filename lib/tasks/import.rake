@@ -70,51 +70,82 @@ namespace :import do
   task :merritt_etds, [:first, :last] => :environment do |_t, args|
     puts "Beginning Import #{Time.zone.now}"
 
-    unless Merritt::IngestEtd.collection.present?
-      puts "Aborting Import: Before you can import ETD records, "\
+    collection = Merritt::IngestEtd.collection
+    if collection.blank?
+      puts "Before you can import ETD records, "\
            "the ETD collection must exist."
-      puts "Please import the ETD collection record first, "\
-           "then re-try this import."
-      return
+      abort "Aborting Rake Task: Please import the ETD collection first, "\
+            "then re-try this task."
     end
 
-    first = args[:first]  || Merritt::Feed.first_page
-    last  = args[:last]   || Merritt::Feed.last_page
+    first = args[:first].to_i || Merritt::Feed.first_page
+    last  = args[:last].to_i  || Merritt::Feed.last_page
+    parsed = true
 
-    # Each page in merrit's
+    home_feed = Merritt::Feed.parse
+    last_parse = Merritt::Feed.order(last_modified: "DESC").first
+
+    # Do not parse feed when there are no new/updated
+    # Merritt ETDs to import/ingest
+    abort "Aborting Task: No new updates from feed" if last_parse.present? &&
+                                                       (home_feed.last_modified <=
+                                                       last_parse.last_modified)
+
+    # Each page in merritt's
     # atom feed has 10 ETD entries
-    first.upto(last).each do |page|
+    last.downto(first).each do |page|
       begin
         feed = Merritt::Feed.parse(page)
-        err = []
-        feed.entries.each do |etd|
-          merritt_id = Merritt::Etd.merritt_id(etd)
-          ark = Merritt::Etd.ark
-          imported_etd = Merritt::Etd.where(merritt_id: merritt_id)
-            .order(last_modified: "DESC").first
+        feed.entries.reverse.each_with_index do |etd, i|
+          merritt_id = "ark" + etd.entry_id.split("ark").last
+          # Existing ETDs with Merritt arks
+          # query = { "has_model_ssim": "ETD", "merritt_id_ssm": merritt_id}
+          # solr_query = ActiveFedora::SolrQueryBuilder.construct_query(query)
+          # results = ActiveFedora::SolrService.query(solr_query, rows: 1)
+          results = ETD.where(merritt_id: merritt_id)
+          if results.any?
+            existing_etd = results.first
+            # Skip ADRL ETDs with EZID arks for now
+            break if existing_etd.identifier.first != merritt_id
+          end
 
-          # Skip existing ETDs with Merritt arks
-          # that have not been modified
-          next if imported_etd.present? &&
-                  imported_etd.last_modified == etd.last_modified
-          # && ETD.where(id: Merritt::Etd.ark(etd)).present?
-          # Skip existing ETDs with UCSB arks
-          next if ETD.where(merritt_id: merritt_id).present?
+          # Do not import/ingest existing Merritt ETDs with no updates
+          if last_parse.present? && etd.last_modified <= last_parse.last_modified
+            puts "Skipping ETD #{merritt_id}: No new updates from feed"
+            break
+          end
 
           begin
-            file_path = Merritt::ImportEtd.import(etd)
-            Merritt::IngestEtd.ingest(merritt_id, file_path)
-            Merritt::Etd.find_or_create_by!(merritt_id: merritt_id,
-                                            last_modified: etd.last_modified)
+            pid = fork do
+              file_path = Merritt::ImportEtd.import(etd)
+              Merritt::IngestEtd.ingest(merritt_id, file_path)
+            end
+            puts "Ingesting ETD:#{merritt_id} in the background with PID #{pid}"
+            Process.detach pid
+
+            # TODO: Once resque workers are finished importing
+            # Update collection index
+            # Remove folders for each ETd imported
           rescue StandardError => e
-            err << "Page:#{page} Entry:#{etd.entry_id} raised error: #{e.inspect}"
+            prev_etd = feed.entries[i - 1]
+            Merritt::Feed.find_or_create_by!(last_parsed_page: page,
+                                             last_modified: prev_etd.last_modified)
+            parsed = false
+            puts "Page:#{page} Entry:#{etd.entry_id} raised error: #{e.inspect}"
+            abort "Aborting Task: Please fix the error first, "\
+                  "then re-try this task."
           end
         end
-        # TODO: How can we handle errors better?
-        err.each { |e| puts e.inspect } if err.present?
+        if parsed
+          merritt_feed = Merritt::Feed.find_or_create_by!(last_parsed_page: first)
+          merritt_feed.last_modified = feed.last_modified
+          merritt_feed.save!
+        end
       rescue StandardError => e
-        puts "Page: #{page} could not be parsed"
+        puts "Page:#{page} could not be parsed"
         puts e.inspect
+        abort "Aborting Rake Task: Please fix feed parse error first, "\
+              "then re-try this task."
       end
     end
     puts "Ending Import #{Time.zone.now}"

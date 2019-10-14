@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190821213804) do
+ActiveRecord::Schema.define(version: 20191010183125) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -56,13 +56,13 @@ ActiveRecord::Schema.define(version: 20190821213804) do
     t.index ["user_id"], name: "index_curation_concerns_operations_on_user_id"
   end
 
-  create_table "merritt_etds", force: :cascade do |t|
-    t.string "merritt_id", null: false
-    t.datetime "last_modified", null: false
+  create_table "merritt_feeds", force: :cascade do |t|
+    t.integer "last_parsed_page", null: false
+    t.datetime "last_modified"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["last_modified"], name: "index_merritt_etds_on_last_modified"
-    t.index ["merritt_id"], name: "index_merritt_etds_on_merritt_id"
+    t.index ["last_modified"], name: "index_merritt_feeds_on_last_modified"
+    t.index ["last_parsed_page"], name: "index_merritt_feeds_on_last_parsed_page"
   end
 
   create_table "searches", force: :cascade do |t|

@@ -10,7 +10,7 @@ describe Merritt::Feed do
   let(:feed_file) { File.join(fixture_path, "merritt", "feed.xml") }
   let(:feed_parsed) { Feedjira.parse File.read(feed_file) }
 
-  # TODO  Spec this out
+  # TODO: Spec this out
   # describe ".parse" do
   #   describe "with http response code 404"; end
   #   describe "with http response code 200"; end
