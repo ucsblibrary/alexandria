@@ -111,7 +111,7 @@ namespace :import do
             existing_etd = results.first
             # Skip ADRL ETDs with EZID arks for now
             id = existing_etd.identifier.first
-            if id != merritt_id && id.match('48907')
+            if id != merritt_id && id.match("48907")
               ezids << id
               next
             end
