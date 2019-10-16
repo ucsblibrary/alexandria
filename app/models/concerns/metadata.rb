@@ -39,11 +39,6 @@ module Metadata
       index.as :displayable
     end
 
-    # For Merritt ARKs
-    property :merritt_id, predicate: RDF::Vocab::DC11.identifier do |index|
-      index.as :displayable, :stored_searchable
-    end
-
     property :accession_number,
              predicate: RDF::URI(
                "http://opaquenamespace.org/ns/cco/accessionNumber"

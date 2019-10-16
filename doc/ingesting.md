@@ -253,7 +253,7 @@ What happens when you run `bin/ingest -f etd /path/to/etds/etdadmin_upload*`, th
         '/tmp/etdadmin_upload_56186.zip/NAME_ucsb_0035D_67/cat.gif'
       ]
     }
-    ```Ω
+    ```
 
 2. Next, `bin/ingest` passes the path to the XML file of each ETD to
    {Importer::ETDParser.parse_file}, which parses the XML and queries

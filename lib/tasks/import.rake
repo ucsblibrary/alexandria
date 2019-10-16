@@ -66,6 +66,13 @@ namespace :import do
     puts "Import Complete #{Time.zone.now}"
   end
 
+  desc "Update solr index for all ETDs"
+  task update_solr_index: :environment do
+    puts "Beginning index #{Time.zone.now}"
+    ETD.find_each(&:update_index)
+    puts "Indexing Complete #{Time.zone.now}"
+  end
+
   desc "Import merritt etds from atom feed"
   task :merritt_etds, [:first, :last] => :environment do |_t, args|
     puts "Beginning Import #{Time.zone.now}"
@@ -78,41 +85,42 @@ namespace :import do
             "then re-try this task."
     end
 
-    first = args[:first].to_i || Merritt::Feed.first_page
-    last  = args[:last].to_i  || Merritt::Feed.last_page
-    parsed = true
+    first = Merritt::Feed.first_page.to_i
+    last  = Merritt::Feed.last_page.to_i
 
-    home_feed = Merritt::Feed.parse
-    last_parse = Merritt::Feed.order(last_modified: "DESC").first
-
-    # Do not parse feed when there are no new/updated
-    # Merritt ETDs to import/ingest
-    abort "Aborting Task: No new updates from feed" if last_parse.present? &&
-                                                       (home_feed.last_modified <=
-                                                       last_parse.last_modified)
+    first = args[:first].to_i if args[:first].present? && args[:first].to_i >= first
+    last = args[:last].to_i if args[:last].present? && args[:last].to_i <= last
 
     # Each page in merritt's
     # atom feed has 10 ETD entries
     last.downto(first).each do |page|
+      retries ||= 0
+      puts "Retry:#{retries}" unless retries.zero?
+      puts "Parsing Page:#{page}"
       begin
         feed = Merritt::Feed.parse(page)
-        feed.entries.reverse.each_with_index do |etd, i|
+        page_parse = Merritt::Feed.where(last_parsed_page: page)
+          .order(last_modified: "DESC").first
+        skipped = ezids = []
+
+        feed.entries.sort_by(&:last_modified).each do |etd|
           merritt_id = "ark" + etd.entry_id.split("ark").last
           # Existing ETDs with Merritt arks
-          # query = { "has_model_ssim": "ETD", "merritt_id_ssm": merritt_id}
-          # solr_query = ActiveFedora::SolrQueryBuilder.construct_query(query)
-          # results = ActiveFedora::SolrService.query(solr_query, rows: 1)
           results = ETD.where(merritt_id: merritt_id)
           if results.any?
             existing_etd = results.first
             # Skip ADRL ETDs with EZID arks for now
-            break if existing_etd.identifier.first != merritt_id
+            id = existing_etd.identifier.first
+            if id != merritt_id
+              ezids << id
+              next
+            end
           end
 
-          # Do not import/ingest existing Merritt ETDs with no updates
-          if last_parse.present? && etd.last_modified <= last_parse.last_modified
-            puts "Skipping ETD #{merritt_id}: No new updates from feed"
-            break
+          # # Do not import/ingest existing Merritt ETDs with no updates
+          if page_parse.present? && etd.last_modified <= page_parse.last_modified
+            skipped << merritt_id
+            next
           end
 
           begin
@@ -124,30 +132,40 @@ namespace :import do
             Process.detach pid
 
             # TODO: Once resque workers are finished importing
-            # Update collection index
-            # Remove folders for each ETd imported
+            # Remove folders for each ETD imported
+          rescue Redis::TimeoutError => re
+            puts "Page:#{page} Entry:#{etd.entry_id} raised error: #{re.inspect}"
+            abort "Aborting Task: Redis::TimeoutError, "\
+                  "Retry "
           rescue StandardError => e
-            prev_etd = feed.entries[i - 1]
-            Merritt::Feed.find_or_create_by!(last_parsed_page: page,
-                                             last_modified: prev_etd.last_modified)
-            parsed = false
             puts "Page:#{page} Entry:#{etd.entry_id} raised error: #{e.inspect}"
             abort "Aborting Task: Please fix the error first, "\
                   "then re-try this task."
           end
         end
-        if parsed
-          merritt_feed = Merritt::Feed.find_or_create_by!(last_parsed_page: first)
-          merritt_feed.last_modified = feed.last_modified
-          merritt_feed.save!
-        end
+      rescue Net::HTTPError => nhe
+        puts "Page:#{page} responded with Net::HTTPError:"
+        puts nhe.inspect
+        sleep(3)
+        retry if (retries += 1) < 3
+        abort "Aborting Task: 3 failed retries to parse page #{page}"
       rescue StandardError => e
         puts "Page:#{page} could not be parsed"
         puts e.inspect
         abort "Aborting Rake Task: Please fix feed parse error first, "\
               "then re-try this task."
       end
+      merritt_feed = Merritt::Feed.find_or_create_by!(last_parsed_page: page)
+      merritt_feed.last_modified = feed.last_modified
+      merritt_feed.save!
+
+      puts "No feed updates for ETDs #{skipped.inspect}" if skipped.present?
+      puts "Skipped ETDs with EZIDs #{ezids}" if ezids.present?
+      puts "Page:#{page} parsed OK"
     end
+    puts "Updating ETD Collection index #{Time.zone.now}"
+    collection = Merritt::IngestEtd.collection
+    collection.update_index
     puts "Ending Import #{Time.zone.now}"
   end
 end
