@@ -63,11 +63,11 @@ describe Merritt::ImportEtd do
   end
 
   describe ".get_content" do
-    before(:context) do
+    before do
       VCR.turn_off!(ignore_cassettes: true)
     end
 
-    after(:context) do
+    after do
       VCR.turn_on!
     end
 
