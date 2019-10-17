@@ -42,9 +42,8 @@ class ETDIndexer < ObjectIndexer
         object.dissertation_year.first
     end
 
-    # Derive department by stripping "UC, SB" from the degree grantor field
     def department(solr_doc)
-      Array(solr_doc["degree_grantor_tesim"]).map do |a|
+      Array(solr_doc["degree_grantor_label_tesim"]).map do |a|
         a.sub(/^University of California, Santa Barbara\. /, "")
       end
     end
