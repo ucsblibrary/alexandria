@@ -63,8 +63,12 @@ describe Merritt::ImportEtd do
   end
 
   describe ".get_content" do
-    before do
+    before(:context) do
       VCR.turn_off!(ignore_cassettes: true)
+    end
+
+    after(:context) do
+      VCR.turn_on!
     end
 
     describe "with a non 200 response" do
