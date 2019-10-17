@@ -43,8 +43,10 @@ class ETDIndexer < ObjectIndexer
     end
 
     def department(solr_doc)
+      # "degree_grantor_label_tesim"
+      # ["University of California, Santa Barbara.Computer Science"]
       Array(solr_doc["degree_grantor_label_tesim"]).map do |a|
-        a.sub(/^University of California, Santa Barbara\. /, "")
+        a.split(".").last.strip
       end
     end
 
