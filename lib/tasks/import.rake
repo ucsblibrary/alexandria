@@ -2,6 +2,8 @@
 # frozen_string_literal: true
 
 require "csv"
+require "merritt/ingest_etd"
+require "merritt/import_etd"
 
 namespace :import do
   desc "Import merritt arks from csv for UCSB ETDs"

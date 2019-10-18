@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require "proquest"
 
 module Merritt::IngestEtd
   def self.ingest(merritt_id, file_path)
