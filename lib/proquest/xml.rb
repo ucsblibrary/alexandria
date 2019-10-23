@@ -69,6 +69,7 @@ module Proquest::XML
       place_of_publication: ["[Santa Barbara, Calif.]"],
       publisher: ["University of California, Santa Barbara"],
       work_type: [{ _rdf: ["http://id.loc.gov/vocabulary/resourceTypes/txt"] }],
+      lc_subject: [RDF::URI.new("http://id.loc.gov/authorities/subjects/sh85038494")],
       language: language(xml),
     }
   end

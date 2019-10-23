@@ -116,6 +116,11 @@ describe Proquest::XML do
         .to eq([{ _rdf: ["http://id.loc.gov/vocabulary/resourceTypes/txt"] }])
     end
 
+    it "collects ETD genre" do
+      expect(metadata_attribs[:lc_subject])
+        .to eq([RDF::URI.new("http://id.loc.gov/authorities/subjects/sh85038494")])
+    end
+
     describe ".language" do
       describe "with unknown language" do
         it "is empty" do
