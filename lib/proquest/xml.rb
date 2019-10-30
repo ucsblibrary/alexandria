@@ -69,7 +69,7 @@ module Proquest::XML
       place_of_publication: ["[Santa Barbara, Calif.]"],
       publisher: ["University of California, Santa Barbara"],
       work_type: [{ _rdf: ["http://id.loc.gov/vocabulary/resourceTypes/txt"] }],
-      lc_subject: [RDF::URI.new("http://id.loc.gov/authorities/subjects/sh85038494")],
+      form_of_work: form_of_work,
       language: language(xml),
     }
   end
@@ -135,6 +135,10 @@ module Proquest::XML
   def self.marc_subjects(xml)
     xml.xpath("//DISS_categorization//DISS_category//DISS_cat_desc")
       .children.map(&:text)
+  end
+
+  def self.form_of_work
+    [RDF::URI.new("http://id.loc.gov/authorities/subjects/sh85038494")]
   end
 
   def self.language(xml)
