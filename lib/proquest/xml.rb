@@ -106,7 +106,7 @@ module Proquest::XML
 
   def self.degree_supervisor(xml)
     name = [xml.xpath("//DISS_advisor//DISS_surname").text,
-            xml.xpath("//DISS_advisor//DISS_fname").text,].join(" ")
+            xml.xpath("//DISS_advisor//DISS_fname").text,].join(", ")
     middle = xml.xpath("//DISS_advisor//DISS_middle").text
     name = [name, middle].join(" ") if middle.present?
     [{ type: "agent", name: name }]

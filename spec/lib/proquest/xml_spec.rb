@@ -64,7 +64,7 @@ describe Proquest::XML do
 
     it "collects ETD degree_supervisor" do
       expect(metadata_attribs[:degree_supervisor])
-        .to eq([{ type: "agent", name: "Meowmers Catface" }])
+        .to eq([{ type: "agent", name: "Meowmers, Catface" }])
     end
 
     it "collects ETD degree_grantor" do
