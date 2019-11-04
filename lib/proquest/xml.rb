@@ -129,7 +129,8 @@ module Proquest::XML
   end
 
   def self.keywords(xml)
-    xml.xpath("//DISS_keyword").text.split(",")
+    keywords = xml.xpath("//DISS_keyword").text
+    keywords.split(",").map(&:strip)
   end
 
   def self.marc_subjects(xml)
