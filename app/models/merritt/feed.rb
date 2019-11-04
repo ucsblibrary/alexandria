@@ -28,6 +28,12 @@ class Merritt::Feed < ActiveRecord::Base
     Feedjira.parse(xml)
   end
 
+  def self.create_or_update(page, last_modified)
+    merritt_feed = Merritt::Feed.find_or_create_by!(last_parsed_page: page)
+    merritt_feed.last_modified = last_modified
+    merritt_feed.save!
+  end
+
   # Feed pages are available as
   # links in the following order
   # current, first, last & next

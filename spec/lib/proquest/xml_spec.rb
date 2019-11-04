@@ -118,7 +118,7 @@ describe Proquest::XML do
 
     it "collects ETD genre" do
       expect(metadata_attribs[:form_of_work])
-        .to eq([RDF::URI.new("http://id.loc.gov/authorities/subjects/sh85038494")])
+        .to eq([{ "_rdf": ["http://id.loc.gov/authorities/subjects/sh85038494"] }])
     end
 
     describe ".language" do

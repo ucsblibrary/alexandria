@@ -138,7 +138,7 @@ module Proquest::XML
   end
 
   def self.form_of_work
-    [RDF::URI.new("http://id.loc.gov/authorities/subjects/sh85038494")]
+    [{ "_rdf": ["http://id.loc.gov/authorities/subjects/sh85038494"] }]
   end
 
   def self.language(xml)
