@@ -9,7 +9,7 @@ defaults: &defaults
   internal_local_vocab_root: http://<%= Rails.application.config.host_name %>
   log_dir: <%= Rails.root.join("log") %>
   minter_state: <%= ENV['ADRL_MINTER_STATE'] || "#{Rails.root}/tmp/minter-state" %>
-  riiif_fedora_cache: <%= Rails.root.join "tmp", "network_files" %>
+  riiif_fedora_cache: <%= ENV['ADRL_RIIIF_CACHE'] || "#{Rails.root}/tmp/network_files" %>
   riiif_thumbnails: "/opt/riiif/derivatives"
   thumbnails:
     # For the collection preview and for the map trays
