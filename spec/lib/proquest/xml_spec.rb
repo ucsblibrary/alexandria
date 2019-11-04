@@ -68,7 +68,7 @@ describe Proquest::XML do
     end
 
     it "collects ETD degree_grantor" do
-      ucsb = "University of California, Santa Barbara.Psychology"
+      ucsb = "University of California, Santa Barbara. Psychology"
       expect(metadata_attribs[:degree_grantor]).to eq([{ type: "organization",
                                                          name: ucsb, },])
     end

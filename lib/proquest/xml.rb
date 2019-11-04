@@ -100,7 +100,7 @@ module Proquest::XML
   def self.degree_grantor(xml)
     # <DISS_inst_name>.[space]<DISS_inst_contact>
     name = [xml.xpath("//DISS_institution//DISS_inst_name").text,
-            xml.xpath("//DISS_institution//DISS_inst_contact").text,].join(".")
+            xml.xpath("//DISS_institution//DISS_inst_contact").text,].join(". ")
     [{ type: "organization", name: name }]
   end
 
