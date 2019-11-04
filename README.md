@@ -32,6 +32,29 @@ You can run tests with `make spec`, and HTML documentation by
 installing `yardoc` with `gem install yardoc` then running `make
 html`.
 
+# Important environment variables
+
+| Name | Description | Required |
+| ---- | ----------- | -------- |
+| `ADRL_BINARY_ROOT` | Directory root for local ingest files (defaults to `/opt/ingest` | No |
+| `ADRL_DERIVATIVES` | Directory for ADRL to store IIIF derivatives (defaults to `#{Rails.root}/tmp/derivatives`) | No |
+| `ADRL_EMAIL` | Email address used as sender for form emails | No |
+| `ADRL_MINTER_STATE` | Path to minter statefile (defaults to `#{Rails.root}/tmp/minter-state` | No |
+| `ADRL_RIIIF_CACHE` | Directory where RIIIF stores temporary files during derivative creation (defaults to `#{Rails.root}/tmp/network_files`) | No |
+| `ADRL_UPLOADS` | Directory where ADRL stores temporary files during upload to Fedora (defaults to `#{Rails.root}/tmp/uploads`) | No |
+| `BRANCH_NAME` | Branch name or revision for Capistrano to deploy (defaults to `master`) | No |
+| `DEV_FEDORA_BASE` | Path where development Fedora instance is mounted (defaults to `/devel`) | No |
+| `DEV_FEDORA_URL` | Base URL for Fedora service in development mode (defaults to `http://localhost:8984/rest`) | No |
+| `DEV_SOLR_URL` | Base URL for Fedora service in development mode (defaults to `http://localhost:8983/solr/development`) | No |
+| `EXPLAIN_PARTIALS` | Debugging variable; when true, prints view information in rendered source | No |
+| `FFMPEG_PATH` | Path to ffmpeg binary (defaults to `ffmpeg`) | No |
+| `RAILS_QUEUE` | How Rails should queue background jobs (e.g., `inline`, `async`, `resque`; defaults to Resque) | No |
+| `RAILS_SERVE_STATIC_FILES` | Whether the Rails server should handle requests to `public` (should be true when not behind a reverse proxy) | No |
+| `SECRET_KEY_BASE` | Secret key base for the application | Yes |
+| `SERVER` | Server targeted by Capistrano deployment | Yes, during deploy |
+| `TEST_FEDORA_URL` | Base URL for Fedora service in test mode (defaults to `http://localhost:8986/rest`) | No |
+| `TEST_SOLR_URL` | Base URL for Fedora service in test mode (defaults to `http://localhost:8985/solr/test`) | No |
+
 # Ingesting records
 
 See {file:ingesting.md} and DCE’s wiki:
