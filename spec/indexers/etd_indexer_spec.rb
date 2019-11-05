@@ -86,7 +86,7 @@ describe ETDIndexer do
     subject { document["department_sim"] }
 
     let(:etd) do
-      ETD.new(degree_grantor: ["University of California, Santa Barbara. "\
+      ETD.new(degree_grantor: ["University of California, Santa Barbara."\
                                "Mechanical Engineering",])
     end
 

@@ -1,0 +1,14 @@
+defaults: &defaults
+  merritt_user: <%= ENV.fetch("MERRITT_USER") %>
+  merritt_pwd: <%= ENV.fetch("MERRITT_PASSWORD") %>
+  merritt_etd_dir: <%= ENV['ADRL_MERRITT_ETD_DIR'] || Rails.root.join("tmp", "merrittetds") %>
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
+  merritt_etd_dir: /opt/alexandria/merrittetds

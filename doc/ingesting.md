@@ -255,7 +255,6 @@ What happens when you run `bin/ingest -f etd /path/to/etds/etdadmin_upload*`, th
     }
     ```
 
-
 2. Next, `bin/ingest` passes the path to the XML file of each ETD to
    {Importer::ETDParser.parse_file}, which parses the XML and queries
    the SRU API, returning a single string of MARC containing the
@@ -276,7 +275,7 @@ What happens when you run `bin/ingest -f etd /path/to/etds/etdadmin_upload*`, th
 5. {ObjectFactoryWriter#put} tidies up the information extracted from
    the MARC and passes it (as `attributes`) and the ETD hash to
    {ObjectFactoryWriter#build_object}, which in turn creates the
-   {Importer::Factory} for ETDs.
+   {Importer::Factory} for ETDs i.e. #{ETDFactory}.
 
 6. {Importer::Factory::ETDFactory} is what saves the ETD into Fedora.
    It inherits from {Importer::Factory::ObjectFactory} and most of its

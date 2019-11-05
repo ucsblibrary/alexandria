@@ -33,6 +33,11 @@ class ETD < ActiveFedora::Base
     index.as :displayable
   end
 
+  # For Merritt ARKs
+  property :merritt_id, predicate: ::RDF::Vocab::DC11.identifier do |index|
+    index.as :displayable, :stored_searchable
+  end
+
   include NestedAttributes
 
   has_subresource :proquest

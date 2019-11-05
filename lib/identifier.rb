@@ -10,4 +10,13 @@ module Identifier
   def self.ark_to_id(ark)
     ark_to_noid(ark)
   end
+
+  def self.merritt_ark_to_noid(ark)
+    return unless (matches = %r{^ark:/\d{5}/(m\w{7,9})$}.match(ark))
+    matches[1]
+  end
+
+  def self.merritt_ark_to_id(ark)
+    merritt_ark_to_noid(ark)
+  end
 end

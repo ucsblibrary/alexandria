@@ -9,6 +9,7 @@ end
 gem "puma"
 gem "rails", "~> 5.1.5"
 
+gem "feedjira"
 gem "font-awesome-sass"
 gem "jquery-rails", "~> 4.0"
 gem "sass-rails", "~> 5.0"
@@ -24,6 +25,7 @@ gem "blacklight_range_limit"
 gem "curation_concerns", "~> 1.7.7"
 gem "ezid-client", "~> 1.2"
 gem "hydra-role-management"
+gem "iso639"
 gem "linked_vocabs",
     git: "https://github.com/projecthydra-labs/linked_vocabs.git"
 gem "marc"
@@ -59,6 +61,7 @@ gem "american_date", "~> 1.1.0"
 group :development, :test do
   gem "awesome_print"
   gem "byebug"
+  gem "dotenv"
   gem "factory_bot_rails"
 
   # Used exact gem versions for solr_wrapper and fcrepo_wrapper
