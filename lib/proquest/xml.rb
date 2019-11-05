@@ -71,6 +71,7 @@ module Proquest::XML
       work_type: [{ _rdf: ["http://id.loc.gov/vocabulary/resourceTypes/txt"] }],
       form_of_work: form_of_work,
       language: language(xml),
+      extent: extent(xml),
     }
   end
 
@@ -160,5 +161,10 @@ module Proquest::XML
     return lang.alpha3 if lang.present?
     Rails.logger.warn "Conversion to Iso639-2 failed for #{str}"
     nil
+  end
+
+  def self.extent(xml)
+    num = xml.xpath("//DISS_description").first.attr("page_count")
+    num.present? ? ["#{num} pages"] : []
   end
 end

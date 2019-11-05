@@ -116,6 +116,11 @@ describe Proquest::XML do
         .to eq([{ _rdf: ["http://id.loc.gov/vocabulary/resourceTypes/txt"] }])
     end
 
+    it "collects ETD extent" do
+      expect(metadata_attribs[:extent])
+          .to eq(["420 pages"])
+    end
+
     it "collects ETD genre" do
       expect(metadata_attribs[:form_of_work])
         .to eq([{ "_rdf": ["http://id.loc.gov/authorities/subjects/sh85038494"] }])
