@@ -19,6 +19,7 @@ describe Exporter::LocalAuthorityExporter do
 
   context "when the export dir doesn't exist" do
     before { FileUtils.rm_rf(dir, secure: true) }
+
     after  { FileUtils.rm_rf(dir, secure: true) }
 
     it "creates the directory" do

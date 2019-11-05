@@ -24,6 +24,7 @@ class Proquest::Metadata
 
   def attributes
     return @attributes if @attributes
+
     @attributes = Proquest::XML.attributes(Nokogiri::XML(etd.proquest.content))
     @attributes = {} if @attributes.values.all?(&:blank?)
     @attributes
@@ -178,6 +179,7 @@ class Proquest::Metadata
         two_year_embargo
       when "4"
         return :infinite_embargo if attributes[:embargo_remove_date].nil?
+
         Date.parse(attributes[:embargo_remove_date])
       else
         :no_embargo

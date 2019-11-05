@@ -7,6 +7,7 @@ module CurationConcernsHelper
   # @param [SolrDocument, CurationConcerns::FileSetPresenter] doc
   def url_for_document(doc, options = {})
     return unless doc
+
     # Pull the wrapped solr_doc out of FileSetPresenter
     doc = doc.solr_document if doc.respond_to? :solr_document
     return doc.public_uri if doc.public_uri
@@ -49,6 +50,7 @@ module CurationConcernsHelper
   # polymorphic routing
   def session_tracking_path(document, params = {})
     return if document.nil?
+
     blacklight.track_search_context_path(document, params)
   end
 end

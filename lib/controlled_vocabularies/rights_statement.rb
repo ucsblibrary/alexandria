@@ -16,6 +16,7 @@ class ControlledVocabularies::RightsStatement < ActiveTriples::Resource
     if rdf_subject.to_s =~ /opaquenamespace/
       term = RDF::Vocabulary.find_term(rdf_subject.to_s)
       raise ::TermNotFound, rdf_subject.to_s unless term
+
       Array(term.label)
     else
       super

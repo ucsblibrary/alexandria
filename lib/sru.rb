@@ -5,8 +5,8 @@ SRU_CONF = YAML.safe_load(
 ).freeze
 
 module SRU
-  PAYLOAD_HEADER = /<\?xml\ version="1\.0"\ .*<records>/m
-  PAYLOAD_FOOTER = %r{<\/records>.*<\/searchRetrieveResponse>}m
+  PAYLOAD_HEADER = /<\?xml\ version="1\.0"\ .*<records>/m.freeze
+  PAYLOAD_FOOTER = %r{<\/records>.*<\/searchRetrieveResponse>}m.freeze
 
   def self.config
     @config ||= SRU_CONF.with_indifferent_access

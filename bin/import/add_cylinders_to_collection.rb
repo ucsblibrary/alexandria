@@ -29,6 +29,7 @@ AudioRecording.find_each do |audio|
   i += 1
   (i % 100).zero? ? print(i) : print(".")
   next if audio.local_collection_id.include?(collection.id)
+
   audio.local_collection_id += [collection.id]
   audio.save!
 end

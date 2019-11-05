@@ -41,9 +41,9 @@ describe Importer::Cylinder do
   end
 
   describe "#attributes" do
-    before { collection } # Make sure collection exists
-
     subject { importer.attributes(marc_record, indexer) }
+
+    before { collection } # Make sure collection exists
 
     let(:meta_files) do
       [File.join(fixture_path, "cylinders", "cylinder_bit_of_everything.xml")]
@@ -71,7 +71,7 @@ describe Importer::Cylinder do
       expect(subject["edition"]).to eq ["[Pathé Stentor (Concert) ed.]"]
       expect(subject["description"]).to(
         eq ['Baritone solo with orchestra accompaniment.\n'\
-            "It's really good and you should all listen.",]
+            "It's really good and you should all listen."]
       )
 
       expect(subject["extent"]).to(
@@ -133,7 +133,7 @@ describe Importer::Cylinder do
         eq ["The whistling coon Sam Devere, words "\
             "/ Sam Raeburn, music -- sleep, baby, sleep -- "\
             "if it wasn't for the irish and the jews "\
-            "William Jerome, words / Jean Schwartz, music",]
+            "William Jerome, words / Jean Schwartz, music"]
       )
     end
   end # attributes
@@ -253,7 +253,7 @@ describe Importer::Cylinder do
       expect(record1.matrix_number).to eq []
       expect(record1.description).to(
         eq ['Baritone solo with orchestra accompaniment.\n'\
-            "It's really good and you should all listen.",]
+            "It's really good and you should all listen."]
       )
       expect(record1.extent).to(
         eq ["1 cylinder (ca. 2 min.) : 160 rpm ; 2 1/4 x 4 in. 1 record slip"]
@@ -280,10 +280,10 @@ describe Importer::Cylinder do
           ["Copies 2, 3 are possible alternate takes."],
           ["Edison Gold Moulded Record: 8525."],
           ["Issue number from \"Edison Cylinder Records, "\
-           "1889-1912\" / Koenigsberg, c1969.",],
+           "1889-1912\" / Koenigsberg, c1969."],
           ["Todd collection."],
           ["Year of release and descriptor from "\
-           "\"The Edison Phonograph Monthly,\" v.1 (1903/1904).",]
+           "\"The Edison Phonograph Monthly,\" v.1 (1903/1904)."]
         )
       )
       expect(record1.publisher).to eq ["Edison Gold Moulded Record"]
@@ -295,7 +295,7 @@ describe Importer::Cylinder do
         eq ["The whistling coon Sam Devere, words "\
             "/ Sam Raeburn, music -- sleep, baby, sleep -- "\
             "if it wasn't for the irish and the jews "\
-            "William Jerome, words / Jean Schwartz, music",]
+            "William Jerome, words / Jean Schwartz, music"]
       )
 
       # Check the contributors are correct

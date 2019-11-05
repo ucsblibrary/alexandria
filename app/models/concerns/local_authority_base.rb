@@ -32,6 +32,7 @@ module LocalAuthorityBase
 
   def public_uri
     return nil if new_record?
+
     routes = Rails.application.routes.url_helpers
     builder = ActionDispatch::Routing::PolymorphicRoutes::HelperMethodBuilder
     builder.polymorphic_method(

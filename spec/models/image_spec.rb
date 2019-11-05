@@ -160,6 +160,7 @@ describe Image do
         before do
           subject.created_attributes = [{ start: ["1940"], finish: ["1959"] }]
         end
+
         it "has date_created" do
           expect(subject.created.first.start).to eq ["1940"]
           expect(subject.created.first.finish).to eq ["1959"]
@@ -219,6 +220,7 @@ describe Image do
       before do
         image.issued.build(start: ["1913"])
       end
+
       it "stores them" do
         expect(image.issued.first.start).to eq ["1913"]
       end
@@ -234,7 +236,7 @@ describe Image do
 
         expect(image.errors[:base]).to(
           eq ["`foo' for `lc_subject' property "\
-              "is expected to be a URI, but it is a String",]
+              "is expected to be a URI, but it is a String"]
         )
       end
     end
@@ -262,7 +264,7 @@ describe Image do
         expect(image).not_to be_valid
         expect(image.errors[:base]).to(
           eq ["`foo' for `work_type' property is "\
-              "expected to be a URI, but it is a String",]
+              "expected to be a URI, but it is a String"]
         )
       end
     end

@@ -63,7 +63,7 @@ describe ETDIndexer do
     let(:subject) { document["dissertation_ssm"] }
 
     it do
-      is_expected.to eq "Ph.D.--University of California, Santa Barbara, 2014"
+      expect(subject).to eq "Ph.D.--University of California, Santa Barbara, 2014"
     end
   end
 
@@ -87,7 +87,7 @@ describe ETDIndexer do
 
     let(:etd) do
       ETD.new(degree_grantor: ["University of California, Santa Barbara. "\
-                               "Mechanical Engineering",])
+                               "Mechanical Engineering"])
     end
 
     it { is_expected.to eq ["Mechanical Engineering"] }
@@ -95,7 +95,7 @@ describe ETDIndexer do
 
   describe "Indexing dates" do
     context "with an issued date" do
-      let(:etd) { ETD.new(issued: ["1925-11-10", "1931"]) }
+      let(:etd) { ETD.new(issued: %w[1925-11-10 1931]) }
 
       it "indexes dates for display" do
         expect(subject["issued_ssm"]).to contain_exactly("1925-11-10", "1931")

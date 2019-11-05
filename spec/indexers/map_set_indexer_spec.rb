@@ -38,7 +38,7 @@ describe MapSetIndexer do
       ActiveFedora::SolrService.commit
     end
 
-    context "#generate_solr_document" do
+    describe "#generate_solr_document" do
       subject { described_class.new(map_set).generate_solr_document }
 
       it "returns the full list of component and index maps" do

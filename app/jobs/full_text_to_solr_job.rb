@@ -38,6 +38,7 @@ class FullTextToSolrJob < ApplicationJob
 
     def all_text
       return nil if files.nil?
+
       files.map { |file| FullTextExtractor.new(file.content).text }.join("")
     end
 end

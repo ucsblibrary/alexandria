@@ -132,7 +132,7 @@ describe ImageForm do
       it "demultiplexes the contributor field" do
         expect(photographer_attributes).to(
           eq [{ "id" =>
-                "#{ActiveFedora.fedora.host}/test/de/ad/be/ef/deadbeef", },]
+                "#{ActiveFedora.fedora.host}/test/de/ad/be/ef/deadbeef" }]
         )
         expect(creator_attributes).to(
           eq [{ "id" => "http://id.loc.gov/authorities/names/n87914041" }]
@@ -143,8 +143,9 @@ describe ImageForm do
   end
 
   describe "#multiplex_contributors" do
-    before { AdminPolicy.ensure_admin_policy_exists }
     subject { form.send :multiplex_contributors }
+
+    before { AdminPolicy.ensure_admin_policy_exists }
 
     let(:form) { described_class.new(model) }
     let(:model) { Image.new(attributes) }

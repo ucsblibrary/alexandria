@@ -147,7 +147,9 @@ module Importer::Factory
     end
 
     def render_thumbnails(object)
-      return unless [Image, ComponentMap, IndexMap, ScannedMap].include?(object.class)
+      unless [Image, ComponentMap, IndexMap, ScannedMap].include?(object.class)
+        return
+      end
 
       object.file_sets.select(&:image?).map(&:files).flatten.each do |f|
         Settings.thumbnails.each_key do |k|
@@ -180,6 +182,7 @@ module Importer::Factory
     # @param [ActiveFedora::Base] object
     def remove_existing_file_sets(object)
       return if object.file_sets.blank?
+
       object.file_sets.each do |f|
         CurationConcerns::Actors::FileSetActor.new(f, nil).destroy
       end

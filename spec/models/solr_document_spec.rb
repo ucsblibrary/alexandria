@@ -124,8 +124,9 @@ describe SolrDocument do
   end
 
   describe "#after_embargo_status" do
-    before { AdminPolicy.ensure_admin_policy_exists }
     subject { document.after_embargo_status }
+
+    before { AdminPolicy.ensure_admin_policy_exists }
 
     let(:document) do
       described_class.new(

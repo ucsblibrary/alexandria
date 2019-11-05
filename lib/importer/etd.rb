@@ -13,6 +13,7 @@ module Importer::ETD
   # @return [Integer]
   def self.import(meta:, data:, options: {}, logger: Logger.new(STDOUT))
     raise ArgumentError, "Nothing found in data: #{data.inspect}" if data.empty?
+
     collection = ensure_collection_exists(logger: logger)
     ingests = 0
 
@@ -58,6 +59,7 @@ module Importer::ETD
       logger.info "No metadata provided; fetching from Pegasus"
       data.map { |e| e[:xml] }.map do |x|
         raise IngestError, "Bad zipfile source: #{e}" if x.nil?
+
         MARC::XMLReader.new(
           StringIO.new(
             Parse::ETD.parse_file(x)

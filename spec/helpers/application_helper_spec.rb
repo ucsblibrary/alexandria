@@ -4,9 +4,9 @@ require "rails_helper"
 
 describe ApplicationHelper do
   describe "#policy_title" do
-    before { AdminPolicy.ensure_admin_policy_exists }
-
     subject { helper.policy_title(document) }
+
+    before { AdminPolicy.ensure_admin_policy_exists }
 
     let(:document) do
       SolrDocument.new(isGovernedBy_ssim: [AdminPolicy::DISCOVERY_POLICY_ID])
@@ -22,7 +22,7 @@ describe ApplicationHelper do
       let(:url_string) { "http://alexandria.ucsb.edu" }
 
       it do
-        is_expected.to eq '<a href="http://alexandria.ucsb.edu">'\
+        expect(subject).to eq '<a href="http://alexandria.ucsb.edu">'\
                           "http://alexandria.ucsb.edu</a>"
       end
     end
@@ -31,7 +31,7 @@ describe ApplicationHelper do
       let(:url_string) { "https://alexandria.ucsb.edu" }
 
       it do
-        is_expected.to eq '<a href="https://alexandria.ucsb.edu">'\
+        expect(subject).to eq '<a href="https://alexandria.ucsb.edu">'\
                           "https://alexandria.ucsb.edu</a>"
       end
     end
@@ -44,7 +44,7 @@ describe ApplicationHelper do
 
       # rubocop:disable Metrics/LineLength
       it do
-        is_expected.to eq 'we have cylinders on <a href="http://cylinders.library.ucsb.edu">http://cylinders.library.ucsb.edu</a> as well as <a href="https://alexandria.ucsb.edu">https://alexandria.ucsb.edu</a>'
+        expect(subject).to eq 'we have cylinders on <a href="http://cylinders.library.ucsb.edu">http://cylinders.library.ucsb.edu</a> as well as <a href="https://alexandria.ucsb.edu">https://alexandria.ucsb.edu</a>'
       end
       # rubocop:enable Metrics/LineLength
     end
@@ -103,7 +103,7 @@ describe ApplicationHelper do
       end
 
       it do
-        is_expected.to(
+        expect(subject).to(
           contain_exactly("creative-commons/by.png",
                           "creative-commons/nc.png",
                           "creative-commons/sa.png")

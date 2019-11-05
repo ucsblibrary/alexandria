@@ -27,6 +27,7 @@ describe "map routes", type: :routing do
         )
     end
   end
+
   context "IndexMap" do
     before do
       create(:public_index_map, identifier: ["ark:/99999/#{id}"], id: id)
@@ -43,6 +44,7 @@ describe "map routes", type: :routing do
         )
     end
   end
+
   context "ComponentMap" do
     before do
       create(:public_component_map, identifier: ["ark:/99999/#{id}"], id: id)

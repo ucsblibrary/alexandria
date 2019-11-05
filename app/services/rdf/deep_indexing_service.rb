@@ -11,6 +11,7 @@ class RDF::DeepIndexingService < ActiveFedora::RDF::IndexingService
   # @param [ActiveTriples::Resource, String] val
   def append_to_solr_doc(solr_doc, solr_field_key, field_info, val)
     return super unless object.controlled_properties.include?(solr_field_key)
+
     case val
     when ActiveTriples::Resource
       append_label_and_uri(solr_doc, solr_field_key, field_info, val)
@@ -32,8 +33,10 @@ class RDF::DeepIndexingService < ActiveFedora::RDF::IndexingService
         resource = value.respond_to?(:resource) ? value.resource : value
         next unless resource.is_a?(ActiveTriples::Resource)
         next if value.is_a?(ActiveFedora::Base)
+
         old_label = resource.rdf_label.first
         next unless old_label == resource.rdf_subject.to_s || old_label.nil?
+
         fetch_value(resource) if resource.is_a? ActiveTriples::Resource
 
         next if old_label == resource.rdf_label.first
@@ -87,6 +90,7 @@ class RDF::DeepIndexingService < ActiveFedora::RDF::IndexingService
                                        val.first,
                                        field_info.behaviors, solr_doc)
     return unless val.last.is_a? Hash
+
     self.class.create_and_insert_terms("#{solr_field_key}_label",
                                        label(val),
                                        field_info.behaviors, solr_doc)

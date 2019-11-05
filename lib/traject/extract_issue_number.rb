@@ -13,6 +13,7 @@ module ExtractIssueNumber
       ].compact
 
       next if fields.empty?
+
       accumulator << fields.join(" : ")
     end
   end

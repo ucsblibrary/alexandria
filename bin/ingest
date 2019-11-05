@@ -21,7 +21,7 @@ options = Trollop.options do
           RAILS_ENV=[development|test|production] ./bin/ingest [options]
     where [options] are:
 
-EOS
+  EOS
 
   opt :accession_numbers,
       "Only ingest records with these accession numbers (CSV and MODS)",

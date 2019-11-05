@@ -3,6 +3,8 @@
 require "rails_helper"
 
 describe ComponentMapIndexer do
+  subject { described_class.new(component_map).generate_solr_document }
+
   before do
     VCR.use_cassette("component_map_indexer") do
       ComponentMap.all.map(&:id).each do |id|
@@ -12,7 +14,6 @@ describe ComponentMapIndexer do
       end
     end
   end
-  subject { described_class.new(component_map).generate_solr_document }
 
   context "with a file_set" do
     let(:file) { File.new(fixture_file_path("images/dirge1.tif")) }

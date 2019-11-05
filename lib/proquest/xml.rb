@@ -32,6 +32,7 @@ module Proquest::XML
   def self.rights_holder(xml)
     path = xml.xpath('//DISS_author[@type="primary"]/DISS_name')
     return if path.blank?
+
     [[path.xpath("DISS_fname").text, path.xpath("DISS_surname").text].join(" ")]
   end
 

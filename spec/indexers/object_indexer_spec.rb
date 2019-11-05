@@ -72,7 +72,7 @@ describe ObjectIndexer do
       let(:image) do
         Image.new(created_attributes: [{ start: created }],
                   date_copyrighted_attributes: [{ start: copyrighted }],
-                  issued_attributes:  [{ start: issued }],
+                  issued_attributes: [{ start: issued }],
                   date_other_attributes: [{ start: other }],
                   date_valid_attributes: [{ start: valid }])
       end

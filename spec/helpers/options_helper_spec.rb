@@ -7,7 +7,7 @@ describe OptionsHelper do
     subject { helper.digital_origin_options }
 
     it do
-      is_expected.to(
+      expect(subject).to(
         eq ["digitized other analog",
             "born digital",
             "reformatted digital",
@@ -26,7 +26,7 @@ describe OptionsHelper do
     subject { helper.sub_location_options }
 
     it do
-      is_expected.to(
+      expect(subject).to(
         include(Qa::Authorities::Local.subauthority_for("sub_location")
                   .all
                   .sample[:label])
@@ -39,7 +39,7 @@ describe OptionsHelper do
 
     # rubocop:disable Metrics/LineLength
     it do
-      is_expected.to(
+      expect(subject).to(
         eq(
           "CC-BY" => "http://creativecommons.org/licenses/by/4.0/",
           "CC-BY-NC" => "http://creativecommons.org/licenses/by-nc/4.0/",
@@ -78,7 +78,7 @@ describe OptionsHelper do
 
     # rubocop:disable Metrics/LineLength
     it do
-      is_expected.to(
+      expect(subject).to(
         eq("public domain" => "http://id.loc.gov/vocabulary/preservation/copyrightStatus/pub",
            "copyrighted" => "http://id.loc.gov/vocabulary/preservation/copyrightStatus/cpr",
            "unknown" => "http://id.loc.gov/vocabulary/preservation/copyrightStatus/unk")
@@ -91,6 +91,7 @@ describe OptionsHelper do
     subject { helper.relators_json }
 
     it { is_expected.to be_html_safe }
+
     it "begins with creator and contributor" do
       expect(subject).to(
         start_with '{"creator":"Creator","contributor":"Contributor"'

@@ -42,6 +42,7 @@ RSpec.describe FullTextToSolrJob do
       num_found = response["response"]["numFound"]
       expect(num_found).to eq(1)
     end
+
     it "adds the text to the solr index from the second pdf" do
       response = solr.get "select", params:
                                       { q: "Kqyaanisqatsi", qf: "all_text_timv" }

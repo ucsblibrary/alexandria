@@ -23,7 +23,7 @@ describe ControlledVocabularySelectInput, type: :input do
 
   let(:builder) { SimpleForm::FormBuilder.new(:image, image, view, {}) }
   let(:input) do
-    ControlledVocabularySelectInput.new(
+    described_class.new(
       builder, :creator, nil, :multi_value, {}
     )
   end

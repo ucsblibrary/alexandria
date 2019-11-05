@@ -66,6 +66,7 @@ describe Importer::Factory::ImageFactory do
       before do
         create(:image, id: "fk4c252k0f", accession_number: ["123"])
       end
+
       it "creates file sets with admin policies" do
         expect do
           obj = nil

@@ -17,6 +17,7 @@ class AudioRecordingIndexer < ObjectIndexer
 
     def issued
       return if object.issued.blank?
+
       object.issued.first.display_label
     end
 end

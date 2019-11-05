@@ -75,6 +75,7 @@ module LocalAuthority
     {}.tap do |contributors|
       fields.each do |field|
         next unless attrs.key?(field)
+
         contributors[field] = contributors_for_field(attrs, field)
       end
     end

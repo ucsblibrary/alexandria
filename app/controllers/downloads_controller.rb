@@ -29,12 +29,14 @@ class DownloadsController < ApplicationController
 
     def authorize_download!
       return authorize!(:download_original, asset) if original_file?
+
       super
     end
 
     def file_name
       # This path is called if they want to download an MP3
       return filename_for_derivative if file.is_a? String
+
       super
     end
 

@@ -5,6 +5,8 @@ require "active_fedora/cleaner"
 require "importer"
 
 describe AuthService do
+  subject { described_class.new(Riiif::ImagesController.new).can?(:show, fs) }
+
   before do
     allow_any_instance_of(Riiif::ImagesController).to(
       receive(:current_user).and_return(user)
@@ -16,8 +18,6 @@ describe AuthService do
       receive(:on_campus?).and_return(true)
     )
   end
-
-  subject { described_class.new(Riiif::ImagesController.new).can?(:show, fs) }
 
   describe "#can?" do
     context "public image" do

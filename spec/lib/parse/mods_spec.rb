@@ -55,7 +55,7 @@ describe Parse::MODS do
         eq ["[Identification of Item], Joel Conway "\
             "/ Flying A Studio Photograph Collection. SBHC Mss 78. "\
             "Department of Special Collections, UC Santa Barbara Library, "\
-            "University of California, Santa Barbara.",]
+            "University of California, Santa Barbara."]
       )
       acquisition_note = attributes[:notes_attributes].first
       expect(acquisition_note[:note_type]).to eq "acquisition"
@@ -180,7 +180,7 @@ describe Parse::MODS do
                finish: ["1919"],
                label: ["circa 1910s"],
                start_qualifier: ["approximate"],
-               finish_qualifier: ["approximate"], },]
+               finish_qualifier: ["approximate"], }]
           )
         )
       end
@@ -216,7 +216,7 @@ describe Parse::MODS do
                finish: ["1959"],
                label: ["circa 1900s-1950s"],
                start_qualifier: ["approximate"],
-               finish_qualifier: ["approximate"], },]
+               finish_qualifier: ["approximate"], }]
           )
         )
       end
@@ -232,7 +232,7 @@ describe Parse::MODS do
                finish: [],
                label: [],
                start_qualifier: [],
-               finish_qualifier: [], },]
+               finish_qualifier: [], }]
           )
         )
       end
@@ -260,7 +260,7 @@ describe Parse::MODS do
                finish: [],
                label: [],
                start_qualifier: [],
-               finish_qualifier: [], },]
+               finish_qualifier: [], }]
           )
         )
       end
@@ -288,7 +288,7 @@ describe Parse::MODS do
                finish: [],
                label: [],
                start_qualifier: [],
-               finish_qualifier: [], },]
+               finish_qualifier: [], }]
           )
         )
       end
@@ -340,7 +340,7 @@ describe Parse::MODS do
              finish: ["1919"],
              label: ["circa 1910s"],
              start_qualifier: ["approximate"],
-             finish_qualifier: ["approximate"], },]
+             finish_qualifier: ["approximate"], }]
         )
       )
       expect(attributes[:creator]).to be_nil
@@ -348,7 +348,7 @@ describe Parse::MODS do
       expect(attributes[:description]).to(
         eq ["Black and white photographs relating to the Flying A Studios "\
             "(aka American Film Manufacturing Company), "\
-            "a film company that operated in Santa Barbara (1912-1920).",]
+            "a film company that operated in Santa Barbara (1912-1920)."]
       )
       expect(attributes[:extent]).to eq ["702 digital objects"]
 
@@ -381,7 +381,7 @@ describe Parse::MODS do
 
       expect(attributes[:work_type]).to(
         eq([{ _rdf: ["http://id.loc.gov/vocabulary/resourceTypes/col",
-                     "http://id.loc.gov/vocabulary/resourceTypes/img",], },])
+                     "http://id.loc.gov/vocabulary/resourceTypes/img",] }])
       )
 
       # TODO: There is another location in the fixture file

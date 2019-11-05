@@ -54,28 +54,28 @@ describe Ability do
     let(:user) { User.new }
 
     it do
-      is_expected.not_to be_able_to(:create, Image)
-      is_expected.not_to be_able_to(:update, SolrDocument.new)
+      expect(subject).not_to be_able_to(:create, Image)
+      expect(subject).not_to be_able_to(:update, SolrDocument.new)
 
-      is_expected.to be_able_to(:read, public_image)
-      is_expected.not_to be_able_to(:update, public_image)
-      is_expected.not_to be_able_to(:destroy, public_image)
+      expect(subject).to be_able_to(:read, public_image)
+      expect(subject).not_to be_able_to(:update, public_image)
+      expect(subject).not_to be_able_to(:destroy, public_image)
 
-      is_expected.to be_able_to(:discover, discovery_image)
-      is_expected.not_to be_able_to(:discover, restricted_image)
+      expect(subject).to be_able_to(:discover, discovery_image)
+      expect(subject).not_to be_able_to(:discover, restricted_image)
 
-      is_expected.to be_able_to(:read, public_file_set)
+      expect(subject).to be_able_to(:read, public_file_set)
 
-      is_expected.not_to be_able_to(:read, :local_authorities)
-      is_expected.not_to be_able_to(:destroy, :local_authorities)
+      expect(subject).not_to be_able_to(:read, :local_authorities)
+      expect(subject).not_to be_able_to(:destroy, :local_authorities)
 
-      is_expected.not_to be_able_to(:new_merge, local_group)
-      is_expected.not_to be_able_to(:merge, local_group)
+      expect(subject).not_to be_able_to(:new_merge, local_group)
+      expect(subject).not_to be_able_to(:merge, local_group)
 
-      is_expected.not_to(
+      expect(subject).not_to(
         be_able_to(:download_original, file_set_of_public_audio)
       )
-      is_expected.to be_able_to(:download_original, file_set_of_public_image)
+      expect(subject).to be_able_to(:download_original, file_set_of_public_image)
     end
   end
 
@@ -83,21 +83,21 @@ describe Ability do
     let(:user) { user_with_groups [AdminPolicy::UCSB_GROUP] }
 
     it do
-      is_expected.not_to be_able_to(:create, Image)
-      is_expected.not_to be_able_to(:update, SolrDocument.new)
+      expect(subject).not_to be_able_to(:create, Image)
+      expect(subject).not_to be_able_to(:update, SolrDocument.new)
 
-      is_expected.to be_able_to(:read, public_image)
-      is_expected.not_to be_able_to(:update, public_image)
-      is_expected.not_to be_able_to(:destroy, public_image)
+      expect(subject).to be_able_to(:read, public_image)
+      expect(subject).not_to be_able_to(:update, public_image)
+      expect(subject).not_to be_able_to(:destroy, public_image)
 
-      is_expected.to be_able_to(:discover, discovery_image)
-      is_expected.not_to be_able_to(:discover, restricted_image)
+      expect(subject).to be_able_to(:discover, discovery_image)
+      expect(subject).not_to be_able_to(:discover, restricted_image)
 
-      is_expected.not_to be_able_to(:read, :local_authorities)
-      is_expected.not_to be_able_to(:destroy, :local_authorities)
+      expect(subject).not_to be_able_to(:read, :local_authorities)
+      expect(subject).not_to be_able_to(:destroy, :local_authorities)
 
-      is_expected.not_to be_able_to(:new_merge, local_group)
-      is_expected.not_to be_able_to(:merge, local_group)
+      expect(subject).not_to be_able_to(:new_merge, local_group)
+      expect(subject).not_to be_able_to(:merge, local_group)
     end
   end
 
@@ -105,33 +105,33 @@ describe Ability do
     let(:user) { user_with_groups [AdminPolicy::META_ADMIN] }
 
     it do
-      is_expected.to be_able_to(:create, Image)
-      is_expected.to be_able_to(:update, SolrDocument.new)
+      expect(subject).to be_able_to(:create, Image)
+      expect(subject).to be_able_to(:update, SolrDocument.new)
 
-      is_expected.to be_able_to(:read, public_image)
-      is_expected.to be_able_to(:update, public_image)
-      is_expected.to be_able_to(:destroy, public_image)
+      expect(subject).to be_able_to(:read, public_image)
+      expect(subject).to be_able_to(:update, public_image)
+      expect(subject).to be_able_to(:destroy, public_image)
 
-      is_expected.to be_able_to(:read, restricted_image)
+      expect(subject).to be_able_to(:read, restricted_image)
 
-      is_expected.to be_able_to(:read, :local_authorities)
-      is_expected.to be_able_to(:destroy, :local_authorities)
+      expect(subject).to be_able_to(:read, :local_authorities)
+      expect(subject).to be_able_to(:destroy, :local_authorities)
 
-      is_expected.to be_able_to(:new_merge, local_group)
-      is_expected.to be_able_to(:merge, local_group)
-      is_expected.to be_able_to(:merge, SolrDocument.new(local_group.to_solr))
+      expect(subject).to be_able_to(:new_merge, local_group)
+      expect(subject).to be_able_to(:merge, local_group)
+      expect(subject).to be_able_to(:merge, SolrDocument.new(local_group.to_solr))
 
-      is_expected.to be_able_to(:discover, embargoed_etd)
-      is_expected.to be_able_to(:read, embargoed_etd)
-      is_expected.to be_able_to(:edit, embargoed_etd)
-      is_expected.to be_able_to(:discover, embargoed_fs)
-      is_expected.not_to be_able_to(:read, embargoed_fs)
-      is_expected.not_to be_able_to(:edit, embargoed_fs)
+      expect(subject).to be_able_to(:discover, embargoed_etd)
+      expect(subject).to be_able_to(:read, embargoed_etd)
+      expect(subject).to be_able_to(:edit, embargoed_etd)
+      expect(subject).to be_able_to(:discover, embargoed_fs)
+      expect(subject).not_to be_able_to(:read, embargoed_fs)
+      expect(subject).not_to be_able_to(:edit, embargoed_fs)
 
-      is_expected.not_to be_able_to(:discover, Hydra::AccessControls::Embargo)
-      is_expected.not_to be_able_to(:edit_rights, ActiveFedora::Base)
+      expect(subject).not_to be_able_to(:discover, Hydra::AccessControls::Embargo)
+      expect(subject).not_to be_able_to(:edit_rights, ActiveFedora::Base)
 
-      is_expected.to be_able_to(:download_original, file_set_of_public_audio)
+      expect(subject).to be_able_to(:download_original, file_set_of_public_audio)
     end
   end
 
@@ -139,33 +139,33 @@ describe Ability do
     let(:user) { user_with_groups [AdminPolicy::RIGHTS_ADMIN] }
 
     it do
-      is_expected.not_to be_able_to(:create, Image)
-      is_expected.not_to be_able_to(:update, SolrDocument.new)
+      expect(subject).not_to be_able_to(:create, Image)
+      expect(subject).not_to be_able_to(:update, SolrDocument.new)
 
-      is_expected.to be_able_to(:read, public_image)
-      is_expected.not_to be_able_to(:update, public_image)
-      is_expected.not_to be_able_to(:destroy, public_image)
+      expect(subject).to be_able_to(:read, public_image)
+      expect(subject).not_to be_able_to(:update, public_image)
+      expect(subject).not_to be_able_to(:destroy, public_image)
 
-      is_expected.to be_able_to(:read, restricted_image)
+      expect(subject).to be_able_to(:read, restricted_image)
 
-      is_expected.not_to be_able_to(:read, :local_authorities)
-      is_expected.not_to be_able_to(:destroy, :local_authorities)
+      expect(subject).not_to be_able_to(:read, :local_authorities)
+      expect(subject).not_to be_able_to(:destroy, :local_authorities)
 
-      is_expected.not_to be_able_to(:new_merge, local_group)
-      is_expected.not_to be_able_to(:merge, local_group)
+      expect(subject).not_to be_able_to(:new_merge, local_group)
+      expect(subject).not_to be_able_to(:merge, local_group)
 
-      is_expected.to be_able_to(:discover, embargoed_etd)
-      is_expected.to be_able_to(:read, embargoed_etd)
-      is_expected.not_to be_able_to(:edit, embargoed_etd)
-      is_expected.to be_able_to(:discover, embargoed_fs)
-      is_expected.to be_able_to(:read, embargoed_fs)
-      is_expected.not_to be_able_to(:edit, embargoed_fs)
+      expect(subject).to be_able_to(:discover, embargoed_etd)
+      expect(subject).to be_able_to(:read, embargoed_etd)
+      expect(subject).not_to be_able_to(:edit, embargoed_etd)
+      expect(subject).to be_able_to(:discover, embargoed_fs)
+      expect(subject).to be_able_to(:read, embargoed_fs)
+      expect(subject).not_to be_able_to(:edit, embargoed_fs)
 
-      is_expected.to be_able_to(:discover, Hydra::AccessControls::Embargo)
-      is_expected.to be_able_to(:update_rights, ActiveFedora::Base)
+      expect(subject).to be_able_to(:discover, Hydra::AccessControls::Embargo)
+      expect(subject).to be_able_to(:update_rights, ActiveFedora::Base)
 
       # Hydra-collections calls this on the id
-      is_expected.to be_able_to(:update_rights, String)
+      expect(subject).to be_able_to(:update_rights, String)
     end
   end
 end

@@ -24,7 +24,7 @@ RSpec.describe ContactUsMailer, type: :mailer do
 
     describe "happy path" do
       subject(:email) do
-        msg = ContactUsMailer.web_inquiry(params)
+        msg = described_class.web_inquiry(params)
         msg.deliver_now
       end
 
@@ -41,7 +41,7 @@ RSpec.describe ContactUsMailer, type: :mailer do
 
     describe "with a suspected spam message" do
       subject(:email) do
-        msg = ContactUsMailer.web_inquiry(params)
+        msg = described_class.web_inquiry(params)
         msg.deliver_now
       end
 

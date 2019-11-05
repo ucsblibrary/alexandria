@@ -60,6 +60,7 @@ class ControlledVocabularies::Geographic < ActiveTriples::Resource
     return label if RDF::URI(label.first).valid?
 
     return label unless parentFeature.first.is_a? ActiveTriples::Resource
+
     parent_label = parentFeature.first.rdf_label.first
 
     return label if parent_label.starts_with?("_:")
@@ -73,6 +74,7 @@ class ControlledVocabularies::Geographic < ActiveTriples::Resource
   def fetch(*args)
     result = super
     return result if top_level_element?
+
     parentFeature.each do |feature|
       feature.fetch(*args)
     end
@@ -83,6 +85,7 @@ class ControlledVocabularies::Geographic < ActiveTriples::Resource
   def persist!
     result = super
     return result if top_level_element?
+
     parentFeature.each(&:persist!)
     result
   end

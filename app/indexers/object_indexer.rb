@@ -89,6 +89,7 @@ class ObjectIndexer < CurationConcerns::WorkIndexer
     def all_contributors_combined
       Metadata::RELATIONS.keys.map do |field|
         next if object[field].empty?
+
         object[field].map do |val|
           val.respond_to?(:rdf_label) ? val.rdf_label.first : val
         end
@@ -110,6 +111,7 @@ class ObjectIndexer < CurationConcerns::WorkIndexer
 
     def query_for_local_collections
       return [] if object.local_collection_id.blank?
+
       query = ActiveFedora::SolrQueryBuilder.construct_query_for_ids(
         object.local_collection_id
       )
@@ -118,6 +120,7 @@ class ObjectIndexer < CurationConcerns::WorkIndexer
 
     def query_for_hydra_collections
       return [] unless object.id
+
       query = ActiveFedora::SolrQueryBuilder.construct_query_for_rel(
         member_ids: object.id,
         has_model: Collection.to_rdf_representation
@@ -131,6 +134,7 @@ class ObjectIndexer < CurationConcerns::WorkIndexer
 
     def created
       return if object.created.blank?
+
       object.created.map(&:display_label)
     end
 
@@ -168,11 +172,13 @@ class ObjectIndexer < CurationConcerns::WorkIndexer
 
     def sorted_key_date
       return unless key_date
+
       key_date.sort_by(&:earliest_year)
     end
 
     def issued
       return if object.issued.blank?
+
       object.issued.first.display_label
     end
 
