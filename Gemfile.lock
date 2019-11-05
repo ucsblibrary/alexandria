@@ -298,7 +298,7 @@ GEM
       faraday (>= 0.7.4, < 1.0)
     fcrepo_wrapper (0.7.0)
       ruby-progressbar
-    ffi (1.9.23)
+    ffi (1.11.1)
     flot-rails (0.0.7)
       jquery-rails
     font-awesome-rails (4.7.0.4)
