@@ -5,7 +5,7 @@ FactoryBot.define do
     sequence(:title) { |n| ["Test Thesis #{n}"] }
 
     factory :public_etd do
-      admin_policy_id AdminPolicy::PUBLIC_POLICY_ID
+      admin_policy_id { AdminPolicy::PUBLIC_POLICY_ID }
     end
   end
 end
