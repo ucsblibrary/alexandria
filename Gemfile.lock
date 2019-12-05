@@ -547,7 +547,7 @@ GEM
       pry (~> 0.11)
       yard (~> 0.9.11)
     public_suffix (3.0.2)
-    puma (3.11.4)
+    puma (3.12.2)
     qa (0.11.1)
       activerecord-import
       deprecation
