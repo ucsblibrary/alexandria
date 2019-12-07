@@ -143,7 +143,7 @@ describe "Embargo management" do
         visit embargoes_path
         click_link "Deactivated Embargoes"
         expect(page).to(
-          have_content("#{etd.title.first} Public access "\
+          have_content("#{etd.title.first} Public access\n"\
                        "An expired embargo was deactivated")
         )
         expect(page).to(

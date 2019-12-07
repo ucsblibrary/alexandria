@@ -62,7 +62,7 @@ describe "Local Authorities", js: true do
       click_button "Search"
       expect(page).to have_link(frodo.foaf_name)
       click_link frodo.foaf_name
-      expect(page).to have_content("Name: #{frodo.foaf_name}")
+      expect(page).to have_content("Name:\n#{frodo.foaf_name}")
     end
   end
 end
