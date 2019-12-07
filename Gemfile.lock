@@ -11,10 +11,10 @@ GIT
 
 GIT
   remote: https://github.com/ucsblibrary/metadata-ci.git
-  revision: 0c346700c907f6716971a79b0ec97e23332b2911
-  ref: 0c346700c907f6716971a79b0ec97e23332b2911
+  revision: 89b94a38ab4fb0d760ee6be5054508620a446d41
+  tag: 0.0.2
   specs:
-    metadata_ci (0.0.1)
+    metadata_ci (0.0.2)
       htmlentities
       mods
       nokogiri
@@ -289,6 +289,8 @@ GEM
     ebnf (1.1.2)
       rdf (>= 2.2, < 4.0)
       sxp (~> 1.0)
+    edtf (3.0.5)
+      activesupport (>= 3.0, < 7.0)
     equivalent-xml (0.6.0)
       nokogiri (>= 1.4.3)
     erubi (1.9.0)
@@ -503,10 +505,11 @@ GEM
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
     minitest (5.13.0)
-    mods (2.0.3)
+    mods (2.4.1)
+      edtf
       iso-639
-      nokogiri
-      nom-xml (~> 0.5.2)
+      nokogiri (>= 1.6.6)
+      nom-xml (~> 1.0)
     mono_logger (1.1.0)
     multi_json (1.14.1)
     multi_xml (0.6.0)
@@ -521,7 +524,7 @@ GEM
     noid (0.9.0)
     nokogiri (1.10.7)
       mini_portile2 (~> 2.4.0)
-    nom-xml (0.5.4)
+    nom-xml (1.1.0)
       activesupport (>= 3.2.18)
       i18n
       nokogiri
@@ -892,7 +895,7 @@ DEPENDENCIES
   marc
   metadata_ci!
   method_source
-  mods (~> 2.0.3)
+  mods (~> 2.4.1)
   net-ldap (~> 0.14)
   openseadragon
   optimist

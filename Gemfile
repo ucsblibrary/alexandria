@@ -6,51 +6,44 @@ group :production do
   gem "pg", "~> 0.18.4"
 end
 
-gem "puma"
-gem "rails", "~> 5.1.5"
-
-gem "font-awesome-sass"
-gem "jquery-rails", "~> 4.0"
-gem "sass-rails", "~> 5.0"
-gem "uglifier", "~> 3.1"
-
-gem "jbuilder", "~> 2.0"
-gem "therubyracer", "~> 0.12.3", platforms: :ruby
-
 gem "active-triples", "~> 0.11.0"
 gem "blacklight-gallery", "~> 0.8.0"
 gem "blacklight_oai_provider"
 gem "blacklight_range_limit"
 gem "curation_concerns", "~> 1.7.7"
 gem "ezid-client", "~> 1.2"
+gem "font-awesome-sass"
 gem "hydra-role-management"
+gem "jbuilder", "~> 2.0"
+gem "jquery-rails", "~> 4.0"
 gem "linked_vocabs",
     git: "https://github.com/projecthydra-labs/linked_vocabs.git"
 gem "marc"
 gem "metadata_ci",
     git: "https://github.com/ucsblibrary/metadata-ci.git",
-    ref: "0c346700c907f6716971a79b0ec97e23332b2911"
-gem "mods", "~> 2.0.3"
-gem "openseadragon"
-gem "qa", "~> 0.11.0"
-gem "rdf-marmotta", "~> 0.1.1"
-gem "riiif", ">= 2.0.0"
-gem "rsolr"
-gem "simple_form", "3.5.0"
-gem "traject", "~> 2.3.2"
-
-# https://github.com/amatsuda/kaminari/pull/636
-gem "kaminari_route_prefix"
-
+    tag: "0.0.2"
+gem "mods", "~> 2.4.1"
 gem "net-ldap", "~> 0.14"
-gem "settingslogic"
-
+gem "openseadragon"
+gem "optimist"
+gem "puma"
+gem "qa", "~> 0.11.0"
+gem "rails", "~> 5.1.5"
+gem "rdf-marmotta", "~> 0.1.1"
 gem "resque-pool"
 gem "resque-status"
 gem "resque-web"
+gem "riiif", ">= 2.0.0"
+gem "rsolr"
+gem "sass-rails", "~> 5.0"
+gem "settingslogic"
+gem "simple_form", "3.5.0"
+gem "therubyracer", "~> 0.12.3", platforms: :ruby
+gem "traject", "~> 2.3.2"
+gem "uglifier", "~> 3.1"
 
-# for bin/ingest
-gem "optimist"
+# https://github.com/amatsuda/kaminari/pull/636
+gem "kaminari_route_prefix"
 
 # When parsing the ETD metadata file from ProQuest,
 # some of the dates are American-style.
