@@ -18,6 +18,7 @@ module Parse
       Find.find(arg).map do |path|
         next if File.directory?(path)
         next if extension.present? && File.extname(path) != extension
+
         path
       end
     end.flatten.compact

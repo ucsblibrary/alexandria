@@ -7,7 +7,7 @@ RSpec.describe MergeRecordsJob, type: :job do
     context "with missing record" do
       it "raises an error" do
         expect do
-          MergeRecordsJob.perform_now("bad_ID", "bad_ID_2")
+          described_class.perform_now("bad_ID", "bad_ID_2")
         end.to raise_error(ActiveFedora::ObjectNotFoundError)
       end
     end
@@ -34,7 +34,7 @@ RSpec.describe MergeRecordsJob, type: :job do
           receive(:new).with(conway, joel) { merge_service }
         )
         expect(merge_service).to receive(:run)
-        MergeRecordsJob.perform_now(conway.id, joel.id)
+        described_class.perform_now(conway.id, joel.id)
       end
     end
   end # describe #perform

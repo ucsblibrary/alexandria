@@ -3,6 +3,8 @@
 require "rails_helper"
 
 describe ScannedMapIndexer do
+  subject { described_class.new(scanned_map).generate_solr_document }
+
   before do
     ScannedMap.all.map(&:id).each do |id|
       if ActiveFedora::Base.exists?(id)
@@ -10,7 +12,6 @@ describe ScannedMapIndexer do
       end
     end
   end
-  subject { described_class.new(scanned_map).generate_solr_document }
 
   context "with a file_set" do
     let(:file) { File.new(fixture_file_path("images/dirge1.tif")) }

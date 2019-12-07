@@ -7,12 +7,13 @@ describe TimeSpan do
     before do
       subject.start = ["1930"]
     end
+
     it "has start" do
       expect(subject.start).to eq ["1930"]
     end
   end
 
-  context "#earliest_year" do
+  describe "#earliest_year" do
     before do
       subject.start = ["1930", "1912", "", "1920"]
     end

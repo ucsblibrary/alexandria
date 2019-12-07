@@ -40,10 +40,10 @@ class SessionsController < ApplicationController
       update_groups_for!(user, groups, type)
 
       log_in(username)
-      return redirect_to root_url
+      redirect_to root_url
     else
       flash.now[:error] = "Bad email/password combination."
-      return render "new"
+      render "new"
     end
   end
 end

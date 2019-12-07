@@ -50,7 +50,7 @@ gem "resque-status"
 gem "resque-web"
 
 # for bin/ingest
-gem "trollop"
+gem "optimist"
 
 # When parsing the ETD metadata file from ProQuest,
 # some of the dates are American-style.

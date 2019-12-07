@@ -13,6 +13,7 @@ describe CollectionsController do
     before do
       Collection.destroy_all
     end
+
     let!(:collection1) { create :public_collection }
     let!(:collection2) { create :public_collection }
     let!(:private_collection1) { create :collection }

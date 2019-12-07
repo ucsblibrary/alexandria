@@ -38,7 +38,6 @@ module OptionsHelper
       Qa::Authorities::Local.subauthority_for(field)
         .all
         .each_with_object({}) do |t, h|
-
         h[t["label"]] = t["id"]
       end
     end

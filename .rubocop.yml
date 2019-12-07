@@ -1,5 +1,6 @@
-require: rubocop-rspec
 inherit_from: .rubocop_todo.yml
+
+require: rubocop-rspec
 
 AllCops:
   DisplayCopNames: true
@@ -11,7 +12,7 @@ AllCops:
     - 'provisioning/**/*'
 
 Layout/IndentationConsistency:
-  EnforcedStyle: rails
+  EnforcedStyle: indented_internal_methods
 
 Layout/MultilineMethodCallIndentation:
   EnforcedStyle: indented
@@ -52,14 +53,6 @@ Naming/HeredocDelimiterNaming:
 
 Rails:
   Enabled: true
-
-Rails/ActiveRecordAliases:
-  # this class has its own #update_attributes method
-  Exclude:
-    - 'lib/importer/factory/object_factory.rb'
-
-Rails/ApplicationRecord:
-  Enabled: false
 
 Style/ClassAndModuleChildren:
   EnforcedStyle: compact

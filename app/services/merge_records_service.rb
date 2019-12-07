@@ -66,6 +66,7 @@ class MergeRecordsService
 
     def validate_records_are_different
       return unless new_reference == old_reference
+
       raise IncompatibleMergeError, "Error: Cannot merge a record with itself."
     end
 

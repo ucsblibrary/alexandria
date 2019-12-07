@@ -21,6 +21,7 @@ module Importer::Factory::WithAssociatedCollection
 
   def reindex_collection
     return unless collection?
+
     collection.update_index
   end
 

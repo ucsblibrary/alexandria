@@ -2,11 +2,12 @@
 
 FactoryBot.define do
   factory :collection do
-    title ["test collection"]
+    title { ["test collection"] }
     id { SecureRandom.uuid }
     factory :public_collection do
       before(:create) { AdminPolicy.ensure_admin_policy_exists }
-      admin_policy_id AdminPolicy::PUBLIC_POLICY_ID
+
+      admin_policy_id { AdminPolicy::PUBLIC_POLICY_ID }
     end
   end
 end

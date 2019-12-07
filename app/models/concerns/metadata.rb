@@ -6,7 +6,7 @@ module Metadata
 
   RELATIONS = {
     contributor: RDF::Vocab::DC.contributor,
-    creator:     RDF::Vocab::DC.creator,
+    creator: RDF::Vocab::DC.creator,
   }.merge(::Fields::MARCREL)
 
   included do
@@ -16,7 +16,6 @@ module Metadata
              predicate: RDF::URI(
                "http://opaquenamespace.org/ns/localCollectionID"
              ) do |index|
-
       index.as :symbol
     end
 
@@ -79,7 +78,6 @@ module Metadata
     # rubocop:disable Metrics/LineLength
     property :scale,
              predicate: RDF::URI("http://www.rdaregistry.info/Elements/u/#horizontalScaleOfCartographicContent.en") do |index|
-
       index.as :stored_searchable
     end
     # rubocop:enable Metrics/LineLength
@@ -162,7 +160,6 @@ module Metadata
              predicate: RDF::URI(
                "http://opaquenamespace.org/ns/seriesName"
              ) do |index|
-
       index.as :displayable, :facetable
     end
 
@@ -179,7 +176,6 @@ module Metadata
              predicate: RDF::URI(
                "http://opaquenamespace.org/ns/folderName"
              ) do |index|
-
       index.as :stored_searchable, :facetable
     end
 
@@ -187,7 +183,6 @@ module Metadata
              predicate: RDF::URI(
                "http://id.loc.gov/vocabulary/identifiers/issue-number"
              ) do |index|
-
       index.as :stored_searchable
     end
 
@@ -195,7 +190,6 @@ module Metadata
              predicate: RDF::URI(
                "http://id.loc.gov/vocabulary/identifiers/matrix-number"
              ) do |index|
-
       index.as :stored_searchable
     end
 
@@ -210,7 +204,6 @@ module Metadata
                "http://www.rdaregistry.info/Elements/w/#formOfWork.en"
              ),
              class_name: ControlledVocabularies::WorkType do |index|
-
       index.as :stored_searchable, :facetable
     end
 
@@ -218,7 +211,6 @@ module Metadata
              predicate: RDF::URI(
                "http://www.rdaregistry.info/Elements/u/#preferredCitation.en"
              ) do |index|
-
       index.as :displayable
     end
 
@@ -251,7 +243,6 @@ module Metadata
              predicate: RDF::URI(
                "http://lod.xdams.org/reload/oad/has_findingAid"
              ) do |index|
-
       index.as :stored_searchable
     end
 

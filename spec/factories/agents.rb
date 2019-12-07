@@ -5,9 +5,9 @@ FactoryBot.define do
     sequence(:foaf_name) { |n| "Agent #{n}" }
   end
 
-  factory :person, parent: :agent, class: Person
+  factory :person, parent: :agent, class: "Person"
 
-  factory :group, parent: :agent, class: Group
+  factory :group, parent: :agent, class: "Group"
 
-  factory :organization, parent: :agent, class: Organization, aliases: [:org]
+  factory :organization, parent: :agent, class: "Organization", aliases: [:org]
 end

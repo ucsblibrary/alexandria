@@ -40,6 +40,7 @@ class Importer::LocalAuthorityImporter
   def model(attributes)
     model = Array(attributes[:type]).first
     raise '"type" column cannot be blank' if model.blank?
+
     model.capitalize.constantize
   end
 

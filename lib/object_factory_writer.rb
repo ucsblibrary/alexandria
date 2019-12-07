@@ -97,6 +97,7 @@ class ObjectFactoryWriter
     file_groups = attributes[:fulltext_link].map do |name|
       match = name.match(/.*Cylinder(\d+)$/)
       next if match.blank?
+
       cylinder_number = match[1]
 
       @settings[:files_dirs].map do |dir| # Look in all the dirs

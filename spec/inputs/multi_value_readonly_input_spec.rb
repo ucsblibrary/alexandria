@@ -6,7 +6,7 @@ describe MultiValueReadonlyInput, type: :input do
   let(:image) { Image.new(record_origin: ["value 1", "value 2"]) }
   let(:builder) { SimpleForm::FormBuilder.new(:image, image, view, {}) }
   let(:input) do
-    MultiValueReadonlyInput.new(builder, :record_origin, nil, :multi_value, {})
+    described_class.new(builder, :record_origin, nil, :multi_value, {})
   end
 
   describe "#input" do

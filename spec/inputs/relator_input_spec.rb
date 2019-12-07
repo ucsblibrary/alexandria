@@ -23,7 +23,7 @@ describe RelatorInput, type: :input do
   end
 
   let(:builder) { SimpleForm::FormBuilder.new(:image, image, view, {}) }
-  let(:input) { RelatorInput.new(builder, :creator, nil, :multi_value, {}) }
+  let(:input) { described_class.new(builder, :creator, nil, :multi_value, {}) }
 
   describe "#input" do
     before do

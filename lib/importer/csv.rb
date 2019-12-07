@@ -6,7 +6,7 @@ require File.expand_path("factory", __dir__)
 module Importer::CSV
   # @param [Array<String>] meta
   # @param [Array<String>] data
-  # @param [Hash] options See the options specified with Trollop in {bin/ingest}
+  # @param [Hash] options See the options specified with Optimist in {bin/ingest}
   # @param [Logger] log
   # @return [Integer] The number of records ingested
   def self.import(meta:, data:, options:, logger: Logger.new(STDOUT))

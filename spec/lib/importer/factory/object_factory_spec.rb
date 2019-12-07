@@ -94,9 +94,9 @@ describe Importer::Factory::ObjectFactory do
     context "with new notes" do
       let(:attributes) do
         { id: image.id,
-          note:  ["an untyped note",
-                  { type: "type 1", name: "note 1" },
-                  { type: "type 2", name: "note 2" },], }
+          note: ["an untyped note",
+                 { type: "type 1", name: "note 1" },
+                 { type: "type 2", name: "note 2" },], }
       end
 
       it "updates the notes" do
@@ -130,9 +130,9 @@ describe Importer::Factory::ObjectFactory do
 
     context "with notes" do
       let(:attributes) do
-        { note:  ["an untyped note",
-                  { type: "type 1", name: "note 1" },
-                  { type: "type 2", name: "note 2" },], }
+        { note: ["an untyped note",
+                 { type: "type 1", name: "note 1" },
+                 { type: "type 2", name: "note 2" },] }
       end
 
       it "parses the notes attributes" do

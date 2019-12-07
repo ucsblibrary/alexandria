@@ -16,6 +16,7 @@ namespace :import do
       begin
         etd = ETD.find ucsb_ark
         next if etd.merritt_id.present?
+
         etd.merritt_id = [merritt_ark]
         etd.save
         puts "Updated UCSB ETD: #{ucsb_ark}"
@@ -44,6 +45,7 @@ namespace :import do
              headers: %w[proquest merritt ucsb]) do |row|
       ETD.find_each do |etd|
         next if etd.merritt_id.present?
+
         begin
           pq_name = etd.file_sets.first.original_file.file_name.first
           pq_id = "ProQuestID:" + pq_name.split("_").last.split(".").first

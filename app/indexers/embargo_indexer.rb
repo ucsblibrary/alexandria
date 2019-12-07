@@ -32,11 +32,13 @@ class EmbargoIndexer
 
     def visibility_during_embargo_id
       return unless @object.visibility_during_embargo
+
       ActiveFedora::Base.uri_to_id(@object.visibility_during_embargo.id)
     end
 
     def visibility_after_embargo_id
       return unless @object.visibility_after_embargo
+
       ActiveFedora::Base.uri_to_id(@object.visibility_after_embargo.id)
     end
 end

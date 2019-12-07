@@ -29,9 +29,9 @@ describe Person do
   end
 
   describe "#to_solr" do
-    before { AdminPolicy.ensure_admin_policy_exists }
-
     subject { person.to_solr }
+
+    before { AdminPolicy.ensure_admin_policy_exists }
 
     let(:person) { described_class.create(foaf_name: "Justin") }
 

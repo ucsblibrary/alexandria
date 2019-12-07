@@ -12,7 +12,6 @@ module ExtractFulltextLink
       extract856u
         .extract(record)
         .grep_v(%r{^http://alexandria\.ucsb\.edu/lib/}).each do |val|
-
         accumulator << val
       end
     end

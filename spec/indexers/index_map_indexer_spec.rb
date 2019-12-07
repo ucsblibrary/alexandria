@@ -3,6 +3,8 @@
 require "rails_helper"
 
 describe IndexMapIndexer do
+  subject { described_class.new(index_map).generate_solr_document }
+
   before do
     IndexMap.all.map(&:id).each do |id|
       if ActiveFedora::Base.exists?(id)
@@ -10,7 +12,6 @@ describe IndexMapIndexer do
       end
     end
   end
-  subject { described_class.new(index_map).generate_solr_document }
 
   context "with a file_set" do
     let(:file) { File.new(fixture_file_path("images/dirge1.tif")) }

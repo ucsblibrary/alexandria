@@ -126,12 +126,15 @@ describe Parse::CSV do
         eql("ScannedMap")
       )
     end
+
     it "returns ScannedMap when the model value is 'ScannedMap'" do
       expect(described_class.determine_model("ScannedMap")).to eql("ScannedMap")
     end
+
     it "returns Image when the model value is 'image'" do
       expect(described_class.determine_model("image")).to eql("Image")
     end
+
     it "returns IndexMap when the model value is 'index Map'" do
       expect(described_class.determine_model("index Map")).to eql("IndexMap")
     end

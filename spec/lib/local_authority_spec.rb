@@ -71,6 +71,7 @@ describe LocalAuthority do
   describe "#find_or_create_rdf_attribute" do
     context "rights_holder" do
       before { Agent.destroy_all }
+
       let(:regents_uri) { "http://id.loc.gov/authorities/names/n85088322" }
       let(:regents_string) { "Regents of the Univ." }
 
@@ -148,7 +149,7 @@ describe LocalAuthority do
       context "when the type is specified" do
         let(:attributes) do
           { rights_holder: [{ name: "Bilbo Baggins",
-                              type: "Person", },], }
+                              type: "Person", }] }
         end
 
         it "creates the local rights holder" do

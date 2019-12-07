@@ -179,6 +179,7 @@ describe Importer::MODS do
         Collection.all.each { |c| c.destroy(eradicate: true) }
         Person.destroy_all
       end
+
       let!(:existing) { Person.create(foaf_name: "Conway, Joel") }
 
       it "doesn't create another person" do

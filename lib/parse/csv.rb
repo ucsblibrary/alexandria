@@ -4,7 +4,7 @@ require "metadata_ci"
 
 module Parse::CSV
   # Match headers like "lc_subject_type"
-  TYPE_HEADER_PATTERN = /\A.*_type\Z/
+  TYPE_HEADER_PATTERN = /\A.*_type\Z/.freeze
 
   # Given a 'type' field from the CSV, determine which object model pertains
   # @param [String] csv_type_field
@@ -79,6 +79,7 @@ module Parse::CSV
         end
     o = ActiveFedora::Base.where(accession_number_ssim: a).first
     return o.id if o
+
     nil
   end
 
@@ -210,6 +211,7 @@ module Parse::CSV
   # @return [Hash]
   def self.assign_access_policy(attrs)
     raise "No access policy defined" unless attrs[:access_policy]
+
     access_policy = attrs.delete(:access_policy).first
     case access_policy
     when "public"

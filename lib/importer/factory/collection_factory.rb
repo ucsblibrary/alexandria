@@ -14,6 +14,7 @@ module Importer::Factory
     def find_or_create
       collection = find
       return collection if collection
+
       run(&:save!)
     end
 

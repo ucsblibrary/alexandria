@@ -29,19 +29,19 @@ class SolrDocument
   # Blacklight OAI metadata mapping
   field_semantics.merge!(
     contributor: "all_contributors_label_sim",
-    coverage:    "location_label_tesim",
-    creator:     "creator_label_tesim",
-    date:        "date_si",
+    coverage: "location_label_tesim",
+    creator: "creator_label_tesim",
+    date: "date_si",
     description: %w[description_tesim note_label_tesim citation],
-    format:      "form_of_work_label_tesim",
-    identifier:  "uri_ssm",
-    language:    "language_label_ssm",
-    publisher:   "publisher_tesim",
-    relation:    "collection_label_ssim",
-    rights:      "license_tesim",
-    subject:     "lc_subject_label_tesim",
-    title:       "title_tesim",
-    type:        "work_type_label_tesim"
+    format: "form_of_work_label_tesim",
+    identifier: "uri_ssm",
+    language: "language_label_ssm",
+    publisher: "publisher_tesim",
+    relation: "collection_label_ssim",
+    rights: "license_tesim",
+    subject: "lc_subject_label_tesim",
+    title: "title_tesim",
+    type: "work_type_label_tesim"
   )
 
   # Do content negotiation for AF models.
@@ -116,6 +116,7 @@ class SolrDocument
 
   def public_uri
     return nil unless LocalAuthority.local_authority?(self)
+
     Array.wrap(self["public_uri_ssim"]).first
   end
 

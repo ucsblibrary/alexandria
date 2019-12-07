@@ -54,7 +54,7 @@ class RelatorInput < ControlledVocabularySelectInput
           <li class="field-wrapper row existing">
             #{yield}
           </li>
-        HTML
+      HTML
     end
 
     def hidden_predicate_field(value, index)

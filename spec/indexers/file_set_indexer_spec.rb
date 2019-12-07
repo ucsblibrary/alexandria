@@ -27,6 +27,7 @@ describe FileSetIndexer do
       before do
         allow(file_set).to receive(:mime_type).and_return("audio/x-wave")
       end
+
       it "has a thumbnail" do
         expect(subject[ObjectIndexer.thumbnail_field]).to(
           match %r{^/assets/audio-.*\.png$}

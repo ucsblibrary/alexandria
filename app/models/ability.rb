@@ -67,7 +67,6 @@ class Ability
     can :discover,
         (ActiveFedora::Base.descendants -
          [Hydra::AccessControls::Embargo]) do |obj|
-
       test_access(access: :discover, object_id: obj.id)
     end
 

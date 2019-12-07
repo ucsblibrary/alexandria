@@ -52,7 +52,7 @@ describe Importer::Factory::AudioRecordingFactory do
         [File.join(fixture_path,
                    "cylinders",
                    "cyl1-2",
-                   "cusb-cyl0001a.wav.md5"),]
+                   "cusb-cyl0001a.wav.md5")]
       end
 
       it { is_expected.to be_nil }

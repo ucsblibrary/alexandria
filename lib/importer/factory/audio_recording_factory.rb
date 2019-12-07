@@ -20,8 +20,10 @@ module Importer::Factory
     # ]
     def attach_files(object, cylinders)
       return if object.file_sets.count.positive?
+
       cylinders.each do |filegroup|
         next if filegroup.empty?
+
         number = cylinder_number(filegroup)
         next unless number
 

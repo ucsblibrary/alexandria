@@ -43,6 +43,7 @@ module ApplicationHelper
     end.sample
 
     return nil if random_with_thumbnail.nil?
+
     random_with_thumbnail["square_thumbnail_url_ssm"]
   end
 

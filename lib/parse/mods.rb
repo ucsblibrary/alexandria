@@ -201,6 +201,7 @@ class Parse::MODS
 
   def persistent_id(raw_id)
     return unless raw_id
+
     raw_id.downcase.gsub(/\s*/, "")
   end
 
@@ -214,6 +215,7 @@ class Parse::MODS
   def collection_name
     node_set = mods.at_xpath("//mods:relatedItem[@type='host']", NAMESPACES)
     return unless node_set
+
     [node_set.titleInfo.title.text.strip]
   end
 
@@ -221,6 +223,7 @@ class Parse::MODS
     node_set = mods.related_item.at_xpath('mods:identifier[@type="local"]',
                                           NAMESPACES)
     return [] unless node_set
+
     Array(node_set.text)
   end
 
@@ -290,7 +293,6 @@ class Parse::MODS
     def alt_title
       Array(mods.xpath("//mods:titleInfo[@type]",
                        NAMESPACES)).flat_map do |node|
-
         type = node.attributes["type"].text
         alternative = "alternative"
 

@@ -10,7 +10,7 @@ require "sru"
 # If there are no options given, invoke help
 ARGV << "-h" if ARGV.empty?
 
-options = Trollop.options do
+options = Optimist.options do
   opt :ark, "Only download metadata for these ARKs", type: :strings
   opt :number, "Only download N records", type: :integer
   opt :skip, "Skip the first N records", default: 0

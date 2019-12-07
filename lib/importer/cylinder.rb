@@ -21,7 +21,7 @@ class Importer::Cylinder
 
   # @param [Array<String>] metadata_files
   # @param [Array<String>] files_dirs
-  # @param [Hash] options See the options specified with Trollop in {bin/ingest}
+  # @param [Hash] options See the options specified with Optimist in {bin/ingest}
   # @param [Logger] logger
   # @return [Collection]
   def initialize(meta:,

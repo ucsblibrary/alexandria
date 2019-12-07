@@ -11,7 +11,7 @@ require File.expand_path("../lib/importer", __dir__)
 # If there are no options given, invoke help
 ARGV << "-h" if ARGV.empty?
 
-options = Trollop.options do
+options = Optimist.options do
   banner <<~EOS
     Command line object ingest for the UCSB Alexandria Digital Library
 
@@ -21,7 +21,7 @@ options = Trollop.options do
           RAILS_ENV=[development|test|production] ./bin/ingest [options]
     where [options] are:
 
-EOS
+  EOS
 
   opt :accession_numbers,
       "Only ingest records with these accession numbers (CSV and MODS)",

@@ -8,7 +8,7 @@ describe MultiValueSelectInput, type: :input do
   let(:image) { Image.new(digital_origin: values) }
   let(:builder) { SimpleForm::FormBuilder.new(:image, image, view, {}) }
   let(:input) do
-    MultiValueSelectInput.new(
+    described_class.new(
       builder,
       :digital_origin,
       nil,
