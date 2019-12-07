@@ -12,8 +12,8 @@ env:
     - CI=1
 
 rvm:
-  - 2.3.1
   - 2.4.2
+  - 2.6.3
 
 jdk:
   - oraclejdk8
