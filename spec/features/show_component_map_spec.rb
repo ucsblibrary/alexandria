@@ -111,10 +111,12 @@ describe "ComponentMap show page:" do
     expect(page).to have_link("another thing")
 
     expect(page).to(
-      have_link(collection.title.first, href: collection_path(collection))
+      have_link(collection.title.first,
+                href: catalog_ark_path("ark:", "99999", collection.id))
     )
     expect(page).to(
-      have_link(map_set.title.first, href: curation_concerns_map_set_path(map_set))
+      have_link(map_set.title.first,
+                href: catalog_ark_path("ark:", "99999", map_set.id))
     )
   end
 end
