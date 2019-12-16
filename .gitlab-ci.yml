@@ -13,13 +13,9 @@ services:
 
 before_script:
   - apk --no-cache upgrade
-  - apk --no-cache add build-base
-  - apk --no-cache add pkgconfig
+  - apk --no-cache add build-base pkgconfig curl git
   - apk --no-cache add openjdk8
-  - apk --no-cache add curl
-  - apk --no-cache add git
-  - apk --no-cache add libxml2
-  - apk --no-cache add libxslt
+  - apk --no-cache add libxml2 libxml2-dev libxslt libxslt-dev
   - cp config/secrets.yml.template config/secrets.yml
   - curl -sLO https://projects.iq.harvard.edu/files/fits/files/fits-0.8.6_1.zip
   - unzip fits-0.8.6_1.zip
