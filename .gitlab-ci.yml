@@ -1,0 +1,33 @@
+image: ruby:2.4-alpine
+
+variables:
+  NOKOGIRI_USE_SYSTEM_LIBRARIES: "1"
+  CI: "1"
+
+cache:
+  paths:
+  - vendor/ruby
+
+services:
+  - redis:latest
+
+before_script:
+  - apk --no-cache upgrade
+  - apk --no-cache add build-base
+  - apk --no-cache add pkgconfig
+  - apk --no-cache add openjdk8
+  - apk --no-cache add curl
+  - apk --no-cache add git
+  - apk --no-cache add libxml2
+  - apk --no-cache add libxslt
+  - cp config/secrets.yml.template config/secrets.yml
+  - curl -sLO https://projects.iq.harvard.edu/files/fits/files/fits-0.8.6_1.zip
+  - unzip fits-0.8.6_1.zip
+  - chmod +x fits-0.8.6/fits.sh
+  - export PATH="$(pwd)/fits-0.8.6:$PATH"
+  - ruby -v
+  - bundle install -j $(nproc) --path vendor
+
+run-test:
+  script:
+    - npm test
